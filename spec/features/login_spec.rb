@@ -16,7 +16,6 @@ describe 'A visitor to the site', type: :feature do
     navigation.switch_to_english
     login.sign_in(ENV['EN_Admin_Email'], ENV['EN_Admin_Password'])
 
-    navigation.switch_to_english # this should be removed when redirect is corrected
     buttons = all('.btn').map(&:text)
     expect(buttons).to match_array(navigation.english_admin_buttons)
   end
@@ -25,7 +24,6 @@ describe 'A visitor to the site', type: :feature do
     navigation.switch_to_spanish
     login.sign_in(ENV['PE_Admin_Email'], ENV['PE_Admin_Password'])
 
-    navigation.switch_to_spanish # this should be removed when redirect is corrected
     buttons = all('.btn').map(&:text)
     expect(buttons).to match_array(navigation.spanish_admin_buttons)
   end

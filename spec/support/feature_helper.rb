@@ -7,3 +7,7 @@ end
 def navigation
   @navigation ||= Navigation.new
 end
+
+def contact_information
+  @contact_information ||= ContactInformation.new
+end
