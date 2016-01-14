@@ -19,8 +19,7 @@ end
 Capybara.configure do |config|
   config.default_max_wait_time = 5
   config.register_driver :selenium do |app|
-    Selenium::WebDriver::Firefox::Binary.path =
-      '/Applications/firefox38/Firefox.app/Contents/MacOS/firefox-bin'
+    Selenium::WebDriver::Firefox::Binary.path = ENV['Firefox_Path']
     Capybara::Selenium::Driver.new(app, browser: :firefox)
   end
   config.default_driver = :selenium
