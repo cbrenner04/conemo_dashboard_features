@@ -1,4 +1,4 @@
-# filename: ./spec/features/active_participants_spec.rb
+# filename: ./spec/features/active_spec.rb
 
 # require page objects
 require './lib/pages/login'
@@ -20,7 +20,6 @@ end
 
 describe 'An authorized admin signs in', type: :feature do
   before do
-    visit ENV['Base_URL']
     login.sign_in(ENV['EN_Admin_Email'], ENV['EN_Admin_Password'])
     navigation.switch_to_english
     active_participants.open
