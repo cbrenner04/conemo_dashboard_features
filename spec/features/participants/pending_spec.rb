@@ -3,11 +3,12 @@
 # require page objects
 require './lib/pages/login'
 require './lib/pages/navigation'
-require './lib/pages/pending_participants'
 require './lib/pages/contact_information'
+require './lib/pages/pending_participants'
 
 # initialize page objects
-# no need to initialize login or navigation, they're in the feature_helper
+# no need to initialize login, navigation or contact_formation,
+# they're in the feature_helper
 def pending_participants
   @pending_participants ||= PendingParticipants.new
 end
@@ -21,7 +22,7 @@ describe 'An authorized admin signs in', type: :feature do
 
   it 'can cancel creation form' do
     pending_participants.create
-    contact_information.cancel
+    navigation.cancel
 
     expect(page).to have_css '#pending'
   end
@@ -40,7 +41,7 @@ describe 'An authorized admin signs in', type: :feature do
     contact_information.select_dob
     contact_information.choose_gender('female')
     contact_information.choose_chronic_disorder
-    contact_information.submit
+    navigation.submit
 
     expect(page).to_not have_css '#pending'
     expect(page).to have_css '#participant_first_name'
@@ -60,7 +61,7 @@ describe 'An authorized admin signs in', type: :feature do
     contact_information.select_dob
     contact_information.choose_gender('female')
     contact_information.choose_chronic_disorder
-    contact_information.submit
+    navigation.submit
 
     expect(page).to_not have_css '#pending'
     expect(page).to have_css '#participant_first_name'
@@ -80,7 +81,7 @@ describe 'An authorized admin signs in', type: :feature do
     contact_information.select_dob
     contact_information.choose_gender('female')
     contact_information.choose_chronic_disorder
-    contact_information.submit
+    navigation.submit
 
     expect(page).to_not have_css '#pending'
     expect(page).to have_css '#participant_first_name'
@@ -100,7 +101,7 @@ describe 'An authorized admin signs in', type: :feature do
     contact_information.select_dob
     contact_information.choose_gender('female')
     contact_information.choose_chronic_disorder
-    contact_information.submit
+    navigation.submit
 
     expect(page).to_not have_css '#pending'
     expect(page).to have_css '#participant_first_name'
@@ -120,7 +121,7 @@ describe 'An authorized admin signs in', type: :feature do
     contact_information.select_dob
     contact_information.choose_gender('female')
     contact_information.choose_chronic_disorder
-    contact_information.submit
+    navigation.submit
 
     expect(page).to_not have_css '#pending'
     expect(page).to have_css '#participant_first_name'
@@ -144,7 +145,7 @@ describe 'An authorized admin signs in', type: :feature do
     contact_information.fill_in_address("100 Fake Ln\nSome City, USA, 12345")
     contact_information.select_dob
     contact_information.choose_chronic_disorder
-    contact_information.submit
+    navigation.submit
 
     expect(page).to_not have_css '#pending'
     expect(page).to have_css '#participant_first_name'
@@ -161,7 +162,7 @@ describe 'An authorized admin signs in', type: :feature do
     yesterday = Date.today - 1
     contact_information.select_enrollment_date(yesterday)
     contact_information.choose_gender('female')
-    contact_information.submit
+    navigation.submit
 
     expect(page)
       .to have_content "Doe, Jane 123 #{yesterday.strftime('%B %-d, %Y')}"

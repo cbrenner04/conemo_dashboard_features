@@ -31,23 +31,14 @@ class ActiveParticipants
       find('table').has_css?('td', text: /./m)
     end
 
-    def cancel
-      click_on 'Cancel'
-    end
-
     private
 
     def update_date_time(datetime)
-      select "#{datetime.strftime('%Y')}",
-             from: 'patient_contact[contact_at(1i)]'
-      select "#{datetime.strftime('%B')}",
-             from: 'patient_contact[contact_at(2i)]'
-      select "#{datetime.strftime('%-d')}",
-             from: 'patient_contact[contact_at(3i)]'
-      select "#{datetime.strftime('%H')}",
-             from: 'patient_contact[contact_at(4i)]'
-      select "#{datetime.strftime('%M')}",
-             from: 'patient_contact[contact_at(5i)]'
+      time_format = ['%Y', '%B', '%-d', '%H', '%M']
+      time_format.zip(1..5) do |x, y|
+        select "#{datetime.strftime(x)}",
+               from: "patient_contact[contact_at(#{y}i)]"
+      end
     end
   end
 end

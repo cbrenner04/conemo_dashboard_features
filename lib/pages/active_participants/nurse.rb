@@ -19,9 +19,5 @@ class ActiveParticipants
       row = find('tr', text: "Last-#{id}, First")
       expect(row).to have_content "Nurse-#{nurse}, English"
     end
-
-    def cancel
-      click_on 'Cancel'
-    end
   end
 end

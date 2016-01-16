@@ -1,48 +1,19 @@
 # filename: ./spec/features/active_spec.rb
 
-# require page objects
+# require page objects, these are initialized in the feature_helper.rb
 require './lib/pages/login'
 require './lib/pages/navigation'
 require './lib/pages/contact_information'
-require './lib/pages/active_participants'
-require './lib/pages/active_participants/profile'
-require './lib/pages/active_participants/nurse'
-require './lib/pages/active_participants/notes'
-require './lib/pages/active_participants/first_contact'
-require './lib/pages/active_participants/first_appointment'
 
-# initialize page objects
-# no need to initialize login, navigation, or contact_information
-# they're in the feature_helper
-def active_participants
-  @active_participants ||= ActiveParticipants.new
-end
-
-def profile
-  @profile ||= ActiveParticipants::Profile.new
-end
-
-def nurse
-  @nurse ||= ActiveParticipants::Nurse.new
-end
-
-def notes
-  @notes ||= ActiveParticipants::Notes.new
-end
-
-def first_contact
-  @first_contact ||= ActiveParticipants::FirstContact.new
-end
-
-def first_appointment
-  @first_contact ||= ActiveParticipants::FirstAppointment.new
-end
+# require helper file with active_participant pages required and initialized
+require './spec/support/active_pt_helper'
 
 describe 'An authorized admin signs in', type: :feature do
   before do
     login.sign_in(ENV['EN_Admin_Email'], ENV['EN_Admin_Password'])
     navigation.switch_to_english
     active_participants.open
+    sleep(1)
   end
 
   it 'views participant profile' do
@@ -56,7 +27,7 @@ describe 'An authorized admin signs in', type: :feature do
     profile.go_to_profile_of('Last-301, First')
     profile.select_edit_contact_information
     contact_information.fill_in_email('participant301@example.com')
-    contact_information.submit
+    navigation.submit
 
     expect(page).to have_content 'Email: participant301@example.com'
   end
@@ -66,7 +37,7 @@ describe 'An authorized admin signs in', type: :feature do
   it 'cancels out of edit of smartphone information' do
     profile.go_to_profile_of('Last-310, First')
     profile.select_edit_smartphone_information
-    profile.cancel
+    navigation.cancel
 
     expect(active_participants).to be_visible
   end
@@ -75,8 +46,8 @@ describe 'An authorized admin signs in', type: :feature do
     profile.go_to_profile_of('Last-302, First')
     profile.select_edit_smartphone_information
     profile.enter_smartphone_number('1234567890')
-    profile.select_all_radios
-    profile.submit
+    profile.select_all_smartphone_radios
+    navigation.submit
     profile.go_to_profile_of('Last-302, First')
 
     expect(page).to have_content 'Smartphone Information: 1234567890'
@@ -96,7 +67,7 @@ describe 'An authorized admin signs in', type: :feature do
 
   it 'cancels add note' do
     notes.open_for('308')
-    notes.cancel
+    navigation.cancel
 
     expect(active_participants).to be_visible
   end
@@ -119,7 +90,7 @@ describe 'An authorized admin signs in', type: :feature do
 
   it 'cancels out of first contact form' do
     active_participants.create_contact_for('307')
-    first_contact.cancel
+    navigation.cancel
 
     expect(active_participants).to be_visible
   end
@@ -129,7 +100,7 @@ describe 'An authorized admin signs in', type: :feature do
     first_contact.record_date_contact
     first_contact.assign_date_first_appointment
     first_contact.enter_first_appt_location
-    first_contact.submit
+    navigation.submit
 
     within active_participants.row_for('306') do
       expect(first_contact).to be_visible
@@ -138,19 +109,191 @@ describe 'An authorized admin signs in', type: :feature do
 
   it 'cancels out of a first appointment reschedule form' do
     active_participants.reschedule_appt_for('311')
-    first_appointment.cancel
+    navigation.cancel
 
     expect(active_participants).to be_visible
   end
 
   it 'reschedules a first appointment' do
     active_participants.reschedule_appt_for('312')
-    first_appointment.reschedule
+    active_participants.reschedule
 
-    expect(first_appointment).to be_rescheduled
+    expect(active_participants).to be_rescheduled
   end
 
-  it 'cancels out of a first appointment creation form'
+  it 'cancels out of a first appointment creation form' do
+    active_participants.create_contact_for('313')
+    navigation.cancel
 
-  it 'creates a first appointment'
+    expect(active_participants).to be_visible
+  end
+
+  it 'must enter a integer in session length field' do
+    active_participants.create_contact_for('314')
+    first_appointment.enter_time_location_next_time
+    first_appointment.enter_session_length('asdf')
+    navigation.submit
+
+    expect(profile).to_not have_phone_form_present
+  end
+
+  it 'cannot submit first appointment form without entering session length' do
+    active_participants.create_contact_for('315')
+    first_appointment.enter_time_location_next_time
+    first_appointment.select_pt_comfort_with_phone
+    first_appointment.enter_phone_note
+    first_appointment.select_engagement
+    first_appointment.select_chances
+    first_appointment.enter_general_notes
+    navigation.submit
+
+    expect(profile).to_not have_phone_form_present
+  end
+
+  it 'cannot submit first appointment form without entering comfort' do
+    active_participants.create_contact_for('316')
+    first_appointment.enter_time_location_next_time
+    first_appointment.enter_session_length('120')
+    first_appointment.enter_phone_note
+    first_appointment.select_engagement
+    first_appointment.select_chances
+    first_appointment.enter_general_notes
+    navigation.submit
+
+    expect(profile).to_not have_phone_form_present
+  end
+
+  it 'cannot submit first appointment form without selecting engagement' do
+    active_participants.create_contact_for('317')
+    first_appointment.enter_time_location_next_time
+    first_appointment.enter_session_length('120')
+    first_appointment.select_pt_comfort_with_phone
+    first_appointment.enter_phone_note
+    first_appointment.select_chances
+    first_appointment.enter_general_notes
+    navigation.submit
+
+    expect(profile).to_not have_phone_form_present
+  end
+
+  it 'cannot submit first appointment form without selecting chances' do
+    active_participants.create_contact_for('318')
+    first_appointment.enter_time_location_next_time
+    first_appointment.enter_session_length('120')
+    first_appointment.select_pt_comfort_with_phone
+    first_appointment.enter_phone_note
+    first_appointment.select_engagement
+    first_appointment.enter_general_notes
+    navigation.submit
+
+    expect(profile).to_not have_phone_form_present
+  end
+
+  it 'creates a first appointment' do
+    active_participants.create_contact_for('319')
+    first_appointment.enter_time_location_next_time
+    first_appointment.enter_session_length('120')
+    first_appointment.select_pt_comfort_with_phone
+    first_appointment.enter_phone_note
+    first_appointment.select_engagement
+    first_appointment.select_chances
+    first_appointment.enter_general_notes
+    navigation.submit
+
+    profile.enter_smartphone_number('1234567890')
+    profile.select_all_smartphone_radios
+    navigation.submit
+
+    expect(first_appointment).to be_created_for_participant('319')
+  end
+
+  it 'cancels out of  second contact creation form' do
+    active_participants.reschedule_appt_for('320')
+    navigation.cancel
+
+    expect(active_participants).to be_visible
+  end
+
+  it 'reschedules a second contact' do
+    active_participants.reschedule_appt_for('321')
+    active_participants.reschedule
+
+    expect(active_participants).to be_rescheduled
+  end
+
+  it 'cancels out of second contact creation form' do
+    active_participants.create_contact_for('322')
+    navigation.cancel
+
+    expect(active_participants).to be_visible
+  end
+
+  it 'must enter integer into length of call' do
+    active_participants.create_contact_for('323')
+    second_contact.enter_length_of_call('asdf')
+    navigation.submit
+
+    expect(active_participants).to_not be be_visible
+  end
+
+  it 'cannot submit second contact without selecting ability' do
+    active_participants.create_contact_for('324')
+    second_contact.record_date_sched_next_fill_in_pt_qs
+    second_contact.select_motivation
+    second_contact.select_chances
+    second_contact.enter_length_of_call('60')
+    second_contact.enter_notes
+    navigation.submit
+
+    expect(active_participants).to_not be_visible
+  end
+
+  it 'cannot submit second contact without selecting motivation' do
+    active_participants.create_contact_for('325')
+    second_contact.record_date_sched_next_fill_in_pt_qs
+    second_contact.select_ability
+    second_contact.select_chances
+    second_contact.enter_length_of_call('60')
+    second_contact.enter_notes
+    navigation.submit
+
+    expect(active_participants).to_not be_visible
+  end
+
+  it 'cannot submit second contact without selecting chances' do
+    active_participants.create_contact_for('326')
+    second_contact.record_date_sched_next_fill_in_pt_qs
+    second_contact.select_ability
+    second_contact.select_motivation
+    second_contact.enter_length_of_call('60')
+    second_contact.enter_notes
+    navigation.submit
+
+    expect(active_participants).to_not be_visible
+  end
+
+  it 'cannot submit second contact without entering length of call' do
+    active_participants.create_contact_for('327')
+    second_contact.record_date_sched_next_fill_in_pt_qs
+    second_contact.select_ability
+    second_contact.select_motivation
+    second_contact.select_chances
+    second_contact.enter_notes
+    navigation.submit
+
+    expect(active_participants).to_not be_visible
+  end
+
+  it 'creates a second contact' do
+    active_participants.create_contact_for('328')
+    second_contact.record_date_sched_next_fill_in_pt_qs
+    second_contact.select_ability
+    second_contact.select_motivation
+    second_contact.select_chances
+    second_contact.enter_length_of_call('60')
+    second_contact.enter_notes
+    navigation.submit
+
+    expect(second_contact).to be_created_for_participant('328')
+  end
 end

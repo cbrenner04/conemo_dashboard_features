@@ -32,18 +32,14 @@ class ActiveParticipants
       fill_in 'smartphone[number]', with: number
     end
 
-    def select_all_radios
+    def select_all_smartphone_radios
       find('#smartphone_is_smartphone_owner_true').click
       find('#smartphone_is_app_compatible_true').click
       find('#smartphone_is_owned_by_participant_true').click
     end
 
-    def submit
-      click_on 'Save'
-    end
-
-    def cancel
-      click_on 'Cancel'
+    def has_phone_form_present?
+      has_css?('h1', text: 'Input Smartphone Information')
     end
   end
 end

@@ -25,4 +25,12 @@ class Navigation
   def portuguese_admin_buttons
     ['ADMIN', 'Participantes pendentes', 'Participantes ativos', 'Sessões']
   end
+
+  def cancel
+    click_on 'Cancel'
+  end
+
+  def submit
+    click_on 'Save'
+  end
 end

@@ -24,7 +24,7 @@ describe 'A visitor to the site', type: :feature do
   end
 
   it 'is an authorized English nurse and logs in' do
-    login.sign_in(ENV['EN_Nurse_Email'], ENV['EN_Nurse_Password'])
+    login.sign_in(ENV['EN_Nurse_400_Email'], ENV['EN_Nurse_400_Password'])
     assert_does_not_have_buttons(navigation.english_admin_buttons)
   end
 
@@ -39,12 +39,12 @@ describe 'A visitor to the site', type: :feature do
   end
 end
 
-def assert_correct_buttons(buttons)
-  buttons = all('.btn').map(&:text)
-  expect(buttons).to match_array(buttons)
+def assert_correct_buttons(exp_buttons)
+  act_buttons = all('.btn').map(&:text)
+  expect(act_buttons).to match_array(exp_buttons)
 end
 
-def assert_does_not_have_buttons(buttons)
-  buttons = all('.btn').map(&:text)
-  expect(buttons).to_not match_array(buttons)
+def assert_does_not_have_buttons(exp_buttons)
+  act_buttons = all('.btn').map(&:text)
+  expect(act_buttons).to_not match_array(exp_buttons)
 end

@@ -2,10 +2,6 @@
 class ContactInformation
   include Capybara::DSL
 
-  def cancel
-    click_on 'Cancel'
-  end
-
   def fill_in_first_name(name)
     fill_in_field('first_name', name)
   end
@@ -63,10 +59,6 @@ class ContactInformation
     int = rand(0..2)
     disorder = ['hypertension', 'diabetes'].sample(int)
     disorder.each { |d| check d }
-  end
-
-  def submit
-    click_on 'Save'
   end
 
   private
