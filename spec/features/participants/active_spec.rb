@@ -35,6 +35,7 @@ describe 'An authorized admin signs in', type: :feature do
   it 'views smartphone information'
 
   it 'cancels out of edit of smartphone information' do
+    scroll_by('500')
     profile.go_to_profile_of('Last-310, First')
     profile.select_edit_smartphone_information
     navigation.cancel
@@ -54,8 +55,9 @@ describe 'An authorized admin signs in', type: :feature do
   end
 
   it 'cancels out of edit nurse form' do
+    scroll_by('500')
     nurse.open('309')
-    nurse.cancel
+    navigation.cancel
 
     expect(active_participants).to be_visible
   end
@@ -97,17 +99,17 @@ describe 'An authorized admin signs in', type: :feature do
 
   it 'creates first contact' do
     active_participants.create_contact_for('306')
-    first_contact.record_date_contact
-    first_contact.assign_date_first_appointment
+    first_contact.record_date_and_schedule_next
     first_contact.enter_first_appt_location
     navigation.submit
 
-    within active_participants.row_for('306') do
+    within active_participants.pt_row('306') do
       expect(first_contact).to be_visible
     end
   end
 
   it 'cancels out of a first appointment reschedule form' do
+    scroll_by('500')
     active_participants.reschedule_appt_for('311')
     navigation.cancel
 
@@ -115,13 +117,15 @@ describe 'An authorized admin signs in', type: :feature do
   end
 
   it 'reschedules a first appointment' do
+    scroll_by('500')
     active_participants.reschedule_appt_for('312')
-    active_participants.reschedule
+    active_participants.reschedule('first_appointment')
 
-    expect(active_participants).to be_rescheduled
+    expect(active_participants).to be_rescheduled_for('312')
   end
 
   it 'cancels out of a first appointment creation form' do
+    scroll_by('500')
     active_participants.create_contact_for('313')
     navigation.cancel
 
@@ -129,6 +133,7 @@ describe 'An authorized admin signs in', type: :feature do
   end
 
   it 'must enter a integer in session length field' do
+    scroll_by('500')
     active_participants.create_contact_for('314')
     first_appointment.enter_time_location_next_time
     first_appointment.enter_session_length('asdf')
@@ -138,6 +143,7 @@ describe 'An authorized admin signs in', type: :feature do
   end
 
   it 'cannot submit first appointment form without entering session length' do
+    scroll_by('1000')
     active_participants.create_contact_for('315')
     first_appointment.enter_time_location_next_time
     first_appointment.select_pt_comfort_with_phone
@@ -151,6 +157,7 @@ describe 'An authorized admin signs in', type: :feature do
   end
 
   it 'cannot submit first appointment form without entering comfort' do
+    scroll_by('1000')
     active_participants.create_contact_for('316')
     first_appointment.enter_time_location_next_time
     first_appointment.enter_session_length('120')
@@ -164,6 +171,7 @@ describe 'An authorized admin signs in', type: :feature do
   end
 
   it 'cannot submit first appointment form without selecting engagement' do
+    scroll_by('1000')
     active_participants.create_contact_for('317')
     first_appointment.enter_time_location_next_time
     first_appointment.enter_session_length('120')
@@ -177,6 +185,7 @@ describe 'An authorized admin signs in', type: :feature do
   end
 
   it 'cannot submit first appointment form without selecting chances' do
+    scroll_by('1000')
     active_participants.create_contact_for('318')
     first_appointment.enter_time_location_next_time
     first_appointment.enter_session_length('120')
@@ -190,6 +199,7 @@ describe 'An authorized admin signs in', type: :feature do
   end
 
   it 'creates a first appointment' do
+    scroll_by('1000')
     active_participants.create_contact_for('319')
     first_appointment.enter_time_location_next_time
     first_appointment.enter_session_length('120')
@@ -208,6 +218,7 @@ describe 'An authorized admin signs in', type: :feature do
   end
 
   it 'cancels out of  second contact creation form' do
+    scroll_by('1250')
     active_participants.reschedule_appt_for('320')
     navigation.cancel
 
@@ -215,13 +226,15 @@ describe 'An authorized admin signs in', type: :feature do
   end
 
   it 'reschedules a second contact' do
+    scroll_by('1250')
     active_participants.reschedule_appt_for('321')
-    active_participants.reschedule
+    active_participants.reschedule('second_contact')
 
-    expect(active_participants).to be_rescheduled
+    expect(active_participants).to be_rescheduled_for('321')
   end
 
   it 'cancels out of second contact creation form' do
+    scroll_by('1500')
     active_participants.create_contact_for('322')
     navigation.cancel
 
@@ -229,6 +242,7 @@ describe 'An authorized admin signs in', type: :feature do
   end
 
   it 'must enter integer into length of call' do
+    scroll_by('1500')
     active_participants.create_contact_for('323')
     second_contact.enter_length_of_call('asdf')
     navigation.submit
@@ -237,6 +251,7 @@ describe 'An authorized admin signs in', type: :feature do
   end
 
   it 'cannot submit second contact without selecting ability' do
+    scroll_by('1500')
     active_participants.create_contact_for('324')
     second_contact.record_date_sched_next_fill_in_pt_qs
     second_contact.select_motivation
@@ -249,6 +264,7 @@ describe 'An authorized admin signs in', type: :feature do
   end
 
   it 'cannot submit second contact without selecting motivation' do
+    scroll_by('1500')
     active_participants.create_contact_for('325')
     second_contact.record_date_sched_next_fill_in_pt_qs
     second_contact.select_ability
@@ -261,6 +277,7 @@ describe 'An authorized admin signs in', type: :feature do
   end
 
   it 'cannot submit second contact without selecting chances' do
+    scroll_by('2000')
     active_participants.create_contact_for('326')
     second_contact.record_date_sched_next_fill_in_pt_qs
     second_contact.select_ability
@@ -273,6 +290,7 @@ describe 'An authorized admin signs in', type: :feature do
   end
 
   it 'cannot submit second contact without entering length of call' do
+    scroll_by('2000')
     active_participants.create_contact_for('327')
     second_contact.record_date_sched_next_fill_in_pt_qs
     second_contact.select_ability
@@ -285,6 +303,7 @@ describe 'An authorized admin signs in', type: :feature do
   end
 
   it 'creates a second contact' do
+    scroll_by('2000')
     active_participants.create_contact_for('328')
     second_contact.record_date_sched_next_fill_in_pt_qs
     second_contact.select_ability
@@ -294,6 +313,11 @@ describe 'An authorized admin signs in', type: :feature do
     second_contact.enter_notes
     navigation.submit
 
-    expect(second_contact).to be_created_for_participant('328')
+    expect(second_contact)
+      .to be_created_for_participant('328')
   end
+end
+
+def scroll_by(pixels)
+  page.execute_script("window.scrollBy(0,#{pixels})")
 end

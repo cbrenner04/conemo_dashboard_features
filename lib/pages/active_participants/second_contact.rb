@@ -15,8 +15,8 @@ class ActiveParticipants
       # active_pt.schedule_next_contact
       fill_in 'second_contact[q1]', with: 'q1 response'
       (2..7).each do |i|
-        radio = ['true', 'false'].sample
-        find("#second_contact_q#{i}_#{radio}")
+        # radio = ['true', 'false'].sample
+        # find("#second_contact_q#{i}_#{radio}").click
         fill_in "second_contact[q#{i}_notes]", with: "q#{i} notes"
       end
     end
@@ -55,10 +55,9 @@ class ActiveParticipants
     end
 
     def created_for_participant?(id)
-      active_pt.pt_row(id).has_css?('.fa-check-circle', count: 2)
-      third_contact = DateTime.now + 21
-      active_pt.pt_row(id)
-        .find('td', text: "#{third_contact.strftime('%d %b %H:%M')}")
+      active_pt.pt_row(id).has_css?('.fa-check-circle', count: 3)
+      second_contact = DateTime.now + 21
+      active_pt.check_date_time(id, second_contact)
     end
   end
 end

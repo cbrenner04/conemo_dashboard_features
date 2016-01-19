@@ -13,6 +13,10 @@ RSpec.configure do |config|
     c.syntax = [:should, :expect]
   end
   config.profile_examples = 10
+  config.before(:suite) do
+    time = DateTime.now
+    SUITE_START_TIME = time
+  end
 end
 
 # Capybara configuration options

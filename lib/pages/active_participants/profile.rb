@@ -14,9 +14,9 @@ class ActiveParticipants
                  "Health Center Family record number: 33#{id} Phone: " \
                  "13333333#{id} Emergency Contact Name: Emergency Contact " \
                  'Phone: Email: Date of birth: ' \
-                 "#{date_1.strftime('%B %-d, %Y')}" \
+                 "#{date_1.strftime('%B %d, %Y')}" \
                  ' Address: Enrollment date: ' \
-                 "#{Date.today.strftime('%B %-d, %Y')} Gender: female Key " \
+                 "#{Date.today.strftime('%B %d, %Y')} Gender: female Key " \
                  'chronic disorder:')
     end
 

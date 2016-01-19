@@ -59,8 +59,7 @@ class ActiveParticipants
 
     def created_for_participant?(id)
       active_pt.pt_row(id).has_css?('.fa-check-circle', count: 2)
-      active_pt.pt_row(id)
-        .find('td', text: "#{active_pt.next_contact.strftime('%d %b %H:%M')}")
+      active_pt.check_date_time(id, active_pt.next_contact)
     end
   end
 end
