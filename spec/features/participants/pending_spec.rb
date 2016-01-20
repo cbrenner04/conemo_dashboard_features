@@ -6,8 +6,8 @@ require './lib/pages/navigation'
 require './lib/pages/contact_information'
 require './lib/pages/pending_participants'
 
-# initialize page objects
-# no need to initialize login, navigation or contact_formation,
+# instantiate page objects
+# no need to instantiate login, navigation or contact_formation,
 # they're in the feature_helper
 def pending_participants
   @pending_participants ||= PendingParticipants.new

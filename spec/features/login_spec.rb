@@ -1,11 +1,8 @@
 # filename: ./spec/login_spec.rb
 
-# require page objects
+# require page objects, these are instantiated in the feature helper
 require './lib/pages/login.rb'
 require './lib/pages/navigation.rb'
-
-# initialize page objects
-# no need to initialize login or navigation, they're in the feature_helper
 
 describe 'A visitor to the site', type: :feature do
   it 'is an authorized English admin and logs in' do

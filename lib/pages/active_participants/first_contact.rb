@@ -14,9 +14,13 @@ class ActiveParticipants
               with: '100 West Ln, Chicago, IL 60601'
     end
 
-    def record_date_and_schedule_next
+    def assert_on_page
       find('h1', text: 'First Contact')
-      active_pt.record_date_contact
+    end
+
+    def record_date_and_schedule_next
+      assert_on_page
+      active_pt.record_time
       active_pt.schedule_next_contact
     end
 

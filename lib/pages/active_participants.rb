@@ -59,8 +59,12 @@ class ActiveParticipants
     end
   end
 
-  def record_date_contact
+  def record_time
     update_date_time((0..4).to_a, DateTime.now)
+  end
+
+  def enter_session_length(session, time)
+    fill_in "#{session}[session_length]", with: time
   end
 
   def next_contact
@@ -81,7 +85,7 @@ class ActiveParticipants
     subt_hour = exp_hour.to_i - act_hour.to_i
     subt_min = exp_min.to_i - act_min.to_i
 
-    if subt_hour.between?(0, 1) && subt_min.between?(0, 5)
+    if subt_hour.between?(0, 1) && subt_min.between?(0, 1)
       pt_row(id)
         .find('td', text: "#{datetime.strftime('%d %b')} " \
                           "#{act_hour.delete(' ')}:#{act_min.delete(' ')}")
@@ -93,7 +97,24 @@ class ActiveParticipants
       expect(subt_min)
         .to be < 6, "Expected #{exp_hour.delete(' ')}:#{exp_min.delete(' ')}" \
                     " and actual #{act_hour.delete(' ')}:" \
-                    "#{act_min.delete(' ')} time are not within 5 minute"
+                    "#{act_min.delete(' ')} time are not within 1 minute"
     end
+  end
+
+  def select_ability
+    selector = page.all('.select2-container')
+    selector[10].click
+    ability = ['3 - Seems to be able to use the application',
+               '2 - Seems to have some difficulties',
+               '1 - Seems to have great difficulty'].sample
+    select_item(ability)
+  end
+
+  def select_motivation
+    selector = page.all('.select2-container')
+    selector[11].click
+    motivation = ['3 – Very interested', '2 – Somewhat interested',
+                  '1 – Not interested'].sample
+    select_item(motivation)
   end
 end

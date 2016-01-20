@@ -14,8 +14,8 @@ RSpec.configure do |config|
   end
   config.profile_examples = 10
   config.before(:suite) do
-    time = DateTime.now
-    SUITE_START_TIME = time
+    TWO_WEEKS = DateTime.now + 14
+    THREE_WEEKS = DateTime.now + 21
   end
 end
 

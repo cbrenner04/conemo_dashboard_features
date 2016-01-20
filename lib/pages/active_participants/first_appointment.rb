@@ -9,16 +9,16 @@ class ActiveParticipants
       @active_pt ||= ActiveParticipants.new
     end
 
-    def enter_time_location_next_time
+    def assert_on_page
       find('h1', text: 'First Appointment')
-      active_pt.record_date_contact
+    end
+
+    def enter_time_and_location_and_schedule_next
+      assert_on_page
+      active_pt.record_time
       fill_in 'first_appointment[appointment_location]',
               with: '100 N Ln, Chicago, IL 60601'
       active_pt.schedule_next_contact
-    end
-
-    def enter_session_length(time)
-      fill_in 'first_appointment[session_length]', with: time
     end
 
     def select_pt_comfort_with_phone

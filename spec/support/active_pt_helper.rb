@@ -8,8 +8,10 @@ require './lib/pages/active_participants/notes'
 require './lib/pages/active_participants/first_contact'
 require './lib/pages/active_participants/first_appointment'
 require './lib/pages/active_participants/second_contact'
+require './lib/pages/active_participants/third_contact'
+require './lib/pages/active_participants/final_appointment'
 
-# initialize page objects
+# instantiate page objects
 def active_participants
   @active_participants ||= ActiveParticipants.new
 end
@@ -36,4 +38,12 @@ end
 
 def second_contact
   @second_contact ||= ActiveParticipants::SecondContact.new
+end
+
+def third_contact
+  @third_contact ||= ActiveParticipants::ThirdContact.new
+end
+
+def final_appointment
+  @final_appointment ||= ActiveParticipants::FinalAppointment.new
 end
