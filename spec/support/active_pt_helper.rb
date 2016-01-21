@@ -1,15 +1,7 @@
 # filename: ./spec/support/active_pt_helper.rb
 
 # require page objects for use in ./spec/features/participants/active_spec.rb
-require './lib/pages/active_participants'
-require './lib/pages/active_participants/profile'
-require './lib/pages/active_participants/nurse'
-require './lib/pages/active_participants/notes'
-require './lib/pages/active_participants/first_contact'
-require './lib/pages/active_participants/first_appointment'
-require './lib/pages/active_participants/second_contact'
-require './lib/pages/active_participants/third_contact'
-require './lib/pages/active_participants/final_appointment'
+Dir['./lib/pages/active_participants/*.rb'].each { |file| require file }
 
 # instantiate page objects
 def active_participants
@@ -46,4 +38,8 @@ end
 
 def final_appointment
   @final_appointment ||= ActiveParticipants::FinalAppointment.new
+end
+
+def reports
+  @reports ||= ActiveParticipants::Reports.new
 end

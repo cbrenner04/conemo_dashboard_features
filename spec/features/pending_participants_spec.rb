@@ -1,4 +1,4 @@
-# filename: ./spec/features/pending_spec.rb
+# filename: ./spec/features/pending_participants_spec.rb
 
 # require page objects
 require './lib/pages/login'

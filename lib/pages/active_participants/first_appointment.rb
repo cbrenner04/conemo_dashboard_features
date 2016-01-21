@@ -53,8 +53,12 @@ class ActiveParticipants
       active_pt.select_item(chance)
     end
 
+    def general_notes
+      'Who takes notes?'
+    end
+
     def enter_general_notes
-      fill_in 'first_appointment[notes]', with: 'Who takes notes?'
+      fill_in 'first_appointment[notes]', with: general_notes
     end
 
     def created_for_participant?(id)

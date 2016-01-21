@@ -7,6 +7,10 @@ class ActiveParticipants
     click_on 'Active Participants'
   end
 
+  def assert_on_page
+    find('h1', text: 'Manage Active Participants')
+  end
+
   def pt_row(id)
     find('tr', text: "Last-#{id}, First")
   end
@@ -116,5 +120,9 @@ class ActiveParticipants
     motivation = ['3 – Very interested', '2 – Somewhat interested',
                   '1 – Not interested'].sample
     select_item(motivation)
+  end
+
+  def has_help_message_for?(id)
+    pt_row(id).has_css?('.blink-me')
   end
 end

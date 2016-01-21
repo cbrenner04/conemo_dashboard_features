@@ -1,4 +1,4 @@
-# filename: ./spec/features/active_spec.rb
+# filename: ./spec/features/active_participants/contacts_spec.rb
 
 # require page objects, these are instantiated in the feature_helper.rb
 require './lib/pages/login'
@@ -13,7 +13,7 @@ describe 'An authorized admin signs in', type: :feature do
     login.sign_in(ENV['EN_Admin_Email'], ENV['EN_Admin_Password'])
     navigation.switch_to_english
     active_participants.open
-    sleep(1)
+    active_participants.assert_on_page
   end
 
   it 'views participant profile' do
@@ -203,7 +203,7 @@ describe 'An authorized admin signs in', type: :feature do
   end
 
   it 'creates a first appointment' do
-    scroll_by('1000')
+    scroll_by('1250')
     active_participants.create_contact_for('319')
     first_appointment.enter_time_and_location_and_schedule_next
     active_participants.enter_session_length('first_appointment', '120')
@@ -221,9 +221,18 @@ describe 'An authorized admin signs in', type: :feature do
     expect(first_appointment).to be_created_for_participant('319')
 
     # check profile page for completeness
-    scroll_by('1000')
+    scroll_by('1250')
     profile.go_to_profile_of('Last-319, First')
+
     expect(profile).to have_first_appointment_information
+
+    # check reports page for notes
+    active_participants.open
+    active_participants.assert_on_page
+    scroll_by('1250')
+    reports.open_for('319')
+
+    expect(reports).to have_first_appt_notes_visible
   end
 
   it 'cancels out of  second contact creation form' do
@@ -329,6 +338,8 @@ describe 'An authorized admin signs in', type: :feature do
     scroll_by('1500')
     profile.go_to_profile_of('Last-328, First')
     expect(profile).to have_second_contact_information
+
+    # check reports page for notes
   end
 
   it 'reschedules third contact' do
@@ -437,6 +448,8 @@ describe 'An authorized admin signs in', type: :feature do
     scroll_by('2000')
     profile.go_to_profile_of('Last-336, First')
     expect(profile).to have_third_contact_information
+
+    # check reports page for notes
   end
 
   it 'reschedules final appointment' do
@@ -495,6 +508,8 @@ describe 'An authorized admin signs in', type: :feature do
     scroll_by('2000')
     profile.go_to_profile_of('Last-341, First')
     expect(profile).to have_final_appointment_information
+
+    # check reports page for notes
   end
 
   it 'edits first contact from profile page' do
