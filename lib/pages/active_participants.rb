@@ -125,4 +125,8 @@ class ActiveParticipants
   def has_help_message_for?(id)
     pt_row(id).has_css?('.blink-me')
   end
+
+  def has_status_for?(status, id)
+    pt_row(id).has_css?(".#{status}")
+  end
 end

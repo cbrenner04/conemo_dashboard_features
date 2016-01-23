@@ -55,7 +55,6 @@ describe 'An authorized admin signs in', type: :feature do
   end
 
   it 'cancels out of edit nurse form' do
-    scroll_by('500')
     nurse.open('309')
     navigation.cancel
 
@@ -71,12 +70,13 @@ describe 'An authorized admin signs in', type: :feature do
     notes.open_for('308')
     navigation.cancel
 
-    expect(active_participants).to be_visible
+    expect(reports).to be_visible
   end
 
   it 'adds a note' do
     datetime = DateTime.now - 2
     notes.add_notes('304', datetime)
+    active_participants.open
     notes.open_for('304')
 
     expect(notes).to be_visible
@@ -85,6 +85,7 @@ describe 'An authorized admin signs in', type: :feature do
   it 'deletes a note' do
     notes.open_for('305')
     notes.delete
+    active_participants.open
     notes.open_for('305')
 
     expect(notes).to_not have_any_note
@@ -147,7 +148,7 @@ describe 'An authorized admin signs in', type: :feature do
   end
 
   it 'cannot submit first appointment form without entering session length' do
-    scroll_by('1000')
+    scroll_by('500')
     active_participants.create_contact_for('315')
     first_appointment.enter_time_and_location_and_schedule_next
     first_appointment.select_pt_comfort_with_phone
@@ -161,7 +162,7 @@ describe 'An authorized admin signs in', type: :feature do
   end
 
   it 'cannot submit first appointment form without entering comfort' do
-    scroll_by('1000')
+    scroll_by('500')
     active_participants.create_contact_for('316')
     first_appointment.enter_time_and_location_and_schedule_next
     active_participants.enter_session_length('first_appointment', '120')
@@ -175,7 +176,7 @@ describe 'An authorized admin signs in', type: :feature do
   end
 
   it 'cannot submit first appointment form without selecting engagement' do
-    scroll_by('1000')
+    scroll_by('500')
     active_participants.create_contact_for('317')
     first_appointment.enter_time_and_location_and_schedule_next
     active_participants.enter_session_length('first_appointment', '120')
@@ -189,7 +190,7 @@ describe 'An authorized admin signs in', type: :feature do
   end
 
   it 'cannot submit first appointment form without selecting chances' do
-    scroll_by('1000')
+    scroll_by('500')
     active_participants.create_contact_for('318')
     first_appointment.enter_time_and_location_and_schedule_next
     active_participants.enter_session_length('first_appointment', '120')
@@ -203,7 +204,7 @@ describe 'An authorized admin signs in', type: :feature do
   end
 
   it 'creates a first appointment' do
-    scroll_by('1250')
+    scroll_by('500')
     active_participants.create_contact_for('319')
     first_appointment.enter_time_and_location_and_schedule_next
     active_participants.enter_session_length('first_appointment', '120')
@@ -221,7 +222,7 @@ describe 'An authorized admin signs in', type: :feature do
     expect(first_appointment).to be_created_for_participant('319')
 
     # check profile page for completeness
-    scroll_by('1250')
+    scroll_by('500')
     profile.go_to_profile_of('Last-319, First')
 
     expect(profile).to have_first_appointment_information
@@ -229,14 +230,14 @@ describe 'An authorized admin signs in', type: :feature do
     # check reports page for notes
     active_participants.open
     active_participants.assert_on_page
-    scroll_by('1250')
+    scroll_by('500')
     reports.open_for('319')
 
     expect(reports).to have_first_appt_notes_visible
   end
 
   it 'cancels out of  second contact creation form' do
-    scroll_by('1250')
+    scroll_by('1000')
     active_participants.reschedule_appt_for('320')
     navigation.cancel
 
@@ -244,7 +245,7 @@ describe 'An authorized admin signs in', type: :feature do
   end
 
   it 'reschedules a second contact' do
-    scroll_by('1250')
+    scroll_by('1000')
     active_participants.reschedule_appt_for('321')
     active_participants.reschedule('second_contact')
 
@@ -252,7 +253,7 @@ describe 'An authorized admin signs in', type: :feature do
   end
 
   it 'cancels out of second contact creation form' do
-    scroll_by('1250')
+    scroll_by('1000')
     active_participants.create_contact_for('322')
     navigation.cancel
 
@@ -260,7 +261,7 @@ describe 'An authorized admin signs in', type: :feature do
   end
 
   it 'must enter integer into length of call' do
-    scroll_by('1500')
+    scroll_by('1000')
     active_participants.create_contact_for('323')
     active_participants.enter_session_length('second_contact', 'asdf')
     navigation.submit
@@ -269,7 +270,7 @@ describe 'An authorized admin signs in', type: :feature do
   end
 
   it 'cannot submit second contact without selecting ability' do
-    scroll_by('1500')
+    scroll_by('1000')
     active_participants.create_contact_for('324')
     second_contact.record_date_and_fill_in_questions
     active_participants.select_motivation
@@ -282,7 +283,7 @@ describe 'An authorized admin signs in', type: :feature do
   end
 
   it 'cannot submit second contact without selecting motivation' do
-    scroll_by('1500')
+    scroll_by('1000')
     active_participants.create_contact_for('325')
     second_contact.record_date_and_fill_in_questions
     active_participants.select_ability
@@ -295,7 +296,7 @@ describe 'An authorized admin signs in', type: :feature do
   end
 
   it 'cannot submit second contact without selecting chances' do
-    scroll_by('1500')
+    scroll_by('1000')
     active_participants.create_contact_for('326')
     second_contact.record_date_and_fill_in_questions
     active_participants.select_ability
@@ -308,7 +309,7 @@ describe 'An authorized admin signs in', type: :feature do
   end
 
   it 'cannot submit second contact without entering length of call' do
-    scroll_by('1500')
+    scroll_by('1000')
     active_participants.create_contact_for('327')
     second_contact.record_date_and_fill_in_questions
     active_participants.select_ability
@@ -321,7 +322,7 @@ describe 'An authorized admin signs in', type: :feature do
   end
 
   it 'creates a second contact' do
-    scroll_by('1500')
+    scroll_by('1000')
     active_participants.create_contact_for('328')
     second_contact.record_date_and_fill_in_questions
     active_participants.select_ability
@@ -335,7 +336,7 @@ describe 'An authorized admin signs in', type: :feature do
       .to be_created_for_participant('328', THREE_WEEKS)
 
     # check profile page for completeness
-    scroll_by('1500')
+    scroll_by('1000')
     profile.go_to_profile_of('Last-328, First')
     expect(profile).to have_second_contact_information
 
@@ -351,7 +352,7 @@ describe 'An authorized admin signs in', type: :feature do
   end
 
   it 'cancels third contact creation' do
-    scroll_by('2000')
+    scroll_by('1500')
     active_participants.create_contact_for('330')
     navigation.cancel
 
@@ -359,7 +360,7 @@ describe 'An authorized admin signs in', type: :feature do
   end
 
   it 'must enter an integer for length of call' do
-    scroll_by('2000')
+    scroll_by('1500')
     active_participants.create_contact_for('331')
     third_contact.assert_on_page
     active_participants.record_time
@@ -370,7 +371,7 @@ describe 'An authorized admin signs in', type: :feature do
   end
 
   it 'cannot submit third contact form without entering length of call' do
-    scroll_by('2000')
+    scroll_by('1500')
     active_participants.create_contact_for('332')
     third_contact.assert_on_page
     active_participants.record_time
@@ -385,7 +386,7 @@ describe 'An authorized admin signs in', type: :feature do
   end
 
   it 'cannot submit third contact form w/o entering final appt location' do
-    scroll_by('2000')
+    scroll_by('1500')
     active_participants.create_contact_for('333')
     third_contact.assert_on_page
     active_participants.record_time
@@ -400,7 +401,7 @@ describe 'An authorized admin signs in', type: :feature do
   end
 
   it 'cannot submit third contact form without selecting ability' do
-    scroll_by('2000')
+    scroll_by('1500')
     active_participants.create_contact_for('334')
     third_contact.assert_on_page
     active_participants.record_time
@@ -415,7 +416,7 @@ describe 'An authorized admin signs in', type: :feature do
   end
 
   it 'cannot submit third contact form without selecting motivation' do
-    scroll_by('2000')
+    scroll_by('1500')
     active_participants.create_contact_for('335')
     third_contact.assert_on_page
     active_participants.record_time
@@ -430,7 +431,7 @@ describe 'An authorized admin signs in', type: :feature do
   end
 
   it 'creates a third contact' do
-    scroll_by('2000')
+    scroll_by('1500')
     active_participants.create_contact_for('336')
     third_contact.assert_on_page
     active_participants.record_time
@@ -445,7 +446,7 @@ describe 'An authorized admin signs in', type: :feature do
     expect(third_contact).to be_created_for_participant('336', TWO_WEEKS)
 
     # check profile page for completeness
-    scroll_by('2000')
+    scroll_by('1500')
     profile.go_to_profile_of('Last-336, First')
     expect(profile).to have_third_contact_information
 
@@ -453,7 +454,7 @@ describe 'An authorized admin signs in', type: :feature do
   end
 
   it 'reschedules final appointment' do
-    scroll_by('2000')
+    scroll_by('1500')
     active_participants.reschedule_appt_for('337')
     active_participants.reschedule('final_appointment')
 
