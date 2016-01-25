@@ -99,7 +99,7 @@ describe 'An authorized admin signs in', type: :feature do
     reports.open_for('401')
     expect(reports).to have_current_lesson_at('2')
 
-    expect(reports).to have_unread_lesson_of('1')
+    expect(reports).to have_unread_lesson_at('1')
   end
 
   it 'sees current lesson (third) highlighted and second lesson missed' do
@@ -107,7 +107,7 @@ describe 'An authorized admin signs in', type: :feature do
     reports.open_for('312')
     expect(reports).to have_current_lesson_at('3')
 
-    expect(reports).to have_unread_lesson_of('2')
+    expect(reports).to have_unread_lesson_at('2')
   end
 
   it 'sees current lesson (fourth) highlighted and third lesson missed' do
@@ -115,7 +115,7 @@ describe 'An authorized admin signs in', type: :feature do
     reports.open_for('410')
     expect(reports).to have_current_lesson_at('4')
 
-    expect(reports).to have_unread_lesson_of('3')
+    expect(reports).to have_unread_lesson_at('3')
   end
 
   it 'sees current lesson (fifth) highlighted and fourth lesson missed' do
@@ -123,7 +123,7 @@ describe 'An authorized admin signs in', type: :feature do
     reports.open_for('323')
     expect(reports).to have_current_lesson_at('5')
 
-    expect(reports).to have_unread_lesson_of('4')
+    expect(reports).to have_unread_lesson_at('4')
   end
 
   it 'sees current lesson (sixth) highlighted and fifth lesson missed' do
@@ -131,7 +131,7 @@ describe 'An authorized admin signs in', type: :feature do
     reports.open_for('420')
     expect(reports).to have_current_lesson_at('6')
 
-    expect(reports).to have_unread_lesson_of('5')
+    expect(reports).to have_unread_lesson_at('5')
   end
 
   it 'sees current lesson (seventh) highlighted and sixth lesson missed' do
@@ -139,7 +139,7 @@ describe 'An authorized admin signs in', type: :feature do
     reports.open_for('430')
     expect(reports).to have_current_lesson_at('7')
 
-    expect(reports).to have_unread_lesson_of('6')
+    expect(reports).to have_unread_lesson_at('6')
   end
 
   it 'sees current lesson (eighth) highlighted and seventh lesson missed' do
@@ -147,7 +147,7 @@ describe 'An authorized admin signs in', type: :feature do
     reports.open_for('440')
     expect(reports).to have_current_lesson_at('8')
 
-    expect(reports).to have_unread_lesson_of('7')
+    expect(reports).to have_unread_lesson_at('7')
   end
 
   it 'sees current lesson (ninth) highlighted and eighth lesson missed' do
@@ -155,7 +155,7 @@ describe 'An authorized admin signs in', type: :feature do
     reports.open_for('450')
     expect(reports).to have_current_lesson_at('9')
 
-    expect(reports).to have_unread_lesson_of('8')
+    expect(reports).to have_unread_lesson_at('8')
   end
 
   it 'sees current lesson (tenth) highlighted and ninth lesson missed' do
@@ -163,53 +163,146 @@ describe 'An authorized admin signs in', type: :feature do
     reports.open_for('460')
     expect(reports).to have_current_lesson_at('10')
 
-    expect(reports).to have_unread_lesson_of('9')
+    expect(reports).to have_unread_lesson_at('9')
   end
 
   it 'sees participant accessed the first lesson late' do
-    scroll_by('2000')
+    scroll_by('2200')
     reports.open_for('411')
+
+    expect(reports).to have_late_lesson_at('1')
   end
 
-  it 'sees participant accessed the second lesson late - 324'
+  it 'sees participant accessed the second lesson late' do
+    scroll_by('1200')
+    reports.open_for('324')
 
-  it 'sees participant accessed the third lesson late - 421'
+    expect(reports).to have_late_lesson_at('2')
+  end
 
-  it 'sees participant accessed the fourth lesson late - 431'
+  it 'sees participant accessed the third lesson late' do
+    scroll_by('2700')
+    reports.open_for('421')
 
-  it 'sees participant accessed the fifth lesson late - 441'
+    expect(reports).to have_late_lesson_at('3')
+  end
 
-  it 'sees participant accessed the sixth lesson late - 451'
+  it 'sees participant accessed the fourth lesson late' do
+    scroll_by('2700')
+    reports.open_for('431')
 
-  it 'sees participant accessed the seventh lesson late - 461'
+    expect(reports).to have_late_lesson_at('4')
+  end
 
-  it 'sees participant accessed the eighth lesson late - 471'
+  it 'sees participant accessed the fifth lesson late' do
+    scroll_by('2700')
+    reports.open_for('441')
 
-  it 'sees participant accessed the ninth lesson late - 480'
+    expect(reports).to have_late_lesson_at('5')
+  end
 
-  it 'sees participant accessed the tenth lesson late - 490'
+  it 'sees participant accessed the sixth lesson late' do
+    scroll_by('2700')
+    reports.open_for('451')
 
-  it 'sees participant accessed the first lesson on time - 303'
+    expect(reports).to have_late_lesson_at('6')
+  end
 
-  it 'sees participant accessed the second lesson on time - 317'
+  it 'sees participant accessed the seventh lesson late' do
+    scroll_by('3200')
+    reports.open_for('461')
 
-  it 'sees participant accessed the third lesson on time - 412'
+    expect(reports).to have_late_lesson_at('7')
+  end
 
-  it 'sees participant accessed the fourth lesson on time - 324'
+  it 'sees participant accessed the eighth lesson late' do
+    scroll_by('3200')
+    reports.open_for('471')
 
-  it 'sees participant accessed the fifth lesson on time - 422'
+    expect(reports).to have_late_lesson_at('8')
+  end
 
-  it 'sees participant accessed the sixth lesson on time - 432'
+  it 'sees participant accessed the ninth lesson late' do
+    scroll_by('3200')
+    reports.open_for('480')
 
-  it 'sees participant accessed the seventh lesson on time - 442'
+    expect(reports).to have_late_lesson_at('9')
+  end
 
-  it 'sees participant accessed the eighth lesson on time - 452'
+  it 'sees participant accessed the tenth lesson late' do
+    scroll_by('3200')
+    reports.open_for('490')
 
-  it 'sees participant accessed the ninth lesson on time - 462'
+    expect(reports).to have_late_lesson_at('10')
+  end
 
-  it 'sees participant accessed the tenth lesson on time - 472'
-end
+  it 'sees participant accessed the first lesson on time' do
+    scroll_by('700')
+    reports.open_for('313')
 
-def scroll_by(pixels)
-  page.execute_script("window.scrollBy(0,#{pixels})")
+    expect(reports).to have_ontime_lesson_at('1')
+  end
+
+  it 'sees participant accessed the second lesson on time' do
+    scroll_by('700')
+    reports.open_for('317')
+
+    expect(reports).to have_ontime_lesson_at('2')
+  end
+
+  it 'sees participant accessed the third lesson on time' do
+    scroll_by('2200')
+    reports.open_for('412')
+
+    expect(reports).to have_ontime_lesson_at('3')
+  end
+
+  it 'sees participant accessed the fourth lesson on time' do
+    scroll_by('1200')
+    reports.open_for('326')
+
+    expect(reports).to have_ontime_lesson_at('4')
+  end
+
+  it 'sees participant accessed the fifth lesson on time' do
+    scroll_by('2700')
+    reports.open_for('422')
+
+    expect(reports).to have_ontime_lesson_at('5')
+  end
+
+  it 'sees participant accessed the sixth lesson on time' do
+    scroll_by('2700')
+    reports.open_for('432')
+
+    expect(reports).to have_ontime_lesson_at('6')
+  end
+
+  it 'sees participant accessed the seventh lesson on time' do
+    scroll_by('2700')
+    reports.open_for('442')
+
+    expect(reports).to have_ontime_lesson_at('7')
+  end
+
+  it 'sees participant accessed the eighth lesson on time' do
+    scroll_by('3200')
+    reports.open_for('452')
+
+    expect(reports).to have_ontime_lesson_at('8')
+  end
+
+  it 'sees participant accessed the ninth lesson on time' do
+    scroll_by('3200')
+    reports.open_for('462')
+
+    expect(reports).to have_ontime_lesson_at('9')
+  end
+
+  it 'sees participant accessed the tenth lesson on time' do
+    scroll_by('3200')
+    reports.open_for('472')
+
+    expect(reports).to have_ontime_lesson_at('10')
+  end
 end

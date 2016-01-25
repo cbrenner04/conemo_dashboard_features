@@ -61,11 +61,7 @@ class ActiveParticipants
     end
 
     def lesson_row(lesson)
-      if lesson == '1'
-        page.all('tr:nth-child(1)')[1]
-      else
-        "tr:nth-child(#{lesson})"
-      end
+      lesson == '1' ? page.all('tr:nth-child(1)')[1] : "tr:nth-child(#{lesson})"
     end
 
     def has_current_lesson_at?(lesson)
@@ -77,9 +73,19 @@ class ActiveParticipants
       end
     end
 
-    def has_unread_lesson_of?(lesson)
+    def has_unread_lesson_at?(lesson)
       overall_status_heading # weird behavior if it doesn't find something first
       within('#lessons') { expect(lesson_row(lesson)).to have_css('.danger') }
+    end
+
+    def has_late_lesson_at?(lesson)
+      overall_status_heading
+      within('lessons') { expect(lesson_row(lesson)). to have_css('.warning') }
+    end
+
+    def has_ontime_lesson_at?(lesson)
+      overall_status_heading
+      within('lessons') { expect(lesson_row(lesson)). to have_css('.warning') }
     end
   end
 end

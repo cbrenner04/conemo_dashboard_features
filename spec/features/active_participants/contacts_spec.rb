@@ -565,7 +565,3 @@ describe 'An authorized admin signs in', type: :feature do
     expect(active_participants).to be_visible
   end
 end
-
-def scroll_by(pixels)
-  page.execute_script("window.scrollBy(0,#{pixels})")
-end
