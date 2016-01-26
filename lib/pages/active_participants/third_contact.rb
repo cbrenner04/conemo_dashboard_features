@@ -28,13 +28,18 @@ class ActiveParticipants
       end
     end
 
-    def enter_general_notes
-      fill_in 'third_contact[notes]', with: 'Notes notes notes notes'
+    def general_notes
+      'Notes notes notes notes'
     end
 
-    def created_for_participant?(id, date_time)
+    def enter_general_notes
+      fill_in 'third_contact[notes]', with: general_notes
+    end
+
+    def created_for_participant?(id)
       active_pt.pt_row(id).has_css?('.fa-check-circle', count: 4)
-      active_pt.check_date_time(id, date_time)
+      date = DateTime.now + 14
+      active_pt.check_date(id, date)
     end
   end
 end

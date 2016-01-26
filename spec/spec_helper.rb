@@ -13,10 +13,6 @@ RSpec.configure do |config|
     c.syntax = [:should, :expect]
   end
   config.profile_examples = 10
-  config.before(:suite) do
-    TWO_WEEKS = DateTime.now + 14
-    THREE_WEEKS = DateTime.now + 21
-  end
 end
 
 # Capybara configuration options

@@ -39,6 +39,7 @@ describe 'An authorized admin signs in', type: :feature do
     contact_information.fill_in_email('jane.doe@example.com')
     contact_information.fill_in_address("100 Fake Ln\nSome City, USA, 12345")
     contact_information.select_dob
+    contact_information.select_enrollment_date(Date.today)
     contact_information.choose_gender('female')
     contact_information.choose_chronic_disorder
     navigation.submit
@@ -59,6 +60,7 @@ describe 'An authorized admin signs in', type: :feature do
     contact_information.fill_in_email('jane.doe@example.com')
     contact_information.fill_in_address("100 Fake Ln\nSome City, USA, 12345")
     contact_information.select_dob
+    contact_information.select_enrollment_date(Date.today)
     contact_information.choose_gender('female')
     contact_information.choose_chronic_disorder
     navigation.submit
@@ -79,6 +81,7 @@ describe 'An authorized admin signs in', type: :feature do
     contact_information.fill_in_email('jane.doe@example.com')
     contact_information.fill_in_address("100 Fake Ln\nSome City, USA, 12345")
     contact_information.select_dob
+    contact_information.select_enrollment_date(Date.today)
     contact_information.choose_gender('female')
     contact_information.choose_chronic_disorder
     navigation.submit
@@ -99,6 +102,7 @@ describe 'An authorized admin signs in', type: :feature do
     contact_information.fill_in_email('jane.doe@example.com')
     contact_information.fill_in_address("100 Fake Ln\nSome City, USA, 12345")
     contact_information.select_dob
+    contact_information.select_enrollment_date(Date.today)
     contact_information.choose_gender('female')
     contact_information.choose_chronic_disorder
     navigation.submit
@@ -119,6 +123,7 @@ describe 'An authorized admin signs in', type: :feature do
     contact_information.fill_in_email('jane.doe@example.com')
     contact_information.fill_in_address("100 Fake Ln\nSome City, USA, 12345")
     contact_information.select_dob
+    contact_information.select_enrollment_date(Date.today)
     contact_information.choose_gender('female')
     contact_information.choose_chronic_disorder
     navigation.submit
@@ -127,11 +132,51 @@ describe 'An authorized admin signs in', type: :feature do
     expect(page).to have_css '#participant_first_name'
   end
 
-  it 'cannot create a participant without filling in date of birth'
+  # useless as there is a default value in the form
+  # it 'cannot create a participant without filling in date of birth' do
+  #   pending_participants.create
+  #   contact_information.fill_in_first_name('Jane')
+  #   contact_information.fill_in_last_name('Doe')
+  #   contact_information.fill_in_study_id('123')
+  #   contact_information.fill_in_health_unit('Some Healthy Place')
+  #   contact_information.fill_in_family_record('1234')
+  #   contact_information.fill_in_phone('12345678910')
+  #   contact_information.fill_in_emer_con_name('Papa Joe')
+  #   contact_information.fill_in_emer_con_phone('12345678901')
+  #   contact_information.fill_in_email('jane.doe@example.com')
+  #   contact_information.fill_in_address("100 Fake Ln\nSome City, USA, 12345")
+  #   contact_information.select_enrollment_date(Date.today)
+  #   contact_information.choose_gender('female')
+  #   contact_information.choose_chronic_disorder
+  #   navigation.submit
 
-  it 'cannot create a participant without filling in enrollment date'
+  #   expect(page).to_not have_css '#pending'
+  #   expect(page).to have_css '#participant_first_name'
+  # end
 
-  it 'cannot create a participant without choosing in gender' do
+  # useless as there is a default value in the form
+  # it 'cannot create a participant without filling in enrollment date' do
+  #   pending_participants.create
+  #   contact_information.fill_in_first_name('Jane')
+  #   contact_information.fill_in_last_name('Doe')
+  #   contact_information.fill_in_study_id('123')
+  #   contact_information.fill_in_health_unit('Some Healthy Place')
+  #   contact_information.fill_in_family_record('1234')
+  #   contact_information.fill_in_phone('12345678910')
+  #   contact_information.fill_in_emer_con_name('Papa Joe')
+  #   contact_information.fill_in_emer_con_phone('12345678901')
+  #   contact_information.fill_in_email('jane.doe@example.com')
+  #   contact_information.fill_in_address("100 Fake Ln\nSome City, USA, 12345")
+  #   contact_information.select_dob
+  #   contact_information.choose_gender('female')
+  #   contact_information.choose_chronic_disorder
+  #   navigation.submit
+
+  #   expect(page).to_not have_css '#pending'
+  #   expect(page).to have_css '#participant_first_name'
+  # end
+
+  it 'cannot create a participant without choosing gender' do
     pending_participants.create
     contact_information.fill_in_first_name('Jane')
     contact_information.fill_in_last_name('Doe')

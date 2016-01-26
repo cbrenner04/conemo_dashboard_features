@@ -18,8 +18,12 @@ class ActiveParticipants
               with: '100 West Ln, Chicago, IL 60601'
     end
 
+    def general_notes
+      'Final notes'
+    end
+
     def enter_notes
-      fill_in 'final_appointment[notes]', with: 'Final notes'
+      fill_in 'final_appointment[notes]', with: general_notes
     end
 
     def choose_phone_returned

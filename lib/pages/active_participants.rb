@@ -59,7 +59,7 @@ class ActiveParticipants
     time_format = ['%Y', '%B', '%-d', '%H', '%M']
     (0..4).zip(time_format) do |x, y|
       selector[i[x]].click
-      select_item("#{datetime.strftime(y)}")
+      select_item(datetime.strftime(y).to_s)
     end
   end
 
@@ -79,30 +79,8 @@ class ActiveParticipants
     update_date_time((5..9).to_a, next_contact)
   end
 
-  def check_date_time(id, datetime)
-    act_time = pt_row(id).find('td', text: 'create').text[7..11]
-    act_hour = act_time.gsub(/:\w+/, '')
-    act_min = act_time.gsub(/\w+:/, '')
-    exp_hour = Time.now.strftime('%H')
-    exp_min = Time.now.strftime('%M')
-
-    subt_hour = exp_hour.to_i - act_hour.to_i
-    subt_min = exp_min.to_i - act_min.to_i
-
-    if subt_hour.between?(0, 1) && subt_min.between?(0, 1)
-      pt_row(id)
-        .find('td', text: "#{datetime.strftime('%d %b')} " \
-                          "#{act_hour.delete(' ')}:#{act_min.delete(' ')}")
-    else
-      expect(subt_hour)
-        .to be < 2, "Expected #{exp_hour.delete(' ')}:#{exp_min.delete(' ')}" \
-                    " and actual #{act_hour.delete(' ')}:" \
-                    "#{act_min.delete(' ')} time are not within 1 hour"
-      expect(subt_min)
-        .to be < 6, "Expected #{exp_hour.delete(' ')}:#{exp_min.delete(' ')}" \
-                    " and actual #{act_hour.delete(' ')}:" \
-                    "#{act_min.delete(' ')} time are not within 1 minute"
-    end
+  def check_date(id, date)
+    pt_row(id).find('td', text: date.strftime('%d %b').to_s)
   end
 
   def select_ability

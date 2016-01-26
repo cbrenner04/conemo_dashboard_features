@@ -63,7 +63,7 @@ class ActiveParticipants
 
     def created_for_participant?(id)
       active_pt.pt_row(id).has_css?('.fa-check-circle', count: 2)
-      active_pt.check_date_time(id, active_pt.next_contact)
+      active_pt.check_date(id, active_pt.next_contact)
     end
   end
 end

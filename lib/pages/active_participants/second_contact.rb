@@ -33,13 +33,18 @@ class ActiveParticipants
       active_pt.select_item(chance)
     end
 
-    def enter_notes
-      fill_in 'second_contact[notes]', with: 'Notes are so much fun'
+    def general_notes
+      'Notest are so much fun'
     end
 
-    def created_for_participant?(id, date_time)
+    def enter_notes
+      fill_in 'second_contact[notes]', with: general_notes
+    end
+
+    def created_for_participant?(id)
       active_pt.pt_row(id).has_css?('.fa-check-circle', count: 3)
-      active_pt.check_date_time(id, date_time)
+      date = DateTime.now + 21
+      active_pt.check_date(id, date)
     end
   end
 end

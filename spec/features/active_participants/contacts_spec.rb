@@ -21,7 +21,13 @@ describe 'An authorized admin signs in', type: :feature do
     expect(profile).to be_visible_with_id('300')
   end
 
-  it 'cancels out of edit of participant information'
+  it 'cancels out of edit of participant information' do
+    profile.go_to_profile_of('Last-301, First')
+    profile.select_edit_contact_information
+    navigation.cancel
+
+    expect(profile).to be_visible_with_id('301')
+  end
 
   it 'edits participant information from the profile page' do
     profile.go_to_profile_of('Last-301, First')
@@ -31,8 +37,6 @@ describe 'An authorized admin signs in', type: :feature do
 
     expect(page).to have_content 'Email: participant301@example.com'
   end
-
-  it 'views smartphone information'
 
   it 'cancels out of edit of smartphone information' do
     scroll_by('500')
@@ -55,6 +59,7 @@ describe 'An authorized admin signs in', type: :feature do
   end
 
   it 'cancels out of edit nurse form' do
+    scroll_by('250')
     nurse.open('309')
     navigation.cancel
 
@@ -142,6 +147,10 @@ describe 'An authorized admin signs in', type: :feature do
     active_participants.create_contact_for('314')
     first_appointment.enter_time_and_location_and_schedule_next
     active_participants.enter_session_length('first_appointment', 'asdf')
+    first_appointment.enter_phone_note
+    first_appointment.select_engagement
+    first_appointment.select_chances
+    first_appointment.enter_general_notes
     navigation.submit
 
     expect(profile).to_not have_phone_form_present
@@ -204,7 +213,7 @@ describe 'An authorized admin signs in', type: :feature do
   end
 
   it 'creates a first appointment' do
-    scroll_by('500')
+    scroll_by('750')
     active_participants.create_contact_for('319')
     first_appointment.enter_time_and_location_and_schedule_next
     active_participants.enter_session_length('first_appointment', '120')
@@ -322,7 +331,7 @@ describe 'An authorized admin signs in', type: :feature do
   end
 
   it 'creates a second contact' do
-    scroll_by('1000')
+    scroll_by('1250')
     active_participants.create_contact_for('328')
     second_contact.record_date_and_fill_in_questions
     active_participants.select_ability
@@ -333,14 +342,20 @@ describe 'An authorized admin signs in', type: :feature do
     navigation.submit
 
     expect(second_contact)
-      .to be_created_for_participant('328', THREE_WEEKS)
+      .to be_created_for_participant('328')
 
     # check profile page for completeness
-    scroll_by('1000')
+    scroll_by('1250')
     profile.go_to_profile_of('Last-328, First')
     expect(profile).to have_second_contact_information
 
     # check reports page for notes
+    active_participants.open
+    active_participants.assert_on_page
+    scroll_by('1250')
+    reports.open_for('328')
+
+    expect(reports).to have_second_contact_notes_visible
   end
 
   it 'reschedules third contact' do
@@ -443,7 +458,7 @@ describe 'An authorized admin signs in', type: :feature do
     third_contact.enter_general_notes
     navigation.submit
 
-    expect(third_contact).to be_created_for_participant('336', TWO_WEEKS)
+    expect(third_contact).to be_created_for_participant('336')
 
     # check profile page for completeness
     scroll_by('1500')
@@ -451,6 +466,12 @@ describe 'An authorized admin signs in', type: :feature do
     expect(profile).to have_third_contact_information
 
     # check reports page for notes
+    active_participants.open
+    active_participants.assert_on_page
+    scroll_by('1500')
+    reports.open_for('336')
+
+    expect(reports).to have_third_contact_notes_visible
   end
 
   it 'reschedules final appointment' do
@@ -511,6 +532,12 @@ describe 'An authorized admin signs in', type: :feature do
     expect(profile).to have_final_appointment_information
 
     # check reports page for notes
+    active_participants.open
+    active_participants.assert_on_page
+    scroll_by('2000')
+    reports.open_for('341')
+
+    expect(reports).to have_final_appt_notes_visible
   end
 
   it 'edits first contact from profile page' do

@@ -17,7 +17,7 @@ class Lessons
 
   def add_a_lesson(title, day)
     open_add_lesson
-    fill_in 'lesson[name]', with: title
+    fill_in 'lesson[title]', with: title
     fill_in 'lesson[day_in_treatment]', with: day
     click_on 'Create Lesson'
   end
@@ -32,15 +32,16 @@ class Lessons
     find('#slide_title')
   end
 
-  def add_a_slide(lesson, title, body)
+  def add_a_slide(lesson, title)
     open_add_slide(lesson)
     fill_in 'slide[title]', with: title
-    fill_in '.cke_contents', body
+    find('.cke_contents').click
+    find('#cke_53').click
     click_on 'Create Slide'
   end
 
-  def has_slide_visible(slide)
-    find('.table').has_css?('td', text: slide)
+  def has_slide_visible?(slide)
+    has_css?('.table', text: slide)
   end
 
   def read_lesson(lesson, slide)
@@ -89,15 +90,43 @@ class Lessons
     find('.alert-info', text: 'Slide deleted')
   end
 
-  def add_dialogue(title, day, message)
+  def open_add_dialogue
     navigate_to_dialogues
     click_on 'Add Dialogue'
-    fill_in 'dialogue[title]', text: title
-    fill_in 'dialogue[day_in_treatment]', text: day
-    fill_in 'dialogue[message]', text: message
-    fill_in 'dialogue[yes_text]', text: yes
-    fill_in 'dialogue[no_text]', text: no
+  end
+
+  def add_dialogue_title(title)
+    fill_in 'dialogue[title]', with: title
+  end
+
+  def add_dialogue_day(day)
+    fill_in 'dialogue[day_in_treatment]', with: day
+  end
+
+  def add_dialogue_message(message)
+    fill_in 'dialogue[message]', with: message
+  end
+
+  def add_dialogue_yes_text(text)
+    fill_in 'dialogue[yes_text]', with: text
+  end
+
+  def add_dialogue_no_text(text)
+    fill_in 'dialogue[no_text]', with: text
+  end
+
+  def submit_new_dialogue
     click_on 'Create Dialogue'
+  end
+
+  def add_dialogue(title, day, message, yes, no)
+    open_add_dialogue
+    add_dialogue_title(title)
+    add_dialogue_day(day)
+    add_dialogue_message(message)
+    add_dialogue_yes_text(yes)
+    add_dialogue_no_text(no)
+    submit_new_dialogue
   end
 
   def has_dialogue_visible?(dialogue)
@@ -112,10 +141,15 @@ class Lessons
     find('p', text: message)
   end
 
-  def edit_dialogue(dialogue, new_title)
+  def open_edit_dialogue(dialogue)
     navigate_to_dialogues
     find('tr', text: dialogue).find('.fa-pencil').click
-    fill_in 'dialogue[title]', text: new_title
+  end
+
+  def edit_dialogue(dialogue, new_title)
+    navigate_to_dialogues
+    open_edit_dialogue(dialogue)
+    fill_in 'dialogue[title]', with: new_title
     click_on 'Update Dialogue'
   end
 
@@ -129,10 +163,14 @@ class Lessons
     open_lesson(lesson)
     click_on slide
     find('h2', text: slide)
-    within('.breadcrumbs') { click_on lesson }
+    within('.breadcrumb') { click_on lesson }
     find('h2', text: lesson)
-    within('.breadcrumbs') { click_on 'Lessons' }
+    within('.breadcrumb') { click_on 'Lessons' }
     assert_on_page
+  end
+
+  def on_dialogues_page?
+    has_css?('.btn', text: 'Add Dialogue')
   end
 
   private

@@ -38,7 +38,7 @@ describe 'An authorized admin logs in,' \
   end
 
   it 'adds a slide' do
-    lessons.add_a_slide('Lesson 11', 'New Slide', 'This is the slide body')
+    lessons.add_a_slide('Lesson 11', 'New Slide')
     expect(lessons).to have_slide_visible('New Slide')
   end
 
@@ -47,7 +47,7 @@ describe 'An authorized admin logs in,' \
   end
 
   it 'reads a slide' do
-    lessons.read_slide('Lessons 6', 'Slide 1', 'read this')
+    lessons.read_slide('Lesson 6', 'Slide 1', 'read this')
   end
 
   it 'cancels editing a lesson' do
@@ -83,30 +83,104 @@ describe 'An authorized admin logs in,' \
   end
 
   it 'cancels adding a dialogue' do
+    lessons.open_add_dialogue
+    navigation.cancel
+    expect(lessons).to be_on_dialogues_page
+  end
 
+  it 'cannot submit dialogue without title' do
+    lessons.open_add_dialogue
+    lessons.add_dialogue_day('5')
+    lessons.add_dialogue_message('Dialogue Message')
+    lessons.add_dialogue_yes_text('Yes')
+    lessons.add_dialogue_no_text('No')
+    lessons.submit_new_dialogue
+
+    expect(lessons).to_not be_on_dialogues_page
+  end
+
+  it 'cannot submit dialogue with non-integer in day in treatment' do
+    lessons.open_add_dialogue
+    lessons.add_dialogue_title('New Dialogue')
+    lessons.add_dialogue_day('asdf')
+    lessons.add_dialogue_message('Dialogue Message')
+    lessons.add_dialogue_yes_text('Yes')
+    lessons.add_dialogue_no_text('No')
+    lessons.submit_new_dialogue
+
+    expect(lessons).to_not be_on_dialogues_page
+  end
+
+  it 'cannot submit dialogue without day in treatment' do
+    lessons.open_add_dialogue
+    lessons.add_dialogue_title('New Dialogue')
+    lessons.add_dialogue_message('Dialogue Message')
+    lessons.add_dialogue_yes_text('Yes')
+    lessons.add_dialogue_no_text('No')
+    lessons.submit_new_dialogue
+
+    expect(lessons).to_not be_on_dialogues_page
+  end
+
+  it 'cannot submit dialogue without message' do
+    lessons.open_add_dialogue
+    lessons.add_dialogue_title('New Dialogue')
+    lessons.add_dialogue_day('5')
+    lessons.add_dialogue_yes_text('Yes')
+    lessons.add_dialogue_no_text('No')
+    lessons.submit_new_dialogue
+
+    expect(lessons).to_not be_on_dialogues_page
+  end
+
+  it 'cannot submit dialogue without yes text' do
+    lessons.open_add_dialogue
+    lessons.add_dialogue_title('New Dialogue')
+    lessons.add_dialogue_day('5')
+    lessons.add_dialogue_message('Dialogue Message')
+    lessons.add_dialogue_no_text('No')
+    lessons.submit_new_dialogue
+
+    expect(lessons).to_not be_on_dialogues_page
+  end
+
+  it 'cannot submit dialogue without no text' do
+    lessons.open_add_dialogue
+    lessons.add_dialogue_title('New Dialogue')
+    lessons.add_dialogue_day('5')
+    lessons.add_dialogue_message('Dialogue Message')
+    lessons.add_dialogue_yes_text('Yes')
+    lessons.submit_new_dialogue
+
+    expect(lessons).to_not be_on_dialogues_page
   end
 
   it 'adds a dialogue' do
-
+    lessons.add_dialogue('New Dialogue', '5', 'Dialogue Message', 'Yes', 'No')
+    expect(lessons).to have_dialogue_visible('New Dialogue')
   end
 
   it 'reads a dialogue' do
-
+    lessons.read_dialogue('Day 1', 'Hey! This is dailogue 1')
   end
 
   it 'cancels editing a dialogue' do
-
+    lessons.open_edit_dialogue('Day 2')
+    navigation.cancel
+    expect(lessons).to be_on_dialogues_page
   end
 
   it 'edits a dialogue' do
-
+    lessons.edit_dialogue('Day 3', 'Edited Dialogue')
+    expect(lessons).to have_dialogue_visible('Edited Dialogue')
   end
 
   it 'deletes a dialogue' do
-
+    lessons.delete_dialogue('Day 4')
+    expect(lessons).to_not have_dialogue_visible('Day 4')
   end
 
   it 'navigates using breadcrumbs' do
-
+    lessons.navigate_with_breadcrumbs('Lesson 8', 'Slide 3')
   end
 end
