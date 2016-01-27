@@ -36,7 +36,7 @@ class ActiveParticipants
     def update_date_time(datetime)
       time_format = ['%Y', '%B', '%-d', '%H', '%M']
       time_format.zip(1..5) do |x, y|
-        select "#{datetime.strftime(x)}",
+        select datetime.strftime(x),
                from: "patient_contact[contact_at(#{y}i)]"
       end
     end

@@ -45,7 +45,7 @@ class ActiveParticipants
   end
 
   def rescheduled_for?(id)
-    pt_row(id).find('td', text: "#{@resch_time.strftime('%d %b %H:%M')}")
+    pt_row(id).find('td', text: @resch_time.strftime('%d %b %H:%M'))
     pt_row(id).find('.fa-plus-circle')
     pt_row(id).find('.reschedule-link')
   end
@@ -59,7 +59,7 @@ class ActiveParticipants
     time_format = ['%Y', '%B', '%-d', '%H', '%M']
     (0..4).zip(time_format) do |x, y|
       selector[i[x]].click
-      select_item(datetime.strftime(y).to_s)
+      select_item(datetime.strftime(y))
     end
   end
 
@@ -80,7 +80,7 @@ class ActiveParticipants
   end
 
   def check_date(id, date)
-    pt_row(id).find('td', text: date.strftime('%d %b').to_s)
+    pt_row(id).find('td', text: date.strftime('%d %b'))
   end
 
   def select_ability
