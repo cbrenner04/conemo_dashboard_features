@@ -210,7 +210,7 @@ describe 'An authorized admin signs in', type: :feature do
     navigation.submit
 
     expect(page)
-      .to have_content "Doe, Jane 123 #{yesterday.strftime('%B %-d, %Y')}"
+      .to have_content "Doe, Jane 123 #{yesterday.strftime('%B %d, %Y')}"
   end
 
   it 'activates a participant' do
