@@ -18,15 +18,9 @@ class ActiveParticipants
       find('h1', text: 'First Contact')
     end
 
-    def record_date_and_schedule_next
-      assert_on_page
-      active_pt.record_time
-      active_pt.schedule_next_contact
-    end
-
     def visible?
       find('td',
-           text: "#{active_pt.next_contact.strftime('%d %b %H:%M')}" \
+           text: "#{DateTime.now.strftime('%d %b %H:%M')}" \
                        ' / 100 West Ln, Chicago, IL 60601')
       find('.fa-plus-circle')
       find('.reschedule-link')

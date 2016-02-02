@@ -75,12 +75,12 @@ class ActiveParticipants
       find('th', text: 'Logins').click
     end
 
-    def has_logins_on?(l, m, n, o)
-      within('.logins-table') do
-        expect(page).to have_content l
-        expect(page).to have_content m
-        expect(page).to have_content n
-        expect(page).to have_content o
+    def has_correct_logins?
+      (1..4).each do |i|
+        within('.logins-table') do
+          expect(page)
+            .to have_content (Date.today - i).strftime('%B %d, %Y')
+        end
       end
     end
 

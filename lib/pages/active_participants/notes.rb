@@ -7,9 +7,8 @@ class ActiveParticipants
       find('tr', text: "Last-#{id}, First").find('.fa-pencil-square').click
     end
 
-    def add_notes(id, datetime)
+    def add_notes(id)
       open_for(id)
-      update_date_time(datetime)
       @reason = ['Programmed follow-up call', 'Non-adherence',
                  'Requested phone call by patient', 'Other'].sample
       select @reason, from: 'patient_contact[contact_reason]'
@@ -29,16 +28,6 @@ class ActiveParticipants
 
     def has_any_note?
       find('table').has_css?('td', text: /./m)
-    end
-
-    private
-
-    def update_date_time(datetime)
-      time_format = ['%Y', '%B', '%-d', '%H', '%M']
-      time_format.zip(1..5) do |x, y|
-        select datetime.strftime(x),
-               from: "patient_contact[contact_at(#{y}i)]"
-      end
     end
   end
 end

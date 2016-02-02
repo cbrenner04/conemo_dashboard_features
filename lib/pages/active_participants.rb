@@ -1,7 +1,7 @@
 # page object for active participants
 class ActiveParticipants
-  include Capybara::DSL
   include RSpec::Matchers
+  include Capybara::DSL
 
   def open
     click_on 'Active Participants'
@@ -29,8 +29,6 @@ class ActiveParticipants
 
   def reschedule(contact)
     find('h1', text: 'Reschedule')
-    @resch_time = DateTime.now + 2
-    update_date_time((0..4).to_a, @resch_time)
     contact_replacements = { 'first_appointment' => 'first_contact',
                              'second_contact' => 'first_appointment',
                              'third_contact' => 'second_contact',
@@ -45,38 +43,17 @@ class ActiveParticipants
   end
 
   def rescheduled_for?(id)
-    pt_row(id).find('td', text: @resch_time.strftime('%d %b %H:%M'))
+    check_date(id, DateTime.now)
     pt_row(id).find('.fa-plus-circle')
     pt_row(id).find('.reschedule-link')
   end
 
-  def select_item(item)
+  def select_non_date_item(item)
     find('.select2-result-label', text: item).click
-  end
-
-  def update_date_time(i, datetime)
-    selector = page.all('.select2-container')
-    time_format = ['%Y', '%B', '%-d', '%H', '%M']
-    (0..4).zip(time_format) do |x, y|
-      selector[i[x]].click
-      select_item(datetime.strftime(y))
-    end
-  end
-
-  def record_time
-    update_date_time((0..4).to_a, DateTime.now)
   end
 
   def enter_session_length(session, time)
     fill_in "#{session}[session_length]", with: time
-  end
-
-  def next_contact
-    DateTime.now + 2
-  end
-
-  def schedule_next_contact
-    update_date_time((5..9).to_a, next_contact)
   end
 
   def check_date(id, date)
@@ -89,7 +66,7 @@ class ActiveParticipants
     ability = ['3 - Seems to be able to use the application',
                '2 - Seems to have some difficulties',
                '1 - Seems to have great difficulty'].sample
-    select_item(ability)
+    select_non_date_item(ability)
   end
 
   def select_motivation
@@ -97,7 +74,7 @@ class ActiveParticipants
     selector[11].click
     motivation = ['3 – Very interested', '2 – Somewhat interested',
                   '1 – Not interested'].sample
-    select_item(motivation)
+    select_non_date_item(motivation)
   end
 
   def has_help_message_for?(id)

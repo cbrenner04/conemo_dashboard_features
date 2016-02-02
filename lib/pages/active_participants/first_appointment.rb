@@ -13,12 +13,10 @@ class ActiveParticipants
       find('h1', text: 'First Appointment')
     end
 
-    def enter_time_and_location_and_schedule_next
+    def enter_location
       assert_on_page
-      active_pt.record_time
       fill_in 'first_appointment[appointment_location]',
               with: '100 N Ln, Chicago, IL 60601'
-      active_pt.schedule_next_contact
     end
 
     def select_pt_comfort_with_phone
@@ -30,7 +28,7 @@ class ActiveParticipants
         '2 – After SECOND demonstration patient needs help',
         '1 – Continues to have difficulties after THIRD demonstration'
       ].sample
-      active_pt.select_item(comfort)
+      active_pt.select_non_date_item(comfort)
     end
 
     def enter_phone_note
@@ -43,14 +41,14 @@ class ActiveParticipants
       selector[11].click
       engagement = ['3 – Very engaged', '2 – More or less engaged',
                     '1 – Not engaged'].sample
-      active_pt.select_item(engagement)
+      active_pt.select_non_date_item(engagement)
     end
 
     def select_chances
       selector = page.all('.select2-container')
       selector[12].click
       chance = ['3 – high chance', '2 – 50/50 chance', '1 – low chance'].sample
-      active_pt.select_item(chance)
+      active_pt.select_non_date_item(chance)
     end
 
     def general_notes
@@ -63,7 +61,8 @@ class ActiveParticipants
 
     def created_for_participant?(id)
       active_pt.pt_row(id).has_css?('.fa-check-circle', count: 2)
-      active_pt.check_date(id, active_pt.next_contact)
+      date = DateTime.now + 7
+      active_pt.check_date(id, date)
     end
   end
 end

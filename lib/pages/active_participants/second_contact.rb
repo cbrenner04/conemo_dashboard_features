@@ -13,9 +13,8 @@ class ActiveParticipants
       find('h1', text: 'Second contact')
     end
 
-    def record_date_and_fill_in_questions
+    def fill_in_questions
       assert_on_page
-      active_pt.record_time
       fill_in 'second_contact[q1]', with: 'q1 response'
       (2..7).each do |i|
         execute_script('window.scrollBy(0,150)')
@@ -30,7 +29,7 @@ class ActiveParticipants
       selector[12].click
       chance = ['3 – Very probable', '2 – 50/50 (more or less probable)',
                 '1 – Not probable'].sample
-      active_pt.select_item(chance)
+      active_pt.select_non_date_item(chance)
     end
 
     def general_notes

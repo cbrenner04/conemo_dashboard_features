@@ -39,11 +39,7 @@ describe 'An authorized admin signs in', type: :feature do
     expect(reports).to have_the_messages('I need some help, please', 'Help!')
 
     reports.show_number_of_logins
-    date_1 = (Date.today - 1).strftime('%B %d, %Y')
-    date_2 = (Date.today - 2).strftime('%B %d, %Y')
-    date_3 = (Date.today - 3).strftime('%B %d, %Y')
-    date_4 = (Date.today - 4).strftime('%B %d, %Y')
-    expect(reports).to have_logins_on(date_1, date_2, date_3, date_4)
+    expect(reports).to have_correct_logins
   end
 
   it 'sees correct status for participant ' \
