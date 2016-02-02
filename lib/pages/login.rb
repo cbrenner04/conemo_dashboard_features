@@ -8,4 +8,8 @@ class Login
     fill_in 'user_password', with: password
     find('.btn').click
   end
+
+  def act_buttons
+    all('.btn').map(&:text)
+  end
 end

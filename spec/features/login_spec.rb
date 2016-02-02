@@ -37,11 +37,9 @@ describe 'A visitor to the site', type: :feature do
 end
 
 def assert_correct_buttons(exp_buttons)
-  act_buttons = all('.btn').map(&:text)
-  expect(act_buttons).to match_array(exp_buttons)
+  expect(login.act_buttons).to match_array(exp_buttons)
 end
 
 def assert_does_not_have_buttons(exp_buttons)
-  act_buttons = all('.btn').map(&:text)
-  expect(act_buttons).to_not match_array(exp_buttons)
+  expect(login.act_buttons).to_not match_array(exp_buttons)
 end
