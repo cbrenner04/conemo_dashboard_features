@@ -1,4 +1,4 @@
-# filename: ./spec/features/active_participants/contacts_spec.rb
+# filename: ./spec/features/nurse/active_participants_contacts_spec.rb
 
 # require page objects, these are instantiated in the feature_helper.rb
 require './lib/pages/login'

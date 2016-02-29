@@ -1,4 +1,4 @@
-# filename: ./spec/features/active_participants/reports_spec.rb
+# filename: ./spec/features/nurse/active_participants_reports_spec.rb
 
 # require page objects
 require './lib/pages/login'
