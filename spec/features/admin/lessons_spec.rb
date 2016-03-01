@@ -5,15 +5,16 @@ require './spec/support/admin/lessons_helper'
 feature 'Admin, Lessons' do
   background do
     english_admin.sign_in
-    navigation.switch_to_english
     lessons.open
-    lessons.assert_on_page
+    
+    expect(lessons).to be_on_lesson_list_page
   end
 
   scenario 'Admin cancels adding a lesson' do
     lessons.open_add_lesson
     navigation.cancel
-    lessons.assert_on_page
+    
+    expect(lessons).to be_on_lesson_list_page
   end
 
   scenario 'Admin adds a lesson' do

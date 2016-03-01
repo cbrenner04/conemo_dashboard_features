@@ -7,7 +7,7 @@ class Lessons
   end
 
   def on_lesson_list_page?
-    find('.btn', text: 'Add Lesson')
+    has_css?('.btn', text: 'Add Lesson')
   end
 
   def open_add_lesson
