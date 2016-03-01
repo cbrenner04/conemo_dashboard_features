@@ -5,5 +5,12 @@ require './lib/pages/login'
 require './lib/pages/navigation'
 
 def lessons
-  @lessons ||= Lessons.new
+  @lessons ||= Lessons.new(title: 'fake')
+end
+
+def new_lesson
+  @new_lesson ||= Lessons.new(
+    title: 'New Lesson',
+    day: 15
+  )
 end

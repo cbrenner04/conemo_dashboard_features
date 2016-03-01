@@ -18,8 +18,9 @@ feature 'Admin, Lessons' do
   end
 
   scenario 'Admin adds a lesson' do
-    lessons.add_a_lesson('New Lesson', '15')
-    expect(lessons).to have_lesson_visible('New Lesson')
+    new_lesson.add
+
+    expect(new_lesson).to be_visible
   end
 
   scenario 'Admin cancels adding a slide' do
