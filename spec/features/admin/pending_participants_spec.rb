@@ -1,262 +1,248 @@
 # filename: ./spec/features/pending_participants_spec.rb
 
-# require page objects
-require './lib/pages/login'
-require './lib/pages/navigation'
-require './lib/pages/contact_information'
-require './lib/pages/pending_participants'
+require './spec/support/admin/pending_participants_helper'
 
-# instantiate page objects
-# no need to instantiate login, navigation or contact_formation,
-# they're in the feature_helper
-def pending_participants
-  @pending_participants ||= PendingParticipants.new
-end
-
-describe 'An authorized admin signs in', type: :feature do
-  before do
-    login.sign_in(ENV['EN_Admin_Email'], ENV['EN_Admin_Password'])
+feature 'Admin, Pending Participants' do
+  background do
+    english_admin.sign_in
     navigation.switch_to_english
     pending_participants.open
   end
 
-  it 'can cancel creation form' do
+  scenario 'Admin can cancel creation form' do
     pending_participants.create
     navigation.cancel
 
-    expect(page).to have_css '#pending'
+    expect(pending_participants).to have_landing_page_visible
   end
 
-  it 'cannot create a participant without filling in first name' do
+  scenario 'Admin cannot create a participant without filling in first name' do
     pending_participants.create
-    contact_information.fill_in_last_name('Doe')
-    contact_information.fill_in_study_id('123')
-    contact_information.fill_in_health_unit('Some Healthy Place')
-    contact_information.fill_in_family_record('1234')
-    contact_information.fill_in_phone('12345678910')
-    contact_information.fill_in_emer_con_name('Papa Joe')
-    contact_information.fill_in_emer_con_phone('12345678901')
-    contact_information.fill_in_email('jane.doe@example.com')
-    contact_information.fill_in_address("100 Fake Ln\nSome City, USA, 12345")
-    contact_information.select_dob
-    contact_information.select_enrollment_date(Date.today)
-    contact_information.choose_gender('female')
-    contact_information.choose_chronic_disorder
+    new_participant_contact_information.fill_in_last_name
+    new_participant_contact_information.fill_in_study_id
+    new_participant_contact_information.fill_in_health_unit
+    new_participant_contact_information.fill_in_family_record
+    new_participant_contact_information.fill_in_phone
+    new_participant_contact_information.fill_in_emergency_contact_name
+    new_participant_contact_information.fill_in_emergency_contact_phone
+    new_participant_contact_information.fill_in_email
+    new_participant_contact_information.fill_in_address
+    new_participant_contact_information.select_dob
+    new_participant_contact_information.select_enrollment_date
+    new_participant_contact_information.choose_gender
+    new_participant_contact_information.choose_chronic_disorder
     navigation.submit
 
-    expect(page).to_not have_css '#pending'
-    expect(page).to have_css '#participant_first_name'
+    expect(pending_participants).to_not have_landing_page_visible
+    expect(contact_information).to have_form_visible
   end
 
-  it 'cannot create a participant without filling in last name' do
+  scenario 'Admin cannot create a participant without filling in last name' do
     pending_participants.create
-    contact_information.fill_in_first_name('Jane')
-    contact_information.fill_in_study_id('123')
-    contact_information.fill_in_health_unit('Some Healthy Place')
-    contact_information.fill_in_family_record('1234')
-    contact_information.fill_in_phone('12345678910')
-    contact_information.fill_in_emer_con_name('Papa Joe')
-    contact_information.fill_in_emer_con_phone('12345678901')
-    contact_information.fill_in_email('jane.doe@example.com')
-    contact_information.fill_in_address("100 Fake Ln\nSome City, USA, 12345")
-    contact_information.select_dob
-    contact_information.select_enrollment_date(Date.today)
-    contact_information.choose_gender('female')
-    contact_information.choose_chronic_disorder
+    new_participant_contact_information.fill_in_first_name
+    new_participant_contact_information.fill_in_study_id
+    new_participant_contact_information.fill_in_health_unit
+    new_participant_contact_information.fill_in_family_record
+    new_participant_contact_information.fill_in_phone
+    new_participant_contact_information.fill_in_emergency_contact_name
+    new_participant_contact_information.fill_in_emergency_contact_phone
+    new_participant_contact_information.fill_in_email
+    new_participant_contact_information.fill_in_address
+    new_participant_contact_information.select_dob
+    new_participant_contact_information.select_enrollment_date
+    new_participant_contact_information.choose_gender
+    new_participant_contact_information.choose_chronic_disorder
     navigation.submit
 
-    expect(page).to_not have_css '#pending'
-    expect(page).to have_css '#participant_first_name'
+    expect(pending_participants).to_not have_landing_page_visible
+    expect(contact_information).to have_form_visible
   end
 
-  it 'cannot create a participant without filling in study id' do
+  scenario 'Admin cannot create a participant without filling in study id' do
     pending_participants.create
-    contact_information.fill_in_first_name('Jane')
-    contact_information.fill_in_last_name('Doe')
-    contact_information.fill_in_health_unit('Some Healthy Place')
-    contact_information.fill_in_family_record('1234')
-    contact_information.fill_in_phone('12345678910')
-    contact_information.fill_in_emer_con_name('Papa Joe')
-    contact_information.fill_in_emer_con_phone('12345678901')
-    contact_information.fill_in_email('jane.doe@example.com')
-    contact_information.fill_in_address("100 Fake Ln\nSome City, USA, 12345")
-    contact_information.select_dob
-    contact_information.select_enrollment_date(Date.today)
-    contact_information.choose_gender('female')
-    contact_information.choose_chronic_disorder
+    new_participant_contact_information.fill_in_first_name
+    new_participant_contact_information.fill_in_last_name
+    new_participant_contact_information.fill_in_health_unit
+    new_participant_contact_information.fill_in_family_record
+    new_participant_contact_information.fill_in_phone
+    new_participant_contact_information.fill_in_emergency_contact_name
+    new_participant_contact_information.fill_in_emergency_contact_phone
+    new_participant_contact_information.fill_in_email
+    new_participant_contact_information.fill_in_address
+    new_participant_contact_information.select_dob
+    new_participant_contact_information.select_enrollment_date
+    new_participant_contact_information.choose_gender
+    new_participant_contact_information.choose_chronic_disorder
     navigation.submit
 
-    expect(page).to_not have_css '#pending'
-    expect(page).to have_css '#participant_first_name'
+    expect(pending_participants).to_not have_landing_page_visible
+    expect(contact_information).to have_form_visible
   end
 
-  it 'cannot create a participant without filling in family health unit' do
+  scenario 'Admin cannot create a pt wo filling in family health unit' do
     pending_participants.create
-    contact_information.fill_in_first_name('Jane')
-    contact_information.fill_in_last_name('Doe')
-    contact_information.fill_in_study_id('123')
-    contact_information.fill_in_family_record('1234')
-    contact_information.fill_in_phone('12345678910')
-    contact_information.fill_in_emer_con_name('Papa Joe')
-    contact_information.fill_in_emer_con_phone('12345678901')
-    contact_information.fill_in_email('jane.doe@example.com')
-    contact_information.fill_in_address("100 Fake Ln\nSome City, USA, 12345")
-    contact_information.select_dob
-    contact_information.select_enrollment_date(Date.today)
-    contact_information.choose_gender('female')
-    contact_information.choose_chronic_disorder
+    new_participant_contact_information.fill_in_first_name
+    new_participant_contact_information.fill_in_last_name
+    new_participant_contact_information.fill_in_study_id
+    new_participant_contact_information.fill_in_family_record
+    new_participant_contact_information.fill_in_phone
+    new_participant_contact_information.fill_in_emergency_contact_name
+    new_participant_contact_information.fill_in_emergency_contact_phone
+    new_participant_contact_information.fill_in_email
+    new_participant_contact_information.fill_in_address
+    new_participant_contact_information.select_dob
+    new_participant_contact_information.select_enrollment_date
+    new_participant_contact_information.choose_gender
+    new_participant_contact_information.choose_chronic_disorder
     navigation.submit
 
-    expect(page).to_not have_css '#pending'
-    expect(page).to have_css '#participant_first_name'
+    expect(pending_participants).to_not have_landing_page_visible
+    expect(contact_information).to have_form_visible
   end
 
-  it 'cannot create a participant without filling in phone' do
+  scenario 'Admin cannot create a participant without filling in phone' do
     pending_participants.create
-    contact_information.fill_in_first_name('Jane')
-    contact_information.fill_in_last_name('Doe')
-    contact_information.fill_in_study_id('123')
-    contact_information.fill_in_health_unit('Some Healthy Place')
-    contact_information.fill_in_family_record('1234')
-    contact_information.fill_in_emer_con_name('Papa Joe')
-    contact_information.fill_in_emer_con_phone('12345678901')
-    contact_information.fill_in_email('jane.doe@example.com')
-    contact_information.fill_in_address("100 Fake Ln\nSome City, USA, 12345")
-    contact_information.select_dob
-    contact_information.select_enrollment_date(Date.today)
-    contact_information.choose_gender('female')
-    contact_information.choose_chronic_disorder
+    new_participant_contact_information.fill_in_first_name
+    new_participant_contact_information.fill_in_last_name
+    new_participant_contact_information.fill_in_study_id
+    new_participant_contact_information.fill_in_health_unit
+    new_participant_contact_information.fill_in_family_record
+    new_participant_contact_information.fill_in_emergency_contact_name
+    new_participant_contact_information.fill_in_emergency_contact_phone
+    new_participant_contact_information.fill_in_email
+    new_participant_contact_information.fill_in_address
+    new_participant_contact_information.select_dob
+    new_participant_contact_information.select_enrollment_date
+    new_participant_contact_information.choose_gender
+    new_participant_contact_information.choose_chronic_disorder
     navigation.submit
 
-    expect(page).to_not have_css '#pending'
-    expect(page).to have_css '#participant_first_name'
+    expect(pending_participants).to_not have_landing_page_visible
+    expect(contact_information).to have_form_visible
   end
 
   # useless as there is a default value in the form
-  # it 'cannot create a participant without filling in date of birth' do
+  # scenario 'Admin cannot create a participant  wo filling in date of birth' do
   #   pending_participants.create
-  #   contact_information.fill_in_first_name('Jane')
-  #   contact_information.fill_in_last_name('Doe')
-  #   contact_information.fill_in_study_id('123')
-  #   contact_information.fill_in_health_unit('Some Healthy Place')
-  #   contact_information.fill_in_family_record('1234')
-  #   contact_information.fill_in_phone('12345678910')
-  #   contact_information.fill_in_emer_con_name('Papa Joe')
-  #   contact_information.fill_in_emer_con_phone('12345678901')
-  #   contact_information.fill_in_email('jane.doe@example.com')
-  #   contact_information.fill_in_address("100 Fake Ln\nSome City, USA, 12345")
-  #   contact_information.select_enrollment_date(Date.today)
-  #   contact_information.choose_gender('female')
-  #   contact_information.choose_chronic_disorder
+  #   new_participant_contact_information.fill_in_first_name
+  #   new_participant_contact_information.fill_in_last_name
+  #   new_participant_contact_information.fill_in_study_id
+  #   new_participant_contact_information.fill_in_health_unit
+  #   new_participant_contact_information.fill_in_family_record
+  #   new_participant_contact_information.fill_in_phone
+  #   new_participant_contact_information.fill_in_emergency_contact_name
+  #   new_participant_contact_information.fill_in_emergency_contact_phone
+  #   new_participant_contact_information.fill_in_email
+  #   new_participant_contact_information.fill_in_address
+  #   new_participant_contact_information.select_enrollment_date
+  #   new_participant_contact_information.choose_gender
+  #   new_participant_contact_information.choose_chronic_disorder
   #   navigation.submit
 
-  #   expect(page).to_not have_css '#pending'
-  #   expect(page).to have_css '#participant_first_name'
+  #   expect(pending_participants).to_not have_landing_page_visible
+  #   expect(contact_information).to have_form_visible
   # end
 
   # useless as there is a default value in the form
-  # it 'cannot create a participant without filling in enrollment date' do
+  # scenario 'Admin cannot create a pt wo filling in enrollment date' do
   #   pending_participants.create
-  #   contact_information.fill_in_first_name('Jane')
-  #   contact_information.fill_in_last_name('Doe')
-  #   contact_information.fill_in_study_id('123')
-  #   contact_information.fill_in_health_unit('Some Healthy Place')
-  #   contact_information.fill_in_family_record('1234')
-  #   contact_information.fill_in_phone('12345678910')
-  #   contact_information.fill_in_emer_con_name('Papa Joe')
-  #   contact_information.fill_in_emer_con_phone('12345678901')
-  #   contact_information.fill_in_email('jane.doe@example.com')
-  #   contact_information.fill_in_address("100 Fake Ln\nSome City, USA, 12345")
-  #   contact_information.select_dob
-  #   contact_information.choose_gender('female')
-  #   contact_information.choose_chronic_disorder
+  #   new_participant_contact_information.fill_in_first_name
+  #   new_participant_contact_information.fill_in_last_name
+  #   new_participant_contact_information.fill_in_study_id
+  #   new_participant_contact_information.fill_in_health_unit
+  #   new_participant_contact_information.fill_in_family_record
+  #   new_participant_contact_information.fill_in_phone
+  #   new_participant_contact_information.fill_in_emergency_contact_name
+  #   new_participant_contact_information.fill_in_emergency_contact_phone
+  #   new_participant_contact_information.fill_in_email
+  #   new_participant_contact_information.fill_in_address
+  #   new_participant_contact_information.select_dob
+  #   new_participant_contact_information.choose_gender
+  #   new_participant_contact_information.choose_chronic_disorder
   #   navigation.submit
 
-  #   expect(page).to_not have_css '#pending'
-  #   expect(page).to have_css '#participant_first_name'
+  #   expect(pending_participants).to_not have_landing_page_visible
+  #   expect(contact_information).to have_form_visible
   # end
 
-  it 'cannot create a participant without choosing gender' do
+  scenario 'Admin cannot create a participant without choosing gender' do
     pending_participants.create
-    contact_information.fill_in_first_name('Jane')
-    contact_information.fill_in_last_name('Doe')
-    contact_information.fill_in_study_id('123')
-    contact_information.fill_in_health_unit('Some Healthy Place')
-    contact_information.fill_in_family_record('1234')
-    contact_information.fill_in_phone('12345678910')
-    contact_information.fill_in_emer_con_name('Papa Joe')
-    contact_information.fill_in_emer_con_phone('12345678901')
-    contact_information.fill_in_email('jane.doe@example.com')
-    contact_information.fill_in_address("100 Fake Ln\nSome City, USA, 12345")
-    contact_information.select_dob
-    contact_information.choose_chronic_disorder
+    new_participant_contact_information.fill_in_first_name
+    new_participant_contact_information.fill_in_last_name
+    new_participant_contact_information.fill_in_study_id
+    new_participant_contact_information.fill_in_health_unit
+    new_participant_contact_information.fill_in_family_record
+    new_participant_contact_information.fill_in_phone
+    new_participant_contact_information.fill_in_emergency_contact_name
+    new_participant_contact_information.fill_in_emergency_contact_phone
+    new_participant_contact_information.fill_in_email
+    new_participant_contact_information.fill_in_address
+    new_participant_contact_information.select_dob
+    new_participant_contact_information.choose_chronic_disorder
     navigation.submit
 
-    expect(page).to_not have_css '#pending'
-    expect(page).to have_css '#participant_first_name'
+    expect(pending_participants).to_not have_landing_page_visible
+    expect(contact_information).to have_form_visible
   end
 
-  it 'can create a participant without filling in the optional fields' do
+  scenario 'Admin can create a participant wo filling in the optional fields' do
     pending_participants.create
-    contact_information.fill_in_first_name('Jane')
-    contact_information.fill_in_last_name('Doe')
-    contact_information.fill_in_study_id('123')
-    contact_information.fill_in_health_unit('Some Healthy Place')
-    contact_information.fill_in_phone('12345678910')
-    contact_information.select_dob
-    yesterday = Date.today - 1
-    contact_information.select_enrollment_date(yesterday)
-    contact_information.choose_gender('female')
+    new_participant_contact_information.fill_in_first_name
+    new_participant_contact_information.fill_in_last_name
+    new_participant_contact_information.fill_in_study_id
+    new_participant_contact_information.fill_in_health_unit
+    new_participant_contact_information.fill_in_family_record
+    new_participant_contact_information.fill_in_phone
+    new_participant_contact_information.select_dob
+    new_participant_contact_information.select_enrollment_date
+    new_participant_contact_information.choose_gender
     navigation.submit
 
-    expect(page)
-      .to have_content "Doe, Jane 123 #{yesterday.strftime('%B %d, %Y')}"
+    expect(jane_doe).to be_visible
   end
 
-  it 'activates a participant' do
-    pending_participants.activate('Last-100, First')
-    pending_participants.assign_nurse
+  scenario 'Admin activates a participant' do
+    participant_100.activate
+    participant_100.assign_nurse
 
-    expect(page).to have_content 'Manage Active Participants'
-    expect(page).to have_content 'Last-100, First 100'
+    expect(participant_100).to_not be_visible
   end
 
-  it 'disqualifies a participant' do
-    pending_participants.disqualify('Last-101, First')
-    pending_participants.confirm_disqualify
+  scenario 'Admin disqualifies a participant' do
+    participant_101.disqualify
+    participant_101.confirm_disqualify
 
-    expect(page).to_not have_content 'Last-101, First 101'
+    expect(participant_101).to_not be_visible
 
-    pending_participants.select_ineligible_tab
+    participant_101.select_ineligible_tab
 
-    expect(page).to have_content 'Last-101, First 101'
+    expect(participant_101).to be_visible
   end
 
-  it 'activates a participant who was previously disqualified' do
-    pending_participants.select_ineligible_tab
-    pending_participants.activate('Last-200, First')
-    pending_participants.assign_nurse
+  scenario 'Admin activates a participant who was previously disqualified' do
+    participant_200.select_ineligible_tab
+    participant_200.activate
+    participant_200.assign_nurse
 
-    expect(page).to have_content 'Manage Active Participants'
-    expect(page).to have_content 'Last-200, First 200'
+    expect(participant_200).to_not be_visible
   end
 
-  it 'edits pending participant\'s information' do
-    pending_participants.select_edit('Last-102, First')
+  scenario 'Admin edits pending participant\'s information' do
+    participant_102.select_edit
 
-    expect(page).to have_css '#participant_first_name'
+    expect(contact_information).to have_form_visible
   end
 
-  it 'edits ineligible participant\'s information' do
-    pending_participants.select_ineligible_tab
-    pending_participants.select_edit('Last-201, First')
+  scenario 'Admin edits ineligible participant\'s information' do
+    participant_201.select_ineligible_tab
+    participant_201.select_edit
 
-    expect(page).to have_css '#participant_first_name'
+    expect(contact_information).to have_form_visible
   end
 
-  it 'visits Spanish Pending Participants,' \
+  scenario 'Admin visits Spanish Pending Participants,' \
      'does not see English participants, sees forms in Spanish'
 
-  it 'visits Portuguese Pending Participants,' \
+  scenario 'Admin visits Portuguese Pending Participants,' \
      'does not see English participants, sees forms in Portuguese'
 end

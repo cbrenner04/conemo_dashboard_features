@@ -2,40 +2,59 @@
 class ContactInformation
   include Capybara::DSL
 
-  def fill_in_first_name(name)
-    fill_in_field('first_name', name)
+  def initialize(contact_information)
+    @first_name ||= contact_information[:first_name]
+    @last_name ||= contact_information[:last_name]
+    @id ||= contact_information[:id]
+    @unit ||= contact_information[:unit]
+    @family_record ||= contact_information[:family_record]
+    @phone ||= contact_information[:phone]
+    @emergency_contact_name ||= contact_information[:emergency_contact_name]
+    @emergency_contact_phone ||= contact_information[:emergency_contact_phone]
+    @email ||= contact_information[:email]
+    @address ||= contact_information[:address]
+    @enrollment_date ||= contact_information[:enrollment_date]
+    @gender ||= contact_information[:gender]
   end
 
-  def fill_in_last_name(name)
-    fill_in_field('last_name', name)
+  def has_form_visible?
+    has_css? '#participant_first_name'
   end
 
-  def fill_in_study_id(id)
-    fill_in_field('study_identifier', id)
+  def fill_in_first_name
+    fill_in_field('first_name', @first_name)
   end
 
-  def fill_in_health_unit(unit)
-    fill_in_field('family_health_unit_name', unit)
+  def fill_in_last_name
+    fill_in_field('last_name', @last_name)
   end
 
-  def fill_in_family_record(num)
-    fill_in_field('family_record_number', num)
+  def fill_in_study_id
+    fill_in_field('study_identifier', @id)
   end
 
-  def fill_in_phone(phone)
-    fill_in_field('phone', phone)
+  def fill_in_health_unit
+    fill_in_field('family_health_unit_name', @unit)
   end
 
-  def fill_in_emer_con_name(name)
-    fill_in_field('emergency_contact_name', name)
+  def fill_in_family_record
+    fill_in_field('family_record_number', @family_record)
   end
 
-  def fill_in_emer_con_phone(phone)
-    fill_in_field('emergency_contact_phone', phone)
+  def fill_in_phone
+    fill_in_field('phone', @phone)
   end
 
-  def fill_in_email(email)
-    fill_in_field('email', email)
+  def fill_in_emergency_contact_name
+    fill_in_field('emergency_contact_name', @emergency_contact_name)
+  end
+
+  def fill_in_emergency_contact_phone
+    fill_in_field('emergency_contact_phone', @emergency_contact_phone)
+  end
+
+  def fill_in_email
+    fill_in_field('email', @email)
   end
 
   def select_dob
@@ -43,16 +62,16 @@ class ContactInformation
     enter_date(dob, 'date_of_birth')
   end
 
-  def fill_in_address(address)
-    fill_in_field('address', address)
+  def fill_in_address
+    fill_in_field('address', @address)
   end
 
-  def select_enrollment_date(date)
-    enter_date(date, 'enrollment_date')
+  def select_enrollment_date
+    enter_date(@enrollment_date, 'enrollment_date')
   end
 
-  def choose_gender(gender)
-    choose gender
+  def choose_gender
+    choose @gender
   end
 
   def choose_chronic_disorder
