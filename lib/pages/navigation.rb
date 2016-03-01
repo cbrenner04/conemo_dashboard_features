@@ -14,16 +14,19 @@ class Navigation
     click_on 'Português'
   end
 
-  def english_admin_buttons
-    ['ADMIN', 'Pending Participants', 'Active Participants', 'Lessons']
+  def has_english_admin_buttons?
+    has_nav_button?('Pending Participants')
+    has_nav_button?('Lessons')
   end
 
-  def spanish_admin_buttons
-    ['ADMIN', 'Participantes reclutados', 'Participantes activos', 'Sesiones']
+  def has_spanish_admin_buttons?
+    has_nav_button?('Participantes reclutados')
+    has_nav_button?('Sesiones')
   end
 
-  def portuguese_admin_buttons
-    ['ADMIN', 'Participantes pendentes', 'Participantes ativos', 'Sessões']
+  def has_portuguese_admin_buttons?
+    has_nav_button?('Participantes pendentes')
+    has_nav_button?('Sessões')
   end
 
   def cancel
@@ -34,11 +37,17 @@ class Navigation
     click_on 'Save'
   end
 
-  def act_buttons
-    all('.btn').map(&:text)
+  def return_home
+    find('.navbar-brand', text: 'CONEMO').click
   end
 
   def scroll_by(pixels)
     execute_script("window.scrollBy(0,#{pixels})")
+  end
+
+  private
+
+  def has_nav_button?(button)
+    has_css?('.navigation', text: button)
   end
 end

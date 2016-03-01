@@ -8,3 +8,17 @@ def english_admin
     password: ENV['EN_Admin_Password']
   )
 end
+
+def spanish_admin
+  @spanish_admin ||= Users.new(
+    email: ENV['PE_Admin_Email'],
+    password: ENV['PE_Admin_Password']
+  )
+end
+
+def portuguese_admin
+  @portuguese_admin ||= Users.new(
+    email: ENV['BR_Admin_Email'],
+    password: ENV['BR_Admin_Password']
+  )
+end

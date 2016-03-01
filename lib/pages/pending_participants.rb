@@ -6,6 +6,10 @@ class PendingParticipants
     click_on 'Pending Participants'
   end
 
+  def visible?
+    has_css?('h1', text: 'Pending Participants')
+  end
+
   def activate(name)
     select_button(name, '.fa-thumbs-up')
   end
