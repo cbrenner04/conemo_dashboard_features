@@ -1,108 +1,14 @@
-# filename: ./spec/features/nurse/active_participants_contacts_spec.rb
+# filename: ./spec/features/nurse/participant_tasks_spec.rb
 
-# require page objects, these are instantiated in the feature_helper.rb
-require './lib/pages/login'
-require './lib/pages/navigation'
-require './lib/pages/contact_information'
-
-# require helper file with active_participant pages required and instantiated
-require './spec/support/active_pt_helper'
-
-describe 'An authorized admin signs in', type: :feature do
-  before do
-    login.sign_in(ENV['EN_Admin_Email'], ENV['EN_Admin_Password'])
-    navigation.switch_to_english
-    active_participants.open
-    active_participants.assert_on_page
-  end
-
-  it 'views participant profile' do
-    profile.go_to_profile_of('Last-300, First')
-    expect(profile).to be_visible_with_id('300')
-  end
-
-  it 'cancels out of edit of participant information' do
-    profile.go_to_profile_of('Last-301, First')
-    profile.select_edit_contact_information
-    navigation.cancel
-
-    expect(profile).to be_visible_with_id('301')
-  end
-
-  it 'edits participant information from the profile page' do
-    profile.go_to_profile_of('Last-301, First')
-    profile.select_edit_contact_information
-    contact_information.fill_in_email('participant301@example.com')
-    navigation.submit
-
-    expect(page).to have_content 'Email: participant301@example.com'
-  end
-
-  it 'cancels out of edit of smartphone information' do
-    scroll_by('500')
-    profile.go_to_profile_of('Last-310, First')
-    profile.select_edit_smartphone_information
-    navigation.cancel
-
-    expect(active_participants).to be_visible
-  end
-
-  it 'enters smartphone information' do
-    profile.go_to_profile_of('Last-302, First')
-    profile.select_edit_smartphone_information
-    profile.enter_smartphone_number('1234567890')
-    profile.select_all_smartphone_radios
-    navigation.submit
-    profile.go_to_profile_of('Last-302, First')
-
-    expect(page).to have_content 'Smartphone Information: 1234567890'
-  end
-
-  it 'cancels out of edit nurse form' do
-    scroll_by('250')
-    nurse.open('309')
-    navigation.cancel
-
-    expect(active_participants).to be_visible
-  end
-
-  it 'updates nurse' do
-    nurse.edit('303', '401')
-    nurse.assert_new_nurse('303', '401')
-  end
-
-  it 'cancels add note' do
-    notes.open_for('308')
-    navigation.cancel
-
-    expect(reports).to be_visible
-  end
-
-  it 'adds a note' do
-    notes.add_notes('304')
-    active_participants.open
-    notes.open_for('304')
-
-    expect(notes).to be_visible
-  end
-
-  it 'deletes a note' do
-    notes.open_for('305')
-    notes.delete
-    active_participants.open
-    notes.open_for('305')
-
-    expect(notes).to_not have_any_note
-  end
-
-  it 'cancels out of first contact form' do
+feature 'Nurse, Participant Tasks' do
+  scenario 'Nurse cancels out of first contact form' do
     active_participants.create_contact_for('307')
     navigation.cancel
 
     expect(active_participants).to be_visible
   end
 
-  it 'creates first contact' do
+  scenario 'Nurse creates first contact' do
     active_participants.create_contact_for('306')
     first_contact.assert_on_page
     first_contact.enter_first_appt_location
@@ -117,7 +23,7 @@ describe 'An authorized admin signs in', type: :feature do
     expect(profile).to have_first_contact_information
   end
 
-  it 'cancels out of a first appointment reschedule form' do
+  scenario 'Nurse cancels out of a first appointment reschedule form' do
     scroll_by('500')
     active_participants.reschedule_appt_for('311')
     navigation.cancel
@@ -125,7 +31,7 @@ describe 'An authorized admin signs in', type: :feature do
     expect(active_participants).to be_visible
   end
 
-  it 'reschedules a first appointment' do
+  scenario 'Nurse reschedules a first appointment' do
     scroll_by('500')
     active_participants.reschedule_appt_for('312')
     active_participants.reschedule('first_appointment')
@@ -133,7 +39,7 @@ describe 'An authorized admin signs in', type: :feature do
     expect(active_participants).to be_rescheduled_for('312')
   end
 
-  it 'cancels out of a first appointment creation form' do
+  scenario 'Nurse cancels out of a first appointment creation form' do
     scroll_by('500')
     active_participants.create_contact_for('313')
     navigation.cancel
@@ -141,7 +47,7 @@ describe 'An authorized admin signs in', type: :feature do
     expect(active_participants).to be_visible
   end
 
-  it 'must enter a integer in session length field' do
+  scenario 'Nurse must enter a integer in session length field' do
     scroll_by('500')
     active_participants.create_contact_for('314')
     first_appointment.enter_location
@@ -155,7 +61,7 @@ describe 'An authorized admin signs in', type: :feature do
     expect(profile).to_not have_phone_form_present
   end
 
-  it 'cannot submit first appointment form without entering session length' do
+  scenario 'Nurse cannot submit first appointment form without entering session length' do
     scroll_by('500')
     active_participants.create_contact_for('315')
     first_appointment.enter_location
@@ -169,7 +75,7 @@ describe 'An authorized admin signs in', type: :feature do
     expect(profile).to_not have_phone_form_present
   end
 
-  it 'cannot submit first appointment form without entering comfort' do
+  scenario 'Nurse cannot submit first appointment form without entering comfort' do
     scroll_by('500')
     active_participants.create_contact_for('316')
     first_appointment.enter_location
@@ -183,7 +89,7 @@ describe 'An authorized admin signs in', type: :feature do
     expect(profile).to_not have_phone_form_present
   end
 
-  it 'cannot submit first appointment form without selecting engagement' do
+  scenario 'Nurse cannot submit first appointment form without selecting engagement' do
     scroll_by('500')
     active_participants.create_contact_for('317')
     first_appointment.enter_location
@@ -197,7 +103,7 @@ describe 'An authorized admin signs in', type: :feature do
     expect(profile).to_not have_phone_form_present
   end
 
-  it 'cannot submit first appointment form without selecting chances' do
+  scenario 'Nurse cannot submit first appointment form without selecting chances' do
     scroll_by('500')
     active_participants.create_contact_for('318')
     first_appointment.enter_location
@@ -211,7 +117,7 @@ describe 'An authorized admin signs in', type: :feature do
     expect(profile).to_not have_phone_form_present
   end
 
-  it 'creates a first appointment' do
+  scenario 'Nurse creates a first appointment' do
     scroll_by('750')
     active_participants.create_contact_for('319')
     first_appointment.enter_location
@@ -244,7 +150,7 @@ describe 'An authorized admin signs in', type: :feature do
     expect(reports).to have_first_appt_notes_visible
   end
 
-  it 'cancels out of  second contact creation form' do
+  scenario 'Nurse cancels out of  second contact creation form' do
     scroll_by('1000')
     active_participants.reschedule_appt_for('320')
     navigation.cancel
@@ -252,7 +158,7 @@ describe 'An authorized admin signs in', type: :feature do
     expect(active_participants).to be_visible
   end
 
-  it 'reschedules a second contact' do
+  scenario 'Nurse reschedules a second contact' do
     scroll_by('1000')
     active_participants.reschedule_appt_for('321')
     active_participants.reschedule('second_contact')
@@ -260,7 +166,7 @@ describe 'An authorized admin signs in', type: :feature do
     expect(active_participants).to be_rescheduled_for('321')
   end
 
-  it 'cancels out of second contact creation form' do
+  scenario 'Nurse cancels out of second contact creation form' do
     scroll_by('1000')
     active_participants.create_contact_for('322')
     navigation.cancel
@@ -268,7 +174,7 @@ describe 'An authorized admin signs in', type: :feature do
     expect(active_participants).to be_visible
   end
 
-  it 'must enter integer into length of call' do
+  scenario 'Nurse must enter integer into length of call' do
     scroll_by('1000')
     active_participants.create_contact_for('323')
     active_participants.enter_session_length('second_contact', 'asdf')
@@ -277,7 +183,7 @@ describe 'An authorized admin signs in', type: :feature do
     expect(active_participants).to_not be be_visible
   end
 
-  it 'cannot submit second contact without selecting ability' do
+  scenario 'Nurse cannot submit second contact without selecting ability' do
     scroll_by('1000')
     active_participants.create_contact_for('324')
     second_contact.fill_in_questions
@@ -290,7 +196,7 @@ describe 'An authorized admin signs in', type: :feature do
     expect(active_participants).to_not be_visible
   end
 
-  it 'cannot submit second contact without selecting motivation' do
+  scenario 'Nurse cannot submit second contact without selecting motivation' do
     scroll_by('1000')
     active_participants.create_contact_for('325')
     second_contact.fill_in_questions
@@ -303,7 +209,7 @@ describe 'An authorized admin signs in', type: :feature do
     expect(active_participants).to_not be_visible
   end
 
-  it 'cannot submit second contact without selecting chances' do
+  scenario 'Nurse cannot submit second contact without selecting chances' do
     scroll_by('1000')
     active_participants.create_contact_for('326')
     second_contact.fill_in_questions
@@ -316,7 +222,7 @@ describe 'An authorized admin signs in', type: :feature do
     expect(active_participants).to_not be_visible
   end
 
-  it 'cannot submit second contact without entering length of call' do
+  scenario 'Nurse cannot submit second contact without entering length of call' do
     scroll_by('1000')
     active_participants.create_contact_for('327')
     second_contact.fill_in_questions
@@ -329,7 +235,7 @@ describe 'An authorized admin signs in', type: :feature do
     expect(active_participants).to_not be_visible
   end
 
-  it 'creates a second contact' do
+  scenario 'Nurse creates a second contact' do
     scroll_by('1250')
     active_participants.create_contact_for('328')
     second_contact.fill_in_questions
@@ -357,7 +263,7 @@ describe 'An authorized admin signs in', type: :feature do
     expect(reports).to have_second_contact_notes_visible
   end
 
-  it 'reschedules third contact' do
+  scenario 'Nurse reschedules third contact' do
     scroll_by('1500')
     active_participants.reschedule_appt_for('329')
     active_participants.reschedule('third_contact')
@@ -365,7 +271,7 @@ describe 'An authorized admin signs in', type: :feature do
     expect(active_participants).to be_rescheduled_for('329')
   end
 
-  it 'cancels third contact creation' do
+  scenario 'Nurse cancels third contact creation' do
     scroll_by('1500')
     active_participants.create_contact_for('330')
     navigation.cancel
@@ -373,7 +279,7 @@ describe 'An authorized admin signs in', type: :feature do
     expect(active_participants).to be_visible
   end
 
-  it 'must enter an integer for length of call in third contact' do
+  scenario 'Nurse must enter an integer for length of call in third contact' do
     scroll_by('1500')
     active_participants.create_contact_for('331')
     third_contact.assert_on_page
@@ -383,7 +289,7 @@ describe 'An authorized admin signs in', type: :feature do
     expect(active_participants).to_not be_visible
   end
 
-  it 'cannot submit third contact form without entering length of call' do
+  scenario 'Nurse cannot submit third contact form without entering length of call' do
     scroll_by('1500')
     active_participants.create_contact_for('332')
     third_contact.assert_on_page
@@ -397,7 +303,7 @@ describe 'An authorized admin signs in', type: :feature do
     expect(active_participants).to_not be_visible
   end
 
-  it 'cannot submit third contact form w/o entering final appt location' do
+  scenario 'Nurse cannot submit third contact form w/o entering final appt location' do
     scroll_by('1500')
     active_participants.create_contact_for('333')
     third_contact.assert_on_page
@@ -411,7 +317,7 @@ describe 'An authorized admin signs in', type: :feature do
     expect(active_participants).to_not be_visible
   end
 
-  it 'cannot submit third contact form without selecting ability' do
+  scenario 'Nurse cannot submit third contact form without selecting ability' do
     scroll_by('1500')
     active_participants.create_contact_for('334')
     third_contact.assert_on_page
@@ -425,7 +331,7 @@ describe 'An authorized admin signs in', type: :feature do
     expect(active_participants).to_not be_visible
   end
 
-  it 'cannot submit third contact form without selecting motivation' do
+  scenario 'Nurse cannot submit third contact form without selecting motivation' do
     scroll_by('1500')
     active_participants.create_contact_for('335')
     third_contact.assert_on_page
@@ -439,7 +345,7 @@ describe 'An authorized admin signs in', type: :feature do
     expect(active_participants).to_not be_visible
   end
 
-  it 'creates a third contact' do
+  scenario 'Nurse creates a third contact' do
     scroll_by('1500')
     active_participants.create_contact_for('336')
     third_contact.assert_on_page
@@ -467,7 +373,7 @@ describe 'An authorized admin signs in', type: :feature do
     expect(reports).to have_third_contact_notes_visible
   end
 
-  it 'reschedules final appointment' do
+  scenario 'Nurse reschedules final appointment' do
     scroll_by('1500')
     active_participants.reschedule_appt_for('337')
     active_participants.reschedule('final_appointment')
@@ -475,7 +381,7 @@ describe 'An authorized admin signs in', type: :feature do
     expect(active_participants).to be_rescheduled_for('337')
   end
 
-  it 'cancels final appointment form' do
+  scenario 'Nurse cancels final appointment form' do
     scroll_by('2000')
     active_participants.create_contact_for('338')
     navigation.cancel
@@ -483,7 +389,7 @@ describe 'An authorized admin signs in', type: :feature do
     expect(active_participants).to be_visible
   end
 
-  it 'cannot submit final appointment without location' do
+  scenario 'Nurse cannot submit final appointment without location' do
     scroll_by('2000')
     active_participants.create_contact_for('339')
     final_appointment.assert_on_page
@@ -494,7 +400,7 @@ describe 'An authorized admin signs in', type: :feature do
     expect(active_participants).to_not be_visible
   end
 
-  it 'cannot submit final appointment without responding to phone return' do
+  scenario 'Nurse cannot submit final appointment without responding to phone return' do
     scroll_by('2000')
     active_participants.create_contact_for('340')
     final_appointment.assert_on_page
@@ -505,7 +411,7 @@ describe 'An authorized admin signs in', type: :feature do
     expect(active_participants).to_not be_visible
   end
 
-  it 'creates a final appointment' do
+  scenario 'Nurse creates a final appointment' do
     scroll_by('2000')
     active_participants.create_contact_for('341')
     final_appointment.assert_on_page
@@ -528,57 +434,5 @@ describe 'An authorized admin signs in', type: :feature do
     reports.open_for('341')
 
     expect(reports).to have_final_appt_notes_visible
-  end
-
-  it 'edits first contact from profile page' do
-    scroll_by('2000')
-    profile.go_to_profile_of('Last-342, First')
-    profile.edit_session('First Contact')
-    first_contact.assert_on_page
-    navigation.submit
-
-    expect(active_participants).to be_visible
-  end
-
-  it 'edits first appointment from profile page' do
-    scroll_by('2000')
-    profile.go_to_profile_of('Last-342, First')
-    sleep(1)
-    scroll_by('100')
-    profile.edit_session('First Appointment')
-    first_appointment.assert_on_page
-    navigation.submit
-
-    expect(active_participants).to be_visible
-  end
-
-  it 'edits second contact from profile page' do
-    scroll_by('2000')
-    profile.go_to_profile_of('Last-342, First')
-    profile.edit_session('Second Contact')
-    second_contact.assert_on_page
-    navigation.submit
-
-    expect(active_participants).to be_visible
-  end
-
-  it 'edits third contact from profile page' do
-    scroll_by('2000')
-    profile.go_to_profile_of('Last-343, First')
-    profile.edit_session('Third Contact')
-    third_contact.assert_on_page
-    navigation.submit
-
-    expect(active_participants).to be_visible
-  end
-
-  it 'edits final appointment from profile page' do
-    scroll_by('2000')
-    profile.go_to_profile_of('Last-342, First')
-    profile.edit_session('Final Appointment')
-    final_appointment.assert_on_page
-    navigation.submit
-
-    expect(active_participants).to be_visible
   end
 end

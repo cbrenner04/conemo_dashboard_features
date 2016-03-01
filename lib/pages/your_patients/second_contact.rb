@@ -1,12 +1,12 @@
-require './lib/pages/active_participants'
+require './lib/pages/your_patients'
 
-class ActiveParticipants
+class YourPatients
   # page object for second contact
   class SecondContact
     include Capybara::DSL
 
-    def active_pt
-      @active_pt ||= ActiveParticipants.new
+    def your_patients
+      @your_patients ||= YourPatients.new
     end
 
     def assert_on_page
@@ -29,7 +29,7 @@ class ActiveParticipants
       selector[12].click
       chance = ['3 – Very probable', '2 – 50/50 (more or less probable)',
                 '1 – Not probable'].sample
-      active_pt.select_non_date_item(chance)
+      your_patients.select_non_date_item(chance)
     end
 
     def general_notes
@@ -41,9 +41,9 @@ class ActiveParticipants
     end
 
     def created_for_participant?(id)
-      active_pt.pt_row(id).has_css?('.fa-check-circle', count: 3)
+      your_patients.pt_row(id).has_css?('.fa-check-circle', count: 3)
       date = DateTime.now + 21
-      active_pt.check_date(id, date)
+      your_patients.check_date(id, date)
     end
   end
 end

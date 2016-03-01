@@ -22,3 +22,10 @@ def portuguese_admin
     password: ENV['BR_Admin_Password']
   )
 end
+
+def english_nurse
+  @english_nurse ||= Users.new(
+    email: ENV['EN_Nurse_Email'],
+    password: ENV['EN_Nurse_Password']
+  )
+end

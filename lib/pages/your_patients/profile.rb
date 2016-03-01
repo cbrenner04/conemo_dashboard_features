@@ -1,4 +1,4 @@
-class ActiveParticipants
+class YourPatients
   # page object for profile page of active participants
   class Profile
     include Capybara::DSL

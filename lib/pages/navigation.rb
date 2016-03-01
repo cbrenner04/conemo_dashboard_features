@@ -41,8 +41,8 @@ class Navigation
     find('.navbar-brand', text: 'CONEMO').click
   end
 
-  def scroll_by(pixels)
-    execute_script("window.scrollBy(0,#{pixels})")
+  def scroll_down
+    execute_script('window.scrollBy(0,500)')
   end
 
   private

@@ -1,12 +1,12 @@
-require './lib/pages/active_participants'
+require './lib/pages/your_patients'
 
-class ActiveParticipants
+class YourPatients
   # page object for the First Appointment Form in Active Participants
   class FirstAppointment
     include Capybara::DSL
 
-    def active_pt
-      @active_pt ||= ActiveParticipants.new
+    def your_patients
+      @your_patients ||= YourPatients.new
     end
 
     def assert_on_page
@@ -28,7 +28,7 @@ class ActiveParticipants
         '2 – After SECOND demonstration patient needs help',
         '1 – Continues to have difficulties after THIRD demonstration'
       ].sample
-      active_pt.select_non_date_item(comfort)
+      your_patients.select_non_date_item(comfort)
     end
 
     def enter_phone_note
@@ -41,14 +41,14 @@ class ActiveParticipants
       selector[11].click
       engagement = ['3 – Very engaged', '2 – More or less engaged',
                     '1 – Not engaged'].sample
-      active_pt.select_non_date_item(engagement)
+      your_patients.select_non_date_item(engagement)
     end
 
     def select_chances
       selector = page.all('.select2-container')
       selector[12].click
       chance = ['3 – high chance', '2 – 50/50 chance', '1 – low chance'].sample
-      active_pt.select_non_date_item(chance)
+      your_patients.select_non_date_item(chance)
     end
 
     def general_notes
@@ -60,9 +60,9 @@ class ActiveParticipants
     end
 
     def created_for_participant?(id)
-      active_pt.pt_row(id).has_css?('.fa-check-circle', count: 2)
+      your_patients.pt_row(id).has_css?('.fa-check-circle', count: 2)
       date = DateTime.now + 7
-      active_pt.check_date(id, date)
+      your_patients.check_date(id, date)
     end
   end
 end

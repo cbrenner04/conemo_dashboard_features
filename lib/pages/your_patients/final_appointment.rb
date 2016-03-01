@@ -1,12 +1,12 @@
-require './lib/pages/active_participants'
+require './lib/pages/your_patients'
 
-class ActiveParticipants
+class YourPatients
   # page object for first contact page of active participants
   class FinalAppointment
     include Capybara::DSL
 
-    def active_pt
-      @active_pt ||= ActiveParticipants.new
+    def your_patients
+      @your_patients ||= YourPatients.new
     end
 
     def assert_on_page
@@ -32,7 +32,7 @@ class ActiveParticipants
     end
 
     def created_for_participant?(id)
-      active_pt.pt_row(id).has_css?('.fa-check-circle', count: 5)
+      your_patients.pt_row(id).has_css?('.fa-check-circle', count: 5)
     end
   end
 end

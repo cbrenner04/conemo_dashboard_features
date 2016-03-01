@@ -1,5 +1,5 @@
 # page object for active participants
-class ActiveParticipants
+class YourPatients
   include RSpec::Matchers
   include Capybara::DSL
 
@@ -12,7 +12,7 @@ class ActiveParticipants
   end
 
   def pt_row(id)
-    find('tr', text: "Last-#{id}, First")
+    find('tr', text: id)
   end
 
   def create_contact_for(id)

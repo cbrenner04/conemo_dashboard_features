@@ -1,13 +1,7 @@
-require './lib/pages/active_participants'
-
-class ActiveParticipants
+class YourPatients
   # page object for first contact page of active participants
   class FirstContact
     include Capybara::DSL
-
-    def active_pt
-      @active_pt ||= ActiveParticipants.new
-    end
 
     def enter_first_appt_location
       fill_in 'first_contact[first_appointment_location]',
