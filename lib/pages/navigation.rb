@@ -37,4 +37,8 @@ class Navigation
   def act_buttons
     all('.btn').map(&:text)
   end
+
+  def scroll_by(pixels)
+    execute_script("window.scrollBy(0,#{pixels})")
+  end
 end

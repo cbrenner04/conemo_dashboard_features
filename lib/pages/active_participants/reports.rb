@@ -77,10 +77,8 @@ class ActiveParticipants
 
     def has_correct_logins?
       (1..4).each do |i|
-        within('.logins-table') do
-          expect(page)
-            .to have_content (Date.today - i).strftime('%B %d, %Y')
-        end
+        n = Date.today - i
+        find('.logins-table').has_text? n.strftime('%B %d, %Y')
       end
     end
 

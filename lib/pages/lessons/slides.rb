@@ -1,49 +1,74 @@
+require './lib/pages/lessons'
+
 class Lessons
   # page object for slides
   class Slides
     include Capybara::DSL
 
-    def open_add_slide(lesson)
-      open_lesson(lesson)
+    def initialize(slides)
+      @lesson ||= slides[:lesson]
+      @title ||= slides[:title]
+      @body ||= slides[:body]
+      @new_title ||= slides[:new_title]
+    end
+
+    def open_add_slide
+      lessons.open_lesson(@lesson)
       click_on 'Add Slide'
       find('#slide_title')
     end
 
-    def add_a_slide(lesson, title)
-      open_add_slide(lesson)
-      fill_in 'slide[title]', with: title
+    def add
+      open_add_slide
+      fill_in 'slide[title]', with: @title
       find('.cke_contents').click
       find('#cke_53').click
       click_on 'Create Slide'
     end
 
-    def has_slide_visible?(slide)
-      has_css?('.table', text: slide)
+    def visible?
+      @new_title.nil? ? slide_title = @title : slide_title = @new_title
+      has_css?('.table', text: slide_title)
     end
 
-    def open_edit_slide(lesson, slide)
-      open_lesson(lesson)
-      find('tr', text: slide).find('.fa-pencil').click
+    def open_edit
+      lessons.open_lesson(@lesson)
+      find('tr', text: @title).find('.fa-pencil').click
     end
 
-    def edit_slide(lesson, slide, new_title)
-      open_edit_slide(lesson, slide)
-      fill_in 'slide[title]', with: new_title
+    def edit
+      open_edit
+      fill_in 'slide[title]', with: @new_title
       click_on 'Update Slide'
     end
 
-    def read_slide(lesson, title, body)
-      open_lesson(lesson)
-      click_on title
-      find('h2', text: title)
-      find('p', text: body)
+    def view
+      lessons.open_lesson(@lesson)
+      click_on @title
+      find('h2', text: @title)
+      find('p', text: @body)
     end
 
-    def delete_slide(lesson, slide)
-      open_lesson(lesson)
-      find('tr', text: slide).find('.fa-trash-o').click
-      accept_alert "Are you sure you want to delete #{slide}?"
+    def delete
+      lessons.open_lesson(@lesson)
+      find('tr', text: @title).find('.fa-trash-o').click
+      accept_alert "Are you sure you want to delete #{@title}?"
       find('.alert-info', text: 'Slide deleted')
+    end
+
+    def navigate_with_breadcrumbs
+      lessons.open_lesson(@lesson)
+      click_on @title
+      find('h2', text: @title)
+      within('.breadcrumb') { click_on @lesson }
+      find('h2', text: @lesson)
+      within('.breadcrumb') { click_on 'Lessons' }
+    end
+
+    private
+
+    def lessons
+      @lessons ||= Lessons.new(title: 'fake')
     end
   end
 end

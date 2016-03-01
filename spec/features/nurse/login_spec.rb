@@ -5,6 +5,7 @@ feature 'Nurse, Login' do
   scenario 'Nurse in Spanish locale cannot access English or Portuguese'
   scenario 'Nurse in Portuguese locale cannot access English or Spanish'
   scenario 'Nurse has access to the appropriate functionality'
+end
 
 # require page objects, these are instantiated in the feature helper
 require './lib/pages/login.rb'

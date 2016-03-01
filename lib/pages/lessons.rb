@@ -5,6 +5,8 @@ class Lessons
   def initialize(lessons)
     @title ||= lessons[:title]
     @day ||= lessons[:day]
+    @new_title ||= lessons[:new_title]
+    @slide ||= lessons[:slide]
   end
 
   def open
@@ -28,38 +30,29 @@ class Lessons
   end
 
   def visible?
-    find('.table').has_css?('td', text: @title)
+    @new_title.nil? ? lesson_title = @title : lesson_title = @new_title
+    find('.table').has_css?('td', text: lesson_title)
   end
 
-  def read_lesson(lesson, slide)
-    open_lesson(lesson)
-    find('.ui-sortable', text: slide)
+  def view
+    open_lesson(@title)
+    find('.ui-sortable', text: @slide)
   end
 
-  def open_edit_lesson(lesson)
-    find('tr', text: lesson).find('.fa-pencil').click
+  def open_edit
+    find('tr', text: @title).find('.fa-pencil').click
   end
 
-  def edit_lesson(lesson, new_title)
-    open_edit_lesson(lesson)
-    fill_in 'lesson[title]', with: new_title
+  def edit
+    open_edit
+    fill_in 'lesson[title]', with: @new_title
     click_on 'Update Lesson'
   end
 
-  def delete_lesson(lesson)
-    find('tr', text: lesson).find('.fa-trash-o').click
-    accept_alert "Are you sure you want to delete #{lesson}?"
+  def delete
+    find('tr', text: @title).find('.fa-trash-o').click
+    accept_alert "Are you sure you want to delete #{@title}?"
     find('.alert-info', text: 'Lesson deleted')
-  end
-
-  def navigate_with_breadcrumbs(lesson, slide)
-    open_lesson(lesson)
-    click_on slide
-    find('h2', text: slide)
-    within('.breadcrumb') { click_on lesson }
-    find('h2', text: lesson)
-    within('.breadcrumb') { click_on 'Lessons' }
-    assert_on_page
   end
 
   def open_lesson(lesson)

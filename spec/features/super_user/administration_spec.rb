@@ -29,3 +29,4 @@ feature 'Super User, Administration' do
   scenario 'Super user can view and export smartphones table'
   scenario 'Super user can view and export third contacts table'
   scenario 'Super user can view and export lessons table'
+end
