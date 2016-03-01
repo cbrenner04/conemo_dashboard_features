@@ -42,3 +42,4 @@ feature 'Nurse, Your Patients' do
   scenario 'Nurse sees red color-coding for participant with non-connectivity call scheduled after noon 3 days overdue'
   scenario 'Nurse sees red color-coding for participant with non-adherence call scheduled after noon 3 days overdue'
   scenario 'Nurse sees scheduled tasks change when the initial in person appointment is rescheduled'
+end

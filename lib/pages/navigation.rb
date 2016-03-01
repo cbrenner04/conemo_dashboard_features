@@ -33,4 +33,8 @@ class Navigation
   def submit
     click_on 'Save'
   end
+
+  def act_buttons
+    all('.btn').map(&:text)
+  end
 end

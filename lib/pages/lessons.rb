@@ -6,7 +6,7 @@ class Lessons
     click_on 'Lessons'
   end
 
-  def assert_on_page
+  def on_lesson_list_page?
     find('.btn', text: 'Add Lesson')
   end
 
