@@ -1,32 +1,57 @@
 # filename: ./spec/login_spec.rb
 
-feature 'Nurse, Login' do
-  scenario 'Nurse in English locale cannot access Spanish or Portuguese'
-  scenario 'Nurse in Spanish locale cannot access English or Portuguese'
-  scenario 'Nurse in Portuguese locale cannot access English or Spanish'
-  scenario 'Nurse has access to the appropriate functionality'
-end
-
-# require page objects, these are instantiated in the feature helper
-require './lib/pages/login.rb'
 require './lib/pages/navigation.rb'
 
-describe 'A visitor to the site', type: :feature do
-  it 'is an authorized English nurse and logs in' do
-    login.sign_in(ENV['EN_Nurse_400_Email'], ENV['EN_Nurse_400_Password'])
-    expect(navigation.act_buttons)
-      .to_not match_array(navigation.english_admin_buttons)
+def navigation
+  @navigation ||= Navigation.new
+end
+
+feature 'Nurse, Login' do
+  scenario 'English nurse only accesses their patients, nurse functionality' do
+    english_nurse.sign_in
+
+    expect(navigation).to_not have_english_admin_buttons
+
+    expect(english_nurse).to have_english_patient
+
+    navigation.switch_to_spanish
+
+    expect(spanish_nurse).to_not have_spanish_patient
+
+    navigation.switch_to_portuguese
+
+    expect(portuguese_nurse).to_not have_portuguese_patient
   end
 
-  it 'is an authorized Spanish nurse and logs in' do
-    login.sign_in(ENV['PE_Nurse_Email'], ENV['PE_Nurse_Password'])
-    expect(navigation.act_buttons)
-      .to_not match_array(navigation.spanish_admin_buttons)
+  scenario 'Spanish nurse only accesses their patients, nurse functionality' do
+    spanish_nurse.sign_in
+
+    expect(navigation).to_not have_spanish_admin_buttons
+
+    expect(spanish_nurse).to have_spanish_patient
+
+    navigation.switch_to_portuguese
+
+    expect(portuguese_nurse).to_not have_portuguese_patient
+
+    navigation.switch_to_english
+
+    expect(english_nurse).to_not have_english_patient
   end
 
-  it 'is an authorized Portuguese nurse and logs in' do
-    login.sign_in(ENV['BR_Nurse_Email'], ENV['BR_Nurse_Password'])
-    expect(navigation.act_buttons)
-      .to_not match_array(navigation.portuguese_admin_buttons)
+  scenario 'Portuguese nurse only accesses their pts, nurse functionality' do
+    portuguese_nurse.sign_in
+
+    expect(navigation).to_not have_portuguese_admin_buttons
+
+    expect(portuguese_nurse).to have_portuguese_patient
+
+    navigation.switch_to_english
+
+    expect(english_nurse).to_not have_english_patient
+
+    navigation.switch_to_spanish
+
+    expect(spanish_nurse).to_not have_spanish_patient
   end
 end

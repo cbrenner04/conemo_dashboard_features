@@ -29,3 +29,17 @@ def english_nurse
     password: ENV['EN_Nurse_Password']
   )
 end
+
+def spanish_nurse
+  @spanish_nurse ||= Users.new(
+    email: ENV['PE_Nurse_Email'],
+    password: ENV['PE_Nurse_Password']
+  )
+end
+
+def portuguese_nurse
+  @portuguese_nurse ||= Users.new(
+    email: ENV['BR_Nurse_Email'],
+    password: ENV['BR_Nurse_Password']
+  )
+end
