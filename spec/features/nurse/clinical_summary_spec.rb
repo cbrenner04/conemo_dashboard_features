@@ -18,221 +18,230 @@ feature 'Nurse, Clinical Summary' do
   end
 
   scenario 'Nurse sees current lesson (1st) highlighted' do
-    2.times { navigation.scroll_down }
+    navigation.scroll_down
     pt_300_clinical_summary.open
 
     expect(pt_300_clinical_summary).to have_current_lesson
   end
 
   scenario 'Nurse sees current lesson (2nd) highlighted & 1st lesson missed' do
-    4.times { navigation.scroll_down }
-    reports.open_for('401')
-    expect(reports).to have_current_lesson_at('2')
+    3.times { navigation.scroll_down }
+    pt_401_clinical_summary.open
 
-    expect(reports).to have_unread_lesson_at('1')
+    expect(pt_401_clinical_summary).to have_current_lesson
+
+    expect(pt_401_clinical_summary).to have_unread_lesson
   end
 
   scenario 'Nurse sees current lesson (3rd) highlighted & 2nd lesson missed' do
     navigation.scroll_down
-    reports.open_for('312')
-    expect(reports).to have_current_lesson_at('3')
+    pt_312_clinical_summary.open
 
-    expect(reports).to have_unread_lesson_at('2')
+    expect(pt_312_clinical_summary).to have_current_lesson
+
+    expect(pt_312_clinical_summary).to have_unread_lesson
   end
 
   scenario 'Nurse sees current lesson (4th) highlighted & 3rd lesson missed' do
-    4.times { navigation.scroll_down }
-    reports.open_for('410')
-    expect(reports).to have_current_lesson_at('4')
+    2.times { navigation.scroll_down }
+    pt_410_clinical_summary.open
 
-    expect(reports).to have_unread_lesson_at('3')
+    expect(pt_410_clinical_summary).to have_current_lesson
+
+    expect(pt_410_clinical_summary).to have_unread_lesson
   end
 
   scenario 'Nurse sees current lesson (5th) highlighted & 4th lesson missed' do
-    2.times { navigation.scroll_down }
-    reports.open_for('323')
-    expect(reports).to have_current_lesson_at('5')
+    navigation.scroll_down
+    pt_323_clinical_summary.open
 
-    expect(reports).to have_unread_lesson_at('4')
+    expect(pt_323_clinical_summary).to have_current_lesson
+
+    expect(pt_323_clinical_summary).to have_unread_lesson
   end
 
   scenario 'Nurse sees current lesson (6th) highlighted & 5th lesson missed' do
-    5.times { navigation.scroll_down }
-    reports.open_for('420')
-    expect(reports).to have_current_lesson_at('6')
+    2.times { navigation.scroll_down }
+    pt_420_clinical_summary.open
 
-    expect(reports).to have_unread_lesson_at('5')
+    expect(pt_420_clinical_summary).to have_current_lesson
+
+    expect(pt_420_clinical_summary).to have_unread_lesson
   end
 
   scenario 'Nurse sees current lesson (7th) highlighted & 6th lesson missed' do
-    5.times { navigation.scroll_down }
-    reports.open_for('430')
-    expect(reports).to have_current_lesson_at('7')
+    2.times { navigation.scroll_down }
+    pt_430_clinical_summary.open
 
-    expect(reports).to have_unread_lesson_at('6')
+    expect(pt_430_clinical_summary).to have_current_lesson
+
+    expect(pt_430_clinical_summary).to have_unread_lesson
   end
 
   scenario 'Nurse sees current lesson (8th) highlighted & 7th lesson missed' do
-    5.times { navigation.scroll_down }
-    reports.open_for('440')
-    expect(reports).to have_current_lesson_at('8')
+    2.times { navigation.scroll_down }
+    pt_440_clinical_summary.open
 
-    expect(reports).to have_unread_lesson_at('7')
+    expect(pt_440_clinical_summary).to have_current_lesson
+
+    expect(pt_440_clinical_summary).to have_unread_lesson
   end
 
   scenario 'Nurse sees current lesson (9th) highlighted & 8th lesson missed' do
-    5.times { navigation.scroll_down }
-    reports.open_for('450')
-    expect(reports).to have_current_lesson_at('9')
+    2.times { navigation.scroll_down }
+    pt_450_clinical_summary.open
 
-    expect(reports).to have_unread_lesson_at('8')
+    expect(pt_450_clinical_summary).to have_current_lesson
+
+    expect(pt_450_clinical_summary).to have_unread_lesson
   end
 
   scenario 'Nurse sees current lesson (10th) highlighted & 9th lesson missed' do
-    6.times { navigation.scroll_down }
-    reports.open_for('460')
-    expect(reports).to have_current_lesson_at('10')
+    2.times { navigation.scroll_down }
+    pt_460_clinical_summary.open
 
-    expect(reports).to have_unread_lesson_at('9')
+    expect(pt_460_clinical_summary).to have_current_lesson
+
+    expect(pt_460_clinical_summary).to have_unread_lesson
   end
 
   scenario 'Nurse sees participant accessed the 1st lesson late' do
-    4.times { navigation.scroll_down }
-    reports.open_for('411')
+    2.times { navigation.scroll_down }
+    pt_411_clinical_summary.open
 
-    expect(reports).to have_late_lesson_at('1')
+    expect(pt_411_clinical_summary).to have_late_lesson
   end
 
   scenario 'Nurse sees participant accessed the 2nd lesson late' do
-    2.times { navigation.scroll_down }
-    reports.open_for('324')
+    navigation.scroll_down
+    pt_324_clinical_summary.open
 
-    expect(reports).to have_late_lesson_at('2')
+    expect(pt_324_clinical_summary).to have_late_lesson
   end
 
   scenario 'Nurse sees participant accessed the 3rd lesson late' do
-    5.times { navigation.scroll_down }
-    reports.open_for('421')
+    2.times { navigation.scroll_down }
+    pt_421_clinical_summary.open
 
-    expect(reports).to have_late_lesson_at('3')
+    expect(pt_421_clinical_summary).to have_late_lesson
   end
 
   scenario 'Nurse sees participant accessed the 4th lesson late' do
-    5.times { navigation.scroll_down }
-    reports.open_for('431')
+    2.times { navigation.scroll_down }
+    pt_431_clinical_summary.open
 
-    expect(reports).to have_late_lesson_at('4')
+    expect(pt_431_clinical_summary).to have_late_lesson
   end
 
   scenario 'Nurse sees participant accessed the 5th lesson late' do
-    5.times { navigation.scroll_down }
-    reports.open_for('441')
+    2.times { navigation.scroll_down }
+    pt_441_clinical_summary.open
 
-    expect(reports).to have_late_lesson_at('5')
+    expect(pt_441_clinical_summary).to have_late_lesson
   end
 
   scenario 'Nurse sees participant accessed the 6th lesson late' do
-    5.times { navigation.scroll_down }
-    reports.open_for('451')
+    2.times { navigation.scroll_down }
+    pt_451_clinical_summary.open
 
-    expect(reports).to have_late_lesson_at('6')
+    expect(pt_451_clinical_summary).to have_late_lesson
   end
 
   scenario 'Nurse sees participant accessed the 7th lesson late' do
-    6.times { navigation.scroll_down }
-    reports.open_for('461')
+    navigation.scroll_down
+    pt_461_clinical_summary.open
 
-    expect(reports).to have_late_lesson_at('7')
+    expect(pt_461_clinical_summary).to have_late_lesson
   end
 
   scenario 'Nurse sees participant accessed the 8th lesson late' do
-    6.times { navigation.scroll_down }
-    reports.open_for('471')
+    navigation.scroll_down
+    pt_471_clinical_summary.open
 
-    expect(reports).to have_late_lesson_at('8')
+    expect(pt_471_clinical_summary).to have_late_lesson
   end
 
   scenario 'Nurse sees participant accessed the 9th lesson late' do
-    6.times { navigation.scroll_down }
-    reports.open_for('480')
+    navigation.scroll_down
+    pt_480_clinical_summary.open
 
-    expect(reports).to have_late_lesson_at('9')
+    expect(pt_480_clinical_summary).to have_late_lesson
   end
 
   scenario 'Nurse sees participant accessed the 10th lesson late' do
-    6.times { navigation.scroll_down }
-    reports.open_for('490')
+    navigation.scroll_down
+    pt_490_clinical_summary.open
 
-    expect(reports).to have_late_lesson_at('10')
+    expect(pt_490_clinical_summary).to have_late_lesson
   end
 
   scenario 'Nurse sees participant accessed the 1st lesson on time' do
-    2.times { navigation.scroll_down }
-    reports.open_for('313')
+    3.times { navigation.scroll_down }
+    pt_402_clinical_summary.open
 
-    expect(reports).to have_ontime_lesson_at('1')
+    expect(pt_402_clinical_summary).to have_ontime_lesson
   end
 
   scenario 'Nurse sees participant accessed the 2nd lesson on time' do
-    2.times { navigation.scroll_down }
-    reports.open_for('317')
+    navigation.scroll_down
+    pt_317_clinical_summary.open
 
-    expect(reports).to have_ontime_lesson_at('2')
+    expect(pt_317_clinical_summary).to have_ontime_lesson
   end
 
   scenario 'Nurse sees participant accessed the 3rd lesson on time' do
-    4.times { navigation.scroll_down }
-    reports.open_for('412')
+    2.times { navigation.scroll_down }
+    pt_412_clinical_summary.open
 
-    expect(reports).to have_ontime_lesson_at('3')
+    expect(pt_412_clinical_summary).to have_ontime_lesson
   end
 
   scenario 'Nurse sees participant accessed the 4th lesson on time' do
-    2.times { navigation.scroll_down }
-    reports.open_for('326')
+    navigation.scroll_down
+    pt_326_clinical_summary.open
 
-    expect(reports).to have_ontime_lesson_at('4')
+    expect(pt_326_clinical_summary).to have_ontime_lesson
   end
 
   scenario 'Nurse sees participant accessed the 5th lesson on time' do
-    5.times { navigation.scroll_down }
-    reports.open_for('422')
+    2.times { navigation.scroll_down }
+    pt_422_clinical_summary.open
 
-    expect(reports).to have_ontime_lesson_at('5')
+    expect(pt_422_clinical_summary).to have_ontime_lesson
   end
 
   scenario 'Nurse sees participant accessed the 6th lesson on time' do
-    5.times { navigation.scroll_down }
-    reports.open_for('432')
+    2.times { navigation.scroll_down }
+    pt_432_clinical_summary.open
 
-    expect(reports).to have_ontime_lesson_at('6')
+    expect(pt_432_clinical_summary).to have_ontime_lesson
   end
 
   scenario 'Nurse sees participant accessed the 7th lesson on time' do
-    5.times { navigation.scroll_down }
-    reports.open_for('442')
+    2.times { navigation.scroll_down }
+    pt_442_clinical_summary.open
 
-    expect(reports).to have_ontime_lesson_at('7')
+    expect(pt_442_clinical_summary).to have_ontime_lesson
   end
 
   scenario 'Nurse sees participant accessed the 8th lesson on time' do
-    6.times { navigation.scroll_down }
-    reports.open_for('452')
+    2.times { navigation.scroll_down }
+    pt_452_clinical_summary.open
 
-    expect(reports).to have_ontime_lesson_at('8')
+    expect(pt_452_clinical_summary).to have_ontime_lesson
   end
 
   scenario 'Nurse sees participant accessed the 9th lesson on time' do
-    6.times { navigation.scroll_down }
-    reports.open_for('462')
+    2.times { navigation.scroll_down }
+    pt_462_clinical_summary.open
 
-    expect(reports).to have_ontime_lesson_at('9')
+    expect(pt_462_clinical_summary).to have_ontime_lesson
   end
 
   scenario 'Nurse sees participant accessed the 10th lesson on time' do
-    6.times { navigation.scroll_down }
-    reports.open_for('472')
+    navigation.scroll_down
+    pt_472_clinical_summary.open
 
-    expect(reports).to have_ontime_lesson_at('10')
+    expect(pt_472_clinical_summary).to have_ontime_lesson
   end
 end

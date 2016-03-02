@@ -1,4 +1,3 @@
-require './lib/pages/your_patients'
 require './lib/pages/your_patients/first_appointment'
 require './lib/pages/your_patients/second_contact'
 require './lib/pages/your_patients/third_contact'
@@ -13,7 +12,8 @@ class YourPatients
       @id ||= clinical_summary[:id]
       @first_message ||= clinical_summary[:first_message]
       @second_message ||= clinical_summary[:second_message]
-      @lesson ||= clinical_summary[:lesson]
+      @current_lesson ||= clinical_summary[:current_lesson]
+      @other_lesson ||= clinical_summary[:other_lesson]
     end
 
     def open
@@ -41,31 +41,36 @@ class YourPatients
       end
     end
 
-    def lesson_row
-      @lesson == 1 ? all('tr:nth-child(1)')[1] : find("tr:nth-child(#{@lesson})")
+    def lesson_table
+      find('#lessons')
+    end
+
+    def lesson_row(num)
+      num == 1 ? all('tr:nth-child(1)')[1] : find("tr:nth-child(#{num})")
     end
 
     def has_current_lesson?
       visible? # weird behavior if it doesn't find something first
       within('#lessons') do
-        lesson_row.has_css?('.info')
-        has_css?('.un-released', count: (15 - @lesson.to_i))
+        l = lesson_row(@current_lesson)
+        l.has_css?('.info')
+        has_css?('.un-released', count: (15 - @current_lesson))
       end
     end
 
     def has_unread_lesson?
       visible? # weird behavior if it doesn't find something first
-      find('#lessons').lesson_row.has_css?('.danger')
+      has_css?('.danger', text: "Lesson #{@other_lesson}")
     end
 
     def has_late_lesson?
       visible?
-      find('#lessons').lesson_row.has_css?('.warning')
+      has_css?('.warning', text: "Lesson #{@other_lesson}")
     end
 
     def has_ontime_lesson?
       visible?
-      find('#lessons').lesson_row.has_css?('.warning')
+      has_css?('.success', text: "Lesson #{@other_lesson}")
     end
 
     def has_first_appt_notes_visible?
@@ -89,10 +94,6 @@ class YourPatients
     end
 
     private
-
-    def your_patients
-      @your_patients ||= YourPatients.new
-    end
 
     def first_appt
       @first_appt ||= YourPatients::FirstAppointment.new
