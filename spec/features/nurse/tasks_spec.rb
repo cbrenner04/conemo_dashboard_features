@@ -1,153 +1,225 @@
-# filename: ./spec/features/nurse/participant_tasks_spec.rb
+# filename: ./spec/features/nurse/tasks_spec.rb
+
+require './spec/support/nurse/tasks_helper'
 
 feature 'Nurse, Participant Tasks' do
-  scenario 'Nurse cancels out of first contact form' do
-    active_participants.create_contact_for('307')
-    navigation.cancel
-
-    expect(active_participants).to be_visible
+  background do
+    english_nurse.sign_in
   end
 
-  scenario 'Nurse creates first contact' do
-    active_participants.create_contact_for('306')
-    first_contact.assert_on_page
-    first_contact.enter_first_appt_location
+  scenario 'Nurse marks help request as resolved' # task should be removed
+  scenario 'Nurse contacts supervisor for help request' # should see a confirmation
+  scenario 'Nurse sees when the previous supervisor contact was sent' # check against two with different dates
+  scenario 'Nurse marks non-connectivity task as resolved'
+  scenario 'Nurse contacts supervisor non-connectivity task'
+  scenario 'Nurse marks non-adherence task as resolved'
+  scenario 'Nurse contacts supervisor for non-adherence task'
+  scenario 'Nurse sees empty progress bar' # should be just active confirmation call
+  scenario 'Nurse cancels confirmation call'
+  scenario 'Nurse cancels out of reschedule confirmation call form'
+  scenario 'Nurse reschedules confirmation call'
+
+  scenario 'Nurse cancels out of confirmation call form' do
+    navigation.scroll_down
+    pt_306_nurse_tasks.open
+
+    expect(pt_306_nurse_tasks).to have_confirmation_call_task_active
+
+    expect(pt_306_nurse_tasks).to_not have_initial_in_person_appt_task_active
+
+    confirmation_call.confirm
+    navigation.cancel
+
+    expect(confirmation_call).to_not have_confirmation_call_task_complete
+
+    expect(pt_306_nurse_tasks).to_not have_initial_in_person_appt_task_active
+  end
+
+  scenario 'Nurse confirms confirmation call' do
+    navigation.scroll_down
+    pt_306_nurse_tasks.open
+
+    expect(pt_306_nurse_tasks).to have_confirmation_call_task_active
+
+    expect(pt_306_nurse_tasks).to_not have_initial_in_person_appt_task_active
+
+    confirmation_call.confirm
+    confirmation_call.enter_first_appt_location
     navigation.submit
 
-    within active_participants.pt_row('306') do
-      expect(first_contact).to be_visible
-    end
+    # expect(pt_306_nurse_tasks).to have_confirmation_call_task_complete
 
-    # check profile page for completeness
-    profile.go_to_profile_of('Last-306, First')
-    expect(profile).to have_first_contact_information
+    expect(pt_306_nurse_tasks).to have_initial_in_person_appt_task_active
+
+    # # check profile page for completeness
+    # profile.go_to_profile_of('Last-306, First')
+    # expect(profile).to have_first_contact_information
+
+    # # check Your Patients list for old / new tasks
   end
 
-  scenario 'Nurse cancels out of a first appointment reschedule form' do
-    scroll_by('500')
-    active_participants.reschedule_appt_for('311')
+  scenario 'Nurse cancels initial in-person appointment'
+  scenario 'Nurse cancels out of initial in-person appt reschedule form'
+  scenario 'Nurse reschedules initial in-person appointment'
+
+  scenario 'Nurse cancels out of a initial in-person appt creation form' do
+    navigation.scroll_down
+    pt_313_nurse_tasks.open
+
+    expect(pt_313_nurse_tasks).to have_confirmation_call_task_complete
+
+    expect(pt_313_nurse_tasks).to have_initial_in_person_appt_task_active
+
+    initial_in_person_appt.open
     navigation.cancel
 
-    expect(active_participants).to be_visible
-  end
+    expect(pt_313_nurse_tasks).to have_confirmation_call_task_complete
 
-  scenario 'Nurse reschedules a first appointment' do
-    scroll_by('500')
-    active_participants.reschedule_appt_for('312')
-    active_participants.reschedule('first_appointment')
-
-    expect(active_participants).to be_rescheduled_for('312')
-  end
-
-  scenario 'Nurse cancels out of a first appointment creation form' do
-    scroll_by('500')
-    active_participants.create_contact_for('313')
-    navigation.cancel
-
-    expect(active_participants).to be_visible
+    expect(pt_313_nurse_tasks).to_not have_initial_in_person_appt_task_complete
   end
 
   scenario 'Nurse must enter a integer in session length field' do
-    scroll_by('500')
-    active_participants.create_contact_for('314')
-    first_appointment.enter_location
-    active_participants.enter_session_length('first_appointment', 'asdf')
-    first_appointment.enter_phone_note
-    first_appointment.select_engagement
-    first_appointment.select_chances
-    first_appointment.enter_general_notes
+    navigation.scroll_down
+    pt_314_nurse_tasks.open
+
+    expect(pt_314_nurse_tasks).to have_confirmation_call_task_complete
+
+    expect(pt_314_nurse_tasks).to have_initial_in_person_appt_task_active
+
+    initial_in_person_appt.open
+    initial_in_person_appt.enter_location
+    pt_314_nurse_tasks.enter_session_length
+    initial_in_person_appt.enter_phone_note
+    initial_in_person_appt.select_engagement
+    initial_in_person_appt.select_chances
+    initial_in_person_appt.enter_general_notes
     navigation.submit
 
-    expect(profile).to_not have_phone_form_present
+    expect(initial_in_person_appt).to be_visible # still on form?
   end
 
-  scenario 'Nurse cannot submit first appointment form without entering session length' do
-    scroll_by('500')
-    active_participants.create_contact_for('315')
-    first_appointment.enter_location
-    first_appointment.select_pt_comfort_with_phone
-    first_appointment.enter_phone_note
-    first_appointment.select_engagement
-    first_appointment.select_chances
-    first_appointment.enter_general_notes
+  scenario 'Nurse cannot submit without entering session length' do
+    navigation.scroll_down
+    pt_315_nurse_tasks.open
+
+    expect(pt_315_nurse_tasks).to have_confirmation_call_task_complete
+
+    expect(pt_315_nurse_tasks).to have_initial_in_person_appt_task_active
+
+    initial_in_person_appt.open
+    initial_in_person_appt.enter_location
+    initial_in_person_appt.select_pt_comfort_with_phone
+    initial_in_person_appt.enter_phone_note
+    initial_in_person_appt.select_engagement
+    initial_in_person_appt.select_chances
+    initial_in_person_appt.enter_general_notes
     navigation.submit
 
-    expect(profile).to_not have_phone_form_present
+    expect(initial_in_person_appt).to be_visible # still on form?
   end
 
-  scenario 'Nurse cannot submit first appointment form without entering comfort' do
-    scroll_by('500')
-    active_participants.create_contact_for('316')
-    first_appointment.enter_location
-    active_participants.enter_session_length('first_appointment', '120')
-    first_appointment.enter_phone_note
-    first_appointment.select_engagement
-    first_appointment.select_chances
-    first_appointment.enter_general_notes
+  scenario 'Nurse cannot submit without entering comfort' do
+    navigation.scroll_down
+    pt_316_nurse_tasks.open
+
+    expect(pt_316_nurse_tasks).to have_confirmation_call_task_complete
+
+    expect(pt_316_nurse_tasks).to have_initial_in_person_appt_task_active
+
+    initial_in_person_appt.open
+    initial_in_person_appt.enter_location
+    pt_316_nurse_tasks.enter_session_length
+    initial_in_person_appt.enter_phone_note
+    initial_in_person_appt.select_engagement
+    initial_in_person_appt.select_chances
+    initial_in_person_appt.enter_general_notes
     navigation.submit
 
-    expect(profile).to_not have_phone_form_present
+    expect(initial_in_person_appt).to be_visible # still on form?
   end
 
-  scenario 'Nurse cannot submit first appointment form without selecting engagement' do
-    scroll_by('500')
-    active_participants.create_contact_for('317')
-    first_appointment.enter_location
-    active_participants.enter_session_length('first_appointment', '120')
-    first_appointment.select_pt_comfort_with_phone
-    first_appointment.enter_phone_note
-    first_appointment.select_chances
-    first_appointment.enter_general_notes
+  scenario 'Nurse cannot submit without selecting engagement' do
+    navigation.scroll_down
+    pt_317_nurse_tasks.open
+
+    expect(pt_317_nurse_tasks).to have_confirmation_call_task_complete
+
+    expect(pt_317_nurse_tasks).to have_initial_in_person_appt_task_active
+
+    initial_in_person_appt.open
+    initial_in_person_appt.enter_location
+    pt_317_nurse_tasks.enter_session_length
+    initial_in_person_appt.select_pt_comfort_with_phone
+    initial_in_person_appt.enter_phone_note
+    initial_in_person_appt.select_chances
+    initial_in_person_appt.enter_general_notes
     navigation.submit
 
-    expect(profile).to_not have_phone_form_present
+    expect(initial_in_person_appt).to be_visible # still on form?
   end
 
-  scenario 'Nurse cannot submit first appointment form without selecting chances' do
-    scroll_by('500')
-    active_participants.create_contact_for('318')
-    first_appointment.enter_location
-    active_participants.enter_session_length('first_appointment', '120')
-    first_appointment.select_pt_comfort_with_phone
-    first_appointment.enter_phone_note
-    first_appointment.select_engagement
-    first_appointment.enter_general_notes
+  scenario 'Nurse cannot submit without selecting chances' do
+    navigation.scroll_down
+    pt_318_nurse_tasks.open
+
+    expect(pt_318_nurse_tasks).to have_confirmation_call_task_complete
+
+    expect(pt_318_nurse_tasks).to have_initial_in_person_appt_task_active
+
+    initial_in_person_appt.open
+    initial_in_person_appt.enter_location
+    pt_318_nurse_tasks.enter_session_length
+    initial_in_person_appt.select_pt_comfort_with_phone
+    initial_in_person_appt.enter_phone_note
+    initial_in_person_appt.select_engagement
+    initial_in_person_appt.enter_general_notes
     navigation.submit
 
-    expect(profile).to_not have_phone_form_present
+    expect(initial_in_person_appt).to be_visible # still on form?
   end
 
-  scenario 'Nurse creates a first appointment' do
-    scroll_by('750')
-    active_participants.create_contact_for('319')
-    first_appointment.enter_location
-    active_participants.enter_session_length('first_appointment', '120')
-    first_appointment.select_pt_comfort_with_phone
-    first_appointment.enter_phone_note
-    first_appointment.select_engagement
-    first_appointment.select_chances
-    first_appointment.enter_general_notes
+  scenario 'Nurse creates an initial in-person appointment' do
+    navigation.scroll_down
+    pt_319_nurse_tasks.open
+
+    expect(pt_319_nurse_tasks).to have_confirmation_call_task_complete
+
+    expect(pt_319_nurse_tasks).to have_initial_in_person_appt_task_active
+
+    initial_in_person_appt.open
+    initial_in_person_appt.enter_location
+    pt_319_nurse_tasks.enter_session_length
+    initial_in_person_appt.select_pt_comfort_with_phone
+    initial_in_person_appt.enter_phone_note
+    initial_in_person_appt.select_engagement
+    initial_in_person_appt.select_chances
+    initial_in_person_appt.enter_general_notes
     navigation.submit
 
-    profile.enter_smartphone_number('1234567890')
-    profile.select_all_smartphone_radios
-    navigation.submit
+    contact_information.enter_smartphone_number
+    contact_information.select_all_smartphone_radios
+    navigation.submit # what happens if I cancel?
 
-    expect(first_appointment).to be_created_for_participant('319')
+    expect(pt_319_nurse_tasks).to have_confirmation_call_task_complete
 
-    # check profile page for completeness
-    scroll_by('500')
-    profile.go_to_profile_of('Last-319, First')
+    # expect(pt_319_nurse_tasks).to have_initial_in_person_appt_task_complete
 
-    expect(profile).to have_first_appointment_information
+    expect(pt_319_nurse_tasks).to have_new_follow_up_call_week_1_task
+
+    expect(pt_319_nurse_tasks).to have_new_follow_up_call_week_3_task
+
+    expect(pt_319_nurse_tasks).to have_new_call_to_schedule_final_appt_task
 
     # check reports page for notes
-    active_participants.open
-    active_participants.assert_on_page
-    scroll_by('500')
-    reports.open_for('319')
+    clinical_summary.open
 
-    expect(reports).to have_first_appt_notes_visible
+    expect(clinical_summary).to have_first_appt_notes_visible
+
+    # check profile page for completeness
+    # scroll_by('500')
+    # profile.go_to_profile_of('Last-319, First')
+
+    # expect(profile).to have_first_appointment_information
   end
 
   scenario 'Nurse cancels out of  second contact creation form' do
