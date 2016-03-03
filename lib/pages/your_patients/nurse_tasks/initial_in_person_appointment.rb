@@ -12,7 +12,7 @@ class YourPatients
       end
 
       def visible?
-        has_css?('h1', text: 'First Appointment')
+        has_css?('h1', text: 'Initial in person appointment')
       end
 
       def enter_location

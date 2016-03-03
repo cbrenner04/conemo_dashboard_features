@@ -8,19 +8,22 @@ feature 'Nurse, Participant Tasks' do
   end
 
   scenario 'Nurse marks help request as resolved' # task should be removed
-  scenario 'Nurse contacts supervisor for help request' # should see a confirmation
-  scenario 'Nurse sees when the previous supervisor contact was sent' # check against two with different dates
+  # should see a confirmation
+  scenario 'Nurse contacts supervisor for help request'
+  # check against two with different dates
+  scenario 'Nurse sees when the previous supervisor contact was sent'
   scenario 'Nurse marks non-connectivity task as resolved'
   scenario 'Nurse contacts supervisor non-connectivity task'
   scenario 'Nurse marks non-adherence task as resolved'
   scenario 'Nurse contacts supervisor for non-adherence task'
-  scenario 'Nurse sees empty progress bar' # should be just active confirmation call
+  # should be just active confirmation call
+  scenario 'Nurse sees empty progress bar'
   scenario 'Nurse cancels confirmation call'
   scenario 'Nurse cancels out of reschedule confirmation call form'
   scenario 'Nurse reschedules confirmation call'
 
   scenario 'Nurse cancels out of confirmation call form' do
-    navigation.scroll_down
+    2.times { navigation.scroll_down }
     pt_306_nurse_tasks.open
 
     expect(pt_306_nurse_tasks).to have_confirmation_call_task_active
@@ -30,13 +33,13 @@ feature 'Nurse, Participant Tasks' do
     confirmation_call.confirm
     navigation.cancel
 
-    expect(confirmation_call).to_not have_confirmation_call_task_complete
+    expect(pt_306_nurse_tasks).to_not have_confirmation_call_task_complete
 
     expect(pt_306_nurse_tasks).to_not have_initial_in_person_appt_task_active
   end
 
   scenario 'Nurse confirms confirmation call' do
-    navigation.scroll_down
+    2.times { navigation.scroll_down }
     pt_306_nurse_tasks.open
     confirmation_call.confirm
     confirmation_call.enter_first_appt_location
@@ -66,6 +69,10 @@ feature 'Nurse, Participant Tasks' do
     expect(pt_313_nurse_tasks).to have_initial_in_person_appt_task_active
 
     initial_in_person_appt.confirm
+
+    expect(initial_in_person_appt).to be_visible
+
+    navigation.scroll_down
     navigation.cancel
 
     expect(pt_313_nurse_tasks).to have_confirmation_call_task_complete
@@ -169,9 +176,9 @@ feature 'Nurse, Participant Tasks' do
 
     # expect(pt_319_nurse_tasks).to have_initial_in_person_appt_task_complete
 
-    expect(pt_319_nurse_tasks).to have_new_follow_up_call_week_1_task
+    expect(pt_319_nurse_tasks).to have_new_follow_up_week_1_task
 
-    expect(pt_319_nurse_tasks).to have_new_follow_up_call_week_3_task
+    expect(pt_319_nurse_tasks).to have_new_follow_up_week_3_task
 
     expect(pt_319_nurse_tasks).to have_new_call_to_schedule_final_appt_task
 
@@ -199,12 +206,12 @@ feature 'Nurse, Participant Tasks' do
 
     expect(pt_322_nurse_tasks).to have_initial_in_person_appt_task_complete
 
-    expect(pt_322_nurse_tasks).to have_follow_up_call_week_1_task_active
+    expect(pt_322_nurse_tasks).to have_follow_up_week_1_task_active
 
     follow_up_week_1.confirm
     navigation.cancel
 
-    expect(pt_326_nurse_tasks).to_not have_follow_up_call_week_1_task_complete
+    expect(pt_326_nurse_tasks).to_not have_follow_up_week_1_task_complete
   end
 
   scenario 'Nurse must enter integer into length of call' do
@@ -239,7 +246,7 @@ feature 'Nurse, Participant Tasks' do
 
     expect(pt_325_nurse_tasks).to have_initial_in_person_appt_task_complete
 
-    expect(pt_325_nurse_tasks).to have_follow_up_call_week_1_task_active
+    expect(pt_325_nurse_tasks).to have_follow_up_week_1_task_active
 
     follow_up_week_1.confirm
     follow_up_week_1.fill_in_questions
@@ -292,7 +299,7 @@ feature 'Nurse, Participant Tasks' do
     follow_up_week_1.enter_notes
     navigation.submit
 
-    # expect(pt_328_nurse_tasks).to have_follow_up_call_week_1_task_complete
+    # expect(pt_328_nurse_tasks).to have_follow_up_week_1_task_complete
 
     # check reports page for notes
     clinical_summary.open

@@ -18,7 +18,7 @@ class YourPatients
         selector = all('.select2-container')
         selector[10].click
         location = []
-        (1..7).each { |i| location.push("unit #{i}") }
+        (2..9).each { |i| location.push("unit #{i}") }
         find('.select2-result-label', text: location.sample).click
       end
     end
