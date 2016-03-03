@@ -38,7 +38,7 @@ class YourPatients
       end
 
       def select_engagement
-        selector = page.all('.select2-container')
+        selector = all('.select2-container')
         selector[11].click
         engagement = ['3 – Very engaged', '2 – More or less engaged',
                       '1 – Not engaged'].sample

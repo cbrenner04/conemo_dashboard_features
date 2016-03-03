@@ -1,7 +1,7 @@
 # filename: ./spec/support/admin/pending_participants_helper.rb
 
 require './lib/pages/navigation'
-require './lib/pages/contact_information'
+require './lib/pages/pending_participants/contact_information'
 require './lib/pages/pending_participants'
 
 def pending_participants
@@ -13,24 +13,27 @@ def navigation
 end
 
 def contact_information
-  @contact_information ||= ContactInformation.new(first_name: 'fake')
+  @contact_information ||= PendingParticipants::ContactInformation.new(
+    first_name: 'fake'
+  )
 end
 
 def new_participant_contact_information
-  @new_participan_contact_informationt ||= ContactInformation.new(
-    first_name: 'Jane',
-    last_name: 'Doe',
-    id: '123',
-    unit: 'Some Healthy Place',
-    family_record: '1234',
-    phone: '12345678910',
-    emergency_contact_name: 'Papa Joe',
-    emergency_contact_phone: '12345678901',
-    email: 'jan.doe@example.com',
-    address: "100 Fake Ln\nSome City, USA, 12345",
-    enrollment_date: Date.today - 1,
-    gender: 'female'
-  )
+  @new_participan_contact_information ||=
+    PendingParticipants::ContactInformation.new(
+      first_name: 'Jane',
+      last_name: 'Doe',
+      id: '123',
+      unit: 'Some Healthy Place',
+      family_record: '1234',
+      phone: '12345678910',
+      emergency_contact_name: 'Papa Joe',
+      emergency_contact_phone: '12345678901',
+      email: 'jan.doe@example.com',
+      address: "100 Fake Ln\nSome City, USA, 12345",
+      enrollment_date: Date.today - 1,
+      gender: 'female'
+    )
 end
 
 def jane_doe

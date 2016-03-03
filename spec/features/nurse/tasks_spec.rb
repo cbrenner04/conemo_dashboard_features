@@ -8,14 +8,25 @@ feature 'Nurse, Participant Tasks' do
   end
 
   scenario 'Nurse marks help request as resolved' # task should be removed
+
   # should see a confirmation
   scenario 'Nurse contacts supervisor for help request'
-  # check against two with different dates
+
+  # check against two with different dates and tasks
   scenario 'Nurse sees when the previous supervisor contact was sent'
+  scenario 'Nurse clears supervisor contact'
+  scenario 'Nurse completes help request form'
   scenario 'Nurse marks non-connectivity task as resolved'
   scenario 'Nurse contacts supervisor non-connectivity task'
+  scenario 'Nurse sees when the previous supervisor contact was sent'
+  scenario 'Nurse clears supervisor contact'
+  scenario 'Nurse completes connectivity form'
   scenario 'Nurse marks non-adherence task as resolved'
   scenario 'Nurse contacts supervisor for non-adherence task'
+  scenario 'Nurse sees when the previous supervisor contact was sent'
+  scenario 'Nurse clears supervisor contact'
+  scenario 'Nurse completes adherence form'
+
   # should be just active confirmation call
   scenario 'Nurse sees empty progress bar'
   scenario 'Nurse cancels confirmation call'
@@ -49,9 +60,10 @@ feature 'Nurse, Participant Tasks' do
 
     expect(pt_306_nurse_tasks).to have_initial_in_person_appt_task_active
 
-    # # check profile page for completeness
-    # profile.go_to_profile_of('Last-306, First')
-    # expect(profile).to have_first_contact_information
+    # check contact information page for completeness
+    contact_information.open
+
+    expect(contact_information).to have_confirmation_call
 
     # # check Your Patients list for old / new tasks
   end
@@ -182,16 +194,18 @@ feature 'Nurse, Participant Tasks' do
 
     expect(pt_319_nurse_tasks).to have_new_call_to_schedule_final_appt_task
 
-    # check reports page for notes
+    # check clinical summary page for notes
     clinical_summary.open
 
     expect(clinical_summary).to have_first_appt_notes_visible
 
-    # check profile page for completeness
-    # scroll_by('500')
-    # profile.go_to_profile_of('Last-319, First')
+    # check contact information page for completeness
+    clinical_summary.return_to_tasks
+    contact_information.open
 
-    # expect(profile).to have_first_appointment_information
+    expect(contact_information).to have_initial_appointment
+
+    # # check Your Patients list for old / new tasks
   end
 
   scenario 'Nurse cancels follow up call week one'
@@ -221,7 +235,7 @@ feature 'Nurse, Participant Tasks' do
     pt_323_nurse_tasks.enter_session_length
     navigation.submit
 
-    expect(follow_up_week_1).to be be_visible
+    expect(follow_up_week_1).to be_visible
   end
 
   scenario 'Nurse cannot submit follow up call week 1 wo selecting ability' do
@@ -301,15 +315,18 @@ feature 'Nurse, Participant Tasks' do
 
     # expect(pt_328_nurse_tasks).to have_follow_up_week_1_task_complete
 
-    # check reports page for notes
+    # check clinical summary page for notes
     clinical_summary.open
 
-    expect(reports).to have_second_contact_notes_visible
+    expect(clinical_summary).to have_follow_up_week_1_notes_visible
 
-    # check profile page for completeness
-    # scroll_by('1250')
-    # profile.go_to_profile_of('Last-328, First')
-    # expect(profile).to have_second_contact_information
+    # check contact information page for completeness
+    clinical_summary.return_to_tasks
+    contact_information.open
+
+    expect(contact_information).to have_follow_up_week_1
+
+    # # check Your Patients list for old / new tasks
   end
 
   scenario 'Nurse cancels follow up call week 3'
@@ -330,7 +347,7 @@ feature 'Nurse, Participant Tasks' do
     follow_up_week_3.confirm
     navigation.cancel
 
-    expect(pt_330_nurse_tasks).to have_follow_up_week_3_task_complete
+    expect(pt_330_nurse_tasks).to_not have_follow_up_week_3_task_complete
   end
 
   scenario 'Nurse must enter an integer for length of call in third contact' do
@@ -339,69 +356,52 @@ feature 'Nurse, Participant Tasks' do
     pt_331_nurse_tasks.enter_session_length
     navigation.submit
 
-    expect(follow_up_week_3).to_not be_visible
+    expect(follow_up_week_3).to be_visible
   end
 
   scenario 'Nurse cannot submit without entering length of call' do
     pt_332_nurse_tasks.open
     follow_up_week_3.confirm
-    follow_up_week_3.enter_final_appt_location
     follow_up_week_3.respond_to_questions
-    active_participants.select_ability
-    active_participants.select_motivation
+    pt_332_nurse_tasks.select_ability
+    pt_332_nurse_tasks.select_motivation
     follow_up_week_3.enter_general_notes
     navigation.submit
 
-    expect(follow_up_week_3).to_not be_visible
-  end
-
-  scenario 'Nurse cannot submit without entering final appt location' do
-    pt_333_nurse_tasks.open
-    follow_up_week_3.confirm
-    pt_333_nurse_tasks.enter_session_length
-    follow_up_week_3.respond_to_questions
-    active_participants.select_ability
-    active_participants.select_motivation
-    follow_up_week_3.enter_general_notes
-    navigation.submit
-
-    expect(follow_up_week_3).to_not be_visible
+    expect(follow_up_week_3).to be_visible
   end
 
   scenario 'Nurse cannot submit form without selecting ability' do
     pt_334_nurse_tasks.open
     follow_up_week_3.confirm
     pt_334_nurse_tasks.enter_session_length
-    follow_up_week_3.enter_final_appt_location
     follow_up_week_3.respond_to_questions
-    active_participants.select_motivation
+    pt_334_nurse_tasks.select_motivation
     follow_up_week_3.enter_general_notes
     navigation.submit
 
-    expect(follow_up_week_3).to_not be_visible
+    expect(follow_up_week_3).to be_visible
   end
 
-  scenario 'Nurse cannot submitform without selecting motivation' do
+  scenario 'Nurse cannot submit form without selecting motivation' do
     pt_335_nurse_tasks.open
     follow_up_week_3.confirm
     pt_335_nurse_tasks.enter_session_length
-    follow_up_week_3.enter_final_appt_location
     follow_up_week_3.respond_to_questions
-    active_participants.select_ability
+    pt_335_nurse_tasks.select_ability
     follow_up_week_3.enter_general_notes
     navigation.submit
 
-    expect(follow_up_week_3).to_not be_visible
+    expect(follow_up_week_3).to be_visible
   end
 
   scenario 'Nurse creates a third contact' do
     pt_336_nurse_tasks.open
     follow_up_week_3.confirm
     pt_336_nurse_tasks.enter_session_length
-    follow_up_week_3.enter_final_appt_location
     follow_up_week_3.respond_to_questions
-    active_participants.select_ability
-    active_participants.select_motivation
+    pt_336_nurse_tasks.select_ability
+    pt_336_nurse_tasks.select_motivation
     follow_up_week_3.enter_general_notes
     navigation.submit
 
@@ -409,15 +409,18 @@ feature 'Nurse, Participant Tasks' do
 
     expect(pt_336_nurse_tasks).to have_call_to_schedule_final_appt_task_active
 
-    # check reports page for notes
+    # check clinical summary page for notes
     clinical_summary.open
 
-    expect(clinical_summary).to have_third_contact_notes_visible
+    expect(clinical_summary).to have_follow_up_week_3_notes_visible
 
-    # # check profile page for completeness
-    # scroll_by('1500')
-    # profile.go_to_profile_of('Last-336, First')
-    # expect(profile).to have_third_contact_information
+    # # check contact information page for completeness
+    clinical_summary.return_to_tasks
+    contact_information.open
+
+    expect(contact_information).to have_follow_up_week_3
+
+    # # check Your Patients list for old / new tasks
   end
 
   scenario 'Nurse cancels call to schedule final appointment'
@@ -462,6 +465,10 @@ feature 'Nurse, Participant Tasks' do
     #   .to have_call_to_schedule_final_appt_task_complete
 
     expect(pt_702_nurse_tasks).to have_final_appt_task_active
+
+    # # Check contact information for completeness
+
+    # # check Your Patients list for old / new tasks
   end
 
   scenario 'Nurse cancels final appointment'
@@ -497,7 +504,7 @@ feature 'Nurse, Participant Tasks' do
     final_appointment.choose_phone_returned
     navigation.submit
 
-    expect(final_appointment).tot be_visible
+    expect(final_appointment).to be_visible
   end
 
   scenario 'Nurse cannot submit final appt wo responding to phone return' do
@@ -520,13 +527,17 @@ feature 'Nurse, Participant Tasks' do
 
     # expect(pt_341_nurse_tasks).to have_final_appt_task_complete
 
-    # check reports page for notes
+    # check clinical summary page for notes
     clinical_summary.open
 
     expect(clinical_summary).to have_final_appt_notes_visible
 
-    # # check profile page for completeness
-    # profile.go_to_profile_of('Last-341, First')
-    # expect(profile).to have_final_appointment_information
+    # # check contact information page for completeness
+    clinical_summary.return_to_tasks
+    contact_information.open
+
+    expect(contact_information).to have_final_appointment
+
+    # # check Your Patients list for old / new tasks
   end
 end

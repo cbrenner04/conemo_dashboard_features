@@ -38,7 +38,11 @@ class YourPatients
     end
 
     def has_new_follow_up_week_1_task?
-      has_list_item?('Follow up call week one in 7 days')
+      if has_text? '1 minute ago'
+        has_list_item?('Follow up call week one 1 minute ago')
+      else
+        has_list_item?('Follow up call week one less than a minute ago')
+      end
     end
 
     def has_follow_up_week_1_task_active?
@@ -52,7 +56,7 @@ class YourPatients
     end
 
     def has_new_follow_up_week_3_task?
-      has_list_item?('Follow up call week three in 21 days')
+      has_list_item?('Follow up call week three in 14 days')
     end
 
     def has_follow_up_week_3_task_active?

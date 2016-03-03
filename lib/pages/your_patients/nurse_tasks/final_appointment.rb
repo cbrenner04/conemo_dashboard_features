@@ -16,7 +16,7 @@ class YourPatients
       end
 
       def visible?
-        has_css?('h1', text: 'Final Appointment')
+        has_css?('h1', text: 'Final in person appointment')
       end
 
       def enter_location
@@ -35,6 +35,10 @@ class YourPatients
       def choose_phone_returned
         resp = ['true', 'false'].sample
         find("#final_appointment_phone_returned_#{resp}").click
+      end
+
+      def choose_phone_returned_negative
+        find('#final_appointment_phone_returned_false').click
       end
 
       # def created_for_participant?(id)

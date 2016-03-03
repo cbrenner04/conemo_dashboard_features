@@ -12,12 +12,7 @@ class YourPatients
       end
 
       def visible?
-        has_css?('h1', text: 'Follow up call week three')
-      end
-
-      def enter_final_appt_location
-        fill_in 'third_contact[final_appointment_location]',
-                with: '100 West Ln, Chicago, IL 60601'
+        has_css?('h1', text: 'Follow up call week 3')
       end
 
       def respond_to_questions

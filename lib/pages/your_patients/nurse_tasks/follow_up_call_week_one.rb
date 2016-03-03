@@ -12,7 +12,7 @@ class YourPatients
       end
 
       def visible?
-        has_css?('h1', text: 'Follow up call week three')
+        has_css?('h1', text: 'Follow up call week 1')
       end
 
       def fill_in_questions

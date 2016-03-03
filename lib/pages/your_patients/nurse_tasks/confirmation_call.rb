@@ -10,6 +10,10 @@ class YourPatients
         find('h1', text: 'Confirmation call')
       end
 
+      def visible?
+        has_css?('h1', text: 'Confirmation call')
+      end
+
       def enter_first_appt_location
         fill_in 'first_contact[first_appointment_location]',
                 with: '100 West Ln, Chicago, IL 60601'

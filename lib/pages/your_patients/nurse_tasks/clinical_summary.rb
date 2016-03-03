@@ -25,6 +25,10 @@ class YourPatients
         has_css?('h1', text: "First Last-#{@id}")
       end
 
+      def return_to_tasks
+        find('.fa-chevron-left').click
+      end
+
       def has_messages?
         has_text? @first_message
         has_text? @second_message
@@ -80,20 +84,22 @@ class YourPatients
       end
 
       def has_follow_up_week_1_notes_visible?
-        has_text? "Follow up call week one\n" \
+        has_text? "Follow up call week 1\n" \
                   "#{second_contact.general_notes}\n" \
                   "#{DateTime.now.strftime('%B %d, %Y')}"
       end
 
-      # def has_third_contact_notes_visible?
-      #   has_text? "Third Contact\n#{third_contact.general_notes}\n" \
-      #             "#{DateTime.now.strftime('%B %d, %Y')}"
-      # end
+      def has_follow_up_week_3_notes_visible?
+        has_text? "Follow up call week 3\n" \
+                  "#{third_contact.general_notes}\n" \
+                  "#{DateTime.now.strftime('%B %d, %Y')}"
+      end
 
-      # def has_final_appt_notes_visible?
-      #   has_text? "Final Appointment\n#{final_appt.general_notes}\n" \
-      #             "#{DateTime.now.strftime('%B %d, %Y')}"
-      # end
+      def has_final_appt_notes_visible?
+        has_text? "Final in person appointment\n" \
+                  "#{final_appt.general_notes}\n" \
+                  "#{DateTime.now.strftime('%B %d, %Y')}"
+      end
 
       private
 

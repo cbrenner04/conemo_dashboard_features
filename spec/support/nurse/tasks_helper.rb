@@ -18,7 +18,9 @@ def initial_in_person_appt
 end
 
 def contact_information
-  @contact_information ||= YourPatients::NurseTasks::ContactInformation.new
+  @contact_information ||= YourPatients::NurseTasks::ContactInformation.new(
+    id: 'fake'
+  )
 end
 
 def clinical_summary
@@ -107,7 +109,11 @@ def pt_323_nurse_tasks
 end
 
 def pt_324_nurse_tasks
-  @pt_324_nurse_tasks ||= YourPatients::NurseTasks.new(pt_id: 324)
+  @pt_324_nurse_tasks ||= YourPatients::NurseTasks.new(
+    pt_id: 324,
+    session: 'second_contact',
+    session_length: '120'
+  )
 end
 
 def pt_325_nurse_tasks
