@@ -2,10 +2,7 @@
 
 require './lib/pages/navigation'
 require './lib/pages/your_patients/nurse_tasks'
-require './lib/pages/your_patients/nurse_tasks/confirmation_call'
-require './lib/pages/your_patients/nurse_tasks/initial_in_person_appointment'
-require './lib/pages/your_patients/nurse_tasks/contact_information'
-require './lib/pages/your_patients/nurse_tasks/clinical_summary'
+Dir['./lib/pages/your_patients/nurse_tasks/*.rb'].each { |file| require file }
 
 def navigation
   @navigation ||= Navigation.new
@@ -26,6 +23,23 @@ end
 
 def clinical_summary
   @clinical_summary ||= YourPatients::NurseTasks::ClinicalSummary.new(id: 1)
+end
+
+def follow_up_week_1
+  @follow_up_week_1 ||= YourPatients::NurseTasks::FollowUpCallWeekOne.new
+end
+
+def follow_up_week_3
+  @follow_up_week_3 ||= YourPatients::NurseTasks::FollowUpCallWeekThree.new
+end
+
+def call_to_schedule_final_appointment
+  @call_to_schedule_final_appointment ||=
+    YourPatients::NurseTasks::CallToScheduleFinalAppointment.new
+end
+
+def final_appointment
+  @final_appointment ||= YourPatients::NurseTasks::FinalAppointment.new
 end
 
 def pt_306_nurse_tasks
@@ -78,4 +92,128 @@ def pt_319_nurse_tasks
     session: 'first_appointment',
     session_length: '120'
   )
+end
+
+def pt_322_nurse_tasks
+  @pt_322_nurse_tasks ||= YourPatients::NurseTasks.new(pt_id: 322)
+end
+
+def pt_323_nurse_tasks
+  @pt_323_nurse_tasks ||= YourPatients::NurseTasks.new(
+    pt_id: 323,
+    session: 'second_contact',
+    session_length: 'asdf'
+  )
+end
+
+def pt_324_nurse_tasks
+  @pt_324_nurse_tasks ||= YourPatients::NurseTasks.new(pt_id: 324)
+end
+
+def pt_325_nurse_tasks
+  @pt_325_nurse_tasks ||= YourPatients::NurseTasks.new(
+    pt_id: 325,
+    session: 'second_contact',
+    session_length: '120'
+  )
+end
+
+def pt_326_nurse_tasks
+  @pt_326_nurse_tasks ||= YourPatients::NurseTasks.new(
+    pt_id: 326,
+    session: 'second_contact',
+    session_length: '120'
+  )
+end
+
+def pt_327_nurse_tasks
+  @pt_327_nurse_tasks ||= YourPatients::NurseTasks.new(
+    pt_id: 327,
+    session: 'second_contact',
+    session_length: '120'
+  )
+end
+
+def pt_328_nurse_tasks
+  @pt_328_nurse_tasks ||= YourPatients::NurseTasks.new(
+    pt_id: 328,
+    session: 'second_contact',
+    session_length: '120'
+  )
+end
+
+def pt_330_nurse_tasks
+  @pt_330_nurse_tasks ||= YourPatients::NurseTasks.new(pt_id: 330)
+end
+
+def pt_331_nurse_tasks
+  @pt_331_nurse_tasks ||= YourPatients::NurseTasks.new(
+    pt_id: 331,
+    session: 'third_contact',
+    session_length: 'asdf'
+  )
+end
+
+def pt_332_nurse_tasks
+  @pt_332_nurse_tasks ||= YourPatients::NurseTasks.new(pt_id: 332)
+end
+
+def pt_333_nurse_tasks
+  @pt_333_nurse_tasks ||= YourPatients::NurseTasks.new(
+    pt_id: 333,
+    session: 'third_contact',
+    session_length: '120'
+  )
+end
+
+def pt_334_nurse_tasks
+  @pt_334_nurse_tasks ||= YourPatients::NurseTasks.new(
+    pt_id: 334,
+    session: 'third_contact',
+    session_length: '120'
+  )
+end
+
+def pt_335_nurse_tasks
+  @pt_335_nurse_tasks ||= YourPatients::NurseTasks.new(
+    pt_id: 335,
+    session: 'third_contact',
+    session_length: '120'
+  )
+end
+
+def pt_336_nurse_tasks
+  @pt_336_nurse_tasks ||= YourPatients::NurseTasks.new(
+    pt_id: 336,
+    session: 'third_contact',
+    session_length: '120'
+  )
+end
+
+def pt_700_nurse_tasks
+  @pt_700_nurse_tasks ||= YourPatients::NurseTasks.new(pt_id: 700)
+end
+
+def pt_701_nurse_tasks
+  @pt_701_nurse_tasks ||= YourPatients::NurseTasks.new(pt_id: 701)
+end
+
+def pt_702_nurse_tasks
+  @pt_702_nurse_tasks ||= YourPatients::NurseTasks.new(pt_id: 702)
+end
+
+def pt_338_nurse_tasks
+  @pt_338_nurse_tasks ||= YourPatients::NurseTasks.new(pt_id: 338)
+end
+
+def pt_339_nurse_tasks
+  @pt_339_nurse_tasks ||= YourPatients::NurseTasks.new(pt_id: 339)
+end
+
+def pt_340_nurse_tasks
+  @pt_340_nurse_tasks ||= YourPatients::NurseTasks.new(pt_id: 340)
+end
+
+def pt_341_nurse_tasks
+  @pt_341_nurse_tasks ||= YourPatients::NurseTasks.new(pt_id: 341)
 end

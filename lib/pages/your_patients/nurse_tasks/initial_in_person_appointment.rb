@@ -6,7 +6,7 @@ class YourPatients
     class InitialInPersonAppointment
       include Capybara::DSL
 
-      def open
+      def confirm
         find('.list-group-item', text: 'Initial in person appointment')
           .find('a', text: 'Confirm').click
       end

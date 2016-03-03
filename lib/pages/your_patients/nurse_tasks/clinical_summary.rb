@@ -1,7 +1,7 @@
 require './lib/pages/your_patients/nurse_tasks/initial_in_person_appointment'
-# require './lib/pages/your_patients/nurse_tasks/second_contact'
-# require './lib/pages/your_patients/nurse_tasks/third_contact'
-# require './lib/pages/your_patients/nurse_tasks/final_appointment'
+require './lib/pages/your_patients/nurse_tasks/follow_up_call_week_one'
+require './lib/pages/your_patients/nurse_tasks/follow_up_call_week_three'
+require './lib/pages/your_patients/nurse_tasks/final_appointment'
 
 class YourPatients
   class NurseTasks
@@ -79,10 +79,11 @@ class YourPatients
                   "#{DateTime.now.strftime('%B %d, %Y')}"
       end
 
-      # def has_second_contact_notes_visible?
-      #   has_text? "Second Contact\n#{second_contact.general_notes}\n" \
-      #             "#{DateTime.now.strftime('%B %d, %Y')}"
-      # end
+      def has_follow_up_week_1_notes_visible?
+        has_text? "Follow up call week one\n" \
+                  "#{second_contact.general_notes}\n" \
+                  "#{DateTime.now.strftime('%B %d, %Y')}"
+      end
 
       # def has_third_contact_notes_visible?
       #   has_text? "Third Contact\n#{third_contact.general_notes}\n" \
@@ -100,17 +101,17 @@ class YourPatients
         @first_apt ||= YourPatients::NurseTasks::InitialInPersonAppointment.new
       end
 
-      # def second_contact
-      #   @second_contact ||= YourPatients::NurseTasks::SecondContact.new
-      # end
+      def second_contact
+        @second_contact ||= YourPatients::NurseTasks::FollowUpCallWeekOne.new
+      end
 
-      # def third_contact
-      #   @third_contact ||= YourPatients::NurseTasks::ThirdContact.new
-      # end
+      def third_contact
+        @third_contact ||= YourPatients::NurseTasks::FollowUpCallWeekThree.new
+      end
 
-      # def final_appt
-      #   @final_appt ||= YourPatients::NurseTasks::ThirdContact.new
-      # end
+      def final_appt
+        @final_appt ||= YourPatients::NurseTasks::FinalAppointment.new
+      end
     end
   end
 end
