@@ -11,9 +11,10 @@ feature 'Nurse, Your Patients' do
   scenario 'Nurse sees participant with call to schedule final appointment ' \
            'listed'
   scenario 'Nurse sees participant with final appointment listed'
-  scenario 'Nurse sees participant with help request listed' do
-    expect(active_participants).to have_help_message_for('333')
-  end
+
+  # scenario 'Nurse sees participant with help request listed' do
+  #   expect(active_participants).to have_help_message_for('333')
+  # end
 
   scenario 'Nurse sees participant with non-connectivity call listed'
   scenario 'Nurse sees participant with non-adherence call listed'
