@@ -15,6 +15,11 @@ class YourPatients
           .find('a', text: 'Confirm').click
       end
 
+      def cancel
+        find('.list-group-item', text: 'Final in person appointment')
+          .find('input[value = "Cancel"]').click
+      end
+
       def visible?
         has_css?('h1', text: 'Final in person appointment')
       end

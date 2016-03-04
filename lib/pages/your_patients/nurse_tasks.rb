@@ -18,8 +18,24 @@ class YourPatients
       mark_resolved('Help request')
     end
 
+    def mark_lack_of_connectivity_resolved
+      mark_resolved('Lack of connectivity call')
+    end
+
+    def mark_non_adherence_resolved
+      mark_resolved('Non-adherence call')
+    end
+
     def contact_supervisor_for_help_request
       contact_supervisor('Help request')
+    end
+
+    def contact_supervisor_for_lack_of_connectivity
+      contact_supervisor('Lack of connectivity call')
+    end
+
+    def contact_supervisor_for_non_adherence
+      contact_supervisor('Non-adherence call')
     end
 
     def clear_supervisor_contact
@@ -111,6 +127,14 @@ class YourPatients
       find('.select2-result-label', text: item).click
     end
 
+    def enter_location(selector_num)
+      sleep(1)
+      selector = all('.select2-container')
+      selector[selector_num].click
+      location = ['Patient\'s home', 'Health unit', 'Other location'].sample
+      select_non_date_item(location)
+    end
+
     def select_ability
       selector = all('.select2-container')
       selector[10].click
@@ -129,11 +153,19 @@ class YourPatients
     end
 
     def has_help_request_active?
-      has_css?('.list-group-item', text: 'Help request')
+      has_list_item?('Help request')
+    end
+
+    def has_lack_of_connectivity_active?
+      has_list_item?('Lack of connectivity call')
+    end
+
+    def has_non_adherence_active?
+      has_list_item?('Non-adherence call')
     end
 
     def has_new_supervisor_contact?
-      has_supervisor_contact(Time.now)
+      has_supervisor_contact?(Time.now)
     end
 
     def has_previous_supervisor_contact?
@@ -157,6 +189,11 @@ class YourPatients
     def has_supervisor_contact?(time)
       has_text? 'last supervisor contact sent ' \
                 "#{Date.today.strftime('%B %d, %Y')} #{time.strftime('%H')}"
+    end
+
+    def cancel(type)
+      find('.list-group-item', text: type)
+        .find('input[value = "Cancel"]').click
     end
 
     def has_list_item?(text)

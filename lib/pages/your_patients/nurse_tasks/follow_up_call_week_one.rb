@@ -11,6 +11,11 @@ class YourPatients
           .find('a', text: 'Confirm').click
       end
 
+      def cancel
+        find('.list-group-item', text: 'Follow up call week one')
+          .find('input[value = "Cancel"]').click
+      end
+
       def visible?
         has_css?('h1', text: 'Follow up call week 1')
       end

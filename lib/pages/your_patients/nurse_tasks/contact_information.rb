@@ -81,8 +81,6 @@ class YourPatients
         find('.status-bar').has_css?('.visited.popover', count: 2)
         has_text? 'Initial in person appointment information Appointment ' \
                   "date/time: #{DateTime.now.strftime('%B %d, %Y')} "
-        has_text? 'Location of appointment: 100 N Ln, Chicago, IL ' \
-                  '60601 Session length (minutes): 120'
       end
 
       def has_follow_up_week_1?

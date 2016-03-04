@@ -44,8 +44,16 @@ def final_appointment
   @final_appointment ||= YourPatients::NurseTasks::FinalAppointment.new
 end
 
+def pt_301_nurse_tasks
+  @pt_301_nurse_tasks ||= YourPatients::NurseTasks.new(pt_id: 301)
+end
+
 def pt_306_nurse_tasks
   @pt_306_nurse_tasks ||= YourPatients::NurseTasks.new(pt_id: 306)
+end
+
+def pt_311_nurse_tasks
+  @pt_311_nurse_tasks ||= YourPatients::NurseTasks.new(pt_id: 311)
 end
 
 def pt_313_nurse_tasks
@@ -72,28 +80,16 @@ def pt_316_nurse_tasks
   )
 end
 
-def pt_317_nurse_tasks
-  @pt_317_nurse_tasks ||= YourPatients::NurseTasks.new(
-    pt_id: 317,
-    session: 'first_appointment',
-    session_length: '120'
-  )
-end
-
-def pt_318_nurse_tasks
-  @pt_318_nurse_tasks ||= YourPatients::NurseTasks.new(
-    pt_id: 318,
-    session: 'first_appointment',
-    session_length: '120'
-  )
-end
-
 def pt_319_nurse_tasks
   @pt_319_nurse_tasks ||= YourPatients::NurseTasks.new(
     pt_id: 319,
     session: 'first_appointment',
     session_length: '120'
   )
+end
+
+def pt_320_nurse_tasks
+  @pt_320_nurse_tasks ||= YourPatients::NurseTasks.new(pt_id: 320)
 end
 
 def pt_322_nurse_tasks
@@ -148,6 +144,10 @@ def pt_328_nurse_tasks
   )
 end
 
+def pt_329_nurse_tasks
+  @pt_329_nurse_tasks ||= YourPatients::NurseTasks.new(pt_id: 329)
+end
+
 def pt_330_nurse_tasks
   @pt_330_nurse_tasks ||= YourPatients::NurseTasks.new(pt_id: 330)
 end
@@ -196,6 +196,10 @@ def pt_336_nurse_tasks
   )
 end
 
+def pt_337_nurse_tasks
+  @pt_337_nurse_tasks ||= YourPatients::NurseTasks.new(pt_id: 337)
+end
+
 def pt_700_nurse_tasks
   @pt_700_nurse_tasks ||= YourPatients::NurseTasks.new(pt_id: 700)
 end
@@ -206,6 +210,10 @@ end
 
 def pt_702_nurse_tasks
   @pt_702_nurse_tasks ||= YourPatients::NurseTasks.new(pt_id: 702)
+end
+
+def pt_704_nurse_tasks
+  @pt_704_nurse_tasks ||= YourPatients::NurseTasks.new(pt_id: 704)
 end
 
 def pt_338_nurse_tasks
@@ -243,5 +251,49 @@ def pt_403_nurse_tasks
   @pt_403_nurse_tasks ||= YourPatients::NurseTasks.new(
     pt_id: 403,
     time_of_contact: Time.now - (3 * 60 * 60)
+  )
+end
+
+def pt_410_nurse_tasks
+  @pt_410_nurse_tasks ||= YourPatients::NurseTasks.new(pt_id: 410)
+end
+
+def pt_411_nurse_tasks
+  @pt_411_nurse_tasks ||= YourPatients::NurseTasks.new(pt_id: 411)
+end
+
+def pt_412_nurse_tasks
+  @pt_412_nurse_tasks ||= YourPatients::NurseTasks.new(
+    pt_id: 412,
+    time_of_contact: Time.now - (2 * 60 * 60)
+  )
+end
+
+def pt_413_nurse_tasks
+  @pt_413_nurse_tasks ||= YourPatients::NurseTasks.new(
+    pt_id: 413,
+    time_of_contact: Time.now - (2 * 60 * 60)
+  )
+end
+
+def pt_420_nurse_tasks
+  @pt_420_nurse_tasks ||= YourPatients::NurseTasks.new(pt_id: 420)
+end
+
+def pt_421_nurse_tasks
+  @pt_421_nurse_tasks ||= YourPatients::NurseTasks.new(pt_id: 421)
+end
+
+def pt_422_nurse_tasks
+  @pt_422_nurse_tasks ||= YourPatients::NurseTasks.new(
+    pt_id: 422,
+    time_of_contact: Time.now - (2 * 60 * 60)
+  )
+end
+
+def pt_423_nurse_tasks
+  @pt_423_nurse_tasks ||= YourPatients::NurseTasks.new(
+    pt_id: 423,
+    time_of_contact: Time.now - (2 * 60 * 60)
   )
 end

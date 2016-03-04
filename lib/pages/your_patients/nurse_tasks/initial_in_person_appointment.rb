@@ -11,49 +11,17 @@ class YourPatients
           .find('a', text: 'Confirm').click
       end
 
+      def cancel
+        find('.list-group-item', text: 'Initial in person appointment')
+          .find('input[value = "Cancel"]').click
+      end
+
       def visible?
         has_css?('h1', text: 'Initial in person appointment')
       end
 
       def enter_location
-        fill_in 'first_appointment[appointment_location]',
-                with: '100 N Ln, Chicago, IL 60601'
-      end
-
-      def select_pt_comfort_with_phone
-        selector = all('.select2-container')
-        selector[10].click
-        comfort = [
-          '4 – Patient can turn on the cell phone',
-          '3 – After FIRST demonstration patient needs help',
-          '2 – After SECOND demonstration patient needs help',
-          '1 – Continues to have difficulties after THIRD demonstration'
-        ].sample
-        nurse_tasks.select_non_date_item(comfort)
-      end
-
-      def enter_phone_note
-        fill_in 'first_appointment[smart_phone_comfort_note]',
-                with: 'Taking phone notes is boring'
-      end
-
-      def select_engagement
-        selector = all('.select2-container')
-        selector[11].click
-        engagement = ['3 – Very engaged', '2 – More or less engaged',
-                      '1 – Not engaged'].sample
-        nurse_tasks.select_non_date_item(engagement)
-      end
-
-      def select_chances
-        selector = page.all('.select2-container')
-        selector[12].click
-        chance = [
-          '3 – high chance',
-          '2 – 50/50 chance',
-          '1 – low chance'
-        ].sample
-        nurse_tasks.select_non_date_item(chance)
+        nurse_tasks.enter_location(5)
       end
 
       def general_notes
