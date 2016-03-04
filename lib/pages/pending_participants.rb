@@ -2,20 +2,29 @@
 class PendingParticipants
   include Capybara::DSL
 
+  def initialize(pending_participant)
+    @name ||= pending_participant[:name]
+  end
+
   def open
     click_on 'Pending Participants'
   end
 
-  def activate(name)
-    select_button(name, '.fa-thumbs-up')
+  def has_landing_page_visible?
+    has_css?('h1', text: 'Pending Participants')
+    has_css?('#pending')
+  end
+
+  def activate
+    select_button(@name, '.fa-thumbs-up')
   end
 
   def assign_nurse
     click_on 'Save'
   end
 
-  def disqualify(name)
-    select_button(name, '.fa-thumbs-down')
+  def disqualify
+    select_button(@name, '.fa-thumbs-down')
   end
 
   def confirm_disqualify
@@ -26,12 +35,16 @@ class PendingParticipants
     click_on 'Ineligible'
   end
 
-  def select_edit(name)
-    select_button(name, '.fa-edit')
+  def select_edit
+    select_button(@name, '.fa-edit')
   end
 
   def create
     click_on 'ADD NEW PARTICIPANT'
+  end
+
+  def visible?
+    has_text? @name
   end
 
   private
