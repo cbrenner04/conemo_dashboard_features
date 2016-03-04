@@ -7,10 +7,24 @@ class YourPatients
       @pt_id ||= nurse_task[:pt_id]
       @session ||= nurse_task[:session]
       @session_length ||= nurse_task[:session_length]
+      @time_of_contact ||= nurse_task[:time_of_contact]
     end
 
     def open
       find('a', text: @pt_id).click
+    end
+
+    def mark_help_request_resolved
+      mark_resolved('Help request')
+    end
+
+    def contact_supervisor_for_help_request
+      contact_supervisor('Help request')
+    end
+
+    def clear_supervisor_contact
+      find('input[value = "clear"]').click
+      accept_alert 'are you sure you want to clear this?'
     end
 
     def has_confirmation_call_task_active?
@@ -114,7 +128,36 @@ class YourPatients
       select_non_date_item(motivation)
     end
 
+    def has_help_request_active?
+      has_css?('.list-group-item', text: 'Help request')
+    end
+
+    def has_new_supervisor_contact?
+      has_supervisor_contact(Time.now)
+    end
+
+    def has_previous_supervisor_contact?
+      has_supervisor_contact?(@time_of_contact)
+    end
+
     private
+
+    def mark_resolved(type)
+      find('.list-group-item', text: type)
+        .find('input[value = "Mark as resolved"]').click
+    end
+
+    def contact_supervisor(type)
+      find('.list-group-item', text: type)
+        .find('input[value = "Contact Supervisor"]').click
+      accept_alert 'are you sure you want to notify the supervisor that you ' \
+                   'need help?'
+    end
+
+    def has_supervisor_contact?(time)
+      has_text? 'last supervisor contact sent ' \
+                "#{Date.today.strftime('%B %d, %Y')} #{time.strftime('%H')}"
+    end
 
     def has_list_item?(text)
       has_css?('.list-group-item', text: text)

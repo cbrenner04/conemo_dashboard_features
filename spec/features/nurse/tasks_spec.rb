@@ -7,14 +7,52 @@ feature 'Nurse, Participant Tasks' do
     english_nurse.sign_in
   end
 
-  scenario 'Nurse marks help request as resolved' # task should be removed
+  scenario 'Nurse marks help request as resolved' do
+    2.times { navigation.scroll_down }
+    pt_400_nurse_tasks.open
 
-  # should see a confirmation
-  scenario 'Nurse contacts supervisor for help request'
+    expect(pt_400_nurse_tasks).to have_help_request_active
 
-  # check against two with different dates and tasks
-  scenario 'Nurse sees when the previous supervisor contact was sent'
-  scenario 'Nurse clears supervisor contact'
+    pt_400_nurse_tasks.mark_help_request_resolved
+
+    expect(pt_400_nurse_tasks).to_not have_help_request_active
+  end
+
+  scenario 'Nurse contacts supervisor for help request' do
+    2.times { navigation.scroll_down }
+    pt_401_nurse_tasks.open
+
+    expect(pt_401_nurse_tasks).to have_help_request_active
+
+    pt_401_nurse_tasks.contact_supervisor_for_help_request
+
+    expect(pt_401_nurse_tasks).to have_help_request_active
+
+    expect(pt_401_nurse_tasks).to have_new_supervisor_contact
+  end
+
+  scenario 'Nurse sees when the previous supervisor contact was sent' do
+    2.times { navigation.scroll_down }
+    pt_402_nurse_tasks.open
+
+    expect(pt_402_nurse_tasks).to have_help_request_active
+
+    expect(pt_402_nurse_tasks).to have_previous_supervisor_contact
+  end
+
+  scenario 'Nurse clears supervisor contact' do
+    2.times { navigation.scroll_down }
+    pt_403_nurse_tasks.open
+
+    expect(pt_403_nurse_tasks).to have_help_request_active
+
+    expect(pt_403_nurse_tasks).to have_previous_supervisor_contact
+
+    pt_403_nurse_tasks.clear_supervisor_contact
+
+    expect(pt_403_nurse_tasks).to_not have_previous_supervisor_contact
+  end
+
   scenario 'Nurse completes help request form'
   scenario 'Nurse marks non-connectivity task as resolved'
   scenario 'Nurse contacts supervisor non-connectivity task'

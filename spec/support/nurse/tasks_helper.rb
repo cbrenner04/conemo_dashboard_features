@@ -223,3 +223,25 @@ end
 def pt_341_nurse_tasks
   @pt_341_nurse_tasks ||= YourPatients::NurseTasks.new(pt_id: 341)
 end
+
+def pt_400_nurse_tasks
+  @pt_400_nurse_tasks ||= YourPatients::NurseTasks.new(pt_id: 400)
+end
+
+def pt_401_nurse_tasks
+  @pt_401_nurse_tasks ||= YourPatients::NurseTasks.new(pt_id: 401)
+end
+
+def pt_402_nurse_tasks
+  @pt_402_nurse_tasks ||= YourPatients::NurseTasks.new(
+    pt_id: 402,
+    time_of_contact: Time.now - (3 * 60 * 60)
+  )
+end
+
+def pt_403_nurse_tasks
+  @pt_403_nurse_tasks ||= YourPatients::NurseTasks.new(
+    pt_id: 403,
+    time_of_contact: Time.now - (3 * 60 * 60)
+  )
+end
