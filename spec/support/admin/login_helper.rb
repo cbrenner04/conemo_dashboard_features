@@ -14,7 +14,7 @@ def lessons
 end
 
 def pending_participants
-  @pending_participants ||= PendingParticipants.new
+  @pending_participants ||= PendingParticipants.new(name: 'fake')
 end
 
 def administration

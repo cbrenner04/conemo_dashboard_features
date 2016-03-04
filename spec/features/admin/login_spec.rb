@@ -54,7 +54,7 @@ feature 'Admin, Login' do
     navigation.return_home
     pending_participants.open
 
-    expect(pending_participants).to be_visible
+    expect(pending_participants).to have_landing_page_visible
 
     navigation.return_home
     administration.open

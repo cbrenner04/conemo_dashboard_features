@@ -102,6 +102,7 @@ feature 'Nurse, Participant Contact Information' do
     pt_342_contact_info_3.open
     pt_342_contact_info_3.edit_follow_up_week_3
     pt_342_nurse_tasks_3.enter_session_length
+    sleep(1)
     navigation.submit
     pt_342_contact_info_3.open
 
