@@ -4,6 +4,8 @@ feature 'Nurse, Your Patients' do
   scenario 'Nurse sees Your Patients upon login'
   scenario 'Nurse sees participants assigned to them listed in Your ' \
            'Patients table'
+  scenario 'Nurse sees participants listed based on tasks due'
+  scenario 'Nurse sees participants listed based on status of tasks'
   scenario 'Nurse sees participant with confirmation call task listed'
   scenario 'Nurse sees participant with initial in person appointment listed'
   scenario 'Nurse sees participant with follow up call week 1 listed'
@@ -11,11 +13,7 @@ feature 'Nurse, Your Patients' do
   scenario 'Nurse sees participant with call to schedule final appointment ' \
            'listed'
   scenario 'Nurse sees participant with final appointment listed'
-
-  # scenario 'Nurse sees participant with help request listed' do
-  #   expect(active_participants).to have_help_message_for('333')
-  # end
-
+  scenario 'Nurse sees participant with help request listed'
   scenario 'Nurse sees participant with non-connectivity call listed'
   scenario 'Nurse sees participant with non-adherence call listed'
   scenario 'Nurse sees task count include confirmation call'

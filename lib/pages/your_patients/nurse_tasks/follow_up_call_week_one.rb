@@ -46,12 +46,6 @@ class YourPatients
         fill_in 'second_contact[notes]', with: general_notes
       end
 
-      # def created_for_participant?(id)
-      #   nurse_tasks.pt_row(id).has_css?('.fa-check-circle', count: 3)
-      #   date = DateTime.now + 21
-      #   nurse_tasks.check_date(id, date)
-      # end
-
       private
 
       def nurse_tasks

@@ -5,6 +5,12 @@ require './spec/support/nurse/tasks_helper'
 feature 'Nurse, Participant Tasks' do
   background { english_nurse.sign_in }
 
+  scenario 'Nurse cancels creation of additional contact form'
+  scenario 'Nurse creates additional contact' # check task count
+  scenario 'Nurse confirms additional contact'
+  scenario 'Nurse sees number of days since help request was due'
+  scenario 'Nurse sees help request overdue' # check task count
+
   # scenario 'Nurse cancels out of help request resolution form' do
   #   2.times { navigation.scroll_down }
   #   pt_400_nurse_tasks.open
@@ -21,12 +27,14 @@ feature 'Nurse, Participant Tasks' do
     2.times { navigation.scroll_down }
     pt_400_nurse_tasks.open
 
+    # check task count
     expect(pt_400_nurse_tasks).to have_help_request_active
 
     pt_400_nurse_tasks.mark_help_request_resolved
     # fill out form
 
     expect(pt_400_nurse_tasks).to_not have_help_request_active
+    # check task count
   end
 
   scenario 'Nurse contacts supervisor for help request' do
@@ -64,17 +72,21 @@ feature 'Nurse, Participant Tasks' do
     expect(pt_403_nurse_tasks).to_not have_previous_supervisor_contact
   end
 
+  scenario 'Nurse sees number days since non-connectivity task was due'
+  scenario 'Nurse sees non-connectivity task overdue'
   scenario 'Nurse cancels out of non-connectivity task resolution form'
 
   scenario 'Nurse marks non-connectivity task as resolved' do
     2.times { navigation.scroll_down }
     pt_410_nurse_tasks.open
 
+    # check task count
     expect(pt_410_nurse_tasks).to have_lack_of_connectivity_active
 
     pt_410_nurse_tasks.mark_lack_of_connectivity_resolved
     # complete form
 
+    # check task count
     expect(pt_410_nurse_tasks).to_not have_lack_of_connectivity_active
   end
 
@@ -113,17 +125,21 @@ feature 'Nurse, Participant Tasks' do
     expect(pt_413_nurse_tasks).to_not have_previous_supervisor_contact
   end
 
+  scenario 'Nurse sees number of days since non-adherence task was due'
+  scenario 'Nurse sees non-adherence task overdue' # check task count
   scenario 'Nurse cancels out of non-adherence task resolution form'
 
   # scenario 'Nurse marks non-adherence task as resolved' do
   #   2.times { navigation.scroll_down }
   #   pt_420_nurse_tasks.open
 
+  #   # check task count
   #   expect(pt_420_nurse_tasks).to have_non_adherence_active
 
   #   pt_420_nurse_tasks.mark_non_adherence_resolved
   #   # complete form
 
+  #   # check task count
   #   expect(pt_420_nurse_tasks).to_not have_non_adherence_active
   # end
 
@@ -162,7 +178,9 @@ feature 'Nurse, Participant Tasks' do
   #   expect(pt_423_nurse_tasks).to_not have_previous_supervisor_contact
   # end
 
-  scenario 'Nurse sees empty progress bar' # just active confirmation call
+  scenario 'Nurse sees empty progress bar'
+  scenario 'Nurse sees number days since confirmation call was due'
+  scenario 'Nurse sees confirmation call overdue' # check task count
 
   scenario 'Nurse cancels confirmation call' do
     2.times { navigation.scroll_down }
@@ -184,6 +202,7 @@ feature 'Nurse, Participant Tasks' do
     2.times { navigation.scroll_down }
     pt_306_nurse_tasks.open
 
+    # check task count
     expect(pt_306_nurse_tasks).to have_confirmation_call_task_active
 
     expect(pt_306_nurse_tasks).to_not have_initial_in_person_appt_task_active
@@ -203,6 +222,7 @@ feature 'Nurse, Participant Tasks' do
     confirmation_call.enter_first_appt_location
     navigation.submit
 
+    # check task count
     # expect(pt_306_nurse_tasks).to have_confirmation_call_task_complete
 
     expect(pt_306_nurse_tasks).to have_initial_in_person_appt_task_active
@@ -214,6 +234,10 @@ feature 'Nurse, Participant Tasks' do
 
     # # check Your Patients list for old / new tasks
   end
+
+  scenario 'Nurse sees number of days since initial in-person appt was due'
+  scenario 'Nurse sees initial in-person appointment not yet due'
+  scenario 'Nurse sees initial in-person appointment overdue' # check task count
 
   scenario 'Nurse cancels initial in-person appointment' do
     navigation.scroll_down
@@ -237,6 +261,7 @@ feature 'Nurse, Participant Tasks' do
     navigation.scroll_down
     pt_313_nurse_tasks.open
 
+    # check task count
     expect(pt_313_nurse_tasks).to have_confirmation_call_task_complete
 
     expect(pt_313_nurse_tasks).to have_initial_in_person_appt_task_active
@@ -247,8 +272,6 @@ feature 'Nurse, Participant Tasks' do
 
     navigation.scroll_down
     navigation.cancel
-
-    expect(pt_313_nurse_tasks).to have_confirmation_call_task_complete
 
     expect(pt_313_nurse_tasks).to_not have_initial_in_person_appt_task_complete
   end
@@ -292,14 +315,16 @@ feature 'Nurse, Participant Tasks' do
     initial_in_person_appt.confirm
     initial_in_person_appt.enter_location
     pt_319_nurse_tasks.enter_session_length
+
+    # check for next contact date to be pre-populated for a week from now
+
     initial_in_person_appt.enter_general_notes
     navigation.submit
 
     contact_information.enter_smartphone_number
     navigation.submit # what happens if I cancel?
 
-    expect(pt_319_nurse_tasks).to have_confirmation_call_task_complete
-
+    # check task count
     # expect(pt_319_nurse_tasks).to have_initial_in_person_appt_task_complete
 
     expect(pt_319_nurse_tasks).to have_new_follow_up_week_1_task
@@ -321,6 +346,10 @@ feature 'Nurse, Participant Tasks' do
 
     # # check Your Patients list for old / new tasks
   end
+
+  scenario 'Nurse sees number of days since follow up week 1 call was due'
+  scenario 'Nurse sees follow up call week 1 not yet due'
+  scenario 'Nurse sees follow up call week 1 overdue' # check task count
 
   scenario 'Nurse cancels follow up call week one' do
     navigation.scroll_down
@@ -346,6 +375,7 @@ feature 'Nurse, Participant Tasks' do
 
     expect(pt_322_nurse_tasks).to have_initial_in_person_appt_task_complete
 
+    # check task count
     expect(pt_322_nurse_tasks).to have_follow_up_week_1_task_active
 
     follow_up_week_1.confirm
@@ -381,13 +411,6 @@ feature 'Nurse, Participant Tasks' do
   scenario 'Nurse cannot submit follow up call wk 1 wo selecting motivation' do
     navigation.scroll_down
     pt_325_nurse_tasks.open
-
-    expect(pt_325_nurse_tasks).to have_confirmation_call_task_complete
-
-    expect(pt_325_nurse_tasks).to have_initial_in_person_appt_task_complete
-
-    expect(pt_325_nurse_tasks).to have_follow_up_week_1_task_active
-
     follow_up_week_1.confirm
     follow_up_week_1.fill_in_questions
     pt_325_nurse_tasks.select_ability
@@ -439,6 +462,7 @@ feature 'Nurse, Participant Tasks' do
     follow_up_week_1.enter_notes
     navigation.submit
 
+    # check task count
     # expect(pt_328_nurse_tasks).to have_follow_up_week_1_task_complete
 
     # check clinical summary page for notes
@@ -454,6 +478,10 @@ feature 'Nurse, Participant Tasks' do
 
     # # check Your Patients list for old / new tasks
   end
+
+  scenario 'Nurse sees number of days since follow up call week 3 was due'
+  scenario 'Nurse sees follow up call week 3 not yet due'
+  scenario 'Nurse sees follow up call week 3 overdue' # check task count
 
   scenario 'Nurse cancels follow up call week 3' do
     pt_329_nurse_tasks.open
@@ -479,6 +507,7 @@ feature 'Nurse, Participant Tasks' do
 
     expect(pt_330_nurse_tasks).to have_follow_up_week_1_task_complete
 
+    # check task count
     expect(pt_330_nurse_tasks).to have_follow_up_week_3_task_active
 
     follow_up_week_3.confirm
@@ -542,6 +571,7 @@ feature 'Nurse, Participant Tasks' do
     follow_up_week_3.enter_general_notes
     navigation.submit
 
+    # check task count
     # expect(pt_336_nurse_tasks).to have_follow_up_week_3_task_complete
 
     expect(pt_336_nurse_tasks).to have_call_to_schedule_final_appt_task_active
@@ -560,9 +590,14 @@ feature 'Nurse, Participant Tasks' do
     # # check Your Patients list for old / new tasks
   end
 
+  scenario 'Nurse sees # of days since call to schedule final appt was due'
+  scenario 'Nurse sees call to schedule final appointment not yet due'
+  scenario 'Nurse sees call to schedule final appt overdue' # check task count
+
   scenario 'Nurse cancels call to schedule final appointment' do
     pt_704_nurse_tasks.open
 
+    # check task count
     expect(pt_704_nurse_tasks).to have_call_to_schedule_final_appt_task_active
 
     call_to_schedule_final_appointment.cancel
@@ -620,9 +655,14 @@ feature 'Nurse, Participant Tasks' do
     # # check Your Patients list for old / new tasks
   end
 
+  scenario 'Nurse sees number of days since final appointment was due'
+  scenario 'Nurse sees final appointment not yet due'
+  scenario 'Nurse sees final appointment overdue' # check task count
+
   scenario 'Nurse cancels final appointment' do
     pt_337_nurse_tasks.open
 
+    # check task count
     expect(pt_337_nurse_tasks).to have_final_appt_task_active
 
     final_appointment.cancel
@@ -649,6 +689,7 @@ feature 'Nurse, Participant Tasks' do
     expect(pt_338_nurse_tasks)
       .to have_call_to_schedule_final_appt_task_complete
 
+    # check task count
     expect(pt_338_nurse_tasks).to have_final_appt_task_active
 
     final_appointment.confirm
@@ -685,6 +726,7 @@ feature 'Nurse, Participant Tasks' do
     final_appointment.choose_phone_returned
     navigation.submit
 
+    # check task count
     # expect(pt_341_nurse_tasks).to have_final_appt_task_complete
 
     # check clinical summary page for notes

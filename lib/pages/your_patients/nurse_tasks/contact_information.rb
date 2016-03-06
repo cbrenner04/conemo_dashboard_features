@@ -16,10 +16,6 @@ class YourPatients
 
       def open
         sleep(1)
-        # path = current_url.gsub('http://localhost:3000/en/participants/', '')
-        # sys_id = path.gsub('/tasks', '')
-        # visit "http://localhost:3000/en/active/participants/#{sys_id}"
-
         path = current_url.gsub('participants/', 'active/participants/')
         visit path.gsub('/tasks', '')
       end

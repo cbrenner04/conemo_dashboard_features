@@ -32,12 +32,6 @@ class YourPatients
         fill_in 'first_appointment[notes]', with: general_notes
       end
 
-      # def created_for_participant?(id)
-      #   your_patients.pt_row(id).has_css?('.fa-check-circle', count: 2)
-      #   date = DateTime.now + 7
-      #   your_patients.check_date(id, date)
-      # end
-
       private
 
       def nurse_tasks

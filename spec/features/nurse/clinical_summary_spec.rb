@@ -18,6 +18,10 @@ feature 'Nurse, Clinical Summary' do
     expect(pt_343_clinical_summary).to have_correct_logins
   end
 
+  scenario 'Nurse creates a note'
+  scenario 'Nurse deletes a note'
+  scenario 'Nurse sees lesson numbers, release dates, titles'
+
   scenario 'Nurse sees current lesson (1st) highlighted' do
     2.times { navigation.scroll_down }
     pt_300_nurse_tasks.open
