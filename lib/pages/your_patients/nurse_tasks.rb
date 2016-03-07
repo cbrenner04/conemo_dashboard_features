@@ -23,7 +23,7 @@ class YourPatients
     end
 
     def mark_non_adherence_resolved
-      mark_resolved('Non-adherence call')
+      mark_resolved('Non adherence call')
     end
 
     def contact_supervisor_for_help_request
@@ -35,7 +35,7 @@ class YourPatients
     end
 
     def contact_supervisor_for_non_adherence
-      contact_supervisor('Non-adherence call')
+      contact_supervisor('Non adherence call')
     end
 
     def clear_supervisor_contact
@@ -161,7 +161,7 @@ class YourPatients
     end
 
     def has_non_adherence_active?
-      has_list_item?('Non-adherence call')
+      has_list_item?('Non adherence call')
     end
 
     def has_new_supervisor_contact?

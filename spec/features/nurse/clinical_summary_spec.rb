@@ -138,10 +138,10 @@ feature 'Nurse, Clinical Summary' do
 
   scenario 'Nurse sees participant accessed the 3rd lesson late' do
     2.times { navigation.scroll_down }
-    pt_421_nurse_tasks.open
-    pt_421_clinical_summary.open
+    pt_428_nurse_tasks.open
+    pt_428_clinical_summary.open
 
-    expect(pt_421_clinical_summary).to have_late_lesson
+    expect(pt_428_clinical_summary).to have_late_lesson
   end
 
   scenario 'Nurse sees participant accessed the 4th lesson late' do

@@ -167,9 +167,9 @@ def pt_324_nurse_tasks
   @pt_324_nurse_tasks ||= YourPatients::NurseTasks.new(pt_id: 324)
 end
 
-def pt_421_clinical_summary
-  @pt_421_clinical_summary ||= YourPatients::NurseTasks::ClinicalSummary.new(
-    id: 421,
+def pt_428_clinical_summary
+  @pt_428_clinical_summary ||= YourPatients::NurseTasks::ClinicalSummary.new(
+    id: 428,
     other_lesson: 3
   )
 end

@@ -125,58 +125,82 @@ feature 'Nurse, Participant Tasks' do
     expect(pt_413_nurse_tasks).to_not have_previous_supervisor_contact
   end
 
+  scenario 'Nurse sees no adherence task for pt w active connectivity task' do
+    2.times { navigation.scroll_down }
+    pt_426_nurse_tasks.open
+
+    expect(pt_426_nurse_tasks).to have_lack_of_connectivity_active
+
+    expect(pt_426_nurse_tasks).to_not have_non_adherence_active
+  end
+
+  scenario 'Nurse sees no adherence task for pt w 1 missed, 1 late session' do
+    2.times { navigation.scroll_down }
+    pt_427_nurse_tasks.open
+
+    expect(pt_427_nurse_tasks).to_not have_non_adherence_active
+  end
+
+  scenario 'Nurse sees no adherence task for 1 on-time, 1 missed session' do
+    navigation.scroll_down
+    pt_320_nurse_tasks.open
+
+    expect(pt_320_nurse_tasks).to_not have_non_adherence_active
+  end
+
+  scenario 'Nurse sees no adherence task for pt w < 2 lessons released'
   scenario 'Nurse sees number of days since non-adherence task was due'
   scenario 'Nurse sees non-adherence task overdue' # check task count
   scenario 'Nurse cancels out of non-adherence task resolution form'
 
-  # scenario 'Nurse marks non-adherence task as resolved' do
-  #   2.times { navigation.scroll_down }
-  #   pt_420_nurse_tasks.open
+  scenario 'Nurse marks non-adherence task as resolved' do
+    2.times { navigation.scroll_down }
+    pt_420_nurse_tasks.open
 
-  #   # check task count
-  #   expect(pt_420_nurse_tasks).to have_non_adherence_active
+    # check task count
+    expect(pt_420_nurse_tasks).to have_non_adherence_active
 
-  #   pt_420_nurse_tasks.mark_non_adherence_resolved
-  #   # complete form
+    pt_420_nurse_tasks.mark_non_adherence_resolved
+    # complete form
 
-  #   # check task count
-  #   expect(pt_420_nurse_tasks).to_not have_non_adherence_active
-  # end
+    # check task count
+    expect(pt_420_nurse_tasks).to_not have_non_adherence_active
+  end
 
-  # scenario 'Nurse contacts supervisor for non-adherence task' do
-  #   2.times { navigation.scroll_down }
-  #   pt_421_nurse_tasks.open
+  scenario 'Nurse contacts supervisor for non-adherence task' do
+    2.times { navigation.scroll_down }
+    pt_421_nurse_tasks.open
 
-  #   expect(pt_421_nurse_tasks).to have_non_adherence_active
+    expect(pt_421_nurse_tasks).to have_non_adherence_active
 
-  #   pt_421_nurse_tasks.contact_supervisor_for_non_adherence
+    pt_421_nurse_tasks.contact_supervisor_for_non_adherence
 
-  #   expect(pt_421_nurse_tasks).to have_non_adherence_active
+    expect(pt_421_nurse_tasks).to have_non_adherence_active
 
-  #   expect(pt_421_nurse_tasks).to have_new_supervisor_contact
-  # end
+    expect(pt_421_nurse_tasks).to have_new_supervisor_contact
+  end
 
-  # scenario 'Nurse sees when the previous supervisor contact was sent' do
-  #   2.times { navigation.scroll_down }
-  #   pt_422_nurse_tasks.open
+  scenario 'Nurse sees when the previous supervisor contact was sent' do
+    2.times { navigation.scroll_down }
+    pt_422_nurse_tasks.open
 
-  #   expect(pt_422_nurse_tasks).to have_non_adherence_active
+    expect(pt_422_nurse_tasks).to have_non_adherence_active
 
-  #   expect(pt_422_nurse_tasks).to have_previous_supervisor_contact
-  # end
+    expect(pt_422_nurse_tasks).to have_previous_supervisor_contact
+  end
 
-  # scenario 'Nurse clears supervisor contact' do
-  #   2.times { navigation.scroll_down }
-  #   pt_423_nurse_tasks.open
+  scenario 'Nurse clears supervisor contact' do
+    2.times { navigation.scroll_down }
+    pt_423_nurse_tasks.open
 
-  #   expect(pt_423_nurse_tasks).to have_non_adherence_active
+    expect(pt_423_nurse_tasks).to have_non_adherence_active
 
-  #   expect(pt_423_nurse_tasks).to have_previous_supervisor_contact
+    expect(pt_423_nurse_tasks).to have_previous_supervisor_contact
 
-  #   pt_423_nurse_tasks.clear_supervisor_contact
+    pt_423_nurse_tasks.clear_supervisor_contact
 
-  #   expect(pt_423_nurse_tasks).to_not have_previous_supervisor_contact
-  # end
+    expect(pt_423_nurse_tasks).to_not have_previous_supervisor_contact
+  end
 
   scenario 'Nurse sees empty progress bar'
   scenario 'Nurse sees number days since confirmation call was due'

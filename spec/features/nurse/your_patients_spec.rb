@@ -15,6 +15,7 @@ feature 'Nurse, Your Patients' do
   scenario 'Nurse sees participant with final appointment listed'
   scenario 'Nurse sees participant with help request listed'
   scenario 'Nurse sees participant with non-connectivity call listed'
+  scenario 'Nurse sees no adherence task for pt w connectivity task active'
   scenario 'Nurse sees participant with non-adherence call listed'
   scenario 'Nurse sees task count include confirmation call'
   scenario 'Nurse sees task count include initial in person appointment'
