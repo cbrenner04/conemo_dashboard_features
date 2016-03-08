@@ -8,6 +8,8 @@ class YourPatients
       @session ||= nurse_task[:session]
       @session_length ||= nurse_task[:session_length]
       @time_of_contact ||= nurse_task[:time_of_contact]
+      @days_since_due ||= nurse_task[:days_since_due]
+      @contact_type ||= nurse_task[:contact_type]
     end
 
     def open
@@ -170,6 +172,23 @@ class YourPatients
 
     def has_previous_supervisor_contact?
       has_supervisor_contact?(@time_of_contact)
+    end
+
+    def has_number_of_days_since_due?
+      find('.list-group-item', text: @contact_type).
+        has_text? "#{@days_since_due} ago"
+    end
+
+    def has_overdue_task?
+      has_text? '1 overdue'
+    end
+
+    def has_one_task_in_count?
+      has_text? '1 tasks'
+    end
+
+    def has_no_tasks_in_count?
+      has_text? '0 tasks'
     end
 
     private
