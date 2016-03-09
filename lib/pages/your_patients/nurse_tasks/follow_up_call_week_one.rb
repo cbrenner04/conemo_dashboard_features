@@ -8,7 +8,7 @@ class YourPatients
       include NurseTasksForms
 
       def scheduled?
-        has_text?('1 minute ago') ? min = 1 : min = 'less than a'
+        min = has_text?('1 minute ago') ? 1 : 'less than a'
         has_no_list_item? "Follow up call week one #{min}  minute ago"
         has_scheduled_progress_bar_item? 'Follow up call week one'
       end

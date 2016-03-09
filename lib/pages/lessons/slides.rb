@@ -27,7 +27,7 @@ class Lessons
     end
 
     def visible?
-      @new_title.nil? ? slide_title = @title : slide_title = @new_title
+      slide_title = @new_title.nil? ? @title : @new_title
       has_css?('.table', text: slide_title)
     end
 

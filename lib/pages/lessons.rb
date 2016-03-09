@@ -30,7 +30,7 @@ class Lessons
   end
 
   def visible?
-    @new_title.nil? ? lesson_title = @title : lesson_title = @new_title
+    lesson_title = @new_title.nil? ? @title : @new_title
     find('.table').has_css?('td', text: lesson_title)
   end
 
