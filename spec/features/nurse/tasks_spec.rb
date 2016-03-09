@@ -463,6 +463,8 @@ feature 'Nurse, Participant Tasks' do
     expect(patient_319).to have_tasks_completed
   end
 
+  scenario 'Nurse sees tasks change when initial appointment is rescheduled'
+
   scenario 'Nurse sees number of days since follow up call week 1 was due' do
     pt_708_nurse_tasks.open
 
