@@ -180,6 +180,10 @@ def pt_306_nurse_tasks
   @pt_306_nurse_tasks ||= YourPatients::NurseTasks.new(pt_id: 306)
 end
 
+def patient_306
+  @patient_306 ||= YourPatients.new(pt_id: 306)
+end
+
 def pt_707_nurse_tasks
   @pt_707_nurse_tasks ||= YourPatients::NurseTasks.new(
     pt_id: 707,
@@ -222,6 +226,10 @@ def pt_319_nurse_tasks
     session: 'first_appointment',
     session_length: '120'
   )
+end
+
+def patient_319
+  @patient_319 ||= YourPatients.new(pt_id: 319)
 end
 
 def pt_708_nurse_tasks
@@ -284,6 +292,10 @@ def pt_328_nurse_tasks
   )
 end
 
+def patient_328
+  @patient_328 ||= YourPatients.new(pt_id: 328)
+end
+
 def pt_709_nurse_tasks
   @pt_709_nurse_tasks ||= YourPatients::NurseTasks.new(
     pt_id: 709,
@@ -344,6 +356,10 @@ def pt_336_nurse_tasks
   )
 end
 
+def patient_336
+  @patient_336 ||= YourPatients.new(pt_id: 336)
+end
+
 def pt_800_nurse_tasks
   @pt_800_nurse_tasks ||= YourPatients::NurseTasks.new(
     pt_id: 800,
@@ -370,6 +386,10 @@ end
 
 def pt_702_nurse_tasks
   @pt_702_nurse_tasks ||= YourPatients::NurseTasks.new(pt_id: 702)
+end
+
+def patient_702
+  @patient_702 ||= YourPatients.new(pt_id: 702)
 end
 
 def pt_801_nurse_tasks

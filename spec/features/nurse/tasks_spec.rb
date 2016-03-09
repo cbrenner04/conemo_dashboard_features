@@ -250,7 +250,11 @@ feature 'Nurse, Participant Tasks' do
     expect(pt_423_nurse_tasks).to_not have_previous_supervisor_contact
   end
 
-  scenario 'Nurse sees empty progress bar'
+  scenario 'Nurse sees empty progress bar' do
+    pt_300_nurse_tasks.open
+
+    expect(pt_300_nurse_tasks).to have_nothing_in_progress_bar
+  end
 
   scenario 'Nurse sees number days since confirmation call was due' do
     pt_706_nurse_tasks.open
@@ -300,6 +304,10 @@ feature 'Nurse, Participant Tasks' do
   end
 
   scenario 'Nurse confirms confirmation call' do
+    # check current tasks
+    expect(patient_306).to have_confirmation_call
+
+    # create confirms confirmation call
     pt_306_nurse_tasks.open
     confirmation_call.confirm
     confirmation_call.enter_first_appt_location
@@ -309,17 +317,21 @@ feature 'Nurse, Participant Tasks' do
 
     expect(confirmation_call).to be_complete
 
-    expect(initial_in_person_appt).to be_active
+    # this will fail due to pre-populated date
+    expect(initial_in_person_appt).to be_scheduled
 
     # check contact information page for completeness
     contact_information.open
 
     expect(contact_information).to have_confirmation_call
 
-    # # check Your Patients list for old / new tasks
-  end
+    # check Your Patients list for old / new tasks
+    patient_306.return
 
-  scenario 'Nurse sees initial in-person appointment not yet due'
+    expect(patient_306).to_not have_confirmation_call
+
+    expect(patient_306).to have_tasks_completed
+  end
 
   scenario 'Nurse sees number of days since initial in-person appt was due' do
     pt_707_nurse_tasks.open
@@ -402,23 +414,30 @@ feature 'Nurse, Participant Tasks' do
   end
 
   scenario 'Nurse creates an initial in-person appointment' do
+    # check your patients list for current task
+    expect(patient_319).to have_initial_appointment
+
+    # create initial appointment
     pt_319_nurse_tasks.open
     initial_in_person_appt.confirm
     initial_in_person_appt.enter_location
     pt_319_nurse_tasks.enter_session_length
 
-    # check for next contact date to be pre-populated for a week from now
+    # not implemented yet
+    expect(initial_in_person_appt).to have_next_contact_date
 
     initial_in_person_appt.enter_general_notes
     navigation.submit
 
     contact_information.enter_smartphone_number
     navigation.submit # what happens if I cancel?
-    # fails because of default next contact date
+
+    # this will fail due to pre-populated date in form
     expect(pt_400_nurse_tasks).to have_no_tasks_in_count
 
     expect(initial_in_person_appt).to be_complete
 
+    # this will fail due to pre-populated date in form
     expect(follow_up_week_1).to be_scheduled
 
     expect(follow_up_week_3).to be_scheduled
@@ -436,10 +455,13 @@ feature 'Nurse, Participant Tasks' do
 
     expect(contact_information).to have_initial_appointment
 
-    # # check Your Patients list for old / new tasks
-  end
+    # check Your Patients list for old / new tasks
+    your_patients.return
 
-  scenario 'Nurse sees follow up call week 1 not yet due'
+    expect(patient_319).to_not have_initial_appointment
+
+    expect(patient_319).to have_tasks_completed
+  end
 
   scenario 'Nurse sees number of days since follow up call week 1 was due' do
     pt_708_nurse_tasks.open
@@ -550,6 +572,10 @@ feature 'Nurse, Participant Tasks' do
   end
 
   scenario 'Nurse creates a follow up call week 1' do
+    # check for current task
+    expect(patient_328).to have_follow_up_week_1
+
+    # create follow up all week 1
     pt_328_nurse_tasks.open
     follow_up_week_1.confirm
     follow_up_week_1.fill_in_questions
@@ -575,10 +601,13 @@ feature 'Nurse, Participant Tasks' do
 
     expect(contact_information).to have_follow_up_week_1
 
-    # # check Your Patients list for old / new tasks
-  end
+    # check Your Patients list for old / new tasks
+    your_patients.return
 
-  scenario 'Nurse sees follow up call week 3 not yet due'
+    expect(patient_328).to_not have_follow_up_week_1
+
+    expect(patient_328).to have_tasks_completed
+  end
 
   scenario 'Nurse sees number of days since follow up call week 3 was due' do
     pt_709_nurse_tasks.open
@@ -674,7 +703,11 @@ feature 'Nurse, Participant Tasks' do
     expect(follow_up_week_3).to be_visible
   end
 
-  scenario 'Nurse creates a third contact' do
+  scenario 'Nurse creates a follow up call week 3' do
+    # check for current tasks
+    expect(patient_336).to have_follow_up_week_3
+
+    # create follow up call week 3
     pt_336_nurse_tasks.open
     follow_up_week_3.confirm
     pt_336_nurse_tasks.enter_session_length
@@ -701,10 +734,13 @@ feature 'Nurse, Participant Tasks' do
 
     expect(contact_information).to have_follow_up_week_3
 
-    # # check Your Patients list for old / new tasks
-  end
+    # check Your Patients list for old / new tasks
+    your_patients.return
 
-  scenario 'Nurse sees call to schedule final appointment not yet due'
+    expect(patient_336).to_not have_follow_up_week_3
+
+    expect(patient_336).to have_tasks_completed
+  end
 
   scenario 'Nurse sees # of days since call to schedule final appt was due' do
     pt_800_nurse_tasks.open
@@ -766,6 +802,10 @@ feature 'Nurse, Participant Tasks' do
   end
 
   scenario 'Nurse creates call to schedule final appointment' do
+    # check current tasks
+    expect(patient_702).to have_call_to_schedule_final_appt
+
+    # confirm call to schedule final appointment
     pt_702_nurse_tasks.open
     call_to_schedule_final_appointment.confirm
     call_to_schedule_final_appointment.select_location
@@ -775,14 +815,24 @@ feature 'Nurse, Participant Tasks' do
 
     expect(call_to_schedule_final_appointment).to be_complete
 
-    expect(final_appointment).to be_active
+    # this will fail to due to pre-populated date in form
+    expect(final_appointment).to be_scheduled
 
-    # # Check contact information for completeness
+    # Check contact information for completeness
+    # this will fail - not yet implemented
+    clinical_summary.return_to_tasks
+    contact_information.open
 
-    # # check Your Patients list for old / new tasks
+    expect(contact_information).to have_call_to_schedule_final_appt
+
+    # check Your Patients list for old / new tasks
+    your_patients.return
+
+    expect(patient_702).to_not have_call_to_schedule_final_appt
+
+    # this will fail due to pre-populated date in form
+    expect(patient_702).to have_tasks_completed
   end
-
-  scenario 'Nurse sees final appointment not yet due'
 
   scenario 'Nurse sees number of days since final appointment was due' do
     pt_801_nurse_tasks.open

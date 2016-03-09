@@ -25,6 +25,13 @@ class YourPatients
         has_css?('h1', text: 'Initial in person appointment')
       end
 
+      def has_next_contact_date?
+        selector = all('.select2-container')
+        next_week = Date.today + 7
+        selector[6].has_text? next_week.strftime('%B')
+        selector[7].has_text? next_week.strftime('%-d')
+      end
+
       def enter_location
         enter_task_location(5)
       end

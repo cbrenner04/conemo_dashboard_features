@@ -48,10 +48,6 @@ class YourPatients
         find('#smartphone-info').find('.fa-edit').click
       end
 
-      # def has_phone_form_present?
-      #   has_css?('h1', text: 'Input Smartphone Information')
-      # end
-
       def enter_smartphone_number
         fill_in 'smartphone[number]', with: '12345678901'
       end
@@ -92,8 +88,14 @@ class YourPatients
         has_text? 'Length of phone call (minutes): 120'
       end
 
-      def has_final_appointment?
+      def has_call_to_schedule_final_appt?
         find('.status-bar').has_css?('.visited.popover', count: 5)
+        has_text? 'Call to schedule final in person appointment Contact At:' \
+                  "#{DateTime.now.strftime('%B %d, %Y')}"
+      end
+
+      def has_final_appointment?
+        find('.status-bar').has_css?('.visited.popover', count: 6)
         has_text? 'Final in person appointment Date and time: ' \
                   "#{DateTime.now.strftime('%B %d, %Y')}"
         has_text? 'Location: 100 West Ln, Chicago, IL 60601 Was the' \

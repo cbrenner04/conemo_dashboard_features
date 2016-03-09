@@ -77,6 +77,14 @@ class YourPatients
       has_text? '0 tasks'
     end
 
+    def has_nothing_in_progress_bar?
+      has_css?('.prgoress')
+      has_no_css?('.progress-bar-future')
+      has_no_css?('.progress-bar-success')
+      has_no_css?('.progress-bar-warning')
+      has_no_css?('.progress-bar-danger')
+    end
+
     private
 
     def navigation

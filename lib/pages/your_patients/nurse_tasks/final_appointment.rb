@@ -7,6 +7,11 @@ class YourPatients
       include Capybara::DSL
       include NurseTasksForms
 
+      def scheduled?
+        has_no_list_item?('Final in person appointment')
+        has_scheduled_progress_bar_item?('Final in person appointment')
+      end
+
       def active?
         has_list_item?('Final in person appointment')
         has_active_progress_bar_item?('Final in person appointment')
