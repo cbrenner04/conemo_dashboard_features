@@ -1,19 +1,40 @@
-require './lib/pages/your_patients/nurse_tasks'
+require './lib/pages/shared/nurse_tasks_forms'
 
 class YourPatients
   class NurseTasks
     # page object for second contact
     class FollowUpCallWeekOne
       include Capybara::DSL
+      include NurseTasksForms
+
+      def scheduled?
+        has_text?('1 minute ago') ? min = 1 : min = 'less than a'
+        has_no_list_item? "Follow up call week one #{min}  minute ago"
+        has_scheduled_progress_bar_item? 'Follow up call week one'
+      end
+
+      def active?
+        has_list_item?('Follow up call week one')
+        has_active_progress_bar_item?('Follow up call week one')
+      end
+
+      def complete?
+        has_no_list_item?('Follow up call week one')
+        has_complete_progress_bar_item?('Follow up call week one')
+      end
+
+      def canceled?
+        has_no_list_item?('Follow up call week one')
+        has_canceled_progress_bar_item?('Follow up call week one')
+      end
 
       def confirm
-        find('.list-group-item', text: 'Follow up call week one')
-          .find('a', text: 'Confirm').click
+        confirm_task('Follow up call week one')
+        visible?
       end
 
       def cancel
-        find('.list-group-item', text: 'Follow up call week one')
-          .find('input[value = "Cancel"]').click
+        cancel_task('Follow up call week one')
       end
 
       def visible?
@@ -35,7 +56,7 @@ class YourPatients
         selector[12].click
         chance = ['3 – Very probable', '2 – 50/50 (more or less probable)',
                   '1 – Not probable'].sample
-        nurse_tasks.select_non_date_item(chance)
+        select_non_date_item(chance)
       end
 
       def general_notes
@@ -44,12 +65,6 @@ class YourPatients
 
       def enter_notes
         fill_in 'second_contact[notes]', with: general_notes
-      end
-
-      private
-
-      def nurse_tasks
-        @nurse_tasks ||= YourPatients::NurseTasks.new(pt_id: 'fake')
       end
     end
   end

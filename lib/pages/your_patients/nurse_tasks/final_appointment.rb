@@ -1,17 +1,34 @@
+require './lib/pages/shared/nurse_tasks_forms'
+
 class YourPatients
   class NurseTasks
     # page object for first contact page of active participants
     class FinalAppointment
       include Capybara::DSL
+      include NurseTasksForms
+
+      def active?
+        has_list_item?('Final in person appointment')
+        has_active_progress_bar_item?('Final in person appointment')
+      end
+
+      def canceled?
+        has_no_list_item?('Final in person appointment')
+        has_canceled_progress_bar_item?('Final in person appointment')
+      end
+
+      def complete?
+        has_no_list_item?('Final in person appointment')
+        has_complete_progress_bar_item?('Final in person appointment')
+      end
 
       def confirm
-        find('.list-group-item', text: 'Final in person appointment')
-          .find('a', text: 'Confirm').click
+        confirm_task('Final in person appointment')
+        visible?
       end
 
       def cancel
-        find('.list-group-item', text: 'Final in person appointment')
-          .find('input[value = "Cancel"]').click
+        cancel_task('Final in person appointment')
       end
 
       def visible?

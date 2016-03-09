@@ -1,17 +1,39 @@
+require './lib/pages/shared/nurse_tasks_forms'
+
 class YourPatients
   class NurseTasks
     # page object for call to schedule final appointment task
     class CallToScheduleFinalAppointment
       include Capybara::DSL
+      include NurseTasksForms
+
+      def scheduled?
+        has_no_list_item? 'Call to schedule final appointment in about 1 month'
+        has_scheduled_progress_bar_item? 'Call to schedule final appointment'
+      end
+
+      def active?
+        has_list_item?('Call to schedule final appointment')
+        has_active_progress_bar_item?('Call to schedule final appointment')
+      end
+
+      def complete?
+        has_no_list_item?('Call to schedule final appointment')
+        has_complete_progress_bar_item?('Call to schedule final appointment')
+      end
+
+      def canceled?
+        has_no_list_item?('Call to schedule final appointment')
+        has_canceled_progress_bar_item?('Call to schedule final appointment')
+      end
 
       def confirm
-        find('.list-group-item', text: 'Call to schedule final appointment')
-          .find('a', text: 'Confirm').click
+        confirm_task('Call to schedule final appointment')
+        visible?
       end
 
       def cancel
-        find('.list-group-item', text: 'Call to schedule final appointment')
-          .find('input[value = "Cancel"]').click
+        cancel_task('Call to schedule final appointment')
       end
 
       def visible?

@@ -1,6 +1,7 @@
 # filename: ./spec/support/nurse/tasks_helper.rb
 
 require './lib/pages/navigation'
+require './lib/pages/your_patients'
 require './lib/pages/your_patients/nurse_tasks'
 Dir['./lib/pages/your_patients/nurse_tasks/*.rb'].each { |file| require file }
 
@@ -10,6 +11,19 @@ end
 
 def confirmation_call
   @confirmation_call ||= YourPatients::NurseTasks::ConfirmationCall.new
+end
+
+def help_request
+  @help_request ||= YourPatients::NurseTasks::HelpRequest.new
+end
+
+def lack_of_connectivity_call
+  @lack_of_connectivity_call ||=
+    YourPatients::NurseTasks::LackOfConnectivityCall.new
+end
+
+def non_adherence_call
+  @non_adherence_call ||= YourPatients::NurseTasks::NonAdherenceCall.new
 end
 
 def initial_in_person_appt
@@ -338,6 +352,10 @@ def pt_800_nurse_tasks
   )
 end
 
+def pt_704_nurse_tasks
+  @pt_704_nurse_tasks ||= YourPatients::NurseTasks.new(pt_id: 704)
+end
+
 def pt_337_nurse_tasks
   @pt_337_nurse_tasks ||= YourPatients::NurseTasks.new(pt_id: 337)
 end
@@ -354,6 +372,10 @@ def pt_702_nurse_tasks
   @pt_702_nurse_tasks ||= YourPatients::NurseTasks.new(pt_id: 702)
 end
 
+def pt_801_nurse_tasks
+  @pt_801_nurse_tasks ||= YourPatients::NurseTasks.new(pt_id: 801)
+end
+
 def pt_338_nurse_tasks
   @pt_338_nurse_tasks ||= YourPatients::NurseTasks.new(pt_id: 338)
 end
@@ -368,4 +390,8 @@ end
 
 def pt_341_nurse_tasks
   @pt_341_nurse_tasks ||= YourPatients::NurseTasks.new(pt_id: 341)
+end
+
+def your_patients
+  @your_patients ||= YourPatients.new(pt_id: 341)
 end

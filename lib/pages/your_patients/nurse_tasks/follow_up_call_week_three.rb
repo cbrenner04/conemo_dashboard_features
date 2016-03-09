@@ -1,19 +1,39 @@
-require './lib/pages/your_patients/nurse_tasks'
+require './lib/pages/shared/nurse_tasks_forms'
 
 class YourPatients
   class NurseTasks
     # page object for first contact page of active participants
     class FollowUpCallWeekThree
       include Capybara::DSL
+      include NurseTasksForms
+
+      def scheduled?
+        has_no_list_item? 'Follow up call week three in 14 days'
+        has_scheduled_progress_bar_item? 'Follow up call week three'
+      end
+
+      def active?
+        has_list_item?('Follow up call week three')
+        has_active_progress_bar_item?('Follow up call week three')
+      end
+
+      def complete?
+        has_no_list_item?('Follow up call week three')
+        has_complete_progress_bar_item?('Follow up call week three')
+      end
+
+      def canceled?
+        has_no_list_item?('Follow up call week three')
+        has_canceled_progress_bar_item?('Follow up call week three')
+      end
 
       def confirm
-        find('.list-group-item', text: 'Follow up call week three')
-          .find('a', text: 'Confirm').click
+        confirm_task('Follow up call week three')
+        visible?
       end
 
       def cancel
-        find('.list-group-item', text: 'Follow up call week three')
-          .find('input[value = "Cancel"]').click
+        cancel_task('Follow up call week three')
       end
 
       def visible?
@@ -36,18 +56,6 @@ class YourPatients
 
       def enter_general_notes
         fill_in 'third_contact[notes]', with: general_notes
-      end
-
-      def created_for_participant?(id)
-        nurse_tasks.pt_row(id).has_css?('.fa-check-circle', count: 4)
-        date = DateTime.now + 14
-        nurse_tasks.check_date(id, date)
-      end
-
-      private
-
-      def nurse_tasks
-        @nurse_tasks ||= YourPatients::NurseTasks.new(pt_id: 'fake')
       end
     end
   end

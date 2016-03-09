@@ -15,9 +15,8 @@ class YourPatients
       end
 
       def open
-        sleep(1)
-        path = current_url.gsub('participants/', 'active/participants/')
-        visit path.gsub('/tasks', '')
+        click_on 'Clinical Summary'
+        click_on 'participant contact information page'
       end
 
       def on_page?

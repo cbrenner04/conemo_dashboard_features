@@ -1,19 +1,24 @@
-require './lib/pages/your_patients/nurse_tasks'
+require './lib/pages/shared/nurse_tasks_forms'
 
 class YourPatients
   class NurseTasks
     # page object for the First Appointment Form in Active Participants
     class InitialInPersonAppointment
       include Capybara::DSL
+      include NurseTasksForms
+
+      def active?
+        has_list_item?('Initial in person appointment')
+        has_active_progress_bar_item?('Initial in person appointment')
+      end
 
       def confirm
-        find('.list-group-item', text: 'Initial in person appointment')
-          .find('a', text: 'Confirm').click
+        confirm_task('Initial in person appointment')
+        visible?
       end
 
       def cancel
-        find('.list-group-item', text: 'Initial in person appointment')
-          .find('input[value = "Cancel"]').click
+        cancel_task('Initial in person appointment')
       end
 
       def visible?
@@ -21,7 +26,7 @@ class YourPatients
       end
 
       def enter_location
-        nurse_tasks.enter_location(5)
+        enter_task_location(5)
       end
 
       def general_notes
@@ -32,10 +37,14 @@ class YourPatients
         fill_in 'first_appointment[notes]', with: general_notes
       end
 
-      private
+      def canceled?
+        has_no_list_item?('Initial in person appointment')
+        has_canceled_progress_bar_item?('Initial in person appointment')
+      end
 
-      def nurse_tasks
-        @nurse_tasks ||= YourPatients::NurseTasks.new(pt_id: 'fake')
+      def complete?
+        has_no_list_item?('Initial in person appointment')
+        has_complete_progress_bar_item?('Initial in person appointment')
       end
     end
   end

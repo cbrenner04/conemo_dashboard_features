@@ -1,15 +1,20 @@
-require './lib/pages/your_patients/nurse_tasks'
+require './lib/pages/shared/nurse_tasks_forms'
 
 class YourPatients
   class NurseTasks
     # page object for first contact page of active participants
     class ConfirmationCall
       include Capybara::DSL
+      include NurseTasksForms
+
+      def active?
+        has_list_item?('Confirmation call')
+        has_active_progress_bar_item?('Confirmation call')
+      end
 
       def confirm
-        find('.list-group-item', text: 'Confirmation call')
-          .find('a', text: 'Confirm').click
-        find('h1', text: 'Confirmation call')
+        confirm_task('Confirmation call')
+        visible?
       end
 
       def visible?
@@ -17,21 +22,21 @@ class YourPatients
       end
 
       def enter_first_appt_location
-        nurse_tasks.enter_location(10)
+        enter_task_location(10)
       end
 
       def cancel
-        find('.list-group-item', text: 'Confirmation call')
-          .find('input[value = "Cancel"]').click
+        cancel_task('Confirmation call')
+      end
+
+      def canceled?
+        has_no_list_item?('Confirmation call')
+        has_canceled_progress_bar_item?('Confirmation call')
       end
 
       def complete?
-      end
-
-      private
-
-      def nurse_tasks
-        @nurse_tasks ||= YourPatients::NurseTasks.new(pt_id: 'fake')
+        has_no_list_item?('Confirmation call')
+        has_complete_progress_bar_item?('Confirmation call')
       end
     end
   end

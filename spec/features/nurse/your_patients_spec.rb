@@ -4,6 +4,7 @@ feature 'Nurse, Your Patients' do
   scenario 'Nurse sees Your Patients upon login'
   scenario 'Nurse sees participants assigned to them listed in Your ' \
            'Patients table'
+  scenario 'Nurse sees confirmation token'
   scenario 'Nurse sees participants listed based on tasks due'
   scenario 'Nurse sees participants listed based on status of tasks'
   scenario 'Nurse sees participant with confirmation call task listed'
