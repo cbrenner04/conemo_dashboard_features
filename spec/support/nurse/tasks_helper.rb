@@ -58,6 +58,14 @@ def final_appointment
   @final_appointment ||= YourPatients::NurseTasks::FinalAppointment.new
 end
 
+def additional_contact
+  @additional_contact ||= YourPatients::NurseTasks::AdditionalContact.new
+end
+
+def pt_451_nurse_tasks
+  @pt_451_nurse_tasks ||= YourPatients::NurseTasks.new(pt_id: 451)
+end
+
 def pt_802_nurse_tasks
   @pt_802_nurse_tasks ||= YourPatients::NurseTasks.new(
     pt_id: 802,
@@ -176,6 +184,14 @@ def pt_301_nurse_tasks
   @pt_301_nurse_tasks ||= YourPatients::NurseTasks.new(pt_id: 301)
 end
 
+def pt_303_nurse_tasks
+  @pt_303_nurse_tasks ||= YourPatients::NurseTasks.new(pt_id: 303)
+end
+
+def pt_304_nurse_tasks
+  @pt_304_nurse_tasks ||= YourPatients::NurseTasks.new(pt_id: 304)
+end
+
 def pt_306_nurse_tasks
   @pt_306_nurse_tasks ||= YourPatients::NurseTasks.new(pt_id: 306)
 end
@@ -194,6 +210,14 @@ end
 
 def pt_311_nurse_tasks
   @pt_311_nurse_tasks ||= YourPatients::NurseTasks.new(pt_id: 311)
+end
+
+def pt_317_nurse_tasks
+  @pt_317_nurse_tasks ||= YourPatients::NurseTasks.new(pt_id: 317)
+end
+
+def pt_318_nurse_tasks
+  @pt_318_nurse_tasks ||= YourPatients::NurseTasks.new(pt_id: 318)
 end
 
 def pt_313_nurse_tasks
@@ -238,6 +262,10 @@ def pt_708_nurse_tasks
     contact_type: 'Follow up call week one',
     days_since_due: 'about 1 month'
   )
+end
+
+def pt_321_nurse_tasks
+  @pt_321_nurse_tasks ||= YourPatients::NurseTasks.new(pt_id: 321)
 end
 
 def pt_322_nurse_tasks
@@ -308,6 +336,10 @@ def pt_329_nurse_tasks
   @pt_329_nurse_tasks ||= YourPatients::NurseTasks.new(pt_id: 329)
 end
 
+def pt_333_nurse_tasks
+  @pt_333_nurse_tasks ||= YourPatients::NurseTasks.new(pt_id: 333)
+end
+
 def pt_330_nurse_tasks
   @pt_330_nurse_tasks ||= YourPatients::NurseTasks.new(pt_id: 330)
 end
@@ -372,8 +404,16 @@ def pt_704_nurse_tasks
   @pt_704_nurse_tasks ||= YourPatients::NurseTasks.new(pt_id: 704)
 end
 
+def pt_705_nurse_tasks
+  @pt_705_nurse_tasks ||= YourPatients::NurseTasks.new(pt_id: 705)
+end
+
 def pt_337_nurse_tasks
   @pt_337_nurse_tasks ||= YourPatients::NurseTasks.new(pt_id: 337)
+end
+
+def pt_345_nurse_tasks
+  @pt_345_nurse_tasks ||= YourPatients::NurseTasks.new(pt_id: 345)
 end
 
 def pt_700_nurse_tasks

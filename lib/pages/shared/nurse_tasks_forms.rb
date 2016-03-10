@@ -1,3 +1,5 @@
+require './lib/pages/navigation'
+
 # module for shared methods in nurse task forms
 module NurseTasksForms
   include Capybara::DSL
@@ -20,6 +22,21 @@ module NurseTasksForms
 
   def cancel_task(type)
     find('.list-group-item', text: type).find('input[value = "Cancel"]').click
+  end
+
+  def open_reschedule(type)
+    find('.list-group-item', text: type).find('a', text: 'Reschedule').click
+  end
+
+  def selector
+    @selector ||= all('.select2-container')
+  end
+
+  def reschedule_task
+    sleep(1)
+    selector[2].click
+    select_list_item((Date.today + 1).strftime('%-d'))
+    navigation.submit
   end
 
   def has_list_item?(text)
@@ -48,13 +65,18 @@ module NurseTasksForms
 
   def enter_task_location(selector_num)
     sleep(1)
-    selector = all('.select2-container')
     selector[selector_num].click
     location = ['Patient\'s home', 'Health unit', 'Other location'].sample
-    select_non_date_item(location)
+    select_list_item(location)
   end
 
-  def select_non_date_item(item)
+  def select_list_item(item)
     find('.select2-result-label', text: item).click
+  end
+
+  private
+
+  def navigation
+    @navigation ||= Navigation.new
   end
 end

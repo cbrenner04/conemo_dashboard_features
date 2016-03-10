@@ -7,37 +7,50 @@ class YourPatients
       include Capybara::DSL
       include NurseTasksForms
 
+      def initialize
+        @task_name ||= 'Final in person appointment'
+      end
+
       def scheduled?
-        has_no_list_item?('Final in person appointment')
-        has_scheduled_progress_bar_item?('Final in person appointment')
+        has_no_list_item? @task_name
+        has_scheduled_progress_bar_item? @task_name
       end
 
       def active?
-        has_list_item?('Final in person appointment')
-        has_active_progress_bar_item?('Final in person appointment')
+        has_list_item? @task_name
+        has_active_progress_bar_item? @task_name
       end
 
       def canceled?
-        has_no_list_item?('Final in person appointment')
-        has_canceled_progress_bar_item?('Final in person appointment')
+        has_no_list_item? @task_name
+        has_canceled_progress_bar_item? @task_name
       end
 
       def complete?
-        has_no_list_item?('Final in person appointment')
-        has_complete_progress_bar_item?('Final in person appointment')
+        has_no_list_item? @task_name
+        has_complete_progress_bar_item? @task_name
       end
 
       def confirm
-        confirm_task('Final in person appointment')
+        confirm_task @task_name
         visible?
       end
 
       def cancel
-        cancel_task('Final in person appointment')
+        cancel_task @task_name
+      end
+
+      def open_reschedule_form
+        open_reschedule @task_name
+      end
+
+      def reschedule
+        open_reschedule_form
+        reschedule_task
       end
 
       def visible?
-        has_css?('h1', text: 'Final in person appointment')
+        has_css?('h1', text: @task_name)
       end
 
       def enter_location

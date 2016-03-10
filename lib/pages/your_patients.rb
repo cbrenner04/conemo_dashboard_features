@@ -35,7 +35,6 @@ class YourPatients
     expected_results = []
     conditionals = [expected_results_1, expected_results_2, expected_results_3]
     conditionals.each { |i| expected_results.concat i }
-    puts expected_results
 
     expect(actual_results).to eq(expected_results)
   end
@@ -72,12 +71,20 @@ class YourPatients
     patient_row.has_text? 'Call to schedule final appointment'
   end
 
-  def has_non_adherence_task?
-    patient_row.has_text? 'Non adherence call'
-  end
-
   def has_final_appointment?
     patient_row.has_text? 'Final in person appointment'
+  end
+
+  def has_help_request?
+    patient_row.has_text? 'Help request'
+  end
+
+  def has_lack_of_connectivity_task?
+    patient_row.has_text? 'Lack of connectivity call'
+  end
+
+  def has_non_adherence_task?
+    patient_row.has_text? 'Non adherence call'
   end
 
   private
@@ -98,9 +105,9 @@ class YourPatients
 
   def english_nurse_patients
     patients = [1000, 200, 201, 480, 490]
-    ranges = [(100..102), (430..432), (440..442), (450..452), (460..462),
-              (470..472), (300..343), (400..405), (410..415), (420..428),
-              (700..709), (800..804)]
+    ranges = [(100..102), (300..344), (430..432), (440..442),
+              (450..452), (460..462), (470..472), (400..405),
+              (410..415), (420..428), (700..709), (800..804)]
     ranges.each { |i| patients.concat i.to_a }
     @english_nurse_patients ||= patients.sample(10)
   end

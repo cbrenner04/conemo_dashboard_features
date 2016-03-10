@@ -5,8 +5,28 @@ require './spec/support/nurse/tasks_helper'
 feature 'Nurse, Participant Tasks' do
   background { english_nurse.sign_in }
 
-  scenario 'Nurse cancels creation of additional contact form'
-  scenario 'Nurse creates additional contact'
+  scenario 'Nurse cancels creation of additional contact form' do
+    pt_451_nurse_tasks.open
+
+    additional_contact.open
+    navigation.cancel
+
+    expect(pt_451_nurse_tasks).to have_no_tasks_in_count
+  end
+
+  scenario 'Nurse creates additional contact' do
+    pt_451_nurse_tasks.open
+
+    additional_contact.create
+
+    expect(pt_451_nurse_tasks).to have_no_tasks_in_count
+
+    # check contact information for completed task
+    contact_information.open
+
+    expect(contact_information).to have_additional_contact
+  end
+
   scenario 'Nurse sees correct task count with multiple tasks due'
 
   scenario 'Nurse sees number of days since help request was due' do
@@ -283,8 +303,34 @@ feature 'Nurse, Participant Tasks' do
     expect(confirmation_call).to be_canceled
   end
 
-  scenario 'Nurse cancels out of reschedule confirmation call form'
-  scenario 'Nurse reschedules confirmation call' # check task count
+  scenario 'Nurse cancels out of reschedule confirmation call form' do
+    pt_303_nurse_tasks.open
+
+    expect(pt_303_nurse_tasks).to have_one_task_in_count
+
+    expect(confirmation_call).to be_active
+
+    confirmation_call.open_reschedule_form
+    navigation.cancel
+
+    expect(pt_303_nurse_tasks).to have_one_task_in_count
+
+    expect(confirmation_call).to be_active
+  end
+
+  scenario 'Nurse reschedules confirmation call' do
+    pt_304_nurse_tasks.open
+
+    expect(pt_304_nurse_tasks).to have_one_task_in_count
+
+    expect(confirmation_call).to be_active
+
+    confirmation_call.reschedule
+
+    expect(pt_304_nurse_tasks).to have_no_tasks_in_count
+
+    expect(confirmation_call).to be_scheduled
+  end
 
   scenario 'Nurse cancels out of confirmation call form' do
     pt_306_nurse_tasks.open
@@ -362,8 +408,34 @@ feature 'Nurse, Participant Tasks' do
     expect(initial_in_person_appt).to be_canceled
   end
 
-  scenario 'Nurse cancels out of initial in-person appt reschedule form'
-  scenario 'Nurse reschedules initial in-person appointment'
+  scenario 'Nurse cancels out of initial in-person appt reschedule form' do
+    pt_317_nurse_tasks.open
+
+    expect(pt_317_nurse_tasks).to have_one_task_in_count
+
+    expect(initial_in_person_appt).to be_active
+
+    initial_in_person_appt.open_reschedule_form
+    navigation.cancel
+
+    expect(pt_317_nurse_tasks).to have_one_task_in_count
+
+    expect(initial_in_person_appt).to be_active
+  end
+
+  scenario 'Nurse reschedules initial in-person appointment' do
+    pt_318_nurse_tasks.open
+
+    expect(pt_318_nurse_tasks).to have_one_task_in_count
+
+    expect(initial_in_person_appt).to be_active
+
+    initial_in_person_appt.reschedule
+
+    expect(pt_318_nurse_tasks).to have_no_tasks_in_count
+
+    expect(initial_in_person_appt).to be_scheduled
+  end
 
   scenario 'Nurse cancels out of a initial in-person appt creation form' do
     pt_313_nurse_tasks.open
@@ -463,8 +535,6 @@ feature 'Nurse, Participant Tasks' do
     expect(patient_319).to have_tasks_completed
   end
 
-  scenario 'Nurse sees tasks change when initial appointment is rescheduled'
-
   scenario 'Nurse sees number of days since follow up call week 1 was due' do
     pt_708_nurse_tasks.open
 
@@ -492,8 +562,34 @@ feature 'Nurse, Participant Tasks' do
     expect(follow_up_week_1).to be_canceled
   end
 
-  scenario 'Nurse cancels out of reschedule follow up week one'
-  scenario 'Nurse reschedules follow up call week one'
+  scenario 'Nurse cancels out of reschedule follow up week one' do
+    pt_321_nurse_tasks.open
+
+    expect(pt_320_nurse_tasks).to have_one_task_in_count
+
+    expect(follow_up_week_1).to be_active
+
+    follow_up_week_1.open_reschedule_form
+    navigation.cancel
+
+    expect(pt_320_nurse_tasks).to have_one_task_in_count
+
+    expect(follow_up_week_1).to be_active
+  end
+
+  scenario 'Nurse reschedules follow up call week one' do
+    pt_321_nurse_tasks.open
+
+    expect(pt_320_nurse_tasks).to have_one_task_in_count
+
+    expect(follow_up_week_1).to be_active
+
+    follow_up_week_1.reschedule
+
+    expect(pt_320_nurse_tasks).to have_no_tasks_in_count
+
+    expect(follow_up_week_1).to be_scheduled
+  end
 
   scenario 'Nurse cancels out of follow up call week 1 creation form' do
     pt_322_nurse_tasks.open
@@ -638,10 +734,36 @@ feature 'Nurse, Participant Tasks' do
     expect(follow_up_week_3).to be_canceled
   end
 
-  scenario 'Nurse cancels out of reschedule follow up call week 3'
-  scenario 'Nurse reschedules follow up call week 3'
+  scenario 'Nurse cancels out of reschedule follow up call week 3' do
+    pt_333_nurse_tasks.open
 
-  scenario 'Nurse cancels third contact creation' do
+    expect(pt_333_nurse_tasks).to have_one_task_in_count
+
+    expect(follow_up_week_3).to be_active
+
+    follow_up_week_3.open_reschedule_form
+    navigation.cancel
+
+    expect(pt_333_nurse_tasks).to have_one_task_in_count
+
+    expect(follow_up_week_3).to be_active
+  end
+
+  scenario 'Nurse reschedules follow up call week 3' do
+    pt_333_nurse_tasks.open
+
+    expect(pt_333_nurse_tasks).to have_one_task_in_count
+
+    expect(follow_up_week_3).to be_active
+
+    follow_up_week_3.reschedule
+
+    expect(pt_333_nurse_tasks).to have_no_tasks_in_count
+
+    expect(follow_up_week_3).to be_scheduled
+  end
+
+  scenario 'Nurse cancels follow up call week 3 creation form' do
     pt_330_nurse_tasks.open
 
     expect(confirmation_call).to be_complete
@@ -660,7 +782,7 @@ feature 'Nurse, Participant Tasks' do
     expect(follow_up_week_3).to_not be_complete
   end
 
-  scenario 'Nurse must enter an integer for length of call in third contact' do
+  scenario 'Nurse must enter an integer for length of call' do
     pt_331_nurse_tasks.open
     follow_up_week_3.confirm
     pt_331_nurse_tasks.enter_session_length
@@ -771,8 +893,34 @@ feature 'Nurse, Participant Tasks' do
     expect(call_to_schedule_final_appointment).to be_canceled
   end
 
-  scenario 'Nurse cancels out of reschedule call to schedule final appointment'
-  scenario 'Nurse reschedules call to schedule final appointment'
+  scenario 'Nurse cancels out of reschedule call to schedule final appt' do
+    pt_705_nurse_tasks.open
+
+    expect(pt_705_nurse_tasks).to have_one_task_in_count
+
+    expect(call_to_schedule_final_appointment).to be_active
+
+    call_to_schedule_final_appointment.open_reschedule_form
+    navigation.cancel
+
+    expect(pt_705_nurse_tasks).to have_one_task_in_count
+
+    expect(call_to_schedule_final_appointment).to be_active
+  end
+
+  scenario 'Nurse reschedules call to schedule final appointment' do
+    pt_705_nurse_tasks.open
+
+    expect(pt_705_nurse_tasks).to have_one_task_in_count
+
+    expect(call_to_schedule_final_appointment).to be_active
+
+    call_to_schedule_final_appointment.reschedule
+
+    expect(pt_705_nurse_tasks).to have_no_tasks_in_count
+
+    expect(call_to_schedule_final_appointment).to be_scheduled
+  end
 
   scenario 'Nurse cancels out of call to schedule final appointment' do
     pt_700_nurse_tasks.open
@@ -863,8 +1011,34 @@ feature 'Nurse, Participant Tasks' do
     expect(final_appointment).to be_canceled
   end
 
-  scenario 'Nurse cancels out of reschedule final appointment'
-  scenario 'Nurse reschedules final appointment'
+  scenario 'Nurse cancels out of reschedule final appointment' do
+    pt_345_nurse_tasks.open
+
+    expect(pt_345_nurse_tasks).to have_one_task_in_count
+
+    expect(final_appointment).to be_active
+
+    final_appointment.open_reschedule_form
+    navigation.cancel
+
+    expect(pt_345_nurse_tasks).to have_one_task_in_count
+
+    expect(final_appointment).to be_active
+  end
+
+  scenario 'Nurse reschedules final appointment' do
+    pt_345_nurse_tasks.open
+
+    expect(pt_345_nurse_tasks).to have_one_task_in_count
+
+    expect(final_appointment).to be_active
+
+    final_appointment.reschedule
+
+    expect(pt_345_nurse_tasks).to have_no_tasks_in_count
+
+    expect(final_appointment).to be_scheduled
+  end
 
   scenario 'Nurse cancels final appointment form' do
     pt_338_nurse_tasks.open

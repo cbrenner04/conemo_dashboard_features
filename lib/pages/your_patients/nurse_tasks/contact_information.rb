@@ -102,6 +102,11 @@ class YourPatients
                   ' phone returned?:'
       end
 
+      def has_additional_contact?
+        find('.status-bar')
+          .has_css?('.visited.popover', text: 'Additional contact')
+      end
+
       def edit_confirmation_call
         edit_session('Confirmation call')
       end

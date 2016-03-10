@@ -36,20 +36,18 @@ class YourPatients
     end
 
     def select_ability
-      selector = all('.select2-container')
       selector[10].click
       ability = ['3 - Seems to be able to use the application',
                  '2 - Seems to have some difficulties',
                  '1 - Seems to have great difficulty'].sample
-      select_non_date_item(ability)
+      select_list_item(ability)
     end
 
     def select_motivation
-      selector = all('.select2-container')
       selector[11].click
       motivation = ['3 – Very interested', '2 – Somewhat interested',
                     '1 – Not interested'].sample
-      select_non_date_item(motivation)
+      select_list_item(motivation)
     end
 
     def has_new_supervisor_contact?

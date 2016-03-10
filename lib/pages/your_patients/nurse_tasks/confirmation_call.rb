@@ -7,18 +7,46 @@ class YourPatients
       include Capybara::DSL
       include NurseTasksForms
 
+      def initialize
+        @task_name ||= 'Confirmation call'
+      end
+
       def active?
-        has_list_item?('Confirmation call')
-        has_active_progress_bar_item?('Confirmation call')
+        has_list_item? @task_name
+        has_active_progress_bar_item? @task_name
+      end
+
+      def canceled?
+        has_no_list_item? @task_name
+        has_canceled_progress_bar_item? @task_name
+      end
+
+      def complete?
+        has_no_list_item? @task_name
+        has_complete_progress_bar_item? @task_name
+      end
+
+      def scheduled?
+        has_no_list_item? @task_name
+        has_scheduled_progress_bar_item? @task_name
       end
 
       def confirm
-        confirm_task('Confirmation call')
+        confirm_task @task_name
         visible?
       end
 
+      def open_reschedule_form
+        open_reschedule @task_name
+      end
+
+      def reschedule
+        open_reschedule_form
+        reschedule_task
+      end
+
       def visible?
-        has_css?('h1', text: 'Confirmation call')
+        has_css?('h1', text: @task_name)
       end
 
       def enter_first_appt_location
@@ -26,17 +54,7 @@ class YourPatients
       end
 
       def cancel
-        cancel_task('Confirmation call')
-      end
-
-      def canceled?
-        has_no_list_item?('Confirmation call')
-        has_canceled_progress_bar_item?('Confirmation call')
-      end
-
-      def complete?
-        has_no_list_item?('Confirmation call')
-        has_complete_progress_bar_item?('Confirmation call')
+        cancel_task @task_name
       end
     end
   end
