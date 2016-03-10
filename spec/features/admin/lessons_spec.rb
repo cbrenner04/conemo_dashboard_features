@@ -72,7 +72,7 @@ feature 'Admin, Lessons' do
 
   scenario 'Admin deletes a lesson' do
     lesson_14.delete
-
+    # fails because of dependent contact_access_event
     expect(lesson_14).to_not be_visible
   end
 

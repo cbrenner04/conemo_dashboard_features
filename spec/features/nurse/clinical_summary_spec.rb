@@ -20,7 +20,14 @@ feature 'Nurse, Clinical Summary' do
 
   scenario 'Nurse creates a note'
   scenario 'Nurse deletes a note'
-  scenario 'Nurse sees lesson numbers, release dates, titles'
+
+  scenario 'Nurse sees lesson numbers, release dates, titles' do
+    2.times { navigation.scroll_down }
+    pt_300_nurse_tasks.open
+    pt_300_clinical_summary.open
+
+    expect(pt_300_clinical_summary).to have_lesson_table_content
+  end
 
   scenario 'Nurse sees current lesson (1st) highlighted' do
     2.times { navigation.scroll_down }

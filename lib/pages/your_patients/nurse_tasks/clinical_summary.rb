@@ -7,6 +7,7 @@ class YourPatients
   class NurseTasks
     # page object for the reports page of active participants
     class ClinicalSummary
+      include RSpec::Matchers
       include Capybara::DSL
 
       def initialize(clinical_summary)
@@ -45,21 +46,28 @@ class YourPatients
         end
       end
 
-      def lesson_table
-        find('#lessons')
+      def has_lesson_table_content?
+        visible?
+        total_rows = (lesson_table.all('tr').count - 1)
+        table_content = Range.new(1, total_rows).map { |i| lesson_row(i).text }
+
+        expect(table_content).to eq(expected_lessons)
       end
 
       def lesson_row(num)
-        num == 1 ? all('tr:nth-child(1)')[1] : find("tr:nth-child(#{num})")
+        if num == 1
+          lesson_table.all('tr:nth-child(1)')[1]
+        else
+          lesson_table.find("tr:nth-child(#{num})")
+        end
       end
 
       def has_current_lesson?
         visible? # weird behavior if it doesn't find something first
-        within('#lessons') do
-          l = lesson_row(@current_lesson)
-          l.has_css?('.info')
-          has_css?('.un-released', count: (15 - @current_lesson))
-        end
+        l = lesson_row(@current_lesson)
+        l.has_css?('.info')
+        lesson_table.has_css?('.un-released',
+                              count: (total_lessons - @current_lesson))
       end
 
       def has_unread_lesson?
@@ -102,6 +110,61 @@ class YourPatients
       end
 
       private
+
+      def lesson_table
+        find('table', text: 'Lesson')
+      end
+
+      def total_lessons
+        @total_lessons ||= lesson_table
+                           .all('tr').last
+                           .first('td').text.to_i
+      end
+
+      def expected_lessons
+        @expected_lesson ||= total_lessons == 16 ? alt_lessons : all_lessons
+      end
+
+      def alt_lessons
+        @alt_lesson ||= [
+          "1 #{(Date.today).strftime('%B %d, %Y')} Lesson 1",
+          "2 #{(Date.today + 1).strftime('%B %d, %Y')} Lesson 2",
+          "3 #{(Date.today + 2).strftime('%B %d, %Y')} Lesson 3",
+          "4 #{(Date.today + 3).strftime('%B %d, %Y')} Lesson 4",
+          "5 #{(Date.today + 4).strftime('%B %d, %Y')} Lesson 5",
+          "6 #{(Date.today + 5).strftime('%B %d, %Y')} Lesson 6",
+          "7 #{(Date.today + 6).strftime('%B %d, %Y')} Lesson 7",
+          "8 #{(Date.today + 7).strftime('%B %d, %Y')} Lesson 8",
+          "9 #{(Date.today + 8).strftime('%B %d, %Y')} Lesson 9",
+          "10 #{(Date.today + 9).strftime('%B %d, %Y')} Lesson 10",
+          "11 #{(Date.today + 10).strftime('%B %d, %Y')} Lesson 11",
+          "12 #{(Date.today + 11).strftime('%B %d, %Y')} Edited Lesson",
+          "13 #{(Date.today + 12).strftime('%B %d, %Y')} Lesson 13",
+          "14 #{(Date.today + 13).strftime('%B %d, %Y')} Lesson 14",
+          "15 #{(Date.today + 14).strftime('%B %d, %Y')} New Lesson",
+          "16 #{(Date.today + 14).strftime('%B %d, %Y')} Lesson 15"
+        ]
+      end
+
+      def all_lessons
+        @all_lessons ||= [
+          "1 #{(Date.today).strftime('%B %d, %Y')} Lesson 1",
+          "2 #{(Date.today + 1).strftime('%B %d, %Y')} Lesson 2",
+          "3 #{(Date.today + 2).strftime('%B %d, %Y')} Lesson 3",
+          "4 #{(Date.today + 3).strftime('%B %d, %Y')} Lesson 4",
+          "5 #{(Date.today + 4).strftime('%B %d, %Y')} Lesson 5",
+          "6 #{(Date.today + 5).strftime('%B %d, %Y')} Lesson 6",
+          "7 #{(Date.today + 6).strftime('%B %d, %Y')} Lesson 7",
+          "8 #{(Date.today + 7).strftime('%B %d, %Y')} Lesson 8",
+          "9 #{(Date.today + 8).strftime('%B %d, %Y')} Lesson 9",
+          "10 #{(Date.today + 9).strftime('%B %d, %Y')} Lesson 10",
+          "11 #{(Date.today + 10).strftime('%B %d, %Y')} Lesson 11",
+          "12 #{(Date.today + 11).strftime('%B %d, %Y')} Lesson 12",
+          "13 #{(Date.today + 12).strftime('%B %d, %Y')} Lesson 13",
+          "14 #{(Date.today + 13).strftime('%B %d, %Y')} Lesson 14",
+          "15 #{(Date.today + 14).strftime('%B %d, %Y')} Lesson 15"
+        ]
+      end
 
       def first_apt
         @first_apt ||= YourPatients::NurseTasks::InitialInPersonAppointment.new

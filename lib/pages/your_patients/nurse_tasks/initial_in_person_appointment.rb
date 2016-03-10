@@ -26,7 +26,7 @@ class YourPatients
         has_complete_progress_bar_item? @task_name
       end
 
-      def complete?
+      def scheduled?
         has_no_list_item? @task_name
         has_scheduled_progress_bar_item? @task_name
       end
