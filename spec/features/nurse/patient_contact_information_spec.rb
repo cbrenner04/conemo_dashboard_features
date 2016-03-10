@@ -55,7 +55,7 @@ feature 'Nurse, Participant Contact Information' do
     pt_302_contact_info.open
     pt_302_contact_info.select_edit_smartphone_information
     pt_302_contact_info.enter_smartphone_number
-    pt_302_contact_info.select_all_smartphone_radios
+    pt_302_contact_info.enter_phone_id
     navigation.submit
     pt_302_contact_info.open
 
@@ -69,6 +69,7 @@ feature 'Nurse, Participant Contact Information' do
 
     expect(confirmation_call).to be_visible
 
+    confirmation_call.enter_first_appt_location
     navigation.submit
     pt_342_contact_info_1.open
 
@@ -80,6 +81,7 @@ feature 'Nurse, Participant Contact Information' do
     pt_342_contact_info_1.open
     pt_342_contact_info_1.edit_initial_appointment
     pt_342_nurse_tasks_1.enter_session_length
+    initial_appointment.enter_location
     navigation.submit
     pt_342_contact_info_1.open
 
@@ -102,7 +104,8 @@ feature 'Nurse, Participant Contact Information' do
     pt_342_contact_info_3.open
     pt_342_contact_info_3.edit_follow_up_week_3
     pt_342_nurse_tasks_3.enter_session_length
-    sleep(1)
+    pt_342_nurse_tasks_3.select_ability
+    pt_342_nurse_tasks_3.select_motivation
     navigation.submit
     pt_342_contact_info_3.open
 

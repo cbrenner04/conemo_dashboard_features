@@ -53,6 +53,16 @@ class YourPatients
         has_css?('h1', text: 'Call to schedule final in person appointment')
       end
 
+      def enter_next_contact_date
+        select_next_date(7)
+      end
+
+      def has_next_contact_date?
+        next_week = Date.today + 7
+        selector[6].has_text? next_week.strftime('%B')
+        selector[7].has_text? next_week.strftime('%-d')
+      end
+
       def select_location
         sleep(1)
         selector[10].click

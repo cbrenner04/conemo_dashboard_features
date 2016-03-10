@@ -49,6 +49,10 @@ class YourPatients
         has_css?('h1', text: @task_name)
       end
 
+      def enter_next_contact_date
+        select_next_date(7)
+      end
+
       def enter_first_appt_location
         enter_task_location(10)
       end

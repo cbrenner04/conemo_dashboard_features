@@ -52,10 +52,8 @@ class YourPatients
         fill_in 'smartphone[number]', with: '12345678901'
       end
 
-      def select_all_smartphone_radios
-        find('#smartphone_is_smartphone_owner_true').click
-        find('#smartphone_is_app_compatible_true').click
-        find('#smartphone_is_owned_by_participant_true').click
+      def enter_phone_id
+        fill_in 'smartphone[phone_identifier]', with: "123#{@id}"
       end
 
       def has_smartphone_information?

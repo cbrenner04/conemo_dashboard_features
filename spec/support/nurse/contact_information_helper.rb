@@ -16,6 +16,11 @@ def confirmation_call
   @confirmation_call ||= YourPatients::NurseTasks::ConfirmationCall.new
 end
 
+def initial_appointment
+  @initial_appointment ||=
+    YourPatients::NurseTasks::InitialInPersonAppointment.new
+end
+
 def final_appointment
   @final_appointment ||= YourPatients::NurseTasks::FinalAppointment.new
 end

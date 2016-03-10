@@ -30,7 +30,7 @@ class Navigation
   end
 
   def cancel
-    click_on 'Cancel'
+    find('a', text: 'Cancel').click
   end
 
   def submit

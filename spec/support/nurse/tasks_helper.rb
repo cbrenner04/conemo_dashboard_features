@@ -453,5 +453,9 @@ def pt_341_nurse_tasks
 end
 
 def your_patients
-  @your_patients ||= YourPatients.new(pt_id: 341)
+  @your_patients ||= YourPatients.new(pt_id: 'fake')
+end
+
+def patient_341
+  @patient_341 ||= YourPatients.new(pt_id: 341)
 end

@@ -53,6 +53,10 @@ class YourPatients
         reschedule_task
       end
 
+      def enter_next_contact_date
+        select_next_date(8)
+      end
+
       def has_next_contact_date?
         next_week = Date.today + 7
         selector[6].has_text? next_week.strftime('%B')

@@ -16,7 +16,7 @@ class YourPatients
     has_css?('h2', text: 'Your Patients')
   end
 
-  def has_patient?
+  def in_table?
     has_css?('tr', text: @pt_id)
   end
 

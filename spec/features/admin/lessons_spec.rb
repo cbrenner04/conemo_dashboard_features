@@ -23,6 +23,8 @@ feature 'Admin, Lessons' do
     expect(new_lesson).to be_visible
   end
 
+  scenario 'Admin adds a lesson with activity planning'
+
   scenario 'Admin cancels adding a slide' do
     slides.open_add_slide
     navigation.cancel

@@ -209,10 +209,10 @@ feature 'Nurse, Clinical Summary' do
 
   scenario 'Nurse sees participant accessed the 1st lesson on time' do
     2.times { navigation.scroll_down }
-    pt_402_nurse_tasks.open
-    pt_402_clinical_summary.open
+    pt_400_nurse_tasks.open
+    pt_400_clinical_summary.open
 
-    expect(pt_402_clinical_summary).to have_ontime_lesson
+    expect(pt_400_clinical_summary).to have_ontime_lesson
   end
 
   scenario 'Nurse sees participant accessed the 2nd lesson on time' do

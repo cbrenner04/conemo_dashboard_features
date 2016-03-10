@@ -74,6 +74,11 @@ module NurseTasksForms
     find('.select2-result-label', text: item).click
   end
 
+  def select_next_date(num)
+    selector[num].click
+    select_list_item (Date.today + 1).strftime('%-d')
+  end
+
   private
 
   def navigation

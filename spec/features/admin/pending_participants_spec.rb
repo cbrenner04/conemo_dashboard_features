@@ -206,6 +206,8 @@ feature 'Admin, Pending Participants' do
     participant_100.assign_nurse
 
     expect(participant_100).to_not be_visible
+
+    # check for configuration token
   end
 
   scenario 'Admin disqualifies a participant' do
