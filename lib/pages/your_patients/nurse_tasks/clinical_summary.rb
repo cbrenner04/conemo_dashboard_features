@@ -122,7 +122,7 @@ class YourPatients
       end
 
       def expected_lessons
-        @expected_lesson ||= total_lessons == 16 ? alt_lessons : all_lessons
+        @expected_lesson ||= total_lessons == 17 ? alt_lessons : all_lessons
       end
 
       def alt_lessons
@@ -142,7 +142,8 @@ class YourPatients
           "13 #{(Date.today + 12).strftime('%B %d, %Y')} Lesson 13",
           "14 #{(Date.today + 13).strftime('%B %d, %Y')} Lesson 14",
           "15 #{(Date.today + 14).strftime('%B %d, %Y')} New Lesson",
-          "16 #{(Date.today + 14).strftime('%B %d, %Y')} Lesson 15"
+          "16 #{(Date.today + 14).strftime('%B %d, %Y')} Lesson 15",
+          "17 #{(Date.today + 15).strftime('%B %d, %Y')} Activity Lesson"
         ]
       end
 

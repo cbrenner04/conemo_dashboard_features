@@ -17,13 +17,17 @@ feature 'Admin, Lessons' do
     expect(lessons).to be_on_lesson_list_page
   end
 
-  scenario 'Admin adds a lesson' do
+  scenario 'Admin adds a lesson without activity planning' do
     new_lesson.add
 
     expect(new_lesson).to be_visible
   end
 
-  scenario 'Admin adds a lesson with activity planning'
+  scenario 'Admin adds a lesson with activity planning' do
+    activity_lesson.add_with_activity_planning
+
+    expect(activity_lesson).to be_visible
+  end
 
   scenario 'Admin cancels adding a slide' do
     slides.open_add_slide
@@ -72,12 +76,6 @@ feature 'Admin, Lessons' do
     expect(lesson_13_slide_2).to be_visible
   end
 
-  scenario 'Admin deletes a lesson' do
-    lesson_14.delete
-    # fails because of dependent contact_access_event
-    expect(lesson_14).to_not be_visible
-  end
-
   scenario 'Admin deletes a slide' do
     lesson_15_slide_1.delete
 
@@ -88,5 +86,15 @@ feature 'Admin, Lessons' do
     lesson_8_slide_3.navigate_with_breadcrumbs
 
     expect(lessons).to be_on_lesson_list_page
+  end
+end
+
+feature 'Spanish Admin, Lessons' do
+  scenario 'Admin deletes a lesson' do
+    spanish_admin.sign_in
+    spanish_lessons.open
+    spanish_lesson.delete
+
+    expect(spanish_lesson).to_not be_visible
   end
 end

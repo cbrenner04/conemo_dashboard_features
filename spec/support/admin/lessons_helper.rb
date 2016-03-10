@@ -26,6 +26,13 @@ def new_lesson
   )
 end
 
+def activity_lesson
+  @actiivty_lesson ||= Lessons.new(
+    title: 'Activity Lesson',
+    day: 16
+  )
+end
+
 def new_slide
   @new_slide ||= Lessons::Slides.new(
     lesson: 'Lesson 11',
@@ -96,5 +103,16 @@ def lesson_8_slide_3
   @lesson_8_slide_3 ||= Lessons::Slides.new(
     lesson: 'Lesson 8',
     title: 'Slide 3'
+  )
+end
+
+def spanish_lessons
+  @spanish_lessons ||= Lessons.new(locale: 'spanish')
+end
+
+def spanish_lesson
+  @spanish_lesson ||= Lessons.new(
+    title: '¡Bienvenido a CONEMO!',
+    locale: 'spanish'
   )
 end
