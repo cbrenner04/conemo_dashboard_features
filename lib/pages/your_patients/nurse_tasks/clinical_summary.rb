@@ -2,6 +2,7 @@ require './lib/pages/your_patients/nurse_tasks/initial_in_person_appointment'
 require './lib/pages/your_patients/nurse_tasks/follow_up_call_week_one'
 require './lib/pages/your_patients/nurse_tasks/follow_up_call_week_three'
 require './lib/pages/your_patients/nurse_tasks/final_appointment'
+require './lib/pages/navigation'
 
 class YourPatients
   class NurseTasks
@@ -16,6 +17,7 @@ class YourPatients
         @second_message ||= clinical_summary[:second_message]
         @current_lesson ||= clinical_summary[:current_lesson]
         @other_lesson ||= clinical_summary[:other_lesson]
+        @note ||= clinical_summary[:note]
       end
 
       def open
@@ -33,6 +35,21 @@ class YourPatients
       def has_messages?
         has_text? @first_message
         has_text? @second_message
+      end
+
+      def has_note?
+        has_text? @note
+      end
+
+      def create_note
+        find('th', text: 'Notes').find('.fa-edit').click
+        fill_in 'patient_contact[note]', with: @note
+        navigation.submit
+      end
+
+      def delete_note
+        find('td', text: @note).find('.fa-times-circle').click
+        accept_alert 'Are you sure you want to delete this note?'
       end
 
       def show_number_of_logins
@@ -165,6 +182,10 @@ class YourPatients
           "14 #{(Date.today + 13).strftime('%B %d, %Y')} Lesson 14",
           "15 #{(Date.today + 14).strftime('%B %d, %Y')} Lesson 15"
         ]
+      end
+
+      def navigation
+        @navigation ||= Navigation.new
       end
 
       def first_apt

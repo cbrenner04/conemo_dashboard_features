@@ -29,7 +29,8 @@ end
 def pt_300_clinical_summary
   @pt_300_clinical_summary ||= YourPatients::NurseTasks::ClinicalSummary.new(
     id: 300,
-    current_lesson: 1
+    current_lesson: 1,
+    note: 'New notes!'
   )
 end
 
