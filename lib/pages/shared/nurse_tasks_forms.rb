@@ -76,7 +76,7 @@ module NurseTasksForms
 
   def select_next_date(num)
     selector[num].click
-    select_list_item (Date.today + 1).strftime('%-d')
+    select_list_item((Date.today + 1).strftime('%-d'))
   end
 
   private

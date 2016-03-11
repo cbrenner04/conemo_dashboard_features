@@ -83,6 +83,10 @@ feature 'English Nurse, Your Patients' do
     end
   end
 
+  # need to figure out how to do this w/o setting the overdue date with data
+  # may need to use something to manipulate the server time
+  # otherwise just have one set of examples testing css
+
   feature 'Overdue, tasks assigned before noon' do
     scenario 'Nurse sees confirmation call'
     scenario 'Nurse sees initial in person appointment'

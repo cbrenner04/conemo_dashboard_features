@@ -164,16 +164,19 @@ feature 'Admin, Pending Participants' do
   end
 
   scenario 'Admin activates a participant' do
-    participant_101.activate
-    participant_101.assign_nurse
+    pending_participants.create
+    participant_2000_contact_information.complete_form
+    navigation.submit
+    participant_2000.activate
+    participant_2000.assign_nurse
 
-    expect(participant_101).to_not be_visible
+    expect(participant_2000).to_not be_visible
 
     # check for configuration token
     english_admin.sign_out
     english_nurse.sign_in
 
-    expect(patient_101).to have_token
+    expect(patient_2000).to have_token
   end
 
   scenario 'Admin disqualifies a participant' do

@@ -43,16 +43,34 @@ def jane_doe
   )
 end
 
+def participant_2000
+  @participant_2000 ||= PendingParticipants.new(name: 'Last-2000, First')
+end
+
+def participant_2000_contact_information
+  @participant_2000_contact_information ||=
+    PendingParticipants::ContactInformation.new(
+      first_name: 'First',
+      last_name: 'Last-2000',
+      id: '2000',
+      unit: 'Some Healthy Place',
+      family_record: '1234',
+      phone: '12345678910',
+      emergency_contact_name: 'Papa Joe',
+      emergency_contact_phone: '12345678901',
+      email: 'participant_2000@example.com',
+      address: "100 Fake Ln\nSome City, USA, 12345",
+      enrollment_date: Date.today - 1,
+      gender: 'female'
+    )
+end
+
+def patient_2000
+  @patient_2000 ||= YourPatients.new(pt_id: 2000)
+end
+
 def participant_100
   @participant_100 ||= PendingParticipants.new(name: 'Last-100, First')
-end
-
-def participant_101
-  @participant_101 ||= PendingParticipants.new(name: 'Last-101, First')
-end
-
-def patient_101
-  @patient_101 ||= YourPatients.new(pt_id: 101)
 end
 
 def participant_102
