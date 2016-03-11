@@ -30,14 +30,6 @@ feature 'Nurse, Clinical Summary' do
     expect(pt_300_clinical_summary).to_not have_note
   end
 
-  scenario 'Nurse deletes a note' do
-    pt_1000_nurse_tasks.open
-    pt_1000_clinical_summary.open
-    pt_1000_clinical_summary.delete_note
-
-    expect(pt_1000_clinical_summary).to_not have_note
-  end
-
   scenario 'Nurse sees lesson numbers, release dates, titles' do
     2.times { navigation.scroll_down }
     pt_300_nurse_tasks.open
