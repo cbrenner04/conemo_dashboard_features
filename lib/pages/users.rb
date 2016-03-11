@@ -15,6 +15,11 @@ class Users
     find('.btn').click
   end
 
+  def sign_out
+    find('a', text: 'Sign out').click
+    find('h2', text: 'Sign in')
+  end
+
   def has_english_patient?
     find('.table').has_text? '304'
   end

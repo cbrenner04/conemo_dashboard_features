@@ -24,6 +24,12 @@ class YourPatients
     assigned_participants.each { |i| has_text? i }
   end
 
+  def has_token?
+    row_text = find('tr', text: @pt_id).text
+    updated_text = row_text.gsub("#{@pt_id} Confirmation call", '')
+    expect(updated_text).to match(/.+/)
+  end
+
   def has_configuration_tokens?
     ids = [338, 300, 326, 318, 305, 337, 308, 322, 325, 339]
     ids.each { |i| find('tr', text: i).has_text? "aBc#{i}XyZ" }

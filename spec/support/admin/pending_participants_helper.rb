@@ -3,6 +3,7 @@
 require './lib/pages/navigation'
 require './lib/pages/pending_participants/contact_information'
 require './lib/pages/pending_participants'
+require './lib/pages/your_patients'
 
 def pending_participants
   @pending_participants ||= PendingParticipants.new(name: 'fake')
@@ -48,6 +49,10 @@ end
 
 def participant_101
   @participant_101 ||= PendingParticipants.new(name: 'Last-101, First')
+end
+
+def patient_101
+  @patient_101 ||= YourPatients.new(pt_id: 101)
 end
 
 def participant_102

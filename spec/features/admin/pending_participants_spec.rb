@@ -34,6 +34,7 @@ feature 'Admin, Pending Participants' do
     navigation.submit
 
     expect(pending_participants).to_not have_landing_page_visible
+
     expect(contact_information).to have_form_visible
   end
 
@@ -55,6 +56,7 @@ feature 'Admin, Pending Participants' do
     navigation.submit
 
     expect(pending_participants).to_not have_landing_page_visible
+
     expect(contact_information).to have_form_visible
   end
 
@@ -76,6 +78,7 @@ feature 'Admin, Pending Participants' do
     navigation.submit
 
     expect(pending_participants).to_not have_landing_page_visible
+
     expect(contact_information).to have_form_visible
   end
 
@@ -97,6 +100,7 @@ feature 'Admin, Pending Participants' do
     navigation.submit
 
     expect(pending_participants).to_not have_landing_page_visible
+
     expect(contact_information).to have_form_visible
   end
 
@@ -118,52 +122,9 @@ feature 'Admin, Pending Participants' do
     navigation.submit
 
     expect(pending_participants).to_not have_landing_page_visible
+
     expect(contact_information).to have_form_visible
   end
-
-  # useless as there is a default value in the form
-  # scenario 'Admin cannot create a participant  wo filling in date of birth' do
-  #   pending_participants.create
-  #   new_participant_contact_information.fill_in_first_name
-  #   new_participant_contact_information.fill_in_last_name
-  #   new_participant_contact_information.fill_in_study_id
-  #   new_participant_contact_information.fill_in_health_unit
-  #   new_participant_contact_information.fill_in_family_record
-  #   new_participant_contact_information.fill_in_phone
-  #   new_participant_contact_information.fill_in_emergency_contact_name
-  #   new_participant_contact_information.fill_in_emergency_contact_phone
-  #   new_participant_contact_information.fill_in_email
-  #   new_participant_contact_information.fill_in_address
-  #   new_participant_contact_information.select_enrollment_date
-  #   new_participant_contact_information.choose_gender
-  #   new_participant_contact_information.choose_chronic_disorder
-  #   navigation.submit
-
-  #   expect(pending_participants).to_not have_landing_page_visible
-  #   expect(contact_information).to have_form_visible
-  # end
-
-  # useless as there is a default value in the form
-  # scenario 'Admin cannot create a pt wo filling in enrollment date' do
-  #   pending_participants.create
-  #   new_participant_contact_information.fill_in_first_name
-  #   new_participant_contact_information.fill_in_last_name
-  #   new_participant_contact_information.fill_in_study_id
-  #   new_participant_contact_information.fill_in_health_unit
-  #   new_participant_contact_information.fill_in_family_record
-  #   new_participant_contact_information.fill_in_phone
-  #   new_participant_contact_information.fill_in_emergency_contact_name
-  #   new_participant_contact_information.fill_in_emergency_contact_phone
-  #   new_participant_contact_information.fill_in_email
-  #   new_participant_contact_information.fill_in_address
-  #   new_participant_contact_information.select_dob
-  #   new_participant_contact_information.choose_gender
-  #   new_participant_contact_information.choose_chronic_disorder
-  #   navigation.submit
-
-  #   expect(pending_participants).to_not have_landing_page_visible
-  #   expect(contact_information).to have_form_visible
-  # end
 
   scenario 'Admin cannot create a participant without choosing gender' do
     pending_participants.create
@@ -182,6 +143,7 @@ feature 'Admin, Pending Participants' do
     navigation.submit
 
     expect(pending_participants).to_not have_landing_page_visible
+
     expect(contact_information).to have_form_visible
   end
 
@@ -202,23 +164,27 @@ feature 'Admin, Pending Participants' do
   end
 
   scenario 'Admin activates a participant' do
-    participant_100.activate
-    participant_100.assign_nurse
-
-    expect(participant_100).to_not be_visible
-
-    # check for configuration token
-  end
-
-  scenario 'Admin disqualifies a participant' do
-    participant_101.disqualify
-    participant_101.confirm_disqualify
+    participant_101.activate
+    participant_101.assign_nurse
 
     expect(participant_101).to_not be_visible
 
-    participant_101.select_ineligible_tab
+    # check for configuration token
+    english_admin.sign_out
+    english_nurse.sign_in
 
-    expect(participant_101).to be_visible
+    expect(patient_101).to have_token
+  end
+
+  scenario 'Admin disqualifies a participant' do
+    participant_100.disqualify
+    participant_100.confirm_disqualify
+
+    expect(participant_100).to_not be_visible
+
+    participant_100.select_ineligible_tab
+
+    expect(participant_100).to be_visible
   end
 
   scenario 'Admin activates a participant who was previously disqualified' do
