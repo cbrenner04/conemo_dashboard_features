@@ -11,8 +11,8 @@ class PendingParticipants
   end
 
   def has_landing_page_visible?
-    has_css?('h1', text: 'Pending Participants')
-    has_css?('#pending')
+    has_css?('h1', text: 'Pending Participants') &&
+      has_css?('#pending')
   end
 
   def activate

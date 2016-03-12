@@ -61,48 +61,48 @@ class YourPatients
       end
 
       def has_confirmation_call?
-        find('.status-bar').has_css?('.visited.popover', count: 1)
-        has_text? 'Confirmation call information Date of contact: ' \
-                  "#{DateTime.now.strftime('%B %d, %Y')}"
+        find('.timeline').has_css?('.timeline-panel', count: 1) &&
+          has_text?('Confirmation call information Date of contact: ' \
+                    "#{DateTime.now.strftime('%B %d, %Y')}")
       end
 
       def has_initial_appointment?
-        find('.status-bar').has_css?('.visited.popover', count: 2)
-        has_text? 'Initial in person appointment information Appointment ' \
-                  "date/time: #{DateTime.now.strftime('%B %d, %Y')} "
+        find('.timeline').has_css?('.timeline-panel', count: 2) &&
+          has_text?('Initial in person appointment information Appointment ' \
+                    "date/time: #{DateTime.now.strftime('%B %d, %Y')} ")
       end
 
       def has_follow_up_week_1?
-        find('.status-bar').has_css?('.visited.popover', count: 3)
-        has_text? 'Follow up call week 1 information Date of phone call: ' \
-                  "#{DateTime.now.strftime('%B %d, %Y')}"
-        has_text? 'Length of phone call (minutes): 120'
+        find('.timeline').has_css?('.timeline-panel', count: 3) &&
+          has_text?('Follow up call week 1 information Date of phone call: ' \
+                    "#{DateTime.now.strftime('%B %d, %Y')}") &&
+          has_text?('Length of phone call (minutes): 120')
       end
 
       def has_follow_up_week_3?
-        find('.status-bar').has_css?('.visited.popover', count: 4)
-        has_text? 'Follow up call week 3 information Contact At: ' \
-                  "#{DateTime.now.strftime('%B %d, %Y')}"
-        has_text? 'Length of phone call (minutes): 120'
+        find('.timeline').has_css?('.timeline-panel', count: 4) &&
+          has_text?('Follow up call week 3 information Contact At: ' \
+                    "#{DateTime.now.strftime('%B %d, %Y')}") &&
+          has_text?('Length of phone call (minutes): 120')
       end
 
       def has_call_to_schedule_final_appt?
-        find('.status-bar').has_css?('.visited.popover', count: 5)
-        has_text? 'Call to schedule final in person appointment Contact At:' \
-                  "#{DateTime.now.strftime('%B %d, %Y')}"
+        find('.timeline').has_css?('.timeline-panel', count: 5) &&
+          has_text?('Call to schedule final appointment Contact at: ' \
+                    "#{DateTime.now.strftime('%B %d, %Y')}")
       end
 
       def has_final_appointment?
-        find('.status-bar').has_css?('.visited.popover', count: 6)
-        has_text? 'Final in person appointment Date and time: ' \
-                  "#{DateTime.now.strftime('%B %d, %Y')}"
-        has_text? 'Location: 100 West Ln, Chicago, IL 60601 Was the' \
-                  ' phone returned?:'
+        find('.timeline').has_css?('.timeline-panel', count: 6) &&
+          has_text?('Final in person appointment Date and time: ' \
+                    "#{DateTime.now.strftime('%B %d, %Y')}") &&
+          has_text?('Location: 100 West Ln, Chicago, IL 60601 Was the' \
+                    ' phone returned?:')
       end
 
       def has_additional_contact?
-        find('.status-bar')
-          .has_css?('.visited.popover', text: 'Additional contact')
+        find('.timeline')
+          .has_css?('.timeline-panel', text: 'Additional contact')
       end
 
       def edit_confirmation_call

@@ -12,23 +12,23 @@ class YourPatients
       end
 
       def active?
-        has_list_item? @task_name
-        has_active_progress_bar_item? @task_name
+        has_list_item?(@task_name) &&
+          has_active_progress_bar_item?(@task_name)
       end
 
       def canceled?
-        has_no_list_item? @task_name
-        has_canceled_progress_bar_item? @task_name
+        has_no_list_item?(@task_name) &&
+          has_canceled_progress_bar_item?(@task_name)
       end
 
       def complete?
-        has_no_list_item? @task_name
-        has_complete_progress_bar_item? @task_name
+        has_no_list_item?(@task_name) &&
+          has_complete_progress_bar_item?(@task_name)
       end
 
       def scheduled?
-        has_no_list_item? @task_name
-        has_scheduled_progress_bar_item? @task_name
+        has_no_list_item?(@task_name) &&
+          has_scheduled_progress_bar_item?(@task_name)
       end
 
       def confirm

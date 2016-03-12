@@ -12,23 +12,23 @@ class YourPatients
       end
 
       def active?
-        has_list_item? @task_name
-        has_active_progress_bar_item? @task_name
+        has_list_item?(@task_name) &&
+          has_active_progress_bar_item?(@task_name)
       end
 
       def canceled?
-        has_no_list_item? @task_name
-        has_canceled_progress_bar_item? @task_name
+        has_no_list_item?(@task_name) &&
+          has_canceled_progress_bar_item?(@task_name)
       end
 
       def complete?
-        has_no_list_item? @task_name
-        has_complete_progress_bar_item? @task_name
+        has_no_list_item?(@task_name) &&
+          has_complete_progress_bar_item?(@task_name)
       end
 
       def scheduled?
-        has_no_list_item? @task_name
-        has_scheduled_progress_bar_item? @task_name
+        has_no_list_item?(@task_name) &&
+          has_scheduled_progress_bar_item?(@task_name)
       end
 
       def visible?
@@ -59,8 +59,8 @@ class YourPatients
 
       def has_next_contact_date?
         next_week = Date.today + 7
-        selector[6].has_text? next_week.strftime('%B')
-        selector[7].has_text? next_week.strftime('%-d')
+        selector[6].has_text?(next_week.strftime('%B')) &&
+          selector[7].has_text?(next_week.strftime('%-d'))
       end
 
       def enter_location

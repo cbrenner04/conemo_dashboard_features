@@ -14,6 +14,7 @@ class YourPatients
       @time_of_contact ||= nurse_task[:time_of_contact]
       @days_since_due ||= nurse_task[:days_since_due]
       @contact_type ||= nurse_task[:contact_type]
+      @tasks_count ||= nurse_task[:tasks_count]
     end
 
     def open
@@ -75,12 +76,16 @@ class YourPatients
       has_text? '0 tasks'
     end
 
+    def has_multiple_tasks_in_count?
+      has_text? "#{@tasks_count} tasks"
+    end
+
     def has_nothing_in_progress_bar?
-      has_css?('.prgoress')
-      has_no_css?('.progress-bar-future')
-      has_no_css?('.progress-bar-success')
-      has_no_css?('.progress-bar-warning')
-      has_no_css?('.progress-bar-danger')
+      has_css?('.progress') &&
+        has_no_css?('.progress-bar-future') &&
+        has_no_css?('.progress-bar-success') &&
+        has_no_css?('.progress-bar-warning') &&
+        has_no_css?('.progress-bar-danger')
     end
 
     private

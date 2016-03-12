@@ -25,9 +25,8 @@ class YourPatients
   end
 
   def has_token?
-    row_text = find('tr', text: @pt_id).text
-    updated_text = row_text.gsub("#{@pt_id} Confirmation call", '')
-    expect(updated_text).to match(/.+/)
+    expected_text = row_text.gsub("#{@pt_id} Confirmation call", '')
+    expect(expected_text).to match(/.+/)
   end
 
   def has_configuration_tokens?
@@ -43,6 +42,12 @@ class YourPatients
     conditionals.each { |i| expected_results.concat i }
 
     expect(actual_results).to eq(expected_results)
+  end
+
+  def has_tasks_ordered_correctly?
+    expected_text = row_text.gsub("#{@pt_id} ", '')
+    expect(expected_text)
+      .to eq 'Confirmation call, Help request, Lack of connectivity call'
   end
 
   def has_tasks_completed?
@@ -97,6 +102,10 @@ class YourPatients
 
   def patient_row
     find('tr', text: @pt_id)
+  end
+
+  def row_text
+    @row_text ||= find('tr', text: @pt_id).text
   end
 
   def assigned_participants

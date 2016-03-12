@@ -6,7 +6,7 @@ module NurseTasksForms
 
   def mark_task_resolved(type)
     find('.list-group-item', text: type)
-      .find('input[value = "Mark as resolved"]').click
+      .find('a', text: 'Mark as resolved').click
   end
 
   def contact_supervisor_for_task(type)

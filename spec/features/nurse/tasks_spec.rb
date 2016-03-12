@@ -21,14 +21,17 @@ feature 'Nurse, Participant Tasks' do
 
     expect(pt_451_nurse_tasks).to have_no_tasks_in_count
 
-    # not yet implemented
     # check contact information for completed task
-    # contact_information.open
+    contact_information.open
 
-    # expect(contact_information).to have_additional_contact
+    expect(contact_information).to have_additional_contact
   end
 
-  scenario 'Nurse sees correct task count with multiple tasks due'
+  scenario 'Nurse sees correct task count with multiple tasks due' do
+    pt_1000_nurse_tasks.open
+
+    expect(pt_1000_nurse_tasks).to have_multiple_tasks_in_count
+  end
 
   scenario 'Nurse sees number of days since help request was due' do
     pt_802_nurse_tasks.open
@@ -43,16 +46,16 @@ feature 'Nurse, Participant Tasks' do
     # check css in progress-bar
   end
 
-  # scenario 'Nurse cancels out of help request resolution form' do
-  #   pt_400_nurse_tasks.open
+  scenario 'Nurse cancels out of help request resolution form' do
+    pt_400_nurse_tasks.open
 
-  #   expect(help_request).to be_active
+    expect(help_request).to be_active
 
-  #   help_request.mark_resolved
-  #   navigation.cancel
+    help_request.mark_resolved
+    navigation.cancel
 
-  #   expect(help_request).to be_active
-  # end
+    expect(help_request).to be_active
+  end
 
   scenario 'Nurse marks help request as resolved' do
     pt_400_nurse_tasks.open
@@ -62,11 +65,13 @@ feature 'Nurse, Participant Tasks' do
     expect(help_request).to be_active
 
     help_request.mark_resolved
-    # fill out form
+    help_request.complete_resolution_form
 
     expect(help_request).to_not be_active
 
     expect(pt_400_nurse_tasks).to have_no_tasks_in_count
+
+    # check contact information for completed task
   end
 
   scenario 'Nurse contacts supervisor for help request' do
@@ -114,16 +119,16 @@ feature 'Nurse, Participant Tasks' do
     # check css in progress-bar
   end
 
-  # scenario 'Nurse cancels out of non-connectivity task resolution form' do
-  #   pt_410_nurse_tasks.open
+  scenario 'Nurse cancels out of non-connectivity task resolution form' do
+    pt_410_nurse_tasks.open
 
-  #   expect(lack_of_connectivity_call).to be_active
+    expect(lack_of_connectivity_call).to be_active
 
-  #   lack_of_connectivity_call.mark_resolved
-  #   navigation.cancel
+    lack_of_connectivity_call.mark_resolved
+    navigation.cancel
 
-  #   expect(lack_of_connectivity_call).to be_active
-  # end
+    expect(lack_of_connectivity_call).to be_active
+  end
 
   scenario 'Nurse marks non-connectivity task as resolved' do
     pt_410_nurse_tasks.open
@@ -133,7 +138,7 @@ feature 'Nurse, Participant Tasks' do
     expect(lack_of_connectivity_call).to be_active
 
     lack_of_connectivity_call.mark_resolved
-    # complete form
+    lack_of_connectivity_call.complete_resolution_form
 
     expect(pt_410_nurse_tasks).to have_no_tasks_in_count
 
@@ -211,18 +216,18 @@ feature 'Nurse, Participant Tasks' do
     # check css
   end
 
-  # scenario 'Nurse cancels out of non-adherence task resolution form' do
-  #   pt_420_nurse_tasks.open
+  scenario 'Nurse cancels out of non-adherence task resolution form' do
+    pt_420_nurse_tasks.open
 
-  #   expect(pt_420_nurse_tasks).to have_one_task_in_count
+    expect(pt_420_nurse_tasks).to have_one_task_in_count
 
-  #   expect(non_adherence_call).to be_active
+    expect(non_adherence_call).to be_active
 
-  #   pt_420_nurse_tasks.mark_non_adherence_resolved
-  #   navigation.cancel
+    non_adherence_call.mark_resolved
+    navigation.cancel
 
-  #   expect(non_adherence_call).to be_active
-  # end
+    expect(non_adherence_call).to be_active
+  end
 
   scenario 'Nurse marks non-adherence task as resolved' do
     pt_420_nurse_tasks.open
@@ -232,7 +237,7 @@ feature 'Nurse, Participant Tasks' do
     expect(non_adherence_call).to be_active
 
     non_adherence_call.mark_resolved
-    # complete form
+    non_adherence_call.complete_resolution_form
 
     expect(pt_420_nurse_tasks).to have_no_tasks_in_count
 
@@ -365,7 +370,6 @@ feature 'Nurse, Participant Tasks' do
 
     expect(confirmation_call).to be_complete
 
-    # this will fail due to pre-populated date
     expect(initial_in_person_appt).to be_scheduled
 
     # check contact information page for completeness
@@ -974,11 +978,10 @@ feature 'Nurse, Participant Tasks' do
     expect(final_appointment).to be_scheduled
 
     # Check contact information for completeness
-    # not yet implemented
-    # clinical_summary.return_to_tasks
-    # contact_information.open
+    clinical_summary.open
+    contact_information.open
 
-    # expect(contact_information).to have_call_to_schedule_final_appt
+    expect(contact_information).to have_call_to_schedule_final_appt
 
     # check Your Patients list for old / new tasks
     your_patients.return

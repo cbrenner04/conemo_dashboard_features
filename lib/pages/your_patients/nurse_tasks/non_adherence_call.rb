@@ -1,3 +1,6 @@
+require './lib/pages/navigation'
+require './lib/pages/shared/nurse_tasks_forms'
+
 class YourPatients
   class NurseTasks
     # page object for non adherence call
@@ -13,8 +16,30 @@ class YourPatients
         mark_task_resolved('Non adherence call')
       end
 
+      def complete_resolution_form
+        sleep(1)
+        selector[5].click
+        responses = [
+          'Difficulties using CONEMO',
+          'No time for CONEMO',
+          'Not willing to use CONEMO',
+          'Failure of data transfer (sessions were completed)',
+          'Patient is traveling (without the smartphone)',
+          'Patient does not state a reason',
+          'Other'
+        ].sample
+        select_list_item(responses)
+        navigation.submit
+      end
+
       def contact_supervisor
         contact_supervisor_for_task('Non adherence call')
+      end
+
+      private
+
+      def navigation
+        @navigation ||= Navigation.new
       end
     end
   end

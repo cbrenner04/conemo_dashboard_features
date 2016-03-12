@@ -66,6 +66,13 @@ def pt_451_nurse_tasks
   @pt_451_nurse_tasks ||= YourPatients::NurseTasks.new(pt_id: 451)
 end
 
+def pt_1000_nurse_tasks
+  @pt_1000_nurse_tasks ||= YourPatients::NurseTasks.new(
+    pt_id: 1000,
+    tasks_count: 3
+  )
+end
+
 def pt_802_nurse_tasks
   @pt_802_nurse_tasks ||= YourPatients::NurseTasks.new(
     pt_id: 802,
