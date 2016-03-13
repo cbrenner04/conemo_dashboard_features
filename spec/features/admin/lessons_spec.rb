@@ -90,11 +90,18 @@ feature 'Admin, Lessons' do
 end
 
 feature 'Spanish Admin, Lessons' do
-  scenario 'Admin deletes a lesson' do
-    spanish_admin.sign_in
+  background { spanish_admin.sign_in }
+
+  scenario 'Spanish admin deletes a lesson' do
     spanish_lessons.open
     spanish_lesson.delete
 
     expect(spanish_lesson).to_not be_visible
   end
+
+  scenario 'Spanish admin sees correct translations'
+end
+
+feature 'Portuguese Admin, Lessons' do
+  scenario 'Portuguese admin sees correct translations'
 end

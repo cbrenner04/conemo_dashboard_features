@@ -21,6 +21,11 @@ def initial_appointment
     YourPatients::NurseTasks::InitialInPersonAppointment.new
 end
 
+def call_to_schedule_final_appointment
+  @call_to_schedule_final_appointment ||=
+    YourPatients::NurseTasks::CallToScheduleFinalAppointment.new
+end
+
 def final_appointment
   @final_appointment ||= YourPatients::NurseTasks::FinalAppointment.new
 end
@@ -111,5 +116,16 @@ def pt_342_nurse_tasks_3
     pt_id: 342,
     session: 'third_contact',
     session_length: 120
+  )
+end
+
+def pt_343_nurse_tasks
+  @pt_343_nurse_tasks ||= YourPatients::NurseTasks.new(pt_id: 343)
+end
+
+def pt_343_contact_info
+  @pt_343_contact_info ||= YourPatients::NurseTasks::ContactInformation.new(
+    id: 343,
+    session: 'Call to schedule final appointment'
   )
 end

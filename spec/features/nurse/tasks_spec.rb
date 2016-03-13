@@ -469,7 +469,7 @@ feature 'Nurse, Participant Tasks' do
     initial_in_person_appt.enter_general_notes
     navigation.submit
 
-    expect(initial_in_person_appt).to be_visible # still on form?
+    expect(initial_in_person_appt).to be_visible
   end
 
   scenario 'Nurse cannot submit without entering session length' do
@@ -479,7 +479,7 @@ feature 'Nurse, Participant Tasks' do
     initial_in_person_appt.enter_general_notes
     navigation.submit
 
-    expect(initial_in_person_appt).to be_visible # still on form?
+    expect(initial_in_person_appt).to be_visible
   end
 
   scenario 'Nurse cannot submit without entering session location' do
@@ -488,7 +488,7 @@ feature 'Nurse, Participant Tasks' do
     initial_in_person_appt.enter_general_notes
     navigation.submit
 
-    expect(initial_in_person_appt).to be_visible # still on form?
+    expect(initial_in_person_appt).to be_visible
   end
 
   scenario 'Nurse creates an initial in-person appointment' do
@@ -1102,4 +1102,12 @@ feature 'Nurse, Participant Tasks' do
 
     expect(patient_341).to_not be_in_table
   end
+end
+
+feature 'Spanish nurse, Participant tasks' do
+  scenario 'Spanish nurse sees correct translations'
+end
+
+feature 'Portuguese nurse, Participant tasks' do
+  scenario 'Portuguese nurse sees correct translations'
 end

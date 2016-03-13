@@ -57,6 +57,12 @@ class YourPatients
         select_next_date(7)
       end
 
+      def update_contact_at_to_today
+        sleep(1)
+        selector[2].click
+        select_list_item((Date.today).strftime('%-d'))
+      end
+
       def has_next_contact_date?
         next_week = Date.today + 7
         selector[6].has_text?(next_week.strftime('%B')) &&

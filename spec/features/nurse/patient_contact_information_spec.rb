@@ -112,7 +112,17 @@ feature 'Nurse, Participant Contact Information' do
     expect(pt_342_contact_info_3).to have_updated_call_length
   end
 
-  scenario 'Nurse edits call to schedule final appointment'
+  scenario 'Nurse edits call to schedule final appointment' do
+    pt_343_nurse_tasks.open
+    pt_343_contact_info.open
+    pt_343_contact_info.edit_call_to_schedule_final_appt
+    call_to_schedule_final_appointment.update_contact_at_to_today
+    call_to_schedule_final_appointment.select_location
+    navigation.submit
+    pt_343_contact_info.open
+
+    expect(pt_343_contact_info).to have_updated_contact_at
+  end
 
   scenario 'Nurse edits final appointment' do
     pt_342_nurse_tasks_1.open
@@ -124,4 +134,12 @@ feature 'Nurse, Participant Contact Information' do
 
     expect(pt_342_contact_info_1).to have_updated_phone_return
   end
+end
+
+feature 'Spanish Nurse, Participant Contact Information' do
+  scenario 'Spanish nurse sees correct translations'
+end
+
+feature 'Portuguese Nurse, Participant Contact Information' do
+  scenario 'Portuguese nurse sees correct translations'
 end

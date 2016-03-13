@@ -121,6 +121,10 @@ class YourPatients
         edit_session('Follow up call week 3')
       end
 
+      def edit_call_to_schedule_final_appt
+        edit_session('Call to schedule final appointment')
+      end
+
       def edit_final_appointment
         edit_session('Final in person appointment')
       end
@@ -138,6 +142,11 @@ class YourPatients
       def has_updated_phone_return?
         find('.timeline-panel', text: 'Final in person appointment')
           .has_text? 'Was the phone returned?: No'
+      end
+
+      def has_updated_contact_at?
+        find('.timeline-panel', text: @session)
+          .has_text? "Contact at: #{Date.today.strftime('%B %d, %Y')}"
       end
 
       private

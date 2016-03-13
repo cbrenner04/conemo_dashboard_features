@@ -296,3 +296,11 @@ feature 'Nurse, Clinical Summary' do
     expect(pt_472_clinical_summary).to have_ontime_lesson
   end
 end
+
+feature 'Spanish Nurse, Clinical Summary' do
+  scenario 'Spanish nurse sees correct translations'
+end
+
+feature 'Portuguese Nurse, Clinical Summary' do
+  scenario 'Portuguese nurse sees correct translations'
+end

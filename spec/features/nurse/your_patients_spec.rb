@@ -145,43 +145,47 @@ feature 'English Nurse, Your Patients' do
   # will need to use something to manipulate the server time
   # otherwise just have the above set of examples testing css
 
-  feature 'Overdue, tasks assigned before noon' do
-    scenario 'Nurse sees confirmation call'
-    scenario 'Nurse sees initial in person appointment'
-    scenario 'Nurse sees follow up call week 1'
-    scenario 'Nurse sees follow up call week 3'
-    scenario 'Nurse sees call to schedule final appointment'
-    scenario 'Nurse sees final appointment'
-    scenario 'Nurse sees help request'
-    scenario 'Nurse sees non-connectivity call'
-    scenario 'Nurse sees non-adherence call'
-  end
+#   feature 'Overdue, tasks assigned before noon' do
+#     scenario 'Nurse sees confirmation call'
+#     scenario 'Nurse sees initial in person appointment'
+#     scenario 'Nurse sees follow up call week 1'
+#     scenario 'Nurse sees follow up call week 3'
+#     scenario 'Nurse sees call to schedule final appointment'
+#     scenario 'Nurse sees final appointment'
+#     scenario 'Nurse sees help request'
+#     scenario 'Nurse sees non-connectivity call'
+#     scenario 'Nurse sees non-adherence call'
+#   end
 
-  feature 'Overdue, tasks assigned after noon' do
-    scenario 'Nurse sees confirmation call'
-    scenario 'Nurse sees initial in person appointment'
-    scenario 'Nurse sees follow up call week 1'
-    scenario 'Nurse sees follow up call week 3'
-    scenario 'Nurse sees call to schedule final appointment'
-    scenario 'Nurse sees final appointment'
-    scenario 'Nurse sees help request'
-    scenario 'Nurse sees non-connectivity call'
-    scenario 'Nurse sees non-adherence call'
-  end
-end
+#   feature 'Overdue, tasks assigned after noon' do
+#     scenario 'Nurse sees confirmation call'
+#     scenario 'Nurse sees initial in person appointment'
+#     scenario 'Nurse sees follow up call week 1'
+#     scenario 'Nurse sees follow up call week 3'
+#     scenario 'Nurse sees call to schedule final appointment'
+#     scenario 'Nurse sees final appointment'
+#     scenario 'Nurse sees help request'
+#     scenario 'Nurse sees non-connectivity call'
+#     scenario 'Nurse sees non-adherence call'
+#   end
+# end
 
 feature 'Spanish Nurse, Your Patients' do
-  scenario 'Nurse sees participants assigned to them in Your Patients table' do
-    spanish_nurse.sign_in
+  background { spanish_nurse.sign_in }
 
+  scenario 'Nurse sees participants assigned to them in Your Patients table' do
     expect(spanish_patients).to have_assigned_patients
   end
+
+  scenario 'Nurse sees correct translations'
 end
 
 feature 'Portuguese Nurse, Your Patients' do
-  scenario 'Nurse sees participants assigned to them in Your Patients table' do
-    portuguese_nurse.sign_in
+  background { portuguese_nurse.sign_in }
 
+  scenario 'Nurse sees participants assigned to them in Your Patients table' do
     expect(portuguese_patients).to have_assigned_patients
   end
+
+  scenario 'Nurse sees correct translations'
 end

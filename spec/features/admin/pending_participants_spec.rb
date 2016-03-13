@@ -210,10 +210,12 @@ feature 'Admin, Pending Participants' do
 
     expect(contact_information).to have_form_visible
   end
+end
 
-  scenario 'Admin visits Spanish Pending Participants,' \
-     'does not see English participants, sees forms in Spanish'
+feature 'Spanish Admin, Pending Participants' do
+  scenario 'Spanish admin sees correct translations'
+end
 
-  scenario 'Admin visits Portuguese Pending Participants,' \
-     'does not see English participants, sees forms in Portuguese'
+feature 'Portuguese Admin, Pending Participants' do
+  scenario 'Portuguese admin sees correct translations'
 end
