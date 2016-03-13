@@ -5,7 +5,6 @@ require './spec/support/admin/pending_participants_helper'
 feature 'Admin, Pending Participants' do
   background do
     english_admin.sign_in
-    navigation.switch_to_english
     pending_participants.open
   end
 
@@ -213,9 +212,53 @@ feature 'Admin, Pending Participants' do
 end
 
 feature 'Spanish Admin, Pending Participants' do
-  scenario 'Spanish admin sees correct translations'
+  scenario 'Spanish admin sees correct translations' do
+    spanish_admin.sign_in
+    spanish_pending_participants.open
+
+    expect(spanish_pending_participants).to have_landing_page_visible
+
+    spanish_pending_participants.create
+
+    # this fails because form has not been updated
+    # expect(spanish_contact_information).to have_form_fields
+
+    # open relationship fields and expect correct options
+
+    expect(spanish_contact_information).to have_gender_options
+
+    navigation.cancel
+
+    expect(spanish_pending_participants).to have_pending_table_headers
+
+    spanish_pending_participants.select_ineligible_tab
+
+    expect(spanish_pending_participants).to have_ineligible_table_headers
+  end
 end
 
 feature 'Portuguese Admin, Pending Participants' do
-  scenario 'Portuguese admin sees correct translations'
+  scenario 'Portuguese admin sees correct translations' do
+    portuguese_admin.sign_in
+    portuguese_pending_participants.open
+
+    expect(portuguese_pending_participants).to have_landing_page_visible
+
+    portuguese_pending_participants.create
+
+    # this fails because form has not been updated
+    # expect(portuguese_contact_information).to have_form_fields
+
+    # open relationship fields and expect correct options
+
+    expect(portuguese_contact_information).to have_gender_options
+
+    navigation.cancel
+
+    expect(portuguese_pending_participants).to have_pending_table_headers
+
+    portuguese_pending_participants.select_ineligible_tab
+
+    expect(portuguese_pending_participants).to have_ineligible_table_headers
+  end
 end

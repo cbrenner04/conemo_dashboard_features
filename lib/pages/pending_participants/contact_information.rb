@@ -1,10 +1,13 @@
 require './lib/pages/shared/contact_information_form'
+require './lib/pages/shared/translations/pending_participants'
 
 class PendingParticipants
   # page_object for the contact information page
   class ContactInformation
+    include RSpec::Matchers
     include Capybara::DSL
     include ContactInformationForm
+    include Translations::PendingParticipants
 
     def initialize(contact_information)
       @first_name ||= contact_information[:first_name]
@@ -19,6 +22,7 @@ class PendingParticipants
       @address ||= contact_information[:address]
       @enrollment_date ||= contact_information[:enrollment_date]
       @gender ||= contact_information[:gender]
+      @locale ||= contact_information[:locale]
     end
 
     def complete_form
@@ -35,6 +39,21 @@ class PendingParticipants
       select_dob
       choose_gender
       choose_chronic_disorder
+    end
+
+    def has_form_fields?
+      find('.form-group', match: :first)
+      actual = (0..13).map do |i|
+        all('.control-label')[i].text
+      end
+
+      expect(actual).to eq(expected_form_fields)
+    end
+
+    def has_gender_options?
+      gender_options.each do |option|
+        find('.form-group', text: gender_label).has_text? option
+      end
     end
   end
 end

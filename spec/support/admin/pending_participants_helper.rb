@@ -6,7 +6,17 @@ require './lib/pages/pending_participants'
 require './lib/pages/your_patients'
 
 def pending_participants
-  @pending_participants ||= PendingParticipants.new(name: 'fake')
+  @pending_participants ||= PendingParticipants.new(locale: 'english')
+end
+
+def spanish_pending_participants
+  @spanish_pending_participants ||= PendingParticipants.new(locale: 'spanish')
+end
+
+def portuguese_pending_participants
+  @portuguese_pending_participants ||= PendingParticipants.new(
+    locale: 'portuguese'
+  )
 end
 
 def navigation
@@ -15,8 +25,21 @@ end
 
 def contact_information
   @contact_information ||= PendingParticipants::ContactInformation.new(
-    first_name: 'fake'
+    locale: 'english'
   )
+end
+
+def spanish_contact_information
+  @spanish_contact_information ||= PendingParticipants::ContactInformation.new(
+    locale: 'spanish'
+  )
+end
+
+def portuguese_contact_information
+  @portuguese_contact_information ||=
+    PendingParticipants::ContactInformation.new(
+      locale: 'portuguese'
+    )
 end
 
 def new_participant_contact_information
