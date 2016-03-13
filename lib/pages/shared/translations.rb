@@ -1,6 +1,5 @@
 # module for translations
 module Translations
-
   def locale(a, b, c)
     if @locale == 'spanish'
       a

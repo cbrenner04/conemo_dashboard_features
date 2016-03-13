@@ -1,6 +1,9 @@
+require './lib/pages/shared/translations/lessons'
+
 # page object for lessons
 class Lessons
   include Capybara::DSL
+  include Translations::Lessons
 
   def initialize(lessons)
     @title ||= lessons[:title]
@@ -11,8 +14,7 @@ class Lessons
   end
 
   def open
-    button = @locale == 'spanish' ? 'Sesiones' : 'Lessons'
-    click_on button
+    click_on main_button
   end
 
   def on_lesson_list_page?

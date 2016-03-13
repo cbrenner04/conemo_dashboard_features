@@ -9,7 +9,7 @@ def navigation
 end
 
 def lessons
-  @lessons ||= Lessons.new(title: 'fake')
+  @lessons ||= Lessons.new(locale: 'english')
 end
 
 def slides
@@ -115,4 +115,8 @@ def spanish_lesson
     title: '¡Bienvenido a CONEMO!',
     locale: 'spanish'
   )
+end
+
+def portuguese_lessons
+  @portuguese_lessons ||= Lessons.new(locale: 'portuguese')
 end

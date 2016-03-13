@@ -32,7 +32,7 @@ class PendingParticipants
   end
 
   def confirm_disqualify
-    accept_alert 'Are you sure you want to mark this person as ineligible?'
+    accept_alert disqualify_alert
   end
 
   def select_ineligible_tab

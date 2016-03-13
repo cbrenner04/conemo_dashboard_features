@@ -24,6 +24,12 @@ module Translations
       locale('Ineligible', 'Inelegível', 'Ineligible')
     end
 
+    def disqualify_alert
+      locale('¿Está seguro que quiere desactivar este participante?',
+             'Você tem certeza que quer desativar essa pessoa?',
+             'Are you sure you want to mark this person as ineligible?')
+    end
+
     def expected_form_fields
       locale(spanish_form, portuguese_form, english_form)
     end
@@ -122,7 +128,7 @@ module Translations
         'Birth date',
         'Gender',
         'Emergency contact (name)',
-        'Relationship', 
+        'Relationship',
         'Address',
         'Telephone',
         'Cell phone'
@@ -232,7 +238,7 @@ module Translations
         'Nome',
         'Identificação do participante',
         'Data de inclusão',
-        'Ativar',
+        'Ativar'
       ]
     end
 
