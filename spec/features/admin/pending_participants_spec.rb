@@ -231,9 +231,13 @@ feature 'Spanish Admin, Pending Participants' do
 
     expect(spanish_pending_participants).to have_pending_table_headers
 
-    # activate a participant - check nurse addition form
+    participant_2001.activate
 
-    # disqualify a participant - check alert message
+    expect(spanish_pending_participants).to have_nurse_assignment_form
+
+    spanish_navigation.cancel
+    participant_2002.disqualify
+    participant_2002.confirm_disqualify
 
     spanish_pending_participants.select_ineligible_tab
 
@@ -261,9 +265,13 @@ feature 'Portuguese Admin, Pending Participants' do
 
     expect(portuguese_pending_participants).to have_pending_table_headers
 
-    # activate a participant - check nurse addition form
+    participant_3000.activate
 
-    # disqualify a participant - check alert message
+    expect(portuguese_pending_participants).to have_nurse_assignment_form
+
+    portuguese_navigation.cancel
+    participant_3001.disqualify
+    participant_3001.confirm_disqualify
 
     portuguese_pending_participants.select_ineligible_tab
 

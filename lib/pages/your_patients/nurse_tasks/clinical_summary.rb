@@ -202,7 +202,7 @@ class YourPatients
       end
 
       def navigation
-        @navigation ||= Navigation.new
+        @navigation ||= Navigation.new(locale: 'english')
       end
 
       def first_apt

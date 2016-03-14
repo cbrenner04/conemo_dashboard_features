@@ -5,7 +5,7 @@ require './lib/pages/your_patients/nurse_tasks'
 require './lib/pages/your_patients/nurse_tasks/clinical_summary'
 
 def navigation
-  @navigation ||= Navigation.new
+  @navigation ||= Navigation.new(locale: 'english')
 end
 
 def clinical_summary

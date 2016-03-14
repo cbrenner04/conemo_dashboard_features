@@ -5,7 +5,7 @@ require './lib/pages/lessons/slides'
 require './lib/pages/navigation'
 
 def navigation
-  @navigation ||= Navigation.new
+  @navigation ||= Navigation.new(locale: 'english')
 end
 
 def lessons

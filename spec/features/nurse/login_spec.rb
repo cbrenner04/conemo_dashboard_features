@@ -3,7 +3,7 @@
 require './lib/pages/navigation.rb'
 
 def navigation
-  @navigation ||= Navigation.new
+  @navigation ||= Navigation.new(locale: 'english')
 end
 
 feature 'Nurse, Login' do

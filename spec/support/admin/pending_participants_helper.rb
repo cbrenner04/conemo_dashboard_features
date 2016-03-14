@@ -20,7 +20,15 @@ def portuguese_pending_participants
 end
 
 def navigation
-  @navigation ||= Navigation.new
+  @navigation ||= Navigation.new(locale: 'english')
+end
+
+def spanish_navigation
+  @spanish_navigation ||= Navigation.new(locale: 'spanish')
+end
+
+def portuguese_navigation
+  @portuguese_navigation ||= Navigation.new(locale: 'portuguese')
 end
 
 def contact_information
@@ -106,4 +114,32 @@ end
 
 def participant_201
   @participant_201 ||= PendingParticipants.new(name: 'Last-201, First')
+end
+
+def participant_2001
+  @participant_2001 ||= PendingParticipants.new(
+    name: 'Last-2001, First',
+    locale: 'spanish'
+  )
+end
+
+def participant_2002
+  @participant_2002 ||= PendingParticipants.new(
+    name: 'Last-2002, First',
+    locale: 'spanish'
+  )
+end
+
+def participant_3000
+  @participant_3000 ||= PendingParticipants.new(
+    name: 'Last-3000, First',
+    locale: 'portuguese'
+  )
+end
+
+def participant_3001
+  @participant_3001 ||= PendingParticipants.new(
+    name: 'Last-3001, First',
+    locale: 'portuguese'
+  )
 end

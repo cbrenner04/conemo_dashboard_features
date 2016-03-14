@@ -5,7 +5,7 @@ require './lib/pages/your_patients'
 Dir['./lib/pages/your_patients/**/*.rb'].each { |file| require file }
 
 def navigation
-  @navigation ||= Navigation.new
+  @navigation ||= Navigation.new(locale: 'english')
 end
 
 def your_patients

@@ -1,6 +1,13 @@
+require './lib/pages/shared/translations/navigation'
+
 # page object for navigation
 class Navigation
   include Capybara::DSL
+  include Translations::Navigation
+
+  def initialize(navigation)
+    @locale = navigation[:locale]
+  end
 
   def switch_to_english
     click_on 'English'
@@ -30,7 +37,7 @@ class Navigation
   end
 
   def cancel
-    find('a', text: 'Cancel').click
+    find('a', text: cancel_button).click
   end
 
   def submit

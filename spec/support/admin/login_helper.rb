@@ -6,7 +6,7 @@ require './lib/pages/pending_participants'
 require './lib/pages/administration'
 
 def navigation
-  @navigation ||= Navigation.new
+  @navigation ||= Navigation.new(locale: 'english')
 end
 
 def lessons

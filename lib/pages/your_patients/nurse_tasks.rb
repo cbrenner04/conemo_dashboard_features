@@ -91,7 +91,7 @@ class YourPatients
     private
 
     def navigation
-      @navigation ||= Navigation.new
+      @navigation ||= Navigation.new(locale: 'english')
     end
 
     def has_supervisor_contact?(time)

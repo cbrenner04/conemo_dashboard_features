@@ -6,7 +6,7 @@ require './lib/pages/your_patients/nurse_tasks'
 Dir['./lib/pages/your_patients/nurse_tasks/*.rb'].each { |file| require file }
 
 def navigation
-  @navigation ||= Navigation.new
+  @navigation ||= Navigation.new(locale: 'english')
 end
 
 def confirmation_call
