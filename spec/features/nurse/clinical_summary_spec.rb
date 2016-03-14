@@ -342,13 +342,17 @@ feature 'Spanish Nurse, Clinical Summary' do
     pt_500_nurse_tasks.open
     pt_500_clinical_summary.open
 
-    # check table headers
+    expect(pt_500_clinical_summary).to have_links
 
-    # check notes headers
+    expect(pt_500_clinical_summary).to have_headers
 
-    # check legend
+    expect(pt_500_clinical_summary).to have_legend
 
-    # check adding a note form 
+    expect(pt_500_clinical_summary).to have_notes_headers
+
+    # check dates
+
+    # check adding a note form
   end
 end
 
@@ -358,12 +362,16 @@ feature 'Portuguese Nurse, Clinical Summary' do
     pt_600_nurse_tasks.open
     pt_600_clinical_summary.open
 
-    # check table headers
+    expect(pt_600_clinical_summary).to have_links
 
-    # check notes headers
+    expect(pt_600_clinical_summary).to have_headers
 
-    # check legend
+    expect(pt_600_clinical_summary).to have_legend
 
-    # check adding a note form 
+    expect(pt_600_clinical_summary).to have_notes_headers
+
+    # check dates
+
+    # check adding a note form
   end
 end

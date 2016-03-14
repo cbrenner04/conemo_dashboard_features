@@ -135,6 +135,29 @@ class YourPatients
                   "#{DateTime.now.strftime('%B %d, %Y')}"
       end
 
+      def has_links?
+        visible?
+        actual_links = (3..4).map { |i| all('a')[i].text }
+        expect(actual_links).to eq(expected_links)
+      end
+
+      def has_headers?
+        actual_headers = [0, 1, 3, 4, 5].map { |i| all('th')[i].text }
+        expect(actual_headers).to eq(expected_headers)
+      end
+
+      def has_legend?
+        legend = find('.table-condensed')
+        actual_legend = (0..5).map { |i| legend.all('td')[i].text }
+        expect(actual_legend).to eq(expected_legend)
+      end
+
+      def has_notes_headers?
+        notes_table = find('.table', text: notes_heading)
+        actual_notes_headers = (0..4).map { |i| notes_table.all('dt')[i].text }
+        expect(actual_notes_headers).to eq(expected_notes_headers)
+      end
+
       private
 
       def lesson_table
