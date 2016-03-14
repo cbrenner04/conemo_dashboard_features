@@ -3,6 +3,7 @@ require './lib/pages/your_patients/nurse_tasks/follow_up_call_week_one'
 require './lib/pages/your_patients/nurse_tasks/follow_up_call_week_three'
 require './lib/pages/your_patients/nurse_tasks/final_appointment'
 require './lib/pages/navigation'
+require './lib/pages/shared/translations/clinical_summary'
 
 class YourPatients
   class NurseTasks
@@ -10,6 +11,7 @@ class YourPatients
     class ClinicalSummary
       include RSpec::Matchers
       include Capybara::DSL
+      include Translations::ClinicalSummary
 
       def initialize(clinical_summary)
         @id ||= clinical_summary[:id]
@@ -18,10 +20,12 @@ class YourPatients
         @current_lesson ||= clinical_summary[:current_lesson]
         @other_lesson ||= clinical_summary[:other_lesson]
         @note ||= clinical_summary[:note]
+        @incomplete_lesson ||= clinical_summary[:incomplete_lesson]
+        @locale ||= clinical_summary[:locale]
       end
 
       def open
-        click_on 'Clinical Summary'
+        click_on clinical_summary_link
       end
 
       def visible?
@@ -94,7 +98,12 @@ class YourPatients
 
       def has_late_lesson?
         visible?
-        has_css?('.warning', text: "Lesson #{@other_lesson}")
+        has_css?('.slippage', text: "Lesson #{@other_lesson}")
+      end
+
+      def has_incomplete_late_lesson?
+        visible?
+        has_css?('.warning', text: "Lesson #{@incomplete_lesson}")
       end
 
       def has_ontime_lesson?

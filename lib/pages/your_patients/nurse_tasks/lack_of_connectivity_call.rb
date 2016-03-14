@@ -25,7 +25,12 @@ class YourPatients
           'Mobile plan used up',
           'Cellphone turned off',
           'Other',
-          'I don\'t know'
+          'I don\'t know',
+          'Unable to reach patient',
+          'Patient does not want to continue in the program',
+          'Patient did not have time to talk (multiple times)',
+          'Patient not willing to talk to nurse (assistant)',
+          'Other'
         ].sample
         select_list_item(responses)
         navigation.submit

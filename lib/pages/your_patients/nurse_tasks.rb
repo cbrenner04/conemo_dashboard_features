@@ -1,11 +1,13 @@
 require './lib/pages/shared/nurse_tasks_forms'
 require './lib/pages/navigation'
+require './lib/pages/shared/translations/clinical_summary'
 
 class YourPatients
   # page object for nurse tasks page
   class NurseTasks
     include Capybara::DSL
     include NurseTasksForms
+    include Translations::ClinicalSummary
 
     def initialize(nurse_task)
       @pt_id ||= nurse_task[:pt_id]
@@ -15,12 +17,13 @@ class YourPatients
       @days_since_due ||= nurse_task[:days_since_due]
       @contact_type ||= nurse_task[:contact_type]
       @tasks_count ||= nurse_task[:tasks_count]
+      @locale ||= nurse_task[:locale]
     end
 
     def open
       tries ||= 1
       find('a', text: @pt_id).click
-      find('a', text: 'Clinical Summary')
+      find('a', text: clinical_summary_link)
     rescue Capybara::ElementNotFound
       tries.times { navigation.scroll_down }
       tries += 1

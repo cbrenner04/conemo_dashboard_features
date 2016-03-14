@@ -104,7 +104,7 @@ feature 'Spanish Admin, Lessons' do
 
     # check headings, buttons, table headers, and column text
 
-    # add lesson form - fields and buttons
+    # add lesson form - check fields and buttons
   end
 end
 
@@ -115,6 +115,6 @@ feature 'Portuguese Admin, Lessons' do
 
     # check headings, buttons, table headers, and column text
 
-    # add lesson form - fields and buttons
+    # add lesson form - check fields and buttons
   end
 end

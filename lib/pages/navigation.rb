@@ -3,10 +3,10 @@ require './lib/pages/shared/translations/navigation'
 # page object for navigation
 class Navigation
   include Capybara::DSL
-  include Translations::Navigation
+  include Translations::NavigationTranslations
 
   def initialize(navigation)
-    @locale = navigation[:locale]
+    @locale ||= navigation[:locale]
   end
 
   def switch_to_english

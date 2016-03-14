@@ -2,7 +2,7 @@ require './lib/pages/shared/translations'
 
 module Translations
   # translations for navigation
-  module Navigation
+  module NavigationTranslations
     include Translations
 
     def cancel_button

@@ -26,6 +26,11 @@ class YourPatients
           'Failure of data transfer (sessions were completed)',
           'Patient is traveling (without the smartphone)',
           'Patient does not state a reason',
+          'Other',
+          'Unable to reach patient',
+          'Patient does not want to continue in the program',
+          'Patient did not have time to talk (multiple times)',
+          'Patient not willing to talk to nurse (assistant)',
           'Other'
         ].sample
         select_list_item(responses)

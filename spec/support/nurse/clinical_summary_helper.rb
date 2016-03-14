@@ -160,7 +160,8 @@ end
 def pt_324_clinical_summary
   @pt_324_clinical_summary ||= YourPatients::NurseTasks::ClinicalSummary.new(
     id: 324,
-    other_lesson: 2
+    other_lesson: 2,
+    incomplete_lesson: 1
   )
 end
 
@@ -175,7 +176,8 @@ end
 def pt_428_clinical_summary
   @pt_428_clinical_summary ||= YourPatients::NurseTasks::ClinicalSummary.new(
     id: 428,
-    other_lesson: 3
+    other_lesson: 3,
+    incomplete_lesson: 2
   )
 end
 
@@ -186,7 +188,8 @@ end
 def pt_431_clinical_summary
   @pt_431_clinical_summary ||= YourPatients::NurseTasks::ClinicalSummary.new(
     id: 431,
-    other_lesson: 4
+    other_lesson: 4,
+    incomplete_lesson: 3
   )
 end
 
@@ -197,7 +200,8 @@ end
 def pt_441_clinical_summary
   @pt_441_clinical_summary ||= YourPatients::NurseTasks::ClinicalSummary.new(
     id: 441,
-    other_lesson: 5
+    other_lesson: 5,
+    incomplete_lesson: 4
   )
 end
 
@@ -208,7 +212,8 @@ end
 def pt_451_clinical_summary
   @pt_451_clinical_summary ||= YourPatients::NurseTasks::ClinicalSummary.new(
     id: 451,
-    other_lesson: 6
+    other_lesson: 6,
+    incomplete_lesson: 5
   )
 end
 
@@ -219,7 +224,8 @@ end
 def pt_461_clinical_summary
   @pt_461_clinical_summary ||= YourPatients::NurseTasks::ClinicalSummary.new(
     id: 461,
-    other_lesson: 7
+    other_lesson: 7,
+    incomplete_lesson: 6
   )
 end
 
@@ -230,7 +236,8 @@ end
 def pt_471_clinical_summary
   @pt_471_clinical_summary ||= YourPatients::NurseTasks::ClinicalSummary.new(
     id: 471,
-    other_lesson: 8
+    other_lesson: 8,
+    incomplete_lesson: 7
   )
 end
 
@@ -241,7 +248,8 @@ end
 def pt_480_clinical_summary
   @pt_480_clinical_summary ||= YourPatients::NurseTasks::ClinicalSummary.new(
     id: 480,
-    other_lesson: 9
+    other_lesson: 9,
+    incomplete_lesson: 8
   )
 end
 
@@ -252,12 +260,24 @@ end
 def pt_490_clinical_summary
   @pt_490_clinical_summary ||= YourPatients::NurseTasks::ClinicalSummary.new(
     id: 490,
-    other_lesson: 10
+    other_lesson: 10,
+    incomplete_lesson: 9
   )
 end
 
 def pt_490_nurse_tasks
   @pt_490_nurse_tasks ||= YourPatients::NurseTasks.new(pt_id: 490)
+end
+
+def pt_700_clinical_summary
+  @pt_700_clinical_summary ||= YourPatients::NurseTasks::ClinicalSummary.new(
+    id: 700,
+    incomplete_lesson: 10
+  )
+end
+
+def pt_700_nurse_tasks
+  @pt_700_nurse_tasks ||= YourPatients::NurseTasks.new(pt_id: 700)
 end
 
 def pt_400_clinical_summary
@@ -368,4 +388,32 @@ end
 
 def pt_472_nurse_tasks
   @pt_472_nurse_tasks ||= YourPatients::NurseTasks.new(pt_id: 472)
+end
+
+def pt_500_nurse_tasks
+  @pt_500_nurse_tasks ||= YourPatients::NurseTasks.new(
+    pt_id: 500,
+    locale: 'spanish'
+  )
+end
+
+def pt_500_clinical_summary
+  @pt_500_clinical_summary ||= YourPatients::NurseTasks::ClinicalSummary.new(
+    id: 500,
+    locale: 'spanish'
+  )
+end
+
+def pt_600_nurse_tasks
+  @pt_600_nurse_tasks ||= YourPatients::NurseTasks.new(
+    pt_id: 600,
+    locale: 'portuguese'
+  )
+end
+
+def pt_600_clinical_summary
+  @pt_600_clinical_summary ||= YourPatients::NurseTasks::ClinicalSummary.new(
+    id: 600,
+    locale: 'portuguese'
+  )
 end
