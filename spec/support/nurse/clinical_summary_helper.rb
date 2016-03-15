@@ -400,7 +400,8 @@ end
 def pt_500_clinical_summary
   @pt_500_clinical_summary ||= YourPatients::NurseTasks::ClinicalSummary.new(
     id: 500,
-    locale: 'spanish'
+    locale: 'spanish',
+    start_date_offset: 12
   )
 end
 

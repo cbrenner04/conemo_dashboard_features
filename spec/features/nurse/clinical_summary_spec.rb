@@ -350,7 +350,7 @@ feature 'Spanish Nurse, Clinical Summary' do
 
     expect(pt_500_clinical_summary).to have_notes_headers
 
-    # check dates
+    expect(pt_500_clinical_summary).to have_lesson_release_dates
 
     # check adding a note form
   end

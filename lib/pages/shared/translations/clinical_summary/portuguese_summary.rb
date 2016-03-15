@@ -39,6 +39,10 @@ module Translations
           'First appointment'
         ]
       end
+
+      def portuguese_release_dates
+        @portuguese_release_dates ||= []
+      end
     end
   end
 end

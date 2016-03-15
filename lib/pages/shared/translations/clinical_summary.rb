@@ -34,5 +34,10 @@ module Translations
       locale(spanish_notes_headers, portuguese_notes_headers,
              english_notes_headers)
     end
+
+    def expected_release_dates
+      locale(spanish_release_dates, portuguese_release_dates,
+             english_release_dates)
+    end
   end
 end

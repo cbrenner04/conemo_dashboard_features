@@ -22,6 +22,7 @@ class YourPatients
         @note ||= clinical_summary[:note]
         @incomplete_lesson ||= clinical_summary[:incomplete_lesson]
         @locale ||= clinical_summary[:locale]
+        @start_date_offset ||= clinical_summary[:start_date_offset]
       end
 
       def open
@@ -156,6 +157,11 @@ class YourPatients
         notes_table = find('.table', text: notes_heading)
         actual_notes_headers = (0..4).map { |i| notes_table.all('dt')[i].text }
         expect(actual_notes_headers).to eq(expected_notes_headers)
+      end
+
+      def has_lesson_release_dates?
+        actual_release = (0..17).map { |i| all('.release-date')[i].text }
+        expect(actual_release).to eq(expected_release_dates)
       end
 
       private
