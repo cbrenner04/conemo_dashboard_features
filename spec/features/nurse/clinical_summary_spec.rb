@@ -20,8 +20,8 @@ feature 'Nurse, Clinical Summary' do
 
   scenario 'Nurse creates and deletes a note' do
     pt_300_nurse_tasks.open
-    pt_300_clinical_summary.open
-    pt_300_clinical_summary.create_note
+    pt_300_notes_form.open
+    pt_300_notes_form.create_note
 
     expect(pt_300_clinical_summary).to have_note
 
@@ -352,7 +352,20 @@ feature 'Spanish Nurse, Clinical Summary' do
 
     expect(pt_500_clinical_summary).to have_lesson_release_dates
 
-    # check adding a note form
+    expect(pt_500_clinical_summary).to have_contact_dates
+
+    pt_500_notes_form.open
+    sleep(1)
+
+    expect(pt_500_notes_form).to have_form_heading
+
+    expect(pt_500_notes_form).to have_form_labels
+
+    expect(pt_500_notes_form).to have_notes_headers
+
+    expect(pt_500_notes_form).to have_contact_dates
+
+    expect(pt_500_notes_form).to have_reason_options
   end
 end
 
@@ -370,8 +383,21 @@ feature 'Portuguese Nurse, Clinical Summary' do
 
     expect(pt_600_clinical_summary).to have_notes_headers
 
-    # check dates
+    expect(pt_600_clinical_summary).to have_lesson_release_dates
 
-    # check adding a note form
+    expect(pt_600_clinical_summary).to have_contact_dates
+
+    pt_600_notes_form.open
+    sleep(1)
+
+    expect(pt_600_notes_form).to have_form_heading
+
+    expect(pt_600_notes_form).to have_form_labels
+
+    expect(pt_600_notes_form).to have_notes_headers
+
+    expect(pt_600_notes_form).to have_contact_dates
+
+    expect(pt_600_notes_form).to have_reason_options
   end
 end

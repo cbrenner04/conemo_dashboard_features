@@ -41,7 +41,32 @@ module Translations
       end
 
       def english_release_dates
-        @english_release_dates ||= []
+        relative_release_date = (1..15).map do |i|
+          ((Date.today - @start_date_offset) + (i - 1)).strftime('%B %d, %Y')
+        end
+        @english_release_dates ||= relative_release_date
+      end
+
+      def english_contact_dates
+        contact_day = [0, 1, 14, 35, 42, 45]
+        relative_contact_date = contact_day.map do |i|
+          (Date.today - i).strftime('%B %d, %Y')
+        end
+        @english_contact_dates ||= relative_contact_date
+      end
+
+      def english_notes_form_heading
+        @english_notes_heading ||= "Create Note for First Last-#{@id}"
+      end
+
+      def english_notes_form_labels
+        @english_notes_form_labels ||= ['time of note', 'reason', 'notes']
+      end
+
+      def english_notes_reason_options
+        @english_notes_reason_options ||=
+          ['Programmed follow-up call', 'Non-adherence',
+           'Requested phone call by patient', 'Other']
       end
     end
   end

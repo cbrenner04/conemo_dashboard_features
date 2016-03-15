@@ -8,5 +8,9 @@ module Translations
     def cancel_button
       locale('Cancelar', 'Cancelar', 'Cancel')
     end
+
+    def submit_button
+      locale('Guardar', 'Salvar', 'Save')
+    end
   end
 end

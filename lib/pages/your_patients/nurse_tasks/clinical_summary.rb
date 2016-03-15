@@ -23,6 +23,7 @@ class YourPatients
         @incomplete_lesson ||= clinical_summary[:incomplete_lesson]
         @locale ||= clinical_summary[:locale]
         @start_date_offset ||= clinical_summary[:start_date_offset]
+        @num_of_lessons ||= clinical_summary[:num_of_lessons]
       end
 
       def open
@@ -44,12 +45,6 @@ class YourPatients
 
       def has_note?
         has_text? @note
-      end
-
-      def create_note
-        find('th', text: 'Notes').find('.fa-edit').click
-        fill_in 'patient_contact[note]', with: @note
-        navigation.submit
       end
 
       def delete_note
@@ -154,20 +149,34 @@ class YourPatients
       end
 
       def has_notes_headers?
-        notes_table = find('.table', text: notes_heading)
         actual_notes_headers = (0..4).map { |i| notes_table.all('dt')[i].text }
         expect(actual_notes_headers).to eq(expected_notes_headers)
       end
 
       def has_lesson_release_dates?
-        actual_release = (0..17).map { |i| all('.release-date')[i].text }
+        actual_release = (0..(@num_of_lessons - 1)).map do |i|
+          all('.release-date')[i].text
+        end
         expect(actual_release).to eq(expected_release_dates)
+      end
+
+      def has_contact_dates?
+        actual_contact_dates = (0..4).map do |i|
+          year = Date.today.strftime('%Y')
+          string = notes_table.all('em')[i].text
+          string.slice(0..(string.index("#{year}") + (year.length - 1)))
+        end
+        expect(actual_contact_dates).to eq(expected_contact_dates)
       end
 
       private
 
       def lesson_table
         find('table', text: 'Lesson')
+      end
+
+      def notes_table
+        find('.table', text: notes_heading)
       end
 
       def total_lessons

@@ -39,5 +39,25 @@ module Translations
       locale(spanish_release_dates, portuguese_release_dates,
              english_release_dates)
     end
+
+    def expected_contact_dates
+      locale(spanish_contact_dates, portuguese_contact_dates,
+             english_contact_dates)
+    end
+
+    def expected_notes_form_heading
+      locale(spanish_notes_form_heading, portuguese_notes_form_heading,
+             english_notes_form_heading)
+    end
+
+    def expected_notes_form_labels
+      locale(spanish_notes_form_labels, portuguese_notes_form_labels,
+             english_notes_form_labels)
+    end
+
+    def expected_notes_reason_options
+      locale(spanish_notes_reason_options, portuguese_notes_reason_options,
+             english_notes_reason_options)
+    end
   end
 end

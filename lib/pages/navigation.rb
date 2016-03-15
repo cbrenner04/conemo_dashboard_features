@@ -41,7 +41,7 @@ class Navigation
   end
 
   def submit
-    click_on 'Save'
+    click_on submit_button
   end
 
   def return_home

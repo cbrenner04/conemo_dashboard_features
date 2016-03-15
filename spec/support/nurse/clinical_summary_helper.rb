@@ -3,6 +3,7 @@
 require './lib/pages/navigation'
 require './lib/pages/your_patients/nurse_tasks'
 require './lib/pages/your_patients/nurse_tasks/clinical_summary'
+require './lib/pages/your_patients/nurse_tasks/clinical_summary/notes_form'
 
 def navigation
   @navigation ||= Navigation.new(locale: 'english')
@@ -36,6 +37,11 @@ end
 
 def pt_300_nurse_tasks
   @pt_300_nurse_tasks ||= YourPatients::NurseTasks.new(pt_id: 300)
+end
+
+def pt_300_notes_form
+  @pt_300_notes_form ||=
+    YourPatients::NurseTasks::ClinicalSummary::NotesForm.new(locale: 'english')
 end
 
 def pt_401_clinical_summary
@@ -401,8 +407,17 @@ def pt_500_clinical_summary
   @pt_500_clinical_summary ||= YourPatients::NurseTasks::ClinicalSummary.new(
     id: 500,
     locale: 'spanish',
-    start_date_offset: 12
+    start_date_offset: 12,
+    num_of_lessons: 18
   )
+end
+
+def pt_500_notes_form
+  @pt_500_notes_form ||=
+    YourPatients::NurseTasks::ClinicalSummary::NotesForm.new(
+      id: 500,
+      locale: 'spanish'
+    )
 end
 
 def pt_600_nurse_tasks
@@ -415,6 +430,16 @@ end
 def pt_600_clinical_summary
   @pt_600_clinical_summary ||= YourPatients::NurseTasks::ClinicalSummary.new(
     id: 600,
-    locale: 'portuguese'
+    locale: 'portuguese',
+    start_date_offset: 12,
+    num_of_lessons: 5
   )
+end
+
+def pt_600_notes_form
+  @pt_600_notes_form ||=
+    YourPatients::NurseTasks::ClinicalSummary::NotesForm.new(
+      id: 600,
+      locale: 'portuguese'
+    )
 end
