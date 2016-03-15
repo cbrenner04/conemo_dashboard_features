@@ -129,3 +129,25 @@ def pt_343_contact_info
     session: 'Call to schedule final appointment'
   )
 end
+
+def pt_500_nurse_tasks
+  @pt_500_nurse_tasks ||= YourPatients::NurseTasks.new(pt_id: 500)
+end
+
+def pt_500_contact_info
+  @pt_500_contact_info ||= YourPatients::NurseTasks::ContactInformation.new(
+    id: 500,
+    locale: 'spanish'
+  )
+end
+
+def pt_600_nurse_tasks
+  @pt_600_nurse_tasks ||= YourPatients::NurseTasks.new(pt_id: 600)
+end
+
+def pt_600_contact_info
+  @pt_600_contact_info ||= YourPatients::NurseTasks::ContactInformation.new(
+    id: 600,
+    locale: 'portuguese'
+  )
+end

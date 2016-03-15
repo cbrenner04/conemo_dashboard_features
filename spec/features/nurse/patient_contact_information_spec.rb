@@ -137,9 +137,37 @@ feature 'Nurse, Participant Contact Information' do
 end
 
 feature 'Spanish Nurse, Participant Contact Information' do
-  scenario 'Spanish nurse sees correct translations'
+  scenario 'Spanish nurse sees correct translations' do
+    spanish_nurse.sign_in
+    pt_500_nurse_tasks.open
+    pt_500_contact_info.open
+
+    expect(pt_500_contact_info).to be_on_page
+
+    expect(pt_500_contact_info).to have_contact_information_table_headings
+
+    expect(pt_500_contact_info).to have_timeline_titles
+
+    expect(pt_500_contact_info).to have_contact_dates
+
+    expect(pt_500_contact_info).to have_timeline_headings
+  end
 end
 
 feature 'Portuguese Nurse, Participant Contact Information' do
-  scenario 'Portuguese nurse sees correct translations'
+  scenario 'Portuguese nurse sees correct translations' do
+    portuguese_nurse.sign_in
+    pt_600_nurse_tasks.open
+    pt_600_contact_info.open
+
+    expect(pt_600_contact_info).to be_on_page
+
+    expect(pt_600_contact_info).to have_contact_information_table_headings
+
+    expect(pt_600_contact_info).to have_timeline_titles
+
+    expect(pt_600_contact_info).to have_contact_dates
+
+    expect(pt_600_contact_info).to have_timeline_headings
+  end
 end

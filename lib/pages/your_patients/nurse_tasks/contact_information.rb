@@ -1,17 +1,21 @@
 require './lib/pages/shared/contact_information_form'
+require './lib/pages/shared/translations/contact_information'
 
 class YourPatients
   class NurseTasks
     # page object for profile page of active participants
     class ContactInformation
+      include RSpec::Matchers
       include Capybara::DSL
       include ContactInformationForm
+      include Translations::ContactInformation
 
       def initialize(contact_information)
         @id ||= contact_information[:id]
         @email ||= contact_information[:email]
         @session ||= contact_information[:session]
         @session_length ||= contact_information[:session_length]
+        @locale ||= contact_information[:locale]
       end
 
       def open
@@ -20,7 +24,7 @@ class YourPatients
       end
 
       def on_page?
-        has_text? "Profile for First Last-#{@id}"
+        has_text? profile_heading
       end
 
       def visible?
@@ -147,6 +151,32 @@ class YourPatients
       def has_updated_contact_at?
         find('.timeline-panel', text: @session)
           .has_text? "Contact at: #{Date.today.strftime('%B %d, %Y')}"
+      end
+
+      def has_contact_information_table_headings?
+        table = find('#contact-info')
+        actual_headings = (0..11).map { |i| table.all('strong')[i].text }
+        expect(actual_headings).to eq(expected_headings)
+      end
+
+      def has_timeline_titles?
+        actual_titles = (0..5).map { |i| all('.timeline-title')[i].text }
+        expect(actual_titles).to eq(expected_timeline_titles)
+      end
+
+      def has_contact_dates?
+        actual_contact_dates = (0..5).map do |i|
+          year = Date.today.strftime('%Y')
+          string = all('.text-muted')[i].text
+          string.slice(0..(string.index("#{year}") + (year.length - 1)))
+        end
+        expect(actual_contact_dates).to eq(expected_contact_dates)
+      end
+
+      def has_timeline_headings?
+        timeline = find('.timeline')
+        actual_headings = (0..5).map { |i| timeline.all('strong')[i].text }
+        expect(actual_headings).to eq(expected_timeline_headings)
       end
 
       private
