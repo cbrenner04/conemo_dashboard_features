@@ -13,14 +13,9 @@ class PendingParticipants
       @first_name ||= contact_information[:first_name]
       @last_name ||= contact_information[:last_name]
       @id ||= contact_information[:id]
-      @unit ||= contact_information[:unit]
-      @family_record ||= contact_information[:family_record]
-      @phone ||= contact_information[:phone]
-      @emergency_contact_name ||= contact_information[:emergency_contact_name]
-      @emergency_contact_phone ||= contact_information[:emergency_contact_phone]
-      @email ||= contact_information[:email]
       @address ||= contact_information[:address]
-      @enrollment_date ||= contact_information[:enrollment_date]
+      @phone ||= contact_information[:phone]
+      @contact_person ||= contact_information[:contact_person]
       @gender ||= contact_information[:gender]
       @locale ||= contact_information[:locale]
     end
@@ -29,16 +24,9 @@ class PendingParticipants
       fill_in_first_name
       fill_in_last_name
       fill_in_study_id
-      fill_in_health_unit
-      fill_in_family_record
-      fill_in_phone
-      fill_in_emergency_contact_name
-      fill_in_emergency_contact_phone
-      fill_in_email
+      select_health_unit
       fill_in_address
-      select_dob
       choose_gender
-      choose_chronic_disorder
     end
 
     def has_form_fields?
@@ -49,9 +37,9 @@ class PendingParticipants
 
     def has_health_unit_options?
       site = @locale == 'spanish' ? 'Centro de salud 2' : 'Unidade de Saúde 2'
-      all('.select2-container')[3].click
+      selector[3].click
       actual = (0..9).map { |i| all('.select2-result-label')[i].text }
-      find('.select2-result-label', text: site).click
+      select_response(site)
       expect(actual).to eq(expected_health_unit_options)
     end
 
@@ -59,15 +47,15 @@ class PendingParticipants
       choice = @locale == 'spanish' ? 'Padre / Madre' : 'Pai / Mãe'
       num = @locale == 'portuguese' ? 4 : 5
       execute_script('window.scrollBy(0,500)')
-      all('.select2-container')[4].click
-      options_1 = (0..num).map { |i| all('.select2-result-label')[i].text }
-      find('.select2-result-label', text: choice).click
-      all('.select2-container')[5].click
-      options_2 = (0..num).map { |i| all('.select2-result-label')[i].text }
-      find('.select2-result-label', text: choice).click
-      all('.select2-container')[9].click
-      options_3 = (0..num).map { |i| all('.select2-result-label')[i].text }
-      find('.select2-result-label', text: choice).click
+      selector[4].click
+      options_1 = (0..num).map { |i| response_selector[i].text }
+      select_response(choice)
+      selector[5].click
+      options_2 = (0..num).map { |i| response_selector[i].text }
+      select_response(choice)
+      selector[9].click
+      options_3 = (0..num).map { |i| response_selector[i].text }
+      select_response(choice)
       options_1 == expected_relationship_options &&
         options_2 == expected_relationship_options &&
         options_3 == expected_relationship_options

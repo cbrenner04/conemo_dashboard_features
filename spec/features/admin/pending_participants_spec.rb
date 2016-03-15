@@ -19,17 +19,9 @@ feature 'Admin, Pending Participants' do
     pending_participants.create
     new_participant_contact_information.fill_in_last_name
     new_participant_contact_information.fill_in_study_id
-    new_participant_contact_information.fill_in_health_unit
-    new_participant_contact_information.fill_in_family_record
-    new_participant_contact_information.fill_in_phone
-    new_participant_contact_information.fill_in_emergency_contact_name
-    new_participant_contact_information.fill_in_emergency_contact_phone
-    new_participant_contact_information.fill_in_email
+    new_participant_contact_information.select_health_unit
     new_participant_contact_information.fill_in_address
-    new_participant_contact_information.select_dob
-    new_participant_contact_information.select_enrollment_date
     new_participant_contact_information.choose_gender
-    new_participant_contact_information.choose_chronic_disorder
     navigation.submit
 
     expect(pending_participants).to_not have_landing_page_visible
@@ -41,17 +33,9 @@ feature 'Admin, Pending Participants' do
     pending_participants.create
     new_participant_contact_information.fill_in_first_name
     new_participant_contact_information.fill_in_study_id
-    new_participant_contact_information.fill_in_health_unit
-    new_participant_contact_information.fill_in_family_record
-    new_participant_contact_information.fill_in_phone
-    new_participant_contact_information.fill_in_emergency_contact_name
-    new_participant_contact_information.fill_in_emergency_contact_phone
-    new_participant_contact_information.fill_in_email
+    new_participant_contact_information.select_health_unit
     new_participant_contact_information.fill_in_address
-    new_participant_contact_information.select_dob
-    new_participant_contact_information.select_enrollment_date
     new_participant_contact_information.choose_gender
-    new_participant_contact_information.choose_chronic_disorder
     navigation.submit
 
     expect(pending_participants).to_not have_landing_page_visible
@@ -63,17 +47,9 @@ feature 'Admin, Pending Participants' do
     pending_participants.create
     new_participant_contact_information.fill_in_first_name
     new_participant_contact_information.fill_in_last_name
-    new_participant_contact_information.fill_in_health_unit
-    new_participant_contact_information.fill_in_family_record
-    new_participant_contact_information.fill_in_phone
-    new_participant_contact_information.fill_in_emergency_contact_name
-    new_participant_contact_information.fill_in_emergency_contact_phone
-    new_participant_contact_information.fill_in_email
+    new_participant_contact_information.select_health_unit
     new_participant_contact_information.fill_in_address
-    new_participant_contact_information.select_dob
-    new_participant_contact_information.select_enrollment_date
     new_participant_contact_information.choose_gender
-    new_participant_contact_information.choose_chronic_disorder
     navigation.submit
 
     expect(pending_participants).to_not have_landing_page_visible
@@ -81,21 +57,13 @@ feature 'Admin, Pending Participants' do
     expect(contact_information).to have_form_visible
   end
 
-  scenario 'Admin cannot create a pt wo filling in family health unit' do
+  scenario 'Admin cannot create a pt wo selecting family health unit' do
     pending_participants.create
     new_participant_contact_information.fill_in_first_name
     new_participant_contact_information.fill_in_last_name
     new_participant_contact_information.fill_in_study_id
-    new_participant_contact_information.fill_in_family_record
-    new_participant_contact_information.fill_in_phone
-    new_participant_contact_information.fill_in_emergency_contact_name
-    new_participant_contact_information.fill_in_emergency_contact_phone
-    new_participant_contact_information.fill_in_email
     new_participant_contact_information.fill_in_address
-    new_participant_contact_information.select_dob
-    new_participant_contact_information.select_enrollment_date
     new_participant_contact_information.choose_gender
-    new_participant_contact_information.choose_chronic_disorder
     navigation.submit
 
     expect(pending_participants).to_not have_landing_page_visible
@@ -103,21 +71,43 @@ feature 'Admin, Pending Participants' do
     expect(contact_information).to have_form_visible
   end
 
-  scenario 'Admin cannot create a participant without filling in phone' do
+  scenario 'Admin cannot create a participant without filling in address' do
     pending_participants.create
     new_participant_contact_information.fill_in_first_name
     new_participant_contact_information.fill_in_last_name
     new_participant_contact_information.fill_in_study_id
-    new_participant_contact_information.fill_in_health_unit
-    new_participant_contact_information.fill_in_family_record
-    new_participant_contact_information.fill_in_emergency_contact_name
-    new_participant_contact_information.fill_in_emergency_contact_phone
-    new_participant_contact_information.fill_in_email
     new_participant_contact_information.fill_in_address
-    new_participant_contact_information.select_dob
-    new_participant_contact_information.select_enrollment_date
     new_participant_contact_information.choose_gender
-    new_participant_contact_information.choose_chronic_disorder
+    navigation.submit
+
+    expect(pending_participants).to_not have_landing_page_visible
+
+    expect(contact_information).to have_form_visible
+  end
+
+  scenario 'Cannot create wo contact person when alt phone 1 specified' do
+    pending_participants.create
+    new_participant_contact_information.fill_in_first_name
+    new_participant_contact_information.fill_in_last_name
+    new_participant_contact_information.fill_in_study_id
+    new_participant_contact_information.fill_in_address
+    new_participant_contact_information.fill_in_alt_phone_1
+    new_participant_contact_information.choose_gender
+    navigation.submit
+
+    expect(pending_participants).to_not have_landing_page_visible
+
+    expect(contact_information).to have_form_visible
+  end
+
+  scenario 'Cannot create wo contact person 2 when alt phone 2 specified' do
+    pending_participants.create
+    new_participant_contact_information.fill_in_first_name
+    new_participant_contact_information.fill_in_last_name
+    new_participant_contact_information.fill_in_study_id
+    new_participant_contact_information.fill_in_address
+    new_participant_contact_information.fill_in_alt_phone_2
+    new_participant_contact_information.choose_gender
     navigation.submit
 
     expect(pending_participants).to_not have_landing_page_visible
@@ -130,15 +120,8 @@ feature 'Admin, Pending Participants' do
     new_participant_contact_information.fill_in_first_name
     new_participant_contact_information.fill_in_last_name
     new_participant_contact_information.fill_in_study_id
-    new_participant_contact_information.fill_in_health_unit
-    new_participant_contact_information.fill_in_family_record
-    new_participant_contact_information.fill_in_phone
-    new_participant_contact_information.fill_in_emergency_contact_name
-    new_participant_contact_information.fill_in_emergency_contact_phone
-    new_participant_contact_information.fill_in_email
+    new_participant_contact_information.select_health_unit
     new_participant_contact_information.fill_in_address
-    new_participant_contact_information.select_dob
-    new_participant_contact_information.choose_chronic_disorder
     navigation.submit
 
     expect(pending_participants).to_not have_landing_page_visible
@@ -146,17 +129,9 @@ feature 'Admin, Pending Participants' do
     expect(contact_information).to have_form_visible
   end
 
-  scenario 'Admin can create a participant wo filling in the optional fields' do
+  scenario 'Admin can create a participant' do
     pending_participants.create
-    new_participant_contact_information.fill_in_first_name
-    new_participant_contact_information.fill_in_last_name
-    new_participant_contact_information.fill_in_study_id
-    new_participant_contact_information.fill_in_health_unit
-    new_participant_contact_information.fill_in_family_record
-    new_participant_contact_information.fill_in_phone
-    new_participant_contact_information.select_dob
-    new_participant_contact_information.select_enrollment_date
-    new_participant_contact_information.choose_gender
+    new_participant_contact_information.complete_form
     navigation.submit
 
     expect(jane_doe).to be_visible

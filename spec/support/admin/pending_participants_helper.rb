@@ -56,14 +56,9 @@ def new_participant_contact_information
       first_name: 'Jane',
       last_name: 'Doe',
       id: '123',
-      unit: 'Some Healthy Place',
-      family_record: '1234',
       phone: '12345678910',
-      emergency_contact_name: 'Papa Joe',
-      emergency_contact_phone: '12345678901',
-      email: 'jan.doe@example.com',
+      contact_person: 'Papa Joe',
       address: "100 Fake Ln\nSome City, USA, 12345",
-      enrollment_date: Date.today - 1,
       gender: 'female'
     )
 end
@@ -84,14 +79,9 @@ def participant_2000_contact_information
       first_name: 'First',
       last_name: 'Last-2000',
       id: '2000',
-      unit: 'Some Healthy Place',
-      family_record: '1234',
       phone: '12345678910',
-      emergency_contact_name: 'Papa Joe',
-      emergency_contact_phone: '12345678901',
-      email: 'participant_2000@example.com',
+      contact_person: 'Papa Joe',
       address: "100 Fake Ln\nSome City, USA, 12345",
-      enrollment_date: Date.today - 1,
       gender: 'female'
     )
 end
