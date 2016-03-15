@@ -153,6 +153,17 @@ class YourPatients
           .has_text? "Contact at: #{Date.today.strftime('%B %d, %Y')}"
       end
 
+      def has_contact_information_title?
+        has_css?('h2', text: locale('Información de contacto',
+                                    'Informações de Contato',
+                                    'Contact Information'))
+      end
+
+      def has_smartphone_information_title?
+        has_css?('h2', text: locale('Smartphone', 'Informações de Smartphone',
+                                    'Smartphone Information'))
+      end
+
       def has_contact_information_table_headings?
         table = find('#contact-info')
         actual_headings = (0..11).map { |i| table.all('strong')[i].text }

@@ -144,6 +144,10 @@ feature 'Spanish Nurse, Participant Contact Information' do
 
     expect(pt_500_contact_info).to be_on_page
 
+    expect(pt_500_contact_info).to have_contact_information_title
+
+    expect(pt_500_contact_info).to have_smartphone_information_title
+
     expect(pt_500_contact_info).to have_contact_information_table_headings
 
     expect(pt_500_contact_info).to have_timeline_titles
@@ -161,6 +165,10 @@ feature 'Portuguese Nurse, Participant Contact Information' do
     pt_600_contact_info.open
 
     expect(pt_600_contact_info).to be_on_page
+
+    expect(pt_600_contact_info).to have_contact_information_title
+
+    expect(pt_600_contact_info).to have_smartphone_information_title
 
     expect(pt_600_contact_info).to have_contact_information_table_headings
 
