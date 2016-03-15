@@ -33,7 +33,7 @@ module Translations
       def spanish_notes_headers
         @spanish_notes_headers ||= [
           'Cita final',
-          'Call to schedule final appointment',
+          'Llamada para programar cita final',
           'Llamada de seguimiento sem. 3',
           'Llamada de seguimiento sem. 1',
           'Cita de inicio',

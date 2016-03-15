@@ -11,7 +11,7 @@ module Translations
     include Translations::PendingParticipants::PortugueseContactForm
 
     def main_button
-      locale('Participantes pendientes', 'Participantes pendentes',
+      locale('Participantes reclutados', 'Participantes pendentes',
              'Pending Participants')
     end
 
@@ -40,7 +40,7 @@ module Translations
     end
 
     def expected_relationship_options
-      locale(spanish_relationship_options, portuguese_relationship_options.
+      locale(spanish_relationship_options, portuguese_relationship_options,
              english_relationship_options)
     end
 
@@ -67,6 +67,11 @@ module Translations
       has_text? locale('Asignar enfermero para activar participante',
                        'Designar enfermeira para ativar participante',
                        'Assign nurse to activate participant')
+    end
+
+    def expected_health_unit_options
+      locale(spanish_health_unit_options, portuguese_health_unit_options,
+             english_health_unit_options)
     end
 
     private

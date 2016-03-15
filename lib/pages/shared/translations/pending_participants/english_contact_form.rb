@@ -28,6 +28,10 @@ module Translations
         ]
       end
 
+      def english_health_unit_options
+        @english_health_unit_options ||= []
+      end
+
       def english_relationship_options
         @english_relationship_options ||= [
           'Parent',

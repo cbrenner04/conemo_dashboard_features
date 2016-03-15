@@ -25,7 +25,7 @@ module Translations
           'Primeiro encontro',
           'Chamada de seguimento sem. 1',
           'Chamada de seguimento sem. 3',
-          'Call to schedule final appointment',
+          'Chamada para agendar encontro fina',
           'Encontro final'
         ]
       end

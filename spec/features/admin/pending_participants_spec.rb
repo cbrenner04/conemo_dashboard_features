@@ -220,10 +220,11 @@ feature 'Spanish Admin, Pending Participants' do
 
     spanish_pending_participants.create
 
-    # this fails because form has not been updated
-    # expect(spanish_contact_information).to have_form_fields
+    expect(spanish_contact_information).to have_form_fields
 
-    # open relationship fields and expect correct options
+    expect(spanish_contact_information).to have_health_unit_options
+
+    expect(spanish_contact_information).to have_relationship_options
 
     expect(spanish_contact_information).to have_gender_options
 
@@ -254,10 +255,11 @@ feature 'Portuguese Admin, Pending Participants' do
 
     portuguese_pending_participants.create
 
-    # this fails because form has not been updated
-    # expect(portuguese_contact_information).to have_form_fields
+    expect(portuguese_contact_information).to have_form_fields
 
-    # open relationship fields and expect correct options
+    expect(portuguese_contact_information).to have_health_unit_options
+
+    expect(portuguese_contact_information).to have_relationship_options
 
     expect(portuguese_contact_information).to have_gender_options
 

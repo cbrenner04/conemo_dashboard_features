@@ -33,7 +33,7 @@ module Translations
       def portuguese_notes_headers
         @portuguese_notes_headers ||= [
           'Encontro final',
-          'Call to schedule final appointment',
+          'Chamada para agendar encontro fina',
           'Chamada de seguimento sem. 3',
           'Chamada de seguimento sem. 1',
           'Encontro inicial',

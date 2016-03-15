@@ -25,7 +25,7 @@ module Translations
           'Cita de inicio',
           'Llamada de seguimiento sem. 1',
           'Llamada de seguimiento sem. 3',
-          'Call to schedule final appointment',
+          'Llamada para programar cita final',
           'Cita final'
         ]
       end
