@@ -1,4 +1,5 @@
 require './lib/pages/shared/nurse_tasks_forms'
+require './lib/pages/shared/translations'
 
 class YourPatients
   class NurseTasks
@@ -6,42 +7,44 @@ class YourPatients
     class FollowUpCallWeekThree
       include Capybara::DSL
       include NurseTasksForms
+      include Translations
 
-      def initialize
-        @task_name ||= 'Follow up call week three'
+      def initialize(follow_up_call_week_three)
+        @locale ||= follow_up_call_week_three[:locale]
+      end
+
+      def title
+        locale('Llamada de seguimiento sem. 3',
+               'Chamada de seguimento sem. 3', 'Follow up call week 3')
       end
 
       def scheduled?
-        has_no_list_item?(@task_name) &&
-          has_scheduled_progress_bar_item?(@task_name)
+        has_no_list_item?(title) && has_scheduled_progress_bar_item?(title)
       end
 
       def active?
-        has_list_item?(@task_name) &&
-          has_active_progress_bar_item?(@task_name)
+        has_list_item?(title) && has_active_progress_bar_item?(title)
       end
 
       def complete?
-        has_no_list_item?(@task_name) &&
-          has_complete_progress_bar_item?(@task_name)
+        has_no_list_item?(title) && has_complete_progress_bar_item?(title)
       end
 
       def canceled?
-        has_no_list_item?(@task_name) &&
-          has_canceled_progress_bar_item?(@task_name)
+        has_no_list_item?(title) && has_canceled_progress_bar_item?(title)
       end
 
       def confirm
-        confirm_task @task_name
+        confirm_task title
         visible?
       end
 
       def cancel
-        cancel_task @task_name
+        cancel_task title
       end
 
       def open_reschedule_form
-        open_reschedule @task_name
+        open_reschedule title
       end
 
       def reschedule
@@ -50,7 +53,7 @@ class YourPatients
       end
 
       def visible?
-        has_css?('h1', text: 'Follow up call week 3')
+        has_css?('h1', text: title)
       end
 
       def respond_to_questions

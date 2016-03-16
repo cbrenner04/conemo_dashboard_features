@@ -32,7 +32,7 @@ module ContactInformationForm
 
   def select_health_unit
     selector[3].click
-    response = (1..10).map { |i| "unit #{i}" }
+    response = (2..10).map { |i| "unit #{i}" }
     select_response(response.sample)
   end
 

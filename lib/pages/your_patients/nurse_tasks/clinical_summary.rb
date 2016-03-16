@@ -108,20 +108,20 @@ class YourPatients
       end
 
       def has_first_appt_notes_visible?
-        has_text? "First appointment\n" \
-                  "#{first_apt.general_notes}\n" \
+        has_text? "#{initial_in_person_appointment.title}\n" \
+                  "#{initial_in_person_appointment.general_notes}\n" \
                   "#{DateTime.now.strftime('%B %d, %Y')}"
       end
 
       def has_follow_up_week_1_notes_visible?
-        has_text? "Second contact\n" \
-                  "#{second_contact.general_notes}\n" \
+        has_text? "#{follow_up_call_week_one.title}\n" \
+                  "#{follow_up_call_week_one.general_notes}\n" \
                   "#{DateTime.now.strftime('%B %d, %Y')}"
       end
 
       def has_follow_up_week_3_notes_visible?
-        has_text? "Follow up call week 3\n" \
-                  "#{third_contact.general_notes}\n" \
+        has_text? "#{follow_up_call_week_three.title}\n" \
+                  "#{follow_up_call_week_three.general_notes}\n" \
                   "#{DateTime.now.strftime('%B %d, %Y')}"
       end
 
@@ -252,16 +252,23 @@ class YourPatients
         @navigation ||= Navigation.new(locale: 'english')
       end
 
-      def first_apt
-        @first_apt ||= YourPatients::NurseTasks::InitialInPersonAppointment.new
+      def initial_in_person_appointment
+        @initial_in_person_appointment ||=
+          YourPatients::NurseTasks::InitialInPersonAppointment.new(
+            locale: 'english'
+          )
       end
 
-      def second_contact
-        @second_contact ||= YourPatients::NurseTasks::FollowUpCallWeekOne.new
+      def follow_up_call_week_one
+        @follow_up_call_week_one ||=
+          YourPatients::NurseTasks::FollowUpCallWeekOne.new(locale: 'english')
       end
 
-      def third_contact
-        @third_contact ||= YourPatients::NurseTasks::FollowUpCallWeekThree.new
+      def follow_up_call_week_three
+        @follow_up_call_week_three ||=
+          YourPatients::NurseTasks::FollowUpCallWeekThree.new(
+            locale: 'english'
+          )
       end
 
       def final_appt

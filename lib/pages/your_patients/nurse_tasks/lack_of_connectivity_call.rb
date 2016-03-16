@@ -1,5 +1,6 @@
 require './lib/pages/shared/nurse_tasks_forms'
 require './lib/pages/navigation'
+require './lib/pages/shared/translations'
 
 class YourPatients
   class NurseTasks
@@ -7,13 +8,23 @@ class YourPatients
     class LackOfConnectivityCall
       include Capybara::DSL
       include NurseTasksForms
+      include Translations
+
+      def initialize(lack_of_connectivity_call)
+        @locale ||= lack_of_connectivity_call[:locale]
+      end
+
+      def title
+        locale('Llamada por no-conectividad', 'Chamada por não-conectividade',
+               'Call due to no connectivity')
+      end
 
       def active?
-        has_list_item?('Lack of connectivity call')
+        has_list_item?(title)
       end
 
       def mark_resolved
-        mark_task_resolved('Lack of connectivity call')
+        mark_task_resolved(title)
       end
 
       def complete_resolution_form
@@ -37,7 +48,7 @@ class YourPatients
       end
 
       def contact_supervisor
-        contact_supervisor_for_task('Lack of connectivity call')
+        contact_supervisor_for_task(title)
       end
 
       private

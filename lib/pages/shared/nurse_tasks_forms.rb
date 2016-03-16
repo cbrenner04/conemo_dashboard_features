@@ -5,27 +5,25 @@ module NurseTasksForms
   include Capybara::DSL
 
   def mark_task_resolved(type)
-    find('.list-group-item', text: type)
-      .find('a', text: 'Mark as resolved').click
+    panel(type).find('a', text: 'Mark as resolved').click
   end
 
   def contact_supervisor_for_task(type)
-    find('.list-group-item', text: type)
-      .find('input[value = "Contact Supervisor"]').click
+    panel(type).find('input[value = "Contact Supervisor"]').click
     accept_alert 'are you sure you want to notify the supervisor that you ' \
                  'need help?'
   end
 
   def confirm_task(type)
-    find('.list-group-item', text: type).find('a', text: 'Confirm').click
+    panel(type).find('a', text: 'Confirm').click
   end
 
   def cancel_task(type)
-    find('.list-group-item', text: type).find('input[value = "Cancel"]').click
+    panel(type).find('input[value = "Cancel"]').click
   end
 
   def open_reschedule(type)
-    find('.list-group-item', text: type).find('a', text: 'Reschedule').click
+    panel(type).find('a', text: 'Reschedule').click
   end
 
   def selector
@@ -40,11 +38,11 @@ module NurseTasksForms
   end
 
   def has_list_item?(text)
-    has_css?('.list-group-item', text: text)
+    has_css?('.panel', text: text)
   end
 
   def has_no_list_item?(text)
-    has_no_css?('.list-group-item', text: text)
+    has_no_css?('.panel', text: text)
   end
 
   def has_scheduled_progress_bar_item?(text)
@@ -83,5 +81,9 @@ module NurseTasksForms
 
   def navigation
     @navigation ||= Navigation.new(locale: 'english')
+  end
+
+  def panel(type)
+    find('.panel', text: type)
   end
 end

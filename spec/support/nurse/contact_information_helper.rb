@@ -18,12 +18,12 @@ end
 
 def initial_appointment
   @initial_appointment ||=
-    YourPatients::NurseTasks::InitialInPersonAppointment.new
+    YourPatients::NurseTasks::InitialInPersonAppointment.new(locale: 'english')
 end
 
 def call_to_schedule_final_appointment
   @call_to_schedule_final_appointment ||=
-    YourPatients::NurseTasks::CallToScheduleFinalAppointment.new
+    YourPatients::NurseTasks::FollowUpCallWeekThree.new(locale: 'english')
 end
 
 def final_appointment

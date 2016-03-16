@@ -1,7 +1,11 @@
+require './lib/pages/shared/translations'
+Dir['./lib/pages/your_patients/nurse_tasks/*.rb'].each { |file| require file }
+
 # page object for active participants
 class YourPatients
   include RSpec::Matchers
   include Capybara::DSL
+  include Translations
 
   def initialize(your_patients)
     @pt_id ||= your_patients[:pt_id]
@@ -21,7 +25,7 @@ class YourPatients
   end
 
   def has_assigned_patients?
-    assigned_participants.each { |i| has_text? i }
+    assigned_participants.all? { |i| has_text? i }
   end
 
   def has_token?
@@ -47,7 +51,8 @@ class YourPatients
   def has_tasks_ordered_correctly?
     expected_text = row_text.gsub("#{@pt_id} ", '')
     expect(expected_text)
-      .to eq 'Confirmation call, Help request, Lack of connectivity call'
+      .to eq 'Confirmation call, Help request, ' \
+             "#{lack_of_connectivity_call.title}"
   end
 
   def has_tasks_completed?
@@ -67,19 +72,19 @@ class YourPatients
   end
 
   def has_initial_appointment?
-    patient_row.has_text? 'Initial in person appointment'
+    patient_row.has_text? initial_in_person_appointment.title
   end
 
   def has_follow_up_week_1?
-    patient_row.has_text? 'Follow up call week one'
+    patient_row.has_text? follow_up_call_week_one.title
   end
 
   def has_follow_up_week_3?
-    patient_row.has_text? 'Follow up call week three'
+    patient_row.has_text? follow_up_call_week_three.title
   end
 
   def has_call_to_schedule_final_appt?
-    patient_row.has_text? 'Call to schedule final appointment'
+    patient_row.has_text? call_to_schedule_final_appointment.title
   end
 
   def has_final_appointment?
@@ -91,14 +96,43 @@ class YourPatients
   end
 
   def has_lack_of_connectivity_task?
-    patient_row.has_text? 'Lack of connectivity call'
+    patient_row.has_text? lack_of_connectivity_call.title
   end
 
   def has_non_adherence_task?
-    patient_row.has_text? 'Non adherence call'
+    patient_row.has_text? 'Non-adherence call'
   end
 
   private
+
+  def initial_in_person_appointment
+    @initial_in_person_appointment ||=
+      YourPatients::NurseTasks::InitialInPersonAppointment.new(
+        locale: 'english'
+      )
+  end
+
+  def follow_up_call_week_one
+    @follow_up_call_week_one ||=
+      YourPatients::NurseTasks::FollowUpCallWeekOne.new(locale: 'english')
+  end
+
+  def follow_up_call_week_three
+    @follow_up_call_week_three ||=
+      YourPatients::NurseTasks::FollowUpCallWeekThree.new(locale: 'english')
+  end
+
+  def call_to_schedule_final_appointment
+    @call_to_schedule_final_appointment ||=
+      YourPatients::NurseTasks::CallToScheduleFinalAppointment.new(
+        locale: 'english'
+      )
+  end
+
+  def lack_of_connectivity_call
+    @lack_of_connectivity_call ||=
+      YourPatients::NurseTasks::LackOfConnectivityCall.new(locale: 'english')
+  end
 
   def patient_row
     find('tr', text: @pt_id)
@@ -109,13 +143,8 @@ class YourPatients
   end
 
   def assigned_participants
-    if @locale == 'spanish'
-      spanish_nurse_patients
-    elsif @locale == 'portuguese'
-      portuguese_nurse_patients
-    else
-      english_nurse_patients
-    end
+    locale(spanish_nurse_patients, portuguese_nurse_patients,
+           english_nurse_patients)
   end
 
   def english_nurse_patients
@@ -162,30 +191,30 @@ class YourPatients
   def expected_results_3
     @expected_results_3 ||= if last_rows_1
                               ['802 Help request',
-                               '803 Lack of connectivity call',
-                               '804 Non adherence call']
+                               '803 Call due to no connectivity',
+                               '804 Non-adherence call']
                             elsif last_rows_2
-                              ['802 Help request', '804 Non adherence call',
-                               '803 Lack of connectivity call']
+                              ['802 Help request', '804 Non-adherence call',
+                               '803 Call due to no connectivity']
                             elsif last_rows_3
-                              ['803 Lack of connectivity call',
-                               '804 Non adherence call', '802 Help request']
+                              ['803 Call due to no connectivity',
+                               '804 Non-adherence call', '802 Help request']
                             elsif last_rows_4
-                              ['803 Lack of connectivity call',
-                               '802 Help request', '804 Non adherence call']
+                              ['803 Call due to no connectivity',
+                               '802 Help request', '804 Non-adherence call']
                             elsif last_rows_5
-                              ['804 Non adherence call', '802 Help request',
-                               '803 Lack of connectivity call']
+                              ['804 Non-adherence call', '802 Help request',
+                               '803 Call due to no connectivity']
                             else
-                              ['804 Non adherence call',
-                               '803 Lack of connectivity call',
+                              ['804 Non-adherence call',
+                               '803 Call due to no connectivity',
                                '802 Help request']
                             end
   end
 
   def last_rows_1
     @last_rows_1 ||= all('tr')[6].has_text?('Help') &&
-                     all('tr')[7].has_text?('Lack')
+                     all('tr')[7].has_text?('due')
   end
 
   def last_rows_2
@@ -194,12 +223,12 @@ class YourPatients
   end
 
   def last_rows_3
-    @last_rows_3 ||= all('tr')[6].has_text?('Lack') &&
+    @last_rows_3 ||= all('tr')[6].has_text?('due') &&
                      all('tr')[7].has_text?('Non')
   end
 
   def last_rows_4
-    @last_rows_4 ||= all('tr')[6].has_text?('Lack') &&
+    @last_rows_4 ||= all('tr')[6].has_text?('due') &&
                      all('tr')[7].has_text?('Help')
   end
 

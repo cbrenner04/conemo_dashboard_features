@@ -1,5 +1,6 @@
 require './lib/pages/shared/contact_information_form'
 require './lib/pages/shared/translations/contact_information'
+Dir['./lib/pages/your_patients/nurse_tasks/*.rb'].each { |file| require file }
 
 class YourPatients
   class NurseTasks
@@ -72,28 +73,29 @@ class YourPatients
 
       def has_initial_appointment?
         find('.timeline').has_css?('.timeline-panel', count: 2) &&
-          has_text?('Initial in person appointment information Appointment ' \
-                    "date/time: #{DateTime.now.strftime('%B %d, %Y')} ")
+          has_text?("#{initial_in_person_appointment.title} information " \
+                    'Appointment date/time: ' \
+                    "#{DateTime.now.strftime('%B %d, %Y')} ")
       end
 
       def has_follow_up_week_1?
         find('.timeline').has_css?('.timeline-panel', count: 3) &&
-          has_text?('Follow up call week 1 information Date of phone call: ' \
-                    "#{DateTime.now.strftime('%B %d, %Y')}") &&
+          has_text?("#{follow_up_call_week_one.title} information Date of " \
+                    "phone call: #{DateTime.now.strftime('%B %d, %Y')}") &&
           has_text?('Length of phone call (minutes): 120')
       end
 
       def has_follow_up_week_3?
         find('.timeline').has_css?('.timeline-panel', count: 4) &&
-          has_text?('Follow up call week 3 information Contact At: ' \
-                    "#{DateTime.now.strftime('%B %d, %Y')}") &&
+          has_text?("#{follow_up_call_week_three.title} information Contact " \
+                    " At: #{DateTime.now.strftime('%B %d, %Y')}") &&
           has_text?('Length of phone call (minutes): 120')
       end
 
       def has_call_to_schedule_final_appt?
         find('.timeline').has_css?('.timeline-panel', count: 5) &&
-          has_text?('Call to schedule final appointment Contact at: ' \
-                    "#{DateTime.now.strftime('%B %d, %Y')}")
+          has_text?("#{call_to_schedule_final_appointment.title} Date/time" \
+                    " of phone call: #{DateTime.now.strftime('%B %d, %Y')}")
       end
 
       def has_final_appointment?
@@ -114,19 +116,19 @@ class YourPatients
       end
 
       def edit_initial_appointment
-        edit_session('Initial in person appointment')
+        edit_session(initial_in_person_appointment.title)
       end
 
       def edit_follow_up_week_1
-        edit_session('Follow up call week 1')
+        edit_session(follow_up_call_week_one.title)
       end
 
       def edit_follow_up_week_3
-        edit_session('Follow up call week 3')
+        edit_session(follow_up_call_week_three.title)
       end
 
       def edit_call_to_schedule_final_appt
-        edit_session('Call to schedule final appointment')
+        edit_session(call_to_schedule_final_appointment.title)
       end
 
       def edit_final_appointment
@@ -191,6 +193,32 @@ class YourPatients
       end
 
       private
+
+      def initial_in_person_appointment
+        @initial_in_person_appointment ||=
+          YourPatients::NurseTasks::InitialInPersonAppointment.new(
+            locale: 'english'
+          )
+      end
+
+      def follow_up_call_week_one
+        @follow_up_call_week_one ||=
+          YourPatients::NurseTasks::FollowUpCallWeekOne.new(locale: 'english')
+      end
+
+      def follow_up_call_week_three
+        @follow_up_call_week_three ||=
+          YourPatients::NurseTasks::FollowUpCallWeekThree.new(
+            locale: 'english'
+          )
+      end
+
+      def call_to_schedule_final_appointment
+        @call_to_schedule_final_appointment ||=
+          YourPatients::NurseTasks::CallToScheduleFinalAppointment.new(
+            locale: 'english'
+          )
+      end
 
       def edit_session(session)
         find('.timeline-panel', text: session).find('.fa-edit').click

@@ -11,7 +11,7 @@ module Translations
     include Translations::ClinicalSummary::PortugueseSummary
 
     def clinical_summary_link
-      locale('Clinical Summary', 'Clinical Summary', 'Clinical Summary')
+      locale('Historia del Paciente', 'Clinical Summary', 'Clinical Summary')
     end
 
     def notes_heading

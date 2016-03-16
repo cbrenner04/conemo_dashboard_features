@@ -63,7 +63,7 @@ class YourPatients
     end
 
     def has_number_of_days_since_due?
-      find('.list-group-item', text: @contact_type).
+      find('.panel', text: @contact_type).
         has_text? "#{@days_since_due} ago"
     end
 

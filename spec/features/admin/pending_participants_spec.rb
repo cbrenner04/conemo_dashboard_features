@@ -138,6 +138,7 @@ feature 'Admin, Pending Participants' do
   end
 
   scenario 'Admin activates a participant' do
+    # creating a participant so config token is auto-generated
     pending_participants.create
     participant_2000_contact_information.complete_form
     navigation.submit

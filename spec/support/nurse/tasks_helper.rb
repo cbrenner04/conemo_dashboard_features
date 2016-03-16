@@ -19,16 +19,18 @@ end
 
 def lack_of_connectivity_call
   @lack_of_connectivity_call ||=
-    YourPatients::NurseTasks::LackOfConnectivityCall.new
+    YourPatients::NurseTasks::LackOfConnectivityCall.new(locale: 'english')
 end
 
 def non_adherence_call
-  @non_adherence_call ||= YourPatients::NurseTasks::NonAdherenceCall.new
+  @non_adherence_call ||= YourPatients::NurseTasks::NonAdherenceCall.new(
+    locale: 'english'
+  )
 end
 
 def initial_in_person_appt
   @initial_in_person_appt ||=
-    YourPatients::NurseTasks::InitialInPersonAppointment.new
+    YourPatients::NurseTasks::InitialInPersonAppointment.new(locale: 'english')
 end
 
 def contact_information
@@ -42,16 +44,22 @@ def clinical_summary
 end
 
 def follow_up_week_1
-  @follow_up_week_1 ||= YourPatients::NurseTasks::FollowUpCallWeekOne.new
+  @follow_up_week_1 ||= YourPatients::NurseTasks::FollowUpCallWeekOne.new(
+    locale: 'english'
+  )
 end
 
 def follow_up_week_3
-  @follow_up_week_3 ||= YourPatients::NurseTasks::FollowUpCallWeekThree.new
+  @follow_up_week_3 ||= YourPatients::NurseTasks::FollowUpCallWeekThree.new(
+    locale: 'english'
+  )
 end
 
 def call_to_schedule_final_appointment
   @call_to_schedule_final_appointment ||=
-    YourPatients::NurseTasks::CallToScheduleFinalAppointment.new
+    YourPatients::NurseTasks::CallToScheduleFinalAppointment.new(
+      locale: 'english'
+    )
 end
 
 def final_appointment
@@ -59,7 +67,9 @@ def final_appointment
 end
 
 def additional_contact
-  @additional_contact ||= YourPatients::NurseTasks::AdditionalContact.new
+  @additional_contact ||= YourPatients::NurseTasks::AdditionalContact.new(
+    locale: 'english'
+  )
 end
 
 def pt_451_nurse_tasks
@@ -106,7 +116,7 @@ end
 def pt_803_nurse_tasks
   @pt_803_nurse_tasks ||= YourPatients::NurseTasks.new(
     pt_id: 803,
-    contact_type: 'Lack of connectivity call',
+    contact_type: 'Call due to no connectivity',
     days_since_due: '3 days'
   )
 end
@@ -152,7 +162,7 @@ end
 def pt_804_nurse_tasks
   @pt_804_nurse_tasks ||= YourPatients::NurseTasks.new(
     pt_id: 804,
-    contact_type: 'Non adherence call',
+    contact_type: 'Non-adherence call',
     days_since_due: '3 days'
   )
 end
@@ -266,7 +276,7 @@ end
 def pt_708_nurse_tasks
   @pt_708_nurse_tasks ||= YourPatients::NurseTasks.new(
     pt_id: 708,
-    contact_type: 'Follow up call week one',
+    contact_type: 'Follow up call week 1',
     days_since_due: 'about 1 month'
   )
 end
@@ -334,7 +344,7 @@ end
 def pt_709_nurse_tasks
   @pt_709_nurse_tasks ||= YourPatients::NurseTasks.new(
     pt_id: 709,
-    contact_type: 'Follow up call week three',
+    contact_type: 'Follow up call week 3',
     days_since_due: '14 days'
   )
 end
@@ -402,7 +412,7 @@ end
 def pt_800_nurse_tasks
   @pt_800_nurse_tasks ||= YourPatients::NurseTasks.new(
     pt_id: 800,
-    contact_type: 'Call to schedule final appointment',
+    contact_type: 'Call to schedule final in person appointment',
     days_since_due: '4 days'
   )
 end
@@ -465,4 +475,25 @@ end
 
 def patient_341
   @patient_341 ||= YourPatients.new(pt_id: 341)
+end
+
+def spanish_additional_contact
+  @spanish_additional_contact ||=
+    YourPatients::NurseTasks::AdditionalContact.new(
+      locale: 'spanish'
+    )
+end
+
+def pt_501_nurse_tasks
+  @pt_501_nurse_tasks ||= YourPatients::NurseTasks.new(
+    pt_id: 501,
+    locale: 'spanish'
+  )
+end
+
+def portuguese_additional_contact
+  @portuguese_additional_contact ||=
+    YourPatients::NurseTasks::AdditionalContact.new(
+      locale: 'portuguese'
+    )
 end

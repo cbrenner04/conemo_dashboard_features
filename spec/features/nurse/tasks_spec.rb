@@ -509,6 +509,7 @@ feature 'Nurse, Participant Tasks' do
     navigation.submit
 
     contact_information.enter_smartphone_number
+    contact_information.enter_phone_id
     navigation.submit # what happens if I cancel?
 
     expect(pt_400_nurse_tasks).to have_no_tasks_in_count
@@ -1105,7 +1106,19 @@ feature 'Nurse, Participant Tasks' do
 end
 
 feature 'Spanish nurse, Participant tasks' do
-  scenario 'Spanish nurse sees correct translations'
+  scenario 'Spanish nurse sees correct translations' do
+    spanish_nurse.sign_in
+    pt_501_nurse_tasks.open
+    spanish_additional_contact.open
+
+    expect(spanish_additional_contact).to have_contact_title
+
+    expect(spanish_additional_contact).to have_form_headings
+
+    expect(spanish_additional_contact).to have_type_options
+
+    navigation.cancel
+  end
 end
 
 feature 'Portuguese nurse, Participant tasks' do
