@@ -16,7 +16,9 @@ def confirmation_call
 end
 
 def help_request
-  @help_request ||= YourPatients::NurseTasks::HelpRequest.new
+  @help_request ||= YourPatients::NurseTasks::HelpRequest.new(
+    locale: 'english'
+  )
 end
 
 def lack_of_connectivity_call
@@ -481,13 +483,6 @@ def patient_341
   @patient_341 ||= YourPatients.new(pt_id: 341)
 end
 
-def spanish_additional_contact
-  @spanish_additional_contact ||=
-    YourPatients::NurseTasks::AdditionalContact.new(
-      locale: 'spanish'
-    )
-end
-
 def pt_501_nurse_tasks
   @pt_501_nurse_tasks ||= YourPatients::NurseTasks.new(
     pt_id: 501,
@@ -495,9 +490,135 @@ def pt_501_nurse_tasks
   )
 end
 
+def pt_502_nurse_tasks
+  @pt_502_nurse_tasks ||= YourPatients::NurseTasks.new(
+    pt_id: 502,
+    locale: 'spanish'
+  )
+end
+
+def spanish_additional_contact
+  @spanish_additional_contact ||=
+    YourPatients::NurseTasks::AdditionalContact.new(
+      locale: 'spanish'
+    )
+end
+
+def spanish_confirmation_call
+  @spanish_confirmation_call ||= YourPatients::NurseTasks::ConfirmationCall.new(
+    locale: 'spanish'
+  )
+end
+
+def spanish_initial_appointment
+  @spanish_initial_appointment ||=
+    YourPatients::NurseTasks::InitialInPersonAppointment.new(locale: 'spanish')
+end
+
+def spanish_follow_up_week_1
+  @spanish_follow_up_week_1 ||=
+    YourPatients::NurseTasks::FollowUpCallWeekOne.new(locale: 'spanish')
+end
+
+def spanish_follow_up_week_3
+  @spanish_follow_up_week_3 ||=
+    YourPatients::NurseTasks::FollowUpCallWeekThree.new(locale: 'spanish')
+end
+
+def spanish_call_to_schedule_final
+  @spanish_call_to_schedule_final ||=
+    YourPatients::NurseTasks::CallToScheduleFinalAppointment.new(
+      locale: 'spanish'
+    )
+end
+
+def spanish_final_appointment
+  @spanish_final_appointment ||= YourPatients::NurseTasks::FinalAppointment.new(
+    locale: 'spanish'
+  )
+end
+
+def spanish_lack_of_connectivity_call
+  @spanish_lack_of_connectivity_call ||=
+    YourPatients::NurseTasks::LackOfConnectivityCall.new(locale: 'spanish')
+end
+
+def spanish_help_request
+  @spanish_help_request ||= YourPatients::NurseTasks::HelpRequest.new(
+    locale: 'spanish'
+  )
+end
+
+def spanish_non_adherence_call
+  @spanish_non_adherence_call ||=
+    YourPatients::NurseTasks::NonAdherenceCall.new(locale: 'spanish')
+end
+
+def pt_601_nurse_tasks
+  @pt_601_nurse_tasks ||= YourPatients::NurseTasks.new(
+    pt_id: 601,
+    locale: 'portuguese'
+  )
+end
+
+def pt_602_nurse_tasks
+  @pt_602_nurse_tasks ||= YourPatients::NurseTasks.new(
+    pt_id: 602,
+    locale: 'portuguese'
+  )
+end
+
 def portuguese_additional_contact
   @portuguese_additional_contact ||=
-    YourPatients::NurseTasks::AdditionalContact.new(
+    YourPatients::NurseTasks::AdditionalContact.new(locale: 'portuguese')
+end
+
+def portuguese_confirmation_call
+  @portuguese_confirmation_call ||=
+    YourPatients::NurseTasks::ConfirmationCall.new(locale: 'portuguese')
+end
+
+def portuguese_initial_appointment
+  @portuguese_initial_appointment ||=
+    YourPatients::NurseTasks::InitialInPersonAppointment.new(
       locale: 'portuguese'
     )
+end
+
+def portuguese_follow_up_week_1
+  @portuguese_follow_up_week_1 ||=
+    YourPatients::NurseTasks::FollowUpCallWeekOne.new(locale: 'portuguese')
+end
+
+def portuguese_follow_up_week_3
+  @portuguese_follow_up_week_3 ||=
+    YourPatients::NurseTasks::FollowUpCallWeekThree.new(locale: 'portuguese')
+end
+
+def portuguese_call_to_schedule_final
+  @portuguese_call_to_schedule_final ||=
+    YourPatients::NurseTasks::CallToScheduleFinalAppointment.new(
+      locale: 'portuguese'
+    )
+end
+
+def portuguese_final_appointment
+  @portuguese_final_appointment ||=
+    YourPatients::NurseTasks::FinalAppointment.new(locale: 'portuguese')
+end
+
+def portuguese_lack_of_connectivity_call
+  @portuguese_lack_of_connectivity_call ||=
+    YourPatients::NurseTasks::LackOfConnectivityCall.new(locale: 'portuguese')
+end
+
+def portuguese_help_request
+  @portuguese_help_request ||= YourPatients::NurseTasks::HelpRequest.new(
+    locale: 'portuguese'
+  )
+end
+
+def portuguese_non_adherence_call
+  @portuguese_non_adherence_call ||=
+    YourPatients::NurseTasks::NonAdherenceCall.new(locale: 'portuguese')
 end

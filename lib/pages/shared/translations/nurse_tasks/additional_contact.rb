@@ -1,10 +1,10 @@
-require './lib/pages/shared/translations'
+require './lib/pages/shared/translations/nurse_tasks'
 
 module Translations
   module NurseTasks
     # translations for additional contact form
     module AdditionalContact
-      include Translations
+      include Translations::NurseTasks
 
       def expected_headings
         locale(spanish_headings, portuguese_headings, english_headings)
@@ -21,7 +21,7 @@ module Translations
       end
 
       def portuguese_headings
-        @portuguese_headings ||= ['Data e hora do contato', 'Tipo de contato:']
+        @portuguese_headings ||= ['Data e hora do contato', 'Tipo de contato']
       end
 
       def english_headings

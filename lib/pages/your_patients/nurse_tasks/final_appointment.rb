@@ -1,5 +1,5 @@
 require './lib/pages/shared/nurse_tasks_forms'
-require './lib/pages/shared/translations/nurse_tasks'
+require './lib/pages/shared/translations/nurse_tasks/final_appointment'
 
 class YourPatients
   class NurseTasks
@@ -7,7 +7,7 @@ class YourPatients
     class FinalAppointment
       include Capybara::DSL
       include NurseTasksForms
-      include Translations::NurseTasks
+      include Translations::NurseTasks::FinalAppointment
 
       def initialize(final_appointment)
         @locale ||= final_appointment[:locale]
@@ -56,8 +56,11 @@ class YourPatients
       end
 
       def enter_location
-        fill_in 'final_appointment[appointment_location]',
-                with: '100 West Ln, Chicago, IL 60601'
+        enter_task_location(5)
+      end
+
+      def toggle_options_list
+        selector[5].click
       end
 
       def general_notes
@@ -75,6 +78,19 @@ class YourPatients
 
       def choose_phone_returned_negative
         find('#final_appointment_phone_returned_false').click
+      end
+
+      def has_form_headings?
+        has_task_form_headings?(3)
+      end
+
+      def has_current_date_selections?
+        has_date_selectors?(Date.today, 1, locale(0, 0, 2), locale(2, 2, 0)) &&
+          has_hour_selector?(3, Time.now)
+      end
+
+      def has_location_options?
+        has_task_options?(5, 9)
       end
     end
   end

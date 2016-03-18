@@ -1112,15 +1112,241 @@ feature 'Spanish nurse, Participant tasks' do
     spanish_additional_contact.open
 
     expect(spanish_additional_contact).to have_contact_title
-
     expect(spanish_additional_contact).to have_form_headings
-
+    expect(spanish_additional_contact).to have_current_date_selections
     expect(spanish_additional_contact).to have_type_options
 
+    spanish_additional_contact.choose_option
     navigation.cancel
+
+    expect(spanish_confirmation_call).to be_active
+
+    spanish_confirmation_call.confirm
+
+    expect(spanish_confirmation_call).to have_form_headings
+    expect(spanish_confirmation_call).to have_current_date_selections
+    expect(spanish_confirmation_call).to have_next_contact_date_selections
+    expect(spanish_confirmation_call).to have_site_options
+
+    spanish_confirmation_call.toggle_options_list
+    navigation.cancel
+
+    expect(spanish_initial_appointment).to be_active
+
+    spanish_initial_appointment.confirm
+
+    expect(spanish_initial_appointment).to have_form_headings
+    expect(spanish_initial_appointment).to have_current_date_selections
+    expect(spanish_initial_appointment).to have_site_options
+
+    spanish_initial_appointment.toggle_options_list
+
+    expect(spanish_initial_appointment).to have_next_contact_date
+
+    navigation.cancel
+
+    expect(spanish_follow_up_week_1).to be_active
+
+    spanish_follow_up_week_1.confirm
+
+    # expect(spanish_follow_up_week_1).to have_form_headings
+    expect(spanish_follow_up_week_1).to have_current_date_selections
+    # expect(spanish_follow_up_week_1).to have_difficulties_options
+
+    # spanish_follow_up_week_1.toggle_options_list
+
+    # expect(spanish_follow_up_week_1).to have_next_contact_date
+
+    navigation.cancel
+
+    expect(spanish_follow_up_week_3).to be_active
+
+    spanish_follow_up_week_3.confirm
+
+    # expect(spanish_follow_up_week_3).to have_form_headings
+
+    expect(spanish_follow_up_week_3).to have_current_date_selections
+    # expect(spanish_follow_up_week_3).to have_difficulties_options
+
+    # spanish_follow_up_week_3.toggle_options_list
+
+    # expect(spanish_follow_up_week_3).to have_next_contact_date
+
+    navigation.cancel
+
+    expect(spanish_call_to_schedule_final).to be_active
+
+    spanish_call_to_schedule_final.confirm
+
+    expect(spanish_call_to_schedule_final).to have_form_headings
+    expect(spanish_call_to_schedule_final).to have_current_date_selections
+    expect(spanish_call_to_schedule_final).to have_next_contact_date
+    expect(spanish_call_to_schedule_final).to have_location_options
+
+    spanish_call_to_schedule_final.toggle_options_list
+    navigation.cancel
+
+    expect(spanish_final_appointment).to be_active
+
+    spanish_final_appointment.confirm
+
+    expect(spanish_final_appointment).to have_form_headings
+    expect(spanish_final_appointment).to have_current_date_selections
+    # expect(spanish_final_appointment).to have_location_options
+
+    # spanish_final_appointment.toggle_options_list
+    navigation.cancel
+
+    expect(spanish_lack_of_connectivity_call).to be_active
+
+    spanish_lack_of_connectivity_call.mark_resolved
+
+    expect(spanish_lack_of_connectivity_call).to have_form_headings
+    expect(spanish_lack_of_connectivity_call).to have_reason_options
+
+    spanish_lack_of_connectivity_call.toggle_options_list
+    navigation.cancel
+
+    expect(spanish_help_request).to be_active
+
+    spanish_help_request.mark_resolved
+
+    expect(spanish_help_request).to have_form_headings
+    expect(spanish_help_request).to have_reason_options
+
+    spanish_help_request.toggle_options_list
+    your_patients.return
+
+    pt_502_nurse_tasks.open
+
+    expect(spanish_non_adherence_call).to be_active
+
+    spanish_non_adherence_call.mark_resolved
+
+    expect(spanish_non_adherence_call).to have_form_headings
+    expect(spanish_non_adherence_call).to have_reason_options
   end
 end
 
 feature 'Portuguese nurse, Participant tasks' do
-  scenario 'Portuguese nurse sees correct translations'
+  scenario 'Portuguese nurse sees correct translations' do
+    portuguese_nurse.sign_in
+    pt_601_nurse_tasks.open
+    portuguese_additional_contact.open
+
+    expect(portuguese_additional_contact).to have_contact_title
+    expect(portuguese_additional_contact).to have_form_headings
+    expect(portuguese_additional_contact).to have_current_date_selections
+    expect(portuguese_additional_contact).to have_type_options
+
+    portuguese_additional_contact.choose_option
+    navigation.cancel
+
+    expect(portuguese_confirmation_call).to be_active
+
+    portuguese_confirmation_call.confirm
+
+    expect(portuguese_confirmation_call).to have_form_headings
+    expect(portuguese_confirmation_call).to have_current_date_selections
+    expect(portuguese_confirmation_call).to have_next_contact_date_selections
+    expect(portuguese_confirmation_call).to have_site_options
+
+    portuguese_confirmation_call.toggle_options_list
+    navigation.cancel
+
+    expect(portuguese_initial_appointment).to be_active
+
+    portuguese_initial_appointment.confirm
+
+    expect(portuguese_initial_appointment).to have_form_headings
+    expect(portuguese_initial_appointment).to have_current_date_selections
+    expect(portuguese_initial_appointment).to have_site_options
+
+    portuguese_initial_appointment.toggle_options_list
+
+    expect(portuguese_initial_appointment).to have_next_contact_date
+
+    navigation.cancel
+
+    expect(portuguese_follow_up_week_1).to be_active
+
+    portuguese_follow_up_week_1.confirm
+
+    # expect(portuguese_follow_up_week_1).to have_form_headings
+    expect(portuguese_follow_up_week_1).to have_current_date_selections
+    # expect(portuguese_follow_up_week_1).to have_difficulties_options
+
+    # portuguese_follow_up_week_1.toggle_options_list
+
+    # expect(portuguese_follow_up_week_1).to have_next_contact_date
+
+    navigation.cancel
+
+    expect(portuguese_follow_up_week_3).to be_active
+
+    portuguese_follow_up_week_3.confirm
+
+    # expect(portuguese_follow_up_week_3).to have_form_headings
+
+    expect(portuguese_follow_up_week_3).to have_current_date_selections
+    # expect(portuguese_follow_up_week_3).to have_difficulties_options
+
+    # portuguese_follow_up_week_3.toggle_options_list
+
+    # expect(portuguese_follow_up_week_3).to have_next_contact_date
+
+    navigation.cancel
+
+    expect(portuguese_call_to_schedule_final).to be_active
+
+    portuguese_call_to_schedule_final.confirm
+
+    expect(portuguese_call_to_schedule_final).to have_form_headings
+    expect(portuguese_call_to_schedule_final).to have_current_date_selections
+    expect(portuguese_call_to_schedule_final).to have_next_contact_date
+    expect(portuguese_call_to_schedule_final).to have_location_options
+
+    portuguese_call_to_schedule_final.toggle_options_list
+    navigation.cancel
+
+    expect(portuguese_final_appointment).to be_active
+
+    portuguese_final_appointment.confirm
+
+    expect(portuguese_final_appointment).to have_form_headings
+    expect(portuguese_final_appointment).to have_current_date_selections
+    # expect(portuguese_final_appointment).to have_location_options
+
+    # portuguese_final_appointment.toggle_options_list
+    navigation.cancel
+
+    expect(portuguese_lack_of_connectivity_call).to be_active
+
+    portuguese_lack_of_connectivity_call.mark_resolved
+
+    expect(portuguese_lack_of_connectivity_call).to have_form_headings
+    expect(portuguese_lack_of_connectivity_call).to have_reason_options
+
+    portuguese_lack_of_connectivity_call.toggle_options_list
+    navigation.cancel
+
+    expect(portuguese_help_request).to be_active
+
+    portuguese_help_request.mark_resolved
+
+    expect(portuguese_help_request).to have_form_headings
+    expect(portuguese_help_request).to have_reason_options
+
+    portuguese_help_request.toggle_options_list
+    your_patients.return
+
+    pt_602_nurse_tasks.open
+
+    expect(portuguese_non_adherence_call).to be_active
+
+    portuguese_non_adherence_call.mark_resolved
+
+    expect(portuguese_non_adherence_call).to have_form_headings
+    expect(portuguese_non_adherence_call).to have_reason_options
+  end
 end

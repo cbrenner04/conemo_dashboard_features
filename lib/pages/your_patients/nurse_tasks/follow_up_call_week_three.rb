@@ -1,5 +1,5 @@
 require './lib/pages/shared/nurse_tasks_forms'
-require './lib/pages/shared/translations/nurse_tasks'
+require './lib/pages/shared/translations/nurse_tasks/follow_up_call_week_three'
 
 class YourPatients
   class NurseTasks
@@ -7,7 +7,7 @@ class YourPatients
     class FollowUpCallWeekThree
       include Capybara::DSL
       include NurseTasksForms
-      include Translations::NurseTasks
+      include Translations::NurseTasks::FollowUpCallWeekThree
 
       def initialize(follow_up_call_week_three)
         @locale ||= follow_up_call_week_three[:locale]
@@ -65,12 +65,35 @@ class YourPatients
         end
       end
 
+      def toggle_options_list
+        selector[5].click
+      end
+
       def general_notes
         'Notes notes notes notes'
       end
 
       def enter_general_notes
         fill_in 'third_contact[notes]', with: general_notes
+      end
+
+      def has_form_headings?
+        has_task_form_headings?(5)
+      end
+
+      def has_current_date_selections?
+        has_date_selectors?(Date.today, 1, locale(0, 0, 2), locale(2, 2, 0)) &&
+          has_hour_selector?(3, Time.now)
+      end
+
+      def has_difficulties_options?
+        has_task_options?(5, 5)
+      end
+
+      def has_next_contact_date?
+        next_contact = Date.today + 21
+        has_date_selectors?(next_contact, 7, locale(6, 6, 8),
+                            locale(8, 8, 6)) && has_hour_selector?(9, Time.now)
       end
     end
   end

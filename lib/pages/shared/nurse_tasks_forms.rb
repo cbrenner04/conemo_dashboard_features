@@ -1,8 +1,11 @@
 require './lib/pages/navigation'
+require './lib/pages/shared/translations/navigation'
 
 # module for shared methods in nurse task forms
 module NurseTasksForms
+  include RSpec::Matchers
   include Capybara::DSL
+  include Translations::NavigationTranslations
 
   def mark_task_resolved(type)
     panel(type).find('a', text: 'Mark as resolved').click
@@ -15,15 +18,15 @@ module NurseTasksForms
   end
 
   def confirm_task(type)
-    panel(type).find('a', text: 'Confirm').click
+    panel(type).find('a', text: confirm_button).click
   end
 
   def cancel_task(type)
-    panel(type).find('input[value = "Cancel"]').click
+    panel(type).find("input[value = '#{cancel_button}']").click
   end
 
   def open_reschedule(type)
-    panel(type).find('a', text: 'Reschedule').click
+    panel(type).find('a', text: reschedule_button).click
   end
 
   def selector
@@ -64,7 +67,7 @@ module NurseTasksForms
   def enter_task_location(selector_num)
     sleep(1)
     selector[selector_num].click
-    location = ['Patient\'s home', 'Health unit', 'Other location'].sample
+    location = options.sample
     select_list_item(location)
   end
 
@@ -77,6 +80,33 @@ module NurseTasksForms
     select_list_item((Date.today + 1).strftime('%-d'))
   end
 
+  def has_task_form_headings?(num)
+    actual_headings = (0..num).map { |i| all('.control-label')[i].text }
+    expect(actual_headings).to eq(expected_headings)
+  end
+
+  def has_task_options?(sel, num)
+    selector[sel].click
+    actual_options = (0..num).map { |i| all('.select2-result-label')[i].text }
+    expect(actual_options).to eq(options)
+  end
+
+  def has_date_selectors?(date, m, d, y)
+    selector[m].has_text? locale(spanish_months(date), portuguese_months(date),
+                                 date.strftime('%B'))
+    selector[d].has_text? date.strftime('%-d')
+    selector[y].has_text? date.strftime('%Y')
+  end
+
+  def has_time_selectors?(hh, mm, time = today_at_11_am)
+    has_hour_selector?(hh, time)
+    selector[mm].has_text? time.strftime('%M')
+  end
+
+  def has_hour_selector?(hh, time = today_at_11_am)
+    selector[hh].has_text? time.strftime('%H')
+  end
+
   private
 
   def navigation
@@ -85,5 +115,9 @@ module NurseTasksForms
 
   def panel(type)
     find('.panel', text: type)
+  end
+
+  def today_at_11_am
+    @today_at_11_am ||= Date.today.to_time + (11 * 60 * 60)
   end
 end

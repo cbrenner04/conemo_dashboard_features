@@ -1,5 +1,4 @@
 require './lib/pages/shared/nurse_tasks_forms'
-require './lib/pages/shared/translations/nurse_tasks'
 require './lib/pages/shared/translations/nurse_tasks/additional_contact'
 
 class YourPatients
@@ -9,7 +8,6 @@ class YourPatients
       include RSpec::Matchers
       include Capybara::DSL
       include NurseTasksForms
-      include Translations::NurseTasks
       include Translations::NurseTasks::AdditionalContact
 
       def initialize(additional_contact)
@@ -24,8 +22,12 @@ class YourPatients
         open
         sleep(1)
         selector[5].click
-        select_list_item(options.sample)
+        choose_option
         navigation.submit
+      end
+
+      def choose_option
+        select_list_item(options.sample)
       end
 
       def has_contact_title?
@@ -34,14 +36,16 @@ class YourPatients
       end
 
       def has_form_headings?
-        actual_headings = (0..1).map { |i| all('.control-label')[i].text }
-        expect(actual_headings).to eq(expected_headings)
+        has_task_form_headings?(1)
       end
 
       def has_type_options?
-        selector[5].click
-        actual_option = (0..1).map { |i| all('.select2-result-label')[i].text }
-        expect(actual_option).to eq(options)
+        has_task_options?(5, 1)
+      end
+
+      def has_current_date_selections?
+        has_date_selectors?(Date.today, 1, locale(0, 0, 2), locale(2, 2, 0)) &&
+          has_time_selectors?(3, 4, Time.now)
       end
     end
   end
