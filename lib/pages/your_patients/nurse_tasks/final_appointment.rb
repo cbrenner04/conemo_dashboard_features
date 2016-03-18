@@ -1,4 +1,5 @@
 require './lib/pages/shared/nurse_tasks_forms'
+require './lib/pages/shared/translations/nurse_tasks'
 
 class YourPatients
   class NurseTasks
@@ -6,42 +7,43 @@ class YourPatients
     class FinalAppointment
       include Capybara::DSL
       include NurseTasksForms
+      include Translations::NurseTasks
 
-      def initialize
-        @task_name ||= 'Final in person appointment'
+      def initialize(final_appointment)
+        @locale ||= final_appointment[:locale]
       end
 
       def scheduled?
-        has_no_list_item?(@task_name) &&
-          has_scheduled_progress_bar_item?(@task_name)
+        has_no_list_item?(final_appointment_title) &&
+          has_scheduled_progress_bar_item?(final_appointment_title)
       end
 
       def active?
-        has_list_item?(@task_name) &&
-          has_active_progress_bar_item?(@task_name)
+        has_list_item?(final_appointment_title) &&
+          has_active_progress_bar_item?(final_appointment_title)
       end
 
       def canceled?
-        has_no_list_item?(@task_name) &&
-          has_canceled_progress_bar_item?(@task_name)
+        has_no_list_item?(final_appointment_title) &&
+          has_canceled_progress_bar_item?(final_appointment_title)
       end
 
       def complete?
-        has_no_list_item?(@task_name) &&
-          has_complete_progress_bar_item?(@task_name)
+        has_no_list_item?(final_appointment_title) &&
+          has_complete_progress_bar_item?(final_appointment_title)
       end
 
       def confirm
-        confirm_task @task_name
+        confirm_task final_appointment_title
         visible?
       end
 
       def cancel
-        cancel_task @task_name
+        cancel_task final_appointment_title
       end
 
       def open_reschedule_form
-        open_reschedule @task_name
+        open_reschedule final_appointment_title
       end
 
       def reschedule
@@ -50,7 +52,7 @@ class YourPatients
       end
 
       def visible?
-        has_css?('h1', text: @task_name)
+        has_css?('h1', text: final_appointment_title)
       end
 
       def enter_location

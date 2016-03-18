@@ -29,7 +29,7 @@ module Translations
       end
 
       def english_health_unit_options
-        @english_health_unit_options ||= []
+        @english_health_unit_options ||= (1..10).map { |i| "unit #{i}" }
       end
 
       def english_relationship_options
@@ -44,10 +44,7 @@ module Translations
       end
 
       def english_gender_options
-        @english_gender_options ||= [
-          'Male',
-          'Female'
-        ]
+        @english_gender_options ||= ['Male', 'Female']
       end
     end
   end

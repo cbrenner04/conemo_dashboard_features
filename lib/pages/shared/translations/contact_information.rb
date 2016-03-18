@@ -1,4 +1,4 @@
-require './lib/pages/shared/translations'
+require './lib/pages/shared/translations/nurse_tasks'
 path = './lib/pages/shared/translations/contact_information/'
 require "#{path}spanish_contact_information"
 require "#{path}portuguese_contact_information"
@@ -7,10 +7,20 @@ require "#{path}english_contact_information"
 module Translations
   # module for Contact Information page
   module ContactInformation
-    include Translations
+    include Translations::NurseTasks
     include Translations::ContactInformation::SpanishContactInformation
     include Translations::ContactInformation::PortugueseContactInformation
     include Translations::ContactInformation::EnglishContactInformation
+
+    def contact_information_title
+      locale('Información de contacto', 'Informações de Contato',
+             'Contact Information')
+    end
+
+    def smartphone_information_title
+      locale('Smartphone', 'Informações de Smartphone',
+             'Smartphone Information')
+    end
 
     def profile_heading
       heading = locale('Perfil de', 'Perfil de', 'Profile for')
@@ -22,13 +32,17 @@ module Translations
     end
 
     def expected_timeline_titles
-      locale(spanish_timeline_titles, portuguese_timeline_titles,
-             english_timeline_titles)
+      [confirmation_call_title, initial_appointment_title,
+       follow_up_week_one_title, non_adherence_call_title,
+       follow_up_week_three_title, lack_of_connectivity_call_title,
+       help_request_title, call_to_schedule_final_title,
+       final_appointment_title]
     end
 
-    def expected_contact_dates
-      locale(spanish_contact_dates, portuguese_contact_dates,
-             english_contact_dates)
+    def expected_contact_info_contact_dates
+      locale(spanish_contact_info_contact_dates,
+             portuguese_contact_info_contact_dates,
+             english_contact_info_contact_dates)
     end
 
     def expected_timeline_headings

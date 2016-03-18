@@ -15,6 +15,7 @@ class YourPatients
 
         def initialize(notes_form)
           @id ||= notes_form[:id]
+          @note ||= notes_form[:note]
           @locale ||= notes_form[:locale]
         end
 

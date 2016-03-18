@@ -14,13 +14,7 @@ feature 'Nurse, Login' do
 
     expect(english_nurse).to have_english_patient
 
-    navigation.switch_to_spanish
-
-    expect(spanish_nurse).to_not have_spanish_patient
-
-    navigation.switch_to_portuguese
-
-    expect(portuguese_nurse).to_not have_portuguese_patient
+    english_nurse.sign_out
   end
 
   scenario 'Spanish nurse only accesses their patients, nurse functionality' do
@@ -28,15 +22,7 @@ feature 'Nurse, Login' do
 
     expect(navigation).to_not have_spanish_admin_buttons
 
-    expect(spanish_nurse).to have_spanish_patient
-
-    navigation.switch_to_portuguese
-
-    expect(portuguese_nurse).to_not have_portuguese_patient
-
-    navigation.switch_to_english
-
-    expect(english_nurse).to_not have_english_patient
+    spanish_nurse.sign_out
   end
 
   scenario 'Portuguese nurse only accesses their pts, nurse functionality' do
@@ -46,12 +32,6 @@ feature 'Nurse, Login' do
 
     expect(portuguese_nurse).to have_portuguese_patient
 
-    navigation.switch_to_english
-
-    expect(english_nurse).to_not have_english_patient
-
-    navigation.switch_to_spanish
-
-    expect(spanish_nurse).to_not have_spanish_patient
+    portuguese_nurse.sign_out
   end
 end

@@ -6,32 +6,18 @@ module Translations
         @english_headings ||= [
           'Study Identifier:',
           'Family health unit name:',
-          'Family record number:',
           'Phone:',
           'Emergency Contact Name:',
           'Emergency Contact Phone:',
-          'Email:',
           'Date of birth:',
           'Address:',
           'Enrollment date:',
-          'Gender:',
-          'Key chronic disorder'
+          'Gender:'
         ]
       end
 
-      def english_timeline_titles
-        @english_timeline_titles ||= [
-          'Confirmation call information',
-          'Initial in person appointment information',
-          'Follow up call week 1 information',
-          'Follow up call week 3 information',
-          'Call to schedule final appointment',
-          'Final in person appointment'
-        ]
-      end
-
-      def english_contact_dates
-        @english_contact_dates ||= [
+      def english_contact_info_contact_dates
+        @english_contact_info_contact_dates ||= [
           "Date of contact: #{(Date.today - 45).strftime('%B %d, %Y')}",
           "Appointment date/time: #{(Date.today - 42).strftime('%B %d, %Y')}",
           "Date of phone call: #{(Date.today - 35).strftime('%B %d, %Y')}",

@@ -6,11 +6,6 @@ module Translations
     module AdditionalContact
       include Translations
 
-      def title
-        locale('Additional contact', 'Additional contact',
-               'Additional contact')
-      end
-
       def expected_headings
         locale(spanish_headings, portuguese_headings, english_headings)
       end

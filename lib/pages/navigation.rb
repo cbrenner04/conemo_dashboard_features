@@ -22,18 +22,18 @@ class Navigation
   end
 
   def has_english_admin_buttons?
-    has_nav_button?('Pending Participants') &&
-      has_nav_button?('Lessons')
+    ['Pending Participants', 'Lessons']
+      .all? { |button| has_nav_button? button }
   end
 
   def has_spanish_admin_buttons?
-    has_nav_button?('Participantes reclutados') &&
-      has_nav_button?('Sesiones')
+    ['Participantes pendientes', 'Sesiones']
+      .all? { |button| has_nav_button? button }
   end
 
   def has_portuguese_admin_buttons?
-    has_nav_button?('Participantes pendentes') &&
-      has_nav_button?('Sessões')
+    ['Participantes pendentes', 'Sessões']
+      .all? { |button| has_nav_button? button }
   end
 
   def cancel

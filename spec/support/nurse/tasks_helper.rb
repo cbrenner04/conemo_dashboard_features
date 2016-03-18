@@ -10,7 +10,9 @@ def navigation
 end
 
 def confirmation_call
-  @confirmation_call ||= YourPatients::NurseTasks::ConfirmationCall.new
+  @confirmation_call ||= YourPatients::NurseTasks::ConfirmationCall.new(
+    locale: 'english'
+  )
 end
 
 def help_request
@@ -63,7 +65,9 @@ def call_to_schedule_final_appointment
 end
 
 def final_appointment
-  @final_appointment ||= YourPatients::NurseTasks::FinalAppointment.new
+  @final_appointment ||= YourPatients::NurseTasks::FinalAppointment.new(
+    locale: 'english'
+  )
 end
 
 def additional_contact

@@ -6,36 +6,25 @@ module Translations
         @portuguese_headings ||= [
           'Identificação do participante:',
           'UBS:',
-          'Prontuário da Família:',
           'Telefone 1:',
           'Contato de emergência:',
           'Telefone de emergência:',
-          'E-mail:',
           'Data de nascimento:',
           'Endereço:',
           'Data de inclusão no estudo:',
-          'Sexo:',
-          'Doença Crônica:'
+          'Sexo:'
         ]
       end
 
-      def portuguese_timeline_titles
-        @portuguese_timeline_titles ||= [
-          'Chamada de confirmação',
-          'Primeiro encontro',
-          'Chamada de seguimento sem. 1',
-          'Chamada de seguimento sem. 3',
-          'Chamada para agendar encontro fina',
-          'Encontro final'
-        ]
-      end
-
-      def portuguese_contact_dates
-        @portuguese_contact_dates ||= [
+      def portuguese_contact_info_contact_dates
+        @portuguese_contact_info_contact_dates ||= [
           "Contactado por: #{portuguese_date(Date.today - 45)}",
           "Data/hora: #{portuguese_date(Date.today - 42)}",
           "Data da ligação: #{portuguese_date(Date.today - 35)}",
+          "Data da ligação: #{portuguese_date(Date.today - 21)}",
           "Data da ligação: #{portuguese_date(Date.today - 14)}",
+          "Data da ligação: #{portuguese_date(Date.today - 14)}",
+          "Data da ligação: #{portuguese_date(Date.today - 7)}",
           "Data da ligação: #{portuguese_date(Date.today - 1)}",
           "Data/hora: #{portuguese_date(Date.today)}"
         ]
@@ -46,7 +35,10 @@ module Translations
           'Local:',
           'Duração da sessão (minutos):',
           'Duração da chamada (minutos):',
+          'Razão para não aderência:',
           'Duração da chamada (minutos):',
+          'Razão para não-conectividade:',
+          'Razão pelo pedido de ajuda:',
           'Local:',
           'O telefone foi devolvido?:'
         ]

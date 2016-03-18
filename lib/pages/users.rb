@@ -1,11 +1,15 @@
+require './lib/pages/shared/translations'
+
 # page object for users
 class Users
   include Capybara::DSL
+  include Translations
 
   def initialize(user)
     @email ||= user[:email]
     @password ||= user[:password]
     @patient ||= user[:patient]
+    @locale ||= user[:locale]
   end
 
   def sign_in
@@ -16,8 +20,8 @@ class Users
   end
 
   def sign_out
-    find('a', text: 'Sign out').click
-    find('h2', text: 'Sign in')
+    find('a', text: sign_out_link).click
+    find('h2', text: sign_in_header)
   end
 
   def has_english_patient?
@@ -30,5 +34,15 @@ class Users
 
   def has_portuguese_patient?
     find('.table').has_text? '604'
+  end
+
+  private
+
+  def sign_out_link
+    locale('Salir', 'Terminar sessão', 'Sign out')
+  end
+
+  def sign_in_header
+    locale('Iniciar sésion', 'Login', 'Sign in')
   end
 end

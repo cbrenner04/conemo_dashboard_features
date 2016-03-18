@@ -1,9 +1,10 @@
+require './lib/pages/navigation'
+require './lib/pages/shared/translations/clinical_summary'
+require './lib/pages/shared/translations/nurse_tasks'
 require './lib/pages/your_patients/nurse_tasks/initial_in_person_appointment'
 require './lib/pages/your_patients/nurse_tasks/follow_up_call_week_one'
 require './lib/pages/your_patients/nurse_tasks/follow_up_call_week_three'
 require './lib/pages/your_patients/nurse_tasks/final_appointment'
-require './lib/pages/navigation'
-require './lib/pages/shared/translations/clinical_summary'
 
 class YourPatients
   class NurseTasks
@@ -108,25 +109,25 @@ class YourPatients
       end
 
       def has_first_appt_notes_visible?
-        has_text? "#{initial_in_person_appointment.title}\n" \
+        has_text? "#{initial_appointment_title}\n" \
                   "#{initial_in_person_appointment.general_notes}\n" \
                   "#{DateTime.now.strftime('%B %d, %Y')}"
       end
 
       def has_follow_up_week_1_notes_visible?
-        has_text? "#{follow_up_call_week_one.title}\n" \
+        has_text? "#{follow_up_week_one_title}\n" \
                   "#{follow_up_call_week_one.general_notes}\n" \
                   "#{DateTime.now.strftime('%B %d, %Y')}"
       end
 
       def has_follow_up_week_3_notes_visible?
-        has_text? "#{follow_up_call_week_three.title}\n" \
+        has_text? "#{follow_up_week_three_title}\n" \
                   "#{follow_up_call_week_three.general_notes}\n" \
                   "#{DateTime.now.strftime('%B %d, %Y')}"
       end
 
       def has_final_appt_notes_visible?
-        has_text? "Final in person appointment\n" \
+        has_text? "#{final_appointment_title}\n" \
                   "#{final_appt.general_notes}\n" \
                   "#{DateTime.now.strftime('%B %d, %Y')}"
       end
@@ -149,22 +150,26 @@ class YourPatients
       end
 
       def has_notes_headers?
-        actual_notes_headers = (0..4).map { |i| notes_table.all('dt')[i].text }
+        actual_notes_headers = (0..3).map { |i| notes_table.all('dt')[i].text }
         expect(actual_notes_headers).to eq(expected_notes_headers)
       end
 
       def has_lesson_release_dates?
-        actual_release = (0..(@num_of_lessons - 1)).map do |i|
+        actual_release = (0..(total_lessons - 1)).map do |i|
           all('.release-date')[i].text
         end
-        expect(actual_release).to eq(expected_release_dates)
+        if total_lessons == 17
+          expect(actual_release).to eq(expected_release_dates_2)
+        else
+          expect(actual_release).to eq(expected_release_dates_1)
+        end
       end
 
       def has_contact_dates?
-        actual_contact_dates = (0..4).map do |i|
+        actual_contact_dates = (0..3).map do |i|
           year = Date.today.strftime('%Y')
           string = notes_table.all('em')[i].text
-          string.slice(0..(string.index("#{year}") + (year.length - 1)))
+          string.slice(0..(string.index(year.to_s) + (year.length - 1)))
         end
         expect(actual_contact_dates).to eq(expected_contact_dates)
       end
@@ -172,7 +177,7 @@ class YourPatients
       private
 
       def lesson_table
-        find('table', text: 'Lesson')
+        find('table', text: lesson_table_heading)
       end
 
       def notes_table
@@ -191,7 +196,7 @@ class YourPatients
 
       def all_lessons
         @all_lessons ||= [
-          "1 #{(Date.today).strftime('%B %d, %Y')} Lesson 1",
+          "1 #{Date.today.strftime('%B %d, %Y')} Lesson 1",
           "2 #{(Date.today + 1).strftime('%B %d, %Y')} Lesson 2",
           "3 #{(Date.today + 2).strftime('%B %d, %Y')} Lesson 3",
           "4 #{(Date.today + 3).strftime('%B %d, %Y')} Lesson 4",
@@ -218,7 +223,7 @@ class YourPatients
 
       def alt_lessons_beginning
         @alt_lessons_beginning ||= [
-          "1 #{(Date.today).strftime('%B %d, %Y')} Lesson 1",
+          "1 #{Date.today.strftime('%B %d, %Y')} Lesson 1",
           "2 #{(Date.today + 1).strftime('%B %d, %Y')} Lesson 2",
           "3 #{(Date.today + 2).strftime('%B %d, %Y')} Lesson 3",
           "4 #{(Date.today + 3).strftime('%B %d, %Y')} Lesson 4",
@@ -272,7 +277,9 @@ class YourPatients
       end
 
       def final_appt
-        @final_appt ||= YourPatients::NurseTasks::FinalAppointment.new
+        @final_appt ||= YourPatients::NurseTasks::FinalAppointment.new(
+          locale: 'english'
+        )
       end
     end
   end

@@ -11,7 +11,7 @@ module Translations
     include Translations::PendingParticipants::PortugueseContactForm
 
     def main_button
-      locale('Participantes reclutados', 'Participantes pendentes',
+      locale('Participantes pendientes', 'Participantes pendentes',
              'Pending Participants')
     end
 

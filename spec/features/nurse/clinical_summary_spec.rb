@@ -20,7 +20,7 @@ feature 'Nurse, Clinical Summary' do
 
   scenario 'Nurse creates and deletes a note' do
     pt_300_nurse_tasks.open
-    pt_300_notes_form.open
+    pt_300_clinical_summary.open
     pt_300_notes_form.create_note
 
     expect(pt_300_clinical_summary).to have_note

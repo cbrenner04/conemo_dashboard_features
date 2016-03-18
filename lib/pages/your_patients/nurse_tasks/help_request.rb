@@ -1,5 +1,6 @@
 require './lib/pages/shared/nurse_tasks_forms'
 require './lib/pages/navigation'
+require './lib/pages/shared/translations/nurse_tasks/help_request'
 
 class YourPatients
   class NurseTasks
@@ -7,36 +8,26 @@ class YourPatients
     class HelpRequest
       include Capybara::DSL
       include NurseTasksForms
+      include Translations::NurseTasks::HelpRequest
 
       def active?
-        has_list_item?('Help request')
+        has_list_item? help_request_title
       end
 
       def mark_resolved
-        mark_task_resolved('Help request')
+        mark_task_resolved help_request_title
       end
 
       def complete_resolution_form
         sleep(1)
         selector[5].click
-        responses = [
-          'Difficulty using the CONEMO app',
-          'Question about the intervention',
-          'Pressed help button by mistake',
-          'Not related to CONEMO (e.g. health)',
-          'Other',
-          'Unable to reach patient',
-          'Patient does not want to continue in the program',
-          'Patient did not have time to talk (multiple times)',
-          'Patient not willing to talk to nurse (assistant)',
-          'Other'
-        ].sample
-        select_list_item(responses)
+        select_list_item(locale(spanish_responses, portuguese_responses,
+                                english_responses).sample)
         navigation.submit
       end
 
       def contact_supervisor
-        contact_supervisor_for_task('Help request')
+        contact_supervisor_for_task help_request_title
       end
 
       private

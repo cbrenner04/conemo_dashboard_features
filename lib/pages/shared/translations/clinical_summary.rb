@@ -1,17 +1,22 @@
-require './lib/pages/shared/translations'
+require './lib/pages/shared/translations/nurse_tasks'
 path = './lib/pages/shared/translations/clinical_summary'
 Dir["#{path}/*.rb"].each { |file| require file }
 
 module Translations
   # translations for clinical summary page
   module ClinicalSummary
-    include Translations
+    include Translations::NurseTasks
     include Translations::ClinicalSummary::EnglishSummary
     include Translations::ClinicalSummary::SpanishSummary
     include Translations::ClinicalSummary::PortugueseSummary
 
     def clinical_summary_link
-      locale('Historia del Paciente', 'Clinical Summary', 'Clinical Summary')
+      locale('Historia del Paciente', 'Histórico do participante',
+             'Clinical Summary')
+    end
+
+    def lesson_table_heading
+      locale('Sesión', 'Sessão', 'Lesson')
     end
 
     def notes_heading
@@ -31,12 +36,17 @@ module Translations
     end
 
     def expected_notes_headers
-      locale(spanish_notes_headers, portuguese_notes_headers,
-             english_notes_headers)
+      [final_appointment_title, follow_up_week_three_title,
+       follow_up_week_one_title, initial_appointment_title]
     end
 
-    def expected_release_dates
-      locale(spanish_release_dates, portuguese_release_dates,
+    def expected_release_dates_1
+      locale(spanish_release_dates_1, portuguese_release_dates,
+             english_release_dates)
+    end
+
+    def expected_release_dates_2
+      locale(spanish_release_dates_2, portuguese_release_dates,
              english_release_dates)
     end
 

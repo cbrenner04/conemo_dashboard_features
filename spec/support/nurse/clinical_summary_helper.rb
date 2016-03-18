@@ -41,7 +41,10 @@ end
 
 def pt_300_notes_form
   @pt_300_notes_form ||=
-    YourPatients::NurseTasks::ClinicalSummary::NotesForm.new(locale: 'english')
+    YourPatients::NurseTasks::ClinicalSummary::NotesForm.new(
+      locale: 'english',
+      note: 'New notes!'
+    )
 end
 
 def pt_401_clinical_summary

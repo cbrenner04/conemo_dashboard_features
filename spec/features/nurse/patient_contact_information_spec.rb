@@ -30,7 +30,6 @@ feature 'Nurse, Participant Contact Information' do
     pt_301_nurse_tasks.open
     pt_301_contact_info.open
     pt_301_contact_info.select_edit_contact_information
-    pt_301_contact_info.fill_in_email
     navigation.submit
 
     expect(pt_301_contact_info).to have_email_visible

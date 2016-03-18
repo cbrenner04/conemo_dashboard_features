@@ -30,18 +30,7 @@ module Translations
         ]
       end
 
-      def spanish_notes_headers
-        @spanish_notes_headers ||= [
-          'Cita final',
-          'Llamada para programar cita final',
-          'Llamada de seguimiento sem. 3',
-          'Llamada de seguimiento sem. 1',
-          'Cita de inicio',
-          'Llamada confirmando cita'
-        ]
-      end
-
-      def spanish_release_dates
+      def spanish_release_dates_1
         release_day = [1, 3, 6, 8, 10, 13, 15, 17, 20, 22, 24, 27, 29, 31,
                        34, 36, 38, 41]
         relative_release_date = release_day.map do |i|
@@ -50,8 +39,17 @@ module Translations
         @spanish_release_dates ||= relative_release_date
       end
 
+      def spanish_release_dates_2
+        release_day = [3, 6, 8, 10, 13, 15, 17, 20, 22, 24, 27, 29, 31,
+                       34, 36, 38, 41]
+        relative_release_date = release_day.map do |i|
+          spanish_date((Date.today - @start_date_offset) + (i - 1))
+        end
+        @spanish_release_dates ||= relative_release_date
+      end
+
       def spanish_contact_dates
-        contact_day = [0, 1, 14, 35, 42, 45]
+        contact_day = [0, 14, 35, 42]
         relative_contact_date = contact_day.map do |i|
           spanish_date(Date.today - i)
         end

@@ -30,16 +30,6 @@ module Translations
         ]
       end
 
-      def english_notes_headers
-        @english_notes_headers ||= [
-          'Final appointment',
-          'Call to schedule final appointment',
-          'Third contact',
-          'Second contact',
-          'First appointment'
-        ]
-      end
-
       def english_release_dates
         relative_release_date = (1..15).map do |i|
           ((Date.today - @start_date_offset) + (i - 1)).strftime('%B %d, %Y')
@@ -48,7 +38,7 @@ module Translations
       end
 
       def english_contact_dates
-        contact_day = [0, 1, 14, 35, 42, 45]
+        contact_day = [0, 14, 35, 42]
         relative_contact_date = contact_day.map do |i|
           (Date.today - i).strftime('%B %d, %Y')
         end

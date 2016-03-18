@@ -1,6 +1,6 @@
 require './lib/pages/shared/nurse_tasks_forms'
 require './lib/pages/navigation'
-require './lib/pages/shared/translations'
+require './lib/pages/shared/translations/nurse_tasks/lack_of_connectivity_call'
 
 class YourPatients
   class NurseTasks
@@ -8,47 +8,30 @@ class YourPatients
     class LackOfConnectivityCall
       include Capybara::DSL
       include NurseTasksForms
-      include Translations
+      include Translations::NurseTasks::LackOfConnectivityCall
 
       def initialize(lack_of_connectivity_call)
         @locale ||= lack_of_connectivity_call[:locale]
       end
 
-      def title
-        locale('Llamada por no-conectividad', 'Chamada por não-conectividade',
-               'Call due to no connectivity')
-      end
-
       def active?
-        has_list_item?(title)
+        has_list_item?(lack_of_connectivity_call_title)
       end
 
       def mark_resolved
-        mark_task_resolved(title)
+        mark_task_resolved(lack_of_connectivity_call_title)
       end
 
       def complete_resolution_form
         sleep(1)
         selector[5].click
-        responses = [
-          'Mobile data turned off',
-          'No internet coverage',
-          'Mobile plan used up',
-          'Cellphone turned off',
-          'Other',
-          'I don\'t know',
-          'Unable to reach patient',
-          'Patient does not want to continue in the program',
-          'Patient did not have time to talk (multiple times)',
-          'Patient not willing to talk to nurse (assistant)',
-          'Other'
-        ].sample
-        select_list_item(responses)
+        select_list_item(locale(spanish_responses, portuguese_responses,
+                                english_responses).sample)
         navigation.submit
       end
 
       def contact_supervisor
-        contact_supervisor_for_task(title)
+        contact_supervisor_for_task(lack_of_connectivity_call_title)
       end
 
       private

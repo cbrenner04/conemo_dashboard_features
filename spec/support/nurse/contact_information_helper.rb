@@ -13,7 +13,9 @@ def your_patients
 end
 
 def confirmation_call
-  @confirmation_call ||= YourPatients::NurseTasks::ConfirmationCall.new
+  @confirmation_call ||= YourPatients::NurseTasks::ConfirmationCall.new(
+    locale: 'english'
+  )
 end
 
 def initial_appointment
@@ -23,11 +25,15 @@ end
 
 def call_to_schedule_final_appointment
   @call_to_schedule_final_appointment ||=
-    YourPatients::NurseTasks::FollowUpCallWeekThree.new(locale: 'english')
+    YourPatients::NurseTasks::CallToScheduleFinalAppointment.new(
+      locale: 'english'
+    )
 end
 
 def final_appointment
-  @final_appointment ||= YourPatients::NurseTasks::FinalAppointment.new
+  @final_appointment ||= YourPatients::NurseTasks::FinalAppointment.new(
+    locale: 'english'
+  )
 end
 
 def pt_300_contact_info
@@ -126,7 +132,7 @@ end
 def pt_343_contact_info
   @pt_343_contact_info ||= YourPatients::NurseTasks::ContactInformation.new(
     id: 343,
-    session: 'Call to schedule final appointment'
+    session: 'Call to schedule final in person appointment'
   )
 end
 

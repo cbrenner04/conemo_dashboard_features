@@ -1,4 +1,5 @@
 require './lib/pages/shared/nurse_tasks_forms'
+require './lib/pages/shared/translations/nurse_tasks'
 require './lib/pages/shared/translations/nurse_tasks/additional_contact'
 
 class YourPatients
@@ -8,6 +9,7 @@ class YourPatients
       include RSpec::Matchers
       include Capybara::DSL
       include NurseTasksForms
+      include Translations::NurseTasks
       include Translations::NurseTasks::AdditionalContact
 
       def initialize(additional_contact)
@@ -15,7 +17,7 @@ class YourPatients
       end
 
       def open
-        click_on title
+        click_on additional_contact_title
       end
 
       def create
@@ -28,7 +30,7 @@ class YourPatients
 
       def has_contact_title?
         actual = find('h1').text
-        expect(actual).to eq(title)
+        expect(actual).to eq(additional_contact_title)
       end
 
       def has_form_headings?

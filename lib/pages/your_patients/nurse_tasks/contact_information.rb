@@ -1,5 +1,7 @@
 require './lib/pages/shared/contact_information_form'
 require './lib/pages/shared/translations/contact_information'
+require './lib/pages/shared/translations/clinical_summary'
+require './lib/pages/shared/translations/nurse_tasks'
 Dir['./lib/pages/your_patients/nurse_tasks/*.rb'].each { |file| require file }
 
 class YourPatients
@@ -10,6 +12,8 @@ class YourPatients
       include Capybara::DSL
       include ContactInformationForm
       include Translations::ContactInformation
+      include Translations::ClinicalSummary
+      include Translations::NurseTasks
 
       def initialize(contact_information)
         @id ||= contact_information[:id]
@@ -20,7 +24,7 @@ class YourPatients
       end
 
       def open
-        click_on 'Clinical Summary'
+        click_on clinical_summary_link
         click_on 'participant contact information page'
       end
 
@@ -31,14 +35,13 @@ class YourPatients
       def visible?
         date_1 = Date.today - ((30 * 365) + @id.to_i)
         has_css?('#contact-info',
-                 text: "Study Identifier: #{@id} Family health unit name: " \
-                       "Family Health Center Family record number: 33#{@id} " \
-                       "Phone: 13333333#{@id} Emergency Contact Name: " \
-                       'Emergency Contact Phone: Email: Date of birth: ' \
-                       "#{date_1.strftime('%B %d, %Y')}" \
-                       ' Address: Enrollment date: ' \
-                       "#{Date.today.strftime('%B %d, %Y')} Gender: female " \
-                       'Key chronic disorder:')
+                 text: "Contact Information Study Identifier: #{@id} Family " \
+                       'Health Unit Name: Family Health Center Phone: ' \
+                       "13333333#{@id} Emergency Contact Name: Emergency " \
+                       'Contact Phone: Date Of Birth: ' \
+                       "#{date_1.strftime('%B %d, %Y')} Address: 123 Main " \
+                       'Street Enrollment Date: ' \
+                       "#{Date.today.strftime('%B %d, %Y')} Gender: female")
       end
 
       def select_edit_contact_information
@@ -62,45 +65,44 @@ class YourPatients
       end
 
       def has_smartphone_information?
-        has_text? 'Smartphone Information: 12345678901'
+        has_text? "#{smartphone_information_title}: 12345678901"
       end
 
       def has_confirmation_call?
         find('.timeline').has_css?('.timeline-panel', count: 1) &&
-          has_text?('Confirmation call information Date of contact: ' \
-                    "#{DateTime.now.strftime('%B %d, %Y')}")
+          has_text?("#{confirmation_call_title} Date of contact:" \
+                    " #{DateTime.now.strftime('%B %d, %Y')}")
       end
 
       def has_initial_appointment?
         find('.timeline').has_css?('.timeline-panel', count: 2) &&
-          has_text?("#{initial_in_person_appointment.title} information " \
-                    'Appointment date/time: ' \
+          has_text?("#{initial_appointment_title} Appointment date/time: " \
                     "#{DateTime.now.strftime('%B %d, %Y')} ")
       end
 
       def has_follow_up_week_1?
         find('.timeline').has_css?('.timeline-panel', count: 3) &&
-          has_text?("#{follow_up_call_week_one.title} information Date of " \
+          has_text?("#{follow_up_week_one_title} information Date of " \
                     "phone call: #{DateTime.now.strftime('%B %d, %Y')}") &&
           has_text?('Length of phone call (minutes): 120')
       end
 
       def has_follow_up_week_3?
         find('.timeline').has_css?('.timeline-panel', count: 4) &&
-          has_text?("#{follow_up_call_week_three.title} information Contact " \
+          has_text?("#{follow_up_week_three_title} information Contact " \
                     " At: #{DateTime.now.strftime('%B %d, %Y')}") &&
           has_text?('Length of phone call (minutes): 120')
       end
 
       def has_call_to_schedule_final_appt?
         find('.timeline').has_css?('.timeline-panel', count: 5) &&
-          has_text?("#{call_to_schedule_final_appointment.title} Date/time" \
+          has_text?("#{call_to_schedule_final_title} Date/time" \
                     " of phone call: #{DateTime.now.strftime('%B %d, %Y')}")
       end
 
       def has_final_appointment?
         find('.timeline').has_css?('.timeline-panel', count: 6) &&
-          has_text?('Final in person appointment Date and time: ' \
+          has_text?("#{final_appointment_title} Date and time: " \
                     "#{DateTime.now.strftime('%B %d, %Y')}") &&
           has_text?('Location: 100 West Ln, Chicago, IL 60601 Was the' \
                     ' phone returned?:')
@@ -108,31 +110,31 @@ class YourPatients
 
       def has_additional_contact?
         find('.timeline')
-          .has_css?('.timeline-panel', text: 'Additional contact')
+          .has_css?('.timeline-panel', text: additional_contact_title)
       end
 
       def edit_confirmation_call
-        edit_session('Confirmation call')
+        edit_session(confirmation_call_title)
       end
 
       def edit_initial_appointment
-        edit_session(initial_in_person_appointment.title)
+        edit_session(initial_appointment_title)
       end
 
       def edit_follow_up_week_1
-        edit_session(follow_up_call_week_one.title)
+        edit_session(follow_up_week_one_title)
       end
 
       def edit_follow_up_week_3
-        edit_session(follow_up_call_week_three.title)
+        edit_session(follow_up_week_three_title)
       end
 
       def edit_call_to_schedule_final_appt
-        edit_session(call_to_schedule_final_appointment.title)
+        edit_session(call_to_schedule_final_title)
       end
 
       def edit_final_appointment
-        edit_session('Final in person appointment')
+        edit_session(final_appointment_title)
       end
 
       def has_updated_session_length?
@@ -146,79 +148,51 @@ class YourPatients
       end
 
       def has_updated_phone_return?
-        find('.timeline-panel', text: 'Final in person appointment')
+        find('.timeline-panel', text: final_appointment_title)
           .has_text? 'Was the phone returned?: No'
       end
 
       def has_updated_contact_at?
         find('.timeline-panel', text: @session)
-          .has_text? "Contact at: #{Date.today.strftime('%B %d, %Y')}"
+          .has_text? 'Date/time of phone call: ' \
+                     "#{Date.today.strftime('%B %d, %Y')}"
       end
 
       def has_contact_information_title?
-        has_css?('h2', text: locale('Información de contacto',
-                                    'Informações de Contato',
-                                    'Contact Information'))
+        has_css?('h2', text: contact_information_title)
       end
 
       def has_smartphone_information_title?
-        has_css?('h2', text: locale('Smartphone', 'Informações de Smartphone',
-                                    'Smartphone Information'))
+        has_css?('h2', text: smartphone_information_title)
       end
 
       def has_contact_information_table_headings?
         table = find('#contact-info')
-        actual_headings = (0..11).map { |i| table.all('strong')[i].text }
+        actual_headings = (0..8).map { |i| table.all('strong')[i].text }
         expect(actual_headings).to eq(expected_headings)
       end
 
       def has_timeline_titles?
-        actual_titles = (0..5).map { |i| all('.timeline-title')[i].text }
+        actual_titles = (0..8).map { |i| all('.timeline-title')[i].text }
         expect(actual_titles).to eq(expected_timeline_titles)
       end
 
       def has_contact_dates?
-        actual_contact_dates = (0..5).map do |i|
+        actual_contact_dates = (0..8).map do |i|
           year = Date.today.strftime('%Y')
-          string = all('.text-muted')[i].text
-          string.slice(0..(string.index("#{year}") + (year.length - 1)))
+          string = all('.timeline-heading')[i].find('p').text
+          string.slice(0..(string.index(year.to_s) + (year.length - 1)))
         end
-        expect(actual_contact_dates).to eq(expected_contact_dates)
+        expect(actual_contact_dates).to eq(expected_contact_info_contact_dates)
       end
 
       def has_timeline_headings?
         timeline = find('.timeline')
-        actual_headings = (0..5).map { |i| timeline.all('strong')[i].text }
+        actual_headings = (0..8).map { |i| timeline.all('strong')[i].text }
         expect(actual_headings).to eq(expected_timeline_headings)
       end
 
       private
-
-      def initial_in_person_appointment
-        @initial_in_person_appointment ||=
-          YourPatients::NurseTasks::InitialInPersonAppointment.new(
-            locale: 'english'
-          )
-      end
-
-      def follow_up_call_week_one
-        @follow_up_call_week_one ||=
-          YourPatients::NurseTasks::FollowUpCallWeekOne.new(locale: 'english')
-      end
-
-      def follow_up_call_week_three
-        @follow_up_call_week_three ||=
-          YourPatients::NurseTasks::FollowUpCallWeekThree.new(
-            locale: 'english'
-          )
-      end
-
-      def call_to_schedule_final_appointment
-        @call_to_schedule_final_appointment ||=
-          YourPatients::NurseTasks::CallToScheduleFinalAppointment.new(
-            locale: 'english'
-          )
-      end
 
       def edit_session(session)
         find('.timeline-panel', text: session).find('.fa-edit').click

@@ -36,7 +36,7 @@ class PendingParticipants
     end
 
     def has_health_unit_options?
-      site = @locale == 'spanish' ? 'Centro de salud 2' : 'Unidade de Saúde 2'
+      site = locale('Centro de salud 2', 'Unidade de Saúde 2', 'unit 2')
       selector[3].click
       actual = (0..9).map { |i| all('.select2-result-label')[i].text }
       select_response(site)
@@ -44,8 +44,8 @@ class PendingParticipants
     end
 
     def has_relationship_options?
-      choice = @locale == 'spanish' ? 'Padre / Madre' : 'Pai / Mãe'
-      num = @locale == 'portuguese' ? 4 : 5
+      choice = locale('Padre / Madre', 'Pai / Mãe', 'parent')
+      num = locale(5, 4, 5)
       execute_script('window.scrollBy(0,500)')
       selector[4].click
       options_1 = (0..num).map { |i| response_selector[i].text }
@@ -56,9 +56,8 @@ class PendingParticipants
       selector[9].click
       options_3 = (0..num).map { |i| response_selector[i].text }
       select_response(choice)
-      options_1 == expected_relationship_options &&
-        options_2 == expected_relationship_options &&
-        options_3 == expected_relationship_options
+      [options_1, options_2, options_3]
+        .all? { |options| options == expected_relationship_options }
     end
 
     def has_gender_options?

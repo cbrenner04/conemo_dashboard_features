@@ -1,7 +1,11 @@
+require './lib/pages/shared/translations/nurse_tasks'
+
 module Translations
   module NurseTasks
     # translations for non adherence call
     module NonAdherenceCallTranslations
+      include NurseTasks
+
       def spanish_responses
         @spanish_responses ||= [
           'Dificultades para usar CONEMO',

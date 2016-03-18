@@ -30,17 +30,6 @@ module Translations
         ]
       end
 
-      def portuguese_notes_headers
-        @portuguese_notes_headers ||= [
-          'Encontro final',
-          'Chamada para agendar encontro fina',
-          'Chamada de seguimento sem. 3',
-          'Chamada de seguimento sem. 1',
-          'Encontro inicial',
-          'Chamada de confirmação'
-        ]
-      end
-
       def portuguese_release_dates
         release_day = [1, 3, 6, 8, 10]
         relative_release_date = release_day.map do |i|
@@ -50,7 +39,7 @@ module Translations
       end
 
       def portuguese_contact_dates
-        contact_day = [0, 1, 14, 35, 42, 45]
+        contact_day = [0, 14, 35, 42]
         relative_contact_date = contact_day.map do |i|
           portuguese_date(Date.today - i)
         end

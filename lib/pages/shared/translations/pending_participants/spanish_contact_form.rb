@@ -21,18 +21,8 @@ module Translations
       end
 
       def spanish_health_unit_options
-        @spanish_health_unit_options ||= [
-          'Centro de salud 1',
-          'Centro de salud 2',
-          'Centro de salud 3',
-          'Centro de salud 4',
-          'Centro de salud 5',
-          'Centro de salud 6',
-          'Centro de salud 7',
-          'Centro de salud 8',
-          'Centro de salud 9',
-          'Centro de salud 10'
-        ]
+        @spanish_health_unit_options ||=
+          (1..10).map { |i| "Centro de salud #{i}" }
       end
 
       def spanish_relationship_options
@@ -47,10 +37,7 @@ module Translations
       end
 
       def spanish_gender_options
-        @spanish_gender_options ||= [
-          'Masculino',
-          'Femenino'
-        ]
+        @spanish_gender_options ||= ['Masculino', 'Femenino']
       end
     end
   end

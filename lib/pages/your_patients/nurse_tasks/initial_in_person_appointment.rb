@@ -1,5 +1,5 @@
 require './lib/pages/shared/nurse_tasks_forms'
-require './lib/pages/shared/translations'
+require './lib/pages/shared/translations/nurse_tasks'
 
 class YourPatients
   class NurseTasks
@@ -7,48 +7,47 @@ class YourPatients
     class InitialInPersonAppointment
       include Capybara::DSL
       include NurseTasksForms
-      include Translations
+      include Translations::NurseTasks
 
       def initialize(initial_in_person_appointment)
         @locale ||= initial_in_person_appointment[:locale]
       end
 
-      def title
-        locale('Cita de inicio', 'Encontro inicial',
-               'Initial in person appointment')
-      end
-
       def active?
-        has_list_item?(title) && has_active_progress_bar_item?(title)
+        has_list_item?(initial_appointment_title) &&
+          has_active_progress_bar_item?(initial_appointment_title)
       end
 
       def canceled?
-        has_no_list_item?(title) && has_canceled_progress_bar_item?(title)
+        has_no_list_item?(initial_appointment_title) &&
+          has_canceled_progress_bar_item?(initial_appointment_title)
       end
 
       def complete?
-        has_no_list_item?(title) && has_complete_progress_bar_item?(title)
+        has_no_list_item?(initial_appointment_title) &&
+          has_complete_progress_bar_item?(initial_appointment_title)
       end
 
       def scheduled?
-        has_no_list_item?(title) && has_scheduled_progress_bar_item?(title)
+        has_no_list_item?(initial_appointment_title) &&
+          has_scheduled_progress_bar_item?(initial_appointment_title)
       end
 
       def visible?
-        has_css?('h1', text: title)
+        has_css?('h1', text: initial_appointment_title)
       end
 
       def confirm
-        confirm_task title
+        confirm_task initial_appointment_title
         visible?
       end
 
       def cancel
-        cancel_task title
+        cancel_task initial_appointment_title
       end
 
       def open_reschedule_form
-        open_reschedule title
+        open_reschedule initial_appointment_title
       end
 
       def reschedule

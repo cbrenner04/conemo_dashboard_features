@@ -25,18 +25,8 @@ module Translations
       end
 
       def portuguese_health_unit_options
-        @portuguese_health_unit_options ||= [
-          'Unidade de Saúde 1',
-          'Unidade de Saúde 2',
-          'Unidade de Saúde 3',
-          'Unidade de Saúde 4',
-          'Unidade de Saúde 5',
-          'Unidade de Saúde 6',
-          'Unidade de Saúde 7',
-          'Unidade de Saúde 8',
-          'Unidade de Saúde 9',
-          'Unidade de Saúde 10'
-        ]
+        @portuguese_health_unit_options ||=
+          (1..10).map { |i| "Unidade de Saúde #{i}" }
       end
 
       def portuguese_relationship_options
@@ -50,10 +40,7 @@ module Translations
       end
 
       def portuguese_gender_options
-        @portuguese_gender_options ||= [
-          'Masculino',
-          'Feminino'
-        ]
+        @portuguese_gender_options ||= ['Masculino', 'Feminino']
       end
     end
   end
