@@ -55,21 +55,10 @@ class YourPatients
         has_css?('h1', text: follow_up_week_one_title)
       end
 
-      def fill_in_questions
-        fill_in 'second_contact[q1]', with: 'q1 response'
-        (2..7).each do |i|
-          execute_script('window.scrollBy(0,150)')
-          radio = ['true', 'false'].sample
-          find("#second_contact_q#{i}_#{radio}").click
-          fill_in "second_contact[q#{i}_notes]", with: "q#{i} notes"
-        end
-      end
-
-      def select_chances
-        selector[12].click
-        chance = ['3 – Very probable', '2 – 50/50 (more or less probable)',
-                  '1 – Not probable'].sample
-        select_list_item(chance)
+      def enter_difficulties
+        selector[5].click
+        options.delete_at(1)
+        select_list_item(options.sample)
       end
 
       def toggle_options_list
@@ -85,7 +74,7 @@ class YourPatients
       end
 
       def has_form_headings?
-        has_task_form_headings?(5)
+        has_task_form_headings?(4)
       end
 
       def has_current_date_selections?
@@ -94,7 +83,7 @@ class YourPatients
       end
 
       def has_difficulties_options?
-        has_task_options?(5, 5)
+        has_task_options?(5, 7)
       end
 
       def has_next_contact_date?

@@ -7,7 +7,6 @@ feature 'Nurse, Participant Tasks' do
 
   scenario 'Nurse cancels creation of additional contact form' do
     pt_451_nurse_tasks.open
-
     additional_contact.open
     navigation.cancel
 
@@ -16,7 +15,6 @@ feature 'Nurse, Participant Tasks' do
 
   scenario 'Nurse creates additional contact' do
     pt_451_nurse_tasks.open
-
     additional_contact.create
 
     expect(pt_451_nurse_tasks).to have_no_tasks_in_count
@@ -61,7 +59,6 @@ feature 'Nurse, Participant Tasks' do
     pt_400_nurse_tasks.open
 
     expect(pt_400_nurse_tasks).to have_one_task_in_count
-
     expect(help_request).to be_active
 
     help_request.mark_resolved
@@ -82,7 +79,6 @@ feature 'Nurse, Participant Tasks' do
     help_request.contact_supervisor
 
     expect(help_request).to be_active
-
     expect(pt_401_nurse_tasks).to have_new_supervisor_contact
   end
 
@@ -90,7 +86,6 @@ feature 'Nurse, Participant Tasks' do
     pt_402_nurse_tasks.open
 
     expect(help_request).to be_active
-
     expect(pt_402_nurse_tasks).to have_previous_supervisor_contact
   end
 
@@ -98,7 +93,6 @@ feature 'Nurse, Participant Tasks' do
     pt_403_nurse_tasks.open
 
     expect(help_request).to be_active
-
     expect(pt_403_nurse_tasks).to have_previous_supervisor_contact
 
     pt_403_nurse_tasks.clear_supervisor_contact
@@ -134,7 +128,6 @@ feature 'Nurse, Participant Tasks' do
     pt_410_nurse_tasks.open
 
     expect(pt_410_nurse_tasks).to have_one_task_in_count
-
     expect(lack_of_connectivity_call).to be_active
 
     lack_of_connectivity_call.mark_resolved
@@ -153,7 +146,6 @@ feature 'Nurse, Participant Tasks' do
     lack_of_connectivity_call.contact_supervisor
 
     expect(lack_of_connectivity_call).to be_active
-
     expect(pt_411_nurse_tasks).to have_new_supervisor_contact
   end
 
@@ -161,7 +153,6 @@ feature 'Nurse, Participant Tasks' do
     pt_412_nurse_tasks.open
 
     expect(lack_of_connectivity_call).to be_active
-
     expect(pt_412_nurse_tasks).to have_previous_supervisor_contact
   end
 
@@ -169,7 +160,6 @@ feature 'Nurse, Participant Tasks' do
     pt_413_nurse_tasks.open
 
     expect(lack_of_connectivity_call).to be_active
-
     expect(pt_413_nurse_tasks).to have_previous_supervisor_contact
 
     pt_413_nurse_tasks.clear_supervisor_contact
@@ -181,7 +171,6 @@ feature 'Nurse, Participant Tasks' do
     pt_427_nurse_tasks.open
 
     expect(lack_of_connectivity_call).to be_active
-
     expect(non_adherence_call).to_not be_active
   end
 
@@ -220,7 +209,6 @@ feature 'Nurse, Participant Tasks' do
     pt_420_nurse_tasks.open
 
     expect(pt_420_nurse_tasks).to have_one_task_in_count
-
     expect(non_adherence_call).to be_active
 
     non_adherence_call.mark_resolved
@@ -233,14 +221,12 @@ feature 'Nurse, Participant Tasks' do
     pt_420_nurse_tasks.open
 
     expect(pt_420_nurse_tasks).to have_one_task_in_count
-
     expect(non_adherence_call).to be_active
 
     non_adherence_call.mark_resolved
     non_adherence_call.complete_resolution_form
 
     expect(pt_420_nurse_tasks).to have_no_tasks_in_count
-
     expect(non_adherence_call).to_not be_active
   end
 
@@ -252,23 +238,20 @@ feature 'Nurse, Participant Tasks' do
     non_adherence_call.contact_supervisor
 
     expect(non_adherence_call).to be_active
-
     expect(pt_421_nurse_tasks).to have_new_supervisor_contact
   end
 
   scenario 'Nurse sees when the previous supervisor contact was sent' do
-    pt_422_nurse_tasks.open
+    pt_424_nurse_tasks.open
 
     expect(non_adherence_call).to be_active
-
-    expect(pt_422_nurse_tasks).to have_previous_supervisor_contact
+    expect(pt_424_nurse_tasks).to have_previous_supervisor_contact
   end
 
   scenario 'Nurse clears supervisor contact' do
     pt_423_nurse_tasks.open
 
     expect(non_adherence_call).to be_active
-
     expect(pt_423_nurse_tasks).to have_previous_supervisor_contact
 
     pt_423_nurse_tasks.clear_supervisor_contact
@@ -299,13 +282,11 @@ feature 'Nurse, Participant Tasks' do
     pt_301_nurse_tasks.open
 
     expect(pt_301_nurse_tasks).to have_one_task_in_count
-
     expect(confirmation_call).to be_active
 
     confirmation_call.cancel
 
     expect(pt_301_nurse_tasks).to have_no_tasks_in_count
-
     expect(confirmation_call).to be_canceled
   end
 
@@ -313,14 +294,12 @@ feature 'Nurse, Participant Tasks' do
     pt_303_nurse_tasks.open
 
     expect(pt_303_nurse_tasks).to have_one_task_in_count
-
     expect(confirmation_call).to be_active
 
     confirmation_call.open_reschedule_form
     navigation.cancel
 
     expect(pt_303_nurse_tasks).to have_one_task_in_count
-
     expect(confirmation_call).to be_active
   end
 
@@ -328,13 +307,11 @@ feature 'Nurse, Participant Tasks' do
     pt_304_nurse_tasks.open
 
     expect(pt_304_nurse_tasks).to have_one_task_in_count
-
     expect(confirmation_call).to be_active
 
     confirmation_call.reschedule
 
     expect(pt_304_nurse_tasks).to have_no_tasks_in_count
-
     expect(confirmation_call).to be_scheduled
   end
 
@@ -342,16 +319,13 @@ feature 'Nurse, Participant Tasks' do
     pt_306_nurse_tasks.open
 
     expect(pt_306_nurse_tasks).to have_one_task_in_count
-
     expect(confirmation_call).to be_active
-
     expect(initial_in_person_appt).to_not be_active
 
     confirmation_call.confirm
     navigation.cancel
 
     expect(confirmation_call).to_not be_complete
-
     expect(initial_in_person_appt).to_not be_active
   end
 
@@ -367,9 +341,7 @@ feature 'Nurse, Participant Tasks' do
     navigation.submit
 
     expect(pt_306_nurse_tasks).to have_no_tasks_in_count
-
     expect(confirmation_call).to be_complete
-
     expect(initial_in_person_appt).to be_scheduled
 
     # check contact information page for completeness
@@ -381,7 +353,6 @@ feature 'Nurse, Participant Tasks' do
     patient_306.return
 
     expect(patient_306).to_not have_confirmation_call
-
     expect(patient_306).to have_tasks_completed
   end
 
@@ -402,15 +373,12 @@ feature 'Nurse, Participant Tasks' do
     pt_311_nurse_tasks.open
 
     expect(pt_311_nurse_tasks).to have_one_task_in_count
-
     expect(confirmation_call).to be_complete
-
     expect(initial_in_person_appt).to be_active
 
     initial_in_person_appt.cancel
 
     expect(pt_311_nurse_tasks).to have_no_tasks_in_count
-
     expect(initial_in_person_appt).to be_canceled
   end
 
@@ -418,14 +386,12 @@ feature 'Nurse, Participant Tasks' do
     pt_317_nurse_tasks.open
 
     expect(pt_317_nurse_tasks).to have_one_task_in_count
-
     expect(initial_in_person_appt).to be_active
 
     initial_in_person_appt.open_reschedule_form
     navigation.cancel
 
     expect(pt_317_nurse_tasks).to have_one_task_in_count
-
     expect(initial_in_person_appt).to be_active
   end
 
@@ -433,13 +399,11 @@ feature 'Nurse, Participant Tasks' do
     pt_318_nurse_tasks.open
 
     expect(pt_318_nurse_tasks).to have_one_task_in_count
-
     expect(initial_in_person_appt).to be_active
 
     initial_in_person_appt.reschedule
 
     expect(pt_318_nurse_tasks).to have_no_tasks_in_count
-
     expect(initial_in_person_appt).to be_scheduled
   end
 
@@ -447,9 +411,7 @@ feature 'Nurse, Participant Tasks' do
     pt_313_nurse_tasks.open
 
     expect(pt_313_nurse_tasks).to have_one_task_in_count
-
     expect(confirmation_call).to be_complete
-
     expect(initial_in_person_appt).to be_active
 
     initial_in_person_appt.confirm
@@ -500,26 +462,20 @@ feature 'Nurse, Participant Tasks' do
     initial_in_person_appt.confirm
     initial_in_person_appt.enter_location
     pt_319_nurse_tasks.enter_session_length
-    # not implemented yet
-    # expect(initial_in_person_appt).to have_next_contact_date
-    # because above is not yet implemented, need this so test passes
-    initial_in_person_appt.enter_next_contact_date
+
+    expect(initial_in_person_appt).to have_next_contact_date
 
     initial_in_person_appt.enter_general_notes
     navigation.submit
 
     contact_information.enter_smartphone_number
     contact_information.enter_phone_id
-    navigation.submit # what happens if I cancel?
+    navigation.submit
 
     expect(pt_400_nurse_tasks).to have_no_tasks_in_count
-
     expect(initial_in_person_appt).to be_complete
-
     expect(follow_up_week_1).to be_scheduled
-
     expect(follow_up_week_3).to be_scheduled
-
     expect(call_to_schedule_final_appointment).to be_scheduled
 
     # check clinical summary page for notes
@@ -537,7 +493,6 @@ feature 'Nurse, Participant Tasks' do
     your_patients.return
 
     expect(patient_319).to_not have_initial_appointment
-
     expect(patient_319).to have_tasks_completed
   end
 
@@ -558,42 +513,36 @@ feature 'Nurse, Participant Tasks' do
     pt_320_nurse_tasks.open
 
     expect(pt_320_nurse_tasks).to have_one_task_in_count
-
     expect(follow_up_week_1).to be_active
 
     follow_up_week_1.cancel
 
     expect(pt_320_nurse_tasks).to have_no_tasks_in_count
-
     expect(follow_up_week_1).to be_canceled
   end
 
   scenario 'Nurse cancels out of reschedule follow up week one' do
     pt_321_nurse_tasks.open
 
-    expect(pt_320_nurse_tasks).to have_one_task_in_count
-
+    expect(pt_321_nurse_tasks).to have_one_task_in_count
     expect(follow_up_week_1).to be_active
 
     follow_up_week_1.open_reschedule_form
     navigation.cancel
 
-    expect(pt_320_nurse_tasks).to have_one_task_in_count
-
+    expect(pt_321_nurse_tasks).to have_one_task_in_count
     expect(follow_up_week_1).to be_active
   end
 
   scenario 'Nurse reschedules follow up call week one' do
     pt_321_nurse_tasks.open
 
-    expect(pt_320_nurse_tasks).to have_one_task_in_count
-
+    expect(pt_321_nurse_tasks).to have_one_task_in_count
     expect(follow_up_week_1).to be_active
 
     follow_up_week_1.reschedule
 
-    expect(pt_320_nurse_tasks).to have_no_tasks_in_count
-
+    expect(pt_321_nurse_tasks).to have_no_tasks_in_count
     expect(follow_up_week_1).to be_scheduled
   end
 
@@ -601,11 +550,8 @@ feature 'Nurse, Participant Tasks' do
     pt_322_nurse_tasks.open
 
     expect(confirmation_call).to be_complete
-
     expect(initial_in_person_appt).to be_complete
-
     expect(pt_322_nurse_tasks).to have_one_task_in_count
-
     expect(follow_up_week_1).to be_active
 
     follow_up_week_1.confirm
@@ -623,52 +569,20 @@ feature 'Nurse, Participant Tasks' do
     expect(follow_up_week_1).to be_visible
   end
 
-  scenario 'Nurse cannot submit follow up call week 1 wo selecting ability' do
-    pt_324_nurse_tasks.open
-    follow_up_week_1.confirm
-    follow_up_week_1.fill_in_questions
-    pt_324_nurse_tasks.select_motivation
-    follow_up_week_1.select_chances
-    pt_324_nurse_tasks.enter_session_length
-    follow_up_week_1.enter_notes
-    navigation.submit
-
-    expect(follow_up_week_1).to be_visible
-  end
-
-  scenario 'Nurse cannot submit follow up call wk 1 wo selecting motivation' do
-    pt_325_nurse_tasks.open
-    follow_up_week_1.confirm
-    follow_up_week_1.fill_in_questions
-    pt_325_nurse_tasks.select_ability
-    follow_up_week_1.select_chances
-    pt_325_nurse_tasks.enter_session_length
-    follow_up_week_1.enter_notes
-    navigation.submit
-
-    expect(follow_up_week_1).to be_visible
-  end
-
-  scenario 'Nurse cannot submit follow up call week 1 wo selecting chances' do
-    pt_326_nurse_tasks.open
-    follow_up_week_1.confirm
-    follow_up_week_1.fill_in_questions
-    pt_326_nurse_tasks.select_ability
-    pt_326_nurse_tasks.select_motivation
-    pt_326_nurse_tasks.enter_session_length
-    follow_up_week_1.enter_notes
-    navigation.submit
-
-    expect(follow_up_week_1).to be_visible
-  end
-
   scenario 'Nurse cannot submit follow up call wk 1 wo entering call length' do
     pt_327_nurse_tasks.open
     follow_up_week_1.confirm
-    follow_up_week_1.fill_in_questions
-    pt_327_nurse_tasks.select_ability
-    pt_327_nurse_tasks.select_motivation
-    follow_up_week_1.select_chances
+    follow_up_week_1.enter_difficulties
+    follow_up_week_1.enter_notes
+    navigation.submit
+
+    expect(follow_up_week_1).to be_visible
+  end
+
+  scenario 'Nurse cannot submit follow up week one wo selecting difficulty' do
+    pt_326_nurse_tasks.open
+    follow_up_week_1.confirm
+    pt_326_nurse_tasks.enter_session_length
     follow_up_week_1.enter_notes
     navigation.submit
 
@@ -682,16 +596,12 @@ feature 'Nurse, Participant Tasks' do
     # create follow up all week 1
     pt_328_nurse_tasks.open
     follow_up_week_1.confirm
-    follow_up_week_1.fill_in_questions
-    pt_328_nurse_tasks.select_ability
-    pt_328_nurse_tasks.select_motivation
-    follow_up_week_1.select_chances
     pt_328_nurse_tasks.enter_session_length
+    follow_up_week_1.enter_difficulties
     follow_up_week_1.enter_notes
     navigation.submit
 
     expect(pt_328_nurse_tasks).to have_no_tasks_in_count
-
     expect(follow_up_week_1).to be_complete
 
     # check clinical summary page for notes
@@ -709,7 +619,6 @@ feature 'Nurse, Participant Tasks' do
     your_patients.return
 
     expect(patient_328).to_not have_follow_up_week_1
-
     expect(patient_328).to have_tasks_completed
   end
 
@@ -730,13 +639,11 @@ feature 'Nurse, Participant Tasks' do
     pt_329_nurse_tasks.open
 
     expect(pt_329_nurse_tasks).to have_one_task_in_count
-
     expect(follow_up_week_3).to be_active
 
     follow_up_week_3.cancel
 
     expect(pt_329_nurse_tasks).to have_no_tasks_in_count
-
     expect(follow_up_week_3).to be_canceled
   end
 
@@ -744,14 +651,12 @@ feature 'Nurse, Participant Tasks' do
     pt_333_nurse_tasks.open
 
     expect(pt_333_nurse_tasks).to have_one_task_in_count
-
     expect(follow_up_week_3).to be_active
 
     follow_up_week_3.open_reschedule_form
     navigation.cancel
 
     expect(pt_333_nurse_tasks).to have_one_task_in_count
-
     expect(follow_up_week_3).to be_active
   end
 
@@ -759,13 +664,11 @@ feature 'Nurse, Participant Tasks' do
     pt_333_nurse_tasks.open
 
     expect(pt_333_nurse_tasks).to have_one_task_in_count
-
     expect(follow_up_week_3).to be_active
 
     follow_up_week_3.reschedule
 
     expect(pt_333_nurse_tasks).to have_no_tasks_in_count
-
     expect(follow_up_week_3).to be_scheduled
   end
 
@@ -773,13 +676,9 @@ feature 'Nurse, Participant Tasks' do
     pt_330_nurse_tasks.open
 
     expect(confirmation_call).to be_complete
-
     expect(initial_in_person_appt).to be_complete
-
     expect(follow_up_week_1).to be_complete
-
     expect(pt_330_nurse_tasks).to have_one_task_in_count
-
     expect(follow_up_week_3).to be_active
 
     follow_up_week_3.confirm
@@ -800,33 +699,17 @@ feature 'Nurse, Participant Tasks' do
   scenario 'Nurse cannot submit without entering length of call' do
     pt_332_nurse_tasks.open
     follow_up_week_3.confirm
-    follow_up_week_3.respond_to_questions
-    pt_332_nurse_tasks.select_ability
-    pt_332_nurse_tasks.select_motivation
+    follow_up_week_3.enter_difficulties
     follow_up_week_3.enter_general_notes
     navigation.submit
 
     expect(follow_up_week_3).to be_visible
   end
 
-  scenario 'Nurse cannot submit form without selecting ability' do
+  scenario 'Nurse cannot submit follow up week 3 wo entering difficulties' do
     pt_334_nurse_tasks.open
     follow_up_week_3.confirm
     pt_334_nurse_tasks.enter_session_length
-    follow_up_week_3.respond_to_questions
-    pt_334_nurse_tasks.select_motivation
-    follow_up_week_3.enter_general_notes
-    navigation.submit
-
-    expect(follow_up_week_3).to be_visible
-  end
-
-  scenario 'Nurse cannot submit form without selecting motivation' do
-    pt_335_nurse_tasks.open
-    follow_up_week_3.confirm
-    pt_335_nurse_tasks.enter_session_length
-    follow_up_week_3.respond_to_questions
-    pt_335_nurse_tasks.select_ability
     follow_up_week_3.enter_general_notes
     navigation.submit
 
@@ -841,22 +724,17 @@ feature 'Nurse, Participant Tasks' do
     pt_336_nurse_tasks.open
     follow_up_week_3.confirm
     pt_336_nurse_tasks.enter_session_length
-    follow_up_week_3.respond_to_questions
-    pt_336_nurse_tasks.select_ability
-    pt_336_nurse_tasks.select_motivation
+    follow_up_week_3.enter_difficulties
     follow_up_week_3.enter_general_notes
     navigation.submit
 
     expect(pt_336_nurse_tasks).to have_no_tasks_in_count
-
     expect(follow_up_week_3).to be_complete
-
     expect(call_to_schedule_final_appointment).to be_scheduled
 
     # check clinical summary page for notes
     clinical_summary.open
-    # still broken
-    # expect(clinical_summary).to have_follow_up_week_3_notes_visible
+    expect(clinical_summary).to have_follow_up_week_3_notes_visible
 
     # check contact information page for completeness
     clinical_summary.return_to_tasks
@@ -868,7 +746,6 @@ feature 'Nurse, Participant Tasks' do
     your_patients.return
 
     expect(patient_336).to_not have_follow_up_week_3
-
     expect(patient_336).to have_tasks_completed
   end
 
@@ -889,13 +766,11 @@ feature 'Nurse, Participant Tasks' do
     pt_704_nurse_tasks.open
 
     expect(pt_704_nurse_tasks).to have_one_task_in_count
-
     expect(call_to_schedule_final_appointment).to be_active
 
     call_to_schedule_final_appointment.cancel
 
     expect(pt_704_nurse_tasks).to have_no_tasks_in_count
-
     expect(call_to_schedule_final_appointment).to be_canceled
   end
 
@@ -903,14 +778,12 @@ feature 'Nurse, Participant Tasks' do
     pt_705_nurse_tasks.open
 
     expect(pt_705_nurse_tasks).to have_one_task_in_count
-
     expect(call_to_schedule_final_appointment).to be_active
 
     call_to_schedule_final_appointment.open_reschedule_form
     navigation.cancel
 
     expect(pt_705_nurse_tasks).to have_one_task_in_count
-
     expect(call_to_schedule_final_appointment).to be_active
   end
 
@@ -918,13 +791,11 @@ feature 'Nurse, Participant Tasks' do
     pt_705_nurse_tasks.open
 
     expect(pt_705_nurse_tasks).to have_one_task_in_count
-
     expect(call_to_schedule_final_appointment).to be_active
 
     call_to_schedule_final_appointment.reschedule
 
     expect(pt_705_nurse_tasks).to have_no_tasks_in_count
-
     expect(call_to_schedule_final_appointment).to be_scheduled
   end
 
@@ -932,15 +803,10 @@ feature 'Nurse, Participant Tasks' do
     pt_700_nurse_tasks.open
 
     expect(confirmation_call).to be_complete
-
     expect(initial_in_person_appt).to be_complete
-
     expect(follow_up_week_1).to be_complete
-
     expect(follow_up_week_3).to be_complete
-
     expect(pt_700_nurse_tasks).to have_one_task_in_count
-
     expect(call_to_schedule_final_appointment).to be_active
 
     call_to_schedule_final_appointment.confirm
@@ -964,18 +830,15 @@ feature 'Nurse, Participant Tasks' do
     # confirm call to schedule final appointment
     pt_702_nurse_tasks.open
     call_to_schedule_final_appointment.confirm
-    # not yet implemented
-    # expect(call_to_schedule_final_appointment).to have_next_contact_date
-    # since above isn't implemented, do below to keep from failing
-    call_to_schedule_final_appointment.enter_next_contact_date
 
+    expect(call_to_schedule_final_appointment).to have_next_contact_date
+
+    call_to_schedule_final_appointment.enter_next_contact_date
     call_to_schedule_final_appointment.select_location
     navigation.submit
 
     expect(pt_702_nurse_tasks).to have_no_tasks_in_count
-
     expect(call_to_schedule_final_appointment).to be_complete
-
     expect(final_appointment).to be_scheduled
 
     # Check contact information for completeness
@@ -988,7 +851,6 @@ feature 'Nurse, Participant Tasks' do
     your_patients.return
 
     expect(patient_702).to_not have_call_to_schedule_final_appt
-
     expect(patient_702).to have_tasks_completed
   end
 
@@ -1009,13 +871,11 @@ feature 'Nurse, Participant Tasks' do
     pt_337_nurse_tasks.open
 
     expect(pt_337_nurse_tasks).to have_one_task_in_count
-
     expect(final_appointment).to be_active
 
     final_appointment.cancel
 
     expect(pt_337_nurse_tasks).to have_no_tasks_in_count
-
     expect(final_appointment).to be_canceled
   end
 
@@ -1023,14 +883,12 @@ feature 'Nurse, Participant Tasks' do
     pt_345_nurse_tasks.open
 
     expect(pt_345_nurse_tasks).to have_one_task_in_count
-
     expect(final_appointment).to be_active
 
     final_appointment.open_reschedule_form
     navigation.cancel
 
     expect(pt_345_nurse_tasks).to have_one_task_in_count
-
     expect(final_appointment).to be_active
   end
 
@@ -1038,13 +896,11 @@ feature 'Nurse, Participant Tasks' do
     pt_345_nurse_tasks.open
 
     expect(pt_345_nurse_tasks).to have_one_task_in_count
-
     expect(final_appointment).to be_active
 
     final_appointment.reschedule
 
     expect(pt_345_nurse_tasks).to have_no_tasks_in_count
-
     expect(final_appointment).to be_scheduled
   end
 
@@ -1052,17 +908,11 @@ feature 'Nurse, Participant Tasks' do
     pt_338_nurse_tasks.open
 
     expect(confirmation_call).to be_complete
-
     expect(initial_in_person_appt).to be_complete
-
     expect(follow_up_week_1).to be_complete
-
     expect(follow_up_week_3).to be_complete
-
     expect(call_to_schedule_final_appointment).to be_complete
-
     expect(pt_338_nurse_tasks).to have_one_task_in_count
-
     expect(final_appointment).to be_active
 
     final_appointment.confirm
@@ -1149,13 +999,13 @@ feature 'Spanish nurse, Participant tasks' do
 
     spanish_follow_up_week_1.confirm
 
-    # expect(spanish_follow_up_week_1).to have_form_headings
+    expect(spanish_follow_up_week_1).to have_form_headings
     expect(spanish_follow_up_week_1).to have_current_date_selections
-    # expect(spanish_follow_up_week_1).to have_difficulties_options
+    expect(spanish_follow_up_week_1).to have_difficulties_options
 
-    # spanish_follow_up_week_1.toggle_options_list
+    spanish_follow_up_week_1.toggle_options_list
 
-    # expect(spanish_follow_up_week_1).to have_next_contact_date
+    expect(spanish_follow_up_week_1).to have_next_contact_date
 
     navigation.cancel
 
@@ -1163,14 +1013,14 @@ feature 'Spanish nurse, Participant tasks' do
 
     spanish_follow_up_week_3.confirm
 
-    # expect(spanish_follow_up_week_3).to have_form_headings
+    expect(spanish_follow_up_week_3).to have_form_headings
 
     expect(spanish_follow_up_week_3).to have_current_date_selections
-    # expect(spanish_follow_up_week_3).to have_difficulties_options
+    expect(spanish_follow_up_week_3).to have_difficulties_options
 
-    # spanish_follow_up_week_3.toggle_options_list
+    spanish_follow_up_week_3.toggle_options_list
 
-    # expect(spanish_follow_up_week_3).to have_next_contact_date
+    expect(spanish_follow_up_week_3).to have_next_contact_date
 
     navigation.cancel
 
@@ -1192,9 +1042,9 @@ feature 'Spanish nurse, Participant tasks' do
 
     expect(spanish_final_appointment).to have_form_headings
     expect(spanish_final_appointment).to have_current_date_selections
-    # expect(spanish_final_appointment).to have_location_options
+    expect(spanish_final_appointment).to have_location_options
 
-    # spanish_final_appointment.toggle_options_list
+    spanish_final_appointment.toggle_options_list
     navigation.cancel
 
     expect(spanish_lack_of_connectivity_call).to be_active
@@ -1272,13 +1122,13 @@ feature 'Portuguese nurse, Participant tasks' do
 
     portuguese_follow_up_week_1.confirm
 
-    # expect(portuguese_follow_up_week_1).to have_form_headings
+    expect(portuguese_follow_up_week_1).to have_form_headings
     expect(portuguese_follow_up_week_1).to have_current_date_selections
-    # expect(portuguese_follow_up_week_1).to have_difficulties_options
+    expect(portuguese_follow_up_week_1).to have_difficulties_options
 
-    # portuguese_follow_up_week_1.toggle_options_list
+    portuguese_follow_up_week_1.toggle_options_list
 
-    # expect(portuguese_follow_up_week_1).to have_next_contact_date
+    expect(portuguese_follow_up_week_1).to have_next_contact_date
 
     navigation.cancel
 
@@ -1286,14 +1136,14 @@ feature 'Portuguese nurse, Participant tasks' do
 
     portuguese_follow_up_week_3.confirm
 
-    # expect(portuguese_follow_up_week_3).to have_form_headings
+    expect(portuguese_follow_up_week_3).to have_form_headings
 
     expect(portuguese_follow_up_week_3).to have_current_date_selections
-    # expect(portuguese_follow_up_week_3).to have_difficulties_options
+    expect(portuguese_follow_up_week_3).to have_difficulties_options
 
-    # portuguese_follow_up_week_3.toggle_options_list
+    portuguese_follow_up_week_3.toggle_options_list
 
-    # expect(portuguese_follow_up_week_3).to have_next_contact_date
+    expect(portuguese_follow_up_week_3).to have_next_contact_date
 
     navigation.cancel
 
@@ -1315,9 +1165,9 @@ feature 'Portuguese nurse, Participant tasks' do
 
     expect(portuguese_final_appointment).to have_form_headings
     expect(portuguese_final_appointment).to have_current_date_selections
-    # expect(portuguese_final_appointment).to have_location_options
+    expect(portuguese_final_appointment).to have_location_options
 
-    # portuguese_final_appointment.toggle_options_list
+    portuguese_final_appointment.toggle_options_list
     navigation.cancel
 
     expect(portuguese_lack_of_connectivity_call).to be_active

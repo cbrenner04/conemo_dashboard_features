@@ -39,21 +39,6 @@ class YourPatients
       fill_in "#{@session}[session_length]", with: @session_length
     end
 
-    def select_ability
-      selector[10].click
-      ability = ['3 - Seems to be able to use the application',
-                 '2 - Seems to have some difficulties',
-                 '1 - Seems to have great difficulty'].sample
-      select_list_item(ability)
-    end
-
-    def select_motivation
-      selector[11].click
-      motivation = ['3 – Very interested', '2 – Somewhat interested',
-                    '1 – Not interested'].sample
-      select_list_item(motivation)
-    end
-
     def has_new_supervisor_contact?
       has_supervisor_contact?(Time.now)
     end

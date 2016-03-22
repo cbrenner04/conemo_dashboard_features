@@ -31,7 +31,9 @@ class YourPatients
         sleep(1)
         selector[5].click
         options.delete_at(0)
-        options.delete_at(7)
+        options.delete_at(6)
+        options.delete_at(6)
+        options.delete_at(-1)
         select_list_item(options.sample)
         navigation.submit
       end

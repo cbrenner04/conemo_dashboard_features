@@ -58,7 +58,7 @@ module Translations
 
       def english_options
         @english_options ||= [
-          'Patient’s home',
+          'Patient\'s home',
           'Health unit',
           'Other location'
         ]

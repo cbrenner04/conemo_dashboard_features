@@ -90,7 +90,7 @@ class YourPatients
       end
 
       def has_location_options?
-        has_task_options?(5, 9)
+        has_task_options?(5, 2)
       end
     end
   end

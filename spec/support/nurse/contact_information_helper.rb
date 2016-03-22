@@ -9,7 +9,7 @@ def navigation
 end
 
 def your_patients
-  @your_patients ||= YourPatients.new
+  @your_patients ||= YourPatients.new(locale: 'english')
 end
 
 def confirmation_call
@@ -21,6 +21,18 @@ end
 def initial_appointment
   @initial_appointment ||=
     YourPatients::NurseTasks::InitialInPersonAppointment.new(locale: 'english')
+end
+
+def follow_up_week_1
+  @follow_up_week_1 ||= YourPatients::NurseTasks::FollowUpCallWeekOne.new(
+    locale: 'english'
+  )
+end
+
+def follow_up_week_3
+  @follow_up_week_3 ||= YourPatients::NurseTasks::FollowUpCallWeekThree.new(
+    locale: 'english'
+  )
 end
 
 def call_to_schedule_final_appointment

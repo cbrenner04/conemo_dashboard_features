@@ -21,19 +21,17 @@ module Translations
           'Fecha/hora de la llamada',
           'Duración de la llamada (min)',
           '¿El paciente ha tenido algunas dificultades usando CONEMO?',
-          'En caso afirmativo, especifique:',
-          'Fecha/hora para la llamada de seguimiento sem. 3',
-          'Notas'
+          'Llamada de seguimiento sem. 3',
+          'Observaciones (cuadrado de texto)'
         ]
       end
 
       def portuguese_headings
         @portuguese_headings ||= [
-          'Data da ligação',
+          'Data/hora',
           'Duração da chamada (minutos)',
           'O paciente tem tido dificuldades com CONEMO?',
-          'Se sim, especifica qual:',
-          'Data/hora próximo contato',
+          'Chamada de seguimento sem. 3',
           'Observações'
         ]
       end
@@ -51,6 +49,8 @@ module Translations
 
       def spanish_options
         @spanish_options ||= [
+          'No',
+          'Sí',
           'Dificultades con el celular inteligente ' \
           '(batería, contraseña, encenderlo, volumen)',
           'Dificultades para entrar a CONEMO',
@@ -63,6 +63,8 @@ module Translations
 
       def portuguese_options
         @portuguese_options ||= [
+          'Não',
+          'Sim',
           'Dificuldade com o smartphone (bateria, PIN, ligar, volume, etc.)',
           'Dificuldade para entrar no CONEMO app',
           'Dificuldade para ler sessões',
@@ -74,6 +76,8 @@ module Translations
 
       def english_options
         @english_options ||= [
+          'No',
+          'Yes',
           'Difficulty with cell phone (battery, PIN code, turning it on, ' \
           'volume, etc.)',
           'Difficulty accessing CONEMO app',

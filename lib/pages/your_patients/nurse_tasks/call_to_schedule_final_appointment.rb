@@ -73,8 +73,7 @@ class YourPatients
       def select_location
         sleep(1)
         selector[10].click
-        location = []
-        (2..9).each { |i| location.push("unit #{i}") }
+        location = (2..9).map { |i| "unit #{i}" }
         find('.select2-result-label', text: location.sample).click
       end
 

@@ -58,9 +58,9 @@ class YourPatients
       end
 
       def has_correct_logins?
-        (1..4).each do |i|
+        (1..4).all? do |i|
           n = Date.today - i
-          find('.logins-table').has_text? n.strftime('%B %d, %Y')
+          find('#logins-table').has_text? n.strftime('%B %d, %Y')
         end
       end
 

@@ -181,9 +181,9 @@ def pt_421_nurse_tasks
   @pt_421_nurse_tasks ||= YourPatients::NurseTasks.new(pt_id: 421)
 end
 
-def pt_422_nurse_tasks
-  @pt_422_nurse_tasks ||= YourPatients::NurseTasks.new(
-    pt_id: 422,
+def pt_424_nurse_tasks
+  @pt_424_nurse_tasks ||= YourPatients::NurseTasks.new(
+    pt_id: 424,
     time_of_contact: Time.now - (2 * 60 * 60)
   )
 end

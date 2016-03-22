@@ -41,12 +41,7 @@ class YourPatients
   end
 
   def ordered_correctly?
-    # these just cover overdue and do not confirm styling
-    actual_results = (0..8).map { |i| all('tr')[i].text }
-    expected_results = []
-    conditionals = [expected_results_1, expected_results_2, expected_results_3]
-    conditionals.each { |i| expected_results.concat i }
-
+    actual_results = (0..11).map { |i| all('tr')[i].text }
     expect(actual_results).to eq(expected_results)
   end
 
@@ -137,80 +132,21 @@ class YourPatients
     @portuguese_nurse_patients ||= (600..605).to_a.sample(3)
   end
 
-  def expected_results_1
-    @expected_results_1 ||= if all('tr')[1].has_text? 'Initial'
-                              ["706 #{confirmation_call_title}",
-                               "707 #{initial_appointment_title}",
-                               "708 #{follow_up_week_one_title}",
-                               "709 #{follow_up_week_three_title}"]
-                            else
-                              ["706 #{confirmation_call_title}",
-                               "708 #{follow_up_week_one_title}",
-                               "707 #{initial_appointment_title}",
-                               "709 #{follow_up_week_three_title}"]
-                            end
-  end
-
-  def expected_results_2
-    @expected_results_2 ||= if all('tr')[3].has_text? 'Call'
-                              ["800 #{call_to_schedule_final_title}",
-                               "801 #{final_appointment_title}"]
-                            else
-                              ["801 #{final_appointment_title}",
-                               "800 #{call_to_schedule_final_title}"]
-                            end
-  end
-
-  def expected_results_3
-    @expected_results_3 ||= if last_rows_1
-                              ["802 #{help_request_title}",
-                               "803 #{lack_of_connectivity_call_title}",
-                               "804 #{non_adherence_call_title}"]
-                            elsif last_rows_2
-                              ["802 #{help_request_title}",
-                               "804 #{non_adherence_call_title}",
-                               "803 #{lack_of_connectivity_call_title}"]
-                            elsif last_rows_3
-                              ["803 #{lack_of_connectivity_call_title}",
-                               "804 #{non_adherence_call_title}",
-                               "802 #{help_request_title}"]
-                            elsif last_rows_4
-                              ["803 #{lack_of_connectivity_call_title}",
-                               "802 #{help_request_title}",
-                               "804 #{non_adherence_call_title}"]
-                            elsif last_rows_5
-                              ["804 #{non_adherence_call_title}",
-                               "802 #{help_request_title}",
-                               "803 #{lack_of_connectivity_call_title}"]
-                            else
-                              ["804 #{non_adherence_call_title}",
-                               "803 #{lack_of_connectivity_call_title}",
-                               "802 #{help_request_title}"]
-                            end
-  end
-
-  def last_rows_1
-    @last_rows_1 ||= all('tr')[6].has_text?('Help') &&
-                     all('tr')[7].has_text?('due')
-  end
-
-  def last_rows_2
-    @last_rows_2 ||= all('tr')[6].has_text?('Help') &&
-                     all('tr')[7].has_text?('Non')
-  end
-
-  def last_rows_3
-    @last_rows_3 ||= all('tr')[6].has_text?('due') &&
-                     all('tr')[7].has_text?('Non')
-  end
-
-  def last_rows_4
-    @last_rows_4 ||= all('tr')[6].has_text?('due') &&
-                     all('tr')[7].has_text?('Help')
-  end
-
-  def last_rows_5
-    @last_rows_5 ||= all('tr')[6].has_text?('Non') &&
-                     all('tr')[7].has_text?('Help')
+  def expected_results
+    @expected_results ||= [
+      "706 #{confirmation_call_title}",
+      "707 #{initial_appointment_title}",
+      "708 #{follow_up_week_one_title}",
+      "709 #{follow_up_week_three_title}",
+      "800 #{call_to_schedule_final_title}",
+      "801 #{final_appointment_title}",
+      "802 #{help_request_title}",
+      "803 #{lack_of_connectivity_call_title}",
+      "804 #{non_adherence_call_title}",
+      "1000 #{confirmation_call_title}, #{help_request_title}, " \
+      "#{lack_of_connectivity_call_title}",
+      "322 #{follow_up_week_one_title}",
+      "301 #{confirmation_call_title}"
+    ]
   end
 end

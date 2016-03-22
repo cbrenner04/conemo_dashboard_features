@@ -44,15 +44,27 @@ module Translations
       end
 
       def spanish_options
-        @spanish_options ||= (1..10).map { |i| "Centro de salud #{i}" }
+        @spanish_options ||= [
+          'Casa del paciente',
+          'Centro de salud',
+          'Otro lugar'
+        ]
       end
 
       def portuguese_options
-        @portuguese_options ||= (1..10).map { |i| "Unidade de Saúde #{i}" }
+        @portuguese_options ||= [
+          'Casa do paciente',
+          'Unidade de saúde',
+          'Outro lugar'
+        ]
       end
 
       def english_options
-        @english_options ||= (1..10).map { |i| "unit #{i}" }
+        @english_options ||= [
+          'Patient\'s home',
+          'Health unit',
+          'Other location'
+        ]
       end
     end
   end

@@ -67,8 +67,7 @@ module NurseTasksForms
   def enter_task_location(selector_num)
     sleep(1)
     selector[selector_num].click
-    location = options.sample
-    select_list_item(location)
+    select_list_item(options.sample)
   end
 
   def select_list_item(item)
@@ -92,15 +91,14 @@ module NurseTasksForms
   end
 
   def has_date_selectors?(date, m, d, y)
-    selector[m].has_text? locale(spanish_months(date), portuguese_months(date),
-                                 date.strftime('%B'))
-    selector[d].has_text? date.strftime('%-d')
-    selector[y].has_text? date.strftime('%Y')
+    selector[m].has_text?(locale(spanish_months(date), portuguese_months(date),
+                                 date.strftime('%B'))) &&
+      selector[d].has_text?(date.strftime('%-d')) &&
+      selector[y].has_text?(date.strftime('%Y'))
   end
 
   def has_time_selectors?(hh, mm, time = today_at_11_am)
-    has_hour_selector?(hh, time)
-    selector[mm].has_text? time.strftime('%M')
+    has_hour_selector?(hh, time) && selector[mm].has_text?(time.strftime('%M'))
   end
 
   def has_hour_selector?(hh, time = today_at_11_am)

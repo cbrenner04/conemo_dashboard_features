@@ -55,14 +55,10 @@ class YourPatients
         has_css?('h1', text: follow_up_week_three_title)
       end
 
-      def respond_to_questions
-        fill_in 'third_contact[q1]', with: 'q1 response'
-        (2..5).each do |i|
-          execute_script('window.scrollBy(0,150)')
-          radio = ['true', 'false'].sample
-          find("#third_contact_q#{i}_#{radio}").click
-          fill_in "third_contact[q#{i}_notes]", with: "q#{i} notes"
-        end
+      def enter_difficulties
+        selector[5].click
+        options.delete_at(1)
+        select_list_item(options.sample)
       end
 
       def toggle_options_list
@@ -78,7 +74,7 @@ class YourPatients
       end
 
       def has_form_headings?
-        has_task_form_headings?(5)
+        has_task_form_headings?(4)
       end
 
       def has_current_date_selections?
@@ -87,7 +83,7 @@ class YourPatients
       end
 
       def has_difficulties_options?
-        has_task_options?(5, 5)
+        has_task_options?(5, 7)
       end
 
       def has_next_contact_date?
