@@ -47,11 +47,6 @@ class YourPatients
         open_reschedule call_to_schedule_final_title
       end
 
-      def reschedule
-        open_reschedule_form
-        reschedule_task
-      end
-
       def visible?
         has_css?('h1', text: call_to_schedule_final_title)
       end

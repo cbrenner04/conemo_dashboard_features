@@ -46,11 +46,6 @@ class YourPatients
         open_reschedule follow_up_week_three_title
       end
 
-      def reschedule
-        open_reschedule_form
-        reschedule_task
-      end
-
       def visible?
         has_css?('h1', text: follow_up_week_three_title)
       end

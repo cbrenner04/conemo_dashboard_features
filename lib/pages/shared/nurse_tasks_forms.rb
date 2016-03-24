@@ -33,13 +33,6 @@ module NurseTasksForms
     @selector ||= all('.select2-container')
   end
 
-  def reschedule_task
-    sleep(1)
-    selector[2].click
-    select_list_item((Date.today + 1).strftime('%-d'))
-    navigation.submit
-  end
-
   def has_list_item?(text)
     has_css?('.panel', text: text)
   end

@@ -42,11 +42,6 @@ class YourPatients
         open_reschedule confirmation_call_title
       end
 
-      def reschedule
-        open_reschedule_form
-        reschedule_task
-      end
-
       def visible?
         has_css?('h1', text: confirmation_call_title)
       end

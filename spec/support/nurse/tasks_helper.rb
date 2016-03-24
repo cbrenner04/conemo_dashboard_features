@@ -13,6 +13,12 @@ def cancel_form
   @cancel_form ||= YourPatients::NurseTasks::CancelForm.new(locale: 'english')
 end
 
+def reschedule_form
+  @reschedule_form ||= YourPatients::NurseTasks::RescheduleForm.new(
+    locale: 'english'
+  )
+end
+
 def confirmation_call
   @confirmation_call ||= YourPatients::NurseTasks::ConfirmationCall.new(
     locale: 'english'
@@ -577,6 +583,12 @@ def spanish_cancel_form
   )
 end
 
+def spanish_reschedule_form
+  @spanish_reschedule_form ||= YourPatients::NurseTasks::RescheduleForm.new(
+    locale: 'spanish'
+  )
+end
+
 def pt_601_nurse_tasks
   @pt_601_nurse_tasks ||= YourPatients::NurseTasks.new(
     pt_id: 601,
@@ -648,6 +660,12 @@ end
 
 def portuguese_cancel_form
   @portuguese_cancel_form ||= YourPatients::NurseTasks::CancelForm.new(
+    locale: 'portuguese'
+  )
+end
+
+def portuguese_reschedule_form
+  @portuguese_reschedule_form ||= YourPatients::NurseTasks::RescheduleForm.new(
     locale: 'portuguese'
   )
 end
