@@ -22,7 +22,7 @@ module NurseTasksForms
   end
 
   def cancel_task(type)
-    panel(type).find("input[value = '#{cancel_button}']").click
+    panel(type).find('a', text: cancel_button).click
   end
 
   def open_reschedule(type)
@@ -97,12 +97,13 @@ module NurseTasksForms
       selector[y].has_text?(date.strftime('%Y'))
   end
 
-  def has_time_selectors?(hh, mm, time = today_at_11_am)
-    has_hour_selector?(hh, time) && selector[mm].has_text?(time.strftime('%M'))
+  def has_time_selectors?(hh, mm)
+    has_hour_selector?(hh) &&
+      selector[mm].has_text?(Time.now.strftime('%M'))
   end
 
-  def has_hour_selector?(hh, time = today_at_11_am)
-    selector[hh].has_text? time.strftime('%H')
+  def has_hour_selector?(hh)
+    selector[hh].has_text? Time.now.strftime('%H')
   end
 
   private
@@ -113,9 +114,5 @@ module NurseTasksForms
 
   def panel(type)
     find('.panel', text: type)
-  end
-
-  def today_at_11_am
-    @today_at_11_am ||= Date.today.to_time + (11 * 60 * 60)
   end
 end

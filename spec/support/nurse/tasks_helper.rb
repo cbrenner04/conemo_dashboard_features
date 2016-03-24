@@ -9,6 +9,10 @@ def navigation
   @navigation ||= Navigation.new(locale: 'english')
 end
 
+def cancel_form
+  @cancel_form ||= YourPatients::NurseTasks::CancelForm.new(locale: 'english')
+end
+
 def confirmation_call
   @confirmation_call ||= YourPatients::NurseTasks::ConfirmationCall.new(
     locale: 'english'
@@ -93,7 +97,8 @@ def pt_802_nurse_tasks
   @pt_802_nurse_tasks ||= YourPatients::NurseTasks.new(
     pt_id: 802,
     days_since_due: '3 days',
-    contact_type: 'Help request'
+    contact_type: 'Help request',
+    tasks_count: 1
   )
 end
 
@@ -123,7 +128,8 @@ def pt_803_nurse_tasks
   @pt_803_nurse_tasks ||= YourPatients::NurseTasks.new(
     pt_id: 803,
     contact_type: 'Call due to no connectivity',
-    days_since_due: '3 days'
+    days_since_due: '3 days',
+    tasks_count: 1
   )
 end
 
@@ -169,7 +175,8 @@ def pt_804_nurse_tasks
   @pt_804_nurse_tasks ||= YourPatients::NurseTasks.new(
     pt_id: 804,
     contact_type: 'Non-adherence call',
-    days_since_due: '3 days'
+    days_since_due: '3 days',
+    tasks_count: 1
   )
 end
 
@@ -199,7 +206,8 @@ def pt_706_nurse_tasks
   @pt_706_nurse_tasks ||= YourPatients::NurseTasks.new(
     pt_id: 706,
     contact_type: 'Confirmation call',
-    days_since_due: 'about 2 months'
+    days_since_due: 'about 2 months',
+    tasks_count: 2
   )
 end
 
@@ -227,7 +235,8 @@ def pt_707_nurse_tasks
   @pt_707_nurse_tasks ||= YourPatients::NurseTasks.new(
     pt_id: 707,
     contact_type: 'Initial in person appointment',
-    days_since_due: 'about 1 month'
+    days_since_due: 'about 1 month',
+    tasks_count: 1
   )
 end
 
@@ -283,7 +292,8 @@ def pt_708_nurse_tasks
   @pt_708_nurse_tasks ||= YourPatients::NurseTasks.new(
     pt_id: 708,
     contact_type: 'Follow up call week 1',
-    days_since_due: 'about 1 month'
+    days_since_due: 'about 1 month',
+    tasks_count: 1
   )
 end
 
@@ -351,7 +361,8 @@ def pt_709_nurse_tasks
   @pt_709_nurse_tasks ||= YourPatients::NurseTasks.new(
     pt_id: 709,
     contact_type: 'Follow up call week 3',
-    days_since_due: '14 days'
+    days_since_due: '14 days',
+    tasks_count: 1
   )
 end
 
@@ -419,7 +430,8 @@ def pt_800_nurse_tasks
   @pt_800_nurse_tasks ||= YourPatients::NurseTasks.new(
     pt_id: 800,
     contact_type: 'Call to schedule final in person appointment',
-    days_since_due: '4 days'
+    days_since_due: '4 days',
+    tasks_count: 1
   )
 end
 
@@ -456,7 +468,12 @@ def patient_702
 end
 
 def pt_801_nurse_tasks
-  @pt_801_nurse_tasks ||= YourPatients::NurseTasks.new(pt_id: 801)
+  @pt_801_nurse_tasks ||= YourPatients::NurseTasks.new(
+    pt_id: 801,
+    contact_type: 'Final in person appointment',
+    days_since_due: '4 days',
+    tasks_count: 1
+  )
 end
 
 def pt_338_nurse_tasks
@@ -554,6 +571,12 @@ def spanish_non_adherence_call
     YourPatients::NurseTasks::NonAdherenceCall.new(locale: 'spanish')
 end
 
+def spanish_cancel_form
+  @spanish_cancel_form ||= YourPatients::NurseTasks::CancelForm.new(
+    locale: 'spanish'
+  )
+end
+
 def pt_601_nurse_tasks
   @pt_601_nurse_tasks ||= YourPatients::NurseTasks.new(
     pt_id: 601,
@@ -621,4 +644,10 @@ end
 def portuguese_non_adherence_call
   @portuguese_non_adherence_call ||=
     YourPatients::NurseTasks::NonAdherenceCall.new(locale: 'portuguese')
+end
+
+def portuguese_cancel_form
+  @portuguese_cancel_form ||= YourPatients::NurseTasks::CancelForm.new(
+    locale: 'portuguese'
+  )
 end

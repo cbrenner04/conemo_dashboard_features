@@ -52,8 +52,8 @@ class YourPatients
         has_text? "#{@days_since_due} ago"
     end
 
-    def has_overdue_task?
-      has_text? '1 overdue'
+    def has_overdue_tasks?
+      has_text? "#{@tasks_count} overdue"
     end
 
     def has_one_task_in_count?

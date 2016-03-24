@@ -134,12 +134,12 @@ class YourPatients
 
   def expected_results
     @expected_results ||= [
-      "706 #{confirmation_call_title}",
+      "706 #{confirmation_call_title}, #{help_request_title}",
       "707 #{initial_appointment_title}",
       "708 #{follow_up_week_one_title}",
       "709 #{follow_up_week_three_title}",
       "800 #{call_to_schedule_final_title}",
-      "801 #{final_appointment_title}",
+      "801 #{final_appointment_title}, #{help_request_title}",
       "802 #{help_request_title}",
       "803 #{lack_of_connectivity_call_title}",
       "804 #{non_adherence_call_title}",

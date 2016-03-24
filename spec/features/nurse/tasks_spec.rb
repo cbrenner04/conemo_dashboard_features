@@ -2,6 +2,7 @@
 
 require './spec/support/nurse/tasks_helper'
 
+=begin
 feature 'Nurse, Participant Tasks' do
   background { english_nurse.sign_in }
 
@@ -40,7 +41,7 @@ feature 'Nurse, Participant Tasks' do
   scenario 'Nurse sees help request overdue' do
     pt_802_nurse_tasks.open
 
-    expect(pt_802_nurse_tasks).to have_overdue_task
+    expect(pt_802_nurse_tasks).to have_overdue_tasks
     # check css in progress-bar
   end
 
@@ -109,7 +110,7 @@ feature 'Nurse, Participant Tasks' do
   scenario 'Nurse sees non-connectivity task overdue' do
     pt_803_nurse_tasks.open
 
-    expect(pt_803_nurse_tasks).to have_overdue_task
+    expect(pt_803_nurse_tasks).to have_overdue_tasks
     # check css in progress-bar
   end
 
@@ -167,26 +168,26 @@ feature 'Nurse, Participant Tasks' do
     expect(pt_413_nurse_tasks).to_not have_previous_supervisor_contact
   end
 
-  scenario 'Nurse sees no adherence task for pt w active connectivity task' do
+  scenario 'Nurse sees no non-adherence task for pt w active connectivity task' do
     pt_427_nurse_tasks.open
 
     expect(lack_of_connectivity_call).to be_active
     expect(non_adherence_call).to_not be_active
   end
 
-  scenario 'Nurse sees no adherence task for pt w 1 missed, 1 late session' do
+  scenario 'Nurse sees no non-adherence task for pt w 1 missed, 1 late session' do
     pt_426_nurse_tasks.open
 
     expect(non_adherence_call).to_not be_active
   end
 
-  scenario 'Nurse sees no adherence task for 1 on-time, 1 missed session' do
+  scenario 'Nurse sees no non-adherence task for 1 on-time, 1 missed session' do
     pt_320_nurse_tasks.open
 
     expect(non_adherence_call).to_not be_active
   end
 
-  scenario 'Nurse sees no adherence task for pt w < 2 lessons released' do
+  scenario 'Nurse sees no non-adherence task for pt w < 2 lessons released' do
     pt_300_nurse_tasks.open
 
     expect(non_adherence_call).to_not be_active
@@ -201,7 +202,7 @@ feature 'Nurse, Participant Tasks' do
   scenario 'Nurse sees non-adherence task overdue' do
     pt_804_nurse_tasks.open
 
-    expect(pt_804_nurse_tasks).to have_overdue_task
+    expect(pt_804_nurse_tasks).to have_overdue_tasks
     # check css
   end
 
@@ -274,7 +275,7 @@ feature 'Nurse, Participant Tasks' do
   scenario 'Nurse sees confirmation call overdue' do
     pt_706_nurse_tasks.open
 
-    expect(pt_706_nurse_tasks).to have_overdue_task
+    expect(pt_706_nurse_tasks).to have_overdue_tasks
     # check css in progress-bar
   end
 
@@ -285,6 +286,7 @@ feature 'Nurse, Participant Tasks' do
     expect(confirmation_call).to be_active
 
     confirmation_call.cancel
+    cancel_form.complete
 
     expect(pt_301_nurse_tasks).to have_no_tasks_in_count
     expect(confirmation_call).to be_canceled
@@ -365,7 +367,7 @@ feature 'Nurse, Participant Tasks' do
   scenario 'Nurse sees initial in-person appointment overdue' do
     pt_707_nurse_tasks.open
 
-    expect(pt_707_nurse_tasks).to have_overdue_task
+    expect(pt_707_nurse_tasks).to have_overdue_tasks
     # check css in progress-bar
   end
 
@@ -377,6 +379,7 @@ feature 'Nurse, Participant Tasks' do
     expect(initial_in_person_appt).to be_active
 
     initial_in_person_appt.cancel
+    cancel_form.complete
 
     expect(pt_311_nurse_tasks).to have_no_tasks_in_count
     expect(initial_in_person_appt).to be_canceled
@@ -505,7 +508,7 @@ feature 'Nurse, Participant Tasks' do
   scenario 'Nurse sees follow up call week 1 overdue' do
     pt_708_nurse_tasks.open
 
-    expect(pt_708_nurse_tasks).to have_overdue_task
+    expect(pt_708_nurse_tasks).to have_overdue_tasks
     # check css in progress-bar
   end
 
@@ -516,6 +519,7 @@ feature 'Nurse, Participant Tasks' do
     expect(follow_up_week_1).to be_active
 
     follow_up_week_1.cancel
+    cancel_form.complete
 
     expect(pt_320_nurse_tasks).to have_no_tasks_in_count
     expect(follow_up_week_1).to be_canceled
@@ -631,7 +635,7 @@ feature 'Nurse, Participant Tasks' do
   scenario 'Nurse sees follow up call week 3 overdue' do
     pt_709_nurse_tasks.open
 
-    expect(pt_709_nurse_tasks).to have_overdue_task
+    expect(pt_709_nurse_tasks).to have_overdue_tasks
     # check css in progress-bar
   end
 
@@ -642,6 +646,7 @@ feature 'Nurse, Participant Tasks' do
     expect(follow_up_week_3).to be_active
 
     follow_up_week_3.cancel
+    cancel_form.complete
 
     expect(pt_329_nurse_tasks).to have_no_tasks_in_count
     expect(follow_up_week_3).to be_canceled
@@ -758,7 +763,7 @@ feature 'Nurse, Participant Tasks' do
   scenario 'Nurse sees call to schedule final appt overdue' do
     pt_800_nurse_tasks.open
 
-    expect(pt_800_nurse_tasks).to have_overdue_task
+    expect(pt_800_nurse_tasks).to have_overdue_tasks
     # check css in progress-bar
   end
 
@@ -769,6 +774,7 @@ feature 'Nurse, Participant Tasks' do
     expect(call_to_schedule_final_appointment).to be_active
 
     call_to_schedule_final_appointment.cancel
+    cancel_form.complete
 
     expect(pt_704_nurse_tasks).to have_no_tasks_in_count
     expect(call_to_schedule_final_appointment).to be_canceled
@@ -863,7 +869,7 @@ feature 'Nurse, Participant Tasks' do
   scenario 'Nurse sees final appointment overdue' do
     pt_801_nurse_tasks.open
 
-    expect(pt_801_nurse_tasks).to have_overdue_task
+    expect(pt_801_nurse_tasks).to have_overdue_tasks
     # check css in progress-bar
   end
 
@@ -874,6 +880,7 @@ feature 'Nurse, Participant Tasks' do
     expect(final_appointment).to be_active
 
     final_appointment.cancel
+    cancel_form.complete
 
     expect(pt_337_nurse_tasks).to have_no_tasks_in_count
     expect(final_appointment).to be_canceled
@@ -954,11 +961,15 @@ feature 'Nurse, Participant Tasks' do
     expect(patient_341).to_not be_in_table
   end
 end
+=end
 
 feature 'Spanish nurse, Participant tasks' do
-  scenario 'Spanish nurse sees correct translations' do
+  background do
     spanish_nurse.sign_in
     pt_501_nurse_tasks.open
+  end
+
+  scenario 'Spanish nurse sees translations for additional contact' do
     spanish_additional_contact.open
 
     expect(spanish_additional_contact).to have_contact_title
@@ -970,6 +981,10 @@ feature 'Spanish nurse, Participant tasks' do
     navigation.cancel
 
     expect(spanish_confirmation_call).to be_active
+  end
+
+  scenario 'Spanish nurse sees translations for confirmation call' do
+    expect(spanish_confirmation_call).to be_active
 
     spanish_confirmation_call.confirm
 
@@ -980,7 +995,20 @@ feature 'Spanish nurse, Participant tasks' do
 
     spanish_confirmation_call.toggle_options_list
     navigation.cancel
+    spanish_confirmation_call.cancel
 
+    expect(spanish_cancel_form).to have_form_headings
+    expect(spanish_cancel_form).to have_reason_options
+
+    spanish_cancel_form.toggle_options_list
+    navigation.cancel
+
+    expect(spanish_confirmation_call).to be_active
+
+    # check reschedule form
+  end
+
+  scenario 'Spanish nurse sees translations for initial appointment' do
     expect(spanish_initial_appointment).to be_active
 
     spanish_initial_appointment.confirm
@@ -994,7 +1022,20 @@ feature 'Spanish nurse, Participant tasks' do
     expect(spanish_initial_appointment).to have_next_contact_date
 
     navigation.cancel
+    spanish_initial_appointment.cancel
 
+    expect(spanish_cancel_form).to have_form_headings
+    expect(spanish_cancel_form).to have_reason_options
+
+    spanish_cancel_form.toggle_options_list
+    navigation.cancel
+
+    expect(spanish_initial_appointment).to be_active
+
+    # check reschedule form
+  end
+
+  scenario 'Spanish nurse sees translations for follow up week 1' do
     expect(spanish_follow_up_week_1).to be_active
 
     spanish_follow_up_week_1.confirm
@@ -1008,7 +1049,20 @@ feature 'Spanish nurse, Participant tasks' do
     expect(spanish_follow_up_week_1).to have_next_contact_date
 
     navigation.cancel
+    spanish_follow_up_week_1.cancel
 
+    expect(spanish_cancel_form).to have_form_headings
+    expect(spanish_cancel_form).to have_reason_options
+
+    spanish_cancel_form.toggle_options_list
+    navigation.cancel
+
+    expect(spanish_follow_up_week_1).to be_active
+
+    # check reschedule form
+  end
+
+  scenario 'Spanish nurse sees translations for follow up week 3' do
     expect(spanish_follow_up_week_3).to be_active
 
     spanish_follow_up_week_3.confirm
@@ -1023,7 +1077,20 @@ feature 'Spanish nurse, Participant tasks' do
     expect(spanish_follow_up_week_3).to have_next_contact_date
 
     navigation.cancel
+    spanish_follow_up_week_3.cancel
 
+    expect(spanish_cancel_form).to have_form_headings
+    expect(spanish_cancel_form).to have_reason_options
+
+    spanish_cancel_form.toggle_options_list
+    navigation.cancel
+
+    expect(spanish_follow_up_week_3).to be_active
+
+    # check reschedule form
+  end
+
+  scenario 'Spanish nurse sees translations for call to schedule final appt' do
     expect(spanish_call_to_schedule_final).to be_active
 
     spanish_call_to_schedule_final.confirm
@@ -1035,7 +1102,20 @@ feature 'Spanish nurse, Participant tasks' do
 
     spanish_call_to_schedule_final.toggle_options_list
     navigation.cancel
+    spanish_call_to_schedule_final.cancel
 
+    expect(spanish_cancel_form).to have_form_headings
+    expect(spanish_cancel_form).to have_reason_options
+
+    spanish_cancel_form.toggle_options_list
+    navigation.cancel
+
+    expect(spanish_call_to_schedule_final).to be_active
+
+    # check reschedule form
+  end
+
+  scenario 'Spanish nurse sees translations for final appointment' do
     expect(spanish_final_appointment).to be_active
 
     spanish_final_appointment.confirm
@@ -1046,7 +1126,20 @@ feature 'Spanish nurse, Participant tasks' do
 
     spanish_final_appointment.toggle_options_list
     navigation.cancel
+    spanish_final_appointment.cancel
 
+    expect(spanish_cancel_form).to have_form_headings
+    expect(spanish_cancel_form).to have_reason_options
+
+    spanish_cancel_form.toggle_options_list
+    navigation.cancel
+
+    expect(spanish_final_appointment).to be_active
+
+    # check reschedule form
+  end
+
+  scenario 'Spanish nurse sees translations for non-scheduled tasks' do
     expect(spanish_lack_of_connectivity_call).to be_active
 
     spanish_lack_of_connectivity_call.mark_resolved
@@ -1079,9 +1172,12 @@ feature 'Spanish nurse, Participant tasks' do
 end
 
 feature 'Portuguese nurse, Participant tasks' do
-  scenario 'Portuguese nurse sees correct translations' do
+  background do
     portuguese_nurse.sign_in
     pt_601_nurse_tasks.open
+  end
+
+  scenario 'Portuguese nurse sees translations for additional contact' do
     portuguese_additional_contact.open
 
     expect(portuguese_additional_contact).to have_contact_title
@@ -1093,6 +1189,10 @@ feature 'Portuguese nurse, Participant tasks' do
     navigation.cancel
 
     expect(portuguese_confirmation_call).to be_active
+  end
+
+  scenario 'Portuguese nurse sees translations for confirmation call' do
+    expect(portuguese_confirmation_call).to be_active
 
     portuguese_confirmation_call.confirm
 
@@ -1103,7 +1203,20 @@ feature 'Portuguese nurse, Participant tasks' do
 
     portuguese_confirmation_call.toggle_options_list
     navigation.cancel
+    portuguese_confirmation_call.cancel
 
+    expect(portuguese_cancel_form).to have_form_headings
+    expect(portuguese_cancel_form).to have_reason_options
+
+    portuguese_cancel_form.toggle_options_list
+    navigation.cancel
+
+    expect(portuguese_confirmation_call).to be_active
+
+    # check reschedule form
+  end
+
+  scenario 'Portuguese nurse sees translations for initial appointment' do
     expect(portuguese_initial_appointment).to be_active
 
     portuguese_initial_appointment.confirm
@@ -1117,7 +1230,20 @@ feature 'Portuguese nurse, Participant tasks' do
     expect(portuguese_initial_appointment).to have_next_contact_date
 
     navigation.cancel
+    portuguese_initial_appointment.cancel
 
+    expect(portuguese_cancel_form).to have_form_headings
+    expect(portuguese_cancel_form).to have_reason_options
+
+    portuguese_cancel_form.toggle_options_list
+    navigation.cancel
+
+    expect(portuguese_initial_appointment).to be_active
+
+    # check reschedule form
+  end
+
+  scenario 'Portuguese nurse sees translations for follow up week 1' do
     expect(portuguese_follow_up_week_1).to be_active
 
     portuguese_follow_up_week_1.confirm
@@ -1131,7 +1257,20 @@ feature 'Portuguese nurse, Participant tasks' do
     expect(portuguese_follow_up_week_1).to have_next_contact_date
 
     navigation.cancel
+    portuguese_follow_up_week_1.cancel
 
+    expect(portuguese_cancel_form).to have_form_headings
+    expect(portuguese_cancel_form).to have_reason_options
+
+    portuguese_cancel_form.toggle_options_list
+    navigation.cancel
+
+    expect(portuguese_follow_up_week_1).to be_active
+
+    # check reschedule form
+  end
+
+  scenario 'Portuguese nurse sees translations for follow up week 3' do
     expect(portuguese_follow_up_week_3).to be_active
 
     portuguese_follow_up_week_3.confirm
@@ -1146,7 +1285,20 @@ feature 'Portuguese nurse, Participant tasks' do
     expect(portuguese_follow_up_week_3).to have_next_contact_date
 
     navigation.cancel
+    portuguese_follow_up_week_3.cancel
 
+    expect(portuguese_cancel_form).to have_form_headings
+    expect(portuguese_cancel_form).to have_reason_options
+
+    portuguese_cancel_form.toggle_options_list
+    navigation.cancel
+
+    expect(portuguese_follow_up_week_3).to be_active
+
+    # check reschedule form
+  end
+
+  scenario 'Portuguese nurse sees translations for call to schedule final' do
     expect(portuguese_call_to_schedule_final).to be_active
 
     portuguese_call_to_schedule_final.confirm
@@ -1158,7 +1310,20 @@ feature 'Portuguese nurse, Participant tasks' do
 
     portuguese_call_to_schedule_final.toggle_options_list
     navigation.cancel
+    portuguese_call_to_schedule_final.cancel
 
+    expect(portuguese_cancel_form).to have_form_headings
+    expect(portuguese_cancel_form).to have_reason_options
+
+    portuguese_cancel_form.toggle_options_list
+    navigation.cancel
+
+    expect(portuguese_call_to_schedule_final).to be_active
+
+    # check reschedule form
+  end
+
+  scenario 'Portuguese nurse sees translations for final appointment' do
     expect(portuguese_final_appointment).to be_active
 
     portuguese_final_appointment.confirm
@@ -1169,7 +1334,20 @@ feature 'Portuguese nurse, Participant tasks' do
 
     portuguese_final_appointment.toggle_options_list
     navigation.cancel
+    portuguese_final_appointment.cancel
 
+    expect(portuguese_cancel_form).to have_form_headings
+    expect(portuguese_cancel_form).to have_reason_options
+
+    portuguese_cancel_form.toggle_options_list
+    navigation.cancel
+
+    expect(portuguese_final_appointment).to be_active
+
+    # check reschedule form
+  end
+
+  scenario 'Portuguese nurse sees translations for non-scheduled tasks' do
     expect(portuguese_lack_of_connectivity_call).to be_active
 
     portuguese_lack_of_connectivity_call.mark_resolved

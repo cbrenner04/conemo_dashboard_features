@@ -21,7 +21,7 @@ feature 'English Nurse, Your Patients' do
     expect(patient_1000).to have_tasks_ordered_correctly
   end
 
-  scenario 'Nurse sees no adherence task for pt w connectivity task active' do
+  scenario 'Nurse sees no non_adherence for pt w connectivity task active' do
     expect(patient_427).to_not have_non_adherence_task
   end
 
@@ -141,34 +141,46 @@ feature 'English Nurse, Your Patients' do
     end
   end
 
-  # need to figure out how to do this w/o setting the overdue date with data
+=begin
   # will need to use something to manipulate the server time
   # otherwise just have the above set of examples testing css
 
-  # feature 'Overdue, tasks assigned before noon' do
-  #   scenario 'Nurse sees confirmation call'
-  #   scenario 'Nurse sees initial in person appointment'
-  #   scenario 'Nurse sees follow up call week 1'
-  #   scenario 'Nurse sees follow up call week 3'
-  #   scenario 'Nurse sees call to schedule final appointment'
-  #   scenario 'Nurse sees final appointment'
-  #   scenario 'Nurse sees help request'
-  #   scenario 'Nurse sees non-connectivity call'
-  #   scenario 'Nurse sees non-adherence call'
-  # end
+  feature 'Conditional statuses' do
+    scenario 'Nurse sees change in tasks order within one patient ' \
+             'when second task becomes overdue first'
+    # day 1 - confirmation call, day 2 help request - order is same
+    # day 3 - help request overdue, confirmation call active - reverse order
+    # day 5 - both overdue, reverse order stays
 
-  # feature 'Overdue, tasks assigned after noon' do
-  #   scenario 'Nurse sees confirmation call'
-  #   scenario 'Nurse sees initial in person appointment'
-  #   scenario 'Nurse sees follow up call week 1'
-  #   scenario 'Nurse sees follow up call week 3'
-  #   scenario 'Nurse sees call to schedule final appointment'
-  #   scenario 'Nurse sees final appointment'
-  #   scenario 'Nurse sees help request'
-  #   scenario 'Nurse sees non-connectivity call'
-  #   scenario 'Nurse sees non-adherence call'
-  # end
+    scenario 'Nurse sees non-adherence task disappear after session is ' \
+             'accessed late'
+  end
+
+  feature 'Overdue, tasks assigned before noon' do
+    scenario 'Nurse sees confirmation call'
+    scenario 'Nurse sees initial in person appointment'
+    scenario 'Nurse sees follow up call week 1'
+    scenario 'Nurse sees follow up call week 3'
+    scenario 'Nurse sees call to schedule final appointment'
+    scenario 'Nurse sees final appointment'
+    scenario 'Nurse sees help request'
+    scenario 'Nurse sees non-connectivity call'
+    scenario 'Nurse sees non-adherence call'
+  end
+
+  feature 'Overdue, tasks assigned after noon' do
+    scenario 'Nurse sees confirmation call'
+    scenario 'Nurse sees initial in person appointment'
+    scenario 'Nurse sees follow up call week 1'
+    scenario 'Nurse sees follow up call week 3'
+    scenario 'Nurse sees call to schedule final appointment'
+    scenario 'Nurse sees final appointment'
+    scenario 'Nurse sees help request'
+    scenario 'Nurse sees non-connectivity call'
+    scenario 'Nurse sees non-adherence call'
+  end
 end
+=end
 
 feature 'Spanish Nurse, Your Patients' do
   background { spanish_nurse.sign_in }

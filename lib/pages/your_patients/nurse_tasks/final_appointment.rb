@@ -86,7 +86,7 @@ class YourPatients
 
       def has_current_date_selections?
         has_date_selectors?(Date.today, 1, locale(0, 0, 2), locale(2, 2, 0)) &&
-          has_hour_selector?(3, Time.now)
+          has_hour_selector?(3)
       end
 
       def has_location_options?
