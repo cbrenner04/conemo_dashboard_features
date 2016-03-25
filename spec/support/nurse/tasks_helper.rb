@@ -2,8 +2,8 @@
 
 require './lib/pages/navigation'
 require './lib/pages/your_patients'
-require './lib/pages/your_patients/nurse_tasks'
-Dir['./lib/pages/your_patients/nurse_tasks/*.rb'].each { |file| require file }
+require './lib/pages/nurse_tasks'
+Dir['./lib/pages/nurse_tasks/*.rb'].each { |file| require file }
 
 def navigation
   @navigation ||= Navigation.new(locale: 'english')
@@ -14,81 +14,81 @@ def your_patients
 end
 
 def contact_information
-  @contact_information ||= YourPatients::NurseTasks::ContactInformation.new(
+  @contact_information ||= NurseTasks::ContactInformation.new(
     id: 'fake'
   )
 end
 
 def clinical_summary
-  @clinical_summary ||= YourPatients::NurseTasks::ClinicalSummary.new(id: 1)
+  @clinical_summary ||= NurseTasks::ClinicalSummary.new(id: 1)
 end
 
 def cancel_form
-  @cancel_form ||= YourPatients::NurseTasks::CancelForm.new(locale: 'english')
+  @cancel_form ||= NurseTasks::CancelForm.new(locale: 'english')
 end
 
 def reschedule_form
-  @reschedule_form ||= YourPatients::NurseTasks::RescheduleForm.new(
+  @reschedule_form ||= NurseTasks::RescheduleForm.new(
     locale: 'english'
   )
 end
 
 def confirmation_call
-  @confirmation_call ||= YourPatients::NurseTasks::ConfirmationCall.new(
+  @confirmation_call ||= NurseTasks::ConfirmationCall.new(
     locale: 'english'
   )
 end
 
 def initial_in_person_appt
   @initial_in_person_appt ||=
-    YourPatients::NurseTasks::InitialInPersonAppointment.new(locale: 'english')
+    NurseTasks::InitialInPersonAppointment.new(locale: 'english')
 end
 
 def follow_up_week_1
-  @follow_up_week_1 ||= YourPatients::NurseTasks::FollowUpCallWeekOne.new(
+  @follow_up_week_1 ||= NurseTasks::FollowUpCallWeekOne.new(
     locale: 'english'
   )
 end
 
 def follow_up_week_3
-  @follow_up_week_3 ||= YourPatients::NurseTasks::FollowUpCallWeekThree.new(
+  @follow_up_week_3 ||= NurseTasks::FollowUpCallWeekThree.new(
     locale: 'english'
   )
 end
 
 def call_to_schedule_final_appointment
   @call_to_schedule_final_appointment ||=
-    YourPatients::NurseTasks::CallToScheduleFinalAppointment.new(
+    NurseTasks::CallToScheduleFinalAppointment.new(
       locale: 'english'
     )
 end
 
 def final_appointment
-  @final_appointment ||= YourPatients::NurseTasks::FinalAppointment.new(
+  @final_appointment ||= NurseTasks::FinalAppointment.new(
     locale: 'english'
   )
 end
 
 def additional_contact
-  @additional_contact ||= YourPatients::NurseTasks::AdditionalContact.new(
+  @additional_contact ||= NurseTasks::AdditionalContact.new(
     locale: 'english'
   )
 end
 
 def pt_320_nurse_tasks
-  @pt_320_nurse_tasks ||= YourPatients::NurseTasks.new(pt_id: 320)
+  @pt_320_nurse_tasks ||= NurseTasks.new(pt_id: 320)
 end
 
 def pt_300_nurse_tasks
-  @pt_300_nurse_tasks ||= YourPatients::NurseTasks.new(pt_id: 300)
+  @pt_300_nurse_tasks ||= NurseTasks.new(pt_id: 300)
 end
 
 def pt_451_nurse_tasks
-  @pt_451_nurse_tasks ||= YourPatients::NurseTasks.new(pt_id: 451)
+  @pt_451_nurse_tasks ||= NurseTasks.new(pt_id: 451)
 end
 
 def pt_1000_nurse_tasks
-  @pt_1000_nurse_tasks ||= YourPatients::NurseTasks.new(
+  @pt_1000_nurse_tasks ||= NurseTasks.new(
     pt_id: 1000,
     tasks_count: 3
   )

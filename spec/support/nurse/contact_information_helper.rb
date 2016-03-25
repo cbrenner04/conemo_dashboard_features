@@ -13,84 +13,84 @@ def your_patients
 end
 
 def confirmation_call
-  @confirmation_call ||= YourPatients::NurseTasks::ConfirmationCall.new(
+  @confirmation_call ||= NurseTasks::ConfirmationCall.new(
     locale: 'english'
   )
 end
 
 def initial_appointment
   @initial_appointment ||=
-    YourPatients::NurseTasks::InitialInPersonAppointment.new(locale: 'english')
+    NurseTasks::InitialInPersonAppointment.new(locale: 'english')
 end
 
 def follow_up_week_1
-  @follow_up_week_1 ||= YourPatients::NurseTasks::FollowUpCallWeekOne.new(
+  @follow_up_week_1 ||= NurseTasks::FollowUpCallWeekOne.new(
     locale: 'english'
   )
 end
 
 def follow_up_week_3
-  @follow_up_week_3 ||= YourPatients::NurseTasks::FollowUpCallWeekThree.new(
+  @follow_up_week_3 ||= NurseTasks::FollowUpCallWeekThree.new(
     locale: 'english'
   )
 end
 
 def call_to_schedule_final_appointment
   @call_to_schedule_final_appointment ||=
-    YourPatients::NurseTasks::CallToScheduleFinalAppointment.new(
+    NurseTasks::CallToScheduleFinalAppointment.new(
       locale: 'english'
     )
 end
 
 def final_appointment
-  @final_appointment ||= YourPatients::NurseTasks::FinalAppointment.new(
+  @final_appointment ||= NurseTasks::FinalAppointment.new(
     locale: 'english'
   )
 end
 
 def pt_300_contact_info
-  @pt_300_contact_info ||= YourPatients::NurseTasks::ContactInformation.new(
+  @pt_300_contact_info ||= NurseTasks::ContactInformation.new(
     id: 300
   )
 end
 
 def pt_300_nurse_tasks
-  @pt_300_nurse_tasks ||= YourPatients::NurseTasks.new(pt_id: 300)
+  @pt_300_nurse_tasks ||= NurseTasks.new(pt_id: 300)
 end
 
 def pt_301_contact_info
-  @pt_301_contact_info ||= YourPatients::NurseTasks::ContactInformation.new(
+  @pt_301_contact_info ||= NurseTasks::ContactInformation.new(
     id: 301,
     email: 'participant301@example.com'
   )
 end
 
 def pt_301_nurse_tasks
-  @pt_301_nurse_tasks ||= YourPatients::NurseTasks.new(pt_id: 301)
+  @pt_301_nurse_tasks ||= NurseTasks.new(pt_id: 301)
 end
 
 def pt_310_contact_info
-  @pt_310_contact_info ||= YourPatients::NurseTasks::ContactInformation.new(
+  @pt_310_contact_info ||= NurseTasks::ContactInformation.new(
     id: 310
   )
 end
 
 def pt_310_nurse_tasks
-  @pt_310_nurse_tasks ||= YourPatients::NurseTasks.new(pt_id: 310)
+  @pt_310_nurse_tasks ||= NurseTasks.new(pt_id: 310)
 end
 
 def pt_302_contact_info
-  @pt_302_contact_info ||= YourPatients::NurseTasks::ContactInformation.new(
+  @pt_302_contact_info ||= NurseTasks::ContactInformation.new(
     id: 302
   )
 end
 
 def pt_302_nurse_tasks
-  @pt_302_nurse_tasks ||= YourPatients::NurseTasks.new(pt_id: 302)
+  @pt_302_nurse_tasks ||= NurseTasks.new(pt_id: 302)
 end
 
 def pt_342_contact_info_1
-  @pt_342_contact_info_1 ||= YourPatients::NurseTasks::ContactInformation.new(
+  @pt_342_contact_info_1 ||= NurseTasks::ContactInformation.new(
     id: 342,
     session: 'Initial in person appointment',
     session_length: 60
@@ -98,7 +98,7 @@ def pt_342_contact_info_1
 end
 
 def pt_342_nurse_tasks_1
-  @pt_342_nurse_tasks_1 ||= YourPatients::NurseTasks.new(
+  @pt_342_nurse_tasks_1 ||= NurseTasks.new(
     pt_id: 342,
     session: 'first_appointment',
     session_length: 60
@@ -106,7 +106,7 @@ def pt_342_nurse_tasks_1
 end
 
 def pt_342_contact_info_2
-  @pt_342_contact_info_2 ||= YourPatients::NurseTasks::ContactInformation.new(
+  @pt_342_contact_info_2 ||= NurseTasks::ContactInformation.new(
     id: 342,
     session: 'Follow up call week 1',
     session_length: 60
@@ -114,7 +114,7 @@ def pt_342_contact_info_2
 end
 
 def pt_342_nurse_tasks_2
-  @pt_342_nurse_tasks_2 ||= YourPatients::NurseTasks.new(
+  @pt_342_nurse_tasks_2 ||= NurseTasks.new(
     pt_id: 342,
     session: 'second_contact',
     session_length: 60
@@ -122,7 +122,7 @@ def pt_342_nurse_tasks_2
 end
 
 def pt_342_contact_info_3
-  @pt_342_contact_info_3 ||= YourPatients::NurseTasks::ContactInformation.new(
+  @pt_342_contact_info_3 ||= NurseTasks::ContactInformation.new(
     id: 342,
     session: 'Follow up call week 3',
     session_length: 120
@@ -130,7 +130,7 @@ def pt_342_contact_info_3
 end
 
 def pt_342_nurse_tasks_3
-  @pt_342_nurse_tasks_3 ||= YourPatients::NurseTasks.new(
+  @pt_342_nurse_tasks_3 ||= NurseTasks.new(
     pt_id: 342,
     session: 'third_contact',
     session_length: 120
@@ -138,33 +138,33 @@ def pt_342_nurse_tasks_3
 end
 
 def pt_343_nurse_tasks
-  @pt_343_nurse_tasks ||= YourPatients::NurseTasks.new(pt_id: 343)
+  @pt_343_nurse_tasks ||= NurseTasks.new(pt_id: 343)
 end
 
 def pt_343_contact_info
-  @pt_343_contact_info ||= YourPatients::NurseTasks::ContactInformation.new(
+  @pt_343_contact_info ||= NurseTasks::ContactInformation.new(
     id: 343,
     session: 'Call to schedule final in person appointment'
   )
 end
 
 def pt_500_nurse_tasks
-  @pt_500_nurse_tasks ||= YourPatients::NurseTasks.new(pt_id: 500)
+  @pt_500_nurse_tasks ||= NurseTasks.new(pt_id: 500)
 end
 
 def pt_500_contact_info
-  @pt_500_contact_info ||= YourPatients::NurseTasks::ContactInformation.new(
+  @pt_500_contact_info ||= NurseTasks::ContactInformation.new(
     id: 500,
     locale: 'spanish'
   )
 end
 
 def pt_600_nurse_tasks
-  @pt_600_nurse_tasks ||= YourPatients::NurseTasks.new(pt_id: 600)
+  @pt_600_nurse_tasks ||= NurseTasks.new(pt_id: 600)
 end
 
 def pt_600_contact_info
-  @pt_600_contact_info ||= YourPatients::NurseTasks::ContactInformation.new(
+  @pt_600_contact_info ||= NurseTasks::ContactInformation.new(
     id: 600,
     locale: 'portuguese'
   )

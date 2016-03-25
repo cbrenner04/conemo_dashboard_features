@@ -1,4 +1,4 @@
-require './lib/pages/shared/translations/navigation'
+require './lib/pages/translations/navigation'
 
 # page object for navigation
 class Navigation

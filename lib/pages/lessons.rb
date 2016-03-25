@@ -1,4 +1,4 @@
-require './lib/pages/shared/translations/lessons'
+require './lib/pages/translations/lessons'
 
 # page object for lessons
 class Lessons

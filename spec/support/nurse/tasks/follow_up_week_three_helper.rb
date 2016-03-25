@@ -1,10 +1,10 @@
 # filename: ./spec/support/nurse/tasks/follow_up_week_three_helper.rb
 
 require './lib/pages/your_patients'
-require './lib/pages/your_patients/nurse_tasks'
+require './lib/pages/nurse_tasks'
 
 def pt_709_nurse_tasks
-  @pt_709_nurse_tasks ||= YourPatients::NurseTasks.new(
+  @pt_709_nurse_tasks ||= NurseTasks.new(
     pt_id: 709,
     contact_type: 'Follow up call week 3',
     days_since_due: '14 days',
@@ -13,19 +13,19 @@ def pt_709_nurse_tasks
 end
 
 def pt_329_nurse_tasks
-  @pt_329_nurse_tasks ||= YourPatients::NurseTasks.new(pt_id: 329)
+  @pt_329_nurse_tasks ||= NurseTasks.new(pt_id: 329)
 end
 
 def pt_333_nurse_tasks
-  @pt_333_nurse_tasks ||= YourPatients::NurseTasks.new(pt_id: 333)
+  @pt_333_nurse_tasks ||= NurseTasks.new(pt_id: 333)
 end
 
 def pt_330_nurse_tasks
-  @pt_330_nurse_tasks ||= YourPatients::NurseTasks.new(pt_id: 330)
+  @pt_330_nurse_tasks ||= NurseTasks.new(pt_id: 330)
 end
 
 def pt_331_nurse_tasks
-  @pt_331_nurse_tasks ||= YourPatients::NurseTasks.new(
+  @pt_331_nurse_tasks ||= NurseTasks.new(
     pt_id: 331,
     session: 'third_contact',
     session_length: 'asdf'
@@ -33,11 +33,11 @@ def pt_331_nurse_tasks
 end
 
 def pt_332_nurse_tasks
-  @pt_332_nurse_tasks ||= YourPatients::NurseTasks.new(pt_id: 332)
+  @pt_332_nurse_tasks ||= NurseTasks.new(pt_id: 332)
 end
 
 def pt_333_nurse_tasks
-  @pt_333_nurse_tasks ||= YourPatients::NurseTasks.new(
+  @pt_333_nurse_tasks ||= NurseTasks.new(
     pt_id: 333,
     session: 'third_contact',
     session_length: '120'
@@ -45,7 +45,7 @@ def pt_333_nurse_tasks
 end
 
 def pt_334_nurse_tasks
-  @pt_334_nurse_tasks ||= YourPatients::NurseTasks.new(
+  @pt_334_nurse_tasks ||= NurseTasks.new(
     pt_id: 334,
     session: 'third_contact',
     session_length: '120'
@@ -53,7 +53,7 @@ def pt_334_nurse_tasks
 end
 
 def pt_335_nurse_tasks
-  @pt_335_nurse_tasks ||= YourPatients::NurseTasks.new(
+  @pt_335_nurse_tasks ||= NurseTasks.new(
     pt_id: 335,
     session: 'third_contact',
     session_length: '120'
@@ -61,7 +61,7 @@ def pt_335_nurse_tasks
 end
 
 def pt_336_nurse_tasks
-  @pt_336_nurse_tasks ||= YourPatients::NurseTasks.new(
+  @pt_336_nurse_tasks ||= NurseTasks.new(
     pt_id: 336,
     session: 'third_contact',
     session_length: '120'

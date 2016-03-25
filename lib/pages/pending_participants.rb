@@ -1,4 +1,4 @@
-require './lib/pages/shared/translations/pending_participants.rb'
+require './lib/pages/translations/pending_participants.rb'
 
 # page object for pending participants
 class PendingParticipants

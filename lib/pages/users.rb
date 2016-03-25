@@ -1,4 +1,4 @@
-require './lib/pages/shared/translations'
+require './lib/pages/translations'
 
 # page object for users
 class Users

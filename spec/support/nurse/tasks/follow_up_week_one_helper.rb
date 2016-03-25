@@ -1,10 +1,10 @@
 # filename: ./spec/support/nurse/tasks/follow_up_week_one_helper.rb
 
 require './lib/pages/your_patients'
-require './lib/pages/your_patients/nurse_tasks'
+require './lib/pages/nurse_tasks'
 
 def pt_708_nurse_tasks
-  @pt_708_nurse_tasks ||= YourPatients::NurseTasks.new(
+  @pt_708_nurse_tasks ||= NurseTasks.new(
     pt_id: 708,
     contact_type: 'Follow up call week 1',
     days_since_due: 'about 1 month',
@@ -13,15 +13,15 @@ def pt_708_nurse_tasks
 end
 
 def pt_321_nurse_tasks
-  @pt_321_nurse_tasks ||= YourPatients::NurseTasks.new(pt_id: 321)
+  @pt_321_nurse_tasks ||= NurseTasks.new(pt_id: 321)
 end
 
 def pt_322_nurse_tasks
-  @pt_322_nurse_tasks ||= YourPatients::NurseTasks.new(pt_id: 322)
+  @pt_322_nurse_tasks ||= NurseTasks.new(pt_id: 322)
 end
 
 def pt_323_nurse_tasks
-  @pt_323_nurse_tasks ||= YourPatients::NurseTasks.new(
+  @pt_323_nurse_tasks ||= NurseTasks.new(
     pt_id: 323,
     session: 'second_contact',
     session_length: 'asdf'
@@ -29,7 +29,7 @@ def pt_323_nurse_tasks
 end
 
 def pt_324_nurse_tasks
-  @pt_324_nurse_tasks ||= YourPatients::NurseTasks.new(
+  @pt_324_nurse_tasks ||= NurseTasks.new(
     pt_id: 324,
     session: 'second_contact',
     session_length: '120'
@@ -37,7 +37,7 @@ def pt_324_nurse_tasks
 end
 
 def pt_325_nurse_tasks
-  @pt_325_nurse_tasks ||= YourPatients::NurseTasks.new(
+  @pt_325_nurse_tasks ||= NurseTasks.new(
     pt_id: 325,
     session: 'second_contact',
     session_length: '120'
@@ -45,7 +45,7 @@ def pt_325_nurse_tasks
 end
 
 def pt_326_nurse_tasks
-  @pt_326_nurse_tasks ||= YourPatients::NurseTasks.new(
+  @pt_326_nurse_tasks ||= NurseTasks.new(
     pt_id: 326,
     session: 'second_contact',
     session_length: '120'
@@ -53,7 +53,7 @@ def pt_326_nurse_tasks
 end
 
 def pt_327_nurse_tasks
-  @pt_327_nurse_tasks ||= YourPatients::NurseTasks.new(
+  @pt_327_nurse_tasks ||= NurseTasks.new(
     pt_id: 327,
     session: 'second_contact',
     session_length: '120'
@@ -61,7 +61,7 @@ def pt_327_nurse_tasks
 end
 
 def pt_328_nurse_tasks
-  @pt_328_nurse_tasks ||= YourPatients::NurseTasks.new(
+  @pt_328_nurse_tasks ||= NurseTasks.new(
     pt_id: 328,
     session: 'second_contact',
     session_length: '120'

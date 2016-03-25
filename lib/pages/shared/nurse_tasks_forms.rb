@@ -1,5 +1,5 @@
 require './lib/pages/navigation'
-require './lib/pages/shared/translations/navigation'
+require './lib/pages/translations/navigation'
 
 # module for shared methods in nurse task forms
 module NurseTasksForms

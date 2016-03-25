@@ -1,6 +1,6 @@
-require './lib/pages/shared/translations'
-require './lib/pages/shared/translations/nurse_tasks'
-Dir['./lib/pages/your_patients/nurse_tasks/*.rb'].each { |file| require file }
+require './lib/pages/translations'
+require './lib/pages/translations/nurse_tasks'
+Dir['./lib/pages/nurse_tasks/*.rb'].each { |file| require file }
 
 # page object for active participants
 class YourPatients

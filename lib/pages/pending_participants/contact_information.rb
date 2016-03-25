@@ -1,5 +1,5 @@
 require './lib/pages/shared/contact_information_form'
-require './lib/pages/shared/translations/pending_participants'
+require './lib/pages/translations/pending_participants'
 
 class PendingParticipants
   # page_object for the contact information page

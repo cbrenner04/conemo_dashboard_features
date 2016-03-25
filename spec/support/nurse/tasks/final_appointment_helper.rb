@@ -1,10 +1,10 @@
 # filename: ./spec/support/nurse/tasks/final_appointment_helper.rb
 
 require './lib/pages/your_patients'
-require './lib/pages/your_patients/nurse_tasks'
+require './lib/pages/nurse_tasks'
 
 def pt_801_nurse_tasks
-  @pt_801_nurse_tasks ||= YourPatients::NurseTasks.new(
+  @pt_801_nurse_tasks ||= NurseTasks.new(
     pt_id: 801,
     contact_type: 'Final in person appointment',
     days_since_due: '4 days',
@@ -13,19 +13,19 @@ def pt_801_nurse_tasks
 end
 
 def pt_338_nurse_tasks
-  @pt_338_nurse_tasks ||= YourPatients::NurseTasks.new(pt_id: 338)
+  @pt_338_nurse_tasks ||= NurseTasks.new(pt_id: 338)
 end
 
 def pt_339_nurse_tasks
-  @pt_339_nurse_tasks ||= YourPatients::NurseTasks.new(pt_id: 339)
+  @pt_339_nurse_tasks ||= NurseTasks.new(pt_id: 339)
 end
 
 def pt_340_nurse_tasks
-  @pt_340_nurse_tasks ||= YourPatients::NurseTasks.new(pt_id: 340)
+  @pt_340_nurse_tasks ||= NurseTasks.new(pt_id: 340)
 end
 
 def pt_341_nurse_tasks
-  @pt_341_nurse_tasks ||= YourPatients::NurseTasks.new(pt_id: 341)
+  @pt_341_nurse_tasks ||= NurseTasks.new(pt_id: 341)
 end
 
 def patient_341
