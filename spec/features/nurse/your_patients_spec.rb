@@ -179,8 +179,8 @@ feature 'English Nurse, Your Patients' do
     scenario 'Nurse sees non-connectivity call'
     scenario 'Nurse sees non-adherence call'
   end
-end
 =end
+end
 
 feature 'Spanish Nurse, Your Patients' do
   background { spanish_nurse.sign_in }

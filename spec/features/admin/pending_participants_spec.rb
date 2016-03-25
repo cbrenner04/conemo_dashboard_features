@@ -159,29 +159,10 @@ feature 'Admin, Pending Participants' do
     participant_100.confirm_disqualify
 
     expect(participant_100).to_not be_visible
-
-    participant_100.select_ineligible_tab
-
-    expect(participant_100).to be_visible
-  end
-
-  scenario 'Admin activates a participant who was previously disqualified' do
-    participant_200.select_ineligible_tab
-    participant_200.activate
-    participant_200.assign_nurse
-
-    expect(participant_200).to_not be_visible
   end
 
   scenario 'Admin edits pending participant\'s information' do
     participant_102.select_edit
-
-    expect(contact_information).to have_form_visible
-  end
-
-  scenario 'Admin edits ineligible participant\'s information' do
-    participant_201.select_ineligible_tab
-    participant_201.select_edit
 
     expect(contact_information).to have_form_visible
   end
@@ -216,9 +197,7 @@ feature 'Spanish Admin, Pending Participants' do
     participant_2002.disqualify
     participant_2002.confirm_disqualify
 
-    spanish_pending_participants.select_ineligible_tab
-
-    expect(spanish_pending_participants).to have_ineligible_table_headers
+    expect(participant_2002).to_not be_visible
   end
 end
 
@@ -251,8 +230,6 @@ feature 'Portuguese Admin, Pending Participants' do
     participant_3001.disqualify
     participant_3001.confirm_disqualify
 
-    portuguese_pending_participants.select_ineligible_tab
-
-    expect(portuguese_pending_participants).to have_ineligible_table_headers
+    expect(participant_3001).to_not be_visible
   end
 end

@@ -16,7 +16,7 @@ class PendingParticipants
   end
 
   def has_landing_page_visible?
-    has_css?('h1', text: main_heading) && has_css?('#pending')
+    has_css?('h1', text: main_heading) && has_css?('#main-panel')
   end
 
   def activate
@@ -35,10 +35,6 @@ class PendingParticipants
     accept_alert disqualify_alert
   end
 
-  def select_ineligible_tab
-    click_on ineligible_button
-  end
-
   def select_edit
     select_button(@name, '.fa-edit')
   end
@@ -52,15 +48,9 @@ class PendingParticipants
   end
 
   def has_pending_table_headers?
-    actual = (0..5).map { |i| find('#pending').all('th')[i].text }
+    actual = (0..5).map { |i| find('#main-panel').all('th')[i].text }
 
     expect(actual).to match(expected_pending_headers)
-  end
-
-  def has_ineligible_table_headers?
-    actual = (0..4).map { |i| find('#ineligible').all('th')[i].text }
-
-    expect(actual).to match(expected_ineligible_headers)
   end
 
   private

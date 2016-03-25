@@ -98,14 +98,6 @@ def participant_102
   @participant_102 ||= PendingParticipants.new(name: 'Last-102, First')
 end
 
-def participant_200
-  @participant_200 ||= PendingParticipants.new(name: 'Last-200, First')
-end
-
-def participant_201
-  @participant_201 ||= PendingParticipants.new(name: 'Last-201, First')
-end
-
 def participant_2001
   @participant_2001 ||= PendingParticipants.new(
     name: 'Last-2001, First',
