@@ -141,7 +141,6 @@ feature 'English Nurse, Your Patients' do
     end
   end
 
-=begin
   # will need to use something to manipulate the server time
   # otherwise just have the above set of examples testing css
 
@@ -179,7 +178,6 @@ feature 'English Nurse, Your Patients' do
     scenario 'Nurse sees non-connectivity call'
     scenario 'Nurse sees non-adherence call'
   end
-=end
 end
 
 feature 'Spanish Nurse, Your Patients' do

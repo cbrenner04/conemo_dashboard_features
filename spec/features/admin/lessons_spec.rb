@@ -99,13 +99,13 @@ feature 'Spanish Admin, Lessons' do
     expect(spanish_lesson).to_not be_visible
   end
 
-#   scenario 'Spanish admin sees correct translations' do
-#     spanish_lessons.open
+  # scenario 'Spanish admin sees correct translations' do
+  #   spanish_lessons.open
 
-#     # check headings, buttons, table headers, and column text
+  #   # check headings, buttons, table headers, and column text
 
-#     # add lesson form - check fields and buttons
-#   end
+  #   # add lesson form - check fields and buttons
+  # end
 end
 
 # feature 'Portuguese Admin, Lessons' do
