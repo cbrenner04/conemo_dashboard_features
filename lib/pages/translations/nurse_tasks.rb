@@ -2,7 +2,7 @@ require './lib/pages/translations'
 
 module Translations
   # translations for Nurse Tasks
-  module NurseTasks
+  module NurseTasksTranslations
     include Translations
 
     def confirmation_call_title

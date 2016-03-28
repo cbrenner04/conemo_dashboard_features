@@ -3,46 +3,22 @@
 require './spec/support/admin/login_helper'
 
 feature 'Admin, Login' do
-  scenario 'Admin in English locale cannot access Spanish or Portuguese' do
+  scenario 'Admin in English locale logs in' do
     english_admin.sign_in
 
     expect(navigation).to have_english_admin_buttons
-
-    navigation.switch_to_spanish
-
-    expect(navigation).to_not have_spanish_admin_buttons
-
-    navigation.switch_to_portuguese
-
-    expect(navigation).to_not have_portuguese_admin_buttons
   end
 
-  scenario 'Admin in Spanish locale cannot access English or Portuguese' do
+  scenario 'Admin in Spanish locale logs in' do
     spanish_admin.sign_in
 
     expect(navigation).to have_spanish_admin_buttons
-
-    navigation.switch_to_english
-
-    expect(navigation).to_not have_english_admin_buttons
-
-    navigation.switch_to_portuguese
-
-    expect(navigation).to_not have_portuguese_admin_buttons
   end
 
-  scenario 'Admin in Portuguese locale cannot access English or Spanish' do
+  scenario 'Admin in Portuguese locale logs in' do
     portuguese_admin.sign_in
 
     expect(navigation).to have_portuguese_admin_buttons
-
-    navigation.switch_to_spanish
-
-    expect(navigation).to_not have_spanish_admin_buttons
-
-    navigation.switch_to_english
-
-    expect(navigation).to_not have_english_admin_buttons
   end
 
   scenario 'Admin can access appropriate parts of the app' do

@@ -1,5 +1,5 @@
 module Translations
-  module ClinicalSummary
+  module ClinicalSummaryTranslations
     # English translations for clinical summary page
     module EnglishSummary
       def english_links

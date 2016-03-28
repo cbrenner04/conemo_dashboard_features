@@ -112,7 +112,7 @@ end
 
 def spanish_lesson
   @spanish_lesson ||= Lessons.new(
-    title: '¡Bienvenido a CONEMO!',
+    title: 'Haz las cosas a tu propio ritmo',
     locale: 'spanish'
   )
 end

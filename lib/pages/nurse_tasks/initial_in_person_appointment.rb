@@ -7,7 +7,7 @@ class NurseTasks
   class InitialInPersonAppointment
     include Capybara::DSL
     include NurseTasksForms
-    include Translations::NurseTasks::InitialInPersonAppointment
+    include Translations::NurseTasksTranslations::InitialInPersonAppointment
 
     def initialize(initial_in_person_appointment)
       @locale ||= initial_in_person_appointment[:locale]

@@ -7,7 +7,7 @@ class NurseTasks
   class CancelForm
     include Capybara::DSL
     include NurseTasksForms
-    include Translations::NurseTasks::CancellationForm
+    include Translations::NurseTasksTranslations::CancellationForm
 
     def initialize(cancel_form)
       @locale ||= cancel_form[:locale]

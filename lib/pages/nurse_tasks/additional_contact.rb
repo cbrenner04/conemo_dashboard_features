@@ -7,7 +7,7 @@ class NurseTasks
     include RSpec::Matchers
     include Capybara::DSL
     include NurseTasksForms
-    include Translations::NurseTasks::AdditionalContact
+    include Translations::NurseTasksTranslations::AdditionalContact
 
     def initialize(additional_contact)
       @locale = additional_contact[:locale]

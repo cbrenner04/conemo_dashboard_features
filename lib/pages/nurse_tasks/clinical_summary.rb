@@ -11,7 +11,7 @@ class NurseTasks
   class ClinicalSummary
     include RSpec::Matchers
     include Capybara::DSL
-    include Translations::ClinicalSummary
+    include Translations::ClinicalSummaryTranslations
 
     def initialize(clinical_summary)
       @id ||= clinical_summary[:id]

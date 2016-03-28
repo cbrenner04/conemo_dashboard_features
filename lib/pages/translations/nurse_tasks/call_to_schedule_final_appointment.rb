@@ -1,8 +1,8 @@
 module Translations
-  module NurseTasks
+  module NurseTasksTranslations
     # translations for Call to schedule final appointment
     module CallToScheduleFinalAppointment
-      include Translations::NurseTasks
+      include Translations::NurseTasksTranslations
 
       def expected_headings
         locale(spanish_headings, portuguese_headings, english_headings)

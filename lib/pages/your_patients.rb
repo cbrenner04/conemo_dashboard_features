@@ -7,7 +7,7 @@ class YourPatients
   include RSpec::Matchers
   include Capybara::DSL
   include Translations
-  include Translations::NurseTasks
+  include Translations::NurseTasksTranslations
 
   def initialize(your_patients)
     @pt_id ||= your_patients[:pt_id]
@@ -41,7 +41,7 @@ class YourPatients
   end
 
   def ordered_correctly?
-    actual_results = (0..11).map { |i| all('tr')[i].text }
+    actual_results = (1..12).map { |i| all('tr')[i].text }
     expect(actual_results).to eq(expected_results)
   end
 

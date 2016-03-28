@@ -4,11 +4,11 @@ Dir["#{path}/*.rb"].each { |file| require file }
 
 module Translations
   # translations for clinical summary page
-  module ClinicalSummary
-    include Translations::NurseTasks
-    include Translations::ClinicalSummary::EnglishSummary
-    include Translations::ClinicalSummary::SpanishSummary
-    include Translations::ClinicalSummary::PortugueseSummary
+  module ClinicalSummaryTranslations
+    include Translations::NurseTasksTranslations
+    include Translations::ClinicalSummaryTranslations::EnglishSummary
+    include Translations::ClinicalSummaryTranslations::SpanishSummary
+    include Translations::ClinicalSummaryTranslations::PortugueseSummary
 
     def clinical_summary_link
       locale('Historia del Paciente', 'Histórico do participante',

@@ -7,7 +7,7 @@ require "#{path}english_contact_information"
 module Translations
   # module for Contact Information page
   module ContactInformation
-    include Translations::NurseTasks
+    include Translations::NurseTasksTranslations
     include Translations::ContactInformation::SpanishContactInformation
     include Translations::ContactInformation::PortugueseContactInformation
     include Translations::ContactInformation::EnglishContactInformation

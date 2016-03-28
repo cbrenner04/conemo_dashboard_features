@@ -7,7 +7,7 @@ class NurseTasks
   class HelpRequest
     include Capybara::DSL
     include NurseTasksForms
-    include Translations::NurseTasks::HelpRequest
+    include Translations::NurseTasksTranslations::HelpRequest
 
     def initialize(help_request)
       @locale ||= help_request[:locale]

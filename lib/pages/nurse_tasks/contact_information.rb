@@ -11,8 +11,8 @@ class NurseTasks
     include Capybara::DSL
     include ContactInformationForm
     include Translations::ContactInformation
-    include Translations::ClinicalSummary
-    include Translations::NurseTasks
+    include Translations::ClinicalSummaryTranslations
+    include Translations::NurseTasksTranslations
 
     def initialize(contact_information)
       @id ||= contact_information[:id]

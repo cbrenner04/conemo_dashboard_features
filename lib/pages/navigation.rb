@@ -9,18 +9,6 @@ class Navigation
     @locale ||= navigation[:locale]
   end
 
-  def switch_to_english
-    click_on 'English'
-  end
-
-  def switch_to_spanish
-    click_on 'Español'
-  end
-
-  def switch_to_portuguese
-    click_on 'Português'
-  end
-
   def has_english_admin_buttons?
     ['Pending Participants', 'Lessons']
       .all? { |button| has_nav_button? button }

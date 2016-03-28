@@ -1,5 +1,5 @@
 module Translations
-  module ClinicalSummary
+  module ClinicalSummaryTranslations
     # Portuguese translations for clinical summary page
     module PortugueseSummary
       def portuguese_links

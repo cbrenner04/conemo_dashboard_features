@@ -1,10 +1,10 @@
 require './lib/pages/translations/nurse_tasks'
 
 module Translations
-  module NurseTasks
+  module NurseTasksTranslations
     # translations for additional contact form
     module AdditionalContact
-      include Translations::NurseTasks
+      include Translations::NurseTasksTranslations
 
       def expected_headings
         locale(spanish_headings, portuguese_headings, english_headings)

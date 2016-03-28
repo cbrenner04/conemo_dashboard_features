@@ -10,7 +10,7 @@ class NurseTasks
       include RSpec::Matchers
       include Capybara::DSL
       include NurseTasksForms
-      include Translations::ClinicalSummary
+      include Translations::ClinicalSummaryTranslations
 
       def initialize(notes_form)
         @id ||= notes_form[:id]

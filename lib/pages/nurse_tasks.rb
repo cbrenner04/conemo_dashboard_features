@@ -6,7 +6,7 @@ require './lib/pages/translations/clinical_summary'
 class NurseTasks
   include Capybara::DSL
   include NurseTasksForms
-  include Translations::ClinicalSummary
+  include Translations::ClinicalSummaryTranslations
 
   def initialize(nurse_task)
     @pt_id ||= nurse_task[:pt_id]

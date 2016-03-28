@@ -1,5 +1,5 @@
 module Translations
-  module ClinicalSummary
+  module ClinicalSummaryTranslations
     # Spanish translations for clinical summary page
     module SpanishSummary
       def spanish_links
@@ -40,7 +40,7 @@ module Translations
       end
 
       def spanish_release_dates_2
-        release_day = [3, 6, 8, 10, 13, 15, 17, 20, 22, 24, 27, 29, 31,
+        release_day = [1, 3, 6, 8, 10, 13, 15, 17, 20, 22, 27, 29, 31,
                        34, 36, 38, 41]
         relative_release_date = release_day.map do |i|
           spanish_date((Date.today - @start_date_offset) + (i - 1))
