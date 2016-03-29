@@ -117,9 +117,9 @@ class YourPatients
 
   def english_nurse_patients
     patients = [1000, 200, 201, 480, 490]
-    ranges = [(100..102), (300..344), (430..432), (440..442),
-              (450..452), (460..462), (470..472), (400..405),
-              (410..415), (420..428), (700..709), (800..804)]
+    ranges = [(100..102), (300..340), (342..344), (430..432), (440..442),
+              (450..452), (460..462), (470..472), (400..405), (410..415),
+              (420..428), (700..709), (800..804)]
     ranges.each { |i| patients.concat i.to_a }
     @english_nurse_patients ||= patients.sample(10)
   end
@@ -145,8 +145,8 @@ class YourPatients
       "804 #{non_adherence_call_title}",
       "1000 #{confirmation_call_title}, #{help_request_title}, " \
       "#{lack_of_connectivity_call_title}",
-      "322 #{follow_up_week_one_title}",
-      "301 #{confirmation_call_title}"
+      "322 #{follow_up_week_one_title} aBc322XyZ",
+      "303 #{confirmation_call_title}"
     ]
   end
 end

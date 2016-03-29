@@ -82,7 +82,9 @@ class NurseTasks
   end
 
   def has_supervisor_contact?(time)
+    comparison = Time.now.hour - time.strftime('%H').to_i
+    new_time = comparison <= 1 ? Time.now : time
     has_text? 'last supervisor contact sent ' \
-              "#{Date.today.strftime('%B %d, %Y')} #{time.strftime('%H')}"
+              "#{Date.today.strftime('%B %d, %Y')} #{new_time.strftime('%H')}"
   end
 end

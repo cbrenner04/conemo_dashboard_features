@@ -3,9 +3,7 @@
 require './spec/support/nurse/contact_information_helper'
 
 feature 'Nurse, Participant Contact Information' do
-  background do
-    english_nurse.sign_in
-  end
+  background { english_nurse.sign_in }
 
   scenario 'Nurse visits participant contact information' do
     pt_300_nurse_tasks.open
@@ -20,8 +18,7 @@ feature 'Nurse, Participant Contact Information' do
     pt_301_contact_info.select_edit_contact_information
     navigation.cancel
 
-    expect(your_patients).to be_visible
-    # expect(pt_301_contact_info).to be_visible
+    expect(pt_301_contact_info).to be_visible
   end
 
   scenario 'Nurse edits participant information' do

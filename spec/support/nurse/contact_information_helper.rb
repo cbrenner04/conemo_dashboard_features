@@ -2,7 +2,8 @@
 
 require './lib/pages/navigation'
 require './lib/pages/your_patients'
-Dir['./lib/pages/your_patients/**/*.rb'].each { |file| require file }
+require './lib/pages/nurse_tasks'
+Dir['./lib/pages/nurse_tasks/**/*.rb'].each { |file| require file }
 
 def navigation
   @navigation ||= Navigation.new(locale: 'english')

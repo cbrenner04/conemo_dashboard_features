@@ -91,12 +91,17 @@ module NurseTasksForms
   end
 
   def has_time_selectors?(hh, mm)
-    has_hour_selector?(hh) &&
-      selector[mm].has_text?(Time.now.strftime('%M'))
+    has_hour_selector?(hh) && has_minute_selector?(mm)
   end
 
   def has_hour_selector?(hh)
-    selector[hh].has_text? Time.now.strftime('%H')
+    # added comparison of actual and expected in case test run overlaps an hour
+    comparison = Time.now.hour - selector[hh].text.to_i
+    if comparison <= 1
+      return true
+    else
+      return false
+    end
   end
 
   private
@@ -107,5 +112,15 @@ module NurseTasksForms
 
   def panel(type)
     find('.panel', text: type)
+  end
+
+  def has_minute_selector?(mm)
+    # added comparison of actual vs expected in case test run overlaps a minute
+    comparison = Time.now.min - selector[mm].text.to_i
+    if comparison <= 1
+      return true
+    else
+      return false
+    end
   end
 end

@@ -15,13 +15,11 @@ feature 'Nurse Supervisor, Nurses' do
 
   feature 'Nurse Supervisor, Supervision session' do
     scenario 'Nurse Supervisor sees 8 day old supervision session' do
-      expect(nurse_401).to have_supervision_session
-      # need to check css for color change
+      expect(nurse_401).to have_supervision_session_late
     end
 
     scenario 'Nurse Supervisor sees 12 day old supervision session' do
-      expect(nurse_402).to have_supervision_session
-      # need to check css for color change
+      expect(nurse_402).to have_supervision_session_overdue
     end
 
     scenario 'Nurse supervisor cancels filling in supervision session' do
@@ -71,7 +69,6 @@ feature 'Nurse Supervisor, Nurses' do
 
       expect(nurse_403).to have_supervision_session
     end
-
   end
 
   feature 'Nurse Supervisor, Supervision contact' do
@@ -100,14 +97,12 @@ feature 'Nurse Supervisor, Nurses' do
 
   feature 'Nurse Supervisor, Nurse specific tasks and information' do
     scenario 'Nurse Supervisor sees all current tasks for assigned nurses' do
-      execute_script('window.scrollBy(0, 500)')
-      find('a', text: 'Nurse-401, English').click
+      navigation.scroll_down
+      nurse_400.select
 
-      expect(page).to have_css('h2', text: 'Nurse-401, English: Participants')
+      expect(nurse_400).to have_your_patients_header
 
-      cell_text_ary = (1..41).map { |i| all('tr')[i].first('td').text.to_i }
-      expected_text_ary = (4000..4040).to_a
-      expect(cell_text_ary.sort).to eq(expected_text_ary)
+      expect(your_patients).to have_assigned_patients
     end
 
     scenario 'Nurse Supervisor sees participant clinical summary'
