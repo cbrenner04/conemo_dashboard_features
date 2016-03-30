@@ -43,3 +43,7 @@ end
 def patient_702
   @patient_702 ||= YourPatients.new(pt_id: 702)
 end
+
+def nurse_supervisor_1
+  @nurse_supervisor_1 ||= SupervisorPage.new(pt_id: 704)
+end

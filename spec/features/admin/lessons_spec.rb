@@ -2,7 +2,7 @@
 
 require './spec/support/admin/lessons_helper'
 
-feature 'Admin, Lessons' do
+feature 'Admin, Lessons', metadata: :not_first do
   background do
     english_admin.sign_in
     lessons.open
@@ -89,7 +89,7 @@ feature 'Admin, Lessons' do
   end
 end
 
-feature 'Spanish Admin, Lessons' do
+feature 'Spanish Admin, Lessons', metadata: :not_first do
   background { spanish_admin.sign_in }
 
   scenario 'Spanish admin deletes a lesson' do

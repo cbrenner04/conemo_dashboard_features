@@ -2,7 +2,7 @@
 
 require './spec/support/admin/pending_participants_helper'
 
-feature 'Admin, Pending Participants' do
+feature 'Admin, Pending Participants', metadata: :not_first do
   background do
     english_admin.sign_in
     pending_participants.open
@@ -201,7 +201,7 @@ feature 'Spanish Admin, Pending Participants' do
   end
 end
 
-feature 'Portuguese Admin, Pending Participants' do
+feature 'Portuguese Admin, Pending Participants', metadata: :not_first do
   scenario 'Portuguese admin sees correct translations' do
     portuguese_admin.sign_in
     portuguese_pending_participants.open

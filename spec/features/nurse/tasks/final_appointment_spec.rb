@@ -3,7 +3,7 @@
 require './spec/support/nurse/tasks_helper'
 require './spec/support/nurse/tasks/final_appointment_helper'
 
-feature 'Nurse, Participant Tasks, Final appointment' do
+feature 'Nurse, Participant Tasks, Final appointment', metadata: :not_first do
   background { english_nurse.sign_in }
 
   scenario 'Nurse sees number of days since task was due' do
@@ -35,7 +35,7 @@ feature 'Nurse, Participant Tasks, Final appointment' do
     english_nurse.sign_out
     english_supervisor.sign_in
 
-    expect(nurse_supervisor).to have_final_appointment_canceled
+    expect(nurse_supervisor_3).to have_final_appointment_canceled
 
     expect(cancel_form).to have_cancellation_reason
   end
@@ -118,8 +118,8 @@ feature 'Nurse, Participant Tasks, Final appointment' do
     english_nurse.sign_out
     english_supervisor.sign_in
 
-    expect(nurse_supervisor).to have_updated_completed
+    expect(nurse_supervisor_3).to have_updated_completed
 
-    expect(nurse_supervisor).to have_new_completed_participant_information
+    expect(nurse_supervisor_3).to have_new_completed_participant_information
   end
 end

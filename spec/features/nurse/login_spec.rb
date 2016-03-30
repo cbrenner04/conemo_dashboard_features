@@ -6,7 +6,7 @@ def navigation
   @navigation ||= Navigation.new(locale: 'english')
 end
 
-feature 'Nurse, Login' do
+feature 'Nurse, Login', metadata: :not_first do
   scenario 'English nurse only accesses their patients, nurse functionality' do
     english_nurse.sign_in
 

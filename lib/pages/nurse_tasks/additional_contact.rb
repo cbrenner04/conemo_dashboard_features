@@ -14,14 +14,22 @@ class NurseTasks
     end
 
     def open
-      click_on additional_contact_title
+      click_on "#{register} #{additional_contact_title}"
     end
 
-    def create
+    def create_for_call
       open
       sleep(1)
       selector[5].click
-      choose_option
+      select_list_item(options[1])
+      navigation.submit
+    end
+
+    def create_for_in_person
+      open
+      sleep(1)
+      selector[5].click
+      select_list_item(options[0])
       navigation.submit
     end
 

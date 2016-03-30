@@ -2,7 +2,7 @@
 
 require './spec/support/admin/login_helper'
 
-feature 'Admin, Login' do
+feature 'Admin, Login', metadata: :not_first do
   scenario 'Admin in English locale logs in' do
     english_admin.sign_in
 

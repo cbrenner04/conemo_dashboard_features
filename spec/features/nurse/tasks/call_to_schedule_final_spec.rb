@@ -3,7 +3,42 @@
 require './spec/support/nurse/tasks_helper'
 require './spec/support/nurse/tasks/call_to_schedule_final_helper'
 
-feature 'Nurse, Participant Tasks, Call to schedule final appointment' do
+feature 'Nurse, Call to schedule final appointment', metadata: :first do
+  scenario 'Nurse confirms call to schedule final' do
+    english_nurse.sign_in
+
+    # check current tasks
+    expect(patient_702).to have_call_to_schedule_final_appt
+
+    # confirm call to schedule final appointment
+    pt_702_nurse_tasks.open
+    call_to_schedule_final_appointment.confirm
+
+    expect(call_to_schedule_final_appointment).to have_next_contact_date
+
+    call_to_schedule_final_appointment.enter_next_contact_date
+    call_to_schedule_final_appointment.select_location
+    navigation.submit
+
+    expect(pt_702_nurse_tasks).to have_no_tasks_in_count
+    expect(call_to_schedule_final_appointment).to be_complete
+    expect(final_appointment).to be_scheduled
+
+    # Check contact information for completeness
+    clinical_summary.open
+    contact_information.open
+
+    expect(contact_information).to have_call_to_schedule_final_appt
+
+    # check Your Patients list for old / new tasks
+    your_patients.return
+
+    expect(patient_702).to_not have_call_to_schedule_final_appt
+    expect(patient_702).to have_tasks_completed
+  end
+end
+
+feature 'Nurse, Call to schedule final appointment', metadata: :not_first do
   background { english_nurse.sign_in }
 
   scenario 'Nurse sees # of days since task was due' do
@@ -35,7 +70,7 @@ feature 'Nurse, Participant Tasks, Call to schedule final appointment' do
     english_nurse.sign_out
     english_supervisor.sign_in
 
-    expect(nurse_supervisor).to have_call_to_schedule_final_canceled
+    expect(nurse_supervisor_1).to have_call_to_schedule_final_canceled
 
     expect(cancel_form).to have_cancellation_reason
   end
@@ -88,36 +123,5 @@ feature 'Nurse, Participant Tasks, Call to schedule final appointment' do
     navigation.submit
 
     expect(call_to_schedule_final_appointment).to be_visible
-  end
-
-  scenario 'Nurse confirms call to schedule final appointment' do
-    # check current tasks
-    expect(patient_702).to have_call_to_schedule_final_appt
-
-    # confirm call to schedule final appointment
-    pt_702_nurse_tasks.open
-    call_to_schedule_final_appointment.confirm
-
-    expect(call_to_schedule_final_appointment).to have_next_contact_date
-
-    call_to_schedule_final_appointment.enter_next_contact_date
-    call_to_schedule_final_appointment.select_location
-    navigation.submit
-
-    expect(pt_702_nurse_tasks).to have_no_tasks_in_count
-    expect(call_to_schedule_final_appointment).to be_complete
-    expect(final_appointment).to be_scheduled
-
-    # Check contact information for completeness
-    clinical_summary.open
-    contact_information.open
-
-    expect(contact_information).to have_call_to_schedule_final_appt
-
-    # check Your Patients list for old / new tasks
-    your_patients.return
-
-    expect(patient_702).to_not have_call_to_schedule_final_appt
-    expect(patient_702).to have_tasks_completed
   end
 end

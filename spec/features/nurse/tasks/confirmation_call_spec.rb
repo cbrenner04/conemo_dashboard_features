@@ -3,7 +3,7 @@
 require './spec/support/nurse/tasks_helper'
 require './spec/support/nurse/tasks/confirmation_call_helper'
 
-feature 'Nurse, Participant Tasks, Confirmation Call' do
+feature 'Nurse, Participant Tasks, Confirmation Call', metadata: :not_first do
   background { english_nurse.sign_in }
 
   scenario 'Nurse sees number days since task was due' do
@@ -35,7 +35,7 @@ feature 'Nurse, Participant Tasks, Confirmation Call' do
     english_nurse.sign_out
     english_supervisor.sign_in
 
-    expect(nurse_supervisor).to have_confirmation_call_canceled
+    expect(nurse_supervisor_2).to have_confirmation_call_canceled
 
     expect(cancel_form).to have_cancellation_reason
   end

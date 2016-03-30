@@ -80,20 +80,30 @@ class NurseTasks
       has_no_css?('.progress-bar-danger')
   end
 
+  def has_participant_in_header?
+    has_css?('.navbar-brand',
+             text: "Participant #{@pt_id}: Last-#{@pt_id}, First")
+  end
+
   private
 
   def navigation
     @navigation ||= Navigation.new(locale: 'english')
   end
 
+  def dst_time(time)
+    if Time.now.dst? && time.dst?
+      time
+    elsif !Time.now.dst? && time.dst? 
+      time + (1 * 60 * 60)
+    else
+      (time - (1 * 60 * 60))
+    end
+  end
+
   def has_supervisor_contact?(time)
-    p_text = "last supervisor contact sent #{Date.today.strftime('%B %d, %Y')}"
-    text = find('p', text: 'last').text
-    actual_time = text.gsub("#{p_text} ", '')
-    actual_hour = actual_time.gsub(/:\w+/, '')
-    expected_hour = time.strftime('%H')
-    comparison = expected_hour.to_i - actual_hour.to_i
-    new_time = comparison == 0 ? expected_hour : (expected_hour.to_i - 1)
-    has_text? "#{p_text} #{new_time}"
+    has_text? 'last supervisor contact sent ' \
+              "#{Date.today.strftime('%B %d, %Y')} " \
+              "#{dst_time(time).strftime('%H')}"
   end
 end

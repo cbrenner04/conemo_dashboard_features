@@ -23,7 +23,7 @@ def your_patients
 end
 
 def nurse_supervisor
-  @nurse_supervisor ||= SupervisorPage.new
+  @nurse_supervisor ||= SupervisorPage.new(pt_id: 'fake')
 end
 
 def nurse_400

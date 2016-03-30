@@ -3,6 +3,10 @@ class SupervisorPage
   include RSpec::Matchers
   include Capybara::DSL
 
+  def initialize(supervisor_page)
+    @pt_id ||= supervisor_page[:pt_id]
+  end
+
   def has_nurses?
     [400, 401, 402, 403, 404].all? do |i|
       has_css?('h4', text: "Nurse-#{i}, English")
@@ -95,12 +99,12 @@ class SupervisorPage
   private
 
   def canceled?(title)
-    if has_css?('.panel', text: 'Nurse-400, English', count: 2)
-      all('.panel', text: 'Nurse-400, English')[1]
-        .has_css?('.text-warning', text: "#{title} cancelled")
-    else
-      find('.panel', text: 'Nurse-400, English')
-        .has_css?('.text-warning', text: "#{title} cancelled")
-    end
+    panel = if has_css?('.panel', text: 'Nurse-400, English', count: 2)
+              all('.panel', text: 'Nurse-400, English')[1]
+            else
+              find('.panel', text: 'Nurse-400, English')
+            end
+    panel.has_css?('.text-warning',
+                   text: "Participant #{@pt_id} #{title} cancelled")
   end
 end

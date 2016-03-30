@@ -103,9 +103,16 @@ class NurseTasks
                   ' phone returned?:')
     end
 
-    def has_additional_contact?
+    def has_phone_additional_contact?
       find('.timeline')
-        .has_css?('.timeline-panel', text: additional_contact_title)
+        .has_css?('.timeline-panel', text: additional_contact_title_alt) &&
+          has_text?('Type: phone call')
+    end
+
+    def has_in_person_additional_contact?
+      find('.timeline')
+        .has_css?('.timeline-panel', text: additional_contact_title_alt) &&
+          has_text?('Type: in person')
     end
 
     def edit_confirmation_call

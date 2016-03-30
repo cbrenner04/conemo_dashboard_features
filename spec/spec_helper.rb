@@ -13,6 +13,14 @@ RSpec.configure do |config|
     c.syntax = [:should, :expect]
   end
   config.profile_examples = 10
+  config.register_ordering(:global) do |list|
+    list.sort_by do |group|
+      case group.metadata[:metadata]
+      when :first then 10
+      else 20
+      end
+    end
+  end
 end
 
 # Capybara configuration options

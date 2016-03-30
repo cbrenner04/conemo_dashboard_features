@@ -31,7 +31,7 @@ class NurseTasks
     end
 
     def visible?
-      has_css?('h1', text: "First Last-#{@id}")
+      has_css?('a', text: 'Lessons')
     end
 
     def return_to_tasks
@@ -39,8 +39,7 @@ class NurseTasks
     end
 
     def has_messages?
-      has_text?(@first_message) &&
-        has_text?(@second_message)
+      has_text?(@first_message) && has_text?(@second_message)
     end
 
     def has_note?
@@ -190,11 +189,7 @@ class NurseTasks
     end
 
     def expected_lessons
-      @expected_lesson ||= total_lessons == 17 ? alt_lessons : all_lessons
-    end
-
-    def all_lessons
-      @all_lessons ||= [
+      @expected_lessons ||= [
         "1 #{Date.today.strftime('%B %d, %Y')} Lesson 1",
         "2 #{(Date.today + 1).strftime('%B %d, %Y')} Lesson 2",
         "3 #{(Date.today + 2).strftime('%B %d, %Y')} Lesson 3",
@@ -211,45 +206,6 @@ class NurseTasks
         "14 #{(Date.today + 13).strftime('%B %d, %Y')} Lesson 14",
         "15 #{(Date.today + 14).strftime('%B %d, %Y')} Lesson 15"
       ]
-    end
-
-    def alt_lessons
-      ary1 = []
-      ary2 = [alt_lessons_beginning, alt_lessons_ending]
-      ary2.each { |i| ary1.concat i }
-      @alt_lessons ||= ary1
-    end
-
-    def alt_lessons_beginning
-      @alt_lessons_beginning ||= [
-        "1 #{Date.today.strftime('%B %d, %Y')} Lesson 1",
-        "2 #{(Date.today + 1).strftime('%B %d, %Y')} Lesson 2",
-        "3 #{(Date.today + 2).strftime('%B %d, %Y')} Lesson 3",
-        "4 #{(Date.today + 3).strftime('%B %d, %Y')} Lesson 4",
-        "5 #{(Date.today + 4).strftime('%B %d, %Y')} Lesson 5",
-        "6 #{(Date.today + 5).strftime('%B %d, %Y')} Lesson 6",
-        "7 #{(Date.today + 6).strftime('%B %d, %Y')} Lesson 7",
-        "8 #{(Date.today + 7).strftime('%B %d, %Y')} Lesson 8",
-        "9 #{(Date.today + 8).strftime('%B %d, %Y')} Lesson 9",
-        "10 #{(Date.today + 9).strftime('%B %d, %Y')} Lesson 10",
-        "11 #{(Date.today + 10).strftime('%B %d, %Y')} Lesson 11",
-        "12 #{(Date.today + 11).strftime('%B %d, %Y')} Edited Lesson",
-        "13 #{(Date.today + 12).strftime('%B %d, %Y')} Lesson 13",
-        "14 #{(Date.today + 13).strftime('%B %d, %Y')} Lesson 14"
-      ]
-    end
-
-    def alt_lessons_ending
-      @alt_lesson_ending ||=
-        if has_text? "15 #{(Date.today + 14).strftime('%B %d, %Y')} Lesson 15"
-          ["15 #{(Date.today + 14).strftime('%B %d, %Y')} Lesson 15",
-           "16 #{(Date.today + 14).strftime('%B %d, %Y')} New Lesson",
-           "17 #{(Date.today + 15).strftime('%B %d, %Y')} Activity Lesson"]
-        else
-          ["15 #{(Date.today + 14).strftime('%B %d, %Y')} New Lesson",
-           "16 #{(Date.today + 14).strftime('%B %d, %Y')} Lesson 15",
-           "17 #{(Date.today + 15).strftime('%B %d, %Y')} Activity Lesson"]
-        end
     end
 
     def navigation

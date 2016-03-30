@@ -88,13 +88,13 @@ def pt_451_nurse_tasks
   @pt_451_nurse_tasks ||= NurseTasks.new(pt_id: 451)
 end
 
+def pt_313_nurse_tasks
+  @pt_313_nurse_tasks ||= NurseTasks.new(pt_id: 313)
+end
+
 def pt_1000_nurse_tasks
   @pt_1000_nurse_tasks ||= NurseTasks.new(
     pt_id: 1000,
     tasks_count: 3
   )
-end
-
-def nurse_supervisor
-  @nurse_supervisor ||= SupervisorPage.new
 end

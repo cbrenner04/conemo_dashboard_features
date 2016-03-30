@@ -6,6 +6,10 @@ module Translations
     module AdditionalContact
       include Translations::NurseTasksTranslations
 
+      def register
+        locale('Registrar', 'Registrar', 'Register')
+      end
+
       def expected_headings
         locale(spanish_headings, portuguese_headings, english_headings)
       end

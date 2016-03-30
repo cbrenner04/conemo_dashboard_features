@@ -1,3 +1,5 @@
+require 'business_time'
+
 class SupervisorPage
   # page object for Nurses section of Supervisor page
   class Nurses
@@ -29,7 +31,7 @@ class SupervisorPage
         .has_css?('small',
                   text: 'Last supervision session: ' \
                         "#{@supervision_date.strftime('%B %-d, %Y')} " \
-                        "#{sup_time}")
+                        "#{dst_time(@supervision_time).strftime('%H')}")
     end
 
     def has_supervision_session_late?
@@ -37,7 +39,7 @@ class SupervisorPage
         .has_css?('.text-warning',
                   text: 'Last supervision session: ' \
                         "#{@supervision_date.strftime('%B %-d, %Y')} " \
-                        "#{sup_time}")
+                        "#{dst_time(@supervision_time).strftime('%H')}")
     end
 
     def has_supervision_session_overdue?
@@ -45,7 +47,7 @@ class SupervisorPage
         .has_css?('.text-danger',
                   text: 'Last supervision session: ' \
                         "#{@supervision_date.strftime('%B %-d, %Y')} " \
-                        "#{sup_time}")
+                        "#{dst_time(@supervision_time).strftime('%H')}")
     end
 
     def review_supervision_sessions
@@ -55,12 +57,6 @@ class SupervisorPage
     def has_previous_sessions_listed?
       within('.table') do
         actual_rows = (1..3).map { |i| all('tr')[i].text }
-        expected_rows = [
-          'March 24, 2016 11:00 30 Group Phone Non-resolved help requests,' \
-          ' Cancelled tasks',
-          'March 17, 2016 11:00 10 Group Phone',
-          'March 11, 2016 10:00 20 Individual In person'
-        ]
         expect(actual_rows).to eq(expected_rows)
       end
     end
@@ -133,22 +129,32 @@ class SupervisorPage
       find('.panel-heading', text: "Nurse-#{@id}, English")
     end
 
-    def sup_time
-      heading = nurse_panel_heading.find('small').text
-      subheading = heading
-                   .gsub('Last supervision session: ' \
-                         "#{@supervision_date.strftime('%B %-d, %Y')} ", '')
-      actual_time = subheading.gsub(' Review', '')
-      time_offset = if Time.now.dst? && @supervision_time.dst?
-                      0
-                    elsif !Time.now.dst? && @supervision_time.dst?
-                      (1 * 60 * 60)
-                    else
-                      (-1 * 60 * 60)
-                    end
-      expected_time = @supervision_time.hour.to_i + time_offset
-      comparison = expected_time - actual_time.gsub(/:\w+/, '').to_i
-      comparison <= 1 ? actual_time : Time.now.hour
+    def dst_time(time)
+      if Time.now.dst? && time.dst?
+        time
+      elsif !Time.now.dst? && time.dst? 
+        time + (1 * 60 * 60)
+      else
+        (time - (1 * 60 * 60))
+      end
+    end
+
+    def today_at_11_am
+      time = Time.now
+      noon = time + ((12 - time.hour) * 60 * 60) - (time.min * 60) - time.sec
+      @today_at_11_am ||= noon - (1 * 60 * 60)
+    end
+
+    def expected_rows
+      date_1 = dst_time(3.business_days.before today_at_11_am)
+      date_2 = dst_time(8.business_days.before today_at_11_am)
+      date_3 = dst_time(12.business_days.before today_at_11_am)
+      @expected_rows ||= [
+        "#{date_1.strftime('%B %d, %Y %H')}:00 30 Group Phone Non-resolved" \
+        ' help requests, Cancelled tasks',
+        "#{date_2.strftime('%B %d, %Y %H')}:00 10 Group Phone",
+        "#{date_3.strftime('%B %d, %Y %H')}:00 20 Individual In person"
+      ]
     end
   end
 end

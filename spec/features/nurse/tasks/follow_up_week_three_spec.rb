@@ -3,7 +3,7 @@
 require './spec/support/nurse/tasks_helper'
 require './spec/support/nurse/tasks/follow_up_week_three_helper'
 
-feature 'Nurse, Participant Tasks, Follow up call week three' do
+feature 'Nurse, Participant Tasks, Follow up call week three', metadata: :not_first do
   background { english_nurse.sign_in }
 
   scenario 'Nurse sees number of days since task was due' do
@@ -35,7 +35,7 @@ feature 'Nurse, Participant Tasks, Follow up call week three' do
     english_nurse.sign_out
     english_supervisor.sign_in
 
-    expect(nurse_supervisor).to have_follow_up_week_3_canceled
+    expect(nurse_supervisor_5).to have_follow_up_week_3_canceled
 
     expect(cancel_form).to have_cancellation_reason
   end

@@ -3,7 +3,40 @@
 require './spec/support/nurse/tasks_helper'
 require './spec/support/nurse/tasks/non_connectivity_call_helper'
 
-feature 'Nurse, Participant Tasks, Non-connectivity call' do
+feature  'Nurse, Non-connectivity call', metadata: :first do
+  background { english_nurse.sign_in }
+
+  scenario 'Contacts supervisor for non-connectivity task' do
+    pt_411_nurse_tasks.open
+
+    expect(lack_of_connectivity_call).to be_active
+
+    lack_of_connectivity_call.contact_supervisor
+
+    expect(lack_of_connectivity_call).to be_active
+    expect(pt_411_nurse_tasks).to have_new_supervisor_contact
+  end
+
+  scenario 'Sees when the last supervisor contact sent' do
+    pt_412_nurse_tasks.open
+
+    expect(lack_of_connectivity_call).to be_active
+    expect(pt_412_nurse_tasks).to have_previous_supervisor_contact
+  end
+
+  scenario 'Nurse clears supervisor contact' do
+    pt_413_nurse_tasks.open
+
+    expect(lack_of_connectivity_call).to be_active
+    expect(pt_413_nurse_tasks).to have_previous_supervisor_contact
+
+    pt_413_nurse_tasks.clear_supervisor_contact
+
+    expect(pt_413_nurse_tasks).to have_no_previous_supervisor_contact
+  end
+end
+
+feature 'Nurse, Non-connectivity call', metadata: :not_first do
   background { english_nurse.sign_in }
 
   scenario 'Nurse sees number days since task was due' do
@@ -42,34 +75,5 @@ feature 'Nurse, Participant Tasks, Non-connectivity call' do
     expect(pt_410_nurse_tasks).to have_no_tasks_in_count
 
     expect(lack_of_connectivity_call).to_not be_active
-  end
-
-  scenario 'Nurse contacts supervisor for non-connectivity task' do
-    pt_411_nurse_tasks.open
-
-    expect(lack_of_connectivity_call).to be_active
-
-    lack_of_connectivity_call.contact_supervisor
-
-    expect(lack_of_connectivity_call).to be_active
-    expect(pt_411_nurse_tasks).to have_new_supervisor_contact
-  end
-
-  scenario 'Nurse sees when the previous supervisor contact was sent' do
-    pt_412_nurse_tasks.open
-
-    expect(lack_of_connectivity_call).to be_active
-    expect(pt_412_nurse_tasks).to have_previous_supervisor_contact
-  end
-
-  scenario 'Nurse clears supervisor contact' do
-    pt_413_nurse_tasks.open
-
-    expect(lack_of_connectivity_call).to be_active
-    expect(pt_413_nurse_tasks).to have_previous_supervisor_contact
-
-    pt_413_nurse_tasks.clear_supervisor_contact
-
-    expect(pt_413_nurse_tasks).to have_no_previous_supervisor_contact
   end
 end

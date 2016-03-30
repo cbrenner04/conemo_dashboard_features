@@ -3,5 +3,5 @@
 require './lib/pages/supervisor_page'
 
 def nurse_supervisor
-  @nurse_supervisor ||= SupervisorPage.new
+  @nurse_supervisor ||= SupervisorPage.new(pt_id: 'fake')
 end

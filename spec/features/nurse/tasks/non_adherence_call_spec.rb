@@ -3,7 +3,40 @@
 require './spec/support/nurse/tasks_helper'
 require './spec/support/nurse/tasks/non_adherence_call_helper'
 
-feature 'Nurse, Participant Tasks, Non-adherence call' do
+feature 'Nurse, Non-adherence call', metadata: :first do
+  background { english_nurse.sign_in }
+
+  scenario 'Contacts supervisor for non-adherence task' do
+    pt_421_nurse_tasks.open
+
+    expect(non_adherence_call).to be_active
+
+    non_adherence_call.contact_supervisor
+
+    expect(non_adherence_call).to be_active
+    expect(pt_421_nurse_tasks).to have_new_supervisor_contact
+  end
+
+  scenario 'Sees when the last supervisor contact sent' do
+    pt_424_nurse_tasks.open
+
+    expect(non_adherence_call).to be_active
+    expect(pt_424_nurse_tasks).to have_previous_supervisor_contact
+  end
+
+  scenario 'Nurse clears supervisor contact' do
+    pt_423_nurse_tasks.open
+
+    expect(non_adherence_call).to be_active
+    expect(pt_423_nurse_tasks).to have_previous_supervisor_contact
+
+    pt_423_nurse_tasks.clear_supervisor_contact
+
+    expect(pt_423_nurse_tasks).to have_no_previous_supervisor_contact
+  end
+end
+
+feature 'Nurse, Non-adherence call', metadata: :not_first do
   background { english_nurse.sign_in }
 
   scenario 'Nurse sees no task for pt with active connectivity task' do
@@ -44,7 +77,7 @@ feature 'Nurse, Participant Tasks, Non-adherence call' do
     # check css
   end
 
-  scenario 'Nurse cancels out of task resolution form' do
+  scenario 'Nurse cancels out of task resolution form, then resolves task' do
     pt_420_nurse_tasks.open
 
     expect(pt_420_nurse_tasks).to have_one_task_in_count
@@ -54,47 +87,11 @@ feature 'Nurse, Participant Tasks, Non-adherence call' do
     navigation.cancel
 
     expect(non_adherence_call).to be_active
-  end
-
-  scenario 'Nurse marks non-adherence task as resolved' do
-    pt_420_nurse_tasks.open
-
-    expect(pt_420_nurse_tasks).to have_one_task_in_count
-    expect(non_adherence_call).to be_active
 
     non_adherence_call.mark_resolved
     non_adherence_call.complete_resolution_form
 
     expect(pt_420_nurse_tasks).to have_no_tasks_in_count
     expect(non_adherence_call).to_not be_active
-  end
-
-  scenario 'Nurse contacts supervisor for non-adherence task' do
-    pt_421_nurse_tasks.open
-
-    expect(non_adherence_call).to be_active
-
-    non_adherence_call.contact_supervisor
-
-    expect(non_adherence_call).to be_active
-    expect(pt_421_nurse_tasks).to have_new_supervisor_contact
-  end
-
-  scenario 'Nurse sees when the previous supervisor contact was sent' do
-    pt_424_nurse_tasks.open
-
-    expect(non_adherence_call).to be_active
-    expect(pt_424_nurse_tasks).to have_previous_supervisor_contact
-  end
-
-  scenario 'Nurse clears supervisor contact' do
-    pt_423_nurse_tasks.open
-
-    expect(non_adherence_call).to be_active
-    expect(pt_423_nurse_tasks).to have_previous_supervisor_contact
-
-    pt_423_nurse_tasks.clear_supervisor_contact
-
-    expect(pt_423_nurse_tasks).to have_no_previous_supervisor_contact
   end
 end

@@ -3,7 +3,7 @@
 require './spec/support/nurse/tasks_helper.rb'
 require './spec/support/nurse/tasks/spanish_translations_helper.rb'
 
-feature 'Spanish nurse, Participant tasks' do
+feature 'Spanish nurse, Participant tasks', metadata: :first do
   background do
     spanish_nurse.sign_in
     pt_501_nurse_tasks.open

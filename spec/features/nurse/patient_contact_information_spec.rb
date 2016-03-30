@@ -2,8 +2,17 @@
 
 require './spec/support/nurse/contact_information_helper'
 
-feature 'Nurse, Participant Contact Information' do
+feature 'Nurse, Participant Contact Information', metadata: :not_first do
   background { english_nurse.sign_in }
+
+  scenario 'Nurse sees participant id and name in header' do
+    pt_300_nurse_tasks.open
+    pt_300_contact_info.open
+
+    expect(pt_300_contact_info).to be_on_page
+
+    expect(pt_300_nurse_tasks).to have_participant_in_header
+  end
 
   scenario 'Nurse visits participant contact information' do
     pt_300_nurse_tasks.open
@@ -130,7 +139,7 @@ feature 'Nurse, Participant Contact Information' do
   end
 end
 
-feature 'Spanish Nurse, Participant Contact Information' do
+feature 'Spanish Nurse, Participant Contact Information', metadata: :not_first do
   scenario 'Spanish nurse sees correct translations' do
     spanish_nurse.sign_in
     pt_500_nurse_tasks.open
@@ -155,7 +164,7 @@ feature 'Spanish Nurse, Participant Contact Information' do
   end
 end
 
-feature 'Portuguese Nurse, Participant Contact Information' do
+feature 'Portuguese Nurse, Participant Contact Information', metadata: :not_first do
   scenario 'Portuguese nurse sees correct translations' do
     portuguese_nurse.sign_in
     pt_600_nurse_tasks.open

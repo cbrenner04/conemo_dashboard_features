@@ -1,6 +1,6 @@
 # filename: ./spec/features/admin/administration_spec.rb
 
-feature 'Admin, Administration' do
+feature 'Admin, Administration', metadata: :not_first do
   scenario 'Admin creates an admin'
   scenario 'Admin creates a nurse supervisor'
   scenario 'Admin creates a nurse'

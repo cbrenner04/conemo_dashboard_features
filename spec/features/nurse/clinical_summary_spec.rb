@@ -2,9 +2,26 @@
 
 require './spec/support/nurse/clinical_summary_helper'
 
-feature 'Nurse, Clinical Summary' do
-  background do
+feature 'Nurse, Clinical Summary', metadata: :first do
+  scenario 'Nurse sees lesson #, release dates, titles' do
     english_nurse.sign_in
+    pt_300_nurse_tasks.open
+    pt_300_clinical_summary.open
+
+    expect(pt_300_clinical_summary).to have_lesson_table_content
+  end
+end
+
+feature 'Nurse, Clinical Summary', metadata: :not_first do
+  background { english_nurse.sign_in }
+
+  scenario 'Nurse sees participant id and name in header' do
+    pt_343_nurse_tasks.open
+    pt_343_clinical_summary.open
+
+    expect(pt_343_clinical_summary).to be_visible
+
+    expect(pt_343_nurse_tasks).to have_participant_in_header
   end
 
   scenario 'Nurse sees correct messages & logins' do
@@ -28,13 +45,6 @@ feature 'Nurse, Clinical Summary' do
     pt_300_clinical_summary.delete_note
 
     expect(pt_300_clinical_summary).to_not have_note
-  end
-
-  scenario 'Nurse sees lesson numbers, release dates, titles' do
-    pt_300_nurse_tasks.open
-    pt_300_clinical_summary.open
-
-    expect(pt_300_clinical_summary).to have_lesson_table_content
   end
 
   scenario 'Nurse sees current lesson (1st) highlighted' do

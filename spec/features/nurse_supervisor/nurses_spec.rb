@@ -2,7 +2,33 @@
 
 require './spec/support/nurse_supervisor/nurses_helper'
 
-feature 'Nurse Supervisor, Nurses' do
+feature 'Nurse Supervisor, Nurses', metadata: :first do
+  background { english_supervisor.sign_in }
+
+  feature 'Nurse Supervisor, Supervision Session' do
+    scenario 'Sees 12 day old supervision session' do
+      expect(nurse_402).to have_supervision_session_overdue
+    end
+
+    scenario 'Sees 8 day old supervision session' do
+      expect(nurse_401).to have_supervision_session_late
+    end
+
+    scenario 'Completes supervision session' do
+      nurse_403.create_supervision_session
+      nurse_403.enter_session_length
+      nurse_403.select_meeting_kind
+      nurse_403.select_contact_kind
+      nurse_403.choose_topic
+      navigation.submit
+
+      expect(nurse_403).to have_supervision_session
+    end
+  end
+end
+
+
+feature 'Nurse Supervisor, Nurses', metadata: :not_first do
   background { english_supervisor.sign_in }
 
   scenario 'Nurse Supervisor sees all nurses assigned to them' do
@@ -14,13 +40,6 @@ feature 'Nurse Supervisor, Nurses' do
   end
 
   feature 'Nurse Supervisor, Supervision session' do
-    scenario 'Nurse Supervisor sees 8 day old supervision session' do
-      expect(nurse_401).to have_supervision_session_late
-    end
-
-    scenario 'Nurse Supervisor sees 12 day old supervision session' do
-      expect(nurse_402).to have_supervision_session_overdue
-    end
 
     scenario 'Nurse Supervisor reviews previous sessions' do
       nurse_404.review_supervision_sessions
@@ -63,17 +82,6 @@ feature 'Nurse Supervisor, Nurses' do
       navigation.submit
 
       expect(nurse_403).to have_supervision_session_form_visible
-    end
-
-    scenario 'Nurse supervisor completes supervision session' do
-      nurse_403.create_supervision_session
-      nurse_403.enter_session_length
-      nurse_403.select_meeting_kind
-      nurse_403.select_contact_kind
-      nurse_403.choose_topic
-      navigation.submit
-
-      expect(nurse_403).to have_supervision_session
     end
   end
 

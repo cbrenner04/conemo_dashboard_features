@@ -3,7 +3,7 @@
 require './spec/support/nurse/tasks_helper'
 require './spec/support/nurse/tasks/portuguese_translations_helper'
 
-feature 'Portuguese nurse, Participant tasks' do
+feature 'Portuguese nurse, Participant tasks', metadata: :first do
   background do
     portuguese_nurse.sign_in
     pt_601_nurse_tasks.open
