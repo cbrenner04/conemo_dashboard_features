@@ -36,8 +36,8 @@ module Translations
     end
 
     def additional_contact_title
-      locale('Additional contact', 'Additional contact',
-             'Additional contact')
+      locale('Registrar contacto adicional', 'Registrar contato adicional',
+             'Register additional contact')
     end
 
     def help_request_title

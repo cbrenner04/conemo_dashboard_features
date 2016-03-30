@@ -23,8 +23,9 @@ module Translations
     end
 
     def profile_heading
-      heading = locale('Perfil de', 'Perfil de', 'Profile for')
-      "#{heading} First Last-#{@id}"
+      @profile_heading ||= locale('Información de contacto',
+                                  'Informações de Contato',
+                                  'Contact Information')
     end
 
     def expected_headings

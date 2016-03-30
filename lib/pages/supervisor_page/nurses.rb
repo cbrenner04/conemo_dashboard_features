@@ -1,6 +1,7 @@
 class SupervisorPage
   # page object for Nurses section of Supervisor page
   class Nurses
+    include RSpec::Matchers
     include Capybara::DSL
 
     def initialize(nurses)
@@ -45,6 +46,23 @@ class SupervisorPage
                   text: 'Last supervision session: ' \
                         "#{@supervision_date.strftime('%B %-d, %Y')} " \
                         "#{sup_time}")
+    end
+
+    def review_supervision_sessions
+      nurse_panel_heading.find('a', text: 'Review').click
+    end
+
+    def has_previous_sessions_listed?
+      within('.table') do
+        actual_rows = (1..3).map { |i| all('tr')[i].text }
+        expected_rows = [
+          'March 24, 2016 11:00 30 Group Phone Non-resolved help requests,' \
+          ' Cancelled tasks',
+          'March 17, 2016 11:00 10 Group Phone',
+          'March 11, 2016 10:00 20 Individual In person'
+        ]
+        expect(actual_rows).to eq(expected_rows)
+      end
     end
 
     def create_supervision_session
@@ -104,7 +122,11 @@ class SupervisorPage
     private
 
     def nurse_panel
-      find('.panel', text: "Nurse-#{@id}, English")
+      if has_css?('.panel', text: "Nurse-#{@id}, English", count: 2)
+        all('.panel', text: "Nurse-#{@id}, English")[1]
+      else
+        find('.panel', text: "Nurse-#{@id}, English")
+      end
     end
 
     def nurse_panel_heading
@@ -114,8 +136,8 @@ class SupervisorPage
     def sup_time
       heading = nurse_panel_heading.find('small').text
       subheading = heading
-                     .gsub("Last supervision session: " \
-                           "#{@supervision_date.strftime('%B %-d, %Y')} ", '')
+                   .gsub('Last supervision session: ' \
+                         "#{@supervision_date.strftime('%B %-d, %Y')} ", '')
       actual_time = subheading.gsub(' Review', '')
       time_offset = if Time.now.dst? && @supervision_time.dst?
                       0
@@ -126,7 +148,7 @@ class SupervisorPage
                     end
       expected_time = @supervision_time.hour.to_i + time_offset
       comparison = expected_time - actual_time.gsub(/:\w+/, '').to_i
-      sup_time = comparison <= 1 ? actual_time : Time.now.hour
+      comparison <= 1 ? actual_time : Time.now.hour
     end
   end
 end

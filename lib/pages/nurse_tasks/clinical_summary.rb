@@ -35,7 +35,7 @@ class NurseTasks
     end
 
     def return_to_tasks
-      find('.fa-chevron-left').click
+      find('a', text: 'Tasks').click
     end
 
     def has_messages?

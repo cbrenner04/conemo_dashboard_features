@@ -16,7 +16,8 @@ feature 'Nurse, Participant Tasks, Initial in person appointment' do
     pt_707_nurse_tasks.open
 
     expect(pt_707_nurse_tasks).to have_overdue_tasks
-    # check css in progress-bar
+
+    expect(initial_in_person_appt).to be_overdue
   end
 
   scenario 'Nurse cancels initial in-person appointment' do
@@ -31,6 +32,13 @@ feature 'Nurse, Participant Tasks, Initial in person appointment' do
 
     expect(pt_311_nurse_tasks).to have_no_tasks_in_count
     expect(initial_in_person_appt).to be_canceled
+
+    english_nurse.sign_out
+    english_supervisor.sign_in
+
+    expect(nurse_supervisor).to have_initial_appointment_canceled
+
+    expect(cancel_form).to have_cancellation_reason
   end
 
   scenario 'Nurse cancels out of reschedule form' do
@@ -124,7 +132,7 @@ feature 'Nurse, Participant Tasks, Initial in person appointment' do
     contact_information.enter_phone_id
     navigation.submit
 
-    expect(pt_400_nurse_tasks).to have_no_tasks_in_count
+    expect(pt_319_nurse_tasks).to have_no_tasks_in_count
     expect(initial_in_person_appt).to be_complete
     expect(follow_up_week_1).to be_scheduled
     expect(follow_up_week_3).to be_scheduled

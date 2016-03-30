@@ -16,7 +16,8 @@ feature 'Nurse, Participant Tasks, Call to schedule final appointment' do
     pt_800_nurse_tasks.open
 
     expect(pt_800_nurse_tasks).to have_overdue_tasks
-    # check css in progress-bar
+
+    expect(call_to_schedule_final_appointment).to be_overdue
   end
 
   scenario 'Nurse cancels call to schedule final appointment' do
@@ -30,6 +31,13 @@ feature 'Nurse, Participant Tasks, Call to schedule final appointment' do
 
     expect(pt_704_nurse_tasks).to have_no_tasks_in_count
     expect(call_to_schedule_final_appointment).to be_canceled
+
+    english_nurse.sign_out
+    english_supervisor.sign_in
+
+    expect(nurse_supervisor).to have_call_to_schedule_final_canceled
+
+    expect(cancel_form).to have_cancellation_reason
   end
 
   scenario 'Nurse cancels out of reschedule form' do

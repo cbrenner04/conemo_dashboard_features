@@ -72,6 +72,6 @@ feature 'Nurse, Participant Tasks, Help request' do
 
     pt_403_nurse_tasks.clear_supervisor_contact
 
-    expect(pt_403_nurse_tasks).to_not have_previous_supervisor_contact
+    expect(pt_403_nurse_tasks).to have_no_previous_supervisor_contact
   end
 end

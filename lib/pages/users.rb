@@ -25,15 +25,15 @@ class Users
   end
 
   def has_english_patient?
-    find('.table').has_text? '304'
+    find('.table-hover').has_text? '304'
   end
 
   def has_spanish_patient?
-    find('.table').has_text? '504'
+    find('.table-hover').has_text? '504'
   end
 
   def has_portuguese_patient?
-    find('.table').has_text? '604'
+    find('.table-hover').has_text? '604'
   end
 
   private

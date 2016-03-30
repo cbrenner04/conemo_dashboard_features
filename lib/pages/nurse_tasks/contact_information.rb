@@ -28,13 +28,13 @@ class NurseTasks
     end
 
     def on_page?
-      has_text? profile_heading
+      has_css?('h2', text: profile_heading)
     end
 
     def visible?
       date_1 = Date.today - ((30 * 365) + @id.to_i)
       has_css?('#contact-info',
-               text: "Contact Information Study Identifier: #{@id} Family " \
+               text: 'Contact Information Family ' \
                      'Health Unit Name: Family Health Center Phone: ' \
                      "13333333#{@id} Emergency Contact Name: Emergency " \
                      'Contact Phone: Date Of Birth: ' \

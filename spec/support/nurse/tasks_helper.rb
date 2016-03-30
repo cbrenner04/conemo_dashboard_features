@@ -2,6 +2,7 @@
 
 require './lib/pages/navigation'
 require './lib/pages/your_patients'
+require './lib/pages/supervisor_page'
 require './lib/pages/nurse_tasks'
 Dir['./lib/pages/nurse_tasks/*.rb'].each { |file| require file }
 
@@ -92,4 +93,8 @@ def pt_1000_nurse_tasks
     pt_id: 1000,
     tasks_count: 3
   )
+end
+
+def nurse_supervisor
+  @nurse_supervisor ||= SupervisorPage.new
 end

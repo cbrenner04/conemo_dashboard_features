@@ -21,9 +21,10 @@ class NurseTasks
 
   def open
     tries ||= 1
-    find('a', text: @pt_id).click
+    find('tr', text: @pt_id).click
     find('a', text: clinical_summary_link)
   rescue Capybara::ElementNotFound
+    execute_script('window.scrollBy(0, -10000)')
     tries.times { navigation.scroll_down }
     tries += 1
     retry unless tries > 5
@@ -46,6 +47,10 @@ class NurseTasks
     has_supervisor_contact?(@time_of_contact)
   end
 
+  def has_no_previous_supervisor_contact?
+    has_no_css?('p', text: 'last')
+  end
+
   def has_number_of_days_since_due?
     find('.panel', text: @contact_type).
       has_text? "#{@days_since_due} ago"
@@ -56,15 +61,15 @@ class NurseTasks
   end
 
   def has_one_task_in_count?
-    has_text? '1 task'
+    has_text? '1 Task'
   end
 
   def has_no_tasks_in_count?
-    has_text? '0 tasks'
+    has_text? '0 Tasks'
   end
 
   def has_multiple_tasks_in_count?
-    has_text? "#{@tasks_count} tasks"
+    has_text? "#{@tasks_count} Tasks"
   end
 
   def has_nothing_in_progress_bar?
@@ -82,9 +87,13 @@ class NurseTasks
   end
 
   def has_supervisor_contact?(time)
-    comparison = Time.now.hour - time.strftime('%H').to_i
-    new_time = comparison <= 1 ? Time.now : time
-    has_text? 'last supervisor contact sent ' \
-              "#{Date.today.strftime('%B %d, %Y')} #{new_time.strftime('%H')}"
+    p_text = "last supervisor contact sent #{Date.today.strftime('%B %d, %Y')}"
+    text = find('p', text: 'last').text
+    actual_time = text.gsub("#{p_text} ", '')
+    actual_hour = actual_time.gsub(/:\w+/, '')
+    expected_hour = time.strftime('%H')
+    comparison = expected_hour.to_i - actual_hour.to_i
+    new_time = comparison == 0 ? expected_hour : (expected_hour.to_i - 1)
+    has_text? "#{p_text} #{new_time}"
   end
 end

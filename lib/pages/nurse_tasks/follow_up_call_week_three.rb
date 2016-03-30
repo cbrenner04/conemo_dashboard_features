@@ -37,6 +37,11 @@ class NurseTasks
       visible?
     end
 
+    def overdue?
+      has_list_item?(follow_up_week_three_title) &&
+        has_overdue_progress_bar_item?(follow_up_week_three_title)
+    end
+
     def cancel
       cancel_task follow_up_week_three_title
     end

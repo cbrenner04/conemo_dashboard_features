@@ -16,7 +16,8 @@ feature 'Nurse, Participant Tasks, Final appointment' do
     pt_801_nurse_tasks.open
 
     expect(pt_801_nurse_tasks).to have_overdue_tasks
-    # check css in progress-bar
+
+    expect(final_appointment).to be_overdue
   end
 
   scenario 'Nurse cancels final appointment' do
@@ -30,6 +31,13 @@ feature 'Nurse, Participant Tasks, Final appointment' do
 
     expect(pt_337_nurse_tasks).to have_no_tasks_in_count
     expect(final_appointment).to be_canceled
+
+    english_nurse.sign_out
+    english_supervisor.sign_in
+
+    expect(nurse_supervisor).to have_final_appointment_canceled
+
+    expect(cancel_form).to have_cancellation_reason
   end
 
   scenario 'Nurse cancels out of reschedule form' do
@@ -106,5 +114,12 @@ feature 'Nurse, Participant Tasks, Final appointment' do
     expect(your_patients).to be_visible
 
     expect(patient_341).to_not be_in_table
+
+    english_nurse.sign_out
+    english_supervisor.sign_in
+
+    expect(nurse_supervisor).to have_updated_completed
+
+    expect(nurse_supervisor).to have_new_completed_participant_information
   end
 end

@@ -16,7 +16,8 @@ feature 'Nurse, Participant Tasks, Confirmation Call' do
     pt_706_nurse_tasks.open
 
     expect(pt_706_nurse_tasks).to have_overdue_tasks
-    # check css in progress-bar
+
+    expect(confirmation_call).to be_overdue
   end
 
   scenario 'Nurse cancels confirmation call' do
@@ -30,6 +31,13 @@ feature 'Nurse, Participant Tasks, Confirmation Call' do
 
     expect(pt_301_nurse_tasks).to have_no_tasks_in_count
     expect(confirmation_call).to be_canceled
+
+    english_nurse.sign_out
+    english_supervisor.sign_in
+
+    expect(nurse_supervisor).to have_confirmation_call_canceled
+
+    expect(cancel_form).to have_cancellation_reason
   end
 
   scenario 'Nurse cancels out of reschedule form' do

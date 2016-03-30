@@ -22,8 +22,8 @@ def your_patients
   @your_patients ||= YourPatients.new(locale: 'english')
 end
 
-def nurse_supervisor_1
-  @nurse_supervisor_1 ||= SupervisorPage.new
+def nurse_supervisor
+  @nurse_supervisor ||= SupervisorPage.new
 end
 
 def nurse_400

@@ -6,7 +6,7 @@ feature 'Nurse Supervisor, Nurses' do
   background { english_supervisor.sign_in }
 
   scenario 'Nurse Supervisor sees all nurses assigned to them' do
-    expect(nurse_supervisor_1).to have_nurses
+    expect(nurse_supervisor).to have_nurses
   end
 
   scenario 'Nurse Supervisor sees # of pts, tasks, overdue tasks for nurse' do
@@ -22,11 +22,17 @@ feature 'Nurse Supervisor, Nurses' do
       expect(nurse_402).to have_supervision_session_overdue
     end
 
+    scenario 'Nurse Supervisor reviews previous sessions' do
+      nurse_404.review_supervision_sessions
+
+      expect(nurse_404).to have_previous_sessions_listed
+    end
+
     scenario 'Nurse supervisor cancels filling in supervision session' do
       nurse_403.create_supervision_session
       navigation.cancel
 
-      expect(nurse_supervisor_1).to have_home_page_visible
+      expect(nurse_supervisor).to have_home_page_visible
     end
 
     scenario 'Nurse supervisor must fill in session Length' do
@@ -76,7 +82,7 @@ feature 'Nurse Supervisor, Nurses' do
       nurse_404.create_supervision_contact
       navigation.cancel
 
-      expect(nurse_supervisor_1).to have_home_page_visible
+      expect(nurse_supervisor).to have_home_page_visible
     end
 
     scenario 'Nurse Supervisor must select type of contact' do
@@ -91,7 +97,7 @@ feature 'Nurse Supervisor, Nurses' do
       nurse_404.select_contact_kind
       navigation.submit
 
-      expect(nurse_supervisor_1).to have_home_page_visible
+      expect(nurse_supervisor).to have_home_page_visible
     end
   end
 

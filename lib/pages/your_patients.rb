@@ -15,7 +15,7 @@ class YourPatients
   end
 
   def return
-    find('.navbar-brand').click
+    find('.navbar-brand', text: 'CONEMO').click
   end
 
   def visible?
@@ -57,7 +57,7 @@ class YourPatients
   end
 
   def has_tasks_active?
-    has_css?('.warning', text: @pt_id)
+    has_css?('.info', text: @pt_id)
   end
 
   def has_tasks_overdue?

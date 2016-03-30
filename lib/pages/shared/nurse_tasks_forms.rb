@@ -46,7 +46,7 @@ module NurseTasksForms
   end
 
   def has_active_progress_bar_item?(text)
-    has_css?('.progress-bar-warning', text: text)
+    has_css?('.progress-bar-info', text: text)
   end
 
   def has_complete_progress_bar_item?(text)
@@ -54,6 +54,10 @@ module NurseTasksForms
   end
 
   def has_canceled_progress_bar_item?(text)
+    has_css?('.progress-bar-error', text: text)
+  end
+
+  def has_overdue_progress_bar_item?(text)
     has_css?('.progress-bar-danger', text: text)
   end
 

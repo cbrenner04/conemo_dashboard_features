@@ -15,7 +15,8 @@ class NurseTasks
 
     def complete
       toggle_options_list
-      select_list_item(options.sample)
+      @cancellation_reason ||= options.sample
+      select_list_item(@cancellation_reason)
       navigation.submit
     end
 
@@ -30,6 +31,10 @@ class NurseTasks
     def toggle_options_list
       sleep(1)
       selector[0].click
+    end
+
+    def has_cancellation_reason?
+      has_text? @cancellation_reason
     end
 
     private

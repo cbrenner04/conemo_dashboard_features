@@ -12,6 +12,10 @@ def pt_801_nurse_tasks
   )
 end
 
+def pt_337_nurse_tasks
+  @pt_337_nurse_tasks ||= NurseTasks.new(pt_id: 337)
+end
+
 def pt_338_nurse_tasks
   @pt_338_nurse_tasks ||= NurseTasks.new(pt_id: 338)
 end

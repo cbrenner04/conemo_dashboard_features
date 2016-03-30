@@ -16,7 +16,8 @@ feature 'Nurse, Participant Tasks, Follow up call week one' do
     pt_708_nurse_tasks.open
 
     expect(pt_708_nurse_tasks).to have_overdue_tasks
-    # check css in progress-bar
+
+    expect(follow_up_week_1).to be_overdue
   end
 
   scenario 'Nurse cancels follow up call week one' do
@@ -30,6 +31,13 @@ feature 'Nurse, Participant Tasks, Follow up call week one' do
 
     expect(pt_320_nurse_tasks).to have_no_tasks_in_count
     expect(follow_up_week_1).to be_canceled
+
+    english_nurse.sign_out
+    english_supervisor.sign_in
+
+    expect(nurse_supervisor).to have_follow_up_week_1_canceled
+
+    expect(cancel_form).to have_cancellation_reason
   end
 
   scenario 'Nurse cancels out of reschedule form' do
