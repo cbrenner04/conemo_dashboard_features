@@ -5,6 +5,8 @@ require './lib/pages/navigation'
 require './lib/pages/your_patients'
 require './lib/pages/supervisor_page'
 require './lib/pages/supervisor_page/nurses'
+require './lib/pages/nurse_tasks'
+require './lib/pages/nurse_tasks/clinical_summary'
 
 def today_at_11_am
   time = Time.now
@@ -59,4 +61,56 @@ end
 
 def nurse_404
   @nurse_404 ||= SupervisorPage::Nurses.new(id: 404)
+end
+
+def pt_343_nurse_tasks
+  @pt_343_nurse_tasks ||= NurseTasks.new(pt_id: 343)
+end
+
+def pt_343_clinical_summary
+  @pt_343_clinical_summary ||= NurseTasks::ClinicalSummary.new(
+    locale: 'english'
+  )
+end
+
+def pt_342_nurse_tasks
+  @pt_342_nurse_tasks ||= NurseTasks.new(pt_id: 342)
+end
+
+def pt_342_clinical_summary
+  @pt_342_clinical_summary ||= NurseTasks::ClinicalSummary.new(
+    locale: 'english'
+  )
+end
+
+def pt_300_nurse_tasks
+  @pt_300_nurse_tasks ||= NurseTasks.new(pt_id: 300)
+end
+
+def pt_300_clinical_summary
+  @pt_300_clinical_summary ||= NurseTasks::ClinicalSummary.new(
+    locale: 'english'
+  )
+end
+
+def pt_300_contact_info
+  @pt_300_contact_info ||= NurseTasks::ContactInformation.new(
+    id: 300
+  )
+end
+
+def pt_301_nurse_tasks
+  @pt_301_nurse_tasks ||= NurseTasks.new(pt_id: 301)
+end
+
+def pt_301_clinical_summary
+  @pt_301_clinical_summary ||= NurseTasks::ClinicalSummary.new(
+    locale: 'english'
+  )
+end
+
+def pt_301_contact_info
+  @pt_301_contact_info ||= NurseTasks::ContactInformation.new(
+    id: 301
+  )
 end

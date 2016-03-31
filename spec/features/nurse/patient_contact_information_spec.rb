@@ -7,6 +7,7 @@ feature 'Nurse, Participant Contact Information', metadata: :not_first do
 
   scenario 'Nurse sees participant id and name in header' do
     pt_300_nurse_tasks.open
+    pt_300_clinical_summary.open
     pt_300_contact_info.open
 
     expect(pt_300_contact_info).to be_on_page
@@ -16,6 +17,7 @@ feature 'Nurse, Participant Contact Information', metadata: :not_first do
 
   scenario 'Nurse visits participant contact information' do
     pt_300_nurse_tasks.open
+    pt_300_clinical_summary.open
     pt_300_contact_info.open
 
     expect(pt_300_contact_info).to be_visible
@@ -23,6 +25,7 @@ feature 'Nurse, Participant Contact Information', metadata: :not_first do
 
   scenario 'Nurse cancels out of edit of participant information' do
     pt_301_nurse_tasks.open
+    pt_301_clinical_summary.open
     pt_301_contact_info.open
     pt_301_contact_info.select_edit_contact_information
     navigation.cancel
@@ -32,6 +35,7 @@ feature 'Nurse, Participant Contact Information', metadata: :not_first do
 
   scenario 'Nurse edits participant information' do
     pt_301_nurse_tasks.open
+    pt_301_clinical_summary.open
     pt_301_contact_info.open
     pt_301_contact_info.select_edit_contact_information
     pt_301_contact_info.select_health_unit
@@ -42,9 +46,11 @@ feature 'Nurse, Participant Contact Information', metadata: :not_first do
 
   scenario 'Nurse cancels out of edit of smartphone information' do
     pt_310_nurse_tasks.open
+    pt_301_clinical_summary.open
     pt_310_contact_info.open
     pt_310_contact_info.select_edit_smartphone_information
     navigation.cancel
+    pt_301_clinical_summary.open
     pt_310_contact_info.open
 
     expect(pt_310_contact_info).to be_visible
@@ -54,11 +60,13 @@ feature 'Nurse, Participant Contact Information', metadata: :not_first do
 
   scenario 'Nurse enters smartphone information' do
     pt_302_nurse_tasks.open
+    pt_302_clinical_summary.open
     pt_302_contact_info.open
     pt_302_contact_info.select_edit_smartphone_information
     pt_302_contact_info.enter_smartphone_number
     pt_302_contact_info.enter_phone_id
     navigation.submit
+    pt_302_clinical_summary.open
     pt_302_contact_info.open
 
     expect(pt_302_contact_info).to have_smartphone_information
@@ -66,6 +74,7 @@ feature 'Nurse, Participant Contact Information', metadata: :not_first do
 
   scenario 'Nurse edits confirmation call' do
     pt_342_nurse_tasks_1.open
+    pt_342_clinical_summary_1.open
     pt_342_contact_info_1.open
     pt_342_contact_info_1.edit_confirmation_call
 
@@ -73,6 +82,7 @@ feature 'Nurse, Participant Contact Information', metadata: :not_first do
 
     confirmation_call.enter_first_appt_location
     navigation.submit
+    pt_342_clinical_summary_1.open
     pt_342_contact_info_1.open
 
     expect(pt_342_contact_info_1).to be_on_page
@@ -80,11 +90,13 @@ feature 'Nurse, Participant Contact Information', metadata: :not_first do
 
   scenario 'Nurse edits initial in person appointment' do
     pt_342_nurse_tasks_1.open
+    pt_342_clinical_summary_1.open
     pt_342_contact_info_1.open
     pt_342_contact_info_1.edit_initial_appointment
     pt_342_nurse_tasks_1.enter_session_length
     initial_appointment.enter_location
     navigation.submit
+    pt_342_clinical_summary_1.open
     pt_342_contact_info_1.open
 
     expect(pt_342_contact_info_1).to have_updated_session_length
@@ -92,11 +104,13 @@ feature 'Nurse, Participant Contact Information', metadata: :not_first do
 
   scenario 'Nurse edits follow up call week 1' do
     pt_342_nurse_tasks_2.open
+    pt_342_clinical_summary_2.open
     pt_342_contact_info_2.open
     pt_342_contact_info_2.edit_follow_up_week_1
     pt_342_nurse_tasks_2.enter_session_length
     follow_up_week_1.enter_difficulties
     navigation.submit
+    pt_342_clinical_summary_2.open
     pt_342_contact_info_2.open
 
     expect(pt_342_contact_info_2).to have_updated_call_length
@@ -104,11 +118,13 @@ feature 'Nurse, Participant Contact Information', metadata: :not_first do
 
   scenario 'Nurse edits follow up call week 3' do
     pt_342_nurse_tasks_3.open
+    pt_342_clinical_summary_3.open
     pt_342_contact_info_3.open
     pt_342_contact_info_3.edit_follow_up_week_3
     pt_342_nurse_tasks_3.enter_session_length
     follow_up_week_3.enter_difficulties
     navigation.submit
+    pt_342_clinical_summary_3.open
     pt_342_contact_info_3.open
 
     expect(pt_342_contact_info_3).to have_updated_call_length
@@ -116,11 +132,13 @@ feature 'Nurse, Participant Contact Information', metadata: :not_first do
 
   scenario 'Nurse edits call to schedule final appointment' do
     pt_343_nurse_tasks.open
+    pt_343_clinical_summary.open
     pt_343_contact_info.open
     pt_343_contact_info.edit_call_to_schedule_final_appt
     call_to_schedule_final_appointment.update_contact_at_to_today
     call_to_schedule_final_appointment.select_location
     navigation.submit
+    pt_343_clinical_summary.open
     pt_343_contact_info.open
 
     expect(pt_343_contact_info).to have_updated_contact_at
@@ -128,11 +146,13 @@ feature 'Nurse, Participant Contact Information', metadata: :not_first do
 
   scenario 'Nurse edits final appointment' do
     pt_342_nurse_tasks_1.open
+    pt_342_clinical_summary_1.open
     pt_342_contact_info_1.open
     pt_342_contact_info_1.edit_final_appointment
     final_appointment.enter_location
     final_appointment.choose_phone_returned_negative
     navigation.submit
+    pt_342_clinical_summary_1.open
     pt_342_contact_info_1.open
 
     expect(pt_342_contact_info_1).to have_updated_phone_return
@@ -144,6 +164,7 @@ feature 'Spanish Nurse, Participant Contact Information',
   scenario 'Spanish nurse sees correct translations' do
     spanish_nurse.sign_in
     pt_500_nurse_tasks.open
+    pt_500_clinical_summary.open
     pt_500_contact_info.open
 
     expect(pt_500_contact_info).to be_on_page
@@ -170,6 +191,7 @@ feature 'Portuguese Nurse, Participant Contact Information',
   scenario 'Portuguese nurse sees correct translations' do
     portuguese_nurse.sign_in
     pt_600_nurse_tasks.open
+    pt_600_clinical_summary.open
     pt_600_contact_info.open
 
     expect(pt_600_contact_info).to be_on_page

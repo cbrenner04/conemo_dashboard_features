@@ -22,12 +22,6 @@ module Translations
              'Smartphone Information')
     end
 
-    def profile_heading
-      @profile_heading ||= locale('Información de contacto',
-                                  'Informações de Contato',
-                                  'Contact Information')
-    end
-
     def expected_headings
       locale(spanish_headings, portuguese_headings, english_headings)
     end

@@ -48,7 +48,6 @@ class NurseTasks
 
       def has_reason_options?
         selector[5].click
-        # sleep(1)
         actual = (0..3).map { |i| all('.select2-result-label')[i].text }
         expect(actual).to eq(expected_notes_reason_options)
       end

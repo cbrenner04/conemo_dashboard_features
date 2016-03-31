@@ -23,12 +23,11 @@ class NurseTasks
     end
 
     def open
-      click_on clinical_summary_link
       click_on 'participant contact information page'
     end
 
     def on_page?
-      has_css?('h2', text: profile_heading)
+      has_css?('h2', text: contact_information_title)
     end
 
     def visible?
