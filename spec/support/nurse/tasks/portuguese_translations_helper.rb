@@ -29,9 +29,7 @@ end
 
 def portuguese_initial_appointment
   @portuguese_initial_appointment ||=
-    NurseTasks::InitialInPersonAppointment.new(
-      locale: 'portuguese'
-    )
+    NurseTasks::InitialInPersonAppointment.new(locale: 'portuguese')
 end
 
 def portuguese_follow_up_week_1
@@ -46,9 +44,7 @@ end
 
 def portuguese_call_to_schedule_final
   @portuguese_call_to_schedule_final ||=
-    NurseTasks::CallToScheduleFinalAppointment.new(
-      locale: 'portuguese'
-    )
+    NurseTasks::CallToScheduleFinalAppointment.new(locale: 'portuguese')
 end
 
 def portuguese_final_appointment

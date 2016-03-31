@@ -106,13 +106,37 @@ class NurseTasks
     def has_phone_additional_contact?
       find('.timeline')
         .has_css?('.timeline-panel', text: additional_contact_title_alt) &&
-          has_text?('Type: phone call')
+        has_text?('Type: phone call')
     end
 
     def has_in_person_additional_contact?
       find('.timeline')
         .has_css?('.timeline-panel', text: additional_contact_title_alt) &&
-          has_text?('Type: in person')
+        has_text?('Type: in person')
+    end
+
+    def has_help_request?
+      find('.timeline')
+        .has_css?('.timeline-panel',
+                  text: "#{help_request_title} Date/time of phone call: " \
+                        "#{DateTime.now.strftime('%B %d, %Y')}") &&
+        has_text?('Reason for help request:')
+    end
+
+    def has_non_connectivity_call?
+      find('.timeline')
+        .has_css?('.timeline-panel',
+                  text: "#{lack_of_connectivity_call_title} Date/time of " \
+                        "phone call: #{DateTime.now.strftime('%B %d, %Y')}") &&
+        has_text?('Reason for lack of connectivity:')
+    end
+
+    def has_non_adherence_call?
+      find('.timeline')
+        .has_css?('.timeline-panel',
+                  text: "#{non_adherence_call_title} Date/time of phone " \
+                        "call: #{DateTime.now.strftime('%B %d, %Y')}") &&
+        has_text?('Reason for non-adherence:')
     end
 
     def edit_confirmation_call

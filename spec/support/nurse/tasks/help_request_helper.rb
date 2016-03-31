@@ -1,5 +1,6 @@
 # filename: ./spec/support/nurse/tasks/help_request_helper.rb
 
+require './lib/pages/your_patients'
 require './lib/pages/nurse_tasks'
 require './lib/pages/nurse_tasks/help_request'
 
@@ -20,6 +21,10 @@ end
 
 def pt_400_nurse_tasks
   @pt_400_nurse_tasks ||= NurseTasks.new(pt_id: 400)
+end
+
+def patient_400
+  @patient_400 ||= YourPatients.new(pt_id: 400)
 end
 
 def pt_401_nurse_tasks

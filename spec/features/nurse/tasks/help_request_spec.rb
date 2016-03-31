@@ -76,5 +76,17 @@ feature 'Nurse, Participant Tasks, Help request', metadata: :not_first do
     expect(pt_400_nurse_tasks).to have_no_tasks_in_count
 
     # check contact information for completed task
+    clinical_summary.open
+    contact_information.open
+
+    expect(contact_information).to have_help_request
+
+    expect(help_request).to have_response
+
+    # check Your Patients list for old / new tasks
+    your_patients.return
+
+    expect(patient_400).to_not have_help_request
+    expect(patient_400).to have_tasks_completed
   end
 end

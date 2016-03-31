@@ -1,10 +1,18 @@
 # filename: ./spec/support/nurse/tasks/non_adherence_call_helper.rb
 
+require './lib/pages/your_patients'
 require './lib/pages/nurse_tasks'
 require './lib/pages/nurse_tasks/non_adherence_call'
+require './lib/pages/nurse_tasks/lack_of_connectivity_call'
 
 def non_adherence_call
   @non_adherence_call ||= NurseTasks::NonAdherenceCall.new(
+    locale: 'english'
+  )
+end
+
+def lack_of_connectivity_call
+  @lack_of_connectivity_call ||= NurseTasks::LackOfConnectivityCall.new(
     locale: 'english'
   )
 end
@@ -28,6 +36,10 @@ end
 
 def pt_420_nurse_tasks
   @pt_420_nurse_tasks ||= NurseTasks.new(pt_id: 420)
+end
+
+def patient_420
+  @patient_420 ||= YourPatients.new(pt_id: 420)
 end
 
 def pt_421_nurse_tasks

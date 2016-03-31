@@ -3,7 +3,7 @@
 require './spec/support/nurse/tasks_helper'
 require './spec/support/nurse/tasks/non_connectivity_call_helper'
 
-feature  'Nurse, Non-connectivity call', metadata: :first do
+feature 'Nurse, Non-connectivity call', metadata: :first do
   background { english_nurse.sign_in }
 
   scenario 'Contacts supervisor for non-connectivity task' do
@@ -49,7 +49,6 @@ feature 'Nurse, Non-connectivity call', metadata: :not_first do
     pt_803_nurse_tasks.open
 
     expect(pt_803_nurse_tasks).to have_overdue_tasks
-    # check css in progress-bar
   end
 
   scenario 'Nurse cancels out of resolution form' do
@@ -75,5 +74,19 @@ feature 'Nurse, Non-connectivity call', metadata: :not_first do
     expect(pt_410_nurse_tasks).to have_no_tasks_in_count
 
     expect(lack_of_connectivity_call).to_not be_active
+
+    # contact information for completeness
+    clinical_summary.open
+    contact_information.open
+
+    expect(contact_information).to have_non_connectivity_call
+
+    expect(lack_of_connectivity_call).to have_response
+
+    # check Your Patients list for old / new tasks
+    your_patients.return
+
+    expect(patient_410).to_not have_lack_of_connectivity_task
+    expect(patient_410).to have_tasks_completed
   end
 end

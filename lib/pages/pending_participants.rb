@@ -24,6 +24,7 @@ class PendingParticipants
   end
 
   def assign_nurse
+    select 'Nurse-400, English', from: 'participant[nurse_id]'
     click_on 'Save'
   end
 

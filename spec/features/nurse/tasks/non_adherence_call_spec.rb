@@ -74,7 +74,6 @@ feature 'Nurse, Non-adherence call', metadata: :not_first do
     pt_804_nurse_tasks.open
 
     expect(pt_804_nurse_tasks).to have_overdue_tasks
-    # check css
   end
 
   scenario 'Nurse cancels out of task resolution form, then resolves task' do
@@ -83,15 +82,32 @@ feature 'Nurse, Non-adherence call', metadata: :not_first do
     expect(pt_420_nurse_tasks).to have_one_task_in_count
     expect(non_adherence_call).to be_active
 
+    # cancel out of form
     non_adherence_call.mark_resolved
     navigation.cancel
 
     expect(non_adherence_call).to be_active
 
+    # complete form
     non_adherence_call.mark_resolved
     non_adherence_call.complete_resolution_form
 
     expect(pt_420_nurse_tasks).to have_no_tasks_in_count
+
     expect(non_adherence_call).to_not be_active
+
+    # check contact information for completeness
+    clinical_summary.open
+    contact_information.open
+
+    expect(contact_information).to have_non_adherence_call
+
+    expect(non_adherence_call).to have_response
+
+    # check Your Patients list for old / new tasks
+    your_patients.return
+
+    expect(patient_420).to_not have_non_adherence_task
+    expect(patient_420).to have_tasks_completed
   end
 end

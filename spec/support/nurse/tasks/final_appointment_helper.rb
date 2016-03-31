@@ -2,6 +2,7 @@
 
 require './lib/pages/your_patients'
 require './lib/pages/nurse_tasks'
+require './lib/pages/supervisor_page'
 
 def pt_801_nurse_tasks
   @pt_801_nurse_tasks ||= NurseTasks.new(

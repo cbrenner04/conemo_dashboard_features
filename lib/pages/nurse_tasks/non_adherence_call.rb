@@ -33,8 +33,13 @@ class NurseTasks
       options.delete_at(6)
       options.delete_at(6)
       options.delete_at(-1)
-      select_list_item(options.sample)
+      @response ||= options.sample
+      select_list_item(@response)
       navigation.submit
+    end
+
+    def has_response?
+      has_text? @response
     end
 
     def contact_supervisor

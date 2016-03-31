@@ -3,7 +3,7 @@
 require './spec/support/nurse/tasks_helper'
 require './spec/support/nurse/tasks/follow_up_week_three_helper'
 
-feature 'Nurse, Participant Tasks, Follow up call week three', metadata: :not_first do
+feature 'Nurse, Participant Tasks, Follow up week 3', metadata: :not_first do
   background { english_nurse.sign_in }
 
   scenario 'Nurse sees number of days since task was due' do

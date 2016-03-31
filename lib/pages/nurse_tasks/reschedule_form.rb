@@ -13,8 +13,7 @@ class NurseTasks
 
     def complete
       sleep(1)
-      selector[2].click
-      select_list_item((Date.today + 1).strftime('%-d'))
+      select_next_date(2)
       navigation.submit
     end
 

@@ -2,6 +2,14 @@
 
 require './spec/support/nurse/your_patients_helper'
 
+feature 'English Nurse, Your Patients', metadata: :first do
+  scenario 'Nurse sees participants assigned to them in Your Patients table' do
+    english_nurse.sign_in
+
+    expect(your_patients).to have_assigned_patients
+  end
+end
+
 feature 'English Nurse, Your Patients', metadata: :not_first do
   background { english_nurse.sign_in }
 

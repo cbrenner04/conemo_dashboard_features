@@ -72,8 +72,19 @@ module NurseTasksForms
   end
 
   def select_next_date(num)
+    selector[num - 1].click
+    select_list_item((Date.today + 1).strftime('%B'))
     selector[num].click
-    select_list_item((Date.today + 1).strftime('%-d'))
+    if (Date.today + 1).strftime('%-d') == '1'
+      first('.select2-result-label', text: '1').click
+    elsif (Date.today + 1).strftime('%-d') == '2'
+      first('.select2-result-label', text: '2').click
+    elsif (Date.today + 1).strftime('%-d') == '3' &&
+          !has_css?('.select2-result-label', text: '3', count: 1)
+      first('.select2-result-label', text: '3').click
+    else
+      select_list_item((Date.today + 1).strftime('%-d'))
+    end
   end
 
   def has_task_form_headings?(num)

@@ -132,7 +132,7 @@ class SupervisorPage
     def dst_time(time)
       if Time.now.dst? && time.dst?
         time
-      elsif !Time.now.dst? && time.dst? 
+      elsif !Time.now.dst? && time.dst?
         time + (1 * 60 * 60)
       else
         (time - (1 * 60 * 60))

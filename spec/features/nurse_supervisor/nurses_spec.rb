@@ -27,7 +27,6 @@ feature 'Nurse Supervisor, Nurses', metadata: :first do
   end
 end
 
-
 feature 'Nurse Supervisor, Nurses', metadata: :not_first do
   background { english_supervisor.sign_in }
 
@@ -40,7 +39,6 @@ feature 'Nurse Supervisor, Nurses', metadata: :not_first do
   end
 
   feature 'Nurse Supervisor, Supervision session' do
-
     scenario 'Nurse Supervisor reviews previous sessions' do
       nurse_404.review_supervision_sessions
 

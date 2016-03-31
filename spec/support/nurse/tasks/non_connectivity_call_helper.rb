@@ -1,5 +1,6 @@
 # filename: ./spec/support/nurse/tasks/non_connectivity_call_helper.rb
 
+require './lib/pages/your_patients'
 require './lib/pages/nurse_tasks'
 require './lib/pages/nurse_tasks/lack_of_connectivity_call'
 
@@ -19,6 +20,10 @@ end
 
 def pt_410_nurse_tasks
   @pt_410_nurse_tasks ||= NurseTasks.new(pt_id: 410)
+end
+
+def patient_410
+  @patient_410 ||= YourPatients.new(pt_id: 410)
 end
 
 def pt_411_nurse_tasks

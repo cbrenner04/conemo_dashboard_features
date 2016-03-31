@@ -47,9 +47,7 @@ end
 
 def spanish_call_to_schedule_final
   @spanish_call_to_schedule_final ||=
-    NurseTasks::CallToScheduleFinalAppointment.new(
-      locale: 'spanish'
-    )
+    NurseTasks::CallToScheduleFinalAppointment.new(locale: 'spanish')
 end
 
 def spanish_final_appointment
@@ -64,9 +62,7 @@ def spanish_lack_of_connectivity_call
 end
 
 def spanish_help_request
-  @spanish_help_request ||= NurseTasks::HelpRequest.new(
-    locale: 'spanish'
-  )
+  @spanish_help_request ||= NurseTasks::HelpRequest.new(locale: 'spanish')
 end
 
 def spanish_non_adherence_call
@@ -75,9 +71,7 @@ def spanish_non_adherence_call
 end
 
 def spanish_cancel_form
-  @spanish_cancel_form ||= NurseTasks::CancelForm.new(
-    locale: 'spanish'
-  )
+  @spanish_cancel_form ||= NurseTasks::CancelForm.new(locale: 'spanish')
 end
 
 def spanish_reschedule_form

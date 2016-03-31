@@ -139,7 +139,8 @@ feature 'Nurse, Participant Contact Information', metadata: :not_first do
   end
 end
 
-feature 'Spanish Nurse, Participant Contact Information', metadata: :not_first do
+feature 'Spanish Nurse, Participant Contact Information',
+        metadata: :not_first do
   scenario 'Spanish nurse sees correct translations' do
     spanish_nurse.sign_in
     pt_500_nurse_tasks.open
@@ -159,12 +160,13 @@ feature 'Spanish Nurse, Participant Contact Information', metadata: :not_first d
     # # not yet implemented
     # expect(pt_500_contact_info).to have_contact_dates
 
-    # # not yet implemented
+    # # not completed
     # expect(pt_500_contact_info).to have_timeline_headings
   end
 end
 
-feature 'Portuguese Nurse, Participant Contact Information', metadata: :not_first do
+feature 'Portuguese Nurse, Participant Contact Information',
+        metadata: :not_first do
   scenario 'Portuguese nurse sees correct translations' do
     portuguese_nurse.sign_in
     pt_600_nurse_tasks.open
@@ -184,7 +186,7 @@ feature 'Portuguese Nurse, Participant Contact Information', metadata: :not_firs
     # # not yet implemented
     # expect(pt_600_contact_info).to have_contact_dates
 
-    # # not yet implemented
+    # # not completed
     # expect(pt_600_contact_info).to have_timeline_headings
   end
 end
