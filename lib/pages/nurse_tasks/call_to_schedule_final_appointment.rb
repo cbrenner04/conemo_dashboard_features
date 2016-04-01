@@ -61,8 +61,19 @@ class NurseTasks
 
     def update_contact_at_to_today
       sleep(1)
+      selector[1].click
+      select_list_item((Date.today + 1).strftime('%B'))
       selector[2].click
-      select_list_item(Date.today.strftime('%-d'))
+      if Date.today.strftime('%-d') == '1'
+        first('.select2-result-label', text: '1').click
+      elsif Date.today.strftime('%-d') == '2'
+        first('.select2-result-label', text: '2').click
+      elsif Date.today.strftime('%-d') == '3' &&
+            !has_css?('.select2-result-label', text: '3', count: 1)
+        first('.select2-result-label', text: '3').click
+      else
+        select_list_item(Date.today.strftime('%-d'))
+      end
     end
 
     def toggle_options_list

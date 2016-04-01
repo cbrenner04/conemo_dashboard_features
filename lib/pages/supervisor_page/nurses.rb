@@ -30,7 +30,7 @@ class SupervisorPage
       nurse_panel_heading
         .has_css?('small',
                   text: 'Last supervision session: ' \
-                        "#{@supervision_date.strftime('%B %-d, %Y')} " \
+                        "#{@supervision_date.strftime('%B %d, %Y')} " \
                         "#{dst_time(@supervision_time).strftime('%H')}")
     end
 
@@ -38,7 +38,7 @@ class SupervisorPage
       nurse_panel_heading
         .has_css?('.text-warning',
                   text: 'Last supervision session: ' \
-                        "#{@supervision_date.strftime('%B %-d, %Y')} " \
+                        "#{@supervision_date.strftime('%B %d, %Y')} " \
                         "#{dst_time(@supervision_time).strftime('%H')}")
     end
 
@@ -46,7 +46,7 @@ class SupervisorPage
       nurse_panel_heading
         .has_css?('.text-danger',
                   text: 'Last supervision session: ' \
-                        "#{@supervision_date.strftime('%B %-d, %Y')} " \
+                        "#{@supervision_date.strftime('%B %d, %Y')} " \
                         "#{dst_time(@supervision_time).strftime('%H')}")
     end
 

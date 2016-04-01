@@ -47,7 +47,7 @@ class NurseTasks
     end
 
     def visible?
-      has_css?('h1', text: confirmation_call_title)
+      has_text? confirmation_call_title
     end
 
     def enter_next_contact_date

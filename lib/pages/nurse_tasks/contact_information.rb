@@ -27,7 +27,7 @@ class NurseTasks
     end
 
     def on_page?
-      has_css?('h2', text: contact_information_title)
+      has_css?('.timeline')
     end
 
     def visible?
@@ -59,7 +59,8 @@ class NurseTasks
     end
 
     def has_smartphone_information?
-      has_text? "#{smartphone_information_title}: 12345678901"
+      has_text? "#{phone_number_header}: 12345678901\n" \
+                "#{serial_number_header}: 123#{@id}"
     end
 
     def has_confirmation_call?

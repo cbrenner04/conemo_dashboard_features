@@ -17,41 +17,44 @@ feature 'Nurse, Participant Contact Information', metadata: :not_first do
 
   scenario 'Nurse visits participant contact information' do
     pt_300_nurse_tasks.open
-    pt_300_clinical_summary_1.open
-    pt_300_contact_info.open
+    # pt_300_clinical_summary_1.open
+    # pt_300_contact_info.open
 
     expect(pt_300_contact_info).to be_visible
   end
 
   scenario 'Nurse cancels out of edit of participant information' do
     pt_301_nurse_tasks.open
-    pt_301_clinical_summary.open
-    pt_301_contact_info.open
+    # pt_301_clinical_summary.open
+    # pt_301_contact_info.open
     pt_301_contact_info.select_edit_contact_information
+    sleep(1)
     navigation.cancel
+    find('a', text: 'Tasks').click # remove when fixed
 
     expect(pt_301_contact_info).to be_visible
   end
 
   scenario 'Nurse edits participant information' do
     pt_301_nurse_tasks.open
-    pt_301_clinical_summary.open
-    pt_301_contact_info.open
+    # pt_301_clinical_summary.open
+    # pt_301_contact_info.open
     pt_301_contact_info.select_edit_contact_information
     pt_301_contact_info.select_health_unit
     navigation.submit
+    find('a', text: 'Tasks').click # remove when fixed
 
     expect(pt_301_contact_info).to be_on_page
   end
 
   scenario 'Nurse cancels out of edit of smartphone information' do
     pt_310_nurse_tasks.open
-    pt_301_clinical_summary.open
-    pt_310_contact_info.open
+    # pt_301_clinical_summary.open
+    # pt_310_contact_info.open
     pt_310_contact_info.select_edit_smartphone_information
     navigation.cancel
-    pt_301_clinical_summary.open
-    pt_310_contact_info.open
+    # pt_301_clinical_summary.open
+    # pt_310_contact_info.open
 
     expect(pt_310_contact_info).to be_visible
 
@@ -60,14 +63,14 @@ feature 'Nurse, Participant Contact Information', metadata: :not_first do
 
   scenario 'Nurse enters smartphone information' do
     pt_302_nurse_tasks.open
-    pt_302_clinical_summary.open
-    pt_302_contact_info.open
+    # pt_302_clinical_summary.open
+    # pt_302_contact_info.open
     pt_302_contact_info.select_edit_smartphone_information
     pt_302_contact_info.enter_smartphone_number
     pt_302_contact_info.enter_phone_id
     navigation.submit
-    pt_302_clinical_summary.open
-    pt_302_contact_info.open
+    # pt_302_clinical_summary.open
+    # pt_302_contact_info.open
 
     expect(pt_302_contact_info).to have_smartphone_information
   end
@@ -85,7 +88,7 @@ feature 'Nurse, Participant Contact Information', metadata: :not_first do
     pt_342_clinical_summary.open
     pt_342_contact_info_1.open
 
-    expect(pt_342_contact_info_1).to be_on_page
+    expect(confirmation_call).to be_visible
   end
 
   scenario 'Nurse edits initial in person appointment' do
@@ -164,17 +167,18 @@ feature 'Spanish Nurse, Participant Contact Information',
   scenario 'Spanish nurse sees correct translations' do
     spanish_nurse.sign_in
     pt_500_nurse_tasks.open
+
+    expect(pt_500_contact_info).to have_contact_information_title
+
+    # # not yet implemented
+    # expect(pt_500_contact_info).to have_contact_information_table_headings
+
+    expect(pt_500_contact_info).to have_smartphone_information_title
+
     pt_500_clinical_summary_1.open
     pt_500_contact_info.open
 
     expect(pt_500_contact_info).to be_on_page
-
-    expect(pt_500_contact_info).to have_contact_information_title
-
-    expect(pt_500_contact_info).to have_smartphone_information_title
-
-    # # not yet implemented
-    # expect(pt_500_contact_info).to have_contact_information_table_headings
 
     expect(pt_500_contact_info).to have_timeline_titles
 
@@ -191,18 +195,18 @@ feature 'Portuguese Nurse, Participant Contact Information',
   scenario 'Portuguese nurse sees correct translations' do
     portuguese_nurse.sign_in
     pt_600_nurse_tasks.open
-    pt_600_clinical_summary_1.open
-    pt_600_contact_info.open
-
-    expect(pt_600_contact_info).to be_on_page
 
     expect(pt_600_contact_info).to have_contact_information_title
-
-    expect(pt_600_contact_info).to have_smartphone_information_title
 
     # # not yet implemented
     # expect(pt_600_contact_info).to have_contact_information_table_headings
 
+    expect(pt_600_contact_info).to have_smartphone_information_title
+
+    pt_600_clinical_summary_1.open
+    pt_600_contact_info.open
+
+    sleep(1)
     expect(pt_600_contact_info).to have_timeline_titles
 
     # # not yet implemented

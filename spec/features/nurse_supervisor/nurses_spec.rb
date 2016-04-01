@@ -146,7 +146,7 @@ feature 'Nurse Supervisor, Nurses', metadata: :not_first do
       nurse_400.select
       pt_300_nurse_tasks.open
       # pt_300_clinical_summary_2.open # clinical summary currently first page
-      pt_300_contact_info.open
+      # pt_300_contact_info.open
 
       expect(pt_300_contact_info).to be_visible
     end
@@ -156,7 +156,7 @@ feature 'Nurse Supervisor, Nurses', metadata: :not_first do
       nurse_400.select
       pt_301_nurse_tasks.open
       # pt_301_clinical_summary_1.open # clinical summary currently first page
-      pt_301_contact_info_1.open
+      # pt_301_contact_info_1.open
       pt_301_contact_info_1.select_edit_contact_information
       pt_301_contact_info_1.select_health_unit
       navigation.submit
