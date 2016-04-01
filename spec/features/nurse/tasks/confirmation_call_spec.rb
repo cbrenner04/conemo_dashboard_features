@@ -94,6 +94,7 @@ feature 'Nurse, Participant Tasks, Confirmation Call', metadata: :not_first do
     expect(initial_in_person_appt).to be_scheduled
 
     # check contact information page for completeness
+    clinical_summary.open
     contact_information.open
 
     expect(contact_information).to have_confirmation_call

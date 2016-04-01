@@ -39,6 +39,7 @@ feature 'Nurse, Participant Tasks', metadata: :not_first do
       expect(pt_451_nurse_tasks).to have_no_tasks_in_count
 
       # check contact information for completed task
+      clinical_summary.open
       contact_information.open
 
       expect(contact_information).to have_phone_additional_contact
@@ -49,6 +50,7 @@ feature 'Nurse, Participant Tasks', metadata: :not_first do
       additional_contact.create_for_in_person
 
       # check contact information for completed task
+      clinical_summary.open
       contact_information.open
 
       expect(contact_information).to have_in_person_additional_contact

@@ -67,18 +67,18 @@ def pt_343_nurse_tasks
   @pt_343_nurse_tasks ||= NurseTasks.new(pt_id: 343)
 end
 
-def pt_343_clinical_summary
-  @pt_343_clinical_summary ||= NurseTasks::ClinicalSummary.new(
+def pt_343_clinical_summary_2
+  @pt_343_clinical_summary_2 ||= NurseTasks::ClinicalSummary.new(
     locale: 'english'
   )
 end
 
-def pt_342_nurse_tasks
-  @pt_342_nurse_tasks ||= NurseTasks.new(pt_id: 342)
+def pt_342_nurse_tasks_4
+  @pt_342_nurse_tasks_4 ||= NurseTasks.new(pt_id: 342)
 end
 
-def pt_342_clinical_summary
-  @pt_342_clinical_summary ||= NurseTasks::ClinicalSummary.new(
+def pt_342_clinical_summary_1
+  @pt_342_clinical_summary_1 ||= NurseTasks::ClinicalSummary.new(
     locale: 'english'
   )
 end
@@ -87,8 +87,8 @@ def pt_300_nurse_tasks
   @pt_300_nurse_tasks ||= NurseTasks.new(pt_id: 300)
 end
 
-def pt_300_clinical_summary
-  @pt_300_clinical_summary ||= NurseTasks::ClinicalSummary.new(
+def pt_300_clinical_summary_2
+  @pt_300_clinical_summary_2 ||= NurseTasks::ClinicalSummary.new(
     locale: 'english'
   )
 end
@@ -103,14 +103,14 @@ def pt_301_nurse_tasks
   @pt_301_nurse_tasks ||= NurseTasks.new(pt_id: 301)
 end
 
-def pt_301_clinical_summary
-  @pt_301_clinical_summary ||= NurseTasks::ClinicalSummary.new(
+def pt_301_clinical_summary_1
+  @pt_301_clinical_summary_1 ||= NurseTasks::ClinicalSummary.new(
     locale: 'english'
   )
 end
 
-def pt_301_contact_info
-  @pt_301_contact_info ||= NurseTasks::ContactInformation.new(
+def pt_301_contact_info_1
+  @pt_301_contact_info_1 ||= NurseTasks::ContactInformation.new(
     id: 301
   )
 end

@@ -121,31 +121,31 @@ feature 'Nurse Supervisor, Nurses', metadata: :not_first do
       3.times { navigation.scroll_down }
       nurse_400.select
       pt_343_nurse_tasks.open
-      # pt_343_clinical_summary.open # clinical summary currently first page
+      # pt_343_clinical_summary_2.open # clinical summary currently first page
 
-      expect(pt_343_clinical_summary).to have_messages
+      expect(pt_343_clinical_summary_2).to have_messages
 
-      pt_343_clinical_summary.show_number_of_logins
+      pt_343_clinical_summary_2.show_number_of_logins
 
-      expect(pt_343_clinical_summary).to have_correct_logins
+      expect(pt_343_clinical_summary_2).to have_correct_logins
     end
 
     scenario 'Nurse Supervisor sees all Nurse notes' do
       # potential for a dependency issue
       2.times { navigation.scroll_down }
       nurse_400.select
-      pt_342_nurse_tasks.open
+      pt_342_nurse_tasks_4.open
 
-      expect(pt_342_clinical_summary).to have_notes_headers
+      expect(pt_342_clinical_summary_1).to have_notes_headers
 
-      expect(pt_342_clinical_summary).to have_contact_dates
+      expect(pt_342_clinical_summary_1).to have_contact_dates
     end
 
     scenario 'Nurse Supervisor sees patient contact information' do
       2.times { navigation.scroll_down }
       nurse_400.select
       pt_300_nurse_tasks.open
-      # pt_300_clinical_summary.open # clinical summary currently first page
+      # pt_300_clinical_summary_2.open # clinical summary currently first page
       pt_300_contact_info.open
 
       expect(pt_300_contact_info).to be_visible
@@ -155,13 +155,13 @@ feature 'Nurse Supervisor, Nurses', metadata: :not_first do
       2.times { navigation.scroll_down }
       nurse_400.select
       pt_301_nurse_tasks.open
-      # pt_301_clinical_summary.open # clinical summary currently first page
-      pt_301_contact_info.open
-      pt_301_contact_info.select_edit_contact_information
-      pt_301_contact_info.select_health_unit
+      # pt_301_clinical_summary_1.open # clinical summary currently first page
+      pt_301_contact_info_1.open
+      pt_301_contact_info_1.select_edit_contact_information
+      pt_301_contact_info_1.select_health_unit
       navigation.submit
 
-      expect(pt_301_contact_info).to be_on_page
+      expect(pt_301_contact_info_1).to be_on_page
     end
   end
 end

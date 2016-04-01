@@ -37,7 +37,6 @@ feature 'Nurse, Initial in person appointment', metadata: :first do
     expect(clinical_summary).to have_first_appt_notes_visible
 
     # check contact information page for completeness
-    clinical_summary.return_to_tasks
     contact_information.open
 
     expect(contact_information).to have_initial_appointment
