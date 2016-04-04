@@ -195,7 +195,31 @@ feature 'Spanish Nurse, Your Patients', metadata: :not_first do
     expect(spanish_patients).to have_assigned_patients
   end
 
-  scenario 'Nurse sees correct translations'
+  scenario 'Nurse sees correct translations' do
+    expect(spanish_patients).to be_visible
+
+    expect(spanish_patients).to have_table_headers
+
+    expect(spanish_patients).to have_key
+
+    expect(patient_501).to have_lack_of_connectivity_task
+
+    expect(patient_501).to have_initial_appointment
+
+    expect(patient_501).to have_follow_up_week_1
+
+    expect(patient_501).to have_follow_up_week_3
+
+    expect(patient_501).to have_call_to_schedule_final_appt
+
+    expect(patient_501).to have_final_appointment
+
+    expect(patient_501).to have_help_request
+
+    expect(patient_501).to have_confirmation_call
+
+    expect(patient_502).to have_non_adherence_task
+  end
 end
 
 feature 'Portuguese Nurse, Your Patients' do
@@ -205,5 +229,29 @@ feature 'Portuguese Nurse, Your Patients' do
     expect(portuguese_patients).to have_assigned_patients
   end
 
-  scenario 'Nurse sees correct translations'
+  scenario 'Nurse sees correct translations' do
+    expect(portuguese_patients).to be_visible
+
+    expect(portuguese_patients).to have_table_headers
+
+    expect(portuguese_patients).to have_key
+
+    expect(patient_601).to have_lack_of_connectivity_task
+
+    expect(patient_601).to have_initial_appointment
+
+    expect(patient_601).to have_follow_up_week_1
+
+    expect(patient_601).to have_follow_up_week_3
+
+    expect(patient_601).to have_call_to_schedule_final_appt
+
+    expect(patient_601).to have_final_appointment
+
+    expect(patient_601).to have_help_request
+
+    expect(patient_601).to have_confirmation_call
+
+    expect(patient_602).to have_non_adherence_task
+  end
 end

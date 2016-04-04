@@ -54,6 +54,34 @@ def patient_427
   @patient_427 ||= YourPatients.new(pt_id: 427)
 end
 
+def patient_501
+  @patient_501 ||= YourPatients.new(
+    pt_id: 501,
+    locale: 'spanish'
+  )
+end
+
+def patient_502
+  @patient_502 ||= YourPatients.new(
+    pt_id: 502,
+    locale: 'spanish'
+  )
+end
+
+def patient_601
+  @patient_601 ||= YourPatients.new(
+    pt_id: 601,
+    locale: 'portuguese'
+  )
+end
+
+def patient_602
+  @patient_602 ||= YourPatients.new(
+    pt_id: 602,
+    locale: 'portuguese'
+  )
+end
+
 def patient_703
   @patient_703 ||= YourPatients.new(pt_id: 703)
 end

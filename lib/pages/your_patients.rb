@@ -1,6 +1,7 @@
+Dir['./lib/pages/nurse_tasks/*.rb'].each { |file| require file }
 require './lib/pages/translations'
 require './lib/pages/translations/nurse_tasks'
-Dir['./lib/pages/nurse_tasks/*.rb'].each { |file| require file }
+require './lib/pages/translations/your_patients'
 
 # page object for active participants
 class YourPatients
@@ -8,6 +9,7 @@ class YourPatients
   include Capybara::DSL
   include Translations
   include Translations::NurseTasksTranslations
+  include Translations::YourPatientsTranslations
 
   def initialize(your_patients)
     @pt_id ||= your_patients[:pt_id]
@@ -98,6 +100,21 @@ class YourPatients
 
   def has_non_adherence_task?
     patient_row.has_text? non_adherence_call_title
+  end
+
+  def has_table_headers?
+    actual_headers = (0..2).map { |i| all('th')[i].text }
+    expect(actual_headers).to eq(expected_headers)
+  end
+
+  def has_key?
+    key = find('.table-condensed')
+    success_text = key.find('.success').text
+    expect(success_text).to eq('no active/overdue task')
+    info_text = key.find('.info').text
+    expect(info_text).to eq('active task')
+    danger_text = key.find('.danger').text
+    expect(danger_text).to eq('overdue task')
   end
 
   private
