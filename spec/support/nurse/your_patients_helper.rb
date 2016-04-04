@@ -14,14 +14,6 @@ def portuguese_patients
   @portuguese_patients ||= YourPatients.new(locale: 'portuguese')
 end
 
-def patient_1000
-  @patient_1000 ||= YourPatients.new(pt_id: 1000)
-end
-
-def patient_427
-  @patient_427 ||= YourPatients.new(pt_id: 427)
-end
-
 def patient_300
   @patient_300 ||= YourPatients.new(pt_id: 300)
 end
@@ -42,10 +34,6 @@ def patient_330
   @patient_330 ||= YourPatients.new(pt_id: 330)
 end
 
-def patient_703
-  @patient_703 ||= YourPatients.new(pt_id: 703)
-end
-
 def patient_344
   @patient_344 ||= YourPatients.new(pt_id: 344)
 end
@@ -60,6 +48,14 @@ end
 
 def patient_421
   @patient_421 ||= YourPatients.new(pt_id: 421)
+end
+
+def patient_427
+  @patient_427 ||= YourPatients.new(pt_id: 427)
+end
+
+def patient_703
+  @patient_703 ||= YourPatients.new(pt_id: 703)
 end
 
 def patient_706
@@ -96,4 +92,8 @@ end
 
 def patient_804
   @patient_804 ||= YourPatients.new(pt_id: 804)
+end
+
+def patient_1000
+  @patient_1000 ||= YourPatients.new(pt_id: 1000)
 end

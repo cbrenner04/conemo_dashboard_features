@@ -1,17 +1,8 @@
 # filename: ./spec/support/nurse/tasks/initial_appointment_helper.rb
 
-require './lib/pages/your_patients'
 require './lib/pages/nurse_tasks'
 require './lib/pages/supervisor_page'
-
-def pt_707_nurse_tasks
-  @pt_707_nurse_tasks ||= NurseTasks.new(
-    pt_id: 707,
-    contact_type: 'Initial in person appointment',
-    days_since_due: 'about 1 month',
-    tasks_count: 1
-  )
-end
+require './lib/pages/your_patients'
 
 def pt_311_nurse_tasks
   @pt_311_nurse_tasks ||= NurseTasks.new(pt_id: 311)
@@ -59,6 +50,15 @@ end
 
 def patient_319
   @patient_319 ||= YourPatients.new(pt_id: 319)
+end
+
+def pt_707_nurse_tasks
+  @pt_707_nurse_tasks ||= NurseTasks.new(
+    pt_id: 707,
+    contact_type: 'Initial in person appointment',
+    days_since_due: 'about 1 month',
+    tasks_count: 1
+  )
 end
 
 def nurse_supervisor_6

@@ -1,21 +1,13 @@
 # filename: ./spec/support/admin/pending_participants_helper.rb
 
 require './lib/pages/navigation'
-require './lib/pages/pending_participants/contact_information'
 require './lib/pages/pending_participants'
+require './lib/pages/pending_participants/contact_information'
 require './lib/pages/your_patients'
 
-def pending_participants
-  @pending_participants ||= PendingParticipants.new(locale: 'english')
-end
-
-def spanish_pending_participants
-  @spanish_pending_participants ||= PendingParticipants.new(locale: 'spanish')
-end
-
-def portuguese_pending_participants
-  @portuguese_pending_participants ||= PendingParticipants.new(
-    locale: 'portuguese'
+def contact_information
+  @contact_information ||= PendingParticipants::ContactInformation.new(
+    locale: 'english'
   )
 end
 
@@ -23,18 +15,8 @@ def navigation
   @navigation ||= Navigation.new(locale: 'english')
 end
 
-def spanish_navigation
-  @spanish_navigation ||= Navigation.new(locale: 'spanish')
-end
-
-def portuguese_navigation
-  @portuguese_navigation ||= Navigation.new(locale: 'portuguese')
-end
-
-def contact_information
-  @contact_information ||= PendingParticipants::ContactInformation.new(
-    locale: 'english'
-  )
+def pending_participants
+  @pending_participants ||= PendingParticipants.new(locale: 'english')
 end
 
 def spanish_contact_information
@@ -43,11 +25,29 @@ def spanish_contact_information
   )
 end
 
+def spanish_navigation
+  @spanish_navigation ||= Navigation.new(locale: 'spanish')
+end
+
+def spanish_pending_participants
+  @spanish_pending_participants ||= PendingParticipants.new(locale: 'spanish')
+end
+
 def portuguese_contact_information
   @portuguese_contact_information ||=
     PendingParticipants::ContactInformation.new(
       locale: 'portuguese'
     )
+end
+
+def portuguese_navigation
+  @portuguese_navigation ||= Navigation.new(locale: 'portuguese')
+end
+
+def portuguese_pending_participants
+  @portuguese_pending_participants ||= PendingParticipants.new(
+    locale: 'portuguese'
+  )
 end
 
 def new_participant_contact_information
@@ -69,6 +69,14 @@ def jane_doe
   )
 end
 
+def participant_100
+  @participant_100 ||= PendingParticipants.new(name: 'Last-100, First')
+end
+
+def participant_102
+  @participant_102 ||= PendingParticipants.new(name: 'Last-102, First')
+end
+
 def participant_2000
   @participant_2000 ||= PendingParticipants.new(name: 'Last-2000, First')
 end
@@ -88,14 +96,6 @@ end
 
 def patient_2000
   @patient_2000 ||= YourPatients.new(pt_id: 2000)
-end
-
-def participant_100
-  @participant_100 ||= PendingParticipants.new(name: 'Last-100, First')
-end
-
-def participant_102
-  @participant_102 ||= PendingParticipants.new(name: 'Last-102, First')
 end
 
 def participant_2001

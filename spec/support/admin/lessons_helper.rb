@@ -40,6 +40,20 @@ def new_slide
   )
 end
 
+def lesson_2_slide_1
+  @lesson_2_slide_1 ||= Lessons::Slides.new(
+    lesson: 'Lesson 2',
+    title: 'Slide 1'
+  )
+end
+
+def lesson_2_slide_2
+  @lesson_2_slide_2 ||= Lessons::Slides.new(
+    lesson: 'Lesson 2',
+    title: 'Slide 2'
+  )
+end
+
 def lesson_5
   @lesson_5 ||= Lessons.new(
     title: 'Lesson 5',
@@ -59,24 +73,17 @@ def lesson_7
   @lesson_7 ||= Lessons.new(title: 'Lesson 7')
 end
 
+def lesson_8_slide_3
+  @lesson_8_slide_3 ||= Lessons::Slides.new(
+    lesson: 'Lesson 8',
+    title: 'Slide 3'
+  )
+end
+
 def lesson_12
   @lesson_12 ||= Lessons.new(
     title: 'Lesson 12',
     new_title: 'Edited Lesson'
-  )
-end
-
-def lesson_2_slide_1
-  @lesson_2_slide_1 ||= Lessons::Slides.new(
-    lesson: 'Lesson 2',
-    title: 'Slide 1'
-  )
-end
-
-def lesson_2_slide_2
-  @lesson_2_slide_2 ||= Lessons::Slides.new(
-    lesson: 'Lesson 2',
-    title: 'Slide 2'
   )
 end
 
@@ -96,13 +103,6 @@ def lesson_15_slide_1
   @lesson_15_slide_1 ||= Lessons::Slides.new(
     lesson: 'Lesson 15',
     title: 'Slide 1'
-  )
-end
-
-def lesson_8_slide_3
-  @lesson_8_slide_3 ||= Lessons::Slides.new(
-    lesson: 'Lesson 8',
-    title: 'Slide 3'
   )
 end
 

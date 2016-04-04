@@ -1,17 +1,8 @@
 # filename: ./spec/support/nurse/tasks/follow_up_week_three_helper.rb
 
-require './lib/pages/your_patients'
 require './lib/pages/nurse_tasks'
 require './lib/pages/supervisor_page'
-
-def pt_709_nurse_tasks
-  @pt_709_nurse_tasks ||= NurseTasks.new(
-    pt_id: 709,
-    contact_type: 'Follow up call week 3',
-    days_since_due: '14 days',
-    tasks_count: 1
-  )
-end
+require './lib/pages/your_patients'
 
 def pt_329_nurse_tasks
   @pt_329_nurse_tasks ||= NurseTasks.new(pt_id: 329)
@@ -71,6 +62,15 @@ end
 
 def patient_336
   @patient_336 ||= YourPatients.new(pt_id: 336)
+end
+
+def pt_709_nurse_tasks
+  @pt_709_nurse_tasks ||= NurseTasks.new(
+    pt_id: 709,
+    contact_type: 'Follow up call week 3',
+    days_since_due: '14 days',
+    tasks_count: 1
+  )
 end
 
 def nurse_supervisor_5
