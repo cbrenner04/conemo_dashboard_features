@@ -121,7 +121,7 @@ feature 'Nurse Supervisor, Nurses', metadata: :not_first do
       3.times { navigation.scroll_down }
       nurse_400.select
       pt_343_nurse_tasks.open
-      # pt_343_clinical_summary_2.open # clinical summary currently first page
+      pt_343_clinical_summary_2.open
 
       expect(pt_343_clinical_summary_2).to have_messages
 
@@ -135,6 +135,7 @@ feature 'Nurse Supervisor, Nurses', metadata: :not_first do
       2.times { navigation.scroll_down }
       nurse_400.select
       pt_342_nurse_tasks_4.open
+      pt_342_clinical_summary_1.open
 
       expect(pt_342_clinical_summary_1).to have_notes_headers
 
@@ -145,8 +146,6 @@ feature 'Nurse Supervisor, Nurses', metadata: :not_first do
       2.times { navigation.scroll_down }
       nurse_400.select
       pt_300_nurse_tasks.open
-      # pt_300_clinical_summary_2.open # clinical summary currently first page
-      # pt_300_contact_info.open
 
       expect(pt_300_contact_info).to be_visible
     end
@@ -155,12 +154,11 @@ feature 'Nurse Supervisor, Nurses', metadata: :not_first do
       2.times { navigation.scroll_down }
       nurse_400.select
       pt_301_nurse_tasks.open
-      # pt_301_clinical_summary_1.open # clinical summary currently first page
-      # pt_301_contact_info_1.open
       pt_301_contact_info_1.select_edit_contact_information
       pt_301_contact_info_1.select_health_unit
       navigation.submit
 
+      # currently redirects to Pending Participant page so this will fail
       expect(pt_301_contact_info_1).to be_on_page
     end
   end

@@ -63,7 +63,6 @@ feature 'Nurse, Participant Tasks, Confirmation Call', metadata: :not_first do
     reschedule_form.complete
 
     expect(pt_304_nurse_tasks).to have_no_tasks_in_count
-    expect(confirmation_call).to be_scheduled
   end
 
   scenario 'Nurse cancels out of confirmation form' do
@@ -91,7 +90,6 @@ feature 'Nurse, Participant Tasks, Confirmation Call', metadata: :not_first do
 
     expect(pt_306_nurse_tasks).to have_no_tasks_in_count
     expect(confirmation_call).to be_complete
-    expect(initial_in_person_appt).to be_scheduled
 
     # check contact information page for completeness
     clinical_summary.open

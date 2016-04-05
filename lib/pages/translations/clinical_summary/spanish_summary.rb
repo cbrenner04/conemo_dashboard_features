@@ -4,8 +4,8 @@ module Translations
     module SpanishSummary
       def spanish_links
         @spanish_links ||= [
-          'participant contact information page',
-          'Sesiones'
+          'las tareas',
+          'participant contact information page'
         ]
       end
 

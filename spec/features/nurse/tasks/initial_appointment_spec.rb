@@ -27,9 +27,6 @@ feature 'Nurse, Initial in person appointment', metadata: :first do
 
     expect(pt_319_nurse_tasks).to have_no_tasks_in_count
     expect(initial_in_person_appt).to be_complete
-    expect(follow_up_week_1).to be_scheduled
-    expect(follow_up_week_3).to be_scheduled
-    expect(call_to_schedule_final_appointment).to be_scheduled
 
     # check clinical summary page for notes
     clinical_summary.open
@@ -110,7 +107,6 @@ feature 'Nurse, Initial in person appointment', metadata: :not_first do
     reschedule_form.complete
 
     expect(pt_318_nurse_tasks).to have_no_tasks_in_count
-    expect(initial_in_person_appt).to be_scheduled
   end
 
   scenario 'Nurse cancels out of confirmation form' do

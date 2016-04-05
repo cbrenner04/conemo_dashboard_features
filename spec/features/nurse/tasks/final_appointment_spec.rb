@@ -63,7 +63,6 @@ feature 'Nurse, Participant Tasks, Final appointment', metadata: :not_first do
     reschedule_form.complete
 
     expect(pt_345_nurse_tasks).to have_no_tasks_in_count
-    expect(final_appointment).to be_scheduled
   end
 
   scenario 'Nurse cancels confirmation form' do

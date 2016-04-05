@@ -23,17 +23,6 @@ feature 'Nurse, Non-adherence call', metadata: :first do
     expect(non_adherence_call).to be_active
     expect(pt_424_nurse_tasks).to have_previous_supervisor_contact
   end
-
-  scenario 'Nurse clears supervisor contact' do
-    pt_423_nurse_tasks.open
-
-    expect(non_adherence_call).to be_active
-    expect(pt_423_nurse_tasks).to have_previous_supervisor_contact
-
-    pt_423_nurse_tasks.clear_supervisor_contact
-
-    expect(pt_423_nurse_tasks).to have_no_previous_supervisor_contact
-  end
 end
 
 feature 'Nurse, Non-adherence call', metadata: :not_first do

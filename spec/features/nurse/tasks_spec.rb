@@ -11,6 +11,8 @@ feature 'Nurse, Participant Tasks', metadata: :not_first do
     expect(pt_1000_nurse_tasks).to have_participant_in_header
   end
 
+  scenario 'Nurse sees key'
+
   scenario 'Nurse sees correct task count with multiple due' do
     pt_1000_nurse_tasks.open
 
@@ -20,7 +22,7 @@ feature 'Nurse, Participant Tasks', metadata: :not_first do
   scenario 'Nurse sees empty progress bar' do
     pt_300_nurse_tasks.open
 
-    expect(pt_300_nurse_tasks).to have_nothing_in_progress_bar
+    expect(pt_300_nurse_tasks).to have_empty_progress_bar
   end
 
   feature 'Nurse, Additional Contact' do

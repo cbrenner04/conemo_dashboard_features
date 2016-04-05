@@ -24,6 +24,8 @@ feature 'Nurse, Clinical Summary', metadata: :not_first do
     expect(pt_343_nurse_tasks).to have_participant_in_header
   end
 
+  scenario 'Nurse sees key'
+
   scenario 'Nurse sees correct messages & logins' do
     pt_343_nurse_tasks.open
     pt_343_clinical_summary.open

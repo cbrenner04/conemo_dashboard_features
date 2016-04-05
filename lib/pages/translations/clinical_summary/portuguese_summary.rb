@@ -4,8 +4,8 @@ module Translations
     module PortugueseSummary
       def portuguese_links
         @portuguese_links ||= [
-          'participant contact information page',
-          'Sessões'
+          'as tarefas',
+          'participant contact information page'
         ]
       end
 

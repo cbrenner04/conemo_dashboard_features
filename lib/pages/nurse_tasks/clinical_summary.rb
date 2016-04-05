@@ -31,7 +31,7 @@ class NurseTasks
     end
 
     def visible?
-      has_css?('a', text: 'Lessons')
+      has_css?('th', text: 'Messages')
     end
 
     def return_to_tasks
@@ -132,7 +132,7 @@ class NurseTasks
 
     def has_links?
       visible?
-      actual_links = (3..4).map { |i| all('a')[i].text }
+      actual_links = (2..3).map { |i| all('a')[i].text }
       expect(actual_links).to eq(expected_links)
     end
 

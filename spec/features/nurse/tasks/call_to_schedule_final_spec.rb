@@ -22,7 +22,6 @@ feature 'Nurse, Call to schedule final appointment', metadata: :first do
 
     expect(pt_702_nurse_tasks).to have_no_tasks_in_count
     expect(call_to_schedule_final_appointment).to be_complete
-    expect(final_appointment).to be_scheduled
 
     # Check contact information for completeness
     clinical_summary.open
@@ -98,7 +97,6 @@ feature 'Nurse, Call to schedule final appointment', metadata: :not_first do
     reschedule_form.complete
 
     expect(pt_705_nurse_tasks).to have_no_tasks_in_count
-    expect(call_to_schedule_final_appointment).to be_scheduled
   end
 
   scenario 'Nurse cancels out of confirmation form' do

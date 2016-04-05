@@ -63,7 +63,6 @@ feature 'Nurse, Participant Tasks, Follow up week 3', metadata: :not_first do
     reschedule_form.complete
 
     expect(pt_333_nurse_tasks).to have_no_tasks_in_count
-    expect(follow_up_week_3).to be_scheduled
   end
 
   scenario 'Nurse cancels confirmation form' do
@@ -124,7 +123,6 @@ feature 'Nurse, Participant Tasks, Follow up week 3', metadata: :not_first do
 
     expect(pt_336_nurse_tasks).to have_no_tasks_in_count
     expect(follow_up_week_3).to be_complete
-    expect(call_to_schedule_final_appointment).to be_scheduled
 
     # check clinical summary page for notes
     clinical_summary.open

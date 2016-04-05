@@ -6,6 +6,7 @@ require './lib/pages/translations/clinical_summary'
 class NurseTasks
   include Capybara::DSL
   include NurseTasksForms
+  include Translations::NurseTasksTranslations
   include Translations::ClinicalSummaryTranslations
 
   def initialize(nurse_task)
@@ -72,12 +73,11 @@ class NurseTasks
     has_text? "#{@tasks_count} Tasks"
   end
 
-  def has_nothing_in_progress_bar?
-    has_css?('.progress') &&
-      has_no_css?('.progress-bar-future') &&
-      has_no_css?('.progress-bar-success') &&
-      has_no_css?('.progress-bar-warning') &&
-      has_no_css?('.progress-bar-danger')
+  def has_empty_progress_bar?
+    sched_tasks = [confirmation_call_title, initial_appointment_title,
+                   follow_up_week_one_title, follow_up_week_three_title,
+                   call_to_schedule_final_title, final_appointment_title]
+    sched_tasks.all? { |task| has_css?('.progress-bar-future', text: task) }
   end
 
   def has_participant_in_header?

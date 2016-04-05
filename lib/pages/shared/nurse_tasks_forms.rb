@@ -41,10 +41,6 @@ module NurseTasksForms
     has_no_css?('.panel', text: text)
   end
 
-  def has_scheduled_progress_bar_item?(text)
-    has_css?('.progress-bar-future', text: text)
-  end
-
   def has_active_progress_bar_item?(text)
     has_css?('.progress-bar-info', text: text)
   end
@@ -75,15 +71,11 @@ module NurseTasksForms
     selector[num - 1].click
     select_list_item((Date.today + 1).strftime('%B'))
     selector[num].click
-    if (Date.today + 1).strftime('%-d') == '1'
-      first('.select2-result-label', text: '1').click
-    elsif (Date.today + 1).strftime('%-d') == '2'
-      first('.select2-result-label', text: '2').click
-    elsif (Date.today + 1).strftime('%-d') == '3' &&
-          !has_css?('.select2-result-label', text: '3', count: 1)
-      first('.select2-result-label', text: '3').click
+    tomorrow_int = (Date.today + 1).strftime('%-d').to_i
+    if tomorrow_int < 10
+      first('.select2-result-label', text: tomorrow_int).click
     else
-      select_list_item((Date.today + 1).strftime('%-d'))
+      select_list_item(tomorrow_int)
     end
   end
 

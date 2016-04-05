@@ -23,17 +23,6 @@ feature 'Nurse, Non-connectivity call', metadata: :first do
     expect(lack_of_connectivity_call).to be_active
     expect(pt_412_nurse_tasks).to have_previous_supervisor_contact
   end
-
-  scenario 'Nurse clears supervisor contact' do
-    pt_413_nurse_tasks.open
-
-    expect(lack_of_connectivity_call).to be_active
-    expect(pt_413_nurse_tasks).to have_previous_supervisor_contact
-
-    pt_413_nurse_tasks.clear_supervisor_contact
-
-    expect(pt_413_nurse_tasks).to have_no_previous_supervisor_contact
-  end
 end
 
 feature 'Nurse, Non-connectivity call', metadata: :not_first do

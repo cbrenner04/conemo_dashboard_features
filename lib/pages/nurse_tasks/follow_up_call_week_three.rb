@@ -12,11 +12,6 @@ class NurseTasks
       @locale ||= follow_up_call_week_three[:locale]
     end
 
-    def scheduled?
-      has_no_list_item?(follow_up_week_three_title) &&
-        has_scheduled_progress_bar_item?(follow_up_week_three_title)
-    end
-
     def active?
       has_list_item?(follow_up_week_three_title) &&
         has_active_progress_bar_item?(follow_up_week_three_title)

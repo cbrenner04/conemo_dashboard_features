@@ -12,11 +12,6 @@ class NurseTasks
       @locale ||= final_appointment[:locale]
     end
 
-    def scheduled?
-      has_no_list_item?(final_appointment_title) &&
-        has_scheduled_progress_bar_item?(final_appointment_title)
-    end
-
     def active?
       has_list_item?(final_appointment_title) &&
         has_active_progress_bar_item?(final_appointment_title)

@@ -13,11 +13,6 @@ class NurseTasks
       @locale ||= call_to_schedule_final_appointment[:locale]
     end
 
-    def scheduled?
-      has_no_list_item?(call_to_schedule_final_title) &&
-        has_scheduled_progress_bar_item?(call_to_schedule_final_title)
-    end
-
     def active?
       has_list_item?(call_to_schedule_final_title) &&
         has_active_progress_bar_item?(call_to_schedule_final_title)
@@ -64,13 +59,9 @@ class NurseTasks
       selector[1].click
       select_list_item((Date.today + 1).strftime('%B'))
       selector[2].click
-      if Date.today.strftime('%-d') == '1'
-        first('.select2-result-label', text: '1').click
-      elsif Date.today.strftime('%-d') == '2'
-        first('.select2-result-label', text: '2').click
-      elsif Date.today.strftime('%-d') == '3' &&
-            !has_css?('.select2-result-label', text: '3', count: 1)
-        first('.select2-result-label', text: '3').click
+      today_int = (Date.today.strftime('%-d')).to_i
+      if today_int < 9
+        first('.select2-result-label', text: today_int).click
       else
         select_list_item(Date.today.strftime('%-d'))
       end

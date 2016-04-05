@@ -13,6 +13,8 @@ end
 feature 'English Nurse, Your Patients', metadata: :not_first do
   background { english_nurse.sign_in }
 
+  scenario 'Nurse sees key'
+
   scenario 'Nurse sees participants assigned to them in Your Patients table' do
     expect(your_patients).to have_assigned_patients
   end

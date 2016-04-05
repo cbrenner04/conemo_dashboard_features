@@ -23,17 +23,6 @@ feature 'Nurse, Participant Tasks, Help Request', metadata: :first do
     expect(help_request).to be_active
     expect(pt_402_nurse_tasks).to have_previous_supervisor_contact
   end
-
-  scenario 'Nurse clears supervisor contact' do
-    pt_403_nurse_tasks.open
-
-    expect(help_request).to be_active
-    expect(pt_403_nurse_tasks).to have_previous_supervisor_contact
-
-    pt_403_nurse_tasks.clear_supervisor_contact
-
-    expect(pt_403_nurse_tasks).to have_no_previous_supervisor_contact
-  end
 end
 
 feature 'Nurse, Participant Tasks, Help request', metadata: :not_first do

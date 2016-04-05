@@ -28,6 +28,10 @@ def patient_341
   @patient_341 ||= YourPatients.new(pt_id: 341)
 end
 
+def pt_345_nurse_tasks
+  @pt_345_nurse_tasks ||= NurseTasks.new(pt_id: 345)
+end
+
 def pt_801_nurse_tasks
   @pt_801_nurse_tasks ||= NurseTasks.new(
     pt_id: 801,
