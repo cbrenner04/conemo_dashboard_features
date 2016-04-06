@@ -14,7 +14,7 @@ class NurseTasks
     end
 
     def open
-      click_on "#{register} #{additional_contact_title}"
+      click_on "#{register} #{additional_contact_title.downcase}"
     end
 
     def create_for_call

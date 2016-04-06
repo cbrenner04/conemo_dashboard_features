@@ -29,6 +29,10 @@ class Navigation
     execute_script('window.scrollBy(0,500)')
   end
 
+  def scroll_up
+    execute_script('window.scrollBy(0,-250)')
+  end
+
   private
 
   def has_nav_button?(button)

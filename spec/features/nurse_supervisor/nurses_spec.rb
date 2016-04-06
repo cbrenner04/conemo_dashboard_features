@@ -108,10 +108,33 @@ feature 'Nurse Supervisor, Nurses', metadata: :not_first do
   end
 
   feature 'Nurse Supervisor, Contact Supervisor Notifications' do
-    scenario 'Nurse Supervisor sees for each nurse'
-    scenario 'Nurse Supervisor sees across patients'
-    scenario 'Nurse Supervisor sees for individual patient'
-    scenario 'Nurse Supervisor clears contact supervisor notification'
+    scenario 'Nurse Supervisor sees for nurse' do
+      expect(nurse_400).to have_contact_notification
+    end
+
+    scenario 'Nurse Supervisor sees across patients' do
+      nurse_400.select
+
+      expect(patient_402).to have_supervisor_contact_notification
+    end
+
+    scenario 'Nurse Supervisor sees for individual patient' do
+      nurse_400.select
+      pt_403_tasks.open
+
+      expect(pt_403_tasks).to have_previous_supervisor_contact
+    end
+
+    scenario 'Nurse Supervisor clears contact supervisor notification' do
+      nurse_400.select
+      pt_412_tasks.open
+
+      expect(pt_412_tasks).to have_previous_supervisor_contact
+
+      pt_412_tasks.clear_supervisor_contact
+
+      expect(pt_412_tasks).to_not have_previous_supervisor_contact
+    end
   end
 
   feature 'Nurse Supervisor, Nurse specific tasks and information' do

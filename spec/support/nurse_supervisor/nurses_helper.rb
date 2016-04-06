@@ -80,6 +80,24 @@ def pt_343_clinical_summary_2
   )
 end
 
+def patient_402
+  @patient_402 ||= YourPatients.new(pt_id: 402)
+end
+
+def pt_403_tasks
+  @pt_403_tasks ||= NurseTasks.new(
+    pt_id: 403,
+    time_of_contact: Time.now - (3 * 60 * 60)
+  )
+end
+
+def pt_412_tasks
+  @pt_412_tasks ||= NurseTasks.new(
+    pt_id: 412,
+    time_of_contact: Time.now - (2 * 60 * 60)
+  )
+end
+
 def nurse_400
   @nurse_400 ||= SupervisorPage::Nurses.new(id: 400)
 end

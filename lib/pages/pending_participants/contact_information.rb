@@ -1,3 +1,4 @@
+require './lib/pages/navigation'
 require './lib/pages/shared/contact_information_form'
 require './lib/pages/translations/pending_participants'
 
@@ -46,7 +47,7 @@ class PendingParticipants
     def has_relationship_options?
       choice = locale('Padre / Madre', 'Pai / Mãe', 'parent')
       num = locale(5, 4, 5)
-      execute_script('window.scrollBy(0,500)')
+      navigation.scroll_down
       selector[4].click
       options_1 = (0..num).map { |i| response_selector[i].text }
       select_response(choice)
@@ -64,6 +65,12 @@ class PendingParticipants
       gender_group = find('.form-group', text: gender_label)
       actual = (0..1).map { |i| gender_group.all('.radio-inline')[i].text }
       expect(actual).to eq(gender_options)
+    end
+
+    private
+
+    def navigation
+      @navigation ||= Navigation.new(locale: 'english')
     end
   end
 end

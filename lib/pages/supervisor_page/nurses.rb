@@ -27,6 +27,11 @@ class SupervisorPage
       end
     end
 
+    def has_contact_notification?
+      all('.panel', text: "Nurse-#{@id}, English").last
+        .has_css?('.fa-exclamation-circle')
+    end
+
     def has_supervision_session?
       nurse_panel_heading
         .has_css?('small',

@@ -42,6 +42,10 @@ class YourPatients
     ids.each { |i| find('tr', text: i).has_text? "aBc#{i}XyZ" }
   end
 
+  def has_supervisor_contact_notification?
+    patient_row.has_css?('.fa-exclamation-circle')
+  end
+
   def ordered_correctly?
     actual_results = (1..12).map { |i| all('tr')[i].text }
     expect(actual_results).to eq(expected_results)

@@ -25,8 +25,7 @@ class NurseTasks
     find('tr', text: @pt_id).click
     find('a', text: clinical_summary_link)
   rescue Capybara::ElementNotFound
-    execute_script('window.scrollBy(0, -10000)')
-    tries.times { navigation.scroll_down }
+    navigation.scroll_up
     tries += 1
     retry unless tries > 5
   end

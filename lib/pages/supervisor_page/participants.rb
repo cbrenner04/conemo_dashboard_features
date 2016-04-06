@@ -46,7 +46,7 @@ class SupervisorPage
         .find('.fa-thumbs-down').click
       accept_alert('Are you sure you want to mark this person as ineligible?')
     rescue Capybara::ModalNotFound
-      execute_script('window.scrollBy(0, -250)')
+      navigation.scroll_up
       tries += 1
       retry unless tries > 5
     end
@@ -66,10 +66,10 @@ class SupervisorPage
       tries ||= 1
       find('.panel', text: 'Active').find('tr', text: "#{@pt_id}")
         .find('.fa-user-md').click
-        sleep(1)
+      sleep(1)
       assign_nurse
     rescue Capybara::ElementNotFound
-      execute_script('window.scrollBy(0, -250)')
+      navigation.scroll_up
       tries += 1
       retry unless tries > 5
     end
@@ -85,7 +85,7 @@ class SupervisorPage
     end
 
     def enrollment
-      enrollment ||= @enrollment_date.strftime('%B %d, %Y')
+      @enrollment ||= @enrollment_date.strftime('%B %d, %Y')
     end
 
     def expected_options
