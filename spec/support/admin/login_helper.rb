@@ -17,6 +17,14 @@ def navigation
   @navigation ||= Navigation.new(locale: 'english')
 end
 
+def spanish_navigation
+  @spanish_navigation ||= Navigation.new(locale: 'spanish')
+end
+
+def portuguese_navigation
+  @portuguese_navigation ||= Navigation.new(locale: 'portuguese')
+end
+
 def pending_participants
   @pending_participants ||= PendingParticipants.new(name: 'fake')
 end

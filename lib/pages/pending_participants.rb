@@ -16,17 +16,22 @@ class PendingParticipants
   end
 
   def has_landing_page_visible?
-    has_css?('h1', text: main_heading) && has_css?('#main-panel')
+    has_css?('h3', text: main_heading) &&
+      has_css?('.panel-heading', text: 'Unassigned')
   end
 
   def activate
     select_button(@name, '.fa-thumbs-up')
   end
 
-  def assign_nurse
-    select 'Nurse-400, English', from: 'participant[nurse_id]'
-    click_on 'Save'
+  def activated?
+    has_text? 'Successfully activated participant'
   end
+
+  # def assign_nurse
+  #   select 'Nurse-400, English', from: 'participant[nurse_id]'
+  #   click_on 'Save'
+  # end
 
   def disqualify
     select_button(@name, '.fa-thumbs-down')
@@ -49,8 +54,8 @@ class PendingParticipants
   end
 
   def has_pending_table_headers?
-    actual = (0..5).map { |i| find('#main-panel').all('th')[i].text }
-
+    sleep(1)
+    actual = (0..4).map { |i| all('th')[i].text }
     expect(actual).to match(expected_pending_headers)
   end
 

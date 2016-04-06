@@ -5,7 +5,6 @@ require './spec/support/admin/pending_participants_helper'
 feature 'Admin, Pending Participants', metadata: :not_first do
   background do
     english_admin.sign_in
-    pending_participants.open
   end
 
   scenario 'Admin can cancel creation form' do
@@ -143,22 +142,16 @@ feature 'Admin, Pending Participants', metadata: :not_first do
     participant_2000_contact_information.complete_form
     navigation.submit
     participant_2000.activate
-    participant_2000.assign_nurse
+
+    expect(participant_2000).to be_activated
 
     expect(participant_2000).to_not be_visible
 
-    # check for configuration token
+    # check supervisor page for existence of participant
     english_admin.sign_out
-    english_nurse.sign_in
+    english_supervisor.sign_in
 
-    expect(patient_2000).to have_token
-  end
-
-  scenario 'Admin disqualifies a participant' do
-    participant_100.disqualify
-    participant_100.confirm_disqualify
-
-    expect(participant_100).to_not be_visible
+    expect(nurse_supervisor_7).to have_patient
   end
 
   scenario 'Admin edits pending participant\'s information' do
@@ -191,13 +184,7 @@ feature 'Spanish Admin, Pending Participants' do
 
     participant_2001.activate
 
-    expect(spanish_pending_participants).to have_nurse_assignment_form
-
-    spanish_navigation.cancel
-    participant_2002.disqualify
-    participant_2002.confirm_disqualify
-
-    expect(participant_2002).to_not be_visible
+    expect(spanish_pending_participants).to be_activated
   end
 end
 
@@ -224,12 +211,6 @@ feature 'Portuguese Admin, Pending Participants', metadata: :not_first do
 
     participant_3000.activate
 
-    expect(portuguese_pending_participants).to have_nurse_assignment_form
-
-    portuguese_navigation.cancel
-    participant_3001.disqualify
-    participant_3001.confirm_disqualify
-
-    expect(participant_3001).to_not be_visible
+    expect(portuguese_pending_participants).to be_activated
   end
 end

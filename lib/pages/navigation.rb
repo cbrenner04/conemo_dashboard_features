@@ -9,19 +9,8 @@ class Navigation
     @locale ||= navigation[:locale]
   end
 
-  def has_english_admin_buttons?
-    ['Pending Participants', 'Lessons']
-      .all? { |button| has_nav_button? button }
-  end
-
-  def has_spanish_admin_buttons?
-    ['Participantes pendientes', 'Sesiones']
-      .all? { |button| has_nav_button? button }
-  end
-
-  def has_portuguese_admin_buttons?
-    ['Participantes pendentes', 'Sessões']
-      .all? { |button| has_nav_button? button }
+  def has_admin_buttons?
+    buttons.all? { |button| has_nav_button? button }
   end
 
   def cancel
@@ -43,6 +32,14 @@ class Navigation
   private
 
   def has_nav_button?(button)
-    has_css?('.navigation', text: button)
+    has_css?('.navbar-nav', text: button)
+  end
+
+  def buttons
+    @buttons ||= locale(
+      ['Participantes pendientes', 'Sesiones'],
+      ['Participantes pendentes', 'Sessões'],
+      ['Pending Participants', 'Lessons']
+    )
   end
 end

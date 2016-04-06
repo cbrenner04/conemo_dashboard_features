@@ -16,8 +16,7 @@ module Translations
     end
 
     def main_heading
-      locale('Participantes pendientes', 'Participantes Pendentes',
-             'Pending Participants')
+      locale('Participante', 'Participante', 'Participants')
     end
 
     def create_button
@@ -79,22 +78,21 @@ module Translations
     def spanish_pending_headers
       @spanish_headers ||= [
         'Editar información', 'Nombre', 'Código del participante',
-        'Fecha de inclusión en el estudio', 'Activar Participante',
-        'Desactivar Participante'
+        'Fecha de inclusión en el estudio', 'Activar Participante'
       ]
     end
 
     def portuguese_pending_headers
       @portuguese_pending_headers ||= [
         'Editar Informações', 'Nome', 'Identificação do participante',
-        'Data de inclusão', 'Ativar', 'Desativar participante'
+        'Data de inclusão', 'Ativar'
       ]
     end
 
     def english_pending_headers
       @english_headers ||= [
         'Edit Information', 'Name', 'Study Identifier', 'Enrollment Date',
-        'Activate', 'Disqualify'
+        'Activate'
       ]
     end
 

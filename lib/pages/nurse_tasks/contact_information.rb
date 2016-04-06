@@ -30,6 +30,10 @@ class NurseTasks
       has_css?('.timeline')
     end
 
+    def updated?
+      has_text? 'Successfully updated participant'
+    end
+
     def visible?
       date_1 = Date.today - ((30 * 365) + @id.to_i)
       has_css?('#contact-info',

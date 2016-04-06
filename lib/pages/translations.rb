@@ -10,58 +10,59 @@ module Translations
     end
   end
 
-  def spanish_weekdays(date)
-    date.strftime('%A')
-      .gsub('Monday', 'lunes')
-      .gsub('Tuesday', 'martes')
-      .gsub('Wednesday', 'miércoles')
-      .gsub('Thursday', 'jueves')
-      .gsub('Friday', 'viernes')
-      .gsub('Saturday', 'sábado')
-      .gsub('Sunday', 'domingo')
+  def spanish_weekdays
+    @spanish_weekdays ||= {
+      'Monday' => 'lunes',
+      'Tuesday' => 'martes',
+      'Wednesday' => 'miércoles',
+      'Thursday' => 'jueves',
+      'Friday' => 'viernes',
+      'Saturday' => 'sábado',
+      'Sunday' => 'domingo'
+    }
   end
 
-  def spanish_months(date)
-    date.strftime('%B')
-      .gsub('January', 'enero')
-      .gsub('February', 'febrero')
-      .gsub('March', 'marzo')
-      .gsub('April', 'abril')
-      .gsub('May', 'mayo')
-      .gsub('June', 'junio')
-      .gsub('July', 'julio')
-      .gsub('August', 'agosto')
-      .gsub('September', 'septiembre')
-      .gsub('October', 'octubre')
-      .gsub('November', 'noviembre')
-      .gsub('December', 'diciembre')
+  def spanish_months
+    @spanish_months ||= {
+      'January' => 'enero',
+      'February' => 'febrero',
+      'March' => 'marzo',
+      'April' => 'abril',
+      'May' => 'mayo',
+      'June' => 'junio',
+      'July' => 'julio',
+      'August' => 'agosto',
+      'September' => 'septiembre',
+      'October' => 'octubre',
+      'November' => 'noviembre',
+      'December' => 'diciembre'
+    }
   end
 
   def spanish_date(date)
-    day = date.strftime('%d')
-    year = date.strftime('%Y')
-    "#{spanish_weekdays(date)}, #{day} de #{spanish_months(date)} del #{year}"
+    "#{spanish_weekdays[date.strftime('%A')]}, #{date.strftime('%d')} " \
+    "de #{spanish_months[date.strftime('%B')]} del #{date.strftime('%Y')}"
   end
 
-  def portuguese_months(date)
-    date.strftime('%B')
-      .gsub('January', 'Janeiro')
-      .gsub('February', 'Fevereiro')
-      .gsub('March', 'Março')
-      .gsub('April', 'Abril')
-      .gsub('May', 'Maio')
-      .gsub('June', 'Junho')
-      .gsub('July', 'Julho')
-      .gsub('August', 'Agosto')
-      .gsub('September', 'Setembro')
-      .gsub('October', 'Outubro')
-      .gsub('November', 'Novembro')
-      .gsub('December', 'Dezembro')
+  def portuguese_months
+    @portuguese_months ||= {
+      'January' => 'Janeiro',
+      'February' => 'Fevereiro',
+      'March' => 'Março',
+      'April' => 'Abril',
+      'May' => 'Maio',
+      'June' => 'Junho',
+      'July' => 'Julho',
+      'August' => 'Agosto',
+      'September' => 'Setembro',
+      'October' => 'Outubro',
+      'November' => 'Novembro',
+      'December' => 'Dezembro'
+    }
   end
 
   def portuguese_date(date)
-    day = date.strftime('%d')
-    year = date.strftime('%Y')
-    "#{day} de #{portuguese_months(date)} de #{year}"
+    "#{date.strftime('%d')} de #{portuguese_months[date.strftime('%B')]} " \
+    "de #{date.strftime('%Y')}"
   end
 end

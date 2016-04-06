@@ -1,4 +1,5 @@
 require 'business_time'
+require './lib/pages/navigation'
 
 class SupervisorPage
   # page object for Nurses section of Supervisor page
@@ -108,7 +109,9 @@ class SupervisorPage
     end
 
     def select
-      find('a', text: "Nurse-#{@id}, English").click
+      18.times { navigation.scroll_down }
+      find('.panel-heading', text: "Nurse-#{@id}, English")
+        .find('a', text: "Nurse-#{@id}, English").click
     end
 
     def has_your_patients_header?
@@ -116,6 +119,10 @@ class SupervisorPage
     end
 
     private
+
+    def navigation
+      @navigation ||= Navigation.new(locale: 'english')
+    end
 
     def nurse_panel
       if has_css?('.panel', text: "Nurse-#{@id}, English", count: 2)

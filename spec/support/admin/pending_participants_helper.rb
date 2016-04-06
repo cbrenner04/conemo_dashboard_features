@@ -3,6 +3,7 @@
 require './lib/pages/navigation'
 require './lib/pages/pending_participants'
 require './lib/pages/pending_participants/contact_information'
+require './lib/pages/supervisor_page'
 require './lib/pages/your_patients'
 
 def contact_information
@@ -96,6 +97,10 @@ end
 
 def patient_2000
   @patient_2000 ||= YourPatients.new(pt_id: 2000)
+end
+
+def nurse_supervisor_7
+  @nurse_supervisor_7 ||= SupervisorPage.new(pt_id: 2000)
 end
 
 def participant_2001

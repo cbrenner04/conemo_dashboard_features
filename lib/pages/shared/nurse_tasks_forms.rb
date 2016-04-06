@@ -91,8 +91,9 @@ module NurseTasksForms
   end
 
   def has_date_selectors?(date, m, d, y)
-    selector[m].has_text?(locale(spanish_months(date), portuguese_months(date),
-                                 date.strftime('%B'))) &&
+    month = date.strftime('%B')
+    selector[m].has_text?(locale(spanish_months[month],
+                                 portuguese_months[month], month)) &&
       selector[d].has_text?(date.strftime('%-d')) &&
       selector[y].has_text?(date.strftime('%Y'))
   end

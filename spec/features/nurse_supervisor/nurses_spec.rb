@@ -109,7 +109,6 @@ feature 'Nurse Supervisor, Nurses', metadata: :not_first do
 
   feature 'Nurse Supervisor, Nurse specific tasks and information' do
     scenario 'Nurse Supervisor sees all current tasks for assigned nurses' do
-      2.times { navigation.scroll_down }
       nurse_400.select
 
       expect(nurse_400).to have_your_patients_header
@@ -118,7 +117,6 @@ feature 'Nurse Supervisor, Nurses', metadata: :not_first do
     end
 
     scenario 'Nurse Supervisor visits participant clinical summary' do
-      3.times { navigation.scroll_down }
       nurse_400.select
       pt_343_nurse_tasks.open
       pt_343_clinical_summary_2.open
@@ -132,7 +130,6 @@ feature 'Nurse Supervisor, Nurses', metadata: :not_first do
 
     scenario 'Nurse Supervisor sees all Nurse notes' do
       # potential for a dependency issue
-      2.times { navigation.scroll_down }
       nurse_400.select
       pt_342_nurse_tasks_4.open
       pt_342_clinical_summary_1.open
@@ -143,7 +140,6 @@ feature 'Nurse Supervisor, Nurses', metadata: :not_first do
     end
 
     scenario 'Nurse Supervisor sees patient contact information' do
-      2.times { navigation.scroll_down }
       nurse_400.select
       pt_300_nurse_tasks.open
 
@@ -151,7 +147,6 @@ feature 'Nurse Supervisor, Nurses', metadata: :not_first do
     end
 
     scenario 'Nurse Supervisor updates patient contact information' do
-      2.times { navigation.scroll_down }
       nurse_400.select
       pt_301_nurse_tasks.open
       pt_301_contact_info_1.select_edit_contact_information
@@ -159,7 +154,7 @@ feature 'Nurse Supervisor, Nurses', metadata: :not_first do
       navigation.submit
 
       # currently redirects to Pending Participant page so this will fail
-      expect(pt_301_contact_info_1).to be_on_page
+      expect(pt_301_contact_info_1).to be_updated
     end
   end
 end

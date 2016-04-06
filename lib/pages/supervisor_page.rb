@@ -17,6 +17,13 @@ class SupervisorPage
     has_css?('h3', text: 'Participants')
   end
 
+  def has_patient?
+    find('.panel', text: 'Pending')
+      .has_text? "Last-#{@pt_id}, First #{@pt_id} " \
+                 "#{Date.today.strftime('%B %d, %Y')} " \
+                 "#{Date.today.strftime('%B %d, %Y')}"
+  end
+
   def has_total_completed?
     has_css?('.panel-heading', text: '12 Completed')
   end
@@ -99,10 +106,10 @@ class SupervisorPage
   private
 
   def canceled?(title)
-    panel = if has_css?('.panel', text: 'Nurse-400, English', count: 2)
-              all('.panel', text: 'Nurse-400, English')[1]
-            else
+    panel = if has_css?('.panel', text: 'Nurse-400, English', count: 1)
               find('.panel', text: 'Nurse-400, English')
+            else
+              all('.panel', text: 'Nurse-400, English').last
             end
     panel.has_css?('.text-warning',
                    text: "Participant #{@pt_id} #{title} cancelled")
