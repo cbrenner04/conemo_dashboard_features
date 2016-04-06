@@ -1,3 +1,5 @@
+require './lib/pages/your_patients'
+
 # page object for Nurse Supervisor landing page
 class SupervisorPage
   include RSpec::Matchers
@@ -7,13 +9,20 @@ class SupervisorPage
     @pt_id ||= supervisor_page[:pt_id]
   end
 
+  def has_pending_participants?
+    within('.panel', text: 'Pending') do
+      actual_rows = (0..3).map { |i| find('tbody').all('tr')[i].text }
+      expect(actual_rows).to eq(expected_rows)
+    end
+  end
+
   def has_nurses?
     [400, 401, 402, 403, 404].all? do |i|
       has_css?('h4', text: "Nurse-#{i}, English")
     end
   end
 
-  def has_home_page_visible?
+  def on_home_page?
     has_css?('h3', text: 'Participants')
   end
 
@@ -22,6 +31,17 @@ class SupervisorPage
       .has_text? "Last-#{@pt_id}, First #{@pt_id} " \
                  "#{Date.today.strftime('%B %d, %Y')} " \
                  "#{Date.today.strftime('%B %d, %Y')}"
+  end
+
+  def has_active_patient?
+    find('.panel', text: 'Active')
+      .has_text? 'Last-300, First 300 ' \
+                 "#{Date.today.strftime('%B %d, %Y')} " \
+                 "#{Date.today.strftime('%B %d, %Y')}"
+  end
+
+  def has_total_active?
+    has_css?('.panel-heading', text: '141 Active')
   end
 
   def has_total_completed?
@@ -36,11 +56,18 @@ class SupervisorPage
     has_css?('.panel-heading', text: '13 Completed')
   end
 
+  def has_active_participant_information?
+    your_patients.english_nurse_patients.all? do |patient|
+      has_css?('tr',
+               text: 'Edit Information Nurse-400, English Edit Information ' \
+                     "Last-#{patient}, First #{patient}")
+    end
+  end
+
   def has_new_completed_participant_information?
+    date = (Date.today - 39).strftime('%B %d, %Y')
     has_css?('tr',
-             text: 'Nurse-400, English Last-341, First 341 ' \
-                   "#{(Date.today - 39).strftime('%B %d, %Y')} " \
-                   "#{(Date.today - 39).strftime('%B %d, %Y')}")
+             text: "Nurse-400, English Last-341, First 341 #{date} #{date}")
   end
 
   def has_completed_participant_information?
@@ -104,6 +131,21 @@ class SupervisorPage
   end
 
   private
+
+  def your_patients
+    @your_patients ||= YourPatients.new(locale: 'english')
+  end
+
+  def expected_rows
+    enrollment = (Date.today - 12).strftime('%B %d, %Y')
+    today = Date.today.strftime('%B %d, %Y')
+    @expected_rows ||= [
+      "Edit Information Last-495, First 495 #{enrollment} #{today} Activate",
+      "Edit Information Last-496, First 496 #{enrollment} #{today} Activate",
+      "Edit Information Last-497, First 497 #{enrollment} #{today} Activate",
+      "Edit Information Last-498, First 498 #{enrollment} #{today} Activate"
+    ]
+  end
 
   def canceled?(title)
     panel = if has_css?('.panel', text: 'Nurse-400, English', count: 1)

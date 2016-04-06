@@ -117,6 +117,15 @@ class YourPatients
     expect(danger_text).to eq('overdue task')
   end
 
+  def english_nurse_patients
+    patients = [1000, 480, 490]
+    ranges = [(300..340), (342..344), (400..405), (410..415), (420..428),
+              (430..432), (440..442), (450..452), (460..462), (470..472),
+              (700..709), (800..804)]
+    ranges.each { |i| patients.concat i.to_a }
+    @english_nurse_patients ||= patients.sample(10)
+  end
+
   private
 
   def patient_row
@@ -130,15 +139,6 @@ class YourPatients
   def assigned_participants
     locale(spanish_nurse_patients, portuguese_nurse_patients,
            english_nurse_patients)
-  end
-
-  def english_nurse_patients
-    patients = [1000, 480, 490]
-    ranges = [(300..340), (342..344), (400..405), (410..415), (420..428),
-              (430..432), (440..442), (450..452), (460..462), (470..472),
-              (700..709), (800..804)]
-    ranges.each { |i| patients.concat i.to_a }
-    @english_nurse_patients ||= patients.sample(10)
   end
 
   def spanish_nurse_patients

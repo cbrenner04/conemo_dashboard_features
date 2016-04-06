@@ -49,7 +49,7 @@ feature 'Nurse Supervisor, Nurses', metadata: :not_first do
       nurse_403.create_supervision_session
       navigation.cancel
 
-      expect(nurse_supervisor).to have_home_page_visible
+      expect(nurse_supervisor).to be_on_home_page
     end
 
     scenario 'Nurse supervisor must fill in session Length' do
@@ -88,7 +88,7 @@ feature 'Nurse Supervisor, Nurses', metadata: :not_first do
       nurse_404.create_supervision_contact
       navigation.cancel
 
-      expect(nurse_supervisor).to have_home_page_visible
+      expect(nurse_supervisor).to be_on_home_page
     end
 
     scenario 'Nurse Supervisor must select type of contact' do
@@ -103,8 +103,15 @@ feature 'Nurse Supervisor, Nurses', metadata: :not_first do
       nurse_404.select_contact_kind
       navigation.submit
 
-      expect(nurse_supervisor).to have_home_page_visible
+      expect(nurse_supervisor).to be_on_home_page
     end
+  end
+
+  feature 'Nurse Supervisor, Contact Supervisor Notifications' do
+    scenario 'Nurse Supervisor sees for each nurse'
+    scenario 'Nurse Supervisor sees across patients'
+    scenario 'Nurse Supervisor sees for individual patient'
+    scenario 'Nurse Supervisor clears contact supervisor notification'
   end
 
   feature 'Nurse Supervisor, Nurse specific tasks and information' do
@@ -114,6 +121,25 @@ feature 'Nurse Supervisor, Nurses', metadata: :not_first do
       expect(nurse_400).to have_your_patients_header
 
       expect(your_patients).to have_assigned_patients
+    end
+
+    scenario 'Nurse Supervisor sees tasks for individual participant'
+
+    scenario 'Nurse Supervisor sees patient contact information' do
+      nurse_400.select
+      pt_300_nurse_tasks.open
+
+      expect(pt_300_contact_info).to be_visible
+    end
+
+    scenario 'Nurse Supervisor updates patient contact information' do
+      nurse_400.select
+      pt_301_nurse_tasks.open
+      pt_301_contact_info_1.select_edit_contact_information
+      pt_301_contact_info_1.select_health_unit
+      navigation.submit
+
+      expect(pt_301_contact_info_1).to be_updated
     end
 
     scenario 'Nurse Supervisor visits participant clinical summary' do
@@ -139,22 +165,6 @@ feature 'Nurse Supervisor, Nurses', metadata: :not_first do
       expect(pt_342_clinical_summary_1).to have_contact_dates
     end
 
-    scenario 'Nurse Supervisor sees patient contact information' do
-      nurse_400.select
-      pt_300_nurse_tasks.open
-
-      expect(pt_300_contact_info).to be_visible
-    end
-
-    scenario 'Nurse Supervisor updates patient contact information' do
-      nurse_400.select
-      pt_301_nurse_tasks.open
-      pt_301_contact_info_1.select_edit_contact_information
-      pt_301_contact_info_1.select_health_unit
-      navigation.submit
-
-      # currently redirects to Pending Participant page so this will fail
-      expect(pt_301_contact_info_1).to be_updated
-    end
+    scenario 'Nurse Supervisor sees timeline for individual participant'
   end
 end

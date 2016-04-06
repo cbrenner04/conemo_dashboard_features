@@ -28,11 +28,6 @@ class PendingParticipants
     has_text? 'Successfully activated participant'
   end
 
-  # def assign_nurse
-  #   select 'Nurse-400, English', from: 'participant[nurse_id]'
-  #   click_on 'Save'
-  # end
-
   def disqualify
     select_button(@name, '.fa-thumbs-down')
   end

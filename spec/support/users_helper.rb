@@ -57,3 +57,11 @@ def english_supervisor
     locale: 'english'
   )
 end
+
+def nurse_404
+  @nurse_404 ||= Users.new(
+    email: ENV['Nurse_404_Email'],
+    password: ENV['Nurse_404_Password'],
+    locale: 'english'
+  )
+end
