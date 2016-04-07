@@ -99,8 +99,8 @@ def patient_2000
   @patient_2000 ||= YourPatients.new(pt_id: 2000)
 end
 
-def nurse_supervisor_7
-  @nurse_supervisor_7 ||= SupervisorPage.new(pt_id: 2000)
+def nurse_supervisor_8
+  @nurse_supervisor_8 ||= SupervisorPage.new(pt_id: 2000)
 end
 
 def participant_2001
