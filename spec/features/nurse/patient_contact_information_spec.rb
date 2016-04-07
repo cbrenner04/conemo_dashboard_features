@@ -108,6 +108,8 @@ feature 'Nurse, Participant Contact Information', metadata: :not_first do
     pt_342_nurse_tasks_3.open
     pt_342_clinical_summary.open
     pt_342_contact_info_3.open
+    sleep(1)
+    navigation.scroll_down
     pt_342_contact_info_3.edit_follow_up_week_3
     pt_342_nurse_tasks_3.enter_session_length
     follow_up_week_3.enter_difficulties

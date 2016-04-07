@@ -46,6 +46,7 @@ feature 'Spanish nurse, Participant tasks', metadata: :first do
 
     expect(spanish_reschedule_form).to have_form_headings
     expect(spanish_reschedule_form).to have_current_date_selections
+    expect(spanish_reschedule_form).to have_reason_options
   end
 
   scenario 'Spanish nurse sees translations for initial appointment' do
@@ -73,6 +74,7 @@ feature 'Spanish nurse, Participant tasks', metadata: :first do
 
     expect(spanish_reschedule_form).to have_form_headings
     expect(spanish_reschedule_form).to have_current_date_selections
+    expect(spanish_reschedule_form).to have_reason_options
   end
 
   scenario 'Spanish nurse sees translations for follow up week 1' do
@@ -100,6 +102,7 @@ feature 'Spanish nurse, Participant tasks', metadata: :first do
 
     expect(spanish_reschedule_form).to have_form_headings
     expect(spanish_reschedule_form).to have_current_date_selections
+    expect(spanish_reschedule_form).to have_reason_options
   end
 
   scenario 'Spanish nurse sees translations for follow up week 3' do
@@ -128,6 +131,7 @@ feature 'Spanish nurse, Participant tasks', metadata: :first do
 
     expect(spanish_reschedule_form).to have_form_headings
     expect(spanish_reschedule_form).to have_current_date_selections
+    expect(spanish_reschedule_form).to have_reason_options
   end
 
   scenario 'Spanish nurse sees translations for call to schedule final appt' do
@@ -153,6 +157,7 @@ feature 'Spanish nurse, Participant tasks', metadata: :first do
 
     expect(spanish_reschedule_form).to have_form_headings
     expect(spanish_reschedule_form).to have_current_date_selections
+    expect(spanish_reschedule_form).to have_reason_options
   end
 
   scenario 'Spanish nurse sees translations for final appointment' do
@@ -177,6 +182,7 @@ feature 'Spanish nurse, Participant tasks', metadata: :first do
 
     expect(spanish_reschedule_form).to have_form_headings
     expect(spanish_reschedule_form).to have_current_date_selections
+    expect(spanish_reschedule_form).to have_reason_options
   end
 
   scenario 'Spanish nurse sees translations for non-scheduled tasks' do

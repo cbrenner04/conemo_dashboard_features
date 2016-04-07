@@ -24,6 +24,7 @@ class NurseTasks
     end
 
     def has_form_headings?
+      sleep(1)
       actual_headings = (0..2).map { |i| all('.control-label')[i].text }
       expect(actual_headings).to eq(expected_headings)
     end

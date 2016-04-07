@@ -108,7 +108,7 @@ feature 'Nurse, Initial in person appointment', metadata: :not_first do
     expect(pt_318_nurse_tasks).to have_no_tasks_in_count
 
     english_nurse.sign_out
-    english_nurse.sign_in
+    english_supervisor.sign_in
 
     expect(nurse_supervisor_12).to have_initial_appointment_rescheduled
     expect(reschedule_form).to have_reschedule_reason

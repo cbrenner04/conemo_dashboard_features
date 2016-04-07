@@ -181,7 +181,7 @@ class SupervisorPage
   def rescheduled?(title)
     toggle_canceled_rescheduled_tasks
     nurse_400_panel
-      .has_css?('.text-warning',
+      .has_css?('.text-info',
                 text: "Participant #{@pt_id} #{title} rescheduled")
   end
 
