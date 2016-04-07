@@ -1,11 +1,14 @@
 require './lib/pages/navigation'
 require './lib/pages/shared/nurse_tasks_forms'
+require './lib/pages/translations/nurse_tasks/reschedule_form'
 
 class NurseTasks
   # page object for task cancellation form
   class RescheduleForm
+    include RSpec::Matchers
     include Capybara::DSL
     include NurseTasksForms
+    include NurseTasksTranslations::RescheduleFormTranslations
 
     def initialize(reschedule_form)
       @locale ||= reschedule_form[:locale]
@@ -14,11 +17,20 @@ class NurseTasks
     def complete
       sleep(1)
       select_next_date(2)
+      selector[5].click
+      select_list_item(expected_options.sample)
       navigation.submit
     end
 
     def has_form_headings?
-      has_css?('.control-label', text: 'Scheduled at')
+      actual_headings = (0..2).map { |i| all('.control-label')[i].text }
+      expect(actual_headings).to eq(expected_headings)
+    end
+
+    def has_reason_options?
+      selector[5].click
+      actual_options = (0..4).map { |i| all('.select2-result-label')[i].text }
+      expect(actual_options).to eq(expected_options)
     end
 
     def has_current_date_selections?
