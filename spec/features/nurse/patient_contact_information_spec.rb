@@ -34,11 +34,10 @@ feature 'Nurse, Participant Contact Information', metadata: :not_first do
   scenario 'Nurse edits participant information' do
     pt_301_nurse_tasks.open
     pt_301_contact_info.select_edit_contact_information
-    pt_301_contact_info.select_health_unit
     navigation.submit
     find('a', text: 'Tasks').click # remove when fixed
 
-    expect(pt_301_contact_info).to be_on_page
+    expect(pt_301_contact_info).to be_visible
   end
 
   scenario 'Nurse cancels out of edit of smartphone information' do

@@ -75,13 +75,13 @@ class SupervisorPage
       has_css?('h1', text: 'Supervision session')
     end
 
-    def create_supervision_contact
-      nurse_panel.find('a', text: 'Log supervision contact').click
-    end
+    # def create_supervision_contact
+    #   nurse_panel.find('a', text: 'Log supervision contact').click
+    # end
 
-    def has_supervision_contact_form_visible?
-      has_css?('h1', text: 'Supervision contact')
-    end
+    # def has_supervision_contact_form_visible?
+    #   has_css?('h1', text: 'Supervision contact')
+    # end
 
     def enter_session_length
       fill_in 'supervision_session[session_length]', with: 20
@@ -97,18 +97,25 @@ class SupervisorPage
 
     def choose_topic
       topic = [
+        'Discussed topic(s)',
         'First appointments',
         'Difficulty to contact patient',
-        'Non connectivity calls',
         'Non-resolved help requests',
+        'Non connectivity calls',
         'Non-adherence',
         'Patient\'s difficulties with CONEMO',
-        'Uncertainties related to tasks',
         'Overdue tasks / Nurse adherence',
-        'Cancelled tasks',
-        'Questions about intervention',
+        'Canceled tasks',
         'Serious adverse events (if nurse brings it up)',
-        'Dropouts'
+        'Dropouts',
+        'Uncertainties related to tasks',
+        'Questions about intervention',
+        'Other programmed contact points',
+        'Resolved help requests',
+        'Difficult situations for the nurse related to the intervention/study',
+        'Administrative issues',
+        'Additional contacts',
+        'Others'
       ].sample(2)
       topic.each { |t| check t }
     end

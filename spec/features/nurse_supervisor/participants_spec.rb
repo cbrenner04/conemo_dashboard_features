@@ -41,7 +41,7 @@ feature 'Nurse Supervisor, Participants', metadata: :first do
     expect(patient_413_nurse_404).to be_active
 
     english_supervisor.sign_out
-    nurse_404.sign_in
+    english_nurse_404.sign_in
 
     expect(patient_413).to have_tasks_active
 

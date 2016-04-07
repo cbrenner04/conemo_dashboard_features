@@ -25,6 +25,26 @@ feature 'Nurse Supervisor, Nurses', metadata: :first do
       expect(nurse_403).to have_supervision_session
     end
   end
+
+  feature 'Nurse Supervisor, Contact Supervisor Notifications' do
+    scenario 'Nurse Supervisor sees for individual patient' do
+      nurse_400.select
+      pt_403_tasks.open
+
+      expect(pt_403_tasks).to have_previous_supervisor_contact
+    end
+
+    scenario 'Nurse Supervisor clears contact supervisor notification' do
+      nurse_400.select
+      pt_412_tasks.open
+
+      expect(pt_412_tasks).to have_previous_supervisor_contact
+
+      pt_412_tasks.clear_supervisor_contact
+
+      expect(pt_412_tasks).to_not have_previous_supervisor_contact
+    end
+  end
 end
 
 feature 'Nurse Supervisor, Nurses', metadata: :not_first do
@@ -83,30 +103,6 @@ feature 'Nurse Supervisor, Nurses', metadata: :not_first do
     end
   end
 
-  feature 'Nurse Supervisor, Supervision contact' do
-    scenario 'Nurse Supervisor cancels filling in supervision contact' do
-      nurse_404.create_supervision_contact
-      navigation.cancel
-
-      expect(nurse_supervisor).to be_on_home_page
-    end
-
-    scenario 'Nurse Supervisor must select type of contact' do
-      nurse_404.create_supervision_contact
-      navigation.submit
-
-      expect(nurse_404).to have_supervision_contact_form_visible
-    end
-
-    scenario 'Nurse Supervisor completes supervision contact' do
-      nurse_404.create_supervision_contact
-      nurse_404.select_contact_kind
-      navigation.submit
-
-      expect(nurse_supervisor).to be_on_home_page
-    end
-  end
-
   feature 'Nurse Supervisor, Contact Supervisor Notifications' do
     scenario 'Nurse Supervisor sees for nurse' do
       expect(nurse_400).to have_contact_notification
@@ -116,24 +112,6 @@ feature 'Nurse Supervisor, Nurses', metadata: :not_first do
       nurse_400.select
 
       expect(patient_402).to have_supervisor_contact_notification
-    end
-
-    scenario 'Nurse Supervisor sees for individual patient' do
-      nurse_400.select
-      pt_403_tasks.open
-
-      expect(pt_403_tasks).to have_previous_supervisor_contact
-    end
-
-    scenario 'Nurse Supervisor clears contact supervisor notification' do
-      nurse_400.select
-      pt_412_tasks.open
-
-      expect(pt_412_tasks).to have_previous_supervisor_contact
-
-      pt_412_tasks.clear_supervisor_contact
-
-      expect(pt_412_tasks).to_not have_previous_supervisor_contact
     end
   end
 

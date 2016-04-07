@@ -38,7 +38,7 @@ class NurseTasks
       date_1 = Date.today - ((30 * 365) + @id.to_i)
       has_css?('#contact-info',
                text: 'Contact Information Family ' \
-                     'Health Unit Name: Family Health Center Phone: ' \
+                     'Health Unit Name: unit 1 Phone: ' \
                      "13333333#{@id} Emergency Contact Name: Emergency " \
                      'Contact Phone: Date Of Birth: ' \
                      "#{date_1.strftime('%B %d, %Y')} Address: 123 Main " \
@@ -204,7 +204,7 @@ class NurseTasks
 
     def has_timeline_titles?
       actual_titles = (0..8).map { |i| all('.timeline-title')[i].text }
-      expect(actual_titles).to eq(expected_timeline_titles)
+      expect(actual_titles).to eq(expected_timeline_titles.reverse)
     end
 
     def has_contact_dates?

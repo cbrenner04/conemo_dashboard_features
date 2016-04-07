@@ -22,7 +22,7 @@ class SupervisorPage
     def has_nurse_options?
       find('select').click
       actual_options = (0..4).map { |i| all('option')[i].text }
-      expect(actual_options).to eq(expected_options)
+      actual_options.should =~ expected_options
     end
 
     def assign_nurse
