@@ -18,7 +18,8 @@ class NurseTasks
       sleep(1)
       select_next_date(2)
       selector[5].click
-      select_list_item(expected_options.sample)
+      @reschedule_reason ||= expected_options.sample
+      select_list_item(@reschedule_reason)
       navigation.submit
     end
 
@@ -36,6 +37,10 @@ class NurseTasks
     def has_current_date_selections?
       has_date_selectors?(Date.today, 1, locale(0, 0, 2), locale(2, 2, 0)) &&
         has_hour_selector?(3)
+    end
+
+    def has_reschedule_reason?
+      has_text? @reschedule_reason
     end
 
     private

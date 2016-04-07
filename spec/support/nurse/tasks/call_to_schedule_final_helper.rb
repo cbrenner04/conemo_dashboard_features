@@ -8,6 +8,10 @@ def nurse_supervisor_1
   @nurse_supervisor_1 ||= SupervisorPage.new(pt_id: 704)
 end
 
+def nurse_supervisor_2
+  @nurse_supervisor_2 ||= SupervisorPage.new(pt_id: 705)
+end
+
 def pt_337_nurse_tasks
   @pt_337_nurse_tasks ||= NurseTasks.new(pt_id: 337)
 end

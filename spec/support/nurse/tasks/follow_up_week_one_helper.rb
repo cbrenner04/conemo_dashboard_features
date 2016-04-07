@@ -73,6 +73,10 @@ def pt_708_nurse_tasks
   )
 end
 
-def nurse_supervisor_4
-  @nurse_supervisor_4 ||= SupervisorPage.new(pt_id: 320)
+def nurse_supervisor_7
+  @nurse_supervisor_7 ||= SupervisorPage.new(pt_id: 320)
+end
+
+def nurse_supervisor_8
+  @nurse_supervisor_8 ||= SupervisorPage.new(pt_id: 321)
 end

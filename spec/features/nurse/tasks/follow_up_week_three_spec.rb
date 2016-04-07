@@ -35,8 +35,7 @@ feature 'Nurse, Participant Tasks, Follow up week 3', metadata: :not_first do
     english_nurse.sign_out
     english_supervisor.sign_in
 
-    expect(nurse_supervisor_5).to have_follow_up_week_3_canceled
-
+    expect(nurse_supervisor_9).to have_follow_up_week_3_canceled
     expect(cancel_form).to have_cancellation_reason
   end
 
@@ -63,6 +62,12 @@ feature 'Nurse, Participant Tasks, Follow up week 3', metadata: :not_first do
     reschedule_form.complete
 
     expect(pt_333_nurse_tasks).to have_no_tasks_in_count
+
+    english_nurse.sign_out
+    english_supervisor.sign_in
+
+    expect(nurse_supervisor_10).to have_follow_up_week_3_rescheduled
+    expect(reschedule_form).to have_reschedule_reason
   end
 
   scenario 'Nurse cancels confirmation form' do

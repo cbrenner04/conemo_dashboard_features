@@ -70,7 +70,6 @@ feature 'Nurse, Call to schedule final appointment', metadata: :not_first do
     english_supervisor.sign_in
 
     expect(nurse_supervisor_1).to have_call_to_schedule_final_canceled
-
     expect(cancel_form).to have_cancellation_reason
   end
 
@@ -97,6 +96,12 @@ feature 'Nurse, Call to schedule final appointment', metadata: :not_first do
     reschedule_form.complete
 
     expect(pt_705_nurse_tasks).to have_no_tasks_in_count
+
+    english_nurse.sign_out
+    english_supervisor.sign_in
+
+    expect(nurse_supervisor_2).to have_call_to_schedule_final_rescheduled
+    expect(reschedule_form).to have_reschedule_reason
   end
 
   scenario 'Nurse cancels out of confirmation form' do

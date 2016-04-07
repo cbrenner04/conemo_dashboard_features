@@ -79,8 +79,7 @@ feature 'Nurse, Initial in person appointment', metadata: :not_first do
     english_nurse.sign_out
     english_supervisor.sign_in
 
-    expect(nurse_supervisor_6).to have_initial_appointment_canceled
-
+    expect(nurse_supervisor_11).to have_initial_appointment_canceled
     expect(cancel_form).to have_cancellation_reason
   end
 
@@ -107,6 +106,12 @@ feature 'Nurse, Initial in person appointment', metadata: :not_first do
     reschedule_form.complete
 
     expect(pt_318_nurse_tasks).to have_no_tasks_in_count
+
+    english_nurse.sign_out
+    english_nurse.sign_in
+
+    expect(nurse_supervisor_12).to have_initial_appointment_rescheduled
+    expect(reschedule_form).to have_reschedule_reason
   end
 
   scenario 'Nurse cancels out of confirmation form' do

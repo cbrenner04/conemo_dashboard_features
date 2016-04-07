@@ -35,8 +35,7 @@ feature 'Nurse, Participant Tasks, Final appointment', metadata: :not_first do
     english_nurse.sign_out
     english_supervisor.sign_in
 
-    expect(nurse_supervisor_3).to have_final_appointment_canceled
-
+    expect(nurse_supervisor_5).to have_final_appointment_canceled
     expect(cancel_form).to have_cancellation_reason
   end
 
@@ -63,6 +62,12 @@ feature 'Nurse, Participant Tasks, Final appointment', metadata: :not_first do
     reschedule_form.complete
 
     expect(pt_345_nurse_tasks).to have_no_tasks_in_count
+
+    english_nurse.sign_out
+    english_supervisor.sign_in
+
+    expect(nurse_supervisor_6).to have_final_appointment_rescheduled
+    expect(reschedule_form).to have_reschedule_reason
   end
 
   scenario 'Nurse cancels confirmation form' do
@@ -117,8 +122,8 @@ feature 'Nurse, Participant Tasks, Final appointment', metadata: :not_first do
     english_nurse.sign_out
     english_supervisor.sign_in
 
-    expect(nurse_supervisor_3).to have_updated_completed
+    expect(nurse_supervisor_5).to have_updated_completed
 
-    expect(nurse_supervisor_3).to have_new_completed_participant_information
+    expect(nurse_supervisor_5).to have_new_completed_participant_information
   end
 end

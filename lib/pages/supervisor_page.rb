@@ -130,6 +130,30 @@ class SupervisorPage
     canceled? 'Initial in person appointment'
   end
 
+  def has_call_to_schedule_final_rescheduled?
+    rescheduled? 'Call to schedule final in person appointment'
+  end
+
+  def has_confirmation_call_rescheduled?
+    rescheduled? 'Confirmation call'
+  end
+
+  def has_final_appointment_rescheduled?
+    rescheduled? 'Final in person appointment'
+  end
+
+  def has_follow_up_week_1_rescheduled?
+    rescheduled? 'Follow up call week 1'
+  end
+
+  def has_follow_up_week_3_rescheduled?
+    rescheduled? 'Follow up call week 3'
+  end
+
+  def has_initial_appointment_rescheduled?
+    rescheduled? 'Initial in person appointment'
+  end
+
   private
 
   def your_patients
@@ -148,12 +172,30 @@ class SupervisorPage
   end
 
   def canceled?(title)
-    panel = if has_css?('.panel', text: 'Nurse-400, English', count: 1)
-              find('.panel', text: 'Nurse-400, English')
-            else
-              all('.panel', text: 'Nurse-400, English').last
-            end
-    panel.has_css?('.text-warning',
-                   text: "Participant #{@pt_id} #{title} cancelled")
+    toggle_canceled_rescheduled_tasks
+    nurse_400_panel
+      .has_css?('.text-warning',
+                text: "Participant #{@pt_id} #{title} cancelled")
+  end
+
+  def rescheduled?(title)
+    toggle_canceled_rescheduled_tasks
+    nurse_400_panel
+      .has_css?('.text-warning',
+                text: "Participant #{@pt_id} #{title} rescheduled")
+  end
+
+  def nurse_400_panel
+    @nurse_400_panel ||= if has_css?('.panel',
+                                     text: 'Nurse-400, English', count: 1)
+                           find('.panel', text: 'Nurse-400, English')
+                         else
+                           all('.panel', text: 'Nurse-400, English').last
+                         end
+  end
+
+  def toggle_canceled_rescheduled_tasks
+    nurse_400_panel
+      .find('button', text: 'Toggle cancelled / rescheduled tasks').click
   end
 end
