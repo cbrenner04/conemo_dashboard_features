@@ -75,14 +75,6 @@ class SupervisorPage
       has_css?('h1', text: 'Supervision session')
     end
 
-    # def create_supervision_contact
-    #   nurse_panel.find('a', text: 'Log supervision contact').click
-    # end
-
-    # def has_supervision_contact_form_visible?
-    #   has_css?('h1', text: 'Supervision contact')
-    # end
-
     def enter_session_length
       fill_in 'supervision_session[session_length]', with: 20
     end

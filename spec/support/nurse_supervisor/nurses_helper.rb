@@ -4,6 +4,9 @@ require 'business_time'
 require './lib/pages/navigation'
 require './lib/pages/nurse_tasks'
 require './lib/pages/nurse_tasks/clinical_summary'
+require './lib/pages/nurse_tasks/confirmation_call'
+require './lib/pages/nurse_tasks/help_request'
+require './lib/pages/nurse_tasks/lack_of_connectivity_call'
 require './lib/pages/supervisor_page'
 require './lib/pages/supervisor_page/nurses'
 require './lib/pages/your_patients'
@@ -26,6 +29,20 @@ end
 
 def your_patients
   @your_patients ||= YourPatients.new(locale: 'english')
+end
+
+def confirmation_call
+  @confirmation_call ||= NurseTasks::ConfirmationCall.new(locale: 'english')
+end
+
+def help_request
+  @help_request ||= NurseTasks::HelpRequest.new(locale: 'english')
+end
+
+def lack_of_connectivity_call
+  @lack_of_connectivity_call ||= NurseTasks::LackOfConnectivityCall.new(
+    locale: 'english'
+  )
 end
 
 def pt_300_nurse_tasks
@@ -68,6 +85,12 @@ end
 
 def pt_342_nurse_tasks_4
   @pt_342_nurse_tasks_4 ||= NurseTasks.new(pt_id: 342)
+end
+
+def pt_342_contact_info_4
+  @pt_342_contact_info_4 ||= NurseTasks::ContactInformation.new(
+    locale: 'english'
+  )
 end
 
 def pt_343_nurse_tasks
@@ -131,4 +154,11 @@ end
 
 def nurse_404
   @nurse_404 ||= SupervisorPage::Nurses.new(id: 404)
+end
+
+def pt_1000_nurse_tasks
+  @pt_1000_nurse_tasks ||= NurseTasks.new(
+    pt_id: 1000,
+    tasks_count: 3
+  )
 end

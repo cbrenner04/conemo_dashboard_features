@@ -124,7 +124,18 @@ feature 'Nurse Supervisor, Nurses', metadata: :not_first do
       expect(your_patients).to have_assigned_patients
     end
 
-    scenario 'Nurse Supervisor sees tasks for individual participant'
+    scenario 'Nurse Supervisor sees tasks for individual participant' do
+      nurse_400.select
+      pt_1000_nurse_tasks.open
+
+      expect(pt_1000_nurse_tasks).to have_multiple_tasks_in_count
+
+      expect(confirmation_call).to be_active
+
+      expect(help_request).to be_active
+
+      expect(lack_of_connectivity_call).to be_active
+    end
 
     scenario 'Nurse Supervisor sees patient contact information' do
       nurse_400.select
@@ -166,6 +177,15 @@ feature 'Nurse Supervisor, Nurses', metadata: :not_first do
       expect(pt_342_clinical_summary_1).to have_contact_dates
     end
 
-    scenario 'Nurse Supervisor sees timeline for individual participant'
+    scenario 'Nurse Supervisor sees timeline for individual participant' do
+      nurse_400.select
+      pt_342_nurse_tasks_4.open
+      pt_342_clinical_summary_1.open
+      pt_342_contact_info_4.open
+
+      expect(pt_342_contact_info_4).to be_on_page
+
+      expect(pt_342_contact_info_4).to have_timeline_titles
+    end
   end
 end

@@ -35,11 +35,23 @@ module Translations
     end
 
     def expected_timeline_titles
-      [confirmation_call_title, initial_appointment_title,
-       follow_up_week_one_title, non_adherence_call_title,
-       follow_up_week_three_title, lack_of_connectivity_call_title,
-       help_request_title, call_to_schedule_final_title,
-       final_appointment_title]
+      locale(
+        [confirmation_call_title, initial_appointment_title,
+         follow_up_week_one_title, non_adherence_call_title,
+         follow_up_week_three_title, lack_of_connectivity_call_title,
+         help_request_title, call_to_schedule_final_title,
+         final_appointment_title],
+        [confirmation_call_title, initial_appointment_title,
+         follow_up_week_one_title, non_adherence_call_title,
+         follow_up_week_three_title, lack_of_connectivity_call_title,
+         help_request_title, call_to_schedule_final_title,
+         final_appointment_title],
+        [confirmation_call_title, initial_appointment_title,
+         "#{follow_up_week_one_title} information", non_adherence_call_title,
+         "#{follow_up_week_three_title} information",
+         lack_of_connectivity_call_title, help_request_title,
+         call_to_schedule_final_title, final_appointment_title]
+      )
     end
 
     def expected_contact_info_contact_dates
