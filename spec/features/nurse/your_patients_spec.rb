@@ -13,7 +13,9 @@ end
 feature 'English Nurse, Your Patients', metadata: :not_first do
   background { english_nurse.sign_in }
 
-  scenario 'Nurse sees key'
+  scenario 'Nurse sees key' do
+    expect(your_patients).to have_key
+  end
 
   scenario 'Nurse sees participants assigned to them in Your Patients table' do
     expect(your_patients).to have_assigned_patients
@@ -42,55 +44,46 @@ feature 'English Nurse, Your Patients', metadata: :not_first do
   feature 'Active tasks' do
     scenario 'Nurse sees confirmation call' do
       expect(patient_302).to have_tasks_active
-
       expect(patient_302).to have_confirmation_call
     end
 
     scenario 'Nurse sees initial in person appointment' do
       expect(patient_312).to have_tasks_active
-
       expect(patient_312).to have_initial_appointment
     end
 
     scenario 'Nurse sees follow up call week 1' do
       expect(patient_322).to have_tasks_active
-
       expect(patient_322).to have_follow_up_week_1
     end
 
     scenario 'Nurse sees follow up call week 3' do
       expect(patient_330).to have_tasks_active
-
       expect(patient_330).to have_follow_up_week_3
     end
 
     scenario 'Nurse sees call to schedule final appointment' do
       expect(patient_703).to have_tasks_active
-
       expect(patient_703).to have_call_to_schedule_final_appt
     end
 
     scenario 'Nurse sees final appointment' do
       expect(patient_344).to have_tasks_active
-
       expect(patient_344).to have_final_appointment
     end
 
     scenario 'Nurse sees help request' do
       expect(patient_404).to have_tasks_active
-
       expect(patient_404).to have_help_request
     end
 
     scenario 'Nurse sees non-connectivity call' do
       expect(patient_414).to have_tasks_active
-
       expect(patient_414).to have_lack_of_connectivity_task
     end
 
     scenario 'Nurse sees non-adherence call' do
       expect(patient_421).to have_tasks_active
-
       expect(patient_421).to have_non_adherence_task
     end
   end
@@ -98,55 +91,46 @@ feature 'English Nurse, Your Patients', metadata: :not_first do
   feature 'Overdue tasks' do
     scenario 'Nurse sees confirmation call' do
       expect(patient_706).to have_tasks_overdue
-
       expect(patient_706).to have_confirmation_call
     end
 
     scenario 'Nurse sees initial in person appointment' do
       expect(patient_707).to have_tasks_overdue
-
       expect(patient_707).to have_initial_appointment
     end
 
     scenario 'Nurse sees follow up call week 1' do
       expect(patient_708).to have_tasks_overdue
-
       expect(patient_708).to have_follow_up_week_1
     end
 
     scenario 'Nurse sees follow up call week 3' do
       expect(patient_709).to have_tasks_overdue
-
       expect(patient_709).to have_follow_up_week_3
     end
 
     scenario 'Nurse sees call to schedule final appointment' do
       expect(patient_800).to have_tasks_overdue
-
       expect(patient_800).to have_call_to_schedule_final_appt
     end
 
     scenario 'Nurse sees final appointment' do
       expect(patient_801).to have_tasks_overdue
-
       expect(patient_801).to have_final_appointment
     end
 
     scenario 'Nurse sees help request' do
       expect(patient_802).to have_tasks_overdue
-
       expect(patient_802).to have_help_request
     end
 
     scenario 'Nurse sees non-connectivity call' do
       expect(patient_803).to have_tasks_overdue
-
       expect(patient_803).to have_lack_of_connectivity_task
     end
 
     scenario 'Nurse sees non-adherence call' do
       expect(patient_804).to have_tasks_overdue
-
       expect(patient_804).to have_non_adherence_task
     end
   end
@@ -199,27 +183,16 @@ feature 'Spanish Nurse, Your Patients', metadata: :not_first do
 
   scenario 'Nurse sees correct translations' do
     expect(spanish_patients).to be_visible
-
     expect(spanish_patients).to have_table_headers
-
     expect(spanish_patients).to have_key
-
     expect(patient_501).to have_lack_of_connectivity_task
-
     expect(patient_501).to have_initial_appointment
-
     expect(patient_501).to have_follow_up_week_1
-
     expect(patient_501).to have_follow_up_week_3
-
     expect(patient_501).to have_call_to_schedule_final_appt
-
     expect(patient_501).to have_final_appointment
-
     expect(patient_501).to have_help_request
-
     expect(patient_501).to have_confirmation_call
-
     expect(patient_502).to have_non_adherence_task
   end
 end
@@ -233,27 +206,16 @@ feature 'Portuguese Nurse, Your Patients' do
 
   scenario 'Nurse sees correct translations' do
     expect(portuguese_patients).to be_visible
-
     expect(portuguese_patients).to have_table_headers
-
     expect(portuguese_patients).to have_key
-
     expect(patient_601).to have_lack_of_connectivity_task
-
     expect(patient_601).to have_initial_appointment
-
     expect(patient_601).to have_follow_up_week_1
-
     expect(patient_601).to have_follow_up_week_3
-
     expect(patient_601).to have_call_to_schedule_final_appt
-
     expect(patient_601).to have_final_appointment
-
     expect(patient_601).to have_help_request
-
     expect(patient_601).to have_confirmation_call
-
     expect(patient_602).to have_non_adherence_task
   end
 end

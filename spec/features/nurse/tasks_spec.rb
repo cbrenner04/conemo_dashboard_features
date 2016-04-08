@@ -11,7 +11,11 @@ feature 'Nurse, Participant Tasks', metadata: :not_first do
     expect(pt_1000_nurse_tasks).to have_participant_in_header
   end
 
-  scenario 'Nurse sees key'
+  scenario 'Nurse sees key' do
+    pt_1000_nurse_tasks.open
+
+    expect(pt_1000_nurse_tasks).to have_key
+  end
 
   scenario 'Nurse sees correct task count with multiple due' do
     pt_1000_nurse_tasks.open
@@ -40,11 +44,11 @@ feature 'Nurse, Participant Tasks', metadata: :not_first do
 
       expect(pt_451_nurse_tasks).to have_no_tasks_in_count
 
-      # check contact information for completed task
+      # check timeline for completed task
       clinical_summary.open
-      contact_information.open
+      timeline.open
 
-      expect(contact_information).to have_phone_additional_contact
+      expect(timeline).to have_phone_additional_contact
     end
 
     scenario 'Nurse creates in person additional contact' do
@@ -53,9 +57,27 @@ feature 'Nurse, Participant Tasks', metadata: :not_first do
 
       # check contact information for completed task
       clinical_summary.open
-      contact_information.open
+      timeline.open
 
-      expect(contact_information).to have_in_person_additional_contact
+      expect(timeline).to have_in_person_additional_contact
     end
+  end
+end
+
+feature 'Spanish Nurse, Tasks' do
+  scenario 'Spanish Nurse sees key' do
+    spanish_nurse.sign_in
+    pt_500_nurse_tasks.open
+
+    expect(pt_500_nurse_tasks).to have_key
+  end
+end
+
+feature 'Portuguese Nurse, Tasks' do
+  scenario 'Portuguese Nurse sees key' do
+    portuguese_nurse.sign_in
+    pt_600_nurse_tasks.open
+
+    expect(pt_600_nurse_tasks).to have_key
   end
 end

@@ -3,9 +3,7 @@
 require './spec/support/admin/pending_participants_helper'
 
 feature 'Admin, Pending Participants', metadata: :not_first do
-  background do
-    english_admin.sign_in
-  end
+  background { english_admin.sign_in }
 
   scenario 'Admin can cancel creation form' do
     pending_participants.create
@@ -24,7 +22,6 @@ feature 'Admin, Pending Participants', metadata: :not_first do
     navigation.submit
 
     expect(pending_participants).to_not have_landing_page_visible
-
     expect(contact_information).to have_form_visible
   end
 
@@ -38,7 +35,6 @@ feature 'Admin, Pending Participants', metadata: :not_first do
     navigation.submit
 
     expect(pending_participants).to_not have_landing_page_visible
-
     expect(contact_information).to have_form_visible
   end
 
@@ -52,7 +48,6 @@ feature 'Admin, Pending Participants', metadata: :not_first do
     navigation.submit
 
     expect(pending_participants).to_not have_landing_page_visible
-
     expect(contact_information).to have_form_visible
   end
 
@@ -66,7 +61,6 @@ feature 'Admin, Pending Participants', metadata: :not_first do
     navigation.submit
 
     expect(pending_participants).to_not have_landing_page_visible
-
     expect(contact_information).to have_form_visible
   end
 
@@ -80,7 +74,6 @@ feature 'Admin, Pending Participants', metadata: :not_first do
     navigation.submit
 
     expect(pending_participants).to_not have_landing_page_visible
-
     expect(contact_information).to have_form_visible
   end
 
@@ -95,7 +88,6 @@ feature 'Admin, Pending Participants', metadata: :not_first do
     navigation.submit
 
     expect(pending_participants).to_not have_landing_page_visible
-
     expect(contact_information).to have_form_visible
   end
 
@@ -110,7 +102,6 @@ feature 'Admin, Pending Participants', metadata: :not_first do
     navigation.submit
 
     expect(pending_participants).to_not have_landing_page_visible
-
     expect(contact_information).to have_form_visible
   end
 
@@ -124,7 +115,6 @@ feature 'Admin, Pending Participants', metadata: :not_first do
     navigation.submit
 
     expect(pending_participants).to_not have_landing_page_visible
-
     expect(contact_information).to have_form_visible
   end
 
@@ -144,7 +134,6 @@ feature 'Admin, Pending Participants', metadata: :not_first do
     participant_2000.activate
 
     expect(participant_2000).to be_activated
-
     expect(participant_2000).to_not be_visible
 
     # check supervisor page for existence of participant
@@ -171,11 +160,8 @@ feature 'Spanish Admin, Pending Participants' do
     spanish_pending_participants.create
 
     expect(spanish_contact_information).to have_form_fields
-
     expect(spanish_contact_information).to have_health_unit_options
-
     expect(spanish_contact_information).to have_relationship_options
-
     expect(spanish_contact_information).to have_gender_options
 
     navigation.cancel
@@ -198,11 +184,8 @@ feature 'Portuguese Admin, Pending Participants', metadata: :not_first do
     portuguese_pending_participants.create
 
     expect(portuguese_contact_information).to have_form_fields
-
     expect(portuguese_contact_information).to have_health_unit_options
-
     expect(portuguese_contact_information).to have_relationship_options
-
     expect(portuguese_contact_information).to have_gender_options
 
     navigation.cancel

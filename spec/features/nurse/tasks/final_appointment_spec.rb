@@ -16,7 +16,6 @@ feature 'Nurse, Participant Tasks, Final appointment', metadata: :not_first do
     pt_801_nurse_tasks.open
 
     expect(pt_801_nurse_tasks).to have_overdue_tasks
-
     expect(final_appointment).to be_overdue
   end
 
@@ -116,14 +115,12 @@ feature 'Nurse, Participant Tasks, Final appointment', metadata: :not_first do
     navigation.submit
 
     expect(your_patients).to be_visible
-
     expect(patient_341).to_not be_in_table
 
     english_nurse.sign_out
     english_supervisor.sign_in
 
     expect(nurse_supervisor_5).to have_updated_completed
-
     expect(nurse_supervisor_5).to have_new_completed_participant_information
   end
 end

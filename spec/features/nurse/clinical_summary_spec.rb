@@ -20,11 +20,15 @@ feature 'Nurse, Clinical Summary', metadata: :not_first do
     pt_343_clinical_summary.open
 
     expect(pt_343_clinical_summary).to be_visible
-
     expect(pt_343_nurse_tasks).to have_participant_in_header
   end
 
-  scenario 'Nurse sees key'
+  scenario 'Nurse sees key' do
+    pt_343_nurse_tasks.open
+    pt_343_clinical_summary.open
+
+    expect(pt_343_clinical_summary).to have_legend
+  end
 
   scenario 'Nurse sees correct messages & logins' do
     pt_343_nurse_tasks.open
@@ -61,7 +65,6 @@ feature 'Nurse, Clinical Summary', metadata: :not_first do
     pt_401_clinical_summary.open
 
     expect(pt_401_clinical_summary).to have_current_lesson
-
     expect(pt_401_clinical_summary).to have_unread_lesson
   end
 
@@ -70,7 +73,6 @@ feature 'Nurse, Clinical Summary', metadata: :not_first do
     pt_312_clinical_summary.open
 
     expect(pt_312_clinical_summary).to have_current_lesson
-
     expect(pt_312_clinical_summary).to have_unread_lesson
   end
 
@@ -88,7 +90,6 @@ feature 'Nurse, Clinical Summary', metadata: :not_first do
     pt_323_clinical_summary.open
 
     expect(pt_323_clinical_summary).to have_current_lesson
-
     expect(pt_323_clinical_summary).to have_unread_lesson
   end
 
@@ -97,7 +98,6 @@ feature 'Nurse, Clinical Summary', metadata: :not_first do
     pt_420_clinical_summary.open
 
     expect(pt_420_clinical_summary).to have_current_lesson
-
     expect(pt_420_clinical_summary).to have_unread_lesson
   end
 
@@ -115,7 +115,6 @@ feature 'Nurse, Clinical Summary', metadata: :not_first do
     pt_440_clinical_summary.open
 
     expect(pt_440_clinical_summary).to have_current_lesson
-
     expect(pt_440_clinical_summary).to have_unread_lesson
   end
 
@@ -124,7 +123,6 @@ feature 'Nurse, Clinical Summary', metadata: :not_first do
     pt_450_clinical_summary.open
 
     expect(pt_450_clinical_summary).to have_current_lesson
-
     expect(pt_450_clinical_summary).to have_unread_lesson
   end
 
@@ -133,7 +131,6 @@ feature 'Nurse, Clinical Summary', metadata: :not_first do
     pt_460_clinical_summary.open
 
     expect(pt_460_clinical_summary).to have_current_lesson
-
     expect(pt_460_clinical_summary).to have_unread_lesson
   end
 
@@ -355,28 +352,19 @@ feature 'Spanish Nurse, Clinical Summary' do
     pt_500_clinical_summary.open
 
     expect(pt_500_clinical_summary).to have_links
-
     expect(pt_500_clinical_summary).to have_headers
-
     expect(pt_500_clinical_summary).to have_legend
-
     expect(pt_500_clinical_summary).to have_notes_headers
-
     expect(pt_500_clinical_summary).to have_lesson_release_dates
-
     expect(pt_500_clinical_summary).to have_contact_dates
 
     pt_500_notes_form.open
     sleep(1)
 
     expect(pt_500_notes_form).to have_form_heading
-
     expect(pt_500_notes_form).to have_form_labels
-
     expect(pt_500_notes_form).to have_notes_headers
-
     expect(pt_500_notes_form).to have_contact_dates
-
     expect(pt_500_notes_form).to have_reason_options
   end
 end
@@ -388,28 +376,19 @@ feature 'Portuguese Nurse, Clinical Summary' do
     pt_600_clinical_summary.open
 
     expect(pt_600_clinical_summary).to have_links
-
     expect(pt_600_clinical_summary).to have_headers
-
     expect(pt_600_clinical_summary).to have_legend
-
     expect(pt_600_clinical_summary).to have_notes_headers
-
     expect(pt_600_clinical_summary).to have_lesson_release_dates
-
     expect(pt_600_clinical_summary).to have_contact_dates
 
     pt_600_notes_form.open
     sleep(1)
 
     expect(pt_600_notes_form).to have_form_heading
-
     expect(pt_600_notes_form).to have_form_labels
-
     expect(pt_600_notes_form).to have_notes_headers
-
     expect(pt_600_notes_form).to have_contact_dates
-
     expect(pt_600_notes_form).to have_reason_options
   end
 end

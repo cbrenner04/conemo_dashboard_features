@@ -1,8 +1,13 @@
 # filename: ./spec/support/nurse/tasks/initial_appointment_helper.rb
 
 require './lib/pages/nurse_tasks'
+require './lib/pages/nurse_tasks/contact_information'
 require './lib/pages/supervisor_page'
 require './lib/pages/your_patients'
+
+def contact_information
+  @contact_information ||= NurseTasks::ContactInformation.new(locale: 'english')
+end
 
 def pt_311_nurse_tasks
   @pt_311_nurse_tasks ||= NurseTasks.new(pt_id: 311)

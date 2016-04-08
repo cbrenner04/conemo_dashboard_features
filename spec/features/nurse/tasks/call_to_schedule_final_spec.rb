@@ -23,11 +23,11 @@ feature 'Nurse, Call to schedule final appointment', metadata: :first do
     expect(pt_702_nurse_tasks).to have_no_tasks_in_count
     expect(call_to_schedule_final_appointment).to be_complete
 
-    # Check contact information for completeness
+    # Check timeline for completeness
     clinical_summary.open
-    contact_information.open
+    timeline.open
 
-    expect(contact_information).to have_call_to_schedule_final_appt
+    expect(timeline).to have_call_to_schedule_final_appt
 
     # check Your Patients list for old / new tasks
     your_patients.return
@@ -50,7 +50,6 @@ feature 'Nurse, Call to schedule final appointment', metadata: :not_first do
     pt_800_nurse_tasks.open
 
     expect(pt_800_nurse_tasks).to have_overdue_tasks
-
     expect(call_to_schedule_final_appointment).to be_overdue
   end
 

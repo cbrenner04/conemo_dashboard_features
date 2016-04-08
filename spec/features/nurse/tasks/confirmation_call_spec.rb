@@ -16,7 +16,6 @@ feature 'Nurse, Participant Tasks, Confirmation Call', metadata: :not_first do
     pt_706_nurse_tasks.open
 
     expect(pt_706_nurse_tasks).to have_overdue_tasks
-
     expect(confirmation_call).to be_overdue
   end
 
@@ -96,11 +95,11 @@ feature 'Nurse, Participant Tasks, Confirmation Call', metadata: :not_first do
     expect(pt_306_nurse_tasks).to have_no_tasks_in_count
     expect(confirmation_call).to be_complete
 
-    # check contact information page for completeness
+    # check timeline page for completeness
     clinical_summary.open
-    contact_information.open
+    timeline.open
 
-    expect(contact_information).to have_confirmation_call
+    expect(timeline).to have_confirmation_call
 
     # check Your Patients list for old / new tasks
     your_patients.return

@@ -29,10 +29,6 @@ class YourPatients
   end
 
   def has_assigned_patients?
-    if has_css?('.pagination')
-      first('.input-sm').click
-      find('option', text: '100').click
-    end
     assigned_participants.all? { |i| has_text? i }
   end
 
@@ -137,11 +133,6 @@ class YourPatients
   private
 
   def patient_row
-    tries = 1
-    until has_css?('tr', text: @pt_id) || tries == 11
-      click_on 'Next'
-      tries += 1
-    end
     find('tr', text: @pt_id)
   end
 

@@ -89,7 +89,6 @@ class SupervisorPage
 
     def choose_topic
       topic = [
-        'Discussed topic(s)',
         'First appointments',
         'Difficulty to contact patient',
         'Non-resolved help requests',
@@ -97,7 +96,7 @@ class SupervisorPage
         'Non-adherence',
         'Patient\'s difficulties with CONEMO',
         'Overdue tasks / Nurse adherence',
-        'Canceled tasks',
+        'Cancelled tasks',
         'Serious adverse events (if nurse brings it up)',
         'Dropouts',
         'Uncertainties related to tasks',

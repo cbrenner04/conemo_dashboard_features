@@ -120,7 +120,6 @@ feature 'Nurse Supervisor, Nurses', metadata: :not_first do
       nurse_400.select
 
       expect(nurse_400).to have_your_patients_header
-
       expect(your_patients).to have_assigned_patients
     end
 
@@ -129,11 +128,8 @@ feature 'Nurse Supervisor, Nurses', metadata: :not_first do
       pt_1000_nurse_tasks.open
 
       expect(pt_1000_nurse_tasks).to have_multiple_tasks_in_count
-
       expect(confirmation_call).to be_active
-
       expect(help_request).to be_active
-
       expect(lack_of_connectivity_call).to be_active
     end
 
@@ -173,7 +169,6 @@ feature 'Nurse Supervisor, Nurses', metadata: :not_first do
       pt_342_clinical_summary_1.open
 
       expect(pt_342_clinical_summary_1).to have_notes_headers
-
       expect(pt_342_clinical_summary_1).to have_contact_dates
     end
 
@@ -181,11 +176,10 @@ feature 'Nurse Supervisor, Nurses', metadata: :not_first do
       nurse_400.select
       pt_342_nurse_tasks_4.open
       pt_342_clinical_summary_1.open
-      pt_342_contact_info_4.open
+      pt_342_timeline_4.open
 
-      expect(pt_342_contact_info_4).to be_on_page
-
-      expect(pt_342_contact_info_4).to have_timeline_titles
+      expect(pt_342_timeline_4).to be_on_page
+      expect(pt_342_timeline_4).to have_timeline_titles
     end
   end
 end

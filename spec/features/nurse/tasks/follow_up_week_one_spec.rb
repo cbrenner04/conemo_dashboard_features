@@ -16,7 +16,6 @@ feature 'Nurse, Participant Tasks, Follow up week one', metadata: :not_first do
     pt_708_nurse_tasks.open
 
     expect(pt_708_nurse_tasks).to have_overdue_tasks
-
     expect(follow_up_week_1).to be_overdue
   end
 
@@ -133,10 +132,10 @@ feature 'Nurse, Participant Tasks, Follow up week one', metadata: :not_first do
 
     expect(clinical_summary).to have_follow_up_week_1_notes_visible
 
-    # check contact information page for completeness
-    contact_information.open
+    # check timeline page for completeness
+    timeline.open
 
-    expect(contact_information).to have_follow_up_week_1
+    expect(timeline).to have_follow_up_week_1
 
     # check Your Patients list for old / new tasks
     your_patients.return

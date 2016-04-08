@@ -5,7 +5,7 @@ module Translations
       def portuguese_links
         @portuguese_links ||= [
           'as tarefas',
-          'participant contact information page'
+          'Histórico de eventos'
         ]
       end
 

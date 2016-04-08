@@ -106,10 +106,10 @@ class SupervisorPage
         "#{(Date.today - (4 + i)).strftime('%B %d, %Y')}"
       end
       expected_rows_2 = [
-        "Nurse-400, English Last-200, First 200 " \
+        'Nurse-400, English Last-200, First 200 ' \
         "#{Date.today.strftime('%B %d, %Y')} " \
         "#{Date.today.strftime('%B %d, %Y')}",
-        "Nurse-400, English Last-201, First 201 " \
+        'Nurse-400, English Last-201, First 201 ' \
         "#{Date.today.strftime('%B %d, %Y')} " \
         "#{Date.today.strftime('%B %d, %Y')}"
       ]

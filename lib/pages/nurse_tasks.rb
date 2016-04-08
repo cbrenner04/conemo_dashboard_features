@@ -25,11 +25,7 @@ class NurseTasks
     find('tr', text: @pt_id).click
     find('a', text: clinical_summary_link)
   rescue Capybara::ElementNotFound
-    if has_css?('a', text: 'Next')
-      click_on 'Next'
-    else
-      navigation.scroll_up
-    end
+    navigation.scroll_up
     tries += 1
     retry unless tries > 10
   end
@@ -88,6 +84,11 @@ class NurseTasks
              text: "Participant #{@pt_id}: Last-#{@pt_id}, First")
   end
 
+  def has_key?
+    has_scheduled? && has_confirmed? && has_active? && has_canceled? &&
+      has_overdue?
+  end
+
   private
 
   def navigation
@@ -108,5 +109,34 @@ class NurseTasks
     has_text? 'last supervisor contact sent ' \
               "#{Date.today.strftime('%B %d, %Y')} " \
               "#{dst_time(time).strftime('%H')}"
+  end
+
+  def key
+    find('.table-condensed')
+  end
+
+  def has_scheduled?
+    key.has_css?('tr', text: locale('scheduled but not due',
+                                    'scheduled but not due',
+                                    'scheduled but not due'))
+  end
+
+  def has_confirmed?
+    key.has_css?('.success',
+                 text: locale('confirmed', 'confirmed', 'confirmed'))
+  end
+
+  def has_active?
+    key.has_css?('.info',
+                 text: locale('active due', 'active due', 'active due'))
+  end
+
+  def has_canceled?
+    key.has_css?('.warning',
+                 text: locale('cancelled', 'cancelled', 'cancelled'))
+  end
+
+  def has_overdue?
+    key.has_css?('.danger', text: locale('overdue', 'overdue', 'overdue'))
   end
 end

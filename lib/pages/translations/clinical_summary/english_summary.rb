@@ -5,7 +5,7 @@ module Translations
       def english_links
         @english_links ||= [
           'Tasks',
-          'participant contact information page'
+          'Event history'
         ]
       end
 

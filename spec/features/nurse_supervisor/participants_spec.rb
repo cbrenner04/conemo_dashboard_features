@@ -12,23 +12,19 @@ feature 'Nurse Supervisor, Participants', metadata: :first do
 
   scenario 'Nurse Supervisor sees information for completed participants' do
     expect(nurse_supervisor).to have_total_completed
-
     expect(nurse_supervisor).to have_completed_participant_information
   end
 
   scenario 'Nurse Supervisor sees information for dropped participants' do
     expect(nurse_supervisor).to have_total_dropped_out
-
     expect(nurse_supervisor).to have_dropped_participant_information
   end
 
   scenario 'Nurse Supervisor sees all active participants' do
     expect(nurse_supervisor).to have_total_active
-
     # check for enrollment date and date added
     # may have a dependency issue
     expect(nurse_supervisor).to have_active_patient
-
     # check that it shows a sample of all of the participants
     expect(nurse_supervisor).to have_active_participant_information
   end
@@ -44,17 +40,13 @@ feature 'Nurse Supervisor, Participants', metadata: :first do
     english_nurse_404.sign_in
 
     expect(patient_413).to have_tasks_active
-
     expect(patient_413).to have_confirmation_call
-
     expect(patient_413).to have_lack_of_connectivity_task
 
     pt_413_tasks.open
 
     expect(pt_413_tasks).to have_previous_supervisor_contact
-
     expect(pt_413_confirmation_call).to be_active
-
     expect(pt_413_lack_of_connectivity_call).to be_active
   end
 end
@@ -81,7 +73,6 @@ feature 'Nurse Supervisor, Participants', metadata: :not_first do
     patient_4036.terminate
 
     expect(patient_4036).to_not be_active
-
     expect(patient_4036).to be_dropped
   end
 end

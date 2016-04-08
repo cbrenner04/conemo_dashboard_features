@@ -5,8 +5,10 @@ require './lib/pages/navigation'
 require './lib/pages/nurse_tasks'
 require './lib/pages/nurse_tasks/clinical_summary'
 require './lib/pages/nurse_tasks/confirmation_call'
+require './lib/pages/nurse_tasks/contact_information'
 require './lib/pages/nurse_tasks/help_request'
 require './lib/pages/nurse_tasks/lack_of_connectivity_call'
+require './lib/pages/nurse_tasks/timeline_page'
 require './lib/pages/supervisor_page'
 require './lib/pages/supervisor_page/nurses'
 require './lib/pages/your_patients'
@@ -87,10 +89,8 @@ def pt_342_nurse_tasks_4
   @pt_342_nurse_tasks_4 ||= NurseTasks.new(pt_id: 342)
 end
 
-def pt_342_contact_info_4
-  @pt_342_contact_info_4 ||= NurseTasks::ContactInformation.new(
-    locale: 'english'
-  )
+def pt_342_timeline_4
+  @pt_342_timeline_4 ||= NurseTasks::TimelinePage.new(locale: 'english')
 end
 
 def pt_343_nurse_tasks

@@ -33,10 +33,10 @@ feature 'Nurse, Initial in person appointment', metadata: :first do
 
     expect(clinical_summary).to have_first_appt_notes_visible
 
-    # check contact information page for completeness
-    contact_information.open
+    # check timeline page for completeness
+    timeline.open
 
-    expect(contact_information).to have_initial_appointment
+    expect(timeline).to have_initial_appointment
 
     # check Your Patients list for old / new tasks
     your_patients.return
@@ -59,7 +59,6 @@ feature 'Nurse, Initial in person appointment', metadata: :not_first do
     pt_707_nurse_tasks.open
 
     expect(pt_707_nurse_tasks).to have_overdue_tasks
-
     expect(initial_in_person_appt).to be_overdue
   end
 

@@ -1,6 +1,8 @@
 module Translations
   # translations for 'Your Patients' page
   module YourPatientsTranslations
+    include Translations
+
     def expected_headers
       locale(spanish_headers, portuguese_headers, english_headers)
     end

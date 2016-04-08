@@ -51,6 +51,8 @@ feature 'Nurse, Non-connectivity call', metadata: :not_first do
     expect(lack_of_connectivity_call).to be_active
   end
 
+  scenario 'Nurse cancels non-connectivity task'
+
   scenario 'Nurse marks non-connectivity task as resolved' do
     pt_410_nurse_tasks.open
 
@@ -61,15 +63,13 @@ feature 'Nurse, Non-connectivity call', metadata: :not_first do
     lack_of_connectivity_call.complete_resolution_form
 
     expect(pt_410_nurse_tasks).to have_no_tasks_in_count
-
     expect(lack_of_connectivity_call).to_not be_active
 
-    # contact information for completeness
+    # check timeline for completeness
     clinical_summary.open
-    contact_information.open
+    timeline.open
 
-    expect(contact_information).to have_non_connectivity_call
-
+    expect(timeline).to have_non_connectivity_call
     expect(lack_of_connectivity_call).to have_response
 
     # check Your Patients list for old / new tasks

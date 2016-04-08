@@ -19,7 +19,6 @@ feature 'Nurse, Login', metadata: :not_first do
     english_nurse.sign_in
 
     expect(navigation).to_not have_admin_buttons
-
     expect(english_nurse).to have_english_patient
 
     english_nurse.sign_out
@@ -29,7 +28,6 @@ feature 'Nurse, Login', metadata: :not_first do
     spanish_nurse.sign_in
 
     expect(spanish_navigation).to_not have_admin_buttons
-
     expect(spanish_nurse).to have_spanish_patient
 
     spanish_nurse.sign_out
@@ -39,7 +37,6 @@ feature 'Nurse, Login', metadata: :not_first do
     portuguese_nurse.sign_in
 
     expect(portuguese_navigation).to_not have_admin_buttons
-
     expect(portuguese_nurse).to have_portuguese_patient
 
     portuguese_nurse.sign_out

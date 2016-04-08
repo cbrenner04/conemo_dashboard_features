@@ -1,9 +1,9 @@
 # filename: ./spec/support/nurse/tasks_helper.rb
 
 require './lib/pages/navigation'
+require './lib/pages/nurse_tasks'
 Dir['./lib/pages/nurse_tasks/*.rb'].each { |file| require file }
 require './lib/pages/supervisor_page'
-require './lib/pages/nurse_tasks'
 require './lib/pages/your_patients'
 
 def cancel_form
@@ -14,8 +14,8 @@ def clinical_summary
   @clinical_summary ||= NurseTasks::ClinicalSummary.new(id: 1)
 end
 
-def contact_information
-  @contact_information ||= NurseTasks::ContactInformation.new(id: 'fake')
+def timeline
+  @timeline ||= NurseTasks::TimelinePage.new(locale: 'english')
 end
 
 def navigation
@@ -76,6 +76,20 @@ end
 
 def pt_451_nurse_tasks
   @pt_451_nurse_tasks ||= NurseTasks.new(pt_id: 451)
+end
+
+def pt_500_nurse_tasks
+  @pt_500_nurse_tasks ||= NurseTasks.new(
+    pt_id: 500,
+    locale: 'spanish'
+  )
+end
+
+def pt_600_nurse_tasks
+  @pt_600_nurse_tasks ||= NurseTasks.new(
+    pt_id: 600,
+    locale: 'portuguese'
+  )
 end
 
 def pt_1000_nurse_tasks

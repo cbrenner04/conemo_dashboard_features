@@ -51,6 +51,8 @@ feature 'Nurse, Participant Tasks, Help request', metadata: :not_first do
     expect(help_request).to be_active
   end
 
+  scenario 'Nurse cancels help request'
+
   scenario 'Nurse marks help request as resolved' do
     pt_400_nurse_tasks.open
 
@@ -61,15 +63,13 @@ feature 'Nurse, Participant Tasks, Help request', metadata: :not_first do
     help_request.complete_resolution_form
 
     expect(help_request).to_not be_active
-
     expect(pt_400_nurse_tasks).to have_no_tasks_in_count
 
-    # check contact information for completed task
+    # check timeline for completed task
     clinical_summary.open
-    contact_information.open
+    timeline.open
 
-    expect(contact_information).to have_help_request
-
+    expect(timeline).to have_help_request
     expect(help_request).to have_response
 
     # check Your Patients list for old / new tasks
