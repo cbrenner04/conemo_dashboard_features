@@ -33,7 +33,9 @@ class SupervisorPage
     end
 
     def active?
-      find('.panel', text: 'Active')
+      active_panel = find('.panel', text: 'Active')
+      active_panel.find('input[type = search]').set(@pt_id)
+      active_panel
         .has_css?('tr',
                   text: "Edit Information Nurse-#{@nurse}, English Edit " \
                         "Information Last-#{@pt_id}, First #{@pt_id} " \
@@ -44,7 +46,7 @@ class SupervisorPage
       tries ||= 1
       find('.panel', text: 'Active').find('tr', text: "#{@pt_id}")
         .find('.fa-thumbs-down').click
-      accept_alert('Are you sure you want to mark this person as ineligible?')
+      accept_alert('Are you sure you want to terminate this person?')
     rescue Capybara::ModalNotFound
       navigation.scroll_up
       tries += 1
@@ -52,14 +54,11 @@ class SupervisorPage
     end
 
     def dropped?
-      # # enrollment date and nurse not included at the moment
-      # find('.panel', text: 'Dropped out')
-      #   .has_css?('tr', text: 'Nurse-401, English '
-      #                         "Last-#{@pt_id}, First #{@pt_id} " \
-      #                         "#{enrollment} #{today}")
-
+      find('.panel', text: 'Dropped').find('input[type = search]').set(@pt_id)
       find('.panel', text: 'Dropped out')
-        .has_css?('tr', text: "Last-#{@pt_id}, First #{@pt_id} #{today}")
+        .has_css?('tr', text: 'Nurse-401, English ' \
+                              "Last-#{@pt_id}, First #{@pt_id} " \
+                              "#{enrollment} #{today}")
     end
 
     def reassign

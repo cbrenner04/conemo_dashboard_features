@@ -9,6 +9,7 @@ module Translations
 
     def spanish_headers
       @spanish_headers ||= [
+        'Nombre',
         'Código del participante',
         'las tareas',
         'Configurar identificador'
@@ -17,7 +18,8 @@ module Translations
 
     def portuguese_headers
       @portuguese_headers ||= [
-        'Identificação do participante (ID)',
+        'Nome',
+        'Identificação do participante',
         'as tarefas',
         'Configurar token'
       ]
@@ -25,6 +27,7 @@ module Translations
 
     def english_headers
       @english_headers ||= [
+        'Name',
         'Participant ID',
         'Tasks',
         'Configuration token'

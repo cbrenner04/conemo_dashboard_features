@@ -25,9 +25,13 @@ class NurseTasks
     find('tr', text: @pt_id).click
     find('a', text: clinical_summary_link)
   rescue Capybara::ElementNotFound
-    navigation.scroll_up
+    if has_css?('a', text: 'Next')
+      click_on 'Next'
+    else
+      navigation.scroll_up
+    end
     tries += 1
-    retry unless tries > 5
+    retry unless tries > 10
   end
 
   def clear_supervisor_contact

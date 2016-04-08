@@ -29,6 +29,10 @@ class YourPatients
   end
 
   def has_assigned_patients?
+    if has_css?('.pagination')
+      first('.input-sm').click
+      find('option', text: '100').click
+    end
     assigned_participants.all? { |i| has_text? i }
   end
 
@@ -52,7 +56,7 @@ class YourPatients
   end
 
   def has_tasks_ordered_correctly?
-    expected_text = row_text.gsub("#{@pt_id} ", '')
+    expected_text = row_text.gsub("Last-#{@pt_id}, First #{@pt_id} ", '')
     expect(expected_text)
       .to eq "#{confirmation_call_title}, #{help_request_title}, " \
              "#{lack_of_connectivity_call_title}"
@@ -107,7 +111,7 @@ class YourPatients
   end
 
   def has_table_headers?
-    actual_headers = (0..2).map { |i| all('th')[i].text }
+    actual_headers = (0..3).map { |i| all('th')[i].text }
     expect(actual_headers).to eq(expected_headers)
   end
 
@@ -133,6 +137,11 @@ class YourPatients
   private
 
   def patient_row
+    tries = 1
+    until has_css?('tr', text: @pt_id) || tries == 11
+      click_on 'Next'
+      tries += 1
+    end
     find('tr', text: @pt_id)
   end
 
@@ -155,19 +164,19 @@ class YourPatients
 
   def expected_results
     @expected_results ||= [
-      "706 #{confirmation_call_title}, #{help_request_title}",
-      "707 #{initial_appointment_title}",
-      "708 #{follow_up_week_one_title}",
-      "709 #{follow_up_week_three_title}",
-      "800 #{call_to_schedule_final_title}",
-      "801 #{final_appointment_title}, #{help_request_title}",
-      "802 #{help_request_title}",
-      "803 #{lack_of_connectivity_call_title}",
-      "804 #{non_adherence_call_title}",
-      "1000 #{confirmation_call_title}, #{help_request_title}, " \
-      "#{lack_of_connectivity_call_title}",
-      "322 #{follow_up_week_one_title} aBc322XyZ",
-      "303 #{confirmation_call_title}"
+      "Last-706, First 706 #{confirmation_call_title}, #{help_request_title}",
+      "Last-707, First 707 #{initial_appointment_title}",
+      "Last-708, First 708 #{follow_up_week_one_title}",
+      "Last-709, First 709 #{follow_up_week_three_title}",
+      "Last-800, First 800 #{call_to_schedule_final_title}",
+      "Last-801, First 801 #{final_appointment_title}, #{help_request_title}",
+      "Last-802, First 802 #{help_request_title}",
+      "Last-803, First 803 #{lack_of_connectivity_call_title}",
+      "Last-804, First 804 #{non_adherence_call_title}",
+      "Last-1000, First 1000 #{confirmation_call_title}, " \
+      "#{help_request_title}, #{lack_of_connectivity_call_title}",
+      "Last-322, First 322 #{follow_up_week_one_title} aBc322XyZ",
+      "Last-303, First 303 #{confirmation_call_title}"
     ]
   end
 end

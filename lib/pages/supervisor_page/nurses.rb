@@ -113,7 +113,7 @@ class SupervisorPage
     end
 
     def select
-      18.times { navigation.scroll_down }
+      4.times { navigation.scroll_down }
       find('.panel-heading', text: "Nurse-#{@id}, English")
         .find('a', text: "Nurse-#{@id}, English").click
     end

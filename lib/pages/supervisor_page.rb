@@ -58,6 +58,7 @@ class SupervisorPage
 
   def has_active_participant_information?
     your_patients.english_nurse_patients.all? do |patient|
+      find('.panel', text: 'Active').find('input[type = search]').set(patient)
       has_css?('tr',
                text: 'Edit Information Nurse-400, English Edit Information ' \
                      "Last-#{patient}, First #{patient}")
@@ -71,6 +72,9 @@ class SupervisorPage
   end
 
   def has_completed_participant_information?
+    2.times { navigation.scroll_down }
+    find('.panel', text: 'Completed').first('.input-sm').click
+    all('option', text: '25')[2].click
     completed_table = find('.panel', text: 'Completed').find('.table')
     within completed_table do
       actual_rows = (1..12).map { |i| all('tr')[i].text }
@@ -90,16 +94,24 @@ class SupervisorPage
   end
 
   def has_dropped_participant_information?
+    3.times { navigation.scroll_down }
+    find('.panel', text: 'Dropped').first('.input-sm').click
+    all('option', text: '25')[3].click
     dropped_table = find('.panel', text: 'Dropped out').find('.table')
     within dropped_table do
       actual_rows = (1..14).map { |i| all('tr')[i].text }
       expected_rows_1 = (1..12).map do |i|
-        "Last-#{201 + i}, First #{201 + i} " \
+        "Nurse-402, English Last-#{201 + i}, First #{201 + i} " \
+        "#{(Date.today - (4 + i)).strftime('%B %d, %Y')} " \
         "#{(Date.today - (4 + i)).strftime('%B %d, %Y')}"
       end
       expected_rows_2 = [
-        "Last-200, First 200 #{Date.today.strftime('%B %d, %Y')}",
-        "Last-201, First 201 #{Date.today.strftime('%B %d, %Y')}"
+        "Nurse-400, English Last-200, First 200 " \
+        "#{Date.today.strftime('%B %d, %Y')} " \
+        "#{Date.today.strftime('%B %d, %Y')}",
+        "Nurse-400, English Last-201, First 201 " \
+        "#{Date.today.strftime('%B %d, %Y')} " \
+        "#{Date.today.strftime('%B %d, %Y')}"
       ]
       expected_rows = expected_rows_1.concat expected_rows_2
       actual_rows.should =~ expected_rows
