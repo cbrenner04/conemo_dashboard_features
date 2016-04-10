@@ -5,11 +5,17 @@ require './lib/pages/supervisor_page'
 require './lib/pages/your_patients'
 
 def nurse_supervisor_1
-  @nurse_supervisor_1 ||= SupervisorPage.new(pt_id: 704)
+  @nurse_supervisor_1 ||= SupervisorPage.new(
+    pt_id: 704,
+    user_id: 400
+  )
 end
 
 def nurse_supervisor_2
-  @nurse_supervisor_2 ||= SupervisorPage.new(pt_id: 705)
+  @nurse_supervisor_2 ||= SupervisorPage.new(
+    pt_id: 705,
+    user_id: 400
+  )
 end
 
 def pt_337_nurse_tasks

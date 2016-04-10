@@ -2,6 +2,7 @@
 
 require './lib/pages/nurse_tasks'
 require './lib/pages/nurse_tasks/lack_of_connectivity_call'
+require './lib/pages/supervisor_page'
 require './lib/pages/your_patients'
 
 def lack_of_connectivity_call
@@ -34,5 +35,16 @@ def pt_803_nurse_tasks
     contact_type: 'Call due to no connectivity',
     days_since_due: '3 days',
     tasks_count: 1
+  )
+end
+
+def pt_4025_nurse_tasks
+  @pt_4025_nurse_tasks ||= NurseTasks.new(pt_id: 4025)
+end
+
+def nurse_supervisor_16
+  @nurse_supervisor_16 ||= SupervisorPage.new(
+    pt_id: 4025,
+    user_id: 401
   )
 end

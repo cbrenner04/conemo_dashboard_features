@@ -79,3 +79,21 @@ feature 'Nurse, Non-connectivity call', metadata: :not_first do
     expect(patient_410).to have_tasks_completed
   end
 end
+
+feature 'Nurse, Non-connectivity call', metadata: :not_first do
+  scenario 'Nurse cancels non-connectivity call' do
+    english_nurse_401.sign_in
+    pt_4025_nurse_tasks.open
+
+    lack_of_connectivity_call.mark_resolved
+    lack_of_connectivity_call.resolve_as_canceled
+
+    expect(lack_of_connectivity_call).to_not be_active
+
+    english_nurse_401.sign_out
+    english_supervisor.sign_in
+
+    expect(nurse_supervisor_16).to have_non_connectivity_call_canceled
+    expect(lack_of_connectivity_call).to have_cancel_reason
+  end
+end

@@ -100,3 +100,21 @@ feature 'Nurse, Non-adherence call', metadata: :not_first do
     expect(patient_420).to have_tasks_completed
   end
 end
+
+feature 'Nurse, Non-adherence call', metadata: :not_first do
+  scenario 'Nurse cancels non-adherence call' do
+    english_nurse_401.sign_in
+    pt_4026_nurse_tasks.open
+
+    non_adherence_call.mark_resolved
+    non_adherence_call.resolve_as_canceled
+
+    expect(non_adherence_call).to_not be_active
+
+    english_nurse_401.sign_out
+    english_supervisor.sign_in
+
+    expect(nurse_supervisor_15).to have_non_adherence_call_canceled
+    expect(non_adherence_call).to have_cancel_reason
+  end
+end

@@ -3,6 +3,7 @@
 require './lib/pages/nurse_tasks'
 require './lib/pages/nurse_tasks/non_adherence_call'
 require './lib/pages/nurse_tasks/lack_of_connectivity_call'
+require './lib/pages/supervisor_page'
 require './lib/pages/your_patients'
 
 def non_adherence_call
@@ -48,5 +49,16 @@ def pt_804_nurse_tasks
     contact_type: 'Non-adherence call',
     days_since_due: '3 days',
     tasks_count: 1
+  )
+end
+
+def pt_4026_nurse_tasks
+  @pt_4026_nurse_tasks ||= NurseTasks.new(pt_id: 4026)
+end
+
+def nurse_supervisor_15
+  @nurse_supervisor_15 ||= SupervisorPage.new(
+    pt_id: 4026,
+    user_id: 401
   )
 end

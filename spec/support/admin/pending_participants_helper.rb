@@ -100,7 +100,10 @@ def patient_2000
 end
 
 def nurse_supervisor_13
-  @nurse_supervisor_13 ||= SupervisorPage.new(pt_id: 2000)
+  @nurse_supervisor_13 ||= SupervisorPage.new(
+    pt_id: 2000,
+    user_id: 400
+  )
 end
 
 def participant_2001

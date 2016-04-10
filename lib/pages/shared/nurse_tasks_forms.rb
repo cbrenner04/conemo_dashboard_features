@@ -106,6 +106,15 @@ module NurseTasksForms
     selector[hh].has_text? Time.now.strftime('%H')
   end
 
+  def resolve_as_canceled_responses
+    @resolve_as_canceled_responses ||= [
+      'Could not reach patient',
+      'Patient does not want to continue in the program',
+      'Patient did not have time to talk (multiple times)',
+      'Patient not willing to talk to nurse (assistant)'
+    ]
+  end
+
   private
 
   def navigation

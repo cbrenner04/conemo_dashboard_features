@@ -65,6 +65,18 @@ class NurseTasks
       expect(actual).to eq(options)
     end
 
+    def resolve_as_canceled
+      sleep(1)
+      selector[5].click
+      @cancel_response ||= resolve_as_canceled_responses.sample
+      select_list_item(@cancel_response)
+      navigation.submit
+    end
+
+    def has_cancel_reason?
+      has_text? @cancel_response
+    end
+
     private
 
     def navigation

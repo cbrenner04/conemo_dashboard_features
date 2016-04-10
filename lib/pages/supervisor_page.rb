@@ -7,6 +7,7 @@ class SupervisorPage
 
   def initialize(supervisor_page)
     @pt_id ||= supervisor_page[:pt_id]
+    @user_id ||= supervisor_page[:user_id]
   end
 
   def has_pending_participants?
@@ -138,6 +139,18 @@ class SupervisorPage
     canceled? 'Follow up call week 3'
   end
 
+  def has_help_request_canceled?
+    canceled? 'Help request'
+  end
+
+  def has_non_connectivity_call_canceled?
+    canceled? 'Call due to no connectivity'
+  end
+
+  def has_non_adherence_call_canceled?
+    canceled? 'Non-adherence call'
+  end
+
   def has_initial_appointment_canceled?
     canceled? 'Initial in person appointment'
   end
@@ -185,30 +198,30 @@ class SupervisorPage
 
   def canceled?(title)
     toggle_canceled_rescheduled_tasks
-    nurse_400_panel
+    nurse_panel
       .has_css?('.text-warning',
                 text: "Participant #{@pt_id} #{title} cancelled")
   end
 
   def rescheduled?(title)
     toggle_canceled_rescheduled_tasks
-    nurse_400_panel
+    nurse_panel
       .has_css?('.text-info',
                 text: "Participant #{@pt_id} #{title} rescheduled")
   end
 
-  def nurse_400_panel
-    @nurse_400_panel ||= if has_css?('.panel',
-                                     text: 'Nurse-400, English', count: 1)
-                           find('.panel', text: 'Nurse-400, English')
-                         else
-                           all('.panel', text: 'Nurse-400, English').last
-                         end
+  def nurse_panel
+    @nurse_panel ||= if has_css?('.panel',
+                                 text: "Nurse-#{@user_id}, English", count: 1)
+                       find('.panel', text: "Nurse-#{@user_id}, English")
+                     else
+                       all('.panel', text: "Nurse-#{@user_id}, English").last
+                     end
   end
 
   def toggle_canceled_rescheduled_tasks
     4.times { navigation.scroll_down }
-    nurse_400_panel
+    nurse_panel
       .find('button', text: 'Toggle cancelled / rescheduled tasks').click
   end
 end

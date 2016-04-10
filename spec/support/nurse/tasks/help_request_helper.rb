@@ -2,6 +2,7 @@
 
 require './lib/pages/nurse_tasks'
 require './lib/pages/nurse_tasks/help_request'
+require './lib/pages/supervisor_page'
 require './lib/pages/your_patients'
 
 def help_request
@@ -42,5 +43,16 @@ def pt_802_nurse_tasks
     days_since_due: '3 days',
     contact_type: 'Help request',
     tasks_count: 1
+  )
+end
+
+def pt_4024_nurse_tasks
+  @pt_4024_nurse_tasks ||= NurseTasks.new(pt_id: 4024)
+end
+
+def nurse_supervisor_14
+  @nurse_supervisor_14 ||= SupervisorPage.new(
+    pt_id: 4024,
+    user_id: 401
   )
 end

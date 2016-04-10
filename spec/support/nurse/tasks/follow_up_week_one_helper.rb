@@ -74,9 +74,15 @@ def pt_708_nurse_tasks
 end
 
 def nurse_supervisor_7
-  @nurse_supervisor_7 ||= SupervisorPage.new(pt_id: 320)
+  @nurse_supervisor_7 ||= SupervisorPage.new(
+    pt_id: 320,
+    user_id: 400
+  )
 end
 
 def nurse_supervisor_8
-  @nurse_supervisor_8 ||= SupervisorPage.new(pt_id: 321)
+  @nurse_supervisor_8 ||= SupervisorPage.new(
+    pt_id: 321,
+    user_id: 400
+  )
 end

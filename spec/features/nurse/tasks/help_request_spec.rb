@@ -51,8 +51,6 @@ feature 'Nurse, Participant Tasks, Help request', metadata: :not_first do
     expect(help_request).to be_active
   end
 
-  scenario 'Nurse cancels help request'
-
   scenario 'Nurse marks help request as resolved' do
     pt_400_nurse_tasks.open
 
@@ -77,5 +75,23 @@ feature 'Nurse, Participant Tasks, Help request', metadata: :not_first do
 
     expect(patient_400).to_not have_help_request
     expect(patient_400).to have_tasks_completed
+  end
+end
+
+feature 'Nurse, Participant Tasks, Help request', metadata: :not_first do
+  scenario 'Nurse cancels help request' do
+    english_nurse_401.sign_in
+    pt_4024_nurse_tasks.open
+
+    help_request.mark_resolved
+    help_request.resolve_as_canceled
+
+    expect(help_request).to_not be_active
+
+    english_nurse_401.sign_out
+    english_supervisor.sign_in
+
+    expect(nurse_supervisor_14).to have_help_request_canceled
+    expect(help_request).to have_cancel_reason
   end
 end
