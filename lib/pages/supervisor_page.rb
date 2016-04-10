@@ -41,7 +41,7 @@ class SupervisorPage
   end
 
   def has_total_active?
-    has_css?('.panel-heading', text: '141 Active')
+    has_css?('.panel-heading', text: '156 Active')
   end
 
   def has_total_completed?
@@ -207,6 +207,7 @@ class SupervisorPage
   end
 
   def toggle_canceled_rescheduled_tasks
+    4.times { navigation.scroll_down }
     nurse_400_panel
       .find('button', text: 'Toggle cancelled / rescheduled tasks').click
   end

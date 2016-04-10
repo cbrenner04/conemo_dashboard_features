@@ -6,12 +6,12 @@ feature 'Nurse, Timeline', metadata: :not_first do
   background { english_nurse.sign_in }
 
   scenario 'Nurse sees participant id and name in header' do
-    pt_300_nurse_tasks.open
-    pt_300_clinical_summary_1.open
-    pt_300_timeline.open
+    pt_342_nurse_tasks_1.open
+    pt_342_clinical_summary.open
+    pt_342_timeline_1.open
 
-    expect(pt_300_timeline).to be_on_page
-    expect(pt_300_nurse_tasks).to have_participant_in_header
+    expect(pt_342_timeline_1).to be_on_page
+    expect(pt_342_nurse_tasks_1).to have_participant_in_header
   end
 
   scenario 'Nurse edits confirmation call' do

@@ -27,6 +27,7 @@ feature 'Nurse, Clinical Summary', metadata: :not_first do
     pt_343_nurse_tasks.open
     pt_343_clinical_summary.open
 
+    expect(pt_343_clinical_summary).to be_visible
     expect(pt_343_clinical_summary).to have_legend
   end
 

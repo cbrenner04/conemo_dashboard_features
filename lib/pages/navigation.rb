@@ -26,10 +26,12 @@ class Navigation
   end
 
   def scroll_down
+    sleep(0.25)
     execute_script('window.scrollBy(0,500)')
   end
 
   def scroll_up
+    sleep(0.25)
     execute_script('window.scrollBy(0,-250)')
   end
 
