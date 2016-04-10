@@ -50,7 +50,7 @@ end
 feature 'Nurse Supervisor, Nurses', metadata: :not_first do
   background { english_supervisor.sign_in }
 
-  scenario 'Nurse Supervisor sees all nurses assigned to them' do
+  scenario 'Nurse Supervisor sees nurses assigned to them ordered properly' do
     expect(nurse_supervisor).to have_nurses
   end
 
@@ -171,6 +171,17 @@ feature 'Nurse Supervisor, Nurses', metadata: :not_first do
       expect(pt_342_clinical_summary_1).to have_notes_headers
       expect(pt_342_clinical_summary_1).to have_contact_dates
     end
+
+    # scenario 'Nurse Supervisor creates a Nurse Supervisor note' do
+    #   # potential for a dependency issue
+    #   nurse_400.select
+    #   pt_430_nurse_tasks_2.open
+    #   pt_430_clinical_summary_2.open
+
+    #   pt_430_clinical_summary_2.create_supervisor_note
+
+    #   expect(pt_430_clinical_summary_2).to have_supervisor_note
+    # end
 
     scenario 'Nurse Supervisor sees timeline for individual participant' do
       nurse_400.select

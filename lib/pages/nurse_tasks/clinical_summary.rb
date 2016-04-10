@@ -172,6 +172,14 @@ class NurseTasks
       expect(actual_contact_dates).to eq(expected_contact_dates)
     end
 
+    # def create_supervisor_note
+    #   # something with @note
+    # end
+
+    # def has_supervisor_note?
+    #   # something with @note
+    # end
+
     private
 
     def lesson_table

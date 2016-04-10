@@ -18,9 +18,9 @@ class SupervisorPage
   end
 
   def has_nurses?
-    [400, 401, 402, 403, 404].all? do |i|
-      has_css?('h4', text: "Nurse-#{i}, English")
-    end
+    actual = (0..3).map { |i| all('.panel-heading', text: 'Nurse-')[i].text }
+    expected = [400, 401, 403, 402, 404].map { |i| "Nurse-#{i}, English" }
+    expect(actual).to eq(expected)
   end
 
   def on_home_page?
