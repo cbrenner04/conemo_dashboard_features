@@ -62,7 +62,7 @@ feature 'Nurse, Timeline', metadata: :not_first do
     pt_342_nurse_tasks_3.open
     pt_342_clinical_summary.open
     pt_342_timeline_3.open
-    sleep(1)
+    sleep(0.25)
     navigation.scroll_down
     pt_342_timeline_3.edit_follow_up_week_3
     pt_342_nurse_tasks_3.enter_session_length

@@ -15,7 +15,7 @@ class NurseTasks
     end
 
     def complete
-      sleep(1)
+      sleep(0.25)
       select_next_date(2)
       selector[5].click
       @reschedule_reason ||= expected_options.sample
@@ -24,7 +24,7 @@ class NurseTasks
     end
 
     def has_form_headings?
-      sleep(1)
+      sleep(0.25)
       actual_headings = (0..2).map { |i| all('.control-label')[i].text }
       expect(actual_headings).to eq(expected_headings)
     end

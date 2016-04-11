@@ -14,7 +14,7 @@ feature 'Nurse, Contact Information', metadata: :not_first do
   scenario 'Nurse cancels out of edit of participant information' do
     pt_301_nurse_tasks.open
     pt_301_contact_info.select_edit_contact_information
-    sleep(1)
+    sleep(0.25)
     navigation.cancel
     find('a', text: 'Tasks').click # remove when fixed
 

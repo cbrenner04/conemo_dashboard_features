@@ -19,7 +19,7 @@ class NurseTasks
 
     def create_for_call
       open
-      sleep(1)
+      sleep(0.25)
       selector[5].click
       select_list_item(options[1])
       navigation.submit
@@ -27,7 +27,7 @@ class NurseTasks
 
     def create_for_in_person
       open
-      sleep(1)
+      sleep(0.25)
       selector[5].click
       select_list_item(options[0])
       navigation.submit

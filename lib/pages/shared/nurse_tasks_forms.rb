@@ -58,7 +58,7 @@ module NurseTasksForms
   end
 
   def enter_task_location(selector_num)
-    sleep(1)
+    sleep(0.25)
     selector[selector_num].click
     select_list_item(options.sample)
   end

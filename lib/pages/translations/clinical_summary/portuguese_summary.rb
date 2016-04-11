@@ -27,6 +27,12 @@ module Translations
           'Accessed but not completed',
           'Not accessed',
           'Completed on time'
+          # 'Ainda não enviada',
+          # 'Atual',
+          # 'Concludía com atraso',
+          # 'Accessed but not completed',
+          # 'Não acessada',
+          # 'Concludía em tempo'
         ]
       end
 

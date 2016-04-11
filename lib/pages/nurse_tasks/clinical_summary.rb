@@ -190,7 +190,11 @@ class NurseTasks
     end
 
     def notes_table
-      find('.table', text: notes_heading)
+      if has_css?('.table', text: notes_heading, count: 1)
+        find('.table', text: notes_heading)
+      else
+        first('.table', text: notes_heading)
+      end
     end
 
     def supervisor_notes_table

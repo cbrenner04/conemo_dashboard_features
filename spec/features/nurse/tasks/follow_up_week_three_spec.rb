@@ -103,15 +103,16 @@ feature 'Nurse, Participant Tasks, Follow up week 3', metadata: :not_first do
     expect(follow_up_week_3).to be_visible
   end
 
-  scenario 'Nurse must select difficulties' do
-    pt_334_nurse_tasks.open
-    follow_up_week_3.confirm
-    pt_334_nurse_tasks.enter_session_length
-    follow_up_week_3.enter_general_notes
-    navigation.submit
+  # scenario 'Nurse must select difficulties' do
+  #   # this may no longer be required
+  #   pt_334_nurse_tasks.open
+  #   follow_up_week_3.confirm
+  #   pt_334_nurse_tasks.enter_session_length
+  #   follow_up_week_3.enter_general_notes
+  #   navigation.submit
 
-    expect(follow_up_week_3).to be_visible
-  end
+  #   expect(follow_up_week_3).to be_visible
+  # end
 
   scenario 'Nurse confirms a follow up call week 3' do
     # check for current tasks

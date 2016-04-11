@@ -7,8 +7,8 @@ module Translations
     include Translations::NurseTasksTranslations
 
     def timeline_page_title
-      locale('All concluded contacts', 'Todos los contactos realizados',
-             'Todos os contatos realizados')
+      locale('Todos los contactos realizados', 'Todos os contatos realizados',
+             'All concluded contacts')
     end
 
     def expected_timeline_titles

@@ -29,7 +29,7 @@ class NurseTasks
     end
 
     def toggle_options_list
-      sleep(1)
+      sleep(0.25)
       selector[0].click
     end
 

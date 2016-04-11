@@ -26,9 +26,10 @@ class SupervisorPage
     end
 
     def assign_nurse
+      sleep(0.25)
       find('select').click
       find('option', text: 'Nurse-404, English').double_click
-      sleep(1)
+      sleep(0.25)
       navigation.submit
     end
 
@@ -65,7 +66,7 @@ class SupervisorPage
       tries ||= 1
       find('.panel', text: 'Active').find('tr', text: "#{@pt_id}")
         .find('.fa-user-md').click
-      sleep(1)
+      sleep(0.25)
       assign_nurse
     rescue Capybara::ElementNotFound
       navigation.scroll_up

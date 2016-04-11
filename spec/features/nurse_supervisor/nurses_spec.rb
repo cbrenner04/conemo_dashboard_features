@@ -68,7 +68,7 @@ feature 'Nurse Supervisor, Nurses', metadata: :not_first do
     scenario 'Nurse supervisor cancels filling in supervision session' do
       nurse_403.create_supervision_session
       navigation.cancel
-      sleep(1)
+      sleep(0.25)
       expect(nurse_supervisor).to be_on_home_page
     end
 
@@ -177,7 +177,6 @@ feature 'Nurse Supervisor, Nurses', metadata: :not_first do
       nurse_400.select
       pt_430_nurse_tasks_2.open
       pt_430_clinical_summary_2.open
-
       pt_430_clinical_summary_2.create_supervisor_note
 
       expect(pt_430_clinical_summary_2).to have_supervisor_note

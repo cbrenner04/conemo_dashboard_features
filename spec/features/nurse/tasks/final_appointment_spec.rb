@@ -107,6 +107,7 @@ feature 'Nurse, Participant Tasks, Final appointment', metadata: :not_first do
   end
 
   scenario 'Nurse confirms a final appointment' do
+    # possible dependency issue but not clear where
     pt_341_nurse_tasks.open
     final_appointment.confirm
     final_appointment.enter_location

@@ -27,7 +27,7 @@ class NurseTasks
     end
 
     def complete_resolution_form
-      sleep(1)
+      sleep(0.25)
       selector[5].click
       options.delete_at(0)
       options.delete_at(6)
@@ -66,7 +66,7 @@ class NurseTasks
     end
 
     def resolve_as_canceled
-      sleep(1)
+      sleep(0.25)
       selector[5].click
       @cancel_response ||= resolve_as_canceled_responses.sample
       select_list_item(@cancel_response)

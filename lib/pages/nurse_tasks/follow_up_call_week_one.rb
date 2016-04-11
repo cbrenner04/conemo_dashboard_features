@@ -50,13 +50,7 @@ class NurseTasks
     end
 
     def enter_difficulties
-      selector[5].click
-      options.delete_at(1)
-      select_list_item(options.sample)
-    end
-
-    def toggle_options_list
-      selector[5].click
+      options.sample(2).each { |option| check option }
     end
 
     def general_notes
@@ -77,13 +71,14 @@ class NurseTasks
     end
 
     def has_difficulties_options?
-      has_task_options?(5, 7)
+      actual = (0..5).map { |i| all('.checkbox')[i].text }
+      expect(actual).to eq(options)
     end
 
     def has_next_contact_date?
       next_contact = Date.today + 14
-      has_date_selectors?(next_contact, 7, locale(6, 6, 8),
-                          locale(8, 8, 6)) && has_hour_selector?(9)
+      has_date_selectors?(next_contact, 6, locale(5, 5, 7),
+                          locale(7, 7, 5)) && has_hour_selector?(8)
     end
   end
 end
