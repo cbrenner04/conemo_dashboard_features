@@ -7,9 +7,8 @@ module Translations
     include Translations::NurseTasksTranslations
 
     def timeline_page_title
-      locale('Historial de eventos', 'Histórico de eventos', 'Event history')
-      # locale('All concluded contacts', 'Todos los contactos realizados',
-      #        'Todos os contatos realizados')
+      locale('All concluded contacts', 'Todos los contactos realizados',
+             'Todos os contatos realizados')
     end
 
     def expected_timeline_titles

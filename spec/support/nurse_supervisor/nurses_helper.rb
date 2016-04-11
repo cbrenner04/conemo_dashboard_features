@@ -121,15 +121,15 @@ def pt_423_tasks
   )
 end
 
-# def pt_430_nurse_tasks_2
-#   @pt_430_nurse_tasks_2 ||= NurseTasks.new(pt_id: 430)
-# end
+def pt_430_nurse_tasks_2
+  @pt_430_nurse_tasks_2 ||= NurseTasks.new(pt_id: 430)
+end
 
-# def pt_430_clinical_summary_2
-#   @pt_430_clinical_summary_2 ||= NurseTasks::ClinicalSummary.new(
-#     note: 'Crazy supervisor notes'
-#   )
-# end
+def pt_430_clinical_summary_2
+  @pt_430_clinical_summary_2 ||= NurseTasks::ClinicalSummary.new(
+    note: 'Crazy supervisor notes'
+  )
+end
 
 def nurse_400
   @nurse_400 ||= SupervisorPage::Nurses.new(id: 400)

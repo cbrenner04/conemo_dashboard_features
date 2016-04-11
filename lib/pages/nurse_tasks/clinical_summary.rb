@@ -172,13 +172,16 @@ class NurseTasks
       expect(actual_contact_dates).to eq(expected_contact_dates)
     end
 
-    # def create_supervisor_note
-    #   # something with @note
-    # end
+    def create_supervisor_note
+      supervisor_notes_table.find('.fa-edit').click
+      fill_in 'supervisor_note[note]', with: @note
+      navigation.submit
+    end
 
-    # def has_supervisor_note?
-    #   # something with @note
-    # end
+    def has_supervisor_note?
+      supervisor_notes_table
+        .has_text? "#{@note}\n#{Date.today.strftime('%B %d, %Y')}"
+    end
 
     private
 
@@ -188,6 +191,10 @@ class NurseTasks
 
     def notes_table
       find('.table', text: notes_heading)
+    end
+
+    def supervisor_notes_table
+      find('.table', text: 'Nurse supervisor Notes')
     end
 
     def total_lessons

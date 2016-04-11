@@ -18,9 +18,13 @@ class SupervisorPage
   end
 
   def has_nurses?
-    actual = (0..3).map { |i| all('.panel-heading', text: 'Nurse-')[i].text }
-    expected = [400, 401, 403, 402, 404].map { |i| "Nurse-#{i}, English" }
-    expect(actual).to eq(expected)
+    actual_nurses = (0..4).map do |i|
+      all('.panel-heading', text: 'Nurse-')[i].text[0..17]
+    end
+    expected_nurses = [400, 401, 403, 402, 404].map do |i|
+      "Nurse-#{i}, English"
+    end
+    expect(actual_nurses).to eq(expected_nurses)
   end
 
   def on_home_page?
