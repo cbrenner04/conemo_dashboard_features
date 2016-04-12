@@ -20,6 +20,7 @@ class NurseTasks
 
       def open
         find('th', text: notes_heading).find('.fa-edit').click
+        sleep(0.25)
       end
 
       def create_note

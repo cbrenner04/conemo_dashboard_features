@@ -360,7 +360,6 @@ feature 'Spanish Nurse, Clinical Summary' do
     expect(pt_500_clinical_summary).to have_contact_dates
 
     pt_500_notes_form.open
-    sleep(0.25)
 
     expect(pt_500_notes_form).to have_form_heading
     expect(pt_500_notes_form).to have_form_labels
@@ -384,7 +383,6 @@ feature 'Portuguese Nurse, Clinical Summary' do
     expect(pt_600_clinical_summary).to have_contact_dates
 
     pt_600_notes_form.open
-    sleep(0.25)
 
     expect(pt_600_notes_form).to have_form_heading
     expect(pt_600_notes_form).to have_form_labels

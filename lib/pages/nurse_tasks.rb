@@ -30,6 +30,10 @@ class NurseTasks
     retry unless tries > 10
   end
 
+  def return
+    find('a', text: 'Tasks').click
+  end
+
   def clear_supervisor_contact
     find('input[value = "clear"]').click
     accept_alert 'are you sure you want to clear this?'
