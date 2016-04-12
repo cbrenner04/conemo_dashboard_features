@@ -2,6 +2,7 @@
 
 require './lib/pages/nurse_tasks'
 Dir['./lib/pages/nurse_tasks/*.rb'].each { |file| require file }
+require './lib/pages/supervisor_page/nurses'
 
 def pt_601_nurse_tasks
   @pt_601_nurse_tasks ||= NurseTasks.new(
@@ -13,6 +14,13 @@ end
 def pt_602_nurse_tasks
   @pt_602_nurse_tasks ||= NurseTasks.new(
     pt_id: 602,
+    locale: 'portuguese'
+  )
+end
+
+def nurse_600
+  @nurse_600 ||= SupervisorPage::Nurses.new(
+    id: 600,
     locale: 'portuguese'
   )
 end

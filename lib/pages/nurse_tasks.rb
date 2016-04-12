@@ -1,6 +1,7 @@
 require './lib/pages/shared/nurse_tasks_forms'
 require './lib/pages/navigation'
 require './lib/pages/translations/clinical_summary'
+require './lib/pages/translations/contact_information'
 
 # page object for nurse tasks page
 class NurseTasks
@@ -8,6 +9,7 @@ class NurseTasks
   include NurseTasksForms
   include Translations::NurseTasksTranslations
   include Translations::ClinicalSummaryTranslations
+  include Translations::ContactInformation
 
   def initialize(nurse_task)
     @pt_id ||= nurse_task[:pt_id]
@@ -23,11 +25,11 @@ class NurseTasks
   def open
     tries ||= 1
     find('tr', text: @pt_id).click
-    find('a', text: clinical_summary_link)
+    find('h2', text: contact_information_title)
   rescue Capybara::ElementNotFound
     navigation.scroll_up
     tries += 1
-    retry unless tries > 10
+    retry unless tries > 2
   end
 
   def return
@@ -35,7 +37,7 @@ class NurseTasks
   end
 
   def clear_supervisor_contact
-    find('input[value = "clear"]').click
+    find("input[value = \"#{clear_supervisor_contact_button}\"]").click
     accept_alert 'are you sure you want to clear this?'
   end
 
@@ -110,9 +112,8 @@ class NurseTasks
   end
 
   def has_supervisor_contact?(time)
-    has_text? 'last supervisor contact sent ' \
-              "#{Date.today.strftime('%B %d, %Y')} " \
-              "#{dst_time(time).strftime('%H')}"
+    has_text? "#{last_supervisor_contact_heading} " \
+              "#{locale_date(time)}#{locale_hour(time)}"
   end
 
   def key

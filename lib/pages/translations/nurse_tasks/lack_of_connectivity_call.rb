@@ -39,14 +39,14 @@ module Translations
 
       def spanish_options
         @spanish_options ||= [
-          'Reasons',
+          'Razón',
           'Datos móviles apagados',
           'Sin cobertura de internet',
           'Se agotaron los datos móviles disponibles',
           'Celular inteligente apagado',
           'Otra',
           'No lo sé',
-          'Not done / CANCEL task',
+          'CANCELAR llamada (no realizada)',
           'No se pudo ubicar al paciente',
           'Paciente no desea continuar con la intervención',
           'Paciente no tuvo tiempo de hablar (repetitivamente)',

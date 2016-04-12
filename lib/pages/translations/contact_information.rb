@@ -11,7 +11,7 @@ module Translations
     include Translations::ContactInformation::EnglishContactInformation
 
     def contact_information_title
-      locale('Información de contacto', 'Informações de Contato',
+      locale('Información de contacto', 'Informações de contato',
              'Contact Information')
     end
 

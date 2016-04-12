@@ -1,20 +1,22 @@
 require './lib/pages/navigation'
 require './lib/pages/translations/navigation'
+require './lib/pages/translations/nurse_tasks'
 
 # module for shared methods in nurse task forms
 module NurseTasksForms
   include RSpec::Matchers
   include Capybara::DSL
   include Translations::NavigationTranslations
+  include Translations::NurseTasksTranslations
 
   def mark_task_resolved(type)
-    panel(type).find('a', text: 'Mark as resolved').click
+    panel(type).find('a', text: mark_resolved_button).click
   end
 
   def contact_supervisor_for_task(type)
-    panel(type).find('input[value = "Contact Supervisor"]').click
-    accept_alert 'are you sure you want to notify the supervisor that you ' \
-                 'need help?'
+    panel(type).find("input[value = \"#{contact_supervisor_button}\"]").click
+    accept_alert contact_supervisor_alert
+    find('.alert', text: contact_supervisor_confirmation)
   end
 
   def confirm_task(type)

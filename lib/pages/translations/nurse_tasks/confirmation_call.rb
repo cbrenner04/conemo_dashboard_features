@@ -26,7 +26,7 @@ module Translations
 
       def portuguese_headings
         @portuguese_headings ||= [
-          'Contactado por',
+          'Contactado em',
           'Primeiro encontro em',
           'Local do primeiro encontro'
         ]

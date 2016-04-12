@@ -208,4 +208,21 @@ feature 'Portuguese nurse, Participant tasks', metadata: :first do
     expect(portuguese_non_adherence_call).to have_form_headings
     expect(portuguese_non_adherence_call).to have_reason_options
   end
+
+  scenario 'Portuguese nurse sees translations for contact supervisor' do
+    portuguese_lack_of_connectivity_call.contact_supervisor
+
+    expect(pt_601_nurse_tasks).to have_new_supervisor_contact
+
+    portuguese_nurse.sign_out
+    portuguese_supervisor.sign_in
+    nurse_600.select
+    pt_601_nurse_tasks.open
+
+    expect(pt_601_nurse_tasks).to have_new_supervisor_contact
+
+    pt_601_nurse_tasks.clear_supervisor_contact
+
+    expect(pt_601_nurse_tasks).to_not have_new_supervisor_contact
+  end
 end

@@ -1,11 +1,13 @@
 require 'business_time'
 require './lib/pages/navigation'
+require './lib/pages/translations'
 
 class SupervisorPage
   # page object for Nurses section of Supervisor page
   class Nurses
     include RSpec::Matchers
     include Capybara::DSL
+    include Translations
 
     def initialize(nurses)
       @id ||= nurses[:id]
@@ -14,6 +16,7 @@ class SupervisorPage
       @num_overdue ||= nurses[:num_overdue]
       @supervision_date ||= nurses[:supervision_date]
       @supervision_time ||= nurses[:supervision_time]
+      @locale ||= nurses[:locale]
     end
 
     def has_participants_and_tasks?
@@ -113,8 +116,11 @@ class SupervisorPage
 
     def select
       4.times { navigation.scroll_down }
-      find('.panel-heading', text: "Nurse-#{@id}, English")
-        .find('a', text: "Nurse-#{@id}, English").click
+      find('.panel-heading',
+           text: "Nurse-#{@id}, #{locale('Spanish', 'Portuguese', 'English')}")
+        .find('a',
+              text: "Nurse-#{@id}, " \
+                    "#{locale('Spanish', 'Portuguese', 'English')}").click
     end
 
     def has_your_patients_header?

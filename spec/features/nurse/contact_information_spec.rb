@@ -56,8 +56,7 @@ feature 'Spanish Nurse, Contact Information', metadata: :not_first do
     pt_500_nurse_tasks.open
 
     expect(pt_500_contact_info).to have_contact_information_title
-    # # not yet implemented
-    # expect(pt_500_contact_info).to have_contact_information_table_headings
+    expect(pt_500_contact_info).to have_contact_information_table_headings
     expect(pt_500_contact_info).to have_smartphone_information_title
   end
 end
@@ -68,8 +67,7 @@ feature 'Portuguese Nurse, Contact Information', metadata: :not_first do
     pt_600_nurse_tasks.open
 
     expect(pt_600_contact_info).to have_contact_information_title
-    # # not yet implemented
-    # expect(pt_600_contact_info).to have_contact_information_table_headings
+    expect(pt_600_contact_info).to have_contact_information_table_headings
     expect(pt_600_contact_info).to have_smartphone_information_title
   end
 end

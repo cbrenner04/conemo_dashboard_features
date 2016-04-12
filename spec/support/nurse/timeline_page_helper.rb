@@ -129,7 +129,10 @@ def pt_500_timeline
 end
 
 def pt_500_nurse_tasks
-  @pt_500_nurse_tasks ||= NurseTasks.new(pt_id: 500)
+  @pt_500_nurse_tasks ||= NurseTasks.new(
+    pt_id: 500,
+    locale: 'spanish'
+  )
 end
 
 def pt_600_clinical_summary_1
@@ -146,5 +149,8 @@ def pt_600_timeline
 end
 
 def pt_600_nurse_tasks
-  @pt_600_nurse_tasks ||= NurseTasks.new(pt_id: 600)
+  @pt_600_nurse_tasks ||= NurseTasks.new(
+    pt_id: 600,
+    locale: 'portuguese'
+  )
 end

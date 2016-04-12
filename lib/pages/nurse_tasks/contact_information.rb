@@ -21,12 +21,10 @@ class NurseTasks
     def visible?
       date_1 = Date.today - ((30 * 365) + @id.to_i)
       has_css?('#contact-info',
-               text: 'Contact Information Family ' \
-                     'Health Unit Name: unit 1 Phone: ' \
-                     "13333333#{@id} Emergency Contact Name: Emergency " \
-                     'Contact Phone: Date Of Birth: ' \
-                     "#{date_1.strftime('%B %d, %Y')} Address: 123 Main " \
-                     'Street Enrollment Date: ' \
+               text: 'Contact Information Family health unit: unit 1 ' \
+                     "Telephone: 13333333#{@id} Emergency contact(name): " \
+                     "Telephone Birth date: #{date_1.strftime('%B %d, %Y')} " \
+                     'Home address: 123 Main Street Date of inclusion: ' \
                      "#{Date.today.strftime('%B %d, %Y')} Gender: female")
     end
 
@@ -61,7 +59,7 @@ class NurseTasks
 
     def has_contact_information_table_headings?
       table = find('#contact-info')
-      actual_headings = (0..8).map { |i| table.all('strong')[i].text }
+      actual_headings = (0..7).map { |i| table.all('strong')[i].text }
       expect(actual_headings).to eq(expected_headings)
     end
   end

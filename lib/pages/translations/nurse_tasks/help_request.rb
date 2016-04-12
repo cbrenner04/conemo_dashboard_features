@@ -39,13 +39,13 @@ module Translations
 
       def spanish_responses
         @spanish_responses ||= [
-          'Reasons',
+          'Razón de la solicitud de ayuda',
           'Dificultades con CONEMO',
           'Pregunta sobre la intervención',
           'Botón de solicitar ayuda presionado por error',
           'No relacionado a CONEMO (p. ej. salud)',
           'Otra',
-          'Not done / CANCEL task',
+          'CANCELAR llamada (no realizada)',
           'No se pudo ubicar al paciente',
           'Paciente no desea continuar con la intervención',
           'Paciente no tuvo tiempo de hablar (repetitivamente)',

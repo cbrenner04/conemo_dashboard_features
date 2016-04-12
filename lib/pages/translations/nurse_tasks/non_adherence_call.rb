@@ -39,7 +39,7 @@ module Translations
 
       def spanish_responses
         @spanish_responses ||= [
-          'Reasons',
+          'Razón',
           'Dificultades para usar CONEMO',
           'Sin tiempo para usar CONEMO',
           'Sin voluntad de usar CONEMO',
@@ -47,7 +47,7 @@ module Translations
           'Paciente está viajando (sin el smartphone)',
           'Razón no fue comunicada',
           'Otra',
-          'Not done / CANCEL task',
+          'CANCELAR llamada (no realizada)',
           'No se pudo ubicar al paciente',
           'Paciente no desea continuar con la intervención',
           'Paciente no tuvo tiempo de hablar (repetitivamente)',

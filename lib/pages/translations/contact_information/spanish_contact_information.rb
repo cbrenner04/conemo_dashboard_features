@@ -4,14 +4,13 @@ module Translations
     module SpanishContactInformation
       def spanish_headings
         @spanish_headings ||= [
-          'Código del participante:',
           'Centro de salud:',
-          'Número de teléfono:',
-          'Contacto de emergencia:',
-          'Teléfono de contacto de emergencia:',
+          'Telefóno fijo:',
+          'Contacto de Emergencia (nombre):',
+          'Teléfono fijo:', # (Contacto de Emergencia):',
           'Fecha de nacimiento:',
-          'Dirección:',
-          'Fecha de inclusión en el estudio:',
+          'Dirección actual:',
+          'Fecha de inclusión:',
           'Sexo:'
         ]
       end

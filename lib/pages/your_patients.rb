@@ -115,11 +115,11 @@ class YourPatients
   def has_key?
     key = find('.table-condensed')
     success_text = key.find('.success').text
-    expect(success_text).to eq('no active/overdue task')
+    expect(success_text).to eq(no_tasks)
     info_text = key.find('.info').text
-    expect(info_text).to eq('active task')
+    expect(info_text).to eq(active_task)
     danger_text = key.find('.danger').text
-    expect(danger_text).to eq('overdue task')
+    expect(danger_text).to eq(overdue_task)
   end
 
   def english_nurse_patients

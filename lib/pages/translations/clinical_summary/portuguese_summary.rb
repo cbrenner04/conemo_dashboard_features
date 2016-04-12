@@ -21,18 +21,12 @@ module Translations
 
       def portuguese_legend
         @portuguese_legend ||= [
-          'Unreleased',
-          'Current',
-          'Completed late',
-          'Accessed but not completed',
-          'Not accessed',
-          'Completed on time'
-          # 'Ainda não enviada',
-          # 'Atual',
-          # 'Concludía com atraso',
-          # 'Accessed but not completed',
-          # 'Não acessada',
-          # 'Concludía em tempo'
+          'Ainda não enviada',
+          'Atual',
+          'Concludía com atraso',
+          'Acessada mas não concluída',
+          'Não acessada',
+          'Concludía em tempo'
         ]
       end
 

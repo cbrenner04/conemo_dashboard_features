@@ -53,5 +53,45 @@ module Translations
       locale('Llamada por no-conectividad', 'Chamada por não-conectividade',
              'Call due to no connectivity')
     end
+
+    def mark_resolved_button
+      locale('Tarea resuelta', 'Marcar tarefa como resolvida',
+             'Mark as resolved')
+    end
+
+    def contact_supervisor_button
+      locale('Contactar supervisor/a', 'Contactar supervisor',
+             'Contact Supervisor')
+    end
+
+    def contact_supervisor_alert
+      locale(
+        '¿Estás seguro/a de que quieres enviar una solicitud de ayuda al ' \
+        'supervisor?',
+        'Tem certeza que quer pedir ajuda ao seu supervisor?',
+        'are you sure you want to notify the supervisor that you need help?'
+      )
+    end
+
+    def last_supervisor_contact_heading
+      locale(
+        'último contacto supervisor de enviado en',
+        'último aviso para supervisor enviado em',
+        'last supervisor contact sent'
+      )
+    end
+
+    def contact_supervisor_confirmation
+      locale(
+        'Una solicitud de ayuda fue enviada a tu supervisor/a para que ' \
+        'revise este asunto',
+        'Uma notificação foi enviada para o seu supervisor sobre este assunto',
+        'a notification has been sent for your supervisor to review this issue'
+      )
+    end
+
+    def clear_supervisor_contact_button
+      locale('Borrar tarea', 'Limpar tarefa', 'clear')
+    end
   end
 end

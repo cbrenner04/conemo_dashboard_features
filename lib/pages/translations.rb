@@ -10,6 +10,19 @@ module Translations
     end
   end
 
+  def locale_date(date)
+    locale(spanish_date(date), portuguese_date(date), english_date(date))
+  end
+
+  def locale_hour(time)
+    locale(" a las #{time.strftime('%I')}", ", #{time.strftime('%H')}",
+           " #{time.strftime('%H')}")
+  end
+
+  def english_date(date)
+    @english_date ||= date.strftime('%B %d, %Y')
+  end
+
   def spanish_weekdays
     @spanish_weekdays ||= {
       'Monday' => 'lunes',

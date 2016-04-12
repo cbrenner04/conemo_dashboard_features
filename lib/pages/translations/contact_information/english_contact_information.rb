@@ -4,14 +4,13 @@ module Translations
     module EnglishContactInformation
       def english_headings
         @english_headings ||= [
-          'Study Identifier:',
-          'Family health unit name:',
-          'Phone:',
-          'Emergency Contact Name:',
-          'Emergency Contact Phone:',
-          'Date of birth:',
-          'Address:',
-          'Enrollment date:',
+          'Family health unit:',
+          'Telephone:',
+          'Emergency contact (name):',
+          'Telephone:',
+          'Birth date:',
+          'Home address:',
+          'Date of inclusion:',
           'Gender:'
         ]
       end
