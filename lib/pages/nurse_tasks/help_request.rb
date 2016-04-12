@@ -77,10 +77,17 @@ class NurseTasks
       has_text? @cancel_response
     end
 
+    def has_resolution_confirmation_alert?
+      has_css?('.alert',
+               text: locale('Solicitud de ayuda guardada exitosamente',
+                            'Pedido de ajuda salvo com sucesso',
+                            'Help request saved successfully'))
+    end
+
     private
 
     def navigation
-      @navigation ||= Navigation.new(locale: 'english')
+      @navigation ||= Navigation.new(locale: @locale)
     end
   end
 end

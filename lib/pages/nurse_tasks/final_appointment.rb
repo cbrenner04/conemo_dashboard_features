@@ -1,3 +1,4 @@
+require './lib/pages/nurse_tasks/cancel_form'
 require './lib/pages/shared/nurse_tasks_forms'
 require './lib/pages/translations/nurse_tasks/final_appointment'
 
@@ -85,6 +86,16 @@ class NurseTasks
 
     def has_location_options?
       has_task_options?(5, 2)
+    end
+
+    def has_canceled_alert?
+      cancel_form.has_cancel_alert?(final_appointment_title)
+    end
+
+    private
+
+    def cancel_form
+      @cancel_form ||= NurseTasks::CancelForm.new(locale: @locale)
     end
   end
 end

@@ -1,3 +1,4 @@
+require './lib/pages/nurse_tasks/cancel_form'
 require './lib/pages/shared/nurse_tasks_forms'
 require './lib/pages/translations/nurse_tasks/confirmation_call'
 
@@ -77,6 +78,16 @@ class NurseTasks
     def has_next_contact_date_selections?
       has_date_selectors?(Date.today, 6, locale(5, 5, 7), locale(7, 7, 5)) &&
         has_time_selectors?(8, 9)
+    end
+
+    def has_canceled_alert?
+      cancel_form.has_cancel_alert?(confirmation_call_title)
+    end
+
+    private
+
+    def cancel_form
+      @cancel_form ||= NurseTasks::CancelForm.new(locale: @locale)
     end
   end
 end

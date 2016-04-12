@@ -44,6 +44,10 @@ class NurseTasks
       has_text? @reschedule_reason
     end
 
+    def toggle_options_list
+      selector[5].click
+    end
+
     private
 
     def navigation

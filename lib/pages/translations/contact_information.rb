@@ -31,5 +31,11 @@ module Translations
     def expected_headings
       locale(spanish_headings, portuguese_headings, english_headings)
     end
+
+    def saved_contact_information_alert
+      locale('Información actualizada exitosamente',
+             'Informações do participante atualizadas com sucesso',
+             'Successfully updated participant')
+    end
   end
 end

@@ -49,6 +49,8 @@ module Translations
 
       def spanish_options
         @spanish_options ||= [
+          'NO',
+          'Sí',
           'Dificultades con el celular inteligente ' \
           '(batería, contraseña, encenderlo, volumen)',
           'Dificultades para entrar a CONEMO',
@@ -61,6 +63,8 @@ module Translations
 
       def portuguese_options
         @portuguese_options ||= [
+          'NãO',
+          'SIM',
           'Dificuldade com o smartphone (bateria, PIN, ligar, volume, etc.)',
           'Dificuldade para entrar no CONEMO app',
           'Dificuldade para ler sessões',

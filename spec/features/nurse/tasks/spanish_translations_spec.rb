@@ -20,7 +20,7 @@ feature 'Spanish nurse, Participant tasks', metadata: :first do
     spanish_additional_contact.choose_option
     navigation.cancel
 
-    expect(spanish_confirmation_call).to be_active
+    expect(spanish_lack_of_connectivity_call).to be_active
   end
 
   scenario 'Spanish nurse sees translations for confirmation call' do
@@ -35,18 +35,22 @@ feature 'Spanish nurse, Participant tasks', metadata: :first do
 
     spanish_confirmation_call.toggle_options_list
     navigation.cancel
-    spanish_confirmation_call.cancel
-
-    expect(spanish_cancel_form).to have_form_headings
-    expect(spanish_cancel_form).to have_reason_options
-
-    spanish_cancel_form.toggle_options_list
-    navigation.cancel
     spanish_confirmation_call.open_reschedule_form
 
     expect(spanish_reschedule_form).to have_form_headings
     expect(spanish_reschedule_form).to have_current_date_selections
     expect(spanish_reschedule_form).to have_reason_options
+
+    spanish_reschedule_form.toggle_options_list
+    navigation.cancel
+    spanish_confirmation_call.cancel
+
+    expect(spanish_cancel_form).to have_form_title
+    expect(spanish_cancel_form).to have_form_headings
+
+    spanish_cancel_form.complete
+
+    expect(spanish_confirmation_call).to have_canceled_alert
   end
 
   scenario 'Spanish nurse sees translations for initial appointment' do
@@ -63,18 +67,22 @@ feature 'Spanish nurse, Participant tasks', metadata: :first do
     expect(spanish_initial_appointment).to have_next_contact_date
 
     navigation.cancel
-    spanish_initial_appointment.cancel
-
-    expect(spanish_cancel_form).to have_form_headings
-    expect(spanish_cancel_form).to have_reason_options
-
-    spanish_cancel_form.toggle_options_list
-    navigation.cancel
     spanish_initial_appointment.open_reschedule_form
 
     expect(spanish_reschedule_form).to have_form_headings
     expect(spanish_reschedule_form).to have_current_date_selections
     expect(spanish_reschedule_form).to have_reason_options
+
+    spanish_reschedule_form.toggle_options_list
+    navigation.cancel
+    spanish_initial_appointment.cancel
+
+    expect(spanish_cancel_form).to have_form_title
+    expect(spanish_cancel_form).to have_form_headings
+
+    spanish_cancel_form.complete
+
+    expect(spanish_initial_appointment).to have_canceled_alert
   end
 
   scenario 'Spanish nurse sees translations for follow up week 1' do
@@ -88,18 +96,22 @@ feature 'Spanish nurse, Participant tasks', metadata: :first do
     expect(spanish_follow_up_week_1).to have_next_contact_date
 
     navigation.cancel
-    spanish_follow_up_week_1.cancel
-
-    expect(spanish_cancel_form).to have_form_headings
-    expect(spanish_cancel_form).to have_reason_options
-
-    spanish_cancel_form.toggle_options_list
-    navigation.cancel
     spanish_follow_up_week_1.open_reschedule_form
 
     expect(spanish_reschedule_form).to have_form_headings
     expect(spanish_reschedule_form).to have_current_date_selections
     expect(spanish_reschedule_form).to have_reason_options
+
+    spanish_reschedule_form.toggle_options_list
+    navigation.cancel
+    spanish_follow_up_week_1.cancel
+
+    expect(spanish_cancel_form).to have_form_title
+    expect(spanish_cancel_form).to have_form_headings
+
+    spanish_cancel_form.complete
+
+    expect(spanish_follow_up_week_1).to have_canceled_alert
   end
 
   scenario 'Spanish nurse sees translations for follow up week 3' do
@@ -113,18 +125,22 @@ feature 'Spanish nurse, Participant tasks', metadata: :first do
     expect(spanish_follow_up_week_3).to have_next_contact_date
 
     navigation.cancel
-    spanish_follow_up_week_3.cancel
-
-    expect(spanish_cancel_form).to have_form_headings
-    expect(spanish_cancel_form).to have_reason_options
-
-    spanish_cancel_form.toggle_options_list
-    navigation.cancel
     spanish_follow_up_week_3.open_reschedule_form
 
     expect(spanish_reschedule_form).to have_form_headings
     expect(spanish_reschedule_form).to have_current_date_selections
     expect(spanish_reschedule_form).to have_reason_options
+
+    spanish_reschedule_form.toggle_options_list
+    navigation.cancel
+    spanish_follow_up_week_3.cancel
+
+    expect(spanish_cancel_form).to have_form_title
+    expect(spanish_cancel_form).to have_form_headings
+
+    spanish_cancel_form.complete
+
+    expect(spanish_follow_up_week_3).to have_canceled_alert
   end
 
   scenario 'Spanish nurse sees translations for call to schedule final appt' do
@@ -139,18 +155,22 @@ feature 'Spanish nurse, Participant tasks', metadata: :first do
 
     spanish_call_to_schedule_final.toggle_options_list
     navigation.cancel
-    spanish_call_to_schedule_final.cancel
-
-    expect(spanish_cancel_form).to have_form_headings
-    expect(spanish_cancel_form).to have_reason_options
-
-    spanish_cancel_form.toggle_options_list
-    navigation.cancel
     spanish_call_to_schedule_final.open_reschedule_form
 
     expect(spanish_reschedule_form).to have_form_headings
     expect(spanish_reschedule_form).to have_current_date_selections
     expect(spanish_reschedule_form).to have_reason_options
+
+    spanish_reschedule_form.toggle_options_list
+    navigation.cancel
+    spanish_call_to_schedule_final.cancel
+
+    expect(spanish_cancel_form).to have_form_title
+    expect(spanish_cancel_form).to have_form_headings
+
+    spanish_cancel_form.complete
+
+    expect(spanish_call_to_schedule_final).to have_canceled_alert
   end
 
   scenario 'Spanish nurse sees translations for final appointment' do
@@ -164,18 +184,22 @@ feature 'Spanish nurse, Participant tasks', metadata: :first do
 
     spanish_final_appointment.toggle_options_list
     navigation.cancel
-    spanish_final_appointment.cancel
-
-    expect(spanish_cancel_form).to have_form_headings
-    expect(spanish_cancel_form).to have_reason_options
-
-    spanish_cancel_form.toggle_options_list
-    navigation.cancel
     spanish_final_appointment.open_reschedule_form
 
     expect(spanish_reschedule_form).to have_form_headings
     expect(spanish_reschedule_form).to have_current_date_selections
     expect(spanish_reschedule_form).to have_reason_options
+
+    spanish_reschedule_form.toggle_options_list
+    navigation.cancel
+    spanish_final_appointment.cancel
+
+    expect(spanish_cancel_form).to have_form_title
+    expect(spanish_cancel_form).to have_form_headings
+
+    spanish_cancel_form.complete
+
+    expect(spanish_final_appointment).to have_canceled_alert
   end
 
   scenario 'Spanish nurse sees translations for non-scheduled tasks' do
@@ -194,9 +218,11 @@ feature 'Spanish nurse, Participant tasks', metadata: :first do
     spanish_help_request.mark_resolved
 
     expect(spanish_help_request).to have_form_headings
-    expect(spanish_help_request).to have_reason_options
+    
+    spanish_help_request.complete_resolution_form
 
-    spanish_help_request.toggle_options_list
+    expect(spanish_help_request).to have_resolution_confirmation_alert
+
     your_patients.return
 
     pt_502_nurse_tasks.open

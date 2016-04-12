@@ -20,7 +20,7 @@ feature 'Portuguese nurse, Participant tasks', metadata: :first do
     portuguese_additional_contact.choose_option
     navigation.cancel
 
-    expect(portuguese_confirmation_call).to be_active
+    expect(portuguese_lack_of_connectivity_call).to be_active
   end
 
   scenario 'Portuguese nurse sees translations for confirmation call' do
@@ -35,18 +35,22 @@ feature 'Portuguese nurse, Participant tasks', metadata: :first do
 
     portuguese_confirmation_call.toggle_options_list
     navigation.cancel
-    portuguese_confirmation_call.cancel
-
-    expect(portuguese_cancel_form).to have_form_headings
-    expect(portuguese_cancel_form).to have_reason_options
-
-    portuguese_cancel_form.toggle_options_list
-    navigation.cancel
     portuguese_confirmation_call.open_reschedule_form
 
     expect(portuguese_reschedule_form).to have_form_headings
     expect(portuguese_reschedule_form).to have_current_date_selections
     expect(portuguese_reschedule_form).to have_reason_options
+
+    portuguese_reschedule_form.toggle_options_list
+    navigation.cancel
+    portuguese_confirmation_call.cancel
+
+    expect(portuguese_cancel_form).to have_form_title
+    expect(portuguese_cancel_form).to have_form_headings
+
+    portuguese_cancel_form.complete
+
+    expect(portuguese_confirmation_call).to have_canceled_alert
   end
 
   scenario 'Portuguese nurse sees translations for initial appointment' do
@@ -63,18 +67,22 @@ feature 'Portuguese nurse, Participant tasks', metadata: :first do
     expect(portuguese_initial_appointment).to have_next_contact_date
 
     navigation.cancel
-    portuguese_initial_appointment.cancel
-
-    expect(portuguese_cancel_form).to have_form_headings
-    expect(portuguese_cancel_form).to have_reason_options
-
-    portuguese_cancel_form.toggle_options_list
-    navigation.cancel
     portuguese_initial_appointment.open_reschedule_form
 
     expect(portuguese_reschedule_form).to have_form_headings
     expect(portuguese_reschedule_form).to have_current_date_selections
     expect(portuguese_reschedule_form).to have_reason_options
+
+    portuguese_reschedule_form.toggle_options_list
+    navigation.cancel
+    portuguese_initial_appointment.cancel
+
+    expect(portuguese_cancel_form).to have_form_title
+    expect(portuguese_cancel_form).to have_form_headings
+
+    portuguese_cancel_form.complete
+
+    expect(portuguese_initial_appointment).to have_canceled_alert
   end
 
   scenario 'Portuguese nurse sees translations for follow up week 1' do
@@ -88,18 +96,22 @@ feature 'Portuguese nurse, Participant tasks', metadata: :first do
     expect(portuguese_follow_up_week_1).to have_next_contact_date
 
     navigation.cancel
-    portuguese_follow_up_week_1.cancel
-
-    expect(portuguese_cancel_form).to have_form_headings
-    expect(portuguese_cancel_form).to have_reason_options
-
-    portuguese_cancel_form.toggle_options_list
-    navigation.cancel
     portuguese_follow_up_week_1.open_reschedule_form
 
     expect(portuguese_reschedule_form).to have_form_headings
     expect(portuguese_reschedule_form).to have_current_date_selections
     expect(portuguese_reschedule_form).to have_reason_options
+
+    portuguese_reschedule_form.toggle_options_list
+    navigation.cancel
+    portuguese_follow_up_week_1.cancel
+
+    expect(portuguese_cancel_form).to have_form_title
+    expect(portuguese_cancel_form).to have_form_headings
+
+    portuguese_cancel_form.complete
+
+    expect(portuguese_follow_up_week_1).to have_canceled_alert
   end
 
   scenario 'Portuguese nurse sees translations for follow up week 3' do
@@ -113,18 +125,22 @@ feature 'Portuguese nurse, Participant tasks', metadata: :first do
     expect(portuguese_follow_up_week_3).to have_next_contact_date
 
     navigation.cancel
-    portuguese_follow_up_week_3.cancel
-
-    expect(portuguese_cancel_form).to have_form_headings
-    expect(portuguese_cancel_form).to have_reason_options
-
-    portuguese_cancel_form.toggle_options_list
-    navigation.cancel
     portuguese_follow_up_week_3.open_reschedule_form
 
     expect(portuguese_reschedule_form).to have_form_headings
     expect(portuguese_reschedule_form).to have_current_date_selections
     expect(portuguese_reschedule_form).to have_reason_options
+
+    portuguese_reschedule_form.toggle_options_list
+    navigation.cancel
+    portuguese_follow_up_week_3.cancel
+
+    expect(portuguese_cancel_form).to have_form_title
+    expect(portuguese_cancel_form).to have_form_headings
+
+    portuguese_cancel_form.complete
+
+    expect(portuguese_follow_up_week_3).to have_canceled_alert
   end
 
   scenario 'Portuguese nurse sees translations for call to schedule final' do
@@ -139,18 +155,22 @@ feature 'Portuguese nurse, Participant tasks', metadata: :first do
 
     portuguese_call_to_schedule_final.toggle_options_list
     navigation.cancel
-    portuguese_call_to_schedule_final.cancel
-
-    expect(portuguese_cancel_form).to have_form_headings
-    expect(portuguese_cancel_form).to have_reason_options
-
-    portuguese_cancel_form.toggle_options_list
-    navigation.cancel
     portuguese_call_to_schedule_final.open_reschedule_form
 
     expect(portuguese_reschedule_form).to have_form_headings
     expect(portuguese_reschedule_form).to have_current_date_selections
     expect(portuguese_reschedule_form).to have_reason_options
+
+    portuguese_reschedule_form.toggle_options_list
+    navigation.cancel
+    portuguese_call_to_schedule_final.cancel
+
+    expect(portuguese_cancel_form).to have_form_title
+    expect(portuguese_cancel_form).to have_form_headings
+
+    portuguese_cancel_form.complete
+
+    expect(portuguese_call_to_schedule_final).to have_canceled_alert
   end
 
   scenario 'Portuguese nurse sees translations for final appointment' do
@@ -164,18 +184,22 @@ feature 'Portuguese nurse, Participant tasks', metadata: :first do
 
     portuguese_final_appointment.toggle_options_list
     navigation.cancel
-    portuguese_final_appointment.cancel
-
-    expect(portuguese_cancel_form).to have_form_headings
-    expect(portuguese_cancel_form).to have_reason_options
-
-    portuguese_cancel_form.toggle_options_list
-    navigation.cancel
     portuguese_final_appointment.open_reschedule_form
 
     expect(portuguese_reschedule_form).to have_form_headings
     expect(portuguese_reschedule_form).to have_current_date_selections
     expect(portuguese_reschedule_form).to have_reason_options
+
+    portuguese_reschedule_form.toggle_options_list
+    navigation.cancel
+    portuguese_final_appointment.cancel
+
+    expect(portuguese_cancel_form).to have_form_title
+    expect(portuguese_cancel_form).to have_form_headings
+
+    portuguese_cancel_form.complete
+
+    expect(portuguese_final_appointment).to have_canceled_alert
   end
 
   scenario 'Portuguese nurse sees translations for non-scheduled tasks' do
@@ -194,9 +218,11 @@ feature 'Portuguese nurse, Participant tasks', metadata: :first do
     portuguese_help_request.mark_resolved
 
     expect(portuguese_help_request).to have_form_headings
-    expect(portuguese_help_request).to have_reason_options
+    
+    portuguese_help_request.complete_resolution_form
 
-    portuguese_help_request.toggle_options_list
+    expect(portuguese_help_request).to have_resolution_confirmation_alert
+
     your_patients.return
 
     pt_602_nurse_tasks.open

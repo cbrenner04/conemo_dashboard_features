@@ -1,3 +1,4 @@
+require './lib/pages/nurse_tasks/cancel_form'
 require './lib/pages/shared/nurse_tasks_forms'
 translations_path = './lib/pages/translations/'
 require "#{translations_path}nurse_tasks/initial_in_person_appointment"
@@ -38,15 +39,29 @@ class NurseTasks
     end
 
     def confirm
+      # spanish & portuguese giving me trouble because of the number of panels
+      # driver would try to click confirm and would end up clicking the brand
+      # scrolling to make sure the panel is in the viewport
+      execute_script 'window.scrollBy(0,100)'
       confirm_task initial_appointment_title
       visible?
     end
 
     def cancel
+      # spanish & portuguese giving me trouble because of the number of panels
+      # driver would try to click cancel and would end up clicking the brand
+      # scrolling to make sure the panel is in the viewport
+      sleep(0.25)
+      execute_script 'window.scrollBy(0,100)'
       cancel_task initial_appointment_title
     end
 
     def open_reschedule_form
+      # spanish & portuguese giving me trouble because of the number of panels
+      # driver would try to click reschedule and would end up clicking brand
+      # scrolling to make sure the panel is in the viewport
+      sleep(0.25)
+      execute_script 'window.scrollBy(0,100)'
       open_reschedule initial_appointment_title
     end
 
@@ -92,6 +107,16 @@ class NurseTasks
       next_week = Date.today + 7
       has_date_selectors?(next_week, 7, locale(6, 6, 8), locale(8, 8, 6)) &&
         has_hour_selector?(9)
+    end
+
+    def has_canceled_alert?
+      cancel_form.has_cancel_alert?(initial_appointment_title)
+    end
+
+    private
+
+    def cancel_form
+      @cancel_form ||= NurseTasks::CancelForm.new(locale: @locale)
     end
   end
 end

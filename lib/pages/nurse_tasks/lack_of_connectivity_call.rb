@@ -39,6 +39,10 @@ class NurseTasks
     end
 
     def contact_supervisor
+      # spanish & portuguese giving me trouble because of the number of panels
+      # driver would try to click confirm and would end up clicking the brand
+      # scrolling to make sure the panel is in the viewport
+      execute_script 'window.scrollBy(0,100)'
       contact_supervisor_for_task(lack_of_connectivity_call_title)
     end
 

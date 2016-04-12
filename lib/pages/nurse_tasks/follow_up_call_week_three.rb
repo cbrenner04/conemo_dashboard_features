@@ -1,3 +1,4 @@
+require './lib/pages/nurse_tasks/cancel_form'
 require './lib/pages/shared/nurse_tasks_forms'
 require './lib/pages/translations/nurse_tasks/follow_up_call_week_three'
 
@@ -50,6 +51,7 @@ class NurseTasks
     end
 
     def enter_difficulties
+      options.delete_at(1)
       options.sample(2).each { |option| check option }
     end
 
@@ -71,7 +73,7 @@ class NurseTasks
     end
 
     def has_difficulties_options?
-      actual = (0..5).map { |i| all('.checkbox')[i].text }
+      actual = (0..7).map { |i| all('.checkbox')[i].text }
       expect(actual).to eq(options)
     end
 
@@ -79,6 +81,16 @@ class NurseTasks
       next_contact = Date.today + 21
       has_date_selectors?(next_contact, 6, locale(5, 5, 7),
                           locale(7, 7, 5)) && has_hour_selector?(8)
+    end
+
+    def has_canceled_alert?
+      cancel_form.has_cancel_alert?(follow_up_week_three_title)
+    end
+
+    private
+
+    def cancel_form
+      @cancel_form ||= NurseTasks::CancelForm.new(locale: @locale)
     end
   end
 end

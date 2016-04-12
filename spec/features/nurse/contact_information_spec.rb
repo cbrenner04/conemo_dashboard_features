@@ -58,6 +58,11 @@ feature 'Spanish Nurse, Contact Information', metadata: :not_first do
     expect(pt_500_contact_info).to have_contact_information_title
     expect(pt_500_contact_info).to have_contact_information_table_headings
     expect(pt_500_contact_info).to have_smartphone_information_title
+
+    pt_500_contact_info.select_edit_contact_information
+    spanish_navigation.submit
+
+    expect(pt_500_contact_info).to have_saved_contact_information_alert
   end
 end
 
@@ -69,5 +74,10 @@ feature 'Portuguese Nurse, Contact Information', metadata: :not_first do
     expect(pt_600_contact_info).to have_contact_information_title
     expect(pt_600_contact_info).to have_contact_information_table_headings
     expect(pt_600_contact_info).to have_smartphone_information_title
+
+    pt_600_contact_info.select_edit_contact_information
+    portuguese_navigation.submit
+
+    expect(pt_600_contact_info).to have_saved_contact_information_alert
   end
 end

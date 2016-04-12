@@ -20,6 +20,18 @@ class NurseTasks
       navigation.submit
     end
 
+    def has_form_title?
+      has_css?('h1', text: locale('Cancelar punto de contacto',
+                                  'Cancelar ponto de contato',
+                                  'Cancel contact point'))
+    end
+
+    def has_cancel_alert?(task)
+      has_css?('.alert', text: locale("#{task} cancelada exitosamente",
+                                      "#{task} cancelado com sucesso",
+                                      "#{task} canceled successfully"))
+    end
+
     def has_form_headings?
       has_css?('.control-label', text: locale('Razones', 'Motivo', 'Reason'))
     end

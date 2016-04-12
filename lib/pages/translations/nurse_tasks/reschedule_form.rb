@@ -8,9 +8,8 @@ module Translations
 
       def expected_headings
         locale(
-          ['Nueva fecha y hora', 'Razones',
-           'Observaciones (cuadrado de texto)'],
-          ['Nova data e hora', 'Motivo', 'Observações'],
+          ['Programado para', 'Razones', 'Observaciones (cuadrado de texto)'],
+          ['Agendado para', 'Motivo', 'Observações'],
           ['New date and time', 'Reason', 'Notes']
         )
       end

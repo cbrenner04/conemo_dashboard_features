@@ -1,3 +1,4 @@
+require './lib/pages/nurse_tasks/cancel_form'
 require './lib/pages/shared/nurse_tasks_forms'
 translations_path = './lib/pages/translations/'
 require "#{translations_path}nurse_tasks/call_to_schedule_final_appointment"
@@ -94,6 +95,16 @@ class NurseTasks
 
     def has_location_options?
       has_task_options?(10, 9)
+    end
+
+    def has_canceled_alert?
+      cancel_form.has_cancel_alert?(call_to_schedule_final_title)
+    end
+
+    private
+
+    def cancel_form
+      @cancel_form ||= NurseTasks::CancelForm.new(locale: @locale)
     end
   end
 end

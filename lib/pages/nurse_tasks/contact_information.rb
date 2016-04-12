@@ -62,5 +62,9 @@ class NurseTasks
       actual_headings = (0..7).map { |i| table.all('strong')[i].text }
       expect(actual_headings).to eq(expected_headings)
     end
+
+    def has_saved_contact_information_alert?
+      has_css?('.alert', text: saved_contact_information_alert)
+    end
   end
 end
