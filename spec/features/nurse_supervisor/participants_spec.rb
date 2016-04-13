@@ -76,3 +76,21 @@ feature 'Nurse Supervisor, Participants', metadata: :not_first do
     expect(patient_4036).to be_dropped
   end
 end
+
+feature 'Spanish Nurse Supervisor, Participants', metadata: :not_first do
+  scenario 'Sees correct translation for terminating participants' do
+    spanish_supervisor.sign_in
+    patient_503.terminate
+
+    expect(patient_503).to be_dropped
+  end
+end
+
+feature 'Portuguese Nurse Supervisor, Participants', metadata: :not_first do
+  scenario 'Sees correct translation for terminating participants' do
+    portuguese_supervisor.sign_in
+    patient_603.terminate
+
+    expect(patient_603).to be_dropped
+  end
+end

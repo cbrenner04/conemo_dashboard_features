@@ -14,6 +14,19 @@ feature 'Nurse, Timeline', metadata: :not_first do
     expect(pt_342_nurse_tasks_1).to have_participant_in_header
   end
 
+  scenario 'Nurse cancels edit of confirmation call' do
+    pt_342_nurse_tasks_1.open
+    pt_342_clinical_summary.open
+    pt_342_timeline_1.open
+    pt_342_timeline_1.edit_confirmation_call
+
+    expect(confirmation_call).to be_visible
+
+    navigation.cancel
+
+    expect(confirmation_call).to be_visible_on_timeline
+  end
+
   scenario 'Nurse edits confirmation call' do
     pt_342_nurse_tasks_1.open
     pt_342_clinical_summary.open
@@ -24,10 +37,10 @@ feature 'Nurse, Timeline', metadata: :not_first do
 
     confirmation_call.enter_first_appt_location
     navigation.submit
-    pt_342_clinical_summary.open
-    pt_342_timeline_1.open
+    # pt_342_clinical_summary.open
+    # pt_342_timeline_1.open
 
-    expect(confirmation_call).to be_visible
+    expect(confirmation_call).to be_visible_on_timeline
   end
 
   scenario 'Nurse edits initial in person appointment' do
@@ -38,8 +51,8 @@ feature 'Nurse, Timeline', metadata: :not_first do
     pt_342_nurse_tasks_1.enter_session_length
     initial_appointment.enter_location
     navigation.submit
-    pt_342_clinical_summary.open
-    pt_342_timeline_1.open
+    # pt_342_clinical_summary.open
+    # pt_342_timeline_1.open
 
     expect(pt_342_timeline_1).to have_updated_session_length
   end
@@ -68,8 +81,8 @@ feature 'Nurse, Timeline', metadata: :not_first do
     pt_342_nurse_tasks_3.enter_session_length
     follow_up_week_3.enter_difficulties
     navigation.submit
-    pt_342_clinical_summary.open
-    pt_342_timeline_3.open
+    # pt_342_clinical_summary.open
+    # pt_342_timeline_3.open
 
     expect(pt_342_timeline_3).to have_updated_call_length
   end
@@ -82,8 +95,8 @@ feature 'Nurse, Timeline', metadata: :not_first do
     call_to_schedule_final_appointment.update_contact_at_to_today
     call_to_schedule_final_appointment.select_location
     navigation.submit
-    pt_343_clinical_summary_1.open
-    pt_343_timeline.open
+    # pt_343_clinical_summary_1.open
+    # pt_343_timeline.open
 
     expect(pt_343_timeline).to have_updated_contact_at
   end
@@ -96,8 +109,8 @@ feature 'Nurse, Timeline', metadata: :not_first do
     final_appointment.enter_location
     final_appointment.choose_phone_returned_negative
     navigation.submit
-    pt_342_clinical_summary.open
-    pt_342_timeline_1.open
+    # pt_342_clinical_summary.open
+    # pt_342_timeline_1.open
 
     expect(pt_342_timeline_1).to have_updated_phone_return
   end

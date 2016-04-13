@@ -21,9 +21,9 @@ class NurseTasks
     def visible?
       date_1 = Date.today - ((30 * 365) + @id.to_i)
       has_css?('#contact-info',
-               text: 'Contact Information Family health unit: unit 1 ' \
-                     "Telephone: 13333333#{@id} Emergency contact(name): " \
-                     "Telephone Birth date: #{date_1.strftime('%B %d, %Y')} " \
+               text: 'Contact information Family health unit: unit 1 ' \
+                     "Telephone: 13333333#{@id} Emergency contact (name): " \
+                     "Telephone: Birth date: #{date_1.strftime('%B %d, %Y')} " \
                      'Home address: 123 Main Street Date of inclusion: ' \
                      "#{Date.today.strftime('%B %d, %Y')} Gender: female")
     end
@@ -33,7 +33,7 @@ class NurseTasks
     end
 
     def select_edit_smartphone_information
-      find('#smartphone-info').find('.fa-edit').click
+      smartphone_table.find('.fa-edit').click
     end
 
     def enter_smartphone_number
@@ -57,6 +57,11 @@ class NurseTasks
       has_css?('h2', text: smartphone_information_title)
     end
 
+    def has_smartphone_sub_headings?
+      sub_headings = (0..1).map { |i| smartphone_table.all('strong')[i].text }
+      expect(sub_headings).to eq([phone_number_header, serial_number_header])
+    end
+
     def has_contact_information_table_headings?
       table = find('#contact-info')
       actual_headings = (0..7).map { |i| table.all('strong')[i].text }
@@ -65,6 +70,16 @@ class NurseTasks
 
     def has_saved_contact_information_alert?
       has_css?('.alert', text: saved_contact_information_alert)
+    end
+
+    def has_successful_smartphone_creation_alert?
+      has_css?('.alert', text: smartphone_creation_alert)
+    end
+
+    private
+
+    def smartphone_table
+      find('#smartphone-info')
     end
   end
 end

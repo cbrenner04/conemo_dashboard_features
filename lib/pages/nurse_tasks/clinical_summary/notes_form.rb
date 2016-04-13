@@ -35,7 +35,7 @@ class NurseTasks
       end
 
       def has_form_labels?
-        actual_labels = (0..2).map { |i| all('.control-label')[i].text }
+        actual_labels = (0..1).map { |i| all('.control-label')[i].text }
         expect(actual_labels).to eq(expected_notes_form_labels)
       end
 
@@ -47,12 +47,6 @@ class NurseTasks
         clinical_summary.has_contact_dates?
       end
 
-      def has_reason_options?
-        selector[5].click
-        actual = (0..3).map { |i| all('.select2-result-label')[i].text }
-        expect(actual).to eq(expected_notes_reason_options)
-      end
-
       private
 
       def navigation
@@ -60,9 +54,7 @@ class NurseTasks
       end
 
       def clinical_summary
-        @clinical_summary ||= NurseTasks::ClinicalSummary.new(
-          locale: @locale
-        )
+        @clinical_summary ||= NurseTasks::ClinicalSummary.new(locale: @locale)
       end
     end
   end

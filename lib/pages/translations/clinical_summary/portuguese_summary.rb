@@ -4,7 +4,7 @@ module Translations
     module PortugueseSummary
       def portuguese_links
         @portuguese_links ||= [
-          'as tarefas',
+          'Tarefas',
           'Todos os contatos realizados'
         ]
       end
@@ -12,7 +12,7 @@ module Translations
       def portuguese_headers
         @portuguese_headers ||= [
           'Solicitação de ajuda',
-          'Logins',
+          'Acessos',
           'Sessão enviada em',
           'Sessão',
           'Anotações Write note'
@@ -23,27 +23,21 @@ module Translations
         @portuguese_legend ||= [
           'Ainda não enviada',
           'Atual',
-          'Concludía com atraso',
+          'Concluída com atraso',
           'Acessada mas não concluída',
           'Não acessada',
-          'Concludía em tempo'
+          'Concluída em tempo'
         ]
       end
 
       def portuguese_release_dates
-        release_day = [1, 3, 6, 8, 10]
-        relative_release_date = release_day.map do |i|
+        [1, 3, 6, 8, 10].map do |i|
           portuguese_date((Date.today - @start_date_offset) + (i - 1))
         end
-        @portuguese_release_dates ||= relative_release_date
       end
 
       def portuguese_contact_dates
-        contact_day = [0, 14, 35, 42]
-        relative_contact_date = contact_day.map do |i|
-          portuguese_date(Date.today - i)
-        end
-        @portuguese_contact_dates ||= relative_contact_date
+        [0, 14, 35, 42].map { |i| portuguese_date(Date.today - i) }
       end
 
       def portuguese_notes_form_heading
@@ -51,14 +45,7 @@ module Translations
       end
 
       def portuguese_notes_form_labels
-        @portuguese_notes_form_labels ||=
-          ['Data do contato', 'Motivo', 'Anotações']
-      end
-
-      def portuguese_notes_reason_options
-        @portuguese_notes_reason_options ||=
-          ['Contato programado - Seguimento', 'Contato por não adesão',
-           'Solicitação de contato pelo paciente', 'Outro']
+        @portuguese_notes_form_labels ||= ['Data do contato', 'Anotações']
       end
     end
   end

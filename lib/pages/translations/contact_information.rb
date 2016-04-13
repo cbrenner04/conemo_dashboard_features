@@ -21,11 +21,13 @@ module Translations
     end
 
     def phone_number_header
-      locale('Número del Smartphone', 'Número do Smartphone', 'Phone number')
+      locale('Número del smartphone / número de serie:',
+             'Número do Smartphone:', 'Phone number / serial number:')
     end
 
     def serial_number_header
-      locale('Número de Serie', 'Código do Smartphone', 'Serial number')
+      locale('Código del smartphone:', 'Código do Smartphone:',
+             'Phone ID:')
     end
 
     def expected_headings
@@ -36,6 +38,12 @@ module Translations
       locale('Información actualizada exitosamente',
              'Informações do participante atualizadas com sucesso',
              'Successfully updated participant')
+    end
+
+    def smartphone_creation_alert
+      locale('Smartphone guardado exitosamente',
+             'Smartphone registrado com sucesso',
+             'Successfully created smartphone')
     end
   end
 end

@@ -16,7 +16,7 @@ feature 'Nurse, Contact Information', metadata: :not_first do
     pt_301_contact_info.select_edit_contact_information
     sleep(0.25)
     navigation.cancel
-    pt_301_nurse_tasks.return
+    # pt_301_nurse_tasks.return
 
     expect(pt_301_contact_info).to be_visible
   end
@@ -25,7 +25,7 @@ feature 'Nurse, Contact Information', metadata: :not_first do
     pt_301_nurse_tasks.open
     pt_301_contact_info.select_edit_contact_information
     navigation.submit
-    pt_301_nurse_tasks.return
+    # pt_301_nurse_tasks.return
 
     expect(pt_301_contact_info).to be_visible
   end
@@ -51,33 +51,57 @@ feature 'Nurse, Contact Information', metadata: :not_first do
 end
 
 feature 'Spanish Nurse, Contact Information', metadata: :not_first do
+  background { spanish_nurse.sign_in }
+
   scenario 'Spanish nurse sees correct translations' do
-    spanish_nurse.sign_in
     pt_500_nurse_tasks.open
 
     expect(pt_500_contact_info).to have_contact_information_title
     expect(pt_500_contact_info).to have_contact_information_table_headings
     expect(pt_500_contact_info).to have_smartphone_information_title
+    expect(pt_500_contact_info).to have_smartphone_sub_headings
 
     pt_500_contact_info.select_edit_contact_information
     spanish_navigation.submit
 
     expect(pt_500_contact_info).to have_saved_contact_information_alert
   end
+
+  scenario 'Spanish Nurse creates a smartphone' do
+    pt_504_nurse_tasks.open
+    pt_504_contact_info.select_edit_smartphone_information
+    pt_504_contact_info.enter_smartphone_number
+    pt_504_contact_info.enter_phone_id
+    spanish_navigation.submit
+
+    expect(pt_504_contact_info).to have_successful_smartphone_creation_alert
+  end
 end
 
 feature 'Portuguese Nurse, Contact Information', metadata: :not_first do
+  background { portuguese_nurse.sign_in }
+
   scenario 'Portuguese nurse sees correct translations' do
-    portuguese_nurse.sign_in
     pt_600_nurse_tasks.open
 
     expect(pt_600_contact_info).to have_contact_information_title
     expect(pt_600_contact_info).to have_contact_information_table_headings
     expect(pt_600_contact_info).to have_smartphone_information_title
+    expect(pt_600_contact_info).to have_smartphone_sub_headings
 
     pt_600_contact_info.select_edit_contact_information
     portuguese_navigation.submit
 
     expect(pt_600_contact_info).to have_saved_contact_information_alert
+  end
+
+  scenario 'Spanish Nurse creates a smartphone' do
+    pt_604_nurse_tasks.open
+    pt_604_contact_info.select_edit_smartphone_information
+    pt_604_contact_info.enter_smartphone_number
+    pt_604_contact_info.enter_phone_id
+    portuguese_navigation.submit
+
+    expect(pt_604_contact_info).to have_successful_smartphone_creation_alert
   end
 end

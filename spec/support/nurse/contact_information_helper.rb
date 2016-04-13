@@ -65,6 +65,20 @@ def pt_500_nurse_tasks
   )
 end
 
+def pt_504_contact_info
+  @pt_504_contact_info ||= NurseTasks::ContactInformation.new(
+    id: 504,
+    locale: 'spanish'
+  )
+end
+
+def pt_504_nurse_tasks
+  @pt_504_nurse_tasks ||= NurseTasks.new(
+    pt_id: 504,
+    locale: 'spanish'
+  )
+end
+
 def pt_600_contact_info
   @pt_600_contact_info ||= NurseTasks::ContactInformation.new(
     id: 600,
@@ -75,6 +89,20 @@ end
 def pt_600_nurse_tasks
   @pt_600_nurse_tasks ||= NurseTasks.new(
     pt_id: 600,
+    locale: 'portuguese'
+  )
+end
+
+def pt_604_contact_info
+  @pt_604_contact_info ||= NurseTasks::ContactInformation.new(
+    id: 604,
+    locale: 'portuguese'
+  )
+end
+
+def pt_604_nurse_tasks
+  @pt_604_nurse_tasks ||= NurseTasks.new(
+    pt_id: 604,
     locale: 'portuguese'
   )
 end

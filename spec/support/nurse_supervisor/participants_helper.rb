@@ -16,26 +16,6 @@ def nurse_supervisor
   @nurse_supervisor ||= SupervisorPage.new(pt_id: 'fake')
 end
 
-def patient_495
-  @patient_495 ||= SupervisorPage::Participants.new(pt_id: 495)
-end
-
-def patient_496
-  @patient_496 ||= SupervisorPage::Participants.new(
-    pt_id: 496,
-    enrollment_date: Date.today - 12,
-    nurse: 404
-  )
-end
-
-def patient_4036
-  @patient_4036 ||= SupervisorPage::Participants.new(
-    pt_id: 4036,
-    nurse: 401,
-    enrollment_date: Date.today - 10
-  )
-end
-
 def patient_413_nurse_400
   @patient_413_nurse_400 ||= SupervisorPage::Participants.new(
     pt_id: 413,
@@ -75,5 +55,43 @@ end
 def pt_413_lack_of_connectivity_call
   @pt_413_lack_of_connectivity_call ||= NurseTasks::LackOfConnectivityCall.new(
     locale: 'english'
+  )
+end
+
+def patient_495
+  @patient_495 ||= SupervisorPage::Participants.new(pt_id: 495)
+end
+
+def patient_496
+  @patient_496 ||= SupervisorPage::Participants.new(
+    pt_id: 496,
+    enrollment_date: Date.today - 12,
+    nurse: 404
+  )
+end
+
+def patient_4036
+  @patient_4036 ||= SupervisorPage::Participants.new(
+    pt_id: 4036,
+    nurse: 401,
+    enrollment_date: Date.today - 10
+  )
+end
+
+def patient_503
+  @patient_503 ||= SupervisorPage::Participants.new(
+    pt_id: 503,
+    nurse: 500,
+    enrollment_date: Date.today - 12,
+    locale: 'spanish'
+  )
+end
+
+def patient_603
+  @patient_603 ||= SupervisorPage::Participants.new(
+    pt_id: 603,
+    nurse: 600,
+    enrollment_date: Date.today - 12,
+    locale: 'portuguese'
   )
 end

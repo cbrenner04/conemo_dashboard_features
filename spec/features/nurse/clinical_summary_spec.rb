@@ -358,6 +358,11 @@ feature 'Spanish Nurse, Clinical Summary' do
     expect(pt_500_clinical_summary).to have_notes_headers
     expect(pt_500_clinical_summary).to have_lesson_release_dates
     expect(pt_500_clinical_summary).to have_contact_dates
+    expect(pt_500_clinical_summary).to have_messages_title
+
+    pt_500_clinical_summary.read_help_message
+
+    expect(pt_500_clinical_summary).to have_read_message_alert
 
     pt_500_notes_form.open
 
@@ -365,7 +370,6 @@ feature 'Spanish Nurse, Clinical Summary' do
     expect(pt_500_notes_form).to have_form_labels
     expect(pt_500_notes_form).to have_notes_headers
     expect(pt_500_notes_form).to have_contact_dates
-    expect(pt_500_notes_form).to have_reason_options
   end
 end
 
@@ -381,6 +385,11 @@ feature 'Portuguese Nurse, Clinical Summary' do
     expect(pt_600_clinical_summary).to have_notes_headers
     expect(pt_600_clinical_summary).to have_lesson_release_dates
     expect(pt_600_clinical_summary).to have_contact_dates
+    expect(pt_600_clinical_summary).to have_messages_title
+
+    pt_600_clinical_summary.read_help_message
+
+    expect(pt_600_clinical_summary).to have_read_message_alert
 
     pt_600_notes_form.open
 
@@ -388,6 +397,5 @@ feature 'Portuguese Nurse, Clinical Summary' do
     expect(pt_600_notes_form).to have_form_labels
     expect(pt_600_notes_form).to have_notes_headers
     expect(pt_600_notes_form).to have_contact_dates
-    expect(pt_600_notes_form).to have_reason_options
   end
 end

@@ -1,3 +1,4 @@
+require './lib/pages/navigation'
 require './lib/pages/shared/nurse_tasks_forms'
 require './lib/pages/translations/nurse_tasks/additional_contact'
 
@@ -53,6 +54,12 @@ class NurseTasks
     def has_current_date_selections?
       has_date_selectors?(Date.today, 1, locale(0, 0, 2), locale(2, 2, 0)) &&
         has_time_selectors?(3, 4)
+    end
+
+    private
+
+    def navigation
+      @navigation ||= Navigation.new(locale: @locale)
     end
   end
 end

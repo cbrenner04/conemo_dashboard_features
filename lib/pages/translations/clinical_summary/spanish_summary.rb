@@ -4,14 +4,14 @@ module Translations
     module SpanishSummary
       def spanish_links
         @spanish_links ||= [
-          'las tareas',
+          'Tareas',
           'Todos los contactos realizados'
         ]
       end
 
       def spanish_headers
         @spanish_headers ||= [
-          'Mensajes',
+          'Solicitudes de ayuda',
           'Ingresos',
           'Fecha de lanzamiento',
           'Sesión',
@@ -22,38 +22,26 @@ module Translations
       def spanish_legend
         @spanish_legend ||= [
           'Unreleased',
-          'Current',
-          'Completed late',
-          'Accessed but not completed',
-          'Not accessed',
-          'Completed on time'
+          'Sesión actual',
+          'Sesión finalizada tarde',
+          'Sesión accedida, pero no finalizada',
+          'Sesión no accedida',
+          'Sesión finalizada a tiempo'
         ]
       end
 
       def spanish_release_dates_1
-        release_day = [1, 3, 6, 8, 10, 13, 15, 17, 20, 22, 24, 27, 29, 31,
-                       34, 36, 38, 41]
-        relative_release_date = release_day.map do |i|
-          spanish_date((Date.today - @start_date_offset) + (i - 1))
-        end
-        @spanish_release_dates ||= relative_release_date
+        [1, 3, 6, 8, 10, 13, 15, 17, 20, 22, 24, 27, 29, 31, 34, 36, 38, 41
+        ].map { |i| spanish_date((Date.today - @start_date_offset) + (i - 1)) }
       end
 
       def spanish_release_dates_2
-        release_day = [1, 3, 6, 8, 10, 13, 15, 17, 20, 22, 27, 29, 31,
-                       34, 36, 38, 41]
-        relative_release_date = release_day.map do |i|
-          spanish_date((Date.today - @start_date_offset) + (i - 1))
-        end
-        @spanish_release_dates ||= relative_release_date
+        [1, 3, 6, 8, 10, 13, 15, 17, 20, 22, 27, 29, 31, 34, 36, 38, 41
+        ].map { |i| spanish_date((Date.today - @start_date_offset) + (i - 1)) }
       end
 
       def spanish_contact_dates
-        contact_day = [0, 14, 35, 42]
-        relative_contact_date = contact_day.map do |i|
-          spanish_date(Date.today - i)
-        end
-        @spanish_contact_dates ||= relative_contact_date
+        [0, 14, 35, 42].map { |i| spanish_date(Date.today - i) }
       end
 
       def spanish_notes_form_heading
@@ -61,14 +49,7 @@ module Translations
       end
 
       def spanish_notes_form_labels
-        @spanish_notes_form_labels ||=
-          ['Fecha / hora de nota', 'Razones', 'Notas']
-      end
-
-      def spanish_notes_reason_options
-        @spanish_notes_reason_options ||=
-          ['Llamada de seguimiento programada', 'Llamada por no-adherencia',
-           'Llamada solicitada por el paciente', 'Otro']
+        @spanish_notes_form_labels ||= ['Fecha / hora de nota', 'Notas']
       end
     end
   end

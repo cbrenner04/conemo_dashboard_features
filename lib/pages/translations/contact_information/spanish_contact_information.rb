@@ -7,7 +7,7 @@ module Translations
           'Centro de salud:',
           'Telefóno fijo:',
           'Contacto de Emergencia (nombre):',
-          'Teléfono fijo:', # (Contacto de Emergencia):',
+          'Teléfono fijo (Contacto de Emergencia):',
           'Fecha de nacimiento:',
           'Dirección actual:',
           'Fecha de inclusión:',

@@ -46,6 +46,10 @@ class NurseTasks
       has_text? confirmation_call_title
     end
 
+    def visible_on_timeline?
+      has_css('.timeline-title', text: confirmation_call_title)
+    end
+
     def enter_next_contact_date
       select_next_date(7)
     end
@@ -82,6 +86,11 @@ class NurseTasks
 
     def has_canceled_alert?
       cancel_form.has_cancel_alert?(confirmation_call_title)
+    end
+
+    def has_time_ago_in_words?
+      locale('hace cerca de 2 horas', 'aproximademente 2 horas atrás',
+             'about 2 hours ago')
     end
 
     private

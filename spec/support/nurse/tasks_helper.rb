@@ -62,6 +62,18 @@ def additional_contact
   @additional_contact ||= NurseTasks::AdditionalContact.new(locale: 'english')
 end
 
+def spanish_additional_contact
+  @spanish_additional_contact ||= NurseTasks::AdditionalContact.new(
+    locale: 'spanish'
+  )
+end
+
+def portuguese_additional_contact
+  @portuguese_additional_contact ||= NurseTasks::AdditionalContact.new(
+    locale: 'portuguese'
+  )
+end
+
 def pt_300_nurse_tasks
   @pt_300_nurse_tasks ||= NurseTasks.new(pt_id: 300)
 end
@@ -85,9 +97,23 @@ def pt_500_nurse_tasks
   )
 end
 
+def pt_504_nurse_tasks
+  @pt_504_nurse_tasks ||= NurseTasks.new(
+    pt_id: 504,
+    locale: 'spanish'
+  )
+end
+
 def pt_600_nurse_tasks
   @pt_600_nurse_tasks ||= NurseTasks.new(
     pt_id: 600,
+    locale: 'portuguese'
+  )
+end
+
+def pt_604_nurse_tasks
+  @pt_604_nurse_tasks ||= NurseTasks.new(
+    pt_id: 604,
     locale: 'portuguese'
   )
 end

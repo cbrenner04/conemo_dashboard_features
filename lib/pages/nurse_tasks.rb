@@ -63,19 +63,19 @@ class NurseTasks
   end
 
   def has_overdue_tasks?
-    has_text? "#{@tasks_count} overdue"
+    has_text? "#{@tasks_count} #{singular_overdue_task}"
   end
 
   def has_one_task_in_count?
-    has_text? '1 Task'
+    has_text? "1 #{singular_active_task}"
   end
 
   def has_no_tasks_in_count?
-    has_text? '0 Tasks'
+    has_text? "0 #{plural_active_task}"
   end
 
   def has_multiple_tasks_in_count?
-    has_text? "#{@tasks_count} Tasks"
+    has_text? "#{@tasks_count} #{plural_active_task}"
   end
 
   def has_empty_progress_bar?
@@ -93,6 +93,26 @@ class NurseTasks
   def has_key?
     has_scheduled? && has_confirmed? && has_active? && has_canceled? &&
       has_overdue?
+  end
+
+  def has_progress_bar_heading?
+    has_css?('h2', text: progress_bar_heading)
+  end
+
+  def has_tasks_heading?
+    has_css?('h2', text: tasks_heading)
+  end
+
+  def has_additional_contact_alert?
+    has_css?('.alert', text: "#{additional_contact_title} " \
+                             "#{masculine_success_alert}")
+  end
+
+  def has_successful_confirmation_call_alert?
+    puts find('.alert').text
+    puts "#{confirmation_call_title} #{feminine_success_alert}"
+    has_css?('.alert', text: "#{confirmation_call_title} " \
+                             "#{feminine_success_alert}")
   end
 
   private
@@ -121,27 +141,22 @@ class NurseTasks
   end
 
   def has_scheduled?
-    key.has_css?('tr', text: locale('scheduled but not due',
-                                    'scheduled but not due',
-                                    'scheduled but not due'))
+    key.has_css?('tr', text: scheduled_key_label)
   end
 
   def has_confirmed?
-    key.has_css?('.success',
-                 text: locale('confirmed', 'confirmed', 'confirmed'))
+    key.has_css?('.success', text: confirmed_key_label)
   end
 
   def has_active?
-    key.has_css?('.info',
-                 text: locale('active due', 'active due', 'active due'))
+    key.has_css?('.info', text: active_key_label)
   end
 
   def has_canceled?
-    key.has_css?('.warning',
-                 text: locale('cancelled', 'cancelled', 'cancelled'))
+    key.has_css?('.warning', text: canceled_key_label)
   end
 
   def has_overdue?
-    key.has_css?('.danger', text: locale('overdue', 'overdue', 'overdue'))
+    key.has_css?('.danger', text: overdue_key_label)
   end
 end

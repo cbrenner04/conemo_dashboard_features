@@ -69,5 +69,15 @@ module Translations
       locale(spanish_notes_reason_options, portuguese_notes_reason_options,
              english_notes_reason_options)
     end
+
+    def message_title
+      locale('Solicitud de ayuda', 'Solicitação de ajuda', 'Help request')
+    end
+
+    def updated_help_message_alert
+      locale('Solicitud de ayuda actualizada exitosamente',
+             'Pedido de ajuda atualizado com sucesso',
+             'Successfully updated help message')
+    end
   end
 end

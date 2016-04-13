@@ -1,19 +1,23 @@
 require './lib/pages/navigation'
+require './lib/pages/translations'
 
 class SupervisorPage
   # page object for Participants section of the Nurse Supervisor page
   class Participants
     include RSpec::Matchers
     include Capybara::DSL
+    include Translations
 
     def initialize(participants)
       @pt_id ||= participants[:pt_id]
       @enrollment_date ||= participants[:enrollment_date]
       @nurse ||= participants[:nurse]
+      @locale ||= participants.fetch(:locale, 'english')
     end
 
     def activate
-      find('.panel', text: 'Pending').find('tr', text: "#{@pt_id}")
+      find('.panel', text: 'Pending')
+        .find('tr', text: "#{@pt_id}")
         .find('.fa-thumbs-up').click
       find('h1', text: 'Assign nurse to activate participant ' \
                        "First Last-#{@pt_id}")
@@ -35,57 +39,62 @@ class SupervisorPage
 
     def active?
       active_panel = find('.panel', text: 'Active')
-      active_panel.find('input[type = search]').set(@pt_id)
+      active_panel
+        .find('input[type = search]')
+        .set(@pt_id)
       active_panel
         .has_css?('tr',
-                  text: "Edit Information Nurse-#{@nurse}, English Edit " \
+                  text: "Edit Information Nurse-#{@nurse}, #{language} Edit " \
                         "Information Last-#{@pt_id}, First #{@pt_id} " \
-                        "#{enrollment} #{today} Treatment termination")
+                        "#{locale_date(@enrollment_date)} " \
+                        "#{locale_date(Date.today)} Treatment termination")
     end
 
     def terminate
       tries ||= 1
-      find('.panel', text: 'Active').find('tr', text: "#{@pt_id}")
+      find('.panel', text: 'Active')
+        .find('tr', text: "#{@pt_id}")
         .find('.fa-thumbs-down').click
-      accept_alert('Are you sure you want to terminate this person?')
+      sleep(0.25)
+      accept_alert(termination_alert)
     rescue Capybara::ModalNotFound
       navigation.scroll_up
       tries += 1
-      retry unless tries > 5
+      retry unless tries > 2
     end
 
     def dropped?
-      find('.panel', text: 'Dropped').find('input[type = search]').set(@pt_id)
+      find('.panel', text: 'Dropped')
+        .find('input[type = search]')
+        .set(@pt_id)
       find('.panel', text: 'Dropped out')
-        .has_css?('tr', text: 'Nurse-401, English ' \
+        .has_css?('tr', text: "Nurse-#{@nurse}, #{language} " \
                               "Last-#{@pt_id}, First #{@pt_id} " \
-                              "#{enrollment} #{today}")
+                              "#{locale_date(@enrollment_date)} " \
+                              "#{locale_date(Date.today)}")
     end
 
     def reassign
       tries ||= 1
-      find('.panel', text: 'Active').find('tr', text: "#{@pt_id}")
+      find('.panel', text: 'Active')
+        .find('tr', text: "#{@pt_id}")
         .find('.fa-user-md').click
       sleep(0.25)
       assign_nurse
     rescue Capybara::ElementNotFound
       navigation.scroll_up
       tries += 1
-      retry unless tries > 5
+      retry unless tries > 2
     end
 
     private
 
     def navigation
-      @navigation ||= Navigation.new(locale: 'english')
+      @navigation ||= Navigation.new(locale: @locale)
     end
 
-    def today
-      @today ||= Date.today.strftime('%B %d, %Y')
-    end
-
-    def enrollment
-      @enrollment ||= @enrollment_date.strftime('%B %d, %Y')
+    def language
+      locale('Spanish', 'Portuguese', 'English')
     end
 
     def expected_options
@@ -96,6 +105,14 @@ class SupervisorPage
         'Nurse-403, English',
         'Nurse-404, English'
       ]
+    end
+
+    def termination_alert
+      locale('¿Estás seguro/a de que quieres suspender el tratamiento de ' \
+             'este participante?',
+             'Tem certeza que quer terminar o acompanhamento deste ' \
+             'participante?',
+             'Are you sure you want to terminate this person?')
     end
   end
 end

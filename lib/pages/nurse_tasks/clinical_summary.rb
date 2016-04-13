@@ -42,8 +42,17 @@ class NurseTasks
       has_text?(@first_message) && has_text?(@second_message)
     end
 
+    def read_help_message
+      find('#messages-table').find('.fa-eye').click
+    end
+
+    def has_read_message_alert?
+      has_css?('.alert', text: updated_help_message_alert)
+    end
+
     def has_note?
-      has_text? @note
+      find('table', text: 'Notes')
+        .has_css?('dt', text: 'Additional note') && has_text?(@note)
     end
 
     def delete_note
@@ -183,10 +192,14 @@ class NurseTasks
         .has_text? "#{@note}\n#{Date.today.strftime('%B %d, %Y')}"
     end
 
+    def has_messages_title?
+      find('#messages-table').has_css?('td', text: message_title)
+    end
+
     private
 
     def lesson_table
-      find('table', text: lesson_table_heading)
+      first('table', text: lesson_table_heading)
     end
 
     def notes_table

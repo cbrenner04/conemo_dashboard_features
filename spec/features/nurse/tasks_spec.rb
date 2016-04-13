@@ -65,19 +65,38 @@ feature 'Nurse, Participant Tasks', metadata: :not_first do
 end
 
 feature 'Spanish Nurse, Tasks' do
-  scenario 'Spanish Nurse sees key' do
-    spanish_nurse.sign_in
+  background { spanish_nurse.sign_in }
+
+  scenario 'Spanish Nurse sees section headings and key' do
     pt_500_nurse_tasks.open
 
+    expect(pt_500_nurse_tasks).to have_progress_bar_heading
+    expect(pt_500_nurse_tasks).to have_tasks_heading
     expect(pt_500_nurse_tasks).to have_key
+  end
+
+  scenario 'Spanish Nurse creates an additional contact' do
+    pt_504_nurse_tasks.open
+    spanish_additional_contact.create_for_call
+
+    expect(pt_500_nurse_tasks).to have_additional_contact_alert
   end
 end
 
 feature 'Portuguese Nurse, Tasks' do
-  scenario 'Portuguese Nurse sees key' do
-    portuguese_nurse.sign_in
-    pt_600_nurse_tasks.open
+  background { portuguese_nurse.sign_in }
 
+  scenario 'Portuguese Nurse sees section headings and key' do
+    pt_600_nurse_tasks.open
+    expect(pt_600_nurse_tasks).to have_progress_bar_heading
+    expect(pt_600_nurse_tasks).to have_tasks_heading
     expect(pt_600_nurse_tasks).to have_key
+  end
+
+  scenario 'Portuguese Nurse creates an additional contact' do
+    pt_604_nurse_tasks.open
+    portuguese_additional_contact.create_for_call
+
+    expect(pt_600_nurse_tasks).to have_additional_contact_alert
   end
 end

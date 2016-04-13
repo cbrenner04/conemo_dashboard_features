@@ -1,8 +1,13 @@
 # filename: ./spec/support/nurse/tasks/spanish_translations_helper.rb
 
+require './lib/pages/navigation'
 require './lib/pages/nurse_tasks'
 Dir['./lib/pages/nurse_tasks/*.rb'].each { |file| require file }
 require './lib/pages/supervisor_page/nurses'
+
+def spanish_navigation
+  @spanish_navigation ||= Navigation.new(locale: 'spanish')
+end
 
 def pt_501_nurse_tasks
   @pt_501_nurse_tasks ||= NurseTasks.new(

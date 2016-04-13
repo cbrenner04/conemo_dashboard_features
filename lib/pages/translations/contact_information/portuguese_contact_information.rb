@@ -8,7 +8,7 @@ module Translations
           'nomes das unidades – a ser definido):',
           'Telefone fixo:',
           'Contato de Emergência (nome):',
-          'Telefone fixo:', # (Contato de Emergência):',
+          'Telefone fixo (Contato de Emergência):',
           'Data de nascimento:',
           'Endereço:',
           'Data de inclusão no estudo:',
