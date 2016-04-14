@@ -1,13 +1,13 @@
 require './lib/pages/navigation'
 require './lib/pages/translations/navigation'
-require './lib/pages/translations/nurse_tasks'
+require './lib/pages/translations/nurse_tasks_titles'
 
 # module for shared methods in nurse task forms
 module NurseTasksForms
   include RSpec::Matchers
   include Capybara::DSL
   include Translations::NavigationTranslations
-  include Translations::NurseTasksTranslations
+  include Translations::NurseTaskTitles
 
   def mark_task_resolved(type)
     panel(type).find('a', text: mark_resolved_button).click

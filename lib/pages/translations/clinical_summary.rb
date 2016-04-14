@@ -1,11 +1,11 @@
-require './lib/pages/translations/nurse_tasks'
+require './lib/pages/translations/nurse_tasks_titles'
 path = './lib/pages/translations/clinical_summary'
 Dir["#{path}/*.rb"].each { |file| require file }
 
 module Translations
   # translations for clinical summary page
   module ClinicalSummaryTranslations
-    include Translations::NurseTasksTranslations
+    include Translations::NurseTaskTitles
     include Translations::ClinicalSummaryTranslations::EnglishSummary
     include Translations::ClinicalSummaryTranslations::SpanishSummary
     include Translations::ClinicalSummaryTranslations::PortugueseSummary

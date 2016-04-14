@@ -1,10 +1,10 @@
-require './lib/pages/translations/nurse_tasks'
+require './lib/pages/translations/nurse_tasks_titles'
 
 module Translations
   # module for Contact Information page
   module TimelineTranslations
     include Translations
-    include Translations::NurseTasksTranslations
+    include Translations::NurseTaskTitles
 
     def timeline_page_title
       locale('Todos los contactos realizados', 'Todos os contatos realizados',

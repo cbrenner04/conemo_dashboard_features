@@ -7,7 +7,7 @@ class NurseTasks
   class ConfirmationCall
     include Capybara::DSL
     include NurseTasksForms
-    include Translations::NurseTasksTranslations::ConfirmationCall
+    include Translations::NurseTaskTitles::ConfirmationCall
 
     def initialize(confirmation_call)
       @locale ||= confirmation_call[:locale]

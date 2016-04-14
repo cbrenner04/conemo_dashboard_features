@@ -7,7 +7,7 @@ class NurseTasks
   class NonAdherenceCall
     include Capybara::DSL
     include NurseTasksForms
-    include Translations::NurseTasksTranslations::NonAdherenceCallTranslations
+    include Translations::NurseTaskTitles::NonAdherenceCallTranslations
 
     def initialize(non_adherence_call)
       @locale ||= non_adherence_call[:locale]

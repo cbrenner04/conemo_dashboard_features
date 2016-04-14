@@ -1,10 +1,10 @@
-require './lib/pages/translations/nurse_tasks'
+require './lib/pages/translations/nurse_tasks_titles'
 
 module Translations
-  module NurseTasksTranslations
+  module NurseTaskTitles
     # translations for non adherence call
     module NonAdherenceCallTranslations
-      include Translations::NurseTasksTranslations
+      include Translations::NurseTaskTitles
 
       def expected_headings
         locale(spanish_headings, portuguese_headings, english_headings)

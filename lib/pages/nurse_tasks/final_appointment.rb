@@ -7,7 +7,7 @@ class NurseTasks
   class FinalAppointment
     include Capybara::DSL
     include NurseTasksForms
-    include Translations::NurseTasksTranslations::FinalAppointment
+    include Translations::NurseTaskTitles::FinalAppointment
 
     def initialize(final_appointment)
       @locale ||= final_appointment[:locale]

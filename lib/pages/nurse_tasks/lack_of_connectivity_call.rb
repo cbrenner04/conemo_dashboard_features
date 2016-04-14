@@ -7,7 +7,7 @@ class NurseTasks
   class LackOfConnectivityCall
     include Capybara::DSL
     include NurseTasksForms
-    include Translations::NurseTasksTranslations::LackOfConnectivityCall
+    include Translations::NurseTaskTitles::LackOfConnectivityCall
 
     def initialize(lack_of_connectivity_call)
       @locale ||= lack_of_connectivity_call[:locale]

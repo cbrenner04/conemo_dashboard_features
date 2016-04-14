@@ -1,10 +1,10 @@
-require './lib/pages/translations/nurse_tasks'
+require './lib/pages/translations/nurse_tasks_titles'
 
 module Translations
-  module NurseTasksTranslations
+  module NurseTaskTitles
     # translations for confirmation call
     module CancellationForm
-      include Translations::NurseTasksTranslations
+      include Translations::NurseTaskTitles
 
       def options
         locale(spanish_options, portuguese_options, english_options)

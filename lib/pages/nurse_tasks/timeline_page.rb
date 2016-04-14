@@ -1,5 +1,5 @@
 require './lib/pages/translations/clinical_summary'
-require './lib/pages/translations/nurse_tasks'
+require './lib/pages/translations/nurse_tasks_titles'
 Dir['./lib/pages/nurse_tasks/*.rb'].each { |file| require file }
 require './lib/pages/translations/timeline_page'
 
@@ -9,7 +9,7 @@ class NurseTasks
     include RSpec::Matchers
     include Capybara::DSL
     include Translations::ClinicalSummaryTranslations
-    include Translations::NurseTasksTranslations
+    include Translations::NurseTaskTitles
     include Translations::TimelineTranslations
 
     def initialize(contact_information)

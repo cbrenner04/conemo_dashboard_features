@@ -1,6 +1,6 @@
 require './lib/pages/navigation'
 require './lib/pages/translations/clinical_summary'
-require './lib/pages/translations/nurse_tasks'
+require './lib/pages/translations/nurse_tasks_titles'
 require './lib/pages/nurse_tasks/initial_in_person_appointment'
 require './lib/pages/nurse_tasks/follow_up_call_week_one'
 require './lib/pages/nurse_tasks/follow_up_call_week_three'

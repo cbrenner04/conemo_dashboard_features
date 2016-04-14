@@ -8,7 +8,7 @@ class NurseTasks
     include RSpec::Matchers
     include Capybara::DSL
     include NurseTasksForms
-    include Translations::NurseTasksTranslations::RescheduleFormTranslations
+    include Translations::NurseTaskTitles::RescheduleFormTranslations
 
     def initialize(reschedule_form)
       @locale ||= reschedule_form[:locale]

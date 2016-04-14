@@ -7,7 +7,7 @@ class NurseTasks
   class FollowUpCallWeekOne
     include Capybara::DSL
     include NurseTasksForms
-    include Translations::NurseTasksTranslations::FollowUpCallWeekOne
+    include Translations::NurseTaskTitles::FollowUpCallWeekOne
 
     def initialize(follow_up_call_week_one)
       @locale ||= follow_up_call_week_one[:locale]
