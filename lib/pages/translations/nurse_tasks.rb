@@ -87,6 +87,12 @@ module Translations
       locale('Borrar tarea', 'Limpar tarefa', 'Clear')
     end
 
+    def clear_supervisor_contact_alert
+      locale('are you sure you want to clear this?',
+             'are you sure you want to clear this?',
+             'are you sure you want to clear this?')
+    end
+
     def feminine_success_alert
       locale('guardada exitosamente', 'salvo com sucesso',
              'saved successfully')

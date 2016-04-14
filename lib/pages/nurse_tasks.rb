@@ -41,7 +41,7 @@ class NurseTasks
 
   def clear_supervisor_contact
     find("input[value = \"#{clear_supervisor_contact_button}\"]").click
-    accept_alert 'are you sure you want to clear this?'
+    accept_alert clear_supervisor_contact_alert
   end
 
   def enter_session_length
