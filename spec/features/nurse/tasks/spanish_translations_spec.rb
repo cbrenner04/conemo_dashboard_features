@@ -39,7 +39,7 @@ feature 'Spanish nurse, Participant tasks', metadata: :first do
     spanish_confirmation_call.open_reschedule_form
 
     expect(spanish_reschedule_form).to have_form_headings
-    expect(spanish_reschedule_form).to have_current_date_selections
+    expect(spanish_reschedule_form).to have_alt_date_selections
     expect(spanish_reschedule_form).to have_reason_options
 
     spanish_reschedule_form.toggle_options_list
@@ -94,7 +94,6 @@ feature 'Spanish nurse, Participant tasks', metadata: :first do
     expect(spanish_follow_up_week_1).to have_form_headings
     expect(spanish_follow_up_week_1).to have_current_date_selections
     expect(spanish_follow_up_week_1).to have_difficulties_options
-    expect(spanish_follow_up_week_1).to have_next_contact_date
 
     spanish_navigation.cancel
     spanish_follow_up_week_1.open_reschedule_form
@@ -123,7 +122,6 @@ feature 'Spanish nurse, Participant tasks', metadata: :first do
     expect(spanish_follow_up_week_3).to have_form_headings
     expect(spanish_follow_up_week_3).to have_current_date_selections
     expect(spanish_follow_up_week_3).to have_difficulties_options
-    expect(spanish_follow_up_week_3).to have_next_contact_date
 
     spanish_navigation.cancel
     spanish_follow_up_week_3.open_reschedule_form

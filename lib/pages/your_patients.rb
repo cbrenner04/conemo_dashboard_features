@@ -1,6 +1,6 @@
 Dir['./lib/pages/nurse_tasks/*.rb'].each { |file| require file }
 require './lib/pages/translations'
-require './lib/pages/translations/nurse_tasks'
+require './lib/pages/translations/nurse_tasks_titles'
 require './lib/pages/translations/your_patients'
 
 # page object for active participants
@@ -8,7 +8,7 @@ class YourPatients
   include RSpec::Matchers
   include Capybara::DSL
   include Translations
-  include Translations::NurseTasksTranslations
+  include Translations::NurseTaskTitles
   include Translations::YourPatientsTranslations
 
   def initialize(your_patients)

@@ -2,11 +2,14 @@ require './lib/pages/shared/nurse_tasks_forms'
 require './lib/pages/navigation'
 require './lib/pages/translations/clinical_summary'
 require './lib/pages/translations/contact_information'
+require './lib/pages/translations/nurse_tasks'
+require './lib/pages/translations/nurse_tasks_titles'
 
 # page object for nurse tasks page
 class NurseTasks
   include Capybara::DSL
   include NurseTasksForms
+  include Translations::NurseTaskTitles
   include Translations::NurseTasksTranslations
   include Translations::ClinicalSummaryTranslations
   include Translations::ContactInformation

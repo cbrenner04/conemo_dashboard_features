@@ -21,7 +21,7 @@ module Translations
 
       def spanish_legend
         @spanish_legend ||= [
-          'Unreleased',
+          'Sesión todavía no entregada',
           'Sesión actual',
           'Sesión finalizada tarde',
           'Sesión accedida, pero no finalizada',

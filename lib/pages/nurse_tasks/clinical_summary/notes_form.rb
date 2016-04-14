@@ -24,7 +24,6 @@ class NurseTasks
       end
 
       def create_note
-        open
         fill_in 'patient_contact[note]', with: @note
         navigation.submit
       end

@@ -34,11 +34,14 @@ class NurseTasks
     end
 
     def confirm
+      execute_script 'window.scrollBy(0,100)'
       confirm_task confirmation_call_title
       visible?
     end
 
     def open_reschedule_form
+      sleep(0.25)
+      execute_script 'window.scrollBy(0,100)'
       open_reschedule confirmation_call_title
     end
 
@@ -47,7 +50,7 @@ class NurseTasks
     end
 
     def visible_on_timeline?
-      has_css('.timeline-title', text: confirmation_call_title)
+      has_css?('.timeline-title', text: confirmation_call_title)
     end
 
     def enter_next_contact_date
@@ -63,6 +66,8 @@ class NurseTasks
     end
 
     def cancel
+      sleep(0.25)
+      execute_script 'window.scrollBy(0,100)'
       cancel_task confirmation_call_title
     end
 

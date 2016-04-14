@@ -12,7 +12,7 @@ module Translations
 
     def contact_information_title
       locale('Información de contacto', 'Informações de contato',
-             'Contact Information')
+             'Contact information')
     end
 
     def smartphone_information_title
@@ -22,7 +22,8 @@ module Translations
 
     def phone_number_header
       locale('Número del smartphone / número de serie:',
-             'Número do Smartphone:', 'Phone number / serial number:')
+             'Número do Smartphone / número de serie:',
+             'Phone number / serial number:')
     end
 
     def serial_number_header

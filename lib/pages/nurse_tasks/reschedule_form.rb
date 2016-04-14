@@ -8,7 +8,7 @@ class NurseTasks
     include RSpec::Matchers
     include Capybara::DSL
     include NurseTasksForms
-    include NurseTasksTranslations::RescheduleFormTranslations
+    include Translations::NurseTasksTranslations::RescheduleFormTranslations
 
     def initialize(reschedule_form)
       @locale ||= reschedule_form[:locale]
@@ -38,6 +38,11 @@ class NurseTasks
     def has_current_date_selections?
       has_date_selectors?(Date.today, 1, locale(0, 0, 2), locale(2, 2, 0)) &&
         has_hour_selector?(3)
+    end
+
+    def has_alt_date_selections?
+      has_date_selectors?(Date.today, 1, locale(0, 0, 2), locale(2, 2, 0)) &&
+        has_hour_selector?(3, (Time.now - (2 * 60 * 60)))
     end
 
     def has_reschedule_reason?

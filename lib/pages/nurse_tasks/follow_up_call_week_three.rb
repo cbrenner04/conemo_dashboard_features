@@ -64,7 +64,7 @@ class NurseTasks
     end
 
     def has_form_headings?
-      has_task_form_headings?(4)
+      has_task_form_headings?(3)
     end
 
     def has_current_date_selections?
@@ -75,12 +75,6 @@ class NurseTasks
     def has_difficulties_options?
       actual = (0..7).map { |i| all('.checkbox')[i].text }
       expect(actual).to eq(options)
-    end
-
-    def has_next_contact_date?
-      next_contact = Date.today + 21
-      has_date_selectors?(next_contact, 6, locale(5, 5, 7),
-                          locale(7, 7, 5)) && has_hour_selector?(8)
     end
 
     def has_canceled_alert?

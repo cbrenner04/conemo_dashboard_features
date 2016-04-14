@@ -51,8 +51,8 @@ class NurseTasks
     end
 
     def has_note?
-      find('table', text: 'Notes')
-        .has_css?('dt', text: 'Additional note') && has_text?(@note)
+      notes_table
+        .has_css?('dt', text: additional_note_title) && has_text?(@note)
     end
 
     def delete_note

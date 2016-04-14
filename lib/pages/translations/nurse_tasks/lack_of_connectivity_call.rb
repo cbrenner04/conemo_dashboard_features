@@ -57,14 +57,14 @@ module Translations
 
       def portuguese_options
         @portuguese_options ||= [
-          'Reasons',
+          'Razões',
           'Dados móveis desligados',
           'Falta de cobertura de internet',
           'Sem crédito / Pacote de dados acabou',
           'Smartphone desligado',
           'Outra',
           'Não sei',
-          'Not done / CANCEL task',
+          'Não realizado / Cancelar tarefa',
           'Não consegi falar com o paciente',
           'Paciente não quer continuar no programa',
           'Paciente não houve tempo para falar (várias vezes)',

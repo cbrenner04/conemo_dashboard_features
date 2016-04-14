@@ -75,9 +75,13 @@ module Translations
     end
 
     def updated_help_message_alert
-      locale('Solicitud de ayuda actualizada exitosamente',
-             'Pedido de ajuda atualizado com sucesso',
+      locale('Solicitud de ayuda guardada exitosamente',
+             'Pedido de ajuda salvo com sucesso',
              'Successfully updated help message')
+    end
+
+    def additional_note_title
+      locale('Nota adicional', 'Nota adicional', 'Additional note')
     end
   end
 end

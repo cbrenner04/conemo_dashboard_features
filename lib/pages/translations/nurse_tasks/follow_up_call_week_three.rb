@@ -21,7 +21,6 @@ module Translations
           'Fecha/hora de la llamada',
           'Duración de la llamada (min)',
           '¿El paciente ha tenido algunas dificultades usando CONEMO?',
-          'Call to schedule final appointment at',
           'Observaciones (cuadrado de texto)'
         ]
       end
@@ -31,7 +30,6 @@ module Translations
           'Data da ligação',
           'Duração da chamada (minutos)',
           'O paciente tem tido dificuldades com CONEMO?',
-          'Call to schedule final appointment at',
           'Anotações'
         ]
       end
@@ -41,8 +39,6 @@ module Translations
           'Date of phone call',
           'Length of phone call (minutes)',
           'Did the patient have any difficulties using CONEMO?',
-          'If YES, specify:',
-          'Next contact date/time',
           'Notes'
         ]
       end

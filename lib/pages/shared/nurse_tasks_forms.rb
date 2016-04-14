@@ -104,8 +104,8 @@ module NurseTasksForms
     has_hour_selector?(hh) && selector[mm].has_text?(Time.now.strftime('%M'))
   end
 
-  def has_hour_selector?(hh)
-    selector[hh].has_text? Time.now.strftime('%H')
+  def has_hour_selector?(hh, time = Time.now)
+    selector[hh].has_text? time.strftime('%H')
   end
 
   def resolve_as_canceled_responses

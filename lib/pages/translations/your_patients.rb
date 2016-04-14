@@ -27,7 +27,7 @@ module Translations
         'Nombre',
         'Código del participante',
         'Tareas',
-        'Configurar identificador'
+        'Identificador'
       ]
     end
 

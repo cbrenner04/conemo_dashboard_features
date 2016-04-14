@@ -390,14 +390,16 @@ def pt_500_clinical_summary
     id: 500,
     locale: 'spanish',
     start_date_offset: 12,
-    num_of_lessons: 18
+    num_of_lessons: 18,
+    note: 'Spanish additional note'
   )
 end
 
 def pt_500_notes_form
   @pt_500_notes_form ||= NurseTasks::ClinicalSummary::NotesForm.new(
     id: 500,
-    locale: 'spanish'
+    locale: 'spanish',
+    note: 'Spanish additional note'
   )
 end
 
@@ -413,14 +415,16 @@ def pt_600_clinical_summary
     id: 600,
     locale: 'portuguese',
     start_date_offset: 12,
-    num_of_lessons: 5
+    num_of_lessons: 5,
+    note: 'Portuguese additional note'
   )
 end
 
 def pt_600_notes_form
   @pt_600_notes_form ||= NurseTasks::ClinicalSummary::NotesForm.new(
     id: 600,
-    locale: 'portuguese'
+    locale: 'portuguese',
+    note: 'Portuguese additional note'
   )
 end
 

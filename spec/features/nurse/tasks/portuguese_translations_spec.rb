@@ -94,7 +94,6 @@ feature 'Portuguese nurse, Participant tasks', metadata: :first do
     expect(portuguese_follow_up_week_1).to have_form_headings
     expect(portuguese_follow_up_week_1).to have_current_date_selections
     expect(portuguese_follow_up_week_1).to have_difficulties_options
-    expect(portuguese_follow_up_week_1).to have_next_contact_date
 
     portuguese_navigation.cancel
     portuguese_follow_up_week_1.open_reschedule_form
@@ -123,7 +122,6 @@ feature 'Portuguese nurse, Participant tasks', metadata: :first do
     expect(portuguese_follow_up_week_3).to have_form_headings
     expect(portuguese_follow_up_week_3).to have_current_date_selections
     expect(portuguese_follow_up_week_3).to have_difficulties_options
-    expect(portuguese_follow_up_week_3).to have_next_contact_date
 
     portuguese_navigation.cancel
     portuguese_follow_up_week_3.open_reschedule_form

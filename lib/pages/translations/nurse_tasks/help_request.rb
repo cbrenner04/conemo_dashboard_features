@@ -56,13 +56,13 @@ module Translations
 
       def portuguese_responses
         @portuguese_responses ||= [
-          'Reasons',
+          'Razões',
           'Dificuldades com o CONEMO',
           'Perguntas sobre a intervenção',
           'Botão para pedir ajuda pressionado por engano',
           'Não relacionada ao CONEMO (p. ex. saúde)',
           'Outra',
-          'Not done / CANCEL task',
+          'Não realizado / Cancelar tarefa',
           'Não consegi falar com o paciente',
           'Paciente não quer continuar no programa',
           'Paciente não houve tempo para falar (várias vezes)',
