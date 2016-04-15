@@ -73,6 +73,11 @@ module Translations
              english_health_unit_options)
     end
 
+    def has_pending_participant_table_title?
+      locale('Participantes no asignados', 'Participantes pendentes',
+             'Pending participants')
+    end
+
     private
 
     def spanish_pending_headers

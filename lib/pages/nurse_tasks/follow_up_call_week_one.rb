@@ -52,7 +52,8 @@ class NurseTasks
 
     def enter_difficulties
       options.delete_at(1)
-      options.sample(2).each { |option| check option }
+      @responses ||= options.sample(2)
+      @responses.each { |option| check option }
     end
 
     def general_notes
@@ -79,6 +80,11 @@ class NurseTasks
 
     def has_canceled_alert?
       cancel_form.has_cancel_alert?(follow_up_week_one_title)
+    end
+
+    def has_difficulties_responses?
+      has_text? 'Did the patient have any difficulties using CONEMO?: ' \
+                "#{@responses[0]}, #{@responses[1]}"
     end
 
     private

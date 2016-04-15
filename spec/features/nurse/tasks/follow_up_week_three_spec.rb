@@ -137,6 +137,7 @@ feature 'Nurse, Participant Tasks, Follow up week 3', metadata: :not_first do
     timeline.open
 
     expect(timeline).to have_follow_up_week_3
+    expect(follow_up_week_3).to have_difficulties_responses
 
     # check Your Patients list for old / new tasks
     your_patients.return

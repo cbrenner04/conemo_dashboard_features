@@ -167,6 +167,8 @@ feature 'Spanish Admin, Pending Participants' do
     navigation.cancel
 
     expect(spanish_pending_participants).to have_pending_table_headers
+    expect(spanish_pending_participants)
+      .to have_pending_participant_table_title
 
     participant_2001.activate
 
@@ -191,6 +193,8 @@ feature 'Portuguese Admin, Pending Participants', metadata: :not_first do
     navigation.cancel
 
     expect(portuguese_pending_participants).to have_pending_table_headers
+    expect(portuguese_pending_participants)
+      .to have_pending_participant_table_title
 
     participant_3000.activate
 
