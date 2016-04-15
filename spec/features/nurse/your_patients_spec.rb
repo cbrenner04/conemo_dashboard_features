@@ -174,7 +174,7 @@ feature 'English Nurse, Your Patients', metadata: :not_first do
   end
 end
 
-feature 'Spanish Nurse, Your Patients', metadata: :not_first do
+feature 'Spanish Nurse, Your Patients', metadata: :very_first do
   background { spanish_nurse.sign_in }
 
   scenario 'Nurse sees participants assigned to them in Your Patients table' do
@@ -197,7 +197,7 @@ feature 'Spanish Nurse, Your Patients', metadata: :not_first do
   end
 end
 
-feature 'Portuguese Nurse, Your Patients' do
+feature 'Portuguese Nurse, Your Patients', metadata: :very_first do
   background { portuguese_nurse.sign_in }
 
   scenario 'Nurse sees participants assigned to them in Your Patients table' do

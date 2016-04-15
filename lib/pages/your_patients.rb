@@ -22,7 +22,7 @@ class YourPatients
 
   def visible?
     has_css?('h2', text: locale('Tus participantes',
-                                'Seus participantes', 'Your Patients'))
+                                'Seus participantes', 'Your patients'))
   end
 
   def in_table?

@@ -155,7 +155,8 @@ feature 'Spanish Admin, Pending Participants' do
     spanish_admin.sign_in
     spanish_pending_participants.open
 
-    expect(spanish_pending_participants).to have_landing_page_visible
+    expect(spanish_pending_participants)
+      .to have_pending_participant_table_title
 
     spanish_pending_participants.create
 
@@ -181,7 +182,8 @@ feature 'Portuguese Admin, Pending Participants', metadata: :not_first do
     portuguese_admin.sign_in
     portuguese_pending_participants.open
 
-    expect(portuguese_pending_participants).to have_landing_page_visible
+    expect(portuguese_pending_participants)
+      .to have_pending_participant_table_title
 
     portuguese_pending_participants.create
 
@@ -193,8 +195,6 @@ feature 'Portuguese Admin, Pending Participants', metadata: :not_first do
     navigation.cancel
 
     expect(portuguese_pending_participants).to have_pending_table_headers
-    expect(portuguese_pending_participants)
-      .to have_pending_participant_table_title
 
     participant_3000.activate
 

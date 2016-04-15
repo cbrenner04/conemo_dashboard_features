@@ -91,11 +91,7 @@ def pt_326_nurse_tasks
 end
 
 def pt_343_clinical_summary
-  @pt_343_clinical_summary ||= NurseTasks::ClinicalSummary.new(
-    id: 343,
-    first_message: 'I need some help, please',
-    second_message: 'Help!'
-  )
+  @pt_343_clinical_summary ||= NurseTasks::ClinicalSummary.new(id: 343)
 end
 
 def pt_343_nurse_tasks

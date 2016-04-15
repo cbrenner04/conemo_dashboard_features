@@ -15,7 +15,7 @@ class NurseTasks
     end
 
     def updated?
-      has_text? 'Successfully updated participant'
+      has_text? 'Saved information successfully'
     end
 
     def visible?
@@ -45,8 +45,8 @@ class NurseTasks
     end
 
     def has_smartphone_information?
-      has_text? "#{phone_number_header}: 12345678901\n" \
-                "#{serial_number_header}: 123#{@id}"
+      has_text? "#{phone_number_header} 12345678901 " \
+                "#{serial_number_header} 123#{@id}"
     end
 
     def has_contact_information_title?

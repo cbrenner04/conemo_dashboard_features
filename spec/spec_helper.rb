@@ -16,8 +16,9 @@ RSpec.configure do |config|
   config.register_ordering(:global) do |list|
     list.sort_by do |group|
       case group.metadata[:metadata]
-      when :first then 10
-      else 20
+      when :very_first then 10
+      when :first then 20
+      else 30
       end
     end
   end

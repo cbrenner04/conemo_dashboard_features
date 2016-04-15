@@ -20,11 +20,11 @@ module Translations
   end
 
   def english_date(date)
-    @english_date ||= date.strftime('%B %d, %Y')
+    date.strftime('%B %d, %Y')
   end
 
   def spanish_weekdays
-    @spanish_weekdays ||= {
+    {
       'Monday' => 'lunes',
       'Tuesday' => 'martes',
       'Wednesday' => 'miércoles',
@@ -36,7 +36,7 @@ module Translations
   end
 
   def spanish_months
-    @spanish_months ||= {
+    {
       'January' => 'enero',
       'February' => 'febrero',
       'March' => 'marzo',
@@ -58,7 +58,7 @@ module Translations
   end
 
   def portuguese_months
-    @portuguese_months ||= {
+    {
       'January' => 'Janeiro',
       'February' => 'Fevereiro',
       'March' => 'Março',

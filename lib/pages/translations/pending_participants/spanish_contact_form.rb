@@ -16,7 +16,8 @@ module Translations
           'Fecha de nacimiento', 'Sexo',
           'Contacto de Emergencia (nombre)',
           'Relación con el participante', 'Relación con el participante',
-          'Dirección actual', 'Teléfono fijo', 'Celular'
+          'Dirección actual', 'Teléfono fijo (Contacto de Emergencia)',
+          'Celular'
         ]
       end
 

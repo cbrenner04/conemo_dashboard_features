@@ -82,6 +82,7 @@ module NurseTasksForms
   end
 
   def has_task_form_headings?(num)
+    sleep(0.25)
     actual_headings = (0..num).map { |i| all('.control-label')[i].text }
     expect(actual_headings).to eq(expected_headings)
   end

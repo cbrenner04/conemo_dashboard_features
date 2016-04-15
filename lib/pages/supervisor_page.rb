@@ -72,6 +72,7 @@ class SupervisorPage
 
   def has_new_completed_participant_information?
     date = (Date.today - 39).strftime('%B %d, %Y')
+    find('.panel', text: 'Completed').find('input[type = search]').set('341')
     has_css?('tr',
              text: "Nurse-400, English Last-341, First 341 #{date} #{date}")
   end

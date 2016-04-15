@@ -65,8 +65,8 @@ feature 'Nurse, Timeline', metadata: :not_first do
     pt_342_nurse_tasks_2.enter_session_length
     follow_up_week_1.enter_difficulties
     navigation.submit
-    pt_342_clinical_summary.open
-    pt_342_timeline_2.open
+    # pt_342_clinical_summary.open
+    # pt_342_timeline_2.open
 
     expect(pt_342_timeline_2).to have_updated_call_length
   end

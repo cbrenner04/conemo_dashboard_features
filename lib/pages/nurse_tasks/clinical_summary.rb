@@ -15,8 +15,6 @@ class NurseTasks
 
     def initialize(clinical_summary)
       @id ||= clinical_summary[:id]
-      @first_message ||= clinical_summary[:first_message]
-      @second_message ||= clinical_summary[:second_message]
       @current_lesson ||= clinical_summary[:current_lesson]
       @other_lesson ||= clinical_summary[:other_lesson]
       @note ||= clinical_summary[:note]
@@ -39,7 +37,7 @@ class NurseTasks
     end
 
     def has_messages?
-      has_text?(@first_message) && has_text?(@second_message)
+      has_css?('td', text: 'Help request', count: 2)
     end
 
     def read_help_message

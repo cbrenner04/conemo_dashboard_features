@@ -51,7 +51,7 @@ class NurseTasks
     end
 
     def enter_difficulties
-      options.delete_at(1)
+      2.times { options.delete_at(0) }
       @responses ||= options.sample(2)
       @responses.each { |option| check option }
     end

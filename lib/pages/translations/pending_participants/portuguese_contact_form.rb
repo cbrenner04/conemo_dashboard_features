@@ -20,7 +20,7 @@ module Translations
           'Contato de Emergência (nome)',
           'Grau de parentesco/relacionamento',
           'Grau de parentesco/relacionamento',
-          'Endereço', 'Telefone fixo', 'Celular'
+          'Endereço', 'Telefone fixo (Contato de Emergência)', 'Celular'
         ]
       end
 

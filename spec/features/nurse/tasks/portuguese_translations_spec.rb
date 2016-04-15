@@ -39,7 +39,7 @@ feature 'Portuguese nurse, Participant tasks', metadata: :first do
     portuguese_confirmation_call.open_reschedule_form
 
     expect(portuguese_reschedule_form).to have_form_headings
-    expect(portuguese_reschedule_form).to have_current_date_selections
+    expect(portuguese_reschedule_form).to have_alt_date_selections
     expect(portuguese_reschedule_form).to have_reason_options
 
     portuguese_reschedule_form.toggle_options_list
