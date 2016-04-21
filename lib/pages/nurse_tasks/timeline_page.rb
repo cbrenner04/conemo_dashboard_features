@@ -160,13 +160,13 @@ class NurseTasks
         string = all('.timeline-heading')[i].find('p').text
         string.slice(0..(string.index(year.to_s) + (year.length - 1)))
       end
-      expect(actual_contact_dates).to eq(expected_contact_info_contact_dates)
+      expect(actual_contact_dates).to eq(expected_timeline_dates.reverse)
     end
 
     def has_timeline_headings?
       timeline = find('.timeline')
-      actual_headings = (0..8).map { |i| timeline.all('strong')[i].text }
-      expect(actual_headings).to eq(expected_timeline_headings)
+      actual_headings = (0..10).map { |i| timeline.all('strong')[i].text }
+      expect(actual_headings).to eq(expected_timeline_headings.reverse)
     end
 
     private

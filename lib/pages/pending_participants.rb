@@ -17,7 +17,7 @@ class PendingParticipants
 
   def has_landing_page_visible?
     has_css?('h3', text: main_heading) &&
-      has_css?('.panel-heading', text: 'Pending')
+      has_css?('.panel-heading', text: 'Unassigned participants')
   end
 
   def activate

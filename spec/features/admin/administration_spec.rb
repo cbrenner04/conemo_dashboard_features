@@ -11,4 +11,6 @@ feature 'Admin, Administration', metadata: :not_first do
   scenario 'Admin views and exports admins table'
   scenario 'Admin views and exports nurses table'
   scenario 'Admin views and exports nurse supervisors table'
+  scenario 'Admin views and exports devices table'
+  scenario 'Admin sees devices are scoped by locale'
 end

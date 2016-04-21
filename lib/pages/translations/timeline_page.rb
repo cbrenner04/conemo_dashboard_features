@@ -1,10 +1,14 @@
 require './lib/pages/translations/nurse_tasks_titles'
+Dir['./lib/pages/translations/timeline_page/*.rb'].each { |file| require file }
 
 module Translations
   # module for Contact Information page
   module TimelineTranslations
     include Translations
     include Translations::NurseTaskTitles
+    include Translations::TimelineTranslations::EnglishTimeline
+    include Translations::TimelineTranslations::SpanishTimeline
+    include Translations::TimelineTranslations::PortugueseTimeline
 
     def timeline_page_title
       locale('Todos los contactos realizados', 'Todos os contatos realizados',
@@ -31,10 +35,9 @@ module Translations
       )
     end
 
-    def expected_contact_info_contact_dates
-      locale(spanish_contact_info_contact_dates,
-             portuguese_contact_info_contact_dates,
-             english_contact_info_contact_dates)
+    def expected_timeline_dates
+      locale(spanish_timeline_dates, portuguese_timeline_dates,
+             english_timeline_dates)
     end
 
     def expected_timeline_headings

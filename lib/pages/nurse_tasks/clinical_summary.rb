@@ -29,23 +29,11 @@ class NurseTasks
     end
 
     def visible?
-      has_css?('th', text: 'Messages')
+      has_text? 'Release day'
     end
 
     def return_to_tasks
       find('a', text: 'Tasks').click
-    end
-
-    def has_messages?
-      has_css?('td', text: 'Help request', count: 2)
-    end
-
-    def read_help_message
-      find('#messages-table').find('.fa-eye').click
-    end
-
-    def has_read_message_alert?
-      has_css?('.alert', text: updated_help_message_alert)
     end
 
     def has_note?
@@ -144,11 +132,12 @@ class NurseTasks
     end
 
     def has_headers?
-      actual_headers = [0, 1, 3, 4, 5].map { |i| all('th')[i].text }
+      actual_headers = [0, 2, 3, 4].map { |i| all('th')[i].text }
       expect(actual_headers).to eq(expected_headers)
     end
 
     def has_legend?
+      visible?
       legend = find('.table-condensed')
       actual_legend = (0..5).map { |i| legend.all('td')[i].text }
       expect(actual_legend).to eq(expected_legend)
@@ -188,10 +177,6 @@ class NurseTasks
     def has_supervisor_note?
       supervisor_notes_table
         .has_text? "#{@note}\n#{Date.today.strftime('%B %d, %Y')}"
-    end
-
-    def has_messages_title?
-      find('#messages-table').has_css?('td', text: message_title)
     end
 
     private

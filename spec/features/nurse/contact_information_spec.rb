@@ -16,7 +16,6 @@ feature 'Nurse, Contact Information', metadata: :not_first do
     pt_301_contact_info.select_edit_contact_information
     sleep(0.25)
     navigation.cancel
-    # pt_301_nurse_tasks.return
 
     expect(pt_301_contact_info).to be_visible
   end
@@ -25,7 +24,6 @@ feature 'Nurse, Contact Information', metadata: :not_first do
     pt_301_nurse_tasks.open
     pt_301_contact_info.select_edit_contact_information
     navigation.submit
-    # pt_301_nurse_tasks.return
 
     expect(pt_301_contact_info).to be_visible
   end

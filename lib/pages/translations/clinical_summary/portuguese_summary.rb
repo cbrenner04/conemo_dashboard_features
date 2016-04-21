@@ -11,7 +11,6 @@ module Translations
 
       def portuguese_headers
         @portuguese_headers ||= [
-          'Solicitação de ajuda',
           'Acessos',
           'Sessão enviada em',
           'Sessão',

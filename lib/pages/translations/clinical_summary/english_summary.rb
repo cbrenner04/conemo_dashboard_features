@@ -11,7 +11,6 @@ module Translations
 
       def english_headers
         @english_headers ||= [
-          'Messages',
           'Logins',
           'Release day',
           'Lesson',

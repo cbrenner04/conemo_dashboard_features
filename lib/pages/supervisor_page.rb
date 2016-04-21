@@ -11,7 +11,7 @@ class SupervisorPage
   end
 
   def has_pending_participants?
-    within('.panel', text: 'Pending') do
+    within(pending_panel) do
       actual_rows = (0..3).map { |i| find('tbody').all('tr')[i].text }
       expect(actual_rows).to eq(expected_rows)
     end
@@ -32,38 +32,39 @@ class SupervisorPage
   end
 
   def has_patient?
-    find('.panel', text: 'Pending')
+    pending_panel
       .has_text? "Last-#{@pt_id}, First #{@pt_id} " \
                  "#{Date.today.strftime('%B %d, %Y')} " \
                  "#{Date.today.strftime('%B %d, %Y')}"
   end
 
   def has_active_patient?
-    find('.panel', text: 'Active')
+    active_panel.find('input[type = search]').set('300')
+    active_panel
       .has_text? 'Last-300, First 300 ' \
                  "#{Date.today.strftime('%B %d, %Y')} " \
                  "#{Date.today.strftime('%B %d, %Y')}"
   end
 
   def has_total_active?
-    has_css?('.panel-heading', text: '156 Active')
+    has_panel_heading?('156 Active')
   end
 
   def has_total_completed?
-    has_css?('.panel-heading', text: '12 Completed')
+    has_panel_heading?('12 Completed')
   end
 
   def has_total_dropped_out?
-    has_css?('.panel-heading', text: '14 Dropped out')
+    has_panel_heading?('14 Dropped out')
   end
 
   def has_updated_completed?
-    has_css?('.panel-heading', text: '13 Completed')
+    has_panel_heading?('13 Completed')
   end
 
   def has_active_participant_information?
     your_patients.english_nurse_patients.all? do |patient|
-      find('.panel', text: 'Active').find('input[type = search]').set(patient)
+      active_panel.find('input[type = search]').set(patient)
       has_css?('tr',
                text: 'Edit Information Nurse-400, English Edit Information ' \
                      "Last-#{patient}, First #{patient}")
@@ -72,16 +73,16 @@ class SupervisorPage
 
   def has_new_completed_participant_information?
     date = (Date.today - 39).strftime('%B %d, %Y')
-    find('.panel', text: 'Completed').find('input[type = search]').set('341')
+    completed_panel.find('input[type = search]').set('341')
     has_css?('tr',
              text: "Nurse-400, English Last-341, First 341 #{date} #{date}")
   end
 
   def has_completed_participant_information?
     2.times { navigation.scroll_down }
-    find('.panel', text: 'Completed').first('.input-sm').click
+    completed_panel.first('.input-sm').click
     all('option', text: '25')[2].click
-    completed_table = find('.panel', text: 'Completed').find('.table')
+    completed_table = completed_panel.find('.table')
     within completed_table do
       actual_rows = (1..12).map { |i| all('tr')[i].text }
       expected_rows_1 = (1..6).map do |i|
@@ -188,6 +189,22 @@ class SupervisorPage
 
   def your_patients
     @your_patients ||= YourPatients.new(locale: 'english')
+  end
+
+  def active_panel
+    @active_panel ||= find('.panel', text: 'Active')
+  end
+
+  def completed_panel
+    @completed_panel ||= find('.panel', text: 'Completed')
+  end
+
+  def pending_panel
+    @pending_panel ||= find('.panel', text: 'Pending')
+  end
+
+  def has_panel_heading?(heading)
+    has_css?('.panel-heading', text: heading)
   end
 
   def expected_rows

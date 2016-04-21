@@ -154,9 +154,6 @@ feature 'Nurse Supervisor, Nurses', metadata: :not_first do
       nurse_400.select
       pt_343_nurse_tasks.open
       pt_343_clinical_summary_2.open
-
-      expect(pt_343_clinical_summary_2).to have_messages
-
       pt_343_clinical_summary_2.show_number_of_logins
 
       expect(pt_343_clinical_summary_2).to have_correct_logins

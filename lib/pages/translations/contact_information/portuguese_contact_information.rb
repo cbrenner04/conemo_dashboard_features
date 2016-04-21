@@ -15,34 +15,6 @@ module Translations
           'Sexo:'
         ]
       end
-
-      def portuguese_contact_info_contact_dates
-        @portuguese_contact_info_contact_dates ||= [
-          "Contactado em: #{portuguese_date(Date.today - 45)}",
-          "Data/hora: #{portuguese_date(Date.today - 42)}",
-          "Data da ligação: #{portuguese_date(Date.today - 35)}",
-          "Data da ligação: #{portuguese_date(Date.today - 21)}",
-          "Data da ligação: #{portuguese_date(Date.today - 14)}",
-          "Data da ligação: #{portuguese_date(Date.today - 14)}",
-          "Data da ligação: #{portuguese_date(Date.today - 7)}",
-          "Data da ligação: #{portuguese_date(Date.today - 1)}",
-          "Data/hora: #{portuguese_date(Date.today)}"
-        ]
-      end
-
-      def portuguese_timeline_headings
-        @portuguese_timeline_headings ||= [
-          'Local:',
-          'Duração da sessão (minutos):',
-          'Duração da chamada (minutos):',
-          'Razão para não aderência:',
-          'Duração da chamada (minutos):',
-          'Razão para não-conectividade:',
-          'Razão pelo pedido de ajuda:',
-          'Local:',
-          'O telefone foi devolvido?:'
-        ]
-      end
     end
   end
 end

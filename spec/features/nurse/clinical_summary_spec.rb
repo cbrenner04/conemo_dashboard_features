@@ -27,16 +27,12 @@ feature 'Nurse, Clinical Summary', metadata: :not_first do
     pt_343_nurse_tasks.open
     pt_343_clinical_summary.open
 
-    expect(pt_343_clinical_summary).to be_visible
     expect(pt_343_clinical_summary).to have_legend
   end
 
   scenario 'Nurse sees correct messages & logins' do
     pt_343_nurse_tasks.open
     pt_343_clinical_summary.open
-
-    expect(pt_343_clinical_summary).to have_messages
-
     clinical_summary.show_number_of_logins
 
     expect(pt_343_clinical_summary).to have_correct_logins
@@ -359,11 +355,6 @@ feature 'Spanish Nurse, Clinical Summary' do
     expect(pt_500_clinical_summary).to have_notes_headers
     expect(pt_500_clinical_summary).to have_lesson_release_dates
     expect(pt_500_clinical_summary).to have_contact_dates
-    expect(pt_500_clinical_summary).to have_messages_title
-
-    pt_500_clinical_summary.read_help_message
-
-    expect(pt_500_clinical_summary).to have_read_message_alert
 
     pt_500_notes_form.open
 
@@ -390,11 +381,6 @@ feature 'Portuguese Nurse, Clinical Summary' do
     expect(pt_600_clinical_summary).to have_notes_headers
     expect(pt_600_clinical_summary).to have_lesson_release_dates
     expect(pt_600_clinical_summary).to have_contact_dates
-    expect(pt_600_clinical_summary).to have_messages_title
-
-    pt_600_clinical_summary.read_help_message
-
-    expect(pt_600_clinical_summary).to have_read_message_alert
 
     pt_600_notes_form.open
 

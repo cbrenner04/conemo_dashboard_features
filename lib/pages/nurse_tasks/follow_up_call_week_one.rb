@@ -83,8 +83,10 @@ class NurseTasks
     end
 
     def has_difficulties_responses?
-      has_text? 'Did the patient have any difficulties using CONEMO?: ' \
-                "#{@responses[0]}, #{@responses[1]}"
+      has_text?('Did the patient have any difficulties using CONEMO?: ' \
+                "#{@responses[0]}, #{@responses[1]}") ||
+        has_text?('Did the patient have any difficulties using CONEMO?: ' \
+                  "#{@responses[0]}, #{@responses[1]}")
     end
 
     private

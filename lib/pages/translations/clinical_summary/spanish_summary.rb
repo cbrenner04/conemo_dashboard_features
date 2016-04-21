@@ -11,7 +11,6 @@ module Translations
 
       def spanish_headers
         @spanish_headers ||= [
-          'Solicitudes de ayuda',
           'Ingresos',
           'Fecha de lanzamiento',
           'Sesión',

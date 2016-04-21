@@ -31,8 +31,7 @@ class SupervisorPage
     end
 
     def has_contact_notification?
-      all('.panel', text: "Nurse-#{@id}, English").last
-        .has_css?('.fa-exclamation-circle')
+      nurse_panel.has_css?('.fa-exclamation-circle')
     end
 
     def has_supervision_session?
@@ -134,11 +133,7 @@ class SupervisorPage
     end
 
     def nurse_panel
-      if has_css?('.panel', text: "Nurse-#{@id}, English", count: 2)
-        all('.panel', text: "Nurse-#{@id}, English")[1]
-      else
-        find('.panel', text: "Nurse-#{@id}, English")
-      end
+      all('.panel', text: "Nurse-#{@id}, English").last
     end
 
     def nurse_panel_heading
@@ -162,9 +157,9 @@ class SupervisorPage
     end
 
     def expected_rows
-      date_1 = dst_time(3.business_days.before today_at_11_am)
-      date_2 = dst_time(8.business_days.before today_at_11_am)
-      date_3 = dst_time(12.business_days.before today_at_11_am)
+      date_1 = dst_time(3.business_days.before(today_at_11_am))
+      date_2 = dst_time(8.business_days.before(today_at_11_am))
+      date_3 = dst_time(12.business_days.before(today_at_11_am))
       @expected_rows ||= [
         "#{date_1.strftime('%B %d, %Y %H')}:00 30 Group Phone Non-resolved" \
         ' help requests, Cancelled tasks',

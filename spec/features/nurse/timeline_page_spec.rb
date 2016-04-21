@@ -37,8 +37,6 @@ feature 'Nurse, Timeline', metadata: :not_first do
 
     confirmation_call.enter_first_appt_location
     navigation.submit
-    # pt_342_clinical_summary.open
-    # pt_342_timeline_1.open
 
     expect(confirmation_call).to be_visible_on_timeline
   end
@@ -51,8 +49,6 @@ feature 'Nurse, Timeline', metadata: :not_first do
     pt_342_nurse_tasks_1.enter_session_length
     initial_appointment.enter_location
     navigation.submit
-    # pt_342_clinical_summary.open
-    # pt_342_timeline_1.open
 
     expect(pt_342_timeline_1).to have_updated_session_length
   end
@@ -65,8 +61,6 @@ feature 'Nurse, Timeline', metadata: :not_first do
     pt_342_nurse_tasks_2.enter_session_length
     follow_up_week_1.enter_difficulties
     navigation.submit
-    # pt_342_clinical_summary.open
-    # pt_342_timeline_2.open
 
     expect(pt_342_timeline_2).to have_updated_call_length
   end
@@ -81,8 +75,6 @@ feature 'Nurse, Timeline', metadata: :not_first do
     pt_342_nurse_tasks_3.enter_session_length
     follow_up_week_3.enter_difficulties
     navigation.submit
-    # pt_342_clinical_summary.open
-    # pt_342_timeline_3.open
 
     expect(pt_342_timeline_3).to have_updated_call_length
   end
@@ -95,8 +87,6 @@ feature 'Nurse, Timeline', metadata: :not_first do
     call_to_schedule_final_appointment.update_contact_at_to_today
     call_to_schedule_final_appointment.select_location
     navigation.submit
-    # pt_343_clinical_summary_1.open
-    # pt_343_timeline.open
 
     expect(pt_343_timeline).to have_updated_contact_at
   end
@@ -109,8 +99,6 @@ feature 'Nurse, Timeline', metadata: :not_first do
     final_appointment.enter_location
     final_appointment.choose_phone_returned_negative
     navigation.submit
-    # pt_342_clinical_summary.open
-    # pt_342_timeline_1.open
 
     expect(pt_342_timeline_1).to have_updated_phone_return
   end
@@ -125,10 +113,8 @@ feature 'Spanish Nurse, Timeline', metadata: :not_first do
 
     expect(pt_500_timeline).to be_on_page
     expect(pt_500_timeline).to have_timeline_titles
-    # # not yet implemented
-    # expect(pt_500_timeline).to have_contact_dates
-    # # not completed
-    # expect(pt_500_timeline).to have_timeline_headings
+    expect(pt_500_timeline).to have_contact_dates
+    expect(pt_500_timeline).to have_timeline_headings
   end
 end
 
@@ -141,9 +127,7 @@ feature 'Portuguese Nurse, Timeline', metadata: :not_first do
 
     expect(pt_600_timeline).to be_on_page
     expect(pt_600_timeline).to have_timeline_titles
-    # # not yet implemented
-    # expect(pt_600_timeline).to have_contact_dates
-    # # not completed
-    # expect(pt_600_timeline).to have_timeline_headings
+    expect(pt_600_timeline).to have_contact_dates
+    expect(pt_600_timeline).to have_timeline_headings
   end
 end
