@@ -10,8 +10,9 @@ module Translations
           'Teléfono fijo (Contacto de Emergencia):',
           'Fecha de nacimiento:',
           'Dirección actual:',
-          'Fecha de inclusión:',
-          'Sexo:'
+          'Sexo:',
+          'Número del smartphone / número de serie:',
+          'Código del smartphone:'
         ]
       end
     end

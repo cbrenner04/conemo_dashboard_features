@@ -96,7 +96,6 @@ feature 'Nurse, Participant Tasks, Confirmation Call', metadata: :not_first do
     expect(confirmation_call).to be_complete
 
     # check timeline page for completeness
-    clinical_summary.open
     timeline.open
 
     expect(timeline).to have_confirmation_call

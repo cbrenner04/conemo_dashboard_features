@@ -7,7 +7,6 @@ feature 'Nurse, Timeline', metadata: :not_first do
 
   scenario 'Nurse sees participant id and name in header' do
     pt_342_nurse_tasks_1.open
-    pt_342_clinical_summary.open
     pt_342_timeline_1.open
 
     expect(pt_342_timeline_1).to be_on_page
@@ -16,7 +15,6 @@ feature 'Nurse, Timeline', metadata: :not_first do
 
   scenario 'Nurse cancels edit of confirmation call' do
     pt_342_nurse_tasks_1.open
-    pt_342_clinical_summary.open
     pt_342_timeline_1.open
     pt_342_timeline_1.edit_confirmation_call
 
@@ -29,7 +27,6 @@ feature 'Nurse, Timeline', metadata: :not_first do
 
   scenario 'Nurse edits confirmation call' do
     pt_342_nurse_tasks_1.open
-    pt_342_clinical_summary.open
     pt_342_timeline_1.open
     pt_342_timeline_1.edit_confirmation_call
 
@@ -43,7 +40,6 @@ feature 'Nurse, Timeline', metadata: :not_first do
 
   scenario 'Nurse edits initial in person appointment' do
     pt_342_nurse_tasks_1.open
-    pt_342_clinical_summary.open
     pt_342_timeline_1.open
     pt_342_timeline_1.edit_initial_appointment
     pt_342_nurse_tasks_1.enter_session_length
@@ -55,7 +51,6 @@ feature 'Nurse, Timeline', metadata: :not_first do
 
   scenario 'Nurse edits follow up call week 1' do
     pt_342_nurse_tasks_2.open
-    pt_342_clinical_summary.open
     pt_342_timeline_2.open
     pt_342_timeline_2.edit_follow_up_week_1
     pt_342_nurse_tasks_2.enter_session_length
@@ -67,9 +62,7 @@ feature 'Nurse, Timeline', metadata: :not_first do
 
   scenario 'Nurse edits follow up call week 3' do
     pt_342_nurse_tasks_3.open
-    pt_342_clinical_summary.open
     pt_342_timeline_3.open
-    sleep(0.25)
     navigation.scroll_down
     pt_342_timeline_3.edit_follow_up_week_3
     pt_342_nurse_tasks_3.enter_session_length
@@ -81,7 +74,6 @@ feature 'Nurse, Timeline', metadata: :not_first do
 
   scenario 'Nurse edits call to schedule final appointment' do
     pt_343_nurse_tasks.open
-    pt_343_clinical_summary_1.open
     pt_343_timeline.open
     pt_343_timeline.edit_call_to_schedule_final_appt
     call_to_schedule_final_appointment.update_contact_at_to_today
@@ -93,7 +85,6 @@ feature 'Nurse, Timeline', metadata: :not_first do
 
   scenario 'Nurse edits final appointment' do
     pt_342_nurse_tasks_1.open
-    pt_342_clinical_summary.open
     pt_342_timeline_1.open
     pt_342_timeline_1.edit_final_appointment
     final_appointment.enter_location
@@ -108,7 +99,6 @@ feature 'Spanish Nurse, Timeline', metadata: :not_first do
   scenario 'Spanish nurse sees correct translations' do
     spanish_nurse.sign_in
     pt_500_nurse_tasks.open
-    pt_500_clinical_summary_1.open
     pt_500_timeline.open
 
     expect(pt_500_timeline).to be_on_page
@@ -122,7 +112,6 @@ feature 'Portuguese Nurse, Timeline', metadata: :not_first do
   scenario 'Portuguese nurse sees correct translations' do
     portuguese_nurse.sign_in
     pt_600_nurse_tasks.open
-    pt_600_clinical_summary_1.open
     pt_600_timeline.open
 
     expect(pt_600_timeline).to be_on_page

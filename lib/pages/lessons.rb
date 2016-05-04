@@ -1,3 +1,4 @@
+require './lib/pages/navigation'
 require './lib/pages/translations/lessons'
 
 # page object for lessons
@@ -29,7 +30,7 @@ class Lessons
   def add
     open_add_lesson
     enter_title_and_tx_day
-    create
+    navigation.submit
   end
 
   def add_with_activity_planning
@@ -44,7 +45,7 @@ class Lessons
     fill_in 'lesson[planning_response_yes_content]', with: 'Great job!'
     fill_in 'lesson[planning_response_no_content]', with: 'No good'
     fill_in 'lesson[non_planning_response_content]', with: 'You should answer'
-    create
+    navigation.submit
   end
 
   def visible?
@@ -64,7 +65,7 @@ class Lessons
   def edit
     open_edit
     fill_in 'lesson[title]', with: @new_title
-    click_on 'Update Lesson'
+    navigation.submit
   end
 
   def delete
@@ -86,7 +87,7 @@ class Lessons
     fill_in 'lesson[day_in_treatment]', with: @day
   end
 
-  def create
-    click_on 'Create Lesson'
+  def navigation
+    @navigation ||= Navigation.new(locale: @locale)
   end
 end

@@ -20,7 +20,7 @@ class NurseTasks
 
     def visible?
       date_1 = Date.today - ((30 * 365) + @id.to_i)
-      has_css?('#contact-info',
+      has_css?('.col-sm-5',
                text: 'Contact information Family health unit: unit 1 ' \
                      "Telephone: 13333333#{@id} Emergency contact (name): " \
                      "Telephone: Birth date: #{date_1.strftime('%B %d, %Y')} " \
@@ -29,11 +29,11 @@ class NurseTasks
     end
 
     def select_edit_contact_information
-      find('#contact-info').find('.fa-edit').click
+      contact_information_div.first('.fa-edit').click
     end
 
     def select_edit_smartphone_information
-      smartphone_table.find('.fa-edit').click
+      contact_information_div.all('.fa-edit')[1].click
     end
 
     def enter_smartphone_number
@@ -50,21 +50,17 @@ class NurseTasks
     end
 
     def has_contact_information_title?
-      has_css?('h2', text: contact_information_title)
+      has_css?('h3', text: contact_information_title)
     end
 
     def has_smartphone_information_title?
-      has_css?('h2', text: smartphone_information_title)
-    end
-
-    def has_smartphone_sub_headings?
-      sub_headings = (0..1).map { |i| smartphone_table.all('strong')[i].text }
-      expect(sub_headings).to eq([phone_number_header, serial_number_header])
+      has_css?('h3', text: smartphone_information_title)
     end
 
     def has_contact_information_table_headings?
-      table = find('#contact-info')
-      actual_headings = (0..7).map { |i| table.all('strong')[i].text }
+      actual_headings = (0..8).map do |i|
+        contact_information_div.all('strong')[i].text
+      end
       expect(actual_headings).to eq(expected_headings)
     end
 
@@ -78,8 +74,8 @@ class NurseTasks
 
     private
 
-    def smartphone_table
-      find('#smartphone-info')
+    def contact_information_div
+      find('.col-sm-5', text: contact_information_title)
     end
   end
 end

@@ -63,7 +63,7 @@ class SupervisorPage
     end
 
     def has_previous_sessions_listed?
-      within('.table') do
+      within('.table', text: 'Session') do
         actual_rows = (1..3).map { |i| all('tr')[i].text }
         expect(actual_rows).to eq(expected_rows)
       end
@@ -113,13 +113,23 @@ class SupervisorPage
       topic.each { |t| check t }
     end
 
+    def create_supervision_note
+      find('.fa-edit').click
+      fill_in 'supervisor_note[note]', with: @note
+      navigation.submit
+    end
+
+    def has_supervision_note?
+      first('.table')
+        .has_text?("#{@note}\n#{Date.today.strftime('%B %d, %Y')}") &&
+        has_css?('.alert', text: 'Supervisor note was successfully created')
+    end
+
     def select
       4.times { navigation.scroll_down }
-      find('.panel-heading',
-           text: "Nurse-#{@id}, #{locale('Spanish', 'Portuguese', 'English')}")
-        .find('a',
-              text: "Nurse-#{@id}, " \
-                    "#{locale('Spanish', 'Portuguese', 'English')}").click
+      language = locale('Spanish', 'Portuguese', 'English')
+      find('.panel-heading', text: "Nurse-#{@id}, #{language}")
+        .find('a', text: "Nurse-#{@id}, #{language}").click
     end
 
     def has_your_patients_header?

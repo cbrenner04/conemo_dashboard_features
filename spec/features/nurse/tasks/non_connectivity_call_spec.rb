@@ -66,7 +66,6 @@ feature 'Nurse, Non-connectivity call', metadata: :not_first do
     expect(lack_of_connectivity_call).to_not be_active
 
     # check timeline for completeness
-    clinical_summary.open
     timeline.open
 
     expect(timeline).to have_non_connectivity_call

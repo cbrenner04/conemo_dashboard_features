@@ -1,4 +1,5 @@
 require './lib/pages/lessons'
+require './lib/pages/navigation'
 
 class Lessons
   # page object for slides
@@ -10,6 +11,7 @@ class Lessons
       @title ||= slides[:title]
       @body ||= slides[:body]
       @new_title ||= slides[:new_title]
+      @locale ||= slides[:locale]
     end
 
     def open_add_slide
@@ -23,7 +25,7 @@ class Lessons
       fill_in 'slide[title]', with: @title
       find('.cke_contents').click
       find('#cke_53').click
-      click_on 'Create Slide'
+      navigation.submit
     end
 
     def visible?
@@ -39,7 +41,7 @@ class Lessons
     def edit
       open_edit
       fill_in 'slide[title]', with: @new_title
-      click_on 'Update Slide'
+      navigation.submit
     end
 
     def view
@@ -69,6 +71,10 @@ class Lessons
 
     def lessons
       @lessons ||= Lessons.new(title: 'fake')
+    end
+
+    def navigation
+      @navigation ||= Navigation.new(locale: @locale)
     end
   end
 end

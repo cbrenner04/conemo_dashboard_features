@@ -11,8 +11,9 @@ module Translations
           'Telefone fixo (Contato de Emergência):',
           'Data de nascimento:',
           'Endereço:',
-          'Data de inclusão no estudo:',
-          'Sexo:'
+          'Sexo:',
+          'Número do Smartphone / número de serie:',
+          'Código do Smartphone:'
         ]
       end
     end

@@ -10,8 +10,9 @@ module Translations
           'Telephone:',
           'Birth date:',
           'Home address:',
-          'Date of inclusion:',
-          'Gender:'
+          'Gender:',
+          'Phone number / serial number:',
+          'Phone ID:'
         ]
       end
     end

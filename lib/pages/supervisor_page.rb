@@ -87,12 +87,10 @@ class SupervisorPage
       actual_rows = (1..12).map { |i| all('tr')[i].text }
       expected_rows_1 = (1..6).map do |i|
         "Nurse-401, English Last-#{4040 + i}, First #{4040 + i} " \
-        "#{(Date.today - (10 + i)).strftime('%B %d, %Y')} " \
         "#{(Date.today - (13 + i)).strftime('%B %d, %Y')}"
       end
       expected_rows_2 = (7..12).map do |i|
         "Nurse-403, English Last-#{4040 + i}, First #{4040 + i} " \
-        "#{(Date.today - (10 + i)).strftime('%B %d, %Y')} " \
         "#{(Date.today - (13 + i)).strftime('%B %d, %Y')}"
       end
       expected_rows = expected_rows_1.concat expected_rows_2
@@ -109,16 +107,12 @@ class SupervisorPage
       actual_rows = (1..14).map { |i| all('tr')[i].text }
       expected_rows_1 = (1..12).map do |i|
         "Nurse-402, English Last-#{201 + i}, First #{201 + i} " \
-        "#{(Date.today - (4 + i)).strftime('%B %d, %Y')} " \
         "#{(Date.today - (4 + i)).strftime('%B %d, %Y')}"
       end
+      today = Date.today.strftime('%B %d, %Y')
       expected_rows_2 = [
-        'Nurse-400, English Last-200, First 200 ' \
-        "#{Date.today.strftime('%B %d, %Y')} " \
-        "#{Date.today.strftime('%B %d, %Y')}",
-        'Nurse-400, English Last-201, First 201 ' \
-        "#{Date.today.strftime('%B %d, %Y')} " \
-        "#{Date.today.strftime('%B %d, %Y')}"
+        "Nurse-400, English Last-200, First 200 #{today}",
+        "Nurse-400, English Last-201, First 201 #{today}"
       ]
       expected_rows = expected_rows_1.concat expected_rows_2
       actual_rows.should =~ expected_rows
@@ -208,13 +202,12 @@ class SupervisorPage
   end
 
   def expected_rows
-    enrollment = (Date.today - 12).strftime('%B %d, %Y')
     today = Date.today.strftime('%B %d, %Y')
     @expected_rows ||= [
-      "Edit Information Last-495, First 495 #{enrollment} #{today} Activate",
-      "Edit Information Last-496, First 496 #{enrollment} #{today} Activate",
-      "Edit Information Last-497, First 497 #{enrollment} #{today} Activate",
-      "Edit Information Last-498, First 498 #{enrollment} #{today} Activate"
+      "Edit Information Last-495, First 495 #{today} Activate",
+      "Edit Information Last-496, First 496 #{today} Activate",
+      "Edit Information Last-497, First 497 #{today} Activate",
+      "Edit Information Last-498, First 498 #{today} Activate"
     ]
   end
 

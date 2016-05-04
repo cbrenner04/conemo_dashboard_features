@@ -64,7 +64,6 @@ feature 'Nurse, Participant Tasks, Help request', metadata: :not_first do
     expect(pt_400_nurse_tasks).to have_no_tasks_in_count
 
     # check timeline for completed task
-    clinical_summary.open
     timeline.open
 
     expect(timeline).to have_help_request

@@ -25,8 +25,18 @@ module Translations
       end
 
       def portuguese_health_unit_options
-        @portuguese_health_unit_options ||=
-          (1..10).map { |i| "Unidade de Saúde #{i}" }
+        @portuguese_health_unit_options ||= [
+          'Adão Manoel',
+          'Celso Daniel',
+          'Dom João Nery',
+          'Jardim Campos',
+          'Jardim Copa',
+          'Jardim Rubro II',
+          'Profeta Jeremias',
+          'Santo Estevão',
+          'Silva Teles',
+          'Vila Ramos'
+        ]
       end
 
       def portuguese_relationship_options

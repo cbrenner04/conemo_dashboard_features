@@ -47,7 +47,18 @@ module Translations
       end
 
       def portuguese_options
-        @portuguese_options ||= (1..10).map { |i| "Unidade de Saúde #{i}" }
+        @portuguese_options ||= [
+          'Adão Manoel',
+          'Celso Daniel',
+          'Dom João Nery',
+          'Jardim Campos',
+          'Jardim Copa',
+          'Jardim Rubro II',
+          'Profeta Jeremias',
+          'Santo Estevão',
+          'Silva Teles',
+          'Vila Ramos'
+        ]
       end
 
       def english_options

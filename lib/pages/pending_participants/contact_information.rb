@@ -32,7 +32,7 @@ class PendingParticipants
 
     def has_form_fields?
       find('.form-group', match: :first)
-      actual = (0..23).map { |i| all('.control-label')[i].text }
+      actual = (0..22).map { |i| all('.control-label')[i].text }
       expect(actual).to eq(expected_form_fields)
     end
 

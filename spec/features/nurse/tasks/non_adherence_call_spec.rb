@@ -87,7 +87,6 @@ feature 'Nurse, Non-adherence call', metadata: :not_first do
     expect(non_adherence_call).to_not be_active
 
     # check timeline for completeness
-    clinical_summary.open
     timeline.open
 
     expect(timeline).to have_non_adherence_call

@@ -17,7 +17,7 @@ class SupervisorPage
 
     def activate
       find('.panel', text: 'Pending')
-        .find('tr', text: "#{@pt_id}")
+        .find('tr', text: @pt_id)
         .find('.fa-thumbs-up').click
       find('h1', text: 'Assign nurse to activate participant ' \
                        "First Last-#{@pt_id}")
@@ -38,7 +38,6 @@ class SupervisorPage
     end
 
     def active?
-      active_panel = find('.panel', text: 'Active')
       active_panel
         .find('input[type = search]')
         .set(@pt_id)
@@ -52,8 +51,8 @@ class SupervisorPage
 
     def terminate
       tries ||= 1
-      find('.panel', text: 'Active')
-        .find('tr', text: "#{@pt_id}")
+      active_panel
+        .find('tr', text: @pt_id)
         .find('.fa-thumbs-down').click
       sleep(0.25)
       accept_alert(termination_alert)
@@ -64,7 +63,8 @@ class SupervisorPage
     end
 
     def dropped?
-      find('.panel', text: 'Dropped')
+      find('.panel', text: locale('suspendido del tratamiento',
+                                  'Tratamentos Interrompidos', 'Dropped'))
         .find('input[type = search]')
         .set(@pt_id)
       find('.panel', text: 'Dropped out')
@@ -76,8 +76,8 @@ class SupervisorPage
 
     def reassign
       tries ||= 1
-      find('.panel', text: 'Active')
-        .find('tr', text: "#{@pt_id}")
+      active_panel
+        .find('tr', text: @pt_id)
         .find('.fa-user-md').click
       sleep(0.25)
       assign_nurse
@@ -95,6 +95,10 @@ class SupervisorPage
 
     def language
       locale('Spanish', 'Portuguese', 'English')
+    end
+
+    def active_panel
+      find('.panel', text: locale('activos', 'Ativos', 'Active'))
     end
 
     def expected_options

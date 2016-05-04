@@ -12,16 +12,17 @@ class NurseTasks
     include Translations::NurseTaskTitles
     include Translations::TimelineTranslations
 
-    def initialize(contact_information)
-      @id ||= contact_information[:id]
-      @email ||= contact_information[:email]
-      @session ||= contact_information[:session]
-      @session_length ||= contact_information[:session_length]
-      @locale ||= contact_information[:locale]
+    def initialize(timeline)
+      @id ||= timeline[:id]
+      @email ||= timeline[:email]
+      @session ||= timeline[:session]
+      @session_length ||= timeline[:session_length]
+      @locale ||= timeline[:locale]
     end
 
     def open
-      find('#participant-menu').find('a', text: timeline_page_title).click
+      find('#participant-menu').click
+      find('a', text: timeline_page_title).click
     end
 
     def on_page?

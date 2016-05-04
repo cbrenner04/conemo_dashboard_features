@@ -24,7 +24,6 @@ feature 'Nurse, Call to schedule final appointment', metadata: :first do
     expect(call_to_schedule_final_appointment).to be_complete
 
     # Check timeline for completeness
-    clinical_summary.open
     timeline.open
 
     expect(timeline).to have_call_to_schedule_final_appt

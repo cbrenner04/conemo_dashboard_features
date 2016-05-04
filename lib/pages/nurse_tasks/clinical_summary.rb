@@ -25,7 +25,8 @@ class NurseTasks
     end
 
     def open
-      find('#participant-menu').find('a', text: clinical_summary_link).click
+      find('#participant-menu').click
+      find('a', text: clinical_summary_link).click
     end
 
     def visible?
@@ -168,17 +169,6 @@ class NurseTasks
       expect(actual_contact_dates).to eq(expected_contact_dates)
     end
 
-    def create_supervisor_note
-      supervisor_notes_table.find('.fa-edit').click
-      fill_in 'supervisor_note[note]', with: @note
-      navigation.submit
-    end
-
-    def has_supervisor_note?
-      supervisor_notes_table
-        .has_text? "#{@note}\n#{Date.today.strftime('%B %d, %Y')}"
-    end
-
     private
 
     def lesson_table
@@ -191,10 +181,6 @@ class NurseTasks
       else
         first('.table', text: notes_heading)
       end
-    end
-
-    def supervisor_notes_table
-      find('.table', text: 'Nurse supervisor Notes')
     end
 
     def total_lessons
