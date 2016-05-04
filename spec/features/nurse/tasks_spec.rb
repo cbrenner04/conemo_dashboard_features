@@ -69,7 +69,6 @@ feature 'Spanish Nurse, Tasks' do
 
   scenario 'Spanish Nurse sees section headings and key' do
     pt_500_nurse_tasks.open
-
     expect(pt_500_nurse_tasks).to have_progress_bar_heading
     expect(pt_500_nurse_tasks).to have_tasks_heading
     expect(pt_500_nurse_tasks).to have_key

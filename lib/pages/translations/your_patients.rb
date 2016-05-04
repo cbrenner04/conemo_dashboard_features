@@ -8,16 +8,16 @@ module Translations
     end
 
     def no_tasks
-      locale('Sin tareas pendientes', 'Sem tarefas pendentes',
+      locale('Sin tareas pendientes', 'Tarefas Não Ativas',
              'No active/overdue task')
     end
 
     def active_task
-      locale('Tarea actual', 'Tarefa atual', 'Active task')
+      locale('Tarea actual', 'Tarefa Ativa', 'Active task')
     end
 
     def overdue_task
-      locale('Tarea atrasada', 'Tarefa atrasada', 'Overdue task')
+      locale('Tarea atrasada', 'Tarefa Atrasada', 'Overdue task')
     end
 
     private

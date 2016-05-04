@@ -22,24 +22,24 @@ module Translations
     end
 
     def scheduled_key_label
-      locale('scheduled but not due', 'scheduled but not due',
+      locale('Próximas sesiones', 'Tarefas futuras',
              'scheduled but not due')
     end
 
     def confirmed_key_label
-      locale('confirmed', 'confirmed', 'confirmed')
+      locale('Confirmado', 'Confirmado', 'confirmed')
     end
 
     def active_key_label
-      locale('active due', 'active due', 'active due')
+      locale('Sesión actual', 'Ativo', 'active due')
     end
 
     def canceled_key_label
-      locale('cancelled', 'cancelled', 'cancelled')
+      locale('Cancelado', 'Cancelado', 'cancelled')
     end
 
     def overdue_key_label
-      locale('Overdue', 'Overdue', 'Overdue')
+      locale('Atrasado', 'Atrasado', 'Overdue')
     end
 
     def progress_bar_heading
@@ -88,8 +88,8 @@ module Translations
     end
 
     def clear_supervisor_contact_alert
-      locale('are you sure you want to clear this?',
-             'are you sure you want to clear this?',
+      locale('¿Estás seguro/a de que quieres borrar esto?',
+             'Está certo de que deseja apagar?',
              'are you sure you want to clear this?')
     end
 

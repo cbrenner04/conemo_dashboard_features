@@ -112,8 +112,6 @@ class NurseTasks
   end
 
   def has_successful_confirmation_call_alert?
-    puts find('.alert').text
-    puts "#{confirmation_call_title} #{feminine_success_alert}"
     has_css?('.alert', text: "#{confirmation_call_title} " \
                              "#{feminine_success_alert}")
   end

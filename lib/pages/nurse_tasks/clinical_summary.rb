@@ -25,7 +25,7 @@ class NurseTasks
     end
 
     def open
-      click_on clinical_summary_link
+      find('#participant-menu').find('a', text: clinical_summary_link).click
     end
 
     def visible?

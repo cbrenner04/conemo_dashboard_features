@@ -21,7 +21,7 @@ class NurseTasks
     end
 
     def open
-      click_on timeline_page_title
+      find('#participant-menu').find('a', text: timeline_page_title).click
     end
 
     def on_page?

@@ -15,7 +15,9 @@ class NurseTasks
     end
 
     def open
-      click_on "#{register} #{additional_contact_title.downcase}"
+      find('#participant-menu')
+        .find('a', text: "#{register} #{additional_contact_title.downcase}")
+        .click
     end
 
     def create_for_call
