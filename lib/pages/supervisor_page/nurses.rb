@@ -17,6 +17,7 @@ class SupervisorPage
       @supervision_date ||= nurses[:supervision_date]
       @supervision_time ||= nurses[:supervision_time]
       @locale ||= nurses[:locale]
+      @note ||= nurses[:note]
     end
 
     def has_participants_and_tasks?
@@ -34,7 +35,15 @@ class SupervisorPage
       nurse_panel.has_css?('.fa-exclamation-circle')
     end
 
-    def has_supervision_session?
+    def has_new_supervision_session?
+      find('.table', text: 'Session')
+        .has_text?(Date.today.strftime('%B %d, %Y')) &&
+        find('.table', text: 'Session')
+          .has_text?("20 #{@meeting_kind} #{@contact_kind} #{@topic[0]}, " \
+                     "#{@topic[1]}")
+    end
+
+    def has_last_supervision_session?
       nurse_panel_heading
         .has_css?('small',
                   text: 'Last supervision session: ' \
@@ -82,15 +91,17 @@ class SupervisorPage
     end
 
     def select_meeting_kind
-      choose ['Group', 'Individual'].sample
+      @meeting_kind = ['Group', 'Individual'].sample
+      choose @meeting_kind
     end
 
     def select_contact_kind
-      choose ['Phone', 'In person'].sample
+      @contact_kind = ['Phone', 'In person'].sample
+      choose @contact_kind
     end
 
     def choose_topic
-      topic = [
+      topics = [
         'First appointments',
         'Difficulty to contact patient',
         'Non-resolved help requests',
@@ -109,8 +120,10 @@ class SupervisorPage
         'Administrative issues',
         'Additional contacts',
         'Others'
-      ].sample(2)
-      topic.each { |t| check t }
+      ]
+      choices = (0..17).to_a.sample(2).sort
+      @topic = [topics[choices[0]], topics[choices[1]]]
+      @topic.each { |t| check t }
     end
 
     def create_supervision_note
@@ -120,6 +133,7 @@ class SupervisorPage
     end
 
     def has_supervision_note?
+      find('.table', match: :first)
       first('.table')
         .has_text?("#{@note}\n#{Date.today.strftime('%B %d, %Y')}") &&
         has_css?('.alert', text: 'Supervisor note was successfully created')

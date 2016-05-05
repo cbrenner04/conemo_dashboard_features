@@ -83,14 +83,14 @@ module Translations
     def spanish_pending_headers
       @spanish_headers ||= [
         'Editar información', 'Nombre', 'Código del participante',
-        'Fecha de inclusión en el estudio', 'Activar Participante'
+        'Fecha de incorporación en el dashboard', 'Activar Participante'
       ]
     end
 
     def portuguese_pending_headers
       @portuguese_pending_headers ||= [
         'Editar Informações', 'Nome', 'Identificação do participante',
-        'Data de inclusão', 'Ativar'
+        'Data de inclusão no dashboard', 'Ativar'
       ]
     end
 

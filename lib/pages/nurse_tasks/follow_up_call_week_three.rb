@@ -52,7 +52,8 @@ class NurseTasks
 
     def enter_difficulties
       2.times { options.delete_at(0) }
-      @responses ||= options.sample(2)
+      keys = (0..5).to_a.sample(2).sort
+      @responses = [options[keys[0]], options[keys[1]]]
       @responses.each { |option| check option }
     end
 
@@ -84,9 +85,7 @@ class NurseTasks
 
     def has_difficulties_responses?
       has_text?('Did the patient have any difficulties using CONEMO?: ' \
-                "#{@responses[0]}, #{@responses[1]}") ||
-        has_text?('Did the patient have any difficulties using CONEMO?: ' \
-                  "#{@responses[1]}, #{@responses[0]}")
+                "#{@responses[0]}, #{@responses[1]}")
     end
 
     private

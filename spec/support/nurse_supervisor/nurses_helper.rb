@@ -163,7 +163,10 @@ def nurse_403
 end
 
 def nurse_404
-  @nurse_404 ||= SupervisorPage::Nurses.new(id: 404)
+  @nurse_404 ||= SupervisorPage::Nurses.new(
+    id: 404,
+    note: 'Supervision Note'
+  )
 end
 
 def pt_1000_nurse_tasks

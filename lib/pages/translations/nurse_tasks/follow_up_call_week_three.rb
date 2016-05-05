@@ -74,6 +74,8 @@ module Translations
 
       def english_options
         @english_options ||= [
+          'NO',
+          'YES',
           'Difficulty with cell phone (battery, PIN code, turning it on, ' \
           'volume, etc.)',
           'Difficulty accessing CONEMO app',

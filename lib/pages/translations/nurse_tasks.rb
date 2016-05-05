@@ -23,19 +23,19 @@ module Translations
 
     def scheduled_key_label
       locale('Próximas sesiones', 'Tarefas futuras',
-             'scheduled but not due')
+             'Scheduled but not due')
     end
 
     def confirmed_key_label
-      locale('Confirmado', 'Confirmado', 'confirmed')
+      locale('Confirmado', 'Confirmado', 'Confirmed')
     end
 
     def active_key_label
-      locale('Sesión actual', 'Ativo', 'active due')
+      locale('Sesión actual', 'Ativo', 'Active due')
     end
 
     def canceled_key_label
-      locale('Cancelado', 'Cancelado', 'cancelled')
+      locale('Cancelado', 'Cancelado', 'Cancelled')
     end
 
     def overdue_key_label

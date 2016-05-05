@@ -24,8 +24,7 @@ class NurseTasks
                text: 'Contact information Family health unit: unit 1 ' \
                      "Telephone: 13333333#{@id} Emergency contact (name): " \
                      "Telephone: Birth date: #{date_1.strftime('%B %d, %Y')} " \
-                     'Home address: 123 Main Street Date of inclusion: ' \
-                     "#{Date.today.strftime('%B %d, %Y')} Gender: female")
+                     'Home address: 123 Main Street Gender: female')
     end
 
     def select_edit_contact_information

@@ -43,16 +43,16 @@ class NurseTasks
 
     def has_follow_up_week_1?
       find('.timeline').has_css?('.timeline-panel', count: 3) &&
-        has_text?("#{follow_up_week_one_title} information Contact At: " \
-                  "#{DateTime.now.strftime('%B %d, %Y')}") &&
-        has_text?('Session Length: 120')
+        has_text?("#{follow_up_week_one_title} information Date/time of " \
+                  "phone call: #{DateTime.now.strftime('%B %d, %Y')}") &&
+        has_text?('Length of phone call (minutes): 120')
     end
 
     def has_follow_up_week_3?
       find('.timeline').has_css?('.timeline-panel', count: 4) &&
-        has_text?("#{follow_up_week_three_title} information Contact " \
-                  " At: #{DateTime.now.strftime('%B %d, %Y')}") &&
-        has_text?('Session Length: 120')
+        has_text?("#{follow_up_week_three_title} information Date/time of " \
+                  "phone call: #{DateTime.now.strftime('%B %d, %Y')}") &&
+        has_text?('Length of phone call (minutes): 120')
     end
 
     def has_call_to_schedule_final_appt?
@@ -136,7 +136,7 @@ class NurseTasks
 
     def has_updated_call_length?
       find('.timeline-panel', text: @session)
-        .has_text? "Session Length: #{@session_length}"
+        .has_text? "Length of phone call (minutes): #{@session_length}"
     end
 
     def has_updated_phone_return?

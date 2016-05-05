@@ -4,10 +4,9 @@ module Translations
     module SpanishContactForm
       def spanish_form
         @spanish_form ||= [
-          'Nombres', 'Apellidos', 'Código del participante',
-          'Fecha de inclusión', 'Centro de salud',
-          'Dirección actual', 'Telefóno fijo',
-          'Celular (propio)', 'Teléfono alternativo 1',
+          'Nombres', 'Apellidos', 'Código del participante', 'Centro de salud',
+          'Dirección actual', 'Telefóno fijo', 'Celular (propio)',
+          'Teléfono alternativo 1',
           'Nombre de persona / Lugar del teléfono alternativo 1',
           'Relación con el participante', 'Relación con el participante',
           'Telefóno alternativo 2',

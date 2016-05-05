@@ -22,7 +22,11 @@ feature 'Nurse Supervisor, Nurses', metadata: :first do
       nurse_403.choose_topic
       navigation.submit
 
-      expect(nurse_403).to have_supervision_session
+      expect(nurse_403).to have_new_supervision_session
+
+      nurse_supervisor.return_to_home
+
+      expect(nurse_403).to have_last_supervision_session
     end
   end
 

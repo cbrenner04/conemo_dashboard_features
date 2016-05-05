@@ -27,6 +27,10 @@ class SupervisorPage
     expect(actual_nurses).to eq(expected_nurses)
   end
 
+  def return_to_home
+    first('.navbar-brand').click
+  end
+
   def on_home_page?
     has_css?('h3', text: 'Participants')
   end
@@ -34,7 +38,6 @@ class SupervisorPage
   def has_patient?
     pending_panel
       .has_text? "Last-#{@pt_id}, First #{@pt_id} " \
-                 "#{Date.today.strftime('%B %d, %Y')} " \
                  "#{Date.today.strftime('%B %d, %Y')}"
   end
 
@@ -42,7 +45,6 @@ class SupervisorPage
     active_panel.find('input[type = search]').set('300')
     active_panel
       .has_text? 'Last-300, First 300 ' \
-                 "#{Date.today.strftime('%B %d, %Y')} " \
                  "#{Date.today.strftime('%B %d, %Y')}"
   end
 
@@ -74,8 +76,7 @@ class SupervisorPage
   def has_new_completed_participant_information?
     date = (Date.today - 39).strftime('%B %d, %Y')
     completed_panel.find('input[type = search]').set('341')
-    has_css?('tr',
-             text: "Nurse-400, English Last-341, First 341 #{date} #{date}")
+    has_css?('tr', text: "Nurse-400, English Last-341, First 341 #{date}")
   end
 
   def has_completed_participant_information?

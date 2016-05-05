@@ -37,8 +37,8 @@ class PendingParticipants
     end
 
     def has_health_unit_options?
-      site = locale('Centro de salud 2', 'Unidade de Saúde 2', 'unit 2')
-      selector[3].click
+      site = locale('Centro de salud 2', 'Celso Daniel', 'unit 2')
+      selector[0].click
       actual = (0..9).map { |i| all('.select2-result-label')[i].text }
       select_response(site)
       expect(actual).to eq(expected_health_unit_options)
@@ -48,13 +48,16 @@ class PendingParticipants
       choice = locale('Padre / Madre', 'Pai / Mãe', 'parent')
       num = locale(5, 4, 5)
       navigation.scroll_down
-      selector[4].click
+      # first Relationship drop down
+      selector[1].click
       options_1 = (0..num).map { |i| response_selector[i].text }
       select_response(choice)
-      selector[5].click
+      # second Relationship drop down
+      selector[2].click
       options_2 = (0..num).map { |i| response_selector[i].text }
       select_response(choice)
-      selector[9].click
+      # third Relationship drop down
+      selector[6].click
       options_3 = (0..num).map { |i| response_selector[i].text }
       select_response(choice)
       [options_1, options_2, options_3]

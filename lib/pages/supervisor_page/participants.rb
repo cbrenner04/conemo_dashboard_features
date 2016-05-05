@@ -10,7 +10,6 @@ class SupervisorPage
 
     def initialize(participants)
       @pt_id ||= participants[:pt_id]
-      @enrollment_date ||= participants[:enrollment_date]
       @nurse ||= participants[:nurse]
       @locale ||= participants.fetch(:locale, 'english')
     end
@@ -45,7 +44,6 @@ class SupervisorPage
         .has_css?('tr',
                   text: "Edit Information Nurse-#{@nurse}, #{language} Edit " \
                         "Information Last-#{@pt_id}, First #{@pt_id} " \
-                        "#{locale_date(@enrollment_date)} " \
                         "#{locale_date(Date.today)} Treatment termination")
     end
 
@@ -63,14 +61,12 @@ class SupervisorPage
     end
 
     def dropped?
-      find('.panel', text: locale('suspendido del tratamiento',
-                                  'Tratamentos Interrompidos', 'Dropped'))
+      dropped_panel
         .find('input[type = search]')
         .set(@pt_id)
-      find('.panel', text: 'Dropped out')
+      dropped_panel
         .has_css?('tr', text: "Nurse-#{@nurse}, #{language} " \
                               "Last-#{@pt_id}, First #{@pt_id} " \
-                              "#{locale_date(@enrollment_date)} " \
                               "#{locale_date(Date.today)}")
     end
 
@@ -99,6 +95,10 @@ class SupervisorPage
 
     def active_panel
       find('.panel', text: locale('activos', 'Ativos', 'Active'))
+    end
+
+    def dropped_panel
+      find('.panel', text: locale('suspendido', 'Tratamento', 'Dropped'))
     end
 
     def expected_options

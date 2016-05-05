@@ -99,7 +99,7 @@ class NurseTasks
   end
 
   def has_progress_bar_heading?
-    has_css?('h2', text: progress_bar_heading)
+    has_css?('h3', text: progress_bar_heading)
   end
 
   def has_tasks_heading?

@@ -7,7 +7,6 @@ module Translations
           'First name',
           'Last name',
           'Participant ID',
-          'Date of inclusion',
           'Family health unit',
           'Home address',
           'Telephone ',

@@ -19,7 +19,6 @@ end
 def patient_413_nurse_400
   @patient_413_nurse_400 ||= SupervisorPage::Participants.new(
     pt_id: 413,
-    enrollment_date: Date.today - 3,
     nurse: 400
   )
 end
@@ -27,7 +26,6 @@ end
 def patient_413_nurse_404
   @patient_413_nurse_404 ||= SupervisorPage::Participants.new(
     pt_id: 413,
-    enrollment_date: Date.today - 3,
     nurse: 404
   )
 end
@@ -65,7 +63,6 @@ end
 def patient_496
   @patient_496 ||= SupervisorPage::Participants.new(
     pt_id: 496,
-    enrollment_date: Date.today - 12,
     nurse: 404
   )
 end
@@ -73,8 +70,7 @@ end
 def patient_4036
   @patient_4036 ||= SupervisorPage::Participants.new(
     pt_id: 4036,
-    nurse: 401,
-    enrollment_date: Date.today - 10
+    nurse: 401
   )
 end
 
@@ -82,7 +78,6 @@ def patient_503
   @patient_503 ||= SupervisorPage::Participants.new(
     pt_id: 503,
     nurse: 500,
-    enrollment_date: Date.today - 12,
     locale: 'spanish'
   )
 end
@@ -91,7 +86,6 @@ def patient_603
   @patient_603 ||= SupervisorPage::Participants.new(
     pt_id: 603,
     nurse: 600,
-    enrollment_date: Date.today - 12,
     locale: 'portuguese'
   )
 end
