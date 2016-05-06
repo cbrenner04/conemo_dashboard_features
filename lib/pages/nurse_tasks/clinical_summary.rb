@@ -169,6 +169,10 @@ class NurseTasks
       expect(actual_contact_dates).to eq(expected_contact_dates)
     end
 
+    def has_non_connectivity_icon?
+      has_css?('.fa-wifi')
+    end
+
     private
 
     def lesson_table

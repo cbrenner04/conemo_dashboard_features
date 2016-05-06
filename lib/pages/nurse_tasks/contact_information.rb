@@ -71,6 +71,14 @@ class NurseTasks
       has_css?('.alert', text: smartphone_creation_alert)
     end
 
+    def has_id_disabled?
+      find('#participant_study_identifier')[:disabled].should eq 'true'
+    end
+
+    def has_health_unit_disabled?
+      find('#participant_family_health_unit_name')[:disabled].should eq 'true'
+    end
+
     private
 
     def contact_information_div

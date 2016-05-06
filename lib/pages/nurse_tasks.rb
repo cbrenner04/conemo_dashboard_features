@@ -28,7 +28,7 @@ class NurseTasks
   def open
     tries ||= 1
     find('tr', text: @pt_id).click
-    find('h2', text: contact_information_title)
+    find('h2', text: tasks_heading)
   rescue Capybara::ElementNotFound
     navigation.scroll_up
     tries += 1

@@ -61,6 +61,7 @@ feature 'Nurse, Participant Tasks, Confirmation Call', metadata: :not_first do
     reschedule_form.complete
 
     expect(pt_304_nurse_tasks).to have_no_tasks_in_count
+    expect(confirmation_call).to be_rescheduled
 
     english_nurse.sign_out
     english_supervisor.sign_in

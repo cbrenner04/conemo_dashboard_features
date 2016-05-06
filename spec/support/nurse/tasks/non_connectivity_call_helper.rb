@@ -1,6 +1,7 @@
 # filename: ./spec/support/nurse/tasks/non_connectivity_call_helper.rb
 
 require './lib/pages/nurse_tasks'
+require './lib/pages/nurse_tasks/clinical_summary'
 require './lib/pages/nurse_tasks/lack_of_connectivity_call'
 require './lib/pages/supervisor_page'
 require './lib/pages/your_patients'
@@ -36,6 +37,14 @@ def pt_803_nurse_tasks
     days_since_due: '3 days',
     tasks_count: 1
   )
+end
+
+def pt_1000_nurse_tasks
+  @pt_1000_nurse_tasks ||= NurseTasks.new(pt_id: 1000)
+end
+
+def pt_1000_clinical_summary
+  @pt_1000_clinical_summary ||= NurseTasks::ClinicalSummary.new(id: 1000)
 end
 
 def pt_4025_nurse_tasks

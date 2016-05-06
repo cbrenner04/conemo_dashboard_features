@@ -59,6 +59,11 @@ module NurseTasksForms
     has_css?('.progress-bar-danger', text: text)
   end
 
+  def has_scheduled_progress_bar_item?(text)
+    has_css?('.progress-bar-future',
+             text: "#{text} #{(Date.today + 1).strftime('%B %d, %Y')}")
+  end
+
   def enter_task_location(selector_num)
     sleep(0.25)
     selector[selector_num].click

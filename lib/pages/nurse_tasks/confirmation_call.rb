@@ -33,6 +33,11 @@ class NurseTasks
         has_overdue_progress_bar_item?(confirmation_call_title)
     end
 
+    def rescheduled?
+      has_no_list_item?(confirmation_call_title) &&
+        has_scheduled_progress_bar_item?(confirmation_call_title)
+    end
+
     def confirm
       execute_script 'window.scrollBy(0,100)'
       confirm_task confirmation_call_title

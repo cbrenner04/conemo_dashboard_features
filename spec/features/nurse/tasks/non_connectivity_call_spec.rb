@@ -34,6 +34,13 @@ feature 'Nurse, Non-connectivity call', metadata: :not_first do
     expect(pt_803_nurse_tasks).to have_number_of_days_since_due
   end
 
+  scenario 'Nurse sees non-connectivity notification on clinical summary' do
+    pt_1000_nurse_tasks.open
+    pt_1000_clinical_summary.open
+
+    expect(pt_1000_clinical_summary).to have_non_connectivity_icon
+  end
+
   scenario 'Nurse sees task overdue' do
     pt_803_nurse_tasks.open
 
