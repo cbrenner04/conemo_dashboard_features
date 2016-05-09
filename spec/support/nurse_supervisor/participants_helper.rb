@@ -13,7 +13,19 @@ def navigation
 end
 
 def nurse_supervisor
-  @nurse_supervisor ||= SupervisorPage.new(pt_id: 'fake')
+  @nurse_supervisor ||= SupervisorPage.new(locale: 'english')
+end
+
+def spanish_supervisor_participants
+  @spanish_supervisor_participants ||= SupervisorPage::Participants.new(
+    locale: 'spanish'
+  )
+end
+
+def portuguese_supervisor_participants
+  @portuguese_supervisor_participants ||= SupervisorPage::Participants.new(
+    locale: 'portuguese'
+  )
 end
 
 def patient_413_nurse_400

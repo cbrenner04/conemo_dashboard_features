@@ -99,10 +99,23 @@ feature 'Spanish Admin, Lessons', metadata: :not_first do
     expect(spanish_lesson).to_not be_visible
   end
 
-  scenario 'Spanish admin sees correct translations'
+  scenario 'Spanish admin sees correct translations' do
+    spanish_lessons.open
+
+    expect(spanish_lessons).to have_add_lesson_button
+    expect(spanish_lessons).to have_spanish_activity_planning_true_false
+  end
 end
 
 feature 'Portuguese Admin, Lessons' do
+  background { portuguese_admin.sign_in }
+
   scenario 'Portuguese admin deletes a lesson'
-  scenario 'Portuguese admin sees correct translations'
+
+  scenario 'Portuguese admin sees correct translations' do
+    portuguese_lessons.open
+
+    expect(portuguese_lessons).to have_add_lesson_button
+    expect(portuguese_lessons).to have_portuguese_activity_planning_true_false
+  end
 end

@@ -1,12 +1,12 @@
 require './lib/pages/navigation'
-require './lib/pages/translations'
+require './lib/pages/translations/supervisor_page/participants'
 
 class SupervisorPage
   # page object for Participants section of the Nurse Supervisor page
   class Participants
     include RSpec::Matchers
     include Capybara::DSL
-    include Translations
+    include Translations::SupervisorPageTranslations::ParticipantsTranslations
 
     def initialize(participants)
       @pt_id ||= participants[:pt_id]
@@ -15,7 +15,7 @@ class SupervisorPage
     end
 
     def activate
-      find('.panel', text: 'Pending')
+      pending_panel
         .find('tr', text: @pt_id)
         .find('.fa-thumbs-up').click
       find('h1', text: 'Assign nurse to activate participant ' \
@@ -83,6 +83,42 @@ class SupervisorPage
       retry unless tries > 2
     end
 
+    def has_pending_panel_title?
+      has_css?('.panel', text: pending_participants_header)
+    end
+
+    def has_pending_table_headers?
+      actual_headers = (0..4).map { |i| pending_panel.all('th')[i].text }
+      expect(actual_headers).to eq(pending_headers)
+    end
+
+    def has_active_panel_title?
+      has_css?('.panel', text: active_participants_header)
+    end
+
+    def has_active_table_headers?
+      actual = [0, 1, 3, 4, 5, 6].map { |i| active_panel.all('th')[i].text }
+      expect(actual).to eq(active_headers)
+    end
+
+    def has_completed_panel_title?
+      has_css?('.panel', text: completed_participants_header)
+    end
+
+    def has_completed_table_headers?
+      actual_headers = (0..3).map { |i| completed_panel.all('th')[i].text }
+      expect(actual_headers).to eq(completed_headers)
+    end
+
+    def has_dropped_panel_title?
+      has_css?('.panel', text: dropped_participants_header)
+    end
+
+    def has_dropped_table_headers?
+      actual_headers = (0..3).map { |i| dropped_panel.all('th')[i].text }
+      expect(actual_headers).to eq(dropped_headers)
+    end
+
     private
 
     def navigation
@@ -93,8 +129,16 @@ class SupervisorPage
       locale('Spanish', 'Portuguese', 'English')
     end
 
+    def pending_panel
+      find('.panel', text: pending_participants_header)
+    end
+
     def active_panel
-      find('.panel', text: locale('activos', 'Ativos', 'Active'))
+      find('.panel', text: active_participants_header)
+    end
+
+    def completed_panel
+      find('.panel', text: completed_participants_header)
     end
 
     def dropped_panel
@@ -109,14 +153,6 @@ class SupervisorPage
         'Nurse-403, English',
         'Nurse-404, English'
       ]
-    end
-
-    def termination_alert
-      locale('¿Estás seguro/a de que quieres suspender el tratamiento de ' \
-             'este participante?',
-             'Tem certeza que quer terminar o acompanhamento deste ' \
-             'participante?',
-             'Are you sure you want to terminate this person?')
     end
   end
 end

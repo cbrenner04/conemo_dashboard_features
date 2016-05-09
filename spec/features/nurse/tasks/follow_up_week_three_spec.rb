@@ -61,6 +61,7 @@ feature 'Nurse, Participant Tasks, Follow up week 3', metadata: :not_first do
     reschedule_form.complete
 
     expect(pt_333_nurse_tasks).to have_no_tasks_in_count
+    expect(follow_up_week_3).to be_rescheduled
 
     english_nurse.sign_out
     english_supervisor.sign_in

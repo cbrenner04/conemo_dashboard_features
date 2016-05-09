@@ -126,14 +126,9 @@ class NurseTasks
                 "#{DateTime.now.strftime('%B %d, %Y')}"
     end
 
-    def has_links?
-      visible?
-      actual_links = (2..3).map { |i| all('a')[i].text }
-      expect(actual_links).to eq(expected_links)
-    end
-
     def has_headers?
-      actual_headers = [0, 2, 3, 4].map { |i| all('th')[i].text }
+      sleep(0.25)
+      actual_headers = [0, 2, 3, 5].map { |i| all('th')[i].text }
       expect(actual_headers).to eq(expected_headers)
     end
 

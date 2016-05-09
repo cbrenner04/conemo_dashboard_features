@@ -4,8 +4,7 @@ module Translations
     module PortugueseContactInformation
       def portuguese_headings
         @portuguese_headings ||= [
-          'Unidade de Saúde da Família (múltipla escolha com os ' \
-          'nomes das unidades – a ser definido):',
+          'Unidade de Saúde da Família:',
           'Telefone fixo:',
           'Contato de Emergência (nome):',
           'Telefone fixo (Contato de Emergência):',

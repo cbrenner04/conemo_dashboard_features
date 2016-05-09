@@ -16,6 +16,23 @@ module Translations
         locale(spanish_options, portuguese_options, english_options)
       end
 
+      def difficulty_directions
+        locale(
+          'Si el participante no ha tenido dificultades, por favor selecciona' \
+          ' "NO". Si el participante tuvo dificultades, selecciona todas las' \
+          ' dificultades que tuvo el participante. Por favor NO marques "No"' \
+          ' Y algunas dificultades al mismo tiempo.',
+          'Se o participante não teve dificuldades, por favor, selecione ' \
+          '"NÃO". Se o participante teve dificuldades, selecione todas as ' \
+          'dificuldades que o participante teve. Por favor, NÃO SELECIONE ' \
+          '"NÃO" e outras opções em sua resposta.',
+          'If the participant did not have difficulties, please select "NO".' \
+          ' If the participant did have difficulties, select all of the ' \
+          'difficulties a participant had. Please DO NOT mark "No" AND ' \
+          'certain dificulties at the same time.'
+        )
+      end
+
       private
 
       def spanish_headings
@@ -48,6 +65,7 @@ module Translations
       def spanish_options
         @spanish_options ||= [
           'NO',
+          'El paciente no tuvo dificultades',
           'Sí',
           'Dificultades con el celular inteligente ' \
           '(batería, contraseña, encenderlo, volumen)',
@@ -62,6 +80,7 @@ module Translations
       def portuguese_options
         @portuguese_options ||= [
           'NãO',
+          'O participante não teve dificuldades',
           'SIM',
           'Dificuldade com o smartphone (bateria, PIN, ligar, volume, etc.)',
           'Dificuldade para entrar no CONEMO app',
@@ -75,6 +94,7 @@ module Translations
       def english_options
         @english_options ||= [
           'NO',
+          'Patient had no difficulty',
           'YES',
           'Difficulty with cell phone (battery, PIN code, turning it on, ' \
           'volume, etc.)',

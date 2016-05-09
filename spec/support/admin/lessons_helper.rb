@@ -120,3 +120,10 @@ end
 def portuguese_lessons
   @portuguese_lessons ||= Lessons.new(locale: 'portuguese')
 end
+
+def portuguese_lesson
+  @portuguese_lesson ||= Lessons.new(
+    title: 'Pode ser difícil começar.',
+    locale: 'portuguese'
+  )
+end

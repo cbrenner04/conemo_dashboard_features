@@ -5,8 +5,7 @@ module Translations
       def portuguese_form
         @portuguese_form ||= [
           'Nome', 'Sobrenome', 'Identificação do participante (ID)',
-          'Unidade de Saúde da Família (múltipla escolha com os nomes das ' \
-          'unidades – a ser definido)', 'Endereço', 'Telefone fixo',
+          'Unidade de Saúde da Família', 'Endereço', 'Telefone fixo',
           'Celular (pessoal)', 'Telefone alternativo 1',
           'Nome de pessoa / lugar de telefone alternativo 1',
           'Grau de parentesco/relacionamento',

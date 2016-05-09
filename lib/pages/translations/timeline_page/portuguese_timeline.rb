@@ -6,7 +6,7 @@ module Translations
         @portuguese_timeline_dates ||= [
           "Contactado em: #{portuguese_date(Date.today - 45)}",
           "Data/hora: #{portuguese_date(Date.today - 42)}",
-          "Data da ligação: #{portuguese_date(Date.today - 35)}",
+          "Data/hora: #{portuguese_date(Date.today - 35)}",
           "Data da ligação: #{portuguese_date(Date.today - 21)}",
           "Data da ligação: #{portuguese_date(Date.today - 14)}",
           "Data da ligação: #{portuguese_date(Date.today - 14)}",

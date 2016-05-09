@@ -33,6 +33,11 @@ class NurseTasks
         has_overdue_progress_bar_item?(follow_up_week_one_title)
     end
 
+    def rescheduled?
+      has_no_list_item?(follow_up_week_one_title) &&
+        has_scheduled_progress_bar_item?(follow_up_week_one_title)
+    end
+
     def confirm
       confirm_task follow_up_week_one_title
       visible?
@@ -51,7 +56,8 @@ class NurseTasks
     end
 
     def enter_difficulties
-      2.times { options.delete_at(0) }
+      options.delete_at(0)
+      options.delete_at(1)
       keys = (0..5).to_a.sample(2).sort
       @responses = [options[keys[0]], options[keys[1]]]
       @responses.each { |option| check option }
@@ -75,8 +81,12 @@ class NurseTasks
     end
 
     def has_difficulties_options?
-      actual = (0..7).map { |i| all('.checkbox')[i].text }
+      actual = (0..8).map { |i| all('.checkbox')[i].text }
       expect(actual).to eq(options)
+    end
+
+    def has_difficulties_directions?
+      has_text? difficulty_directions
     end
 
     def has_canceled_alert?

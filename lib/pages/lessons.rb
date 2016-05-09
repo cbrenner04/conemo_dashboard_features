@@ -19,11 +19,11 @@ class Lessons
   end
 
   def on_lesson_list_page?
-    has_css?('.btn', text: 'Add Lesson')
+    has_css?('#lessons')
   end
 
   def open_add_lesson
-    click_on 'Add Lesson'
+    click_on add_new_lesson_button
     find('#lesson_title')
   end
 
@@ -78,6 +78,20 @@ class Lessons
   def open_lesson(lesson)
     click_on lesson
     find('h2', text: lesson)
+  end
+
+  def has_add_lesson_button?
+    has_css?('.btn', text: add_lesson_button)
+  end
+
+  def has_spanish_activity_planning_true_false?
+    find('tr', text: '¡Bienvenido a CONEMO!').has_css?('td', text: 'Sí') &&
+      find('tr', text: 'Estar activo te ayudará').has_css?('td', text: 'No')
+  end
+
+  def has_portuguese_activity_planning_true_false?
+    find('tr', text: 'Bem-vindo ao CONEMO').has_css?('td', text: 'Sim') &&
+      find('tr', text: 'Sentir-se para baixo').has_css?('td', text: 'Não')
   end
 
   private

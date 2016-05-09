@@ -34,6 +34,11 @@ class NurseTasks
         has_overdue_progress_bar_item?(call_to_schedule_final_title)
     end
 
+    def rescheduled?
+      has_no_list_item?(call_to_schedule_final_title) &&
+        has_scheduled_progress_bar_item?(call_to_schedule_final_title)
+    end
+
     def confirm
       confirm_task call_to_schedule_final_title
       visible?
@@ -60,8 +65,8 @@ class NurseTasks
       selector[1].click
       select_list_item((Date.today + 1).strftime('%B'))
       selector[2].click
-      today_int = (Date.today.strftime('%-d')).to_i
-      if today_int < 9
+      today_int = Date.today.strftime('%-d').to_i
+      if today_int < 10
         first('.select2-result-label', text: today_int).click
       else
         select_list_item(Date.today.strftime('%-d'))

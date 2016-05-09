@@ -8,5 +8,9 @@ module Translations
     def main_button
       locale('Sesiones', 'Sessões', 'Lessons')
     end
+
+    def add_lesson_button
+      locale('Añadir sesión', 'Adicionar sessão', 'Add Lesson')
+    end
   end
 end

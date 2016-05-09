@@ -34,7 +34,7 @@ module Translations
     def portuguese_headers
       @portuguese_headers ||= [
         'Nome',
-        'Identificação do participante',
+        'Identificação do participante (ID)',
         'Tarefas',
         'Configurar token'
       ]

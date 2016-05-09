@@ -78,8 +78,20 @@ feature 'Nurse Supervisor, Participants', metadata: :not_first do
 end
 
 feature 'Spanish Nurse Supervisor, Participants', metadata: :not_first do
+  background { spanish_supervisor.sign_in }
+
+  scenario 'Sees correct translations' do
+    expect(spanish_supervisor_participants).to have_pending_panel_title
+    expect(spanish_supervisor_participants).to have_pending_table_headers
+    expect(spanish_supervisor_participants).to have_active_panel_title
+    expect(spanish_supervisor_participants).to have_active_table_headers
+    expect(spanish_supervisor_participants).to have_completed_panel_title
+    expect(spanish_supervisor_participants).to have_completed_table_headers
+    expect(spanish_supervisor_participants).to have_dropped_panel_title
+    expect(spanish_supervisor_participants).to have_dropped_table_headers
+  end
+
   scenario 'Sees correct translation for terminating participants' do
-    spanish_supervisor.sign_in
     patient_503.terminate
 
     expect(patient_503).to be_dropped
@@ -87,8 +99,20 @@ feature 'Spanish Nurse Supervisor, Participants', metadata: :not_first do
 end
 
 feature 'Portuguese Nurse Supervisor, Participants', metadata: :not_first do
+  background { portuguese_supervisor.sign_in }
+
+  scenario 'Sees correct translations' do
+    expect(portuguese_supervisor_participants).to have_pending_panel_title
+    expect(portuguese_supervisor_participants).to have_pending_table_headers
+    expect(portuguese_supervisor_participants).to have_active_panel_title
+    expect(portuguese_supervisor_participants).to have_active_table_headers
+    expect(portuguese_supervisor_participants).to have_completed_panel_title
+    expect(portuguese_supervisor_participants).to have_completed_table_headers
+    expect(portuguese_supervisor_participants).to have_dropped_panel_title
+    expect(portuguese_supervisor_participants).to have_dropped_table_headers
+  end
+
   scenario 'Sees correct translation for terminating participants' do
-    portuguese_supervisor.sign_in
     patient_603.terminate
 
     expect(patient_603).to be_dropped

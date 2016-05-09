@@ -94,6 +94,7 @@ feature 'Nurse, Call to schedule final appointment', metadata: :not_first do
     reschedule_form.complete
 
     expect(pt_705_nurse_tasks).to have_no_tasks_in_count
+    expect(call_to_schedule_final_appointment).to be_rescheduled
 
     english_nurse.sign_out
     english_supervisor.sign_in

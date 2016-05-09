@@ -349,7 +349,6 @@ feature 'Spanish Nurse, Clinical Summary' do
     pt_500_nurse_tasks.open
     pt_500_clinical_summary.open
 
-    expect(pt_500_clinical_summary).to have_links
     expect(pt_500_clinical_summary).to have_headers
     expect(pt_500_clinical_summary).to have_legend
     expect(pt_500_clinical_summary).to have_notes_headers
@@ -375,7 +374,6 @@ feature 'Portuguese Nurse, Clinical Summary' do
     pt_600_nurse_tasks.open
     pt_600_clinical_summary.open
 
-    expect(pt_600_clinical_summary).to have_links
     expect(pt_600_clinical_summary).to have_headers
     expect(pt_600_clinical_summary).to have_legend
     expect(pt_600_clinical_summary).to have_notes_headers

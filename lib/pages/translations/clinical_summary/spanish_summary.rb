@@ -2,13 +2,6 @@ module Translations
   module ClinicalSummaryTranslations
     # Spanish translations for clinical summary page
     module SpanishSummary
-      def spanish_links
-        @spanish_links ||= [
-          'Tareas',
-          'Todos los contactos realizados'
-        ]
-      end
-
       def spanish_headers
         @spanish_headers ||= [
           'Ingresos',

@@ -2,13 +2,6 @@ module Translations
   module ClinicalSummaryTranslations
     # Portuguese translations for clinical summary page
     module PortugueseSummary
-      def portuguese_links
-        @portuguese_links ||= [
-          'Tarefas',
-          'Todos os contatos realizados'
-        ]
-      end
-
       def portuguese_headers
         @portuguese_headers ||= [
           'Acessos',

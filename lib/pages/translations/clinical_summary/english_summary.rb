@@ -2,13 +2,6 @@ module Translations
   module ClinicalSummaryTranslations
     # English translations for clinical summary page
     module EnglishSummary
-      def english_links
-        @english_links ||= [
-          'Tasks',
-          'All concluded contacts'
-        ]
-      end
-
       def english_headers
         @english_headers ||= [
           'Logins',
