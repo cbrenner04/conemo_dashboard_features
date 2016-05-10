@@ -191,3 +191,35 @@ feature 'Nurse Supervisor, Nurses', metadata: :not_first do
     end
   end
 end
+
+feature 'Spanish Nurse Supervisor, Nurses', metadata: :not_first do
+  background { spanish_supervisor.sign_in }
+
+  scenario 'Sees correct translations' do
+    expect(spanish_supervisor_nurses).to have_nurses_title
+    expect(nurse_500).to have_subheadings
+  end
+
+  scenario 'Sees correct translations for supervision session' do
+    nurse_500.create_supervision_session
+
+    expect(nurse_500).to have_supervision_session_form_visible
+    expect(nurse_500).to have_questions_and_responses
+  end
+end
+
+feature 'Portguese Nurse Supervisor, Nurses', metadata: :not_first do
+  background { portuguese_supervisor.sign_in }
+
+  scenario 'Sees correct translations' do
+    expect(portuguese_supervisor_nurses).to have_nurses_title
+    expect(nurse_600).to have_subheadings
+  end
+
+  scenario 'Sees correct translations for supervision session' do
+    nurse_600.create_supervision_session
+
+    expect(nurse_600).to have_supervision_session_form_visible
+    expect(nurse_600).to have_questions_and_responses
+  end
+end

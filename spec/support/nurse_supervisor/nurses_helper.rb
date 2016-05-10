@@ -47,6 +47,16 @@ def lack_of_connectivity_call
   )
 end
 
+def spanish_supervisor_nurses
+  @spanish_supervisor_nurses ||= SupervisorPage::Nurses.new(locale: 'spanish')
+end
+
+def portuguese_supervisor_nurses
+  @portuguese_supervisor_nurses ||= SupervisorPage::Nurses.new(
+    locale: 'portuguese'
+  )
+end
+
 def pt_300_nurse_tasks
   @pt_300_nurse_tasks ||= NurseTasks.new(pt_id: 300)
 end
@@ -166,6 +176,20 @@ def nurse_404
   @nurse_404 ||= SupervisorPage::Nurses.new(
     id: 404,
     note: 'Supervision Note'
+  )
+end
+
+def nurse_500
+  @nurse_500 ||= SupervisorPage::Nurses.new(
+    id: 500,
+    locale: 'spanish'
+  )
+end
+
+def nurse_600
+  @nurse_600 ||= SupervisorPage::Nurses.new(
+    id: 600,
+    locale: 'portuguese'
   )
 end
 

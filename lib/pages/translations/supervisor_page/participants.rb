@@ -14,6 +14,10 @@ module Translations
       include Translations::SupervisorPageTranslations::
               ParticipantsTranslations::PortugueseParticipants
 
+      def participants_title
+        locale('participantes', 'Participantes', 'Participants')
+      end
+
       def pending_participants_header
         locale('pendiente', 'Pendente', 'Pending')
       end
@@ -27,7 +31,7 @@ module Translations
       end
 
       def dropped_participants_header
-        locale('suspendidos del tratamiento', 'Término de Tratamento',
+        locale('Suspensión del Tratamiento', 'Término de Tratamento',
                'Dropped')
       end
 
@@ -49,6 +53,12 @@ module Translations
       def dropped_headers
         locale(spanish_dropped_headers, portuguese_dropped_headers,
                english_dropped_headers)
+      end
+
+      def nurse_assignment_heading
+        locale('Asignar enfermero para activar participante',
+               'Designar enfermeira para ativar participante',
+               'Assign nurse to activate participant')
       end
 
       def termination_alert

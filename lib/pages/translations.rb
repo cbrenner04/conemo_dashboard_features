@@ -14,6 +14,10 @@ module Translations
     locale(spanish_date(date), portuguese_date(date), english_date(date))
   end
 
+  def locale_month(month)
+    locale(spanish_months[month], portuguese_months[month], month)
+  end
+
   def locale_hour(time)
     locale(" a las #{time.strftime('%I')}", ", #{time.strftime('%H')}",
            " #{time.strftime('%H')}")

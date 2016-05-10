@@ -14,12 +14,18 @@ class SupervisorPage
       @locale ||= participants.fetch(:locale, 'english')
     end
 
+    def has_participants_title?
+      has_css?('h3', text: participants_title)
+    end
+
     def activate
       pending_panel
         .find('tr', text: @pt_id)
         .find('.fa-thumbs-up').click
-      find('h1', text: 'Assign nurse to activate participant ' \
-                       "First Last-#{@pt_id}")
+    end
+
+    def has_nurse_assignment_form_visible?
+      has_css?('h1', text: "#{nurse_assignment_heading} First Last-#{@pt_id}")
     end
 
     def has_nurse_options?
@@ -29,7 +35,7 @@ class SupervisorPage
     end
 
     def assign_nurse
-      sleep(0.25)
+      find('h1', text: "#{nurse_assignment_heading} First Last-#{@pt_id}")
       find('select').click
       find('option', text: 'Nurse-404, English').double_click
       sleep(0.25)
@@ -45,6 +51,22 @@ class SupervisorPage
                   text: "Edit Information Nurse-#{@nurse}, #{language} Edit " \
                         "Information Last-#{@pt_id}, First #{@pt_id} " \
                         "#{locale_date(Date.today)} Treatment termination")
+    end
+
+    def edit_information
+      tries ||= 1
+      find('tr', text: @pt_id).find('.fa-edit').click
+      find('.form-group', match: :first)
+    rescue Capybara::ElementNotFound
+      navigation.scroll_down
+      tries += 1
+      retry unless tries > 2
+    end
+
+    def change_nurse_assignment
+      active_panel
+        .find('tr', text: @pt_id)
+        .find('.fa-user-md').click
     end
 
     def terminate
@@ -72,10 +94,7 @@ class SupervisorPage
 
     def reassign
       tries ||= 1
-      active_panel
-        .find('tr', text: @pt_id)
-        .find('.fa-user-md').click
-      sleep(0.25)
+      change_nurse_assignment
       assign_nurse
     rescue Capybara::ElementNotFound
       navigation.scroll_up
@@ -142,7 +161,7 @@ class SupervisorPage
     end
 
     def dropped_panel
-      find('.panel', text: locale('suspendido', 'Tratamento', 'Dropped'))
+      find('.panel', text: locale('Suspensión', 'Tratamento', 'Dropped'))
     end
 
     def expected_options

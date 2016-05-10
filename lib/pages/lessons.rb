@@ -23,7 +23,7 @@ class Lessons
   end
 
   def open_add_lesson
-    click_on add_new_lesson_button
+    click_on add_lesson_button
     find('#lesson_title')
   end
 

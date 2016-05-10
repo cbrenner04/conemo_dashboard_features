@@ -81,6 +81,7 @@ feature 'Spanish Nurse Supervisor, Participants', metadata: :not_first do
   background { spanish_supervisor.sign_in }
 
   scenario 'Sees correct translations' do
+    expect(spanish_supervisor_participants).to have_participants_title
     expect(spanish_supervisor_participants).to have_pending_panel_title
     expect(spanish_supervisor_participants).to have_pending_table_headers
     expect(spanish_supervisor_participants).to have_active_panel_title
@@ -89,6 +90,29 @@ feature 'Spanish Nurse Supervisor, Participants', metadata: :not_first do
     expect(spanish_supervisor_participants).to have_completed_table_headers
     expect(spanish_supervisor_participants).to have_dropped_panel_title
     expect(spanish_supervisor_participants).to have_dropped_table_headers
+  end
+
+  scenario 'Sees correct translation for activating a participant' do
+    patient_506.activate
+
+    expect(patient_506).to have_nurse_assignment_form_visible
+  end
+
+  scenario 'Sees correct translations for editing participant information' do
+    patient_507.edit_information
+
+    expect(spanish_contact_information).to have_form_fields
+
+    spanish_navigation.cancel
+    patient_501.edit_information
+
+    expect(spanish_contact_information).to have_form_fields
+  end
+
+  scenario 'Sees correct translations for reassigning nurse' do
+    patient_502.reassign
+
+    expect(patient_502).to have_nurse_assignment_form_visible
   end
 
   scenario 'Sees correct translation for terminating participants' do
@@ -102,6 +126,7 @@ feature 'Portuguese Nurse Supervisor, Participants', metadata: :not_first do
   background { portuguese_supervisor.sign_in }
 
   scenario 'Sees correct translations' do
+    expect(portuguese_supervisor_participants).to have_participants_title
     expect(portuguese_supervisor_participants).to have_pending_panel_title
     expect(portuguese_supervisor_participants).to have_pending_table_headers
     expect(portuguese_supervisor_participants).to have_active_panel_title
@@ -110,6 +135,29 @@ feature 'Portuguese Nurse Supervisor, Participants', metadata: :not_first do
     expect(portuguese_supervisor_participants).to have_completed_table_headers
     expect(portuguese_supervisor_participants).to have_dropped_panel_title
     expect(portuguese_supervisor_participants).to have_dropped_table_headers
+  end
+
+  scenario 'Sees correct translation for activating a participant' do
+    patient_606.activate
+
+    expect(patient_606).to have_nurse_assignment_form_visible
+  end
+
+  scenario 'Sees correct translations for editing participant information' do
+    patient_607.edit_information
+
+    expect(portuguese_contact_information).to have_form_fields
+
+    portuguese_navigation.cancel
+    patient_601.edit_information
+
+    expect(portuguese_contact_information).to have_form_fields
+  end
+
+  scenario 'Sees correct translations for reassigning nurse' do
+    patient_602.reassign
+
+    expect(patient_602).to have_nurse_assignment_form_visible
   end
 
   scenario 'Sees correct translation for terminating participants' do

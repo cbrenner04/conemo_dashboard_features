@@ -1,13 +1,13 @@
 require 'business_time'
 require './lib/pages/navigation'
-require './lib/pages/translations'
+require './lib/pages/translations/supervisor_page/nurses'
 
 class SupervisorPage
   # page object for Nurses section of Supervisor page
   class Nurses
     include RSpec::Matchers
     include Capybara::DSL
-    include Translations
+    include Translations::SupervisorPageTranslations::NursesTranslations
 
     def initialize(nurses)
       @id ||= nurses[:id]
@@ -18,6 +18,14 @@ class SupervisorPage
       @supervision_time ||= nurses[:supervision_time]
       @locale ||= nurses[:locale]
       @note ||= nurses[:note]
+    end
+
+    def has_nurses_title?
+      has_css?('h3', text: nurse_title)
+    end
+
+    def has_subheadings?
+      has_css?('ul', text: subheadings)
     end
 
     def has_participants_and_tasks?
@@ -79,11 +87,20 @@ class SupervisorPage
     end
 
     def create_supervision_session
-      nurse_panel.find('a', text: 'Log supervision session').click
+      nurse_panel.find('a', text: log_session_button).click
     end
 
     def has_supervision_session_form_visible?
-      has_css?('h1', text: 'Supervision session')
+      has_css?('h1', text: supervision_form_heading)
+    end
+
+    def has_questions_and_responses?
+      expect(all('label')[0].text)
+        .to eq locale('Fecha/hora', 'Data/hora', 'Session at')
+      # when Administrative issues is added in Portuguese remove the following
+      total_num = locale(31, 30, 31)
+      actual = (6..total_num).map { |i| all('label')[i].text }
+      expect(actual).to eq(expected_questions_and_answers)
     end
 
     def enter_session_length
@@ -157,7 +174,8 @@ class SupervisorPage
     end
 
     def nurse_panel
-      all('.panel', text: "Nurse-#{@id}, English").last
+      language = locale('Spanish', 'Portuguese', 'English')
+      all('.panel', text: "Nurse-#{@id}, #{language}").last
     end
 
     def nurse_panel_heading

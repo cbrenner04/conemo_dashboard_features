@@ -1,4 +1,3 @@
-require './lib/pages/navigation'
 require './lib/pages/translations/navigation'
 require './lib/pages/translations/nurse_tasks_titles'
 
@@ -65,7 +64,7 @@ module NurseTasksForms
   end
 
   def enter_task_location(selector_num)
-    sleep(0.25)
+    find('.select2-container', match: :first)
     selector[selector_num].click
     select_list_item(options.sample)
   end
@@ -87,7 +86,6 @@ module NurseTasksForms
   end
 
   def has_task_form_headings?(num)
-    sleep(0.25)
     actual_headings = (0..num).map { |i| all('.control-label')[i].text }
     expect(actual_headings).to eq(expected_headings)
   end
@@ -99,9 +97,8 @@ module NurseTasksForms
   end
 
   def has_date_selectors?(date, m, d, y)
-    month = date.strftime('%B')
-    selector[m].has_text?(locale(spanish_months[month],
-                                 portuguese_months[month], month)) &&
+    month = locale_month(date.strftime('%B'))
+    selector[m].has_text?(month) &&
       selector[d].has_text?(date.strftime('%-d')) &&
       selector[y].has_text?(date.strftime('%Y'))
   end
@@ -124,10 +121,6 @@ module NurseTasksForms
   end
 
   private
-
-  def navigation
-    @navigation ||= Navigation.new(locale: 'english')
-  end
 
   def panel(type)
     find('.panel', text: type)
