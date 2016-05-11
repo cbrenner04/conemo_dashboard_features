@@ -69,10 +69,10 @@ module Translations
           'Razão não foi comunicado',
           'Outra',
           'Não realizado / Cancelar tarefa',
-          'Não consegi falar com o paciente',
+          'Não consegui falar com o paciente',
           'Paciente não quer continuar no programa',
-          'Paciente não houve tempo para falar (várias vezes)',
-          'Paciente não estava disposto/a a falar com a AE',
+          'Paciente não teve tempo para falar (várias vezes)',
+          'Paciente não estava disposto/a a falar',
           'Outra razão'
         ]
       end

@@ -6,9 +6,10 @@ module Translations
         @spanish_headings ||= [
           'Centro de salud:',
           'Telefóno fijo:',
-          'Contacto de Emergencia (nombre):',
+          'Celular (propio):',
           'Teléfono fijo (Contacto de Emergencia):',
-          'Fecha de nacimiento:',
+          'Teléfono alternativo 1:',
+          'Nombre de persona / Lugar del teléfono alternativo 1:',
           'Dirección actual:',
           'Sexo:',
           'Número del smartphone / número de serie:',

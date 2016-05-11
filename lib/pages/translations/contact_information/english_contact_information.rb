@@ -6,9 +6,10 @@ module Translations
         @english_headings ||= [
           'Family health unit:',
           'Telephone:',
-          'Emergency contact (name):',
+          'Cell phone:',
           'Telephone:',
-          'Birth date:',
+          'Alternate phone 1:',
+          'Contact person:',
           'Home address:',
           'Gender:',
           'Phone number / serial number:',

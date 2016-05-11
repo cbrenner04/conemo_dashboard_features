@@ -102,6 +102,8 @@ feature 'Spanish Admin, Lessons', metadata: :not_first do
   scenario 'Spanish admin sees correct translations' do
     spanish_lessons.open
 
+    # this does not completely cover translations
+    # update after new translations come in
     expect(spanish_lessons).to have_add_lesson_button
     expect(spanish_lessons).to have_spanish_activity_planning_true_false
   end
@@ -115,6 +117,8 @@ feature 'Portuguese Admin, Lessons' do
   scenario 'Portuguese admin sees correct translations' do
     portuguese_lessons.open
 
+    # this does not completely cover translations
+    # update after new translations come in
     expect(portuguese_lessons).to have_add_lesson_button
     expect(portuguese_lessons).to have_portuguese_activity_planning_true_false
   end

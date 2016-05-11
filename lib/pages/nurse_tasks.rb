@@ -29,7 +29,7 @@ class NurseTasks
     tries ||= 1
     find('tr', text: @pt_id).click
     find('h2', text: tasks_heading)
-  rescue Capybara::ElementNotFound
+  rescue Capybara::ElementNotFound, Selenium::WebDriver::Error::UnknownError
     navigation.scroll_up
     tries += 1
     retry unless tries > 2

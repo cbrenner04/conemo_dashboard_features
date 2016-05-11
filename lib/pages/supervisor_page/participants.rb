@@ -64,6 +64,7 @@ class SupervisorPage
     end
 
     def change_nurse_assignment
+      navigation.scroll_down
       active_panel
         .find('tr', text: @pt_id)
         .find('.fa-user-md').click

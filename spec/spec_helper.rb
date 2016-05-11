@@ -12,6 +12,8 @@ RSpec.configure do |config|
   config.expect_with :rspec do |c|
     c.syntax = [:should, :expect]
   end
+  config.example_status_persistence_file_path = 'spec/examples.txt'
+  config.run_all_when_everything_filtered = true
   config.profile_examples = 10
   config.register_ordering(:global) do |list|
     list.sort_by do |group|
@@ -33,6 +35,7 @@ Capybara.configure do |config|
   end
   config.default_driver = :selenium
   config.page.driver.browser.manage.window.resize_to(1280, 743)
+  # this is deprecated but currently it only saves pages to this path
   config.save_and_open_page_path = 'spec/screenshots/'
 end
 

@@ -9,6 +9,10 @@ feature 'Nurse, Contact Information', metadata: :not_first do
     pt_300_nurse_tasks.open
 
     expect(pt_300_contact_info).to be_visible
+
+    pt_300_contact_info.view_all
+
+    expect(pt_300_contact_info).to have_extra_information_visible
   end
 
   scenario 'Nurse cancels out of edit of participant information' do
@@ -39,6 +43,9 @@ feature 'Nurse, Contact Information', metadata: :not_first do
   scenario 'Nurse cancels out of edit of smartphone information' do
     pt_310_nurse_tasks.open
     pt_310_contact_info.select_edit_smartphone_information
+
+    expect(pt_310_contact_info).to have_smartphone_form_visible
+
     navigation.cancel
 
     expect(pt_310_contact_info).to be_visible

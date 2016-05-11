@@ -6,11 +6,11 @@ module Translations
     include Translations
 
     def singular_active_task
-      locale('Tarea pendiente', 'Tarefa pendente', 'Task pending')
+      locale('Tarea total', 'Tarefa Total', 'Task pending')
     end
 
     def plural_active_task
-      locale('Tareas pendientes', 'Tarefas pendentes', 'Tasks pending')
+      locale('Tareas totales', 'Tarefas Totalis', 'Tasks pending')
     end
 
     def singular_overdue_task
@@ -22,7 +22,7 @@ module Translations
     end
 
     def scheduled_key_label
-      locale('Próximas sesiones', 'Tarefas futuras',
+      locale('Próximos tareas', 'Tarefas futuras',
              'Scheduled but not due')
     end
 
@@ -31,7 +31,7 @@ module Translations
     end
 
     def active_key_label
-      locale('Sesión actual', 'Ativo', 'Active due')
+      locale('Tareas actuales', 'Ativo', 'Active due')
     end
 
     def canceled_key_label

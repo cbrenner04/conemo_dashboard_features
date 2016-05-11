@@ -52,14 +52,12 @@ module Translations
         ]
       end
 
-      # Dificultades will be updated to Dificuldades
-      # Administrative issues will need to be added
       def portuguese_questions_and_answers
         @portuguese_questions_and_answers ||= [
           'Duração da chamada (minutos)', 'Tipo de reunião',
           'Em grupo', 'Individual', 'Tipo de contato', 'por telefone',
           'presencial', 'Assuntos discutidos', 'Encontro inicial',
-          'Dificultades em contatar participante',
+          'Dificuldades em contatar participante',
           'Pedido de ajuda não resolvido', 'Chamada por não-conectividade',
           'Não aderência', 'Dificuldades do paciente com CONEMO',
           'Tarefas atrasadas / Aderência da/o AE', 'Tarefas canceladas',
@@ -68,8 +66,8 @@ module Translations
           'Dúvidas com respeito á intervenção',
           'Outros pontos de contato programados',
           'Pedidos de ajuda resolvidos',
-          'Situações difíceis relacionadas ao estudo', 'Contatos adicionais',
-          'Outros'
+          'Situações difíceis relacionadas ao estudo',
+          'Questões Admnistrativas', 'Contatos adicionais', 'Outros'
         ]
       end
 

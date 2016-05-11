@@ -65,8 +65,6 @@ feature 'Nurse, Non-adherence call', metadata: :not_first do
     expect(pt_804_nurse_tasks).to have_overdue_tasks
   end
 
-  scenario 'Nurse cancels non-adherence call'
-
   scenario 'Nurse cancels out of task resolution form, then resolves task' do
     pt_420_nurse_tasks.open
 

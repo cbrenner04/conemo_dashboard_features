@@ -58,8 +58,6 @@ feature 'Nurse, Non-connectivity call', metadata: :not_first do
     expect(lack_of_connectivity_call).to be_active
   end
 
-  scenario 'Nurse cancels non-connectivity task'
-
   scenario 'Nurse marks non-connectivity task as resolved' do
     pt_410_nurse_tasks.open
 

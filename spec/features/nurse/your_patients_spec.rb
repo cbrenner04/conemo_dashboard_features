@@ -138,40 +138,40 @@ feature 'English Nurse, Your Patients', metadata: :not_first do
   # will need to use something to manipulate the server time
   # otherwise just have the above set of examples testing css
 
-  feature 'Conditional statuses' do
-    scenario 'Nurse sees change in tasks order within one patient ' \
-             'when second task becomes overdue first'
-    # day 1 - confirmation call, day 2 help request - order is same
-    # day 3 - help request overdue, confirmation call active - reverse order
-    # day 5 - both overdue, reverse order stays
+  # feature 'Conditional statuses' do
+  #   scenario 'Nurse sees change in tasks order within one patient ' \
+  #            'when second task becomes overdue first'
+  #   # day 1 - confirmation call, day 2 help request - order is same
+  #   # day 3 - help request overdue, confirmation call active - reverse order
+  #   # day 5 - both overdue, reverse order stays
 
-    scenario 'Nurse sees non-adherence task disappear after session is ' \
-             'accessed late'
-  end
+  #   scenario 'Nurse sees non-adherence task disappear after session is ' \
+  #            'accessed late'
+  # end
 
-  feature 'Overdue, tasks assigned before noon' do
-    scenario 'Nurse sees confirmation call'
-    scenario 'Nurse sees initial in person appointment'
-    scenario 'Nurse sees follow up call week 1'
-    scenario 'Nurse sees follow up call week 3'
-    scenario 'Nurse sees call to schedule final appointment'
-    scenario 'Nurse sees final appointment'
-    scenario 'Nurse sees help request'
-    scenario 'Nurse sees non-connectivity call'
-    scenario 'Nurse sees non-adherence call'
-  end
+  # feature 'Overdue, tasks assigned before noon' do
+  #   scenario 'Nurse sees confirmation call'
+  #   scenario 'Nurse sees initial in person appointment'
+  #   scenario 'Nurse sees follow up call week 1'
+  #   scenario 'Nurse sees follow up call week 3'
+  #   scenario 'Nurse sees call to schedule final appointment'
+  #   scenario 'Nurse sees final appointment'
+  #   scenario 'Nurse sees help request'
+  #   scenario 'Nurse sees non-connectivity call'
+  #   scenario 'Nurse sees non-adherence call'
+  # end
 
-  feature 'Overdue, tasks assigned after noon' do
-    scenario 'Nurse sees confirmation call'
-    scenario 'Nurse sees initial in person appointment'
-    scenario 'Nurse sees follow up call week 1'
-    scenario 'Nurse sees follow up call week 3'
-    scenario 'Nurse sees call to schedule final appointment'
-    scenario 'Nurse sees final appointment'
-    scenario 'Nurse sees help request'
-    scenario 'Nurse sees non-connectivity call'
-    scenario 'Nurse sees non-adherence call'
-  end
+  # feature 'Overdue, tasks assigned after noon' do
+  #   scenario 'Nurse sees confirmation call'
+  #   scenario 'Nurse sees initial in person appointment'
+  #   scenario 'Nurse sees follow up call week 1'
+  #   scenario 'Nurse sees follow up call week 3'
+  #   scenario 'Nurse sees call to schedule final appointment'
+  #   scenario 'Nurse sees final appointment'
+  #   scenario 'Nurse sees help request'
+  #   scenario 'Nurse sees non-connectivity call'
+  #   scenario 'Nurse sees non-adherence call'
+  # end
 end
 
 feature 'Spanish Nurse, Your Patients', metadata: :very_first do

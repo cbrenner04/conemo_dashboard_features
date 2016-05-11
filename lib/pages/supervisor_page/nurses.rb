@@ -97,9 +97,7 @@ class SupervisorPage
     def has_questions_and_responses?
       expect(all('label')[0].text)
         .to eq locale('Fecha/hora', 'Data/hora', 'Session at')
-      # when Administrative issues is added in Portuguese remove the following
-      total_num = locale(31, 30, 31)
-      actual = (6..total_num).map { |i| all('label')[i].text }
+      actual = (6..31).map { |i| all('label')[i].text }
       expect(actual).to eq(expected_questions_and_answers)
     end
 

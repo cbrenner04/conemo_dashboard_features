@@ -19,16 +19,33 @@ class NurseTasks
     end
 
     def visible?
-      date_1 = Date.today - ((30 * 365) + @id.to_i)
       has_css?('.col-sm-5',
                text: 'Contact information Family health unit: unit 1 ' \
-                     "Telephone: 13333333#{@id} Emergency contact (name): " \
-                     "Telephone: Birth date: #{date_1.strftime('%B %d, %Y')} " \
+                     "Telephone: 13333333#{@id} Cell phone: Telephone: " \
+                     'Alternate phone 1: Contact person: ' \
                      'Home address: 123 Main Street Gender: female')
+    end
+
+    def view_all
+      click_on 'SEE ALL'
+    end
+
+    def has_extra_information_visible?
+      birth_date = Date.today - ((30 * 365) + @id.to_i)
+      has_css?('.col-sm-5',
+               text: 'Emergency contact (name): ' \
+                     "Birth date: #{birth_date.strftime('%b %d, %Y')} " \
+                     'Alternate phone 2: Relationship: Relationship: ' \
+                     'Contact person: Relationship: Relationship: ' \
+                     'Relationship: Relationship: Address: Cell phone:')
     end
 
     def select_edit_contact_information
       contact_information_div.first('.fa-edit').click
+    end
+
+    def has_smartphone_form_visible?
+      has_css?('h1', text: 'Input Smartphone Information')
     end
 
     def select_edit_smartphone_information
@@ -57,7 +74,7 @@ class NurseTasks
     end
 
     def has_contact_information_table_headings?
-      actual_headings = (0..8).map do |i|
+      actual_headings = (0..9).map do |i|
         contact_information_div.all('strong')[i].text
       end
       expect(actual_headings).to eq(expected_headings)

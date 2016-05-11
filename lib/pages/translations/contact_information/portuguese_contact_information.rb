@@ -6,9 +6,10 @@ module Translations
         @portuguese_headings ||= [
           'Unidade de Saúde da Família:',
           'Telefone fixo:',
-          'Contato de Emergência (nome):',
+          'Celular (pessoal):',
           'Telefone fixo (Contato de Emergência):',
-          'Data de nascimento:',
+          'Telefone alternativo 1:',
+          'Nome de pessoa / lugar de telefone alternativo 1:',
           'Endereço:',
           'Sexo:',
           'Número do Smartphone / número de serie:',
