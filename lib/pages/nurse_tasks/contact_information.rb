@@ -34,7 +34,7 @@ class NurseTasks
       birth_date = Date.today - ((30 * 365) + @id.to_i)
       has_css?('.col-sm-5',
                text: 'Emergency contact (name): ' \
-                     "Birth date: #{birth_date.strftime('%b %d, %Y')} " \
+                     "Birth date: #{birth_date.strftime('%B %d, %Y')} " \
                      'Alternate phone 2: Relationship: Relationship: ' \
                      'Contact person: Relationship: Relationship: ' \
                      'Relationship: Relationship: Address: Cell phone:')

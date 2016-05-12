@@ -53,30 +53,39 @@ class SupervisorPage
 
     def has_last_supervision_session?
       nurse_panel_heading
-        .has_css?('small',
-                  text: 'Last supervision session: ' \
-                        "#{@supervision_date.strftime('%B %d, %Y')} " \
-                        "#{dst_time(@supervision_time).strftime('%H')}")
+        .has_css?('small', text: last_supervision_date)
     end
 
     def has_supervision_session_late?
       nurse_panel_heading
-        .has_css?('.text-warning',
-                  text: 'Last supervision session: ' \
-                        "#{@supervision_date.strftime('%B %d, %Y')} " \
-                        "#{dst_time(@supervision_time).strftime('%H')}")
+        .has_css?('.text-warning', text: last_supervision_date)
     end
 
     def has_supervision_session_overdue?
       nurse_panel_heading
-        .has_css?('.text-danger',
-                  text: 'Last supervision session: ' \
-                        "#{@supervision_date.strftime('%B %d, %Y')} " \
-                        "#{dst_time(@supervision_time).strftime('%H')}")
+        .has_css?('.text-danger', text: last_supervision_date)
     end
 
     def review_supervision_sessions
-      nurse_panel_heading.find('a', text: 'Review').click
+      nurse_panel_heading.find('a', text: review_link).click
+    end
+
+    def has_supervisor_notes_title?
+      has_css?('h3',
+               text: locale('Notas del Supervisor', 'Notas do Supervisor',
+                            'Nurse supervisor notes'))
+    end
+
+    def has_supervision_sessions_title?
+      # will need to update spanish version
+      has_css?('h3',
+               text: locale('Añadir nueva supervisión', 'Sessão de Supervisão',
+                            'Supervision sessions'))
+    end
+
+    def has_supervision_table_headers?
+      actual_headers = (0..4).map { |i| all('td')[i].text }
+      expect(actual_headers).to eq(expected_headers)
     end
 
     def has_previous_sessions_listed?
@@ -156,8 +165,7 @@ class SupervisorPage
 
     def select
       4.times { navigation.scroll_down }
-      language = locale('Spanish', 'Portuguese', 'English')
-      find('.panel-heading', text: "Nurse-#{@id}, #{language}")
+      nurse_panel_heading
         .find('a', text: "Nurse-#{@id}, #{language}").click
     end
 
@@ -168,16 +176,26 @@ class SupervisorPage
     private
 
     def navigation
-      @navigation ||= Navigation.new(locale: 'english')
+      @navigation ||= Navigation.new(locale: @locale)
+    end
+
+    def language
+      @language ||= locale('Spanish', 'Portuguese', 'English')
     end
 
     def nurse_panel
-      language = locale('Spanish', 'Portuguese', 'English')
       all('.panel', text: "Nurse-#{@id}, #{language}").last
     end
 
     def nurse_panel_heading
-      find('.panel-heading', text: "Nurse-#{@id}, English")
+      find('.panel-heading', text: "Nurse-#{@id}, #{language}")
+    end
+
+    def last_supervision_date
+      @last_supervision_date ||=
+        "#{last_supervision_header}: " \
+        "#{locale_date(@supervision_date)}" \
+        "#{locale_hour(dst_time(@supervision_time))}"
     end
 
     def dst_time(time)

@@ -8,6 +8,7 @@ module Translations
           "Data/hora: #{portuguese_date(Date.today - 42)}",
           "Data/hora: #{portuguese_date(Date.today - 35)}",
           "Data da ligação: #{portuguese_date(Date.today - 21)}",
+          # switch to "Data/hora" when update is made
           "Data da ligação: #{portuguese_date(Date.today - 14)}",
           "Data da ligação: #{portuguese_date(Date.today - 14)}",
           "Data da ligação: #{portuguese_date(Date.today - 7)}",

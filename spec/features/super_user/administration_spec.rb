@@ -1,15 +1,19 @@
 # filename: ./spec/features/super_user/administration_spec.rb
 
-feature 'Super User, Administration' do
+feature 'Super User, Administration', metadata: :not_first do
+  scenario 'Super user can create an admin'
+  scenario 'Super user can create a nurse'
+  scenario 'Super user can create a nurse supervisor'
+end
+
+# this will require different set up
+feature 'Super User, Administration', metadata: :not_first do
   scenario 'Super user can view and export authentication tokens table'
   scenario 'Super user can view and export participants table'
   scenario 'Super user can view and export users table'
   scenario 'Super user can view and export admin table'
-  scenario 'Super user can create an admin'
   scenario 'Super user can view and export nurse table'
-  scenario 'Super user can create a nurse'
   scenario 'Super user can view and export nurse supervisor table'
-  scenario 'Super user can create a nurse supervisor'
   scenario 'Super user can view and export content access events table'
   scenario 'Super user can view and export devices table'
   scenario 'Super user can view and export help messages table'
@@ -29,5 +33,4 @@ feature 'Super User, Administration' do
   scenario 'Super user can view and export smartphones table'
   scenario 'Super user can view and export third contacts table'
   scenario 'Super user can view and export lessons table'
-  scenario 'Super user can access lessons in each locale'
 end

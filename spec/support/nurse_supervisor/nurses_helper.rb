@@ -182,14 +182,18 @@ end
 def nurse_500
   @nurse_500 ||= SupervisorPage::Nurses.new(
     id: 500,
-    locale: 'spanish'
+    locale: 'spanish',
+    supervision_date: 8.business_days.ago,
+    supervision_time: today_at_11_am
   )
 end
 
 def nurse_600
   @nurse_600 ||= SupervisorPage::Nurses.new(
     id: 600,
-    locale: 'portuguese'
+    locale: 'portuguese',
+    supervision_date: 8.business_days.ago,
+    supervision_time: today_at_11_am
   )
 end
 

@@ -135,6 +135,7 @@ feature 'English Nurse, Your Patients', metadata: :not_first do
     end
   end
 
+  # These will likely not implemented for awhile or until a bug comes up
   # will need to use something to manipulate the server time
   # otherwise just have the above set of examples testing css
 
