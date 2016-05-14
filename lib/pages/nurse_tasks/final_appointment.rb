@@ -85,7 +85,9 @@ class NurseTasks
     end
 
     def has_current_date_selections?
-      has_date_selectors?(Date.today, 1, locale(0, 0, 2), locale(2, 2, 0)) &&
+      has_date_selectors?(Date.today, 1,
+                          localize(spanish: 0, portuguese: 0, english: 2),
+                          localize(spanish: 2, portuguese: 2, english: 0)) &&
         has_hour_selector?(3)
     end
 

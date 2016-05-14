@@ -6,11 +6,15 @@ module Translations
     include Translations
 
     def main_button
-      locale('Sesiones', 'Sessões', 'Lessons')
+      localize(spanish: 'Sesiones', portuguese: 'Sessões', english: 'Lessons')
     end
 
     def add_lesson_button
-      locale('Añadir sesión', 'Adicionar sessão', 'Add Lesson')
+      localize(
+        spanish: 'Añadir sesión',
+        portuguese: 'Adicionar sessão',
+        english: 'Add Lesson'
+      )
     end
   end
 end

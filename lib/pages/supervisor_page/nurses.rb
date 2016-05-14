@@ -72,15 +72,17 @@ class SupervisorPage
 
     def has_supervisor_notes_title?
       has_css?('h3',
-               text: locale('Notas del Supervisor', 'Notas do Supervisor',
-                            'Nurse supervisor notes'))
+               text: localize(spanish: 'Notas del Supervisor',
+                              portuguese: 'Notas do Supervisor',
+                              english: 'Nurse supervisor notes'))
     end
 
     def has_supervision_sessions_title?
       # will need to update spanish version
       has_css?('h3',
-               text: locale('Añadir nueva supervisión', 'Sessão de Supervisão',
-                            'Supervision sessions'))
+               text: localize(spanish: 'Añadir nueva supervisión',
+                              portuguese: 'Sessão de Supervisão',
+                              english: 'Supervision sessions'))
     end
 
     def has_supervision_table_headers?
@@ -105,7 +107,9 @@ class SupervisorPage
 
     def has_questions_and_responses?
       expect(all('label')[0].text)
-        .to eq locale('Fecha/hora', 'Data/hora', 'Session at')
+        .to eq localize(spanish: 'Fecha/hora',
+                        portuguese: 'Data/hora',
+                        english: 'Session at')
       actual = (6..31).map { |i| all('label')[i].text }
       expect(actual).to eq(expected_questions_and_answers)
     end
@@ -180,7 +184,11 @@ class SupervisorPage
     end
 
     def language
-      @language ||= locale('Spanish', 'Portuguese', 'English')
+      @language ||= localize(
+        spanish: 'Spanish',
+        portuguese: 'Portuguese',
+        english: 'English'
+      )
     end
 
     def nurse_panel

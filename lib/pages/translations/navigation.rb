@@ -6,19 +6,27 @@ module Translations
     include Translations
 
     def cancel_button
-      locale('Cancelar', 'Cancelar', 'Cancel')
+      localize(spanish: 'Cancelar', portuguese: 'Cancelar', english: 'Cancel')
     end
 
     def submit_button
-      locale('Guardar', 'Salvar', 'Save')
+      localize(spanish: 'Guardar', portuguese: 'Salvar', english: 'Save')
     end
 
     def confirm_button
-      locale('Confirmar', 'Confirmar', 'Confirm')
+      localize(
+        spanish: 'Confirmar',
+        portuguese: 'Confirmar',
+        english: 'Confirm'
+      )
     end
 
     def reschedule_button
-      locale('Reprogramar', 'Remarcar', 'Reschedule')
+      localize(
+        spanish: 'Reprogramar',
+        portuguese: 'Remarcar',
+        english: 'Reschedule'
+      )
     end
   end
 end

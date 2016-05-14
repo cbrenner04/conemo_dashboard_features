@@ -8,7 +8,7 @@ class PendingParticipants
 
   def initialize(pending_participant)
     @name ||= pending_participant[:name]
-    @locale ||= pending_participant[:locale]
+    @locale ||= pending_participant.fetch(:locale, 'english')
   end
 
   def open
@@ -52,6 +52,14 @@ class PendingParticipants
     sleep(0.25)
     actual = (0..4).map { |i| all('th')[i].text }
     expect(actual).to match(expected_pending_headers)
+  end
+
+  def has_pending_participant_table_title?
+    has_text? localize(
+      spanish: 'Participantes no asignados',
+      portuguese: 'Participantes pendentes',
+      english: 'Pending participants'
+    )
   end
 
   private

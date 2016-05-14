@@ -1,6 +1,6 @@
 require './lib/pages/translations/supervisor_page'
-Dir['./lib/pages/translations/supervisor_page/participants/*.rb']
-  .each { |file| require file }
+require './lib/pages/translations/supervisor_page/' \
+        'participants/localized_participants.rb'
 
 module Translations
   module SupervisorPageTranslations
@@ -8,65 +8,76 @@ module Translations
     module ParticipantsTranslations
       include Translations::SupervisorPageTranslations
       include Translations::SupervisorPageTranslations::
-              ParticipantsTranslations::EnglishParticipants
-      include Translations::SupervisorPageTranslations::
-              ParticipantsTranslations::SpanishParticipants
-      include Translations::SupervisorPageTranslations::
-              ParticipantsTranslations::PortugueseParticipants
+              ParticipantsTranslations::LocalizedParticipants
 
       def participants_title
-        locale('participantes', 'Participantes', 'Participants')
+        localize(
+          spanish: 'participantes',
+          portuguese: 'Participantes',
+          english: 'Participants'
+        )
       end
 
       def pending_participants_header
-        locale('pendiente', 'Pendente', 'Pending')
+        localize(
+          spanish: 'pendiente',
+          portuguese: 'Pendente',
+          english: 'Pending'
+        )
       end
 
       def active_participants_header
-        locale('activo', 'Ativo', 'Active')
+        localize(spanish: 'activo', portuguese: 'Ativo', english: 'Active')
       end
 
       def completed_participants_header
-        locale('completado', 'Completo', 'Complete')
+        localize(
+          spanish: 'completado',
+          portuguese: 'Completo',
+          english: 'Complete'
+        )
       end
 
       def dropped_participants_header
-        locale('Suspensión del Tratamiento', 'Término de Tratamento',
-               'Dropped')
+        localize(
+          spanish: 'Suspensión del Tratamiento',
+          portuguese: 'Término de Tratamento',
+          english: 'Dropped'
+        )
       end
 
-      def pending_headers
-        locale(spanish_pending_headers, portuguese_pending_headers,
-               english_pending_headers)
+      def expected_pending_headers
+        localize pending_headers
       end
 
-      def active_headers
-        locale(spanish_active_headers, portuguese_active_headers,
-               english_active_headers)
+      def expected_active_headers
+        localize active_headers
       end
 
-      def completed_headers
-        locale(spanish_completed_headers, portuguese_completed_headers,
-               english_completed_headers)
+      def expected_completed_headers
+        localize completed_headers
       end
 
-      def dropped_headers
-        locale(spanish_dropped_headers, portuguese_dropped_headers,
-               english_dropped_headers)
+      def expected_dropped_headers
+        localize dropped_headers
       end
 
       def nurse_assignment_heading
-        locale('Asignar enfermero para activar participante',
-               'Designar enfermeira para ativar participante',
-               'Assign nurse to activate participant')
+        localize(
+          spanish: 'Asignar enfermero para activar participante',
+          portuguese: 'Designar enfermeira para ativar participante',
+          english: 'Assign nurse to activate participant'
+        )
       end
 
       def termination_alert
-        locale('¿Estás seguro/a de que quieres suspender el tratamiento de ' \
-               'este participante?',
-               'Tem certeza que quer terminar o acompanhamento deste ' \
-               'participante?',
-               'Are you sure you want to terminate this person?')
+        localize(
+          spanish: '¿Estás seguro/a de que quieres suspender el tratamiento ' \
+                   'de este participante?',
+          portuguese: 'Tem certeza que quer terminar o acompanhamento deste ' \
+                      'participante?',
+          english: 'Are you sure you want to terminate this person?'
+        )
       end
     end
   end

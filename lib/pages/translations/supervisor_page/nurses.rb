@@ -1,6 +1,5 @@
 require './lib/pages/translations/supervisor_page'
-Dir['./lib/pages/translations/supervisor_page/nurses/*.rb']
-  .each { |file| require file }
+require './lib/pages/translations/supervisor_page/nurses/localized_nurses.rb'
 
 module Translations
   module SupervisorPageTranslations
@@ -8,50 +7,58 @@ module Translations
     module NursesTranslations
       include Translations::SupervisorPageTranslations
       include Translations::SupervisorPageTranslations::
-              NursesTranslations::EnglishNurses
-      include Translations::SupervisorPageTranslations::
-              NursesTranslations::SpanishNurses
-      include Translations::SupervisorPageTranslations::
-              NursesTranslations::PortugueseNurses
+              NursesTranslations::LocalizedNurses
 
       def nurse_title
-        locale('Enfermera', 'Auxiliar de Engfermagem', 'Nurses')
+        localize(
+          spanish: 'Enfermera',
+          portuguese: 'Auxiliar de Engfermagem',
+          english: 'Nurses'
+        )
       end
 
       def subheadings
-        locale(
-          /\d+ participantes \d+ Tareas \d+ tareas atrasadas/,
-          /\d+ Participantes \d+ Tarefas \d+ Tarefas Atrasadas/,
-          /\d+ Participants \d+ Tasks \d+ Overdue/
+        localize(
+          spanish: /\d+ participantes \d+ Tareas \d+ tareas atrasadas/,
+          portuguese: /\d+ Participantes \d+ Tarefas \d+ Tarefas Atrasadas/,
+          english: /\d+ Participants \d+ Tasks \d+ Overdue/
         )
       end
 
       def log_session_button
-        locale('Añadir nueva supervisión', 'Resgistrar Sessão de Supervisão',
-               'Log supervision session')
+        localize(
+          spanish: 'Añadir nueva supervisión',
+          portuguese: 'Resgistrar Sessão de Supervisão',
+          english: 'Log supervision session'
+        )
       end
 
       def supervision_form_heading
-        locale('Añadir nueva supervisión', 'Sessão de Supervisão',
-               'Supervision session')
+        localize(
+          spanish: 'Añadir nueva supervisión',
+          portuguese: 'Sessão de Supervisão',
+          english: 'Supervision session'
+        )
       end
 
       def expected_questions_and_answers
-        locale(spanish_questions_and_answers, portuguese_questions_and_answers,
-               english_questions_and_answers)
+        localize questions_and_answers
       end
 
       def last_supervision_header
-        locale('Última supervisión', 'Última Sessão de Supervisão',
-               'Last supervision session')
+        localize(
+          spanish: 'Última supervisión',
+          portuguese: 'Última Sessão de Supervisão',
+          english: 'Last supervision session'
+        )
       end
 
       def review_link
-        locale('Detalles', 'Detalhes', 'Review')
+        localize(spanish: 'Detalles', portuguese: 'Detalhes', english: 'Review')
       end
 
       def expected_headers
-        locale(spanish_headers, portuguese_headers, english_headers)
+        localize headers
       end
     end
   end

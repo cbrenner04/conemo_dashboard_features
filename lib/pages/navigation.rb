@@ -42,10 +42,10 @@ class Navigation
   end
 
   def buttons
-    @buttons ||= locale(
-      ['Participantes pendientes', 'Sesiones'],
-      ['Participantes pendentes', 'Sessões'],
-      ['Pending Participants', 'Lessons']
+    @buttons ||= localize(
+      spanish: ['Participantes pendientes', 'Sesiones'],
+      portuguese: ['Participantes pendentes', 'Sessões'],
+      english: ['Pending Participants', 'Lessons']
     )
   end
 end

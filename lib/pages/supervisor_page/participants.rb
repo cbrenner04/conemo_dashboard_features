@@ -109,7 +109,7 @@ class SupervisorPage
 
     def has_pending_table_headers?
       actual_headers = (0..4).map { |i| pending_panel.all('th')[i].text }
-      expect(actual_headers).to eq(pending_headers)
+      expect(actual_headers).to eq(expected_pending_headers)
     end
 
     def has_active_panel_title?
@@ -118,7 +118,7 @@ class SupervisorPage
 
     def has_active_table_headers?
       actual = [0, 1, 3, 4, 5, 6].map { |i| active_panel.all('th')[i].text }
-      expect(actual).to eq(active_headers)
+      expect(actual).to eq(expected_active_headers)
     end
 
     def has_completed_panel_title?
@@ -127,7 +127,7 @@ class SupervisorPage
 
     def has_completed_table_headers?
       actual_headers = (0..3).map { |i| completed_panel.all('th')[i].text }
-      expect(actual_headers).to eq(completed_headers)
+      expect(actual_headers).to eq(expected_completed_headers)
     end
 
     def has_dropped_panel_title?
@@ -136,7 +136,7 @@ class SupervisorPage
 
     def has_dropped_table_headers?
       actual_headers = (0..3).map { |i| dropped_panel.all('th')[i].text }
-      expect(actual_headers).to eq(dropped_headers)
+      expect(actual_headers).to eq(expected_dropped_headers)
     end
 
     private
@@ -146,7 +146,7 @@ class SupervisorPage
     end
 
     def language
-      locale('Spanish', 'Portuguese', 'English')
+      localize(spanish: 'Spanish', portuguese: 'Portuguese', english: 'English')
     end
 
     def pending_panel
@@ -162,7 +162,9 @@ class SupervisorPage
     end
 
     def dropped_panel
-      find('.panel', text: locale('Suspensión', 'Tratamento', 'Dropped'))
+      find('.panel',
+           text: localize(spanish: 'Suspensión',
+                          portuguese: 'Tratamento', english: 'Dropped'))
     end
 
     def expected_options

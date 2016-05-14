@@ -4,49 +4,50 @@ module Translations
     include Translations
 
     def expected_headers
-      locale(spanish_headers, portuguese_headers, english_headers)
+      localize(
+        spanish: [
+          'Nombre',
+          'Código del participante',
+          'Tareas',
+          'Identificador'
+        ],
+        portuguese: [
+          'Nome',
+          'Identificação do participante (ID)',
+          'Tarefas',
+          'Configurar token'
+        ],
+        english: [
+          'Name',
+          'Participant ID',
+          'Tasks',
+          'Configuration token'
+        ]
+      )
     end
 
     def no_tasks
-      locale('Sin tareas pendientes', 'Tarefas Não Ativas',
-             'No active/overdue task')
+      localize(
+        spanish: 'Sin tareas pendientes',
+        portuguese: 'Tarefas Não Ativas',
+        english: 'No active/overdue task'
+      )
     end
 
     def active_task
-      locale('Tarea actual', 'Tarefa Ativa', 'Active task')
+      localize(
+        spanish: 'Tarea actual',
+        portuguese: 'Tarefa Ativa',
+        english: 'Active task'
+      )
     end
 
     def overdue_task
-      locale('Tarea atrasada', 'Tarefa Atrasada', 'Overdue task')
-    end
-
-    private
-
-    def spanish_headers
-      @spanish_headers ||= [
-        'Nombre',
-        'Código del participante',
-        'Tareas',
-        'Identificador'
-      ]
-    end
-
-    def portuguese_headers
-      @portuguese_headers ||= [
-        'Nome',
-        'Identificação do participante (ID)',
-        'Tarefas',
-        'Configurar token'
-      ]
-    end
-
-    def english_headers
-      @english_headers ||= [
-        'Name',
-        'Participant ID',
-        'Tasks',
-        'Configuration token'
-      ]
+      localize(
+        spanish: 'Tarea atrasada',
+        portuguese: 'Tarefa Atrasada',
+        english: 'Overdue task'
+      )
     end
   end
 end

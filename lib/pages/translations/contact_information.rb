@@ -1,50 +1,103 @@
 require './lib/pages/translations'
-Dir['./lib/pages/translations/contact_information/*.rb']
-  .each { |file| require file }
 
 module Translations
   # module for Contact Information page
   module ContactInformation
     include Translations
-    include Translations::ContactInformation::SpanishContactInformation
-    include Translations::ContactInformation::PortugueseContactInformation
-    include Translations::ContactInformation::EnglishContactInformation
 
     def contact_information_title
-      locale('Información de contacto', 'Informações de contato',
-             'Contact information')
+      localize(
+        spanish: 'Información de contacto',
+        portuguese: 'Informações de contato',
+        english: 'Contact information'
+      )
     end
 
     def smartphone_information_title
-      locale('Smartphone', 'Informações de Smartphone',
-             'Smartphone Information')
+      localize(
+        spanish: 'Smartphone',
+        portuguese: 'Informações de Smartphone',
+        english: 'Smartphone Information'
+      )
     end
 
     def phone_number_header
-      locale('Número del smartphone / número de serie:',
-             'Número do Smartphone / número de serie:',
-             'Phone number / serial number:')
+      localize(
+        spanish: 'Número del smartphone / número de serie:',
+        portuguese: 'Número do Smartphone / número de serie:',
+        english: 'Phone number / serial number:'
+      )
     end
 
     def serial_number_header
-      locale('Código del smartphone:', 'Código do Smartphone:',
-             'Phone ID:')
+      localize(
+        spanish: 'Código del smartphone:',
+        portuguese: 'Código do Smartphone:',
+        english: 'Phone ID:'
+      )
     end
 
     def expected_headings
-      locale(spanish_headings, portuguese_headings, english_headings)
+      localize headings
     end
 
     def saved_contact_information_alert
-      locale('Información actualizada exitosamente',
-             'Informações do participante atualizadas com sucesso',
-             'Successfully updated participant')
+      localize(
+        spanish: 'Información actualizada exitosamente',
+        portuguese: 'Informações do participante atualizadas com sucesso',
+        english: 'Successfully updated participant'
+      )
     end
 
     def smartphone_creation_alert
-      locale('Smartphone guardado exitosamente',
-             'Smartphone registrado com sucesso',
-             'Successfully created smartphone')
+      localize(
+        spanish: 'Smartphone guardado exitosamente',
+        portuguese: 'Smartphone registrado com sucesso',
+        english: 'Successfully created smartphone'
+      )
+    end
+
+    private
+
+    def headings
+      @headings ||= {
+        spanish: [
+          'Centro de salud:',
+          'Telefóno fijo:',
+          'Celular (propio):',
+          'Teléfono fijo (Contacto de Emergencia):',
+          'Teléfono alternativo 1:',
+          'Nombre de persona / Lugar del teléfono alternativo 1:',
+          'Dirección actual:',
+          'Sexo:',
+          'Número del smartphone / número de serie:',
+          'Código del smartphone:'
+        ],
+        portuguese: [
+          'Unidade de Saúde da Família:',
+          'Telefone fixo:',
+          'Celular (pessoal):',
+          'Telefone fixo (Contato de Emergência):',
+          'Telefone alternativo 1:',
+          'Nome de pessoa / lugar de telefone alternativo 1:',
+          'Endereço:',
+          'Sexo:',
+          'Número do Smartphone / número de serie:',
+          'Código do Smartphone:'
+        ],
+        english: [
+          'Family health unit:',
+          'Telephone:',
+          'Cell phone:',
+          'Telephone:',
+          'Alternate phone 1:',
+          'Contact person:',
+          'Home address:',
+          'Gender:',
+          'Phone number / serial number:',
+          'Phone ID:'
+        ]
+      }
     end
   end
 end

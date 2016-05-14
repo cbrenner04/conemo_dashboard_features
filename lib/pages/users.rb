@@ -39,10 +39,10 @@ class Users
   private
 
   def sign_out_link
-    locale('Salir', 'Terminar sessão', 'Sign out')
+    localize(spanish: 'Salir', portuguese: 'Terminar sessão', english: 'Sign out')
   end
 
   def sign_in_header
-    locale('Iniciar sésion', 'Login', 'Sign in')
+    localize(spanish: 'Iniciar sésion', portuguese: 'Login', english: 'Sign in')
   end
 end

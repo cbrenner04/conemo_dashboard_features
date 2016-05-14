@@ -6,11 +6,19 @@ module Translations
     include Translations
 
     def participants_title
-      locale('participante', 'Participante', 'Participants')
+      localize(
+        spanish: 'participante',
+        portuguese: 'Participante',
+        english: 'Participants'
+      )
     end
 
     def nurse_title
-      locale('Enfermera', 'Auxiliar de Engfermagem', 'Nurse')
+      localize(
+        spanish: 'Enfermera',
+        portuguese: 'Auxiliar de Engfermagem',
+        english: 'Nurse'
+      )
     end
   end
 end

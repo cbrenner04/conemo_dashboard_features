@@ -21,8 +21,9 @@ class YourPatients
   end
 
   def visible?
-    has_css?('h2', text: locale('Tus pacientes',
-                                'Seus Pacientes', 'Your patients'))
+    has_css?('h2', text: localize(spanish: 'Tus pacientes',
+                                  portuguese: 'Seus Pacientes',
+                                  english: 'Your patients'))
   end
 
   def in_table?
@@ -142,16 +143,11 @@ class YourPatients
   end
 
   def assigned_participants
-    locale(spanish_nurse_patients, portuguese_nurse_patients,
-           english_nurse_patients)
-  end
-
-  def spanish_nurse_patients
-    @spanish_nurse_patients ||= (500..505).to_a.sample(3)
-  end
-
-  def portuguese_nurse_patients
-    @portuguese_nurse_patients ||= (600..605).to_a.sample(3)
+    localize(
+      spanish: (500..505).to_a.sample(3),
+      portuguese: (600..605).to_a.sample(3),
+      english: english_nurse_patients
+    )
   end
 
   def expected_results

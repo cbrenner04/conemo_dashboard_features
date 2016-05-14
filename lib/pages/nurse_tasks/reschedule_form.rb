@@ -16,6 +16,7 @@ class NurseTasks
 
     def complete
       sleep(0.25)
+      # find('', match: :first)
       select_next_date(2)
       selector[5].click
       @reschedule_reason ||= expected_options.sample
@@ -31,17 +32,22 @@ class NurseTasks
 
     def has_reason_options?
       selector[5].click
-      actual_options = (0..4).map { |i| all('.select2-result-label')[i].text }
+      labels = all('.select2-result-label')
+      actual_options = (0..4).map { |i| labels[i].text }
       expect(actual_options).to eq(expected_options)
     end
 
     def has_current_date_selections?
-      has_date_selectors?(Date.today, 1, locale(0, 0, 2), locale(2, 2, 0)) &&
+      has_date_selectors?(Date.today, 1,
+                          localize(spanish: 0, portuguese: 0, english: 2),
+                          localize(spanish: 2, portuguese: 2, english: 0)) &&
         has_hour_selector?(3)
     end
 
     def has_alt_date_selections?
-      has_date_selectors?(Date.today, 1, locale(0, 0, 2), locale(2, 2, 0)) &&
+      has_date_selectors?(Date.today, 1,
+                          localize(spanish: 0, portuguese: 0, english: 2),
+                          localize(spanish: 2, portuguese: 2, english: 0)) &&
         has_hour_selector?(3, (Time.now - (2 * 60 * 60)))
     end
 

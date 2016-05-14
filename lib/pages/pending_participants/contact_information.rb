@@ -37,7 +37,11 @@ class PendingParticipants
     end
 
     def has_health_unit_options?
-      site = locale('Centro de salud 2', 'Celso Daniel', 'unit 2')
+      site = localize(
+        spanish: 'Centro de salud 2',
+        portuguese: 'Celso Daniel',
+        english: 'unit 2'
+      )
       selector[0].click
       actual = (0..9).map { |i| all('.select2-result-label')[i].text }
       select_response(site)
@@ -45,8 +49,12 @@ class PendingParticipants
     end
 
     def has_relationship_options?
-      choice = locale('Padre / Madre', 'Pai / Mãe', 'parent')
-      num = locale(5, 4, 5)
+      choice = localize(
+        spanish: 'Padre / Madre',
+        portuguese: 'Pai / Mãe',
+        english: 'parent'
+      )
+      num = localize(spanish: 5, portuguese: 4, english: 5)
       navigation.scroll_down
       # first Relationship drop down
       selector[1].click
@@ -67,7 +75,7 @@ class PendingParticipants
     def has_gender_options?
       gender_group = find('.form-group', text: gender_label)
       actual = (0..1).map { |i| gender_group.all('.radio-inline')[i].text }
-      expect(actual).to eq(gender_options)
+      expect(actual).to eq(expected_gender_options)
     end
 
     private

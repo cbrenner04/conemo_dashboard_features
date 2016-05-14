@@ -1,42 +1,36 @@
 # module for translations
 module Translations
-  def locale(a, b, c)
-    if @locale == 'spanish'
-      a
-    elsif @locale == 'portuguese'
-      b
-    else
-      c
-    end
-  end
-
-  def locale_date(date)
-    locale(spanish_date(date), portuguese_date(date), english_date(date))
-  end
-
-  def locale_month(month)
-    locale(spanish_months[month], portuguese_months[month], month)
+  def localize(thing)
+    thing[@locale.to_sym]
   end
 
   def locale_hour(time)
-    locale(" a las #{time.strftime('%I')}", ", #{time.strftime('%H')}",
-           " #{time.strftime('%H')}")
+    localize(
+      spanish: " a las #{time.strftime('%I')}",
+      portuguese: ", #{time.strftime('%H')}",
+      english: " #{time.strftime('%H')}"
+    )
   end
 
-  def english_date(date)
-    date.strftime('%B %d, %Y')
+  def locale_date(date)
+    localize(
+      spanish: "#{spanish_weekdays[date.strftime('%A')]}, " \
+               "#{date.strftime('%d')} " \
+               "de #{spanish_months[date.strftime('%B')]} " \
+               "del #{date.strftime('%Y')}",
+      portuguese: "#{date.strftime('%d')} "  \
+                  "de #{portuguese_months[date.strftime('%B')]} " \
+                  "de #{date.strftime('%Y')}",
+      english: date.strftime('%B %d, %Y')
+    )
   end
 
-  def spanish_weekdays
-    {
-      'Monday' => 'lunes',
-      'Tuesday' => 'martes',
-      'Wednesday' => 'miércoles',
-      'Thursday' => 'jueves',
-      'Friday' => 'viernes',
-      'Saturday' => 'sábado',
-      'Sunday' => 'domingo'
-    }
+  def locale_month(month)
+    localize(
+      spanish: spanish_months[month],
+      portuguese: portuguese_months[month],
+      english: month
+    )
   end
 
   def spanish_months
@@ -56,11 +50,6 @@ module Translations
     }
   end
 
-  def spanish_date(date)
-    "#{spanish_weekdays[date.strftime('%A')]}, #{date.strftime('%d')} " \
-    "de #{spanish_months[date.strftime('%B')]} del #{date.strftime('%Y')}"
-  end
-
   def portuguese_months
     {
       'January' => 'Janeiro',
@@ -78,8 +67,15 @@ module Translations
     }
   end
 
-  def portuguese_date(date)
-    "#{date.strftime('%d')} de #{portuguese_months[date.strftime('%B')]} " \
-    "de #{date.strftime('%Y')}"
+  def spanish_weekdays
+    {
+      'Monday' => 'lunes',
+      'Tuesday' => 'martes',
+      'Wednesday' => 'miércoles',
+      'Thursday' => 'jueves',
+      'Friday' => 'viernes',
+      'Saturday' => 'sábado',
+      'Sunday' => 'domingo'
+    }
   end
 end

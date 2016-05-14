@@ -89,12 +89,16 @@ class NurseTasks
     end
 
     def has_current_date_selections?
-      has_date_selectors?(Date.today, 1, locale(0, 0, 2), locale(2, 2, 0)) &&
+      has_date_selectors?(Date.today, 1,
+                          localize(spanish: 0, portuguese: 0, english: 2),
+                          localize(spanish: 2, portuguese: 2, english: 0)) &&
         has_hour_selector?(3)
     end
 
     def has_next_contact_date?
-      has_date_selectors?(Date.today, 6, locale(5, 5, 7), locale(7, 7, 5)) &&
+      has_date_selectors?(Date.today, 6,
+                          localize(spanish: 5, portuguese: 5, english: 7),
+                          localize(spanish: 7, portuguese: 7, english: 5)) &&
         has_time_selectors?(8, 9)
     end
 

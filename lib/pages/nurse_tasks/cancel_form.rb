@@ -21,19 +21,22 @@ class NurseTasks
     end
 
     def has_form_title?
-      has_css?('h1', text: locale('Cancelar punto de contacto',
-                                  'Cancelar ponto de contato',
-                                  'Cancel contact point'))
+      has_css?('h1', text: localize(spanish: 'Cancelar punto de contacto',
+                                    portuguese: 'Cancelar ponto de contato',
+                                    english: 'Cancel contact point'))
     end
 
     def has_cancel_alert?(task)
-      has_css?('.alert', text: locale("#{task} cancelada exitosamente",
-                                      "#{task} cancelado com sucesso",
-                                      "#{task} canceled successfully"))
+      has_css?('.alert',
+               text: localize(spanish: "#{task} cancelada exitosamente",
+                              portuguese: "#{task} cancelado com sucesso",
+                              english: "#{task} canceled successfully"))
     end
 
     def has_form_headings?
-      has_css?('.control-label', text: locale('Razones', 'Motivo', 'Reason'))
+      has_css?('.control-label', text: localize(spanish: 'Razones',
+                                                portuguese: 'Motivo',
+                                                english: 'Reason'))
     end
 
     def has_reason_options?

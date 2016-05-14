@@ -55,7 +55,9 @@ class NurseTasks
     end
 
     def has_current_date_selections?
-      has_date_selectors?(Date.today, 1, locale(0, 0, 2), locale(2, 2, 0)) &&
+      has_date_selectors?(Date.today, 1,
+                          localize(spanish: 0, portuguese: 0, english: 2),
+                          localize(spanish: 2, portuguese: 2, english: 0)) &&
         has_time_selectors?(3, 4)
     end
 
@@ -78,10 +80,13 @@ class NurseTasks
     end
 
     def has_resolution_confirmation_alert?
-      has_css?('.alert',
-               text: locale('Solicitud de ayuda guardada exitosamente',
-                            'Pedido de ajuda salvo com sucesso',
-                            'Help request saved successfully'))
+      has_css?(
+        '.alert', text: localize(
+          spanish: 'Solicitud de ayuda guardada exitosamente',
+          portuguese: 'Pedido de ajuda salvo com sucesso',
+          english: 'Help request saved successfully'
+        )
+      )
     end
 
     private
