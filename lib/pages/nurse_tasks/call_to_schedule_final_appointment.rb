@@ -61,7 +61,7 @@ class NurseTasks
     end
 
     def update_contact_at_to_today
-      sleep(0.25)
+      find('.select2-container', match: :first)
       selector[1].click
       select_list_item((Date.today + 1).strftime('%B'))
       selector[2].click
@@ -78,7 +78,7 @@ class NurseTasks
     end
 
     def select_location
-      sleep(0.25)
+      find('.select2-container', match: :first)
       selector[10].click
       location = (2..9).map { |i| "unit #{i}" }
       find('.select2-result-label', text: location.sample).click

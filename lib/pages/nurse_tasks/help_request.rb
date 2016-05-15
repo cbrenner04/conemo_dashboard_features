@@ -10,7 +10,7 @@ class NurseTasks
     include Translations::NurseTaskTitles::HelpRequest
 
     def initialize(help_request)
-      @locale ||= help_request[:locale]
+      @locale ||= help_request.fetch(:locale, 'english')
     end
 
     def active?
@@ -27,7 +27,7 @@ class NurseTasks
     end
 
     def complete_resolution_form
-      sleep(0.25)
+      find('.select2-container', match: :first)
       selector[5].click
       options.delete_at(0)
       options.delete_at(4)
@@ -63,12 +63,13 @@ class NurseTasks
 
     def has_reason_options?
       selector[5].click
-      actual = (0..11).map { |i| all('.select2-result-label')[i].text }
+      selections = all('.select2-result-label')
+      actual = (0..11).map { |i| selections[i].text }
       expect(actual).to eq(options)
     end
 
     def resolve_as_canceled
-      sleep(0.25)
+      find('.select2-container', match: :first)
       selector[5].click
       @cancel_response ||= resolve_as_canceled_responses.sample
       select_list_item(@cancel_response)

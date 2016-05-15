@@ -49,8 +49,9 @@ class PendingParticipants
   end
 
   def has_pending_table_headers?
-    sleep(0.25)
-    actual = (0..4).map { |i| all('th')[i].text }
+    find('th', count: 5)
+    table_headings = all('th')
+    actual = (0..4).map { |i| table_headings[i].text }
     expect(actual).to match(expected_pending_headers)
   end
 

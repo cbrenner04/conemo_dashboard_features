@@ -17,7 +17,7 @@ class NurseTasks
       @email ||= timeline[:email]
       @session ||= timeline[:session]
       @session_length ||= timeline[:session_length]
-      @locale ||= timeline[:locale]
+      @locale ||= timeline.fetch(:locale, 'english')
     end
 
     def open
@@ -156,17 +156,19 @@ class NurseTasks
     end
 
     def has_contact_dates?
+      timeline_headings = all('.timeline-heading')
       actual_contact_dates = (0..8).map do |i|
         year = Date.today.strftime('%Y')
-        string = all('.timeline-heading')[i].find('p').text
-        string.slice(0..(string.index(year.to_s) + (year.length - 1)))
+        string = timeline_headings[i].find('p').text
+        string_end = string.index(year.to_s) + (year.length - 1)
+        string.slice(0..string_end)
       end
       expect(actual_contact_dates).to eq(expected_timeline_dates.reverse)
     end
 
     def has_timeline_headings?
-      timeline = find('.timeline')
-      actual_headings = (0..10).map { |i| timeline.all('strong')[i].text }
+      timeline = find('.timeline').all('strong')
+      actual_headings = (0..10).map { |i| timeline[i].text }
       expect(actual_headings).to eq(expected_timeline_headings.reverse)
     end
 

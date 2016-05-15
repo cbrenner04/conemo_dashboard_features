@@ -45,7 +45,7 @@ class NurseTasks
     end
 
     def open_reschedule_form
-      sleep(0.25)
+      visible?
       execute_script 'window.scrollBy(0,100)'
       open_reschedule confirmation_call_title
     end
@@ -71,7 +71,7 @@ class NurseTasks
     end
 
     def cancel
-      sleep(0.25)
+      visible?
       execute_script 'window.scrollBy(0,100)'
       cancel_task confirmation_call_title
     end

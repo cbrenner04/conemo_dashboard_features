@@ -18,7 +18,7 @@ class PendingParticipants
       @phone ||= contact_information[:phone]
       @contact_person ||= contact_information[:contact_person]
       @gender ||= contact_information[:gender]
-      @locale ||= contact_information[:locale]
+      @locale ||= contact_information.fetch(:locale, 'english')
     end
 
     def complete_form
@@ -32,7 +32,8 @@ class PendingParticipants
 
     def has_form_fields?
       find('.form-group', match: :first)
-      actual = (0..22).map { |i| all('.control-label')[i].text }
+      labels = all('.control-label')
+      actual = (0..22).map { |i| labels[i].text }
       expect(actual).to eq(expected_form_fields)
     end
 
@@ -43,7 +44,8 @@ class PendingParticipants
         english: 'unit 2'
       )
       selector[0].click
-      actual = (0..9).map { |i| all('.select2-result-label')[i].text }
+      selections = all('.select2-result-label')
+      actual = (0..9).map { |i| selections[i].text }
       select_response(site)
       expect(actual).to eq(expected_health_unit_options)
     end
@@ -74,14 +76,15 @@ class PendingParticipants
 
     def has_gender_options?
       gender_group = find('.form-group', text: gender_label)
-      actual = (0..1).map { |i| gender_group.all('.radio-inline')[i].text }
+                     .all('.radio-inline')
+      actual = (0..1).map { |i| gender_group[i].text }
       expect(actual).to eq(expected_gender_options)
     end
 
     private
 
     def navigation
-      @navigation ||= Navigation.new(locale: 'english')
+      @navigation ||= Navigation.new(locale: @locale)
     end
   end
 end

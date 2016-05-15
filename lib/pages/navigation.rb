@@ -6,7 +6,7 @@ class Navigation
   include Translations::NavigationTranslations
 
   def initialize(navigation)
-    @locale ||= navigation[:locale]
+    @locale ||= navigation.fetch(:locale, 'english')
   end
 
   def has_admin_buttons?

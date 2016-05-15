@@ -30,7 +30,8 @@ class SupervisorPage
 
     def has_nurse_options?
       find('select').click
-      actual_options = (0..4).map { |i| all('option')[i].text }
+      options = all('label')
+      actual_options = (0..4).map { |i| options[i].text }
       actual_options.should =~ expected_options
     end
 
@@ -108,7 +109,8 @@ class SupervisorPage
     end
 
     def has_pending_table_headers?
-      actual_headers = (0..4).map { |i| pending_panel.all('th')[i].text }
+      headers = pending_panel.all('th')
+      actual_headers = (0..4).map { |i| headers[i].text }
       expect(actual_headers).to eq(expected_pending_headers)
     end
 
@@ -117,7 +119,8 @@ class SupervisorPage
     end
 
     def has_active_table_headers?
-      actual = [0, 1, 3, 4, 5, 6].map { |i| active_panel.all('th')[i].text }
+      headers = active_panel.all('th')
+      actual = [0, 1, 3, 4, 5, 6].map { |i| headers[i].text }
       expect(actual).to eq(expected_active_headers)
     end
 
@@ -126,7 +129,8 @@ class SupervisorPage
     end
 
     def has_completed_table_headers?
-      actual_headers = (0..3).map { |i| completed_panel.all('th')[i].text }
+      headers = completed_panel.all('th')
+      actual_headers = (0..3).map { |i| headers[i].text }
       expect(actual_headers).to eq(expected_completed_headers)
     end
 
@@ -135,7 +139,8 @@ class SupervisorPage
     end
 
     def has_dropped_table_headers?
-      actual_headers = (0..3).map { |i| dropped_panel.all('th')[i].text }
+      headers = dropped_panel.all('th')
+      actual_headers = (0..3).map { |i| headers[i].text }
       expect(actual_headers).to eq(expected_dropped_headers)
     end
 
@@ -168,13 +173,7 @@ class SupervisorPage
     end
 
     def expected_options
-      @expected_options ||= [
-        'Nurse-400, English',
-        'Nurse-401, English',
-        'Nurse-402, English',
-        'Nurse-403, English',
-        'Nurse-404, English'
-      ]
+      @expected_options ||= (400..404).map { |i| "Nurse-#{i}, English" }
     end
   end
 end

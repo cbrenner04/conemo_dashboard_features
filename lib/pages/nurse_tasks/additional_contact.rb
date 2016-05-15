@@ -11,7 +11,7 @@ class NurseTasks
     include Translations::NurseTaskTitles::AdditionalContact
 
     def initialize(additional_contact)
-      @locale = additional_contact[:locale]
+      @locale = additional_contact.fetch(:locale, 'english')
     end
 
     def open
@@ -21,7 +21,7 @@ class NurseTasks
 
     def create_for_call
       open
-      sleep(0.25)
+      find('.select2-container', match: :first)
       selector[5].click
       select_list_item(options[1])
       navigation.submit
@@ -29,7 +29,7 @@ class NurseTasks
 
     def create_for_in_person
       open
-      sleep(0.25)
+      find('.select2-container', match: :first)
       selector[5].click
       select_list_item(options[0])
       navigation.submit

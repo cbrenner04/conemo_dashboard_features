@@ -19,7 +19,7 @@ class NurseTasks
       @other_lesson ||= clinical_summary[:other_lesson]
       @note ||= clinical_summary[:note]
       @incomplete_lesson ||= clinical_summary[:incomplete_lesson]
-      @locale ||= clinical_summary[:locale]
+      @locale ||= clinical_summary.fetch(:locale, 'english')
       @start_date_offset ||= clinical_summary[:start_date_offset]
       @num_of_lessons ||= clinical_summary[:num_of_lessons]
     end
@@ -60,9 +60,8 @@ class NurseTasks
 
     def has_lesson_table_content?
       visible?
-      total_rows = (lesson_table.all('tr').count - 1)
-      table_content = Range.new(1, total_rows).map { |i| lesson_row(i).text }
-
+      total_rows = lesson_table.all('tr').count - 1
+      table_content = (1..total_rows).map { |i| lesson_row(i).text }
       expect(table_content).to eq(expected_lessons)
     end
 
@@ -127,20 +126,22 @@ class NurseTasks
     end
 
     def has_headers?
-      sleep(0.25)
-      actual_headers = [0, 2, 3, 5].map { |i| all('th')[i].text }
+      find('th', match: :first)
+      headers = all('th')
+      actual_headers = [0, 2, 3, 5].map { |i| headers[i].text }
       expect(actual_headers).to eq(expected_headers)
     end
 
     def has_legend?
       visible?
-      legend = find('.table-condensed')
-      actual_legend = (0..5).map { |i| legend.all('td')[i].text }
+      legend = find('.table-condensed').all('td')
+      actual_legend = (0..5).map { |i| legend[i].text }
       expect(actual_legend).to eq(expected_legend)
     end
 
     def has_notes_headers?
-      actual_notes_headers = (0..3).map { |i| notes_table.all('dt')[i].text }
+      headers = notes_table.all('dt')
+      actual_notes_headers = (0..3).map { |i| headers[i].text }
       expect(actual_notes_headers).to eq(expected_notes_headers)
     end
 
@@ -156,10 +157,12 @@ class NurseTasks
     end
 
     def has_contact_dates?
+      dates = notes_table.all('em')
       actual_contact_dates = (0..3).map do |i|
         year = Date.today.strftime('%Y')
-        string = notes_table.all('em')[i].text
-        string.slice(0..(string.index(year.to_s) + (year.length - 1)))
+        string = dates[i].text
+        string_end = string.index(year.to_s) + (year.length - 1)
+        string.slice(0..string_end)
       end
       expect(actual_contact_dates).to eq(expected_contact_dates)
     end
@@ -209,31 +212,31 @@ class NurseTasks
     end
 
     def navigation
-      @navigation ||= Navigation.new(locale: 'english')
+      @navigation ||= Navigation.new(locale: @locale)
     end
 
     def initial_in_person_appointment
       @initial_in_person_appointment ||=
         NurseTasks::InitialInPersonAppointment.new(
-          locale: 'english'
+          locale: @locale
         )
     end
 
     def follow_up_call_week_one
       @follow_up_call_week_one ||=
-        NurseTasks::FollowUpCallWeekOne.new(locale: 'english')
+        NurseTasks::FollowUpCallWeekOne.new(locale: @locale)
     end
 
     def follow_up_call_week_three
       @follow_up_call_week_three ||=
         NurseTasks::FollowUpCallWeekThree.new(
-          locale: 'english'
+          locale: @locale
         )
     end
 
     def final_appt
       @final_appt ||= NurseTasks::FinalAppointment.new(
-        locale: 'english'
+        locale: @locale
       )
     end
   end

@@ -11,12 +11,11 @@ class NurseTasks
     include Translations::NurseTaskTitles::RescheduleFormTranslations
 
     def initialize(reschedule_form)
-      @locale ||= reschedule_form[:locale]
+      @locale ||= reschedule_form.fetch(:locale, 'english')
     end
 
     def complete
-      sleep(0.25)
-      # find('', match: :first)
+      find('.select2-container', match: :first)
       select_next_date(2)
       selector[5].click
       @reschedule_reason ||= expected_options.sample
@@ -25,8 +24,9 @@ class NurseTasks
     end
 
     def has_form_headings?
-      sleep(0.25)
-      actual_headings = (0..2).map { |i| all('.control-label')[i].text }
+      find('.control-label', match: :first)
+      headings = all('.control-label')
+      actual_headings = (0..2).map { |i| headings[i].text }
       expect(actual_headings).to eq(expected_headings)
     end
 

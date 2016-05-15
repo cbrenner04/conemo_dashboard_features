@@ -15,12 +15,11 @@ class NurseTasks
       def initialize(notes_form)
         @id ||= notes_form[:id]
         @note ||= notes_form[:note]
-        @locale ||= notes_form[:locale]
+        @locale ||= notes_form.fetch(:locale, 'english')
       end
 
       def open
         find('th', text: notes_heading).find('.fa-edit').click
-        sleep(0.25)
       end
 
       def create_note
@@ -29,12 +28,12 @@ class NurseTasks
       end
 
       def has_form_heading?
-        actual_heading = find('h1').text
-        expect(actual_heading).to eq(expected_notes_form_heading)
+        has_css?('h1', text: expected_notes_form_heading)
       end
 
       def has_form_labels?
-        actual_labels = (0..1).map { |i| all('.control-label')[i].text }
+        labels = all('.control-label')
+        actual_labels = (0..1).map { |i| labels[i].text }
         expect(actual_labels).to eq(expected_notes_form_labels)
       end
 

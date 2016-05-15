@@ -13,7 +13,7 @@ class YourPatients
 
   def initialize(your_patients)
     @pt_id ||= your_patients[:pt_id]
-    @locale ||= your_patients[:locale]
+    @locale ||= your_patients.fetch(:locale, 'english')
   end
 
   def return
@@ -49,7 +49,8 @@ class YourPatients
   end
 
   def ordered_correctly?
-    actual_results = (1..12).map { |i| all('tr')[i].text }
+    rows = all('tr')
+    actual_results = (1..12).map { |i| rows[i].text }
     expect(actual_results).to eq(expected_results)
   end
 
@@ -109,7 +110,8 @@ class YourPatients
   end
 
   def has_table_headers?
-    actual_headers = (0..3).map { |i| all('th')[i].text }
+    headers = all('th')
+    actual_headers = (0..3).map { |i| headers[i].text }
     expect(actual_headers).to eq(expected_headers)
   end
 
@@ -117,8 +119,10 @@ class YourPatients
     key = find('.table-condensed')
     success_text = key.find('.success').text
     expect(success_text).to eq(no_tasks)
+
     info_text = key.find('.info').text
     expect(info_text).to eq(active_task)
+
     danger_text = key.find('.danger').text
     expect(danger_text).to eq(overdue_task)
   end

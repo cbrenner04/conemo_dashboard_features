@@ -10,7 +10,7 @@ class NurseTasks
     include Translations::NurseTaskTitles::CancellationForm
 
     def initialize(cancel_form)
-      @locale ||= cancel_form[:locale]
+      @locale ||= cancel_form.fetch(:locale, 'english')
     end
 
     def complete
@@ -44,7 +44,7 @@ class NurseTasks
     end
 
     def toggle_options_list
-      sleep(0.25)
+      find('.select2-container', match: :first)
       selector[0].click
     end
 

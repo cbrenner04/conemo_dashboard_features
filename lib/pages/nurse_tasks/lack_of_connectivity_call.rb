@@ -10,7 +10,7 @@ class NurseTasks
     include Translations::NurseTaskTitles::LackOfConnectivityCall
 
     def initialize(lack_of_connectivity_call)
-      @locale ||= lack_of_connectivity_call[:locale]
+      @locale ||= lack_of_connectivity_call.fetch(:locale, 'english')
     end
 
     def active?
@@ -23,7 +23,7 @@ class NurseTasks
     end
 
     def complete_resolution_form
-      sleep(0.25)
+      find('.select2-container', match: :first)
       selector[5].click
       options.delete_at(0)
       options.delete_at(4)
@@ -39,9 +39,6 @@ class NurseTasks
     end
 
     def contact_supervisor
-      # spanish & portuguese giving me trouble because of the number of panels
-      # driver would try to click confirm and would end up clicking the brand
-      # scrolling to make sure the panel is in the viewport
       execute_script 'window.scrollBy(0,100)'
       contact_supervisor_for_task(lack_of_connectivity_call_title)
     end
@@ -63,12 +60,13 @@ class NurseTasks
 
     def has_reason_options?
       selector[5].click
-      actual = (0..12).map { |i| all('.select2-result-label')[i].text }
+      selections = all('.select2-result-label')
+      actual = (0..12).map { |i| selections[i].text }
       expect(actual).to eq(options)
     end
 
     def resolve_as_canceled
-      sleep(0.25)
+      find('.select2-container', match: :first)
       selector[5].click
       @cancel_response ||= resolve_as_canceled_responses.sample
       select_list_item(@cancel_response)
@@ -82,7 +80,7 @@ class NurseTasks
     private
 
     def navigation
-      @navigation ||= Navigation.new(locale: 'english')
+      @navigation ||= Navigation.new(locale: @locale)
     end
   end
 end

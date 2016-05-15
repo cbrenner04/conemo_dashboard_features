@@ -16,7 +16,7 @@ class SupervisorPage
       @num_overdue ||= nurses[:num_overdue]
       @supervision_date ||= nurses[:supervision_date]
       @supervision_time ||= nurses[:supervision_time]
-      @locale ||= nurses[:locale]
+      @locale ||= nurses.fetch(:locale, 'english')
       @note ||= nurses[:note]
     end
 
@@ -86,13 +86,15 @@ class SupervisorPage
     end
 
     def has_supervision_table_headers?
-      actual_headers = (0..4).map { |i| all('td')[i].text }
+      headers = all('td')
+      actual_headers = (0..4).map { |i| headers[i].text }
       expect(actual_headers).to eq(expected_headers)
     end
 
     def has_previous_sessions_listed?
       within('.table', text: 'Session') do
-        actual_rows = (1..3).map { |i| all('tr')[i].text }
+        rows = all('tr')
+        actual_rows = (1..3).map { |i| rows[i].text }
         expect(actual_rows).to eq(expected_rows)
       end
     end
@@ -110,7 +112,8 @@ class SupervisorPage
         .to eq localize(spanish: 'Fecha/hora',
                         portuguese: 'Data/hora',
                         english: 'Session at')
-      actual = (6..31).map { |i| all('label')[i].text }
+      labels = all('label')
+      actual = (6..31).map { |i| labels[i].text }
       expect(actual).to eq(expected_questions_and_answers)
     end
 

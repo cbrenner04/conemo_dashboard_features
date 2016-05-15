@@ -10,7 +10,7 @@ class NurseTasks
     include Translations::NurseTaskTitles::FollowUpCalls
 
     def initialize(follow_up_call_week_one)
-      @locale ||= follow_up_call_week_one[:locale]
+      @locale ||= follow_up_call_week_one.fetch(:locale, 'english')
     end
 
     def active?
@@ -83,7 +83,8 @@ class NurseTasks
     end
 
     def has_difficulties_options?
-      actual = (0..8).map { |i| all('.checkbox')[i].text }
+      checkboxes = all('.checkbox')
+      actual = (0..8).map { |i| checkboxes[i].text }
       expect(actual).to eq(options)
     end
 

@@ -11,7 +11,7 @@ class Lessons
       @title ||= slides[:title]
       @body ||= slides[:body]
       @new_title ||= slides[:new_title]
-      @locale ||= slides[:locale]
+      @locale ||= slides.fetch(:locale, 'english')
     end
 
     def open_add_slide
@@ -70,7 +70,7 @@ class Lessons
     private
 
     def lessons
-      @lessons ||= Lessons.new(title: 'fake')
+      @lessons ||= Lessons.new(title: @lesson)
     end
 
     def navigation

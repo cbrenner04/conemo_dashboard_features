@@ -11,7 +11,7 @@ class NurseTasks
 
     def initialize(contact_information)
       @id ||= contact_information[:id]
-      @locale ||= contact_information[:locale]
+      @locale ||= contact_information.fetch(:locale, 'english')
     end
 
     def updated?
@@ -74,9 +74,8 @@ class NurseTasks
     end
 
     def has_contact_information_table_headings?
-      actual_headings = (0..9).map do |i|
-        contact_information_div.all('strong')[i].text
-      end
+      headings = contact_information_div.all('strong')
+      actual_headings = (0..9).map { |i| headings[i].text }
       expect(actual_headings).to eq(expected_headings)
     end
 

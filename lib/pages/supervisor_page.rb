@@ -12,15 +12,15 @@ class SupervisorPage
 
   def has_pending_participants?
     within(pending_panel) do
-      actual_rows = (0..3).map { |i| find('tbody').all('tr')[i].text }
-      expect(actual_rows).to eq(expected_rows)
+      rows = find('tbody').all('tr')
+      actual_rows = (0..3).map { |i| rows[i].text }
+      expect(actual_rows).to eq(expected_rows_5)
     end
   end
 
   def has_nurses?
-    actual_nurses = (0..4).map do |i|
-      all('.panel-heading', text: 'Nurse-')[i].text[0..17]
-    end
+    headings = all('.panel-heading', text: 'Nurse-')
+    actual_nurses = (0..4).map { |i| headings[i].text[0..17] }
     expected_nurses = [400, 401, 403, 402, 404].map do |i|
       "Nurse-#{i}, English"
     end
@@ -85,15 +85,8 @@ class SupervisorPage
     all('option', text: '25')[2].click
     completed_table = completed_panel.find('.table')
     within completed_table do
-      actual_rows = (1..12).map { |i| all('tr')[i].text }
-      expected_rows_1 = (1..6).map do |i|
-        "Nurse-401, English Last-#{4040 + i}, First #{4040 + i} " \
-        "#{(Date.today - (13 + i)).strftime('%B %d, %Y')}"
-      end
-      expected_rows_2 = (7..12).map do |i|
-        "Nurse-403, English Last-#{4040 + i}, First #{4040 + i} " \
-        "#{(Date.today - (13 + i)).strftime('%B %d, %Y')}"
-      end
+      rows = all('tr')
+      actual_rows = (1..12).map { |i| rows[i].text }
       expected_rows = expected_rows_1.concat expected_rows_2
       actual_rows.should =~ expected_rows
     end
@@ -105,17 +98,9 @@ class SupervisorPage
     all('option', text: '25')[3].click
     dropped_table = find('.panel', text: 'Dropped out').find('.table')
     within dropped_table do
-      actual_rows = (1..14).map { |i| all('tr')[i].text }
-      expected_rows_1 = (1..12).map do |i|
-        "Nurse-402, English Last-#{201 + i}, First #{201 + i} " \
-        "#{(Date.today - (4 + i)).strftime('%B %d, %Y')}"
-      end
-      today = Date.today.strftime('%B %d, %Y')
-      expected_rows_2 = [
-        "Nurse-400, English Last-200, First 200 #{today}",
-        "Nurse-400, English Last-201, First 201 #{today}"
-      ]
-      expected_rows = expected_rows_1.concat expected_rows_2
+      rows = all('tr')
+      actual_rows = (1..14).map { |i| rows[i].text }
+      expected_rows = expected_rows_3.concat expected_rows_4
       actual_rows.should =~ expected_rows
     end
   end
@@ -202,14 +187,40 @@ class SupervisorPage
     has_css?('.panel-heading', text: heading)
   end
 
-  def expected_rows
+  def expected_rows_1
+    @expected_rows_1 ||= (1..6).map do |i|
+      "Nurse-401, English Last-#{4040 + i}, First #{4040 + i} " \
+      "#{(Date.today - (13 + i)).strftime('%B %d, %Y')}"
+    end
+  end
+
+  def expected_rows_2
+    @expected_rows_2 ||= (7..12).map do |i|
+      "Nurse-403, English Last-#{4040 + i}, First #{4040 + i} " \
+      "#{(Date.today - (13 + i)).strftime('%B %d, %Y')}"
+    end
+  end
+
+  def expected_rows_3
+    @expected_rows_3 ||= (1..12).map do |i|
+      "Nurse-402, English Last-#{201 + i}, First #{201 + i} " \
+      "#{(Date.today - (4 + i)).strftime('%B %d, %Y')}"
+    end
+  end
+
+  def expected_rows_4
     today = Date.today.strftime('%B %d, %Y')
-    @expected_rows ||= [
-      "Edit Information Last-495, First 495 #{today} Activate",
-      "Edit Information Last-496, First 496 #{today} Activate",
-      "Edit Information Last-497, First 497 #{today} Activate",
-      "Edit Information Last-498, First 498 #{today} Activate"
+    @expected_rows_4 ||= [
+      "Nurse-400, English Last-200, First 200 #{today}",
+      "Nurse-400, English Last-201, First 201 #{today}"
     ]
+  end
+
+  def expected_rows_5
+    today = Date.today.strftime('%B %d, %Y')
+    @expected_rows ||= (5..8).map do |i|
+      "Edit Information Last-49#{i}, First 49#{i} #{today} Activate"
+    end
   end
 
   def canceled?(title)

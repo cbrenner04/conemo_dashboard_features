@@ -11,7 +11,7 @@ class Lessons
     @day ||= lessons[:day]
     @new_title ||= lessons[:new_title]
     @slide ||= lessons[:slide]
-    @locale ||= lessons[:locale]
+    @locale ||= lessons.fetch(:locale, 'english')
   end
 
   def open

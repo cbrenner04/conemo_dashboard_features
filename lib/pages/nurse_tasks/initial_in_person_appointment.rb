@@ -44,28 +44,19 @@ class NurseTasks
     end
 
     def confirm
-      # spanish & portuguese giving me trouble because of the number of panels
-      # driver would try to click confirm and would end up clicking the brand
-      # scrolling to make sure the panel is in the viewport
       execute_script 'window.scrollBy(0,100)'
       confirm_task initial_appointment_title
       visible?
     end
 
     def cancel
-      # spanish & portuguese giving me trouble because of the number of panels
-      # driver would try to click cancel and would end up clicking the brand
-      # scrolling to make sure the panel is in the viewport
-      sleep(0.25)
+      has_text? initial_appointment_title
       execute_script 'window.scrollBy(0,100)'
       cancel_task initial_appointment_title
     end
 
     def open_reschedule_form
-      # spanish & portuguese giving me trouble because of the number of panels
-      # driver would try to click reschedule and would end up clicking brand
-      # scrolling to make sure the panel is in the viewport
-      sleep(0.25)
+      has_text? initial_appointment_title
       execute_script 'window.scrollBy(0,100)'
       open_reschedule initial_appointment_title
     end

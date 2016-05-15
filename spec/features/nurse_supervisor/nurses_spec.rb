@@ -72,7 +72,7 @@ feature 'Nurse Supervisor, Nurses', metadata: :not_first do
     scenario 'Nurse supervisor cancels filling in supervision session' do
       nurse_403.create_supervision_session
       navigation.cancel
-      sleep(0.25)
+
       expect(nurse_supervisor).to be_on_home_page
     end
 

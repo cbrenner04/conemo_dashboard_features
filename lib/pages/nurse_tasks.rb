@@ -22,7 +22,7 @@ class NurseTasks
     @days_since_due ||= nurse_task[:days_since_due]
     @contact_type ||= nurse_task[:contact_type]
     @tasks_count ||= nurse_task[:tasks_count]
-    @locale ||= nurse_task[:locale]
+    @locale ||= nurse_task.fetch(:locale, 'english')
   end
 
   def open
