@@ -1,5 +1,6 @@
 require './lib/pages/translations/nurse_tasks'
 require './lib/pages/translations/nurse_tasks_titles'
+require './lib/pages/translations/nurse_tasks_unscheduled'
 
 module Translations
   module NurseTaskTitles
@@ -7,6 +8,7 @@ module Translations
     module LackOfConnectivityCall
       include Translations::NurseTasksTranslations
       include Translations::NurseTaskTitles
+      include Translations::NurseTasksUnscheduled
 
       def expected_headings
         localize(
@@ -27,52 +29,48 @@ module Translations
 
       def options
         localize(
-          spanish: [
-            'Razón',
-            'Datos móviles apagados',
-            'Sin cobertura de internet',
-            'Se agotaron los datos móviles disponibles',
-            'Celular inteligente apagado',
-            'Otra',
-            'No lo sé',
-            'CANCELAR llamada (no realizada)',
-            'No se pudo ubicar al paciente',
-            'Paciente no desea continuar con la intervención',
-            'Paciente no tuvo tiempo de hablar (repetitivamente)',
-            'Paciente no estaba dispuesta/o de hablar',
-            'Otra'
-          ],
-          portuguese: [
-            'Razões',
-            'Dados móveis desligados',
-            'Falta de cobertura de internet',
-            'Sem crédito / Pacote de dados acabou',
-            'Smartphone desligado',
-            'Outra',
-            'Não sei',
-            'Não realizado / Cancelar tarefa',
-            'Não consegui falar com o paciente',
-            'Paciente não quer continuar no programa',
-            'Paciente não teve tempo para falar (várias vezes)',
-            'Paciente não estava disposto/a a falar',
-            'Outra razão'
-          ],
-          english: [
-            'Reasons',
-            'Mobile data turned off',
-            'No internet coverage',
-            'Mobile plan used up',
-            'Cellphone turned off',
-            'Other',
-            'I don\'t know',
-            'Not done / CANCEL task',
-            'Could not reach patient',
-            'Patient does not want to continue in the program',
-            'Patient did not have time to talk (multiple times)',
-            'Patient not willing to talk to nurse (assistant)',
-            'Other'
-          ]
+          spanish: spanish_options.concat(spanish_cancel_options),
+          portuguese: portuguese_options.concat(portuguese_cancel_options),
+          english: english_options.concat(english_cancel_options)
         )
+      end
+
+      private
+
+      def spanish_options
+        @spanish_options ||= [
+          'Razón',
+          'Datos móviles apagados',
+          'Sin cobertura de internet',
+          'Se agotaron los datos móviles disponibles',
+          'Celular inteligente apagado',
+          'Otra',
+          'No lo sé'
+        ]
+      end
+
+      def portuguese_options
+        @portuguese_options ||= [
+          'Razões',
+          'Dados móveis desligados',
+          'Falta de cobertura de internet',
+          'Sem crédito / Pacote de dados acabou',
+          'Smartphone desligado',
+          'Outra',
+          'Não sei'
+        ]
+      end
+
+      def english_options
+        @english_options ||= [
+          'Reasons',
+          'Mobile data turned off',
+          'No internet coverage',
+          'Mobile plan used up',
+          'Cellphone turned off',
+          'Other',
+          'I don\'t know'
+        ]
       end
     end
   end

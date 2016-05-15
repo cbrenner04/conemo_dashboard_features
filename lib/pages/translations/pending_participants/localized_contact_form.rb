@@ -4,71 +4,21 @@ module Translations
     module LocalizedContactForm
       def form
         @form ||= {
-          spanish: [
-            'Nombres', 'Apellidos', 'Código del participante',
-            'Centro de salud', 'Dirección actual', 'Telefóno fijo',
-            'Celular (propio)', 'Teléfono alternativo 1',
-            'Nombre de persona / Lugar del teléfono alternativo 1',
-            'Relación con el participante', 'Relación con el participante',
-            'Telefóno alternativo 2',
-            'Nombre de persona / Lugar del teléfono alternativo 2',
-            'Relación con el participante', 'Relación con el participante',
-            'Fecha de nacimiento', 'Sexo', 'Contacto de Emergencia (nombre)',
-            'Relación con el participante', 'Relación con el participante',
-            'Dirección actual', 'Teléfono fijo (Contacto de Emergencia)',
-            'Celular'
-          ],
-          portuguese: [
-            'Nome', 'Sobrenome', 'Identificação do participante (ID)',
-            'Unidade de Saúde da Família', 'Endereço', 'Telefone fixo',
-            'Celular (pessoal)', 'Telefone alternativo 1',
-            'Nome de pessoa / lugar de telefone alternativo 1',
-            'Grau de parentesco/relacionamento',
-            'Grau de parentesco/relacionamento', 'Telefone alternativo 2',
-            'Nome de pessoa / lugar de telefone alternativo 2',
-            'Grau de parentesco/relacionamento',
-            'Grau de parentesco/relacionamento', 'Data de nascimento', 'Sexo',
-            'Contato de Emergência (nome)', 'Grau de parentesco/relacionamento',
-            'Grau de parentesco/relacionamento',
-            'Endereço', 'Telefone fixo (Contato de Emergência)', 'Celular'
-          ],
-          english: [
-            'First name', 'Last name', 'Participant ID', 'Family health unit',
-            'Home address', 'Telephone ', 'Cell phone', 'Alternate phone 1',
-            'Contact person ', 'Relationship', 'Alternate phone 2',
-            'Contact person ', 'Relationship', 'Birth date', 'Gender',
-            'Emergency contact (name)', 'Relationship', 'Address', 'Telephone',
-            'Cell phone'
-          ]
-        }
-      end
-
-      def health_unit_options
-        @health_unit_options ||= {
-          spanish: (1..10).map { |i| "Centro de salud #{i}" },
-          portuguese: [
-            'Adão Manoel', 'Celso Daniel', 'Dom João Nery', 'Jardim Campos',
-            'Jardim Copa', 'Jardim Rubro II', 'Profeta Jeremias',
-            'Santo Estevão', 'Silva Teles', 'Vila Ramos'
-          ],
-          english: (1..10).map { |i| "unit #{i}" }
+          spanish: spanish_form_field_arry,
+          portuguese: portuguese_form_field_arry,
+          english: english_form_field_arry
         }
       end
 
       def relationship_options
         @relationship_options ||= {
-          spanish: [
-            'Padre / Madre', 'Esposo(a) / Pareja', 'Hijo (a)',
-            'Otro miembro de la familia', 'Amigo', 'Otro (especificar)'
-          ],
-          portuguese: [
-            'Pai / Mãe', 'Marido / Esposa / Parceiro/a', 'Filho/a',
-            'Outro membro da família', 'Outro (especificar)'
-          ],
-          english: [
-            'Parent', 'Husband / Wife / Partner', 'Son / Daughter',
-            'Another family member', 'Friend', 'Other)'
-          ]
+          spanish: ['Padre / Madre', 'Esposo(a) / Pareja', 'Hijo (a)',
+                    'Otro miembro de la familia', 'Amigo',
+                    'Otro (especificar)'],
+          portuguese: ['Pai / Mãe', 'Marido / Esposa / Parceiro/a', 'Filho/a',
+                       'Outro membro da família', 'Outro (especificar)'],
+          english: ['Parent', 'Husband / Wife / Partner', 'Son / Daughter',
+                    'Another family member', 'Friend', 'Other)']
         }
       end
 
@@ -112,6 +62,53 @@ module Translations
             'Enrollment Date Activate'
           ]
         }
+      end
+
+      private
+
+      def spanish_form_field_arry
+        @spanish_form_field_arry ||= [
+          'Nombres', 'Apellidos', 'Código del participante',
+          'Centro de salud', 'Dirección actual', 'Telefóno fijo',
+          'Celular (propio)', 'Teléfono alternativo 1',
+          'Nombre de persona / Lugar del teléfono alternativo 1',
+          'Relación con el participante', 'Relación con el participante',
+          'Telefóno alternativo 2',
+          'Nombre de persona / Lugar del teléfono alternativo 2',
+          'Relación con el participante', 'Relación con el participante',
+          'Fecha de nacimiento', 'Sexo', 'Contacto de Emergencia (nombre)',
+          'Relación con el participante', 'Relación con el participante',
+          'Dirección actual', 'Teléfono fijo (Contacto de Emergencia)',
+          'Celular'
+        ]
+      end
+
+      def portuguese_form_field_arry
+        @portuguese_form_field_arry ||= [
+          'Nome', 'Sobrenome', 'Identificação do participante (ID)',
+          'Unidade de Saúde da Família', 'Endereço', 'Telefone fixo',
+          'Celular (pessoal)', 'Telefone alternativo 1',
+          'Nome de pessoa / lugar de telefone alternativo 1',
+          'Grau de parentesco/relacionamento',
+          'Grau de parentesco/relacionamento', 'Telefone alternativo 2',
+          'Nome de pessoa / lugar de telefone alternativo 2',
+          'Grau de parentesco/relacionamento',
+          'Grau de parentesco/relacionamento', 'Data de nascimento', 'Sexo',
+          'Contato de Emergência (nome)', 'Grau de parentesco/relacionamento',
+          'Grau de parentesco/relacionamento',
+          'Endereço', 'Telefone fixo (Contato de Emergência)', 'Celular'
+        ]
+      end
+
+      def english_form_field_arry
+        @english_form_field_arry ||= [
+          'First name', 'Last name', 'Participant ID', 'Family health unit',
+          'Home address', 'Telephone ', 'Cell phone', 'Alternate phone 1',
+          'Contact person ', 'Relationship', 'Alternate phone 2',
+          'Contact person ', 'Relationship', 'Birth date', 'Gender',
+          'Emergency contact (name)', 'Relationship', 'Address', 'Telephone',
+          'Cell phone'
+        ]
       end
     end
   end

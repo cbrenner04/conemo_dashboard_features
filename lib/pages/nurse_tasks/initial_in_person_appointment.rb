@@ -11,7 +11,7 @@ class NurseTasks
     include Translations::NurseTaskTitles::InitialInPersonAppointment
 
     def initialize(initial_in_person_appointment)
-      @locale ||= initial_in_person_appointment[:locale]
+      @locale ||= initial_in_person_appointment.fetch(:locale, 'english')
     end
 
     def active?
@@ -107,7 +107,7 @@ class NurseTasks
     end
 
     def has_site_options?
-      has_task_options?(5, 2)
+      has_task_options?(5, 2, location_options)
     end
 
     def has_next_contact_date?

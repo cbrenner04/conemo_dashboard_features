@@ -10,7 +10,7 @@ class NurseTasks
     include Translations::NurseTaskTitles::ConfirmationCall
 
     def initialize(confirmation_call)
-      @locale ||= confirmation_call[:locale]
+      @locale ||= confirmation_call.fetch(:locale, 'english')
     end
 
     def active?
@@ -81,7 +81,7 @@ class NurseTasks
     end
 
     def has_site_options?
-      has_task_options?(10, 2)
+      has_task_options?(10, 2, location_options)
     end
 
     def has_current_date_selections?

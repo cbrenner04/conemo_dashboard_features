@@ -27,26 +27,6 @@ module Translations
           ]
         )
       end
-
-      def options
-        localize(
-          spanish: [
-            'Casa del paciente',
-            'Centro de salud',
-            'Otro lugar'
-          ],
-          portuguese: [
-            'Casa do paciente',
-            'Unidade de saúde',
-            'Outro lugar'
-          ],
-          english: [
-            'Patient\'s home',
-            'Health unit',
-            'Other location'
-          ]
-        )
-      end
     end
   end
 end

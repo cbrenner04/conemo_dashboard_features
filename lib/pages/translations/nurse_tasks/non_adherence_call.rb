@@ -1,5 +1,6 @@
 require './lib/pages/translations/nurse_tasks'
 require './lib/pages/translations/nurse_tasks_titles'
+require './lib/pages/translations/nurse_tasks_unscheduled'
 
 module Translations
   module NurseTaskTitles
@@ -7,6 +8,7 @@ module Translations
     module NonAdherenceCallTranslations
       include Translations::NurseTasksTranslations
       include Translations::NurseTaskTitles
+      include Translations::NurseTasksUnscheduled
 
       def expected_headings
         localize(
@@ -27,55 +29,51 @@ module Translations
 
       def options
         localize(
-          spanish: [
-            'Razón',
-            'Dificultades para usar CONEMO',
-            'Sin tiempo para usar CONEMO',
-            'Sin voluntad de usar CONEMO',
-            'Error de transferencia de datos (sesiones fueron completadas)',
-            'Paciente está viajando (sin el smartphone)',
-            'Razón no fue comunicada',
-            'Otra',
-            'CANCELAR llamada (no realizada)',
-            'No se pudo ubicar al paciente',
-            'Paciente no desea continuar con la intervención',
-            'Paciente no tuvo tiempo de hablar (repetitivamente)',
-            'Paciente no estaba dispuesta/o de hablar',
-            'Otra'
-          ],
-          portuguese: [
-            'Razões',
-            'Dificuldades para usar CONEMO',
-            'Sem tempo para CONEMO',
-            'Sem vontade de usar CONEMO',
-            'Erro na transmissão de dados (sessões foram completadas)',
-            'Paciente está viajando (sem smartphone)',
-            'Razão não foi comunicado',
-            'Outra',
-            'Não realizado / Cancelar tarefa',
-            'Não consegui falar com o paciente',
-            'Paciente não quer continuar no programa',
-            'Paciente não teve tempo para falar (várias vezes)',
-            'Paciente não estava disposto/a a falar',
-            'Outra razão'
-          ],
-          english: [
-            'Reasons',
-            'Difficulties using CONEMO',
-            'No time for CONEMO',
-            'Not willing to use CONEMO',
-            'Failure of data transfer (sessions were completed)',
-            'Patient is traveling (without the smartphone)',
-            'No reason stated',
-            'Other',
-            'Not done / CANCEL task',
-            'Could not reach patient',
-            'Patient does not want to continue in the program',
-            'Patient did not have time to talk (multiple times)',
-            'Patient not willing to talk to nurse (assistant)',
-            'Other'
-          ]
+          spanish: spanish_options.concat(spanish_cancel_options),
+          portuguese: portuguese_options.concat(portuguese_cancel_options),
+          english: english_options.concat(english_cancel_options)
         )
+      end
+
+      private
+
+      def spanish_options
+        @spanish_options ||= [
+          'Razón',
+          'Dificultades para usar CONEMO',
+          'Sin tiempo para usar CONEMO',
+          'Sin voluntad de usar CONEMO',
+          'Error de transferencia de datos (sesiones fueron completadas)',
+          'Paciente está viajando (sin el smartphone)',
+          'Razón no fue comunicada',
+          'Otra'
+        ]
+      end
+
+      def portuguese_options
+        @portuguese_options ||= [
+          'Razões',
+          'Dificuldades para usar CONEMO',
+          'Sem tempo para CONEMO',
+          'Sem vontade de usar CONEMO',
+          'Erro na transmissão de dados (sessões foram completadas)',
+          'Paciente está viajando (sem smartphone)',
+          'Razão não foi comunicado',
+          'Outra'
+        ]
+      end
+
+      def english_options
+        @english_options ||= [
+          'Reasons',
+          'Difficulties using CONEMO',
+          'No time for CONEMO',
+          'Not willing to use CONEMO',
+          'Failure of data transfer (sessions were completed)',
+          'Patient is traveling (without the smartphone)',
+          'No reason stated',
+          'Other'
+        ]
       end
     end
   end

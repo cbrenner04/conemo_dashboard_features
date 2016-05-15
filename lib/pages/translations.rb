@@ -78,4 +78,16 @@ module Translations
       'Sunday' => 'domingo'
     }
   end
+
+  def health_unit_options
+    @health_unit_options ||= {
+      spanish: (1..10).map { |i| "Centro de salud #{i}" },
+      portuguese: [
+        'Adão Manoel', 'Celso Daniel', 'Dom João Nery', 'Jardim Campos',
+        'Jardim Copa', 'Jardim Rubro II', 'Profeta Jeremias',
+        'Santo Estevão', 'Silva Teles', 'Vila Ramos'
+      ],
+      english: (1..10).map { |i| "unit #{i}" }
+    }
+  end
 end

@@ -9,7 +9,7 @@ class Users
     @email ||= user[:email]
     @password ||= user[:password]
     @patient ||= user[:patient]
-    @locale ||= user[:locale]
+    @locale ||= user.fetch(:locale, 'english')
   end
 
   def sign_in
@@ -39,7 +39,11 @@ class Users
   private
 
   def sign_out_link
-    localize(spanish: 'Salir', portuguese: 'Terminar sessão', english: 'Sign out')
+    localize(
+      spanish: 'Salir',
+      portuguese: 'Terminar sessão',
+      english: 'Sign out'
+    )
   end
 
   def sign_in_header

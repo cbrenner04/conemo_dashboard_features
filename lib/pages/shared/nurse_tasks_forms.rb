@@ -66,7 +66,7 @@ module NurseTasksForms
   def enter_task_location(selector_num)
     find('.select2-container', match: :first)
     selector[selector_num].click
-    select_list_item(options.sample)
+    select_list_item(location_options.sample)
   end
 
   def select_list_item(item)
@@ -90,10 +90,10 @@ module NurseTasksForms
     expect(actual_headings).to eq(expected_headings)
   end
 
-  def has_task_options?(sel, num)
+  def has_task_options?(sel, num, opt = options)
     selector[sel].click
     actual_options = (0..num).map { |i| all('.select2-result-label')[i].text }
-    expect(actual_options).to eq(options)
+    expect(actual_options).to eq(opt)
   end
 
   def has_date_selectors?(date, m, d, y)

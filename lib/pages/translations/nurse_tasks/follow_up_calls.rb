@@ -32,43 +32,8 @@ module Translations
       end
 
       def options
-        localize(
-          spanish: [
-            'NO',
-            'El paciente no tuvo dificultades',
-            'Sí',
-            'Dificultades con el celular inteligente ' \
-            '(batería, contraseña, encenderlo, volumen)',
-            'Dificultades para entrar a CONEMO',
-            'Dificultades para leer las sesiones',
-            'Dificultades para ver los videos',
-            'Dificultades para seleccionar actividades',
-            'Otras dificultades'
-          ],
-          portuguese: [
-            'NãO',
-            'O participante não teve dificuldades',
-            'SIM',
-            'Dificuldade com o smartphone (bateria, PIN, ligar, volume, etc.)',
-            'Dificuldade para entrar no CONEMO app',
-            'Dificuldade para ler sessões',
-            'Dificuldade para ver vídeo(s)',
-            'Dificuldade na seleção de atividades',
-            'Outras dificuldades'
-          ],
-          english: [
-            'NO',
-            'Patient had no difficulty',
-            'YES',
-            'Difficulty with cell phone (battery, PIN code, turning it on, ' \
-            'volume, etc.)',
-            'Difficulty accessing CONEMO app',
-            'Difficulty reading sessions',
-            'Difficulty watching video(s)',
-            'Difficulties with activity selection',
-            'Other difficulties'
-          ]
-        )
+        localize(spanish: spanish_options, portuguese: portuguese_options,
+                 english: english_options)
       end
 
       def difficulty_directions
@@ -89,6 +54,52 @@ module Translations
                    'Please DO NOT mark "No" AND certain dificulties at the ' \
                    'same time.'
         )
+      end
+
+      private
+
+      def spanish_options
+        @spanish_options ||= [
+          'NO',
+          'El paciente no tuvo dificultades',
+          'Sí',
+          'Dificultades con el celular inteligente ' \
+          '(batería, contraseña, encenderlo, volumen)',
+          'Dificultades para entrar a CONEMO',
+          'Dificultades para leer las sesiones',
+          'Dificultades para ver los videos',
+          'Dificultades para seleccionar actividades',
+          'Otras dificultades'
+        ]
+      end
+
+      def portuguese_options
+        @portuguese_options ||= [
+          'NãO',
+          'O participante não teve dificuldades',
+          'SIM',
+          'Dificuldade com o smartphone (bateria, PIN, ligar, volume, etc.)',
+          'Dificuldade para entrar no CONEMO app',
+          'Dificuldade para ler sessões',
+          'Dificuldade para ver vídeo(s)',
+          'Dificuldade na seleção de atividades',
+          'Outras dificuldades'
+        ]
+      end
+
+      def english_options
+        @english_options ||= [
+          'NO',
+          'Patient had no difficulty',
+          'YES',
+          'Difficulty with cell phone (battery, PIN code, turning it on, ' \
+          'volume, etc.)',
+          'Difficulty accessing CONEMO app',
+          'Difficulty reading sessions',
+          'Difficulty watching video(s)',
+          'Difficulties with activity selection',
+          'Other difficulties'
+        ]
       end
     end
   end

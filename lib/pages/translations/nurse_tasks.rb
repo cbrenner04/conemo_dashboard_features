@@ -116,5 +116,13 @@ module Translations
                portuguese: 'registrado com sucesso',
                english: 'saved successfully')
     end
+
+    def location_options
+      localize(
+        spanish: ['Casa del paciente', 'Centro de salud', 'Otro lugar'],
+        portuguese: ['Casa do paciente', 'Unidade de saúde', 'Outro lugar'],
+        english: ['Patient\'s home', 'Health unit', 'Other location']
+      )
+    end
   end
 end

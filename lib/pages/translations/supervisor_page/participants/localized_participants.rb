@@ -32,28 +32,19 @@ module Translations
         def active_headers
           @active_headers ||= {
             spanish: [
-              'Editar información',
-              'Enfermera',
-              'Nombre',
+              'Editar información', 'Enfermera', 'Nombre',
               'Código del participante',
               'Fecha de incorporación en el dashboard',
               'Desactivar Participante'
             ],
             portuguese: [
-              'Editar Informações',
-              'Auxiliar de Engfermagem',
-              'Nome',
+              'Editar Informações', 'Auxiliar de Engfermagem', 'Nome',
               'Identificação do participante (ID)',
-              'Data de inclusão no dashboard',
-              'Desativar participante'
+              'Data de inclusão no dashboard', 'Desativar participante'
             ],
             english: [
-              'Edit Information',
-              'Nurse',
-              'Name',
-              'Study Identifier',
-              'Date added to dashboard',
-              'Treatment termination'
+              'Edit Information', 'Nurse', 'Name', 'Study Identifier',
+              'Date added to dashboard', 'Treatment termination'
             ]
           }
         end

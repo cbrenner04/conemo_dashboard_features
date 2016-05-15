@@ -62,40 +62,24 @@ module Translations
     def headings
       @headings ||= {
         spanish: [
-          'Centro de salud:',
-          'Telefóno fijo:',
-          'Celular (propio):',
-          'Teléfono fijo (Contacto de Emergencia):',
-          'Teléfono alternativo 1:',
+          'Centro de salud:', 'Telefóno fijo:', 'Celular (propio):',
+          'Teléfono fijo (Contacto de Emergencia):', 'Teléfono alternativo 1:',
           'Nombre de persona / Lugar del teléfono alternativo 1:',
-          'Dirección actual:',
-          'Sexo:',
-          'Número del smartphone / número de serie:',
-          'Código del smartphone:'
+          'Dirección actual:', 'Sexo:',
+          'Número del smartphone / número de serie:', 'Código del smartphone:'
         ],
         portuguese: [
-          'Unidade de Saúde da Família:',
-          'Telefone fixo:',
-          'Celular (pessoal):',
-          'Telefone fixo (Contato de Emergência):',
+          'Unidade de Saúde da Família:', 'Telefone fixo:',
+          'Celular (pessoal):', 'Telefone fixo (Contato de Emergência):',
           'Telefone alternativo 1:',
-          'Nome de pessoa / lugar de telefone alternativo 1:',
-          'Endereço:',
-          'Sexo:',
-          'Número do Smartphone / número de serie:',
+          'Nome de pessoa / lugar de telefone alternativo 1:', 'Endereço:',
+          'Sexo:', 'Número do Smartphone / número de serie:',
           'Código do Smartphone:'
         ],
         english: [
-          'Family health unit:',
-          'Telephone:',
-          'Cell phone:',
-          'Telephone:',
-          'Alternate phone 1:',
-          'Contact person:',
-          'Home address:',
-          'Gender:',
-          'Phone number / serial number:',
-          'Phone ID:'
+          'Family health unit:', 'Telephone:', 'Cell phone:', 'Telephone:',
+          'Alternate phone 1:', 'Contact person:', 'Home address:', 'Gender:',
+          'Phone number / serial number:', 'Phone ID:'
         ]
       }
     end

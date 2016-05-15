@@ -10,7 +10,7 @@ class NurseTasks
     include Translations::NurseTaskTitles::FinalAppointment
 
     def initialize(final_appointment)
-      @locale ||= final_appointment[:locale]
+      @locale ||= final_appointment.fetch(:locale, 'english')
     end
 
     def active?
@@ -92,7 +92,7 @@ class NurseTasks
     end
 
     def has_location_options?
-      has_task_options?(5, 2)
+      has_task_options?(5, 2, location_options)
     end
 
     def has_canceled_alert?

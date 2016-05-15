@@ -27,18 +27,6 @@ module Translations
           ]
         )
       end
-
-      def options
-        localize(
-          spanish: (1..10).map { |i| "Centro de salud #{i}" },
-          portuguese: [
-            'Adão Manoel', 'Celso Daniel', 'Dom João Nery', 'Jardim Campos',
-            'Jardim Copa', 'Jardim Rubro II', 'Profeta Jeremias',
-            'Santo Estevão', 'Silva Teles', 'Vila Ramos'
-          ],
-          english: (1..10).map { |i| "unit #{i}" }
-        )
-      end
     end
   end
 end
