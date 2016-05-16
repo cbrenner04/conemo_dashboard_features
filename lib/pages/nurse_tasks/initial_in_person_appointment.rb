@@ -36,7 +36,7 @@ class NurseTasks
 
     def rescheduled?
       has_no_list_item?(initial_appointment_title) &&
-        has_scheduled_progress_bar_item?(initial_appointment_title)
+        has_scheduled_progress_bar_item_with_time?(initial_appointment_title)
     end
 
     def visible?

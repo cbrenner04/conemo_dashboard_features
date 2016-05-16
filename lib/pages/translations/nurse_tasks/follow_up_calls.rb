@@ -20,7 +20,7 @@ module Translations
             'Data/hora',
             'Duração da chamada (minutos)',
             'O paciente tem tido dificuldades com CONEMO?',
-            'Observações'
+            'Anotações'
           ],
           english: [
             'Date of phone call',

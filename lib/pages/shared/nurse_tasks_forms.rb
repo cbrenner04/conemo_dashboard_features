@@ -1,5 +1,6 @@
 require './lib/pages/translations/navigation'
 require './lib/pages/translations/nurse_tasks_titles'
+require './lib/pages/translations/nurse_tasks_unscheduled'
 
 # module for shared methods in nurse task forms
 module NurseTasksForms
@@ -7,6 +8,7 @@ module NurseTasksForms
   include Capybara::DSL
   include Translations::NavigationTranslations
   include Translations::NurseTaskTitles
+  include Translations::NurseTasksUnscheduled
 
   def mark_task_resolved(type)
     panel(type).find('a', text: mark_resolved_button).click
@@ -63,6 +65,11 @@ module NurseTasksForms
              text: "#{text} #{(Date.today + 1).strftime('%B %d, %Y')}")
   end
 
+  def has_scheduled_progress_bar_item_with_time?(text)
+    has_css?('.progress-bar-future',
+             text: "#{text} #{(DateTime.now + 1).strftime('%B %d, %Y %H')}")
+  end
+
   def enter_task_location(selector_num)
     find('.select2-container', match: :first)
     selector[selector_num].click
@@ -112,12 +119,8 @@ module NurseTasksForms
   end
 
   def resolve_as_canceled_responses
-    @resolve_as_canceled_responses ||= [
-      'Could not reach patient',
-      'Patient does not want to continue in the program',
-      'Patient did not have time to talk (multiple times)',
-      'Patient not willing to talk to nurse (assistant)'
-    ]
+    english_cancel_options.delete('Not done / CANCEL task')
+    english_cancel_options.delete('Other')
   end
 
   private

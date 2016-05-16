@@ -208,6 +208,7 @@ feature 'Spanish nurse, Participant tasks', metadata: :first do
 
     spanish_lack_of_connectivity_call.mark_resolved
 
+    expect(spanish_lack_of_connectivity_call).to have_helper_text
     expect(spanish_lack_of_connectivity_call).to have_form_headings
     expect(spanish_lack_of_connectivity_call).to have_reason_options
 
@@ -218,6 +219,7 @@ feature 'Spanish nurse, Participant tasks', metadata: :first do
 
     spanish_help_request.mark_resolved
 
+    expect(spanish_help_request).to have_helper_text
     expect(spanish_help_request).to have_form_headings
 
     spanish_help_request.complete_resolution_form
@@ -231,6 +233,7 @@ feature 'Spanish nurse, Participant tasks', metadata: :first do
 
     spanish_non_adherence_call.mark_resolved
 
+    expect(spanish_non_adherence_call).to have_helper_text
     expect(spanish_non_adherence_call).to have_form_headings
     expect(spanish_non_adherence_call).to have_reason_options
   end

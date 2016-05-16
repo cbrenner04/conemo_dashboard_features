@@ -192,6 +192,14 @@ feature 'Nurse Supervisor, Nurses', metadata: :not_first do
   end
 end
 
+feature 'Spanish Nurse Supervisor, Nurses', metadata: :very_first do
+  background { spanish_supervisor.sign_in }
+
+  scenario 'Sees correct translations for canceled and rescheduled tasks' do
+    expect(spanish_supervisor_1).to have_rescheduled_and_canceled_tasks
+  end
+end
+
 feature 'Spanish Nurse Supervisor, Nurses', metadata: :not_first do
   background { spanish_supervisor.sign_in }
 
@@ -216,8 +224,14 @@ feature 'Spanish Nurse Supervisor, Nurses', metadata: :not_first do
     expect(nurse_500).to have_supervision_sessions_title
     expect(nurse_500).to have_supervision_table_headers
   end
+end
 
-  scenario 'Sees correct translations for canceled and rescheduled tasks'
+feature 'Portguese Nurse Supervisor, Nurses', metadata: :very_first do
+  background { portuguese_supervisor.sign_in }
+
+  scenario 'Sees correct translations for canceled and rescheduled tasks' do
+    expect(portuguese_supervisor_1).to have_rescheduled_and_canceled_tasks
+  end
 end
 
 feature 'Portguese Nurse Supervisor, Nurses', metadata: :not_first do
@@ -244,6 +258,4 @@ feature 'Portguese Nurse Supervisor, Nurses', metadata: :not_first do
     expect(nurse_600).to have_supervision_sessions_title
     expect(nurse_600).to have_supervision_table_headers
   end
-
-  scenario 'Sees correct translations for canceled and rescheduled tasks'
 end

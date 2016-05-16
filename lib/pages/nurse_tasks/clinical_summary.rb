@@ -75,30 +75,29 @@ class NurseTasks
 
     def has_current_lesson?
       visible? # weird behavior if it doesn't find something first
-      l = lesson_row(@current_lesson)
-      l.has_css?('.info')
-      lesson_table.has_css?('.un-released',
-                            count: (total_lessons - @current_lesson))
+      lesson = @current_lesson.gsub('Lesson ', '').to_i
+      lesson_table.has_css?('.info', text: @current_lesson) &&
+        lesson_table.has_css?('.un-released', count: (total_lessons - lesson))
     end
 
     def has_unread_lesson?
       visible? # weird behavior if it doesn't find something first
-      has_css?('.danger', text: "Lesson #{@other_lesson}")
+      has_css?('.danger', text: @other_lesson)
     end
 
     def has_late_lesson?
       visible?
-      has_css?('.slippage', text: "Lesson #{@other_lesson}")
+      has_css?('.slippage', text: @other_lesson)
     end
 
     def has_incomplete_late_lesson?
       visible?
-      has_css?('.warning', text: "Lesson #{@incomplete_lesson}")
+      has_css?('.warning', text: @incomplete_lesson)
     end
 
     def has_ontime_lesson?
       visible?
-      has_css?('.success', text: "Lesson #{@other_lesson}")
+      has_css?('.success', text: @other_lesson)
     end
 
     def has_first_appt_notes_visible?

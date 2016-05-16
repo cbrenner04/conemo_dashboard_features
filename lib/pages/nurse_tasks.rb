@@ -28,7 +28,7 @@ class NurseTasks
   def open
     tries ||= 1
     find('tr', text: @pt_id).click
-    find('h2', text: tasks_heading)
+    find('h3', text: tasks_heading)
   rescue Capybara::ElementNotFound, Selenium::WebDriver::Error::UnknownError
     navigation.scroll_up
     tries += 1
@@ -90,7 +90,7 @@ class NurseTasks
 
   def has_participant_in_header?
     has_css?('.navbar-brand',
-             text: "Participant #{@pt_id}: Last-#{@pt_id}, First")
+             text: "Participant #{@pt_id}: First Last-#{@pt_id}")
   end
 
   def has_key?
@@ -103,7 +103,7 @@ class NurseTasks
   end
 
   def has_tasks_heading?
-    has_css?('h2', text: tasks_heading)
+    has_css?('h3', text: tasks_heading)
   end
 
   def has_additional_contact_alert?

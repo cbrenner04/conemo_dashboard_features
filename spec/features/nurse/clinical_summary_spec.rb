@@ -10,6 +10,17 @@ feature 'Nurse, Clinical Summary', metadata: :first do
 
     expect(pt_300_clinical_summary).to have_lesson_table_content
   end
+
+  scenario 'Spanish nurse sees correct status for lesson' do
+    spanish_nurse.sign_in
+    pt_516_nurse_tasks.open
+    pt_516_clinical_summary.open
+
+    expect(pt_516_ontime_lesson).to have_ontime_lesson
+    expect(pt_516_late_lesson).to have_late_lesson
+    expect(pt_516_incomplete_lesson).to have_incomplete_late_lesson
+    expect(pt_516_unread_lesson).to have_unread_lesson
+  end
 end
 
 feature 'Nurse, Clinical Summary', metadata: :not_first do

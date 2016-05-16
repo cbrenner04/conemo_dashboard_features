@@ -16,7 +16,7 @@ end
 def pt_300_clinical_summary
   @pt_300_clinical_summary ||= NurseTasks::ClinicalSummary.new(
     id: 300,
-    current_lesson: 1,
+    current_lesson: 'Lesson 1',
     note: 'New notes!'
   )
 end
@@ -35,8 +35,8 @@ end
 def pt_312_clinical_summary
   @pt_312_clinical_summary ||= NurseTasks::ClinicalSummary.new(
     id: 312,
-    current_lesson: 3,
-    other_lesson: 2
+    current_lesson: 'Lesson 3',
+    other_lesson: 'Lesson 2'
   )
 end
 
@@ -47,7 +47,7 @@ end
 def pt_317_clinical_summary
   @pt_317_clinical_summary ||= NurseTasks::ClinicalSummary.new(
     id: 317,
-    other_lesson: 2
+    other_lesson: 'Lesson 2'
   )
 end
 
@@ -58,8 +58,8 @@ end
 def pt_323_clinical_summary
   @pt_323_clinical_summary ||= NurseTasks::ClinicalSummary.new(
     id: 323,
-    current_lesson: 5,
-    other_lesson: 4
+    current_lesson: 'Lesson 5',
+    other_lesson: 'Lesson 4'
   )
 end
 
@@ -70,8 +70,8 @@ end
 def pt_324_clinical_summary
   @pt_324_clinical_summary ||= NurseTasks::ClinicalSummary.new(
     id: 324,
-    other_lesson: 2,
-    incomplete_lesson: 1
+    other_lesson: 'Lesson 2',
+    incomplete_lesson: 'Lesson 1'
   )
 end
 
@@ -82,7 +82,7 @@ end
 def pt_326_clinical_summary
   @pt_326_clinical_summary ||= NurseTasks::ClinicalSummary.new(
     id: 326,
-    other_lesson: 4
+    other_lesson: 'Lesson 4'
   )
 end
 
@@ -101,7 +101,7 @@ end
 def pt_400_clinical_summary
   @pt_400_clinical_summary ||= NurseTasks::ClinicalSummary.new(
     id: 400,
-    other_lesson: 1
+    other_lesson: 'Lesson 1'
   )
 end
 
@@ -112,8 +112,8 @@ end
 def pt_401_clinical_summary
   @pt_401_clinical_summary ||= NurseTasks::ClinicalSummary.new(
     id: 401,
-    current_lesson: 2,
-    other_lesson: 1
+    current_lesson: 'Lesson 2',
+    other_lesson: 'Lesson 1'
   )
 end
 
@@ -124,8 +124,8 @@ end
 def pt_410_clinical_summary
   @pt_410_clinical_summary ||= NurseTasks::ClinicalSummary.new(
     id: 410,
-    current_lesson: 4,
-    other_lesson: 3
+    current_lesson: 'Lesson 4',
+    other_lesson: 'Lesson 3'
   )
 end
 
@@ -136,7 +136,7 @@ end
 def pt_411_clinical_summary
   @pt_411_clinical_summary ||= NurseTasks::ClinicalSummary.new(
     id: 411,
-    other_lesson: 1
+    other_lesson: 'Lesson 1'
   )
 end
 
@@ -147,7 +147,7 @@ end
 def pt_412_clinical_summary
   @pt_412_clinical_summary ||= NurseTasks::ClinicalSummary.new(
     id: 412,
-    other_lesson: 3
+    other_lesson: 'Lesson 3'
   )
 end
 
@@ -158,8 +158,8 @@ end
 def pt_420_clinical_summary
   @pt_420_clinical_summary ||= NurseTasks::ClinicalSummary.new(
     id: 420,
-    current_lesson: 6,
-    other_lesson: 5
+    current_lesson: 'Lesson 6',
+    other_lesson: 'Lesson 5'
   )
 end
 
@@ -174,7 +174,7 @@ end
 def pt_422_clinical_summary
   @pt_422_clinical_summary ||= NurseTasks::ClinicalSummary.new(
     id: 422,
-    other_lesson: 5
+    other_lesson: 'Lesson 5'
   )
 end
 
@@ -185,8 +185,8 @@ end
 def pt_428_clinical_summary
   @pt_428_clinical_summary ||= NurseTasks::ClinicalSummary.new(
     id: 428,
-    other_lesson: 3,
-    incomplete_lesson: 2
+    other_lesson: 'Lesson 3',
+    incomplete_lesson: 'Lesson 2'
   )
 end
 
@@ -197,8 +197,8 @@ end
 def pt_430_clinical_summary
   @pt_430_clinical_summary ||= NurseTasks::ClinicalSummary.new(
     id: 430,
-    current_lesson: 7,
-    other_lesson: 6
+    current_lesson: 'Lesson 7',
+    other_lesson: 'Lesson 6'
   )
 end
 
@@ -209,8 +209,8 @@ end
 def pt_431_clinical_summary
   @pt_431_clinical_summary ||= NurseTasks::ClinicalSummary.new(
     id: 431,
-    other_lesson: 4,
-    incomplete_lesson: 3
+    other_lesson: 'Lesson 4',
+    incomplete_lesson: 'Lesson 3'
   )
 end
 
@@ -221,7 +221,7 @@ end
 def pt_432_clinical_summary
   @pt_432_clinical_summary ||= NurseTasks::ClinicalSummary.new(
     id: 432,
-    other_lesson: 6
+    other_lesson: 'Lesson 6'
   )
 end
 
@@ -232,8 +232,8 @@ end
 def pt_440_clinical_summary
   @pt_440_clinical_summary ||= NurseTasks::ClinicalSummary.new(
     id: 440,
-    current_lesson: 8,
-    other_lesson: 7
+    current_lesson: 'Lesson 8',
+    other_lesson: 'Lesson 7'
   )
 end
 
@@ -244,8 +244,8 @@ end
 def pt_441_clinical_summary
   @pt_441_clinical_summary ||= NurseTasks::ClinicalSummary.new(
     id: 441,
-    other_lesson: 5,
-    incomplete_lesson: 4
+    other_lesson: 'Lesson 5',
+    incomplete_lesson: 'Lesson 4'
   )
 end
 
@@ -256,7 +256,7 @@ end
 def pt_442_clinical_summary
   @pt_442_clinical_summary ||= NurseTasks::ClinicalSummary.new(
     id: 442,
-    other_lesson: 7
+    other_lesson: 'Lesson 7'
   )
 end
 
@@ -267,8 +267,8 @@ end
 def pt_450_clinical_summary
   @pt_450_clinical_summary ||= NurseTasks::ClinicalSummary.new(
     id: 450,
-    current_lesson: 9,
-    other_lesson: 8
+    current_lesson: 'Lesson 9',
+    other_lesson: 'Lesson 8'
   )
 end
 
@@ -279,8 +279,8 @@ end
 def pt_451_clinical_summary
   @pt_451_clinical_summary ||= NurseTasks::ClinicalSummary.new(
     id: 451,
-    other_lesson: 6,
-    incomplete_lesson: 5
+    other_lesson: 'Lesson 6',
+    incomplete_lesson: 'Lesson 5'
   )
 end
 
@@ -291,7 +291,7 @@ end
 def pt_452_clinical_summary
   @pt_452_clinical_summary ||= NurseTasks::ClinicalSummary.new(
     id: 452,
-    other_lesson: 8
+    other_lesson: 'Lesson 8'
   )
 end
 
@@ -302,8 +302,8 @@ end
 def pt_460_clinical_summary
   @pt_460_clinical_summary ||= NurseTasks::ClinicalSummary.new(
     id: 460,
-    current_lesson: 10,
-    other_lesson: 9
+    current_lesson: 'Lesson 10',
+    other_lesson: 'Lesson 9'
   )
 end
 
@@ -314,8 +314,8 @@ end
 def pt_461_clinical_summary
   @pt_461_clinical_summary ||= NurseTasks::ClinicalSummary.new(
     id: 461,
-    other_lesson: 7,
-    incomplete_lesson: 6
+    other_lesson: 'Lesson 7',
+    incomplete_lesson: 'Lesson 6'
   )
 end
 
@@ -326,7 +326,7 @@ end
 def pt_462_clinical_summary
   @pt_462_clinical_summary ||= NurseTasks::ClinicalSummary.new(
     id: 462,
-    other_lesson: 9
+    other_lesson: 'Lesson 9'
   )
 end
 
@@ -337,8 +337,8 @@ end
 def pt_471_clinical_summary
   @pt_471_clinical_summary ||= NurseTasks::ClinicalSummary.new(
     id: 471,
-    other_lesson: 8,
-    incomplete_lesson: 7
+    other_lesson: 'Lesson 8',
+    incomplete_lesson: 'Lesson 7'
   )
 end
 
@@ -349,7 +349,7 @@ end
 def pt_472_clinical_summary
   @pt_472_clinical_summary ||= NurseTasks::ClinicalSummary.new(
     id: 472,
-    other_lesson: 10
+    other_lesson: 'Lesson 10'
   )
 end
 
@@ -360,8 +360,8 @@ end
 def pt_480_clinical_summary
   @pt_480_clinical_summary ||= NurseTasks::ClinicalSummary.new(
     id: 480,
-    other_lesson: 9,
-    incomplete_lesson: 8
+    other_lesson: 'Lesson 9',
+    incomplete_lesson: 'Lesson 8'
   )
 end
 
@@ -372,8 +372,8 @@ end
 def pt_490_clinical_summary
   @pt_490_clinical_summary ||= NurseTasks::ClinicalSummary.new(
     id: 490,
-    other_lesson: 10,
-    incomplete_lesson: 9
+    other_lesson: 'Lesson 10',
+    incomplete_lesson: 'Lesson 9'
   )
 end
 
@@ -406,6 +406,43 @@ def pt_500_nurse_tasks
   )
 end
 
+def pt_516_nurse_tasks
+  @pt_516_nurse_tasks ||= NurseTasks.new(
+    pt_id: 516,
+    locale: 'spanish'
+  )
+end
+
+def pt_516_clinical_summary
+  @pt_516_clinical_summary ||= NurseTasks::ClinicalSummary.new(
+    locale: 'spanish'
+  )
+end
+
+def pt_516_ontime_lesson
+  @pt_516_ontime_lesson ||= NurseTasks::ClinicalSummary.new(
+    other_lesson: '¡Bienvenido a CONEMO!'
+  )
+end
+
+def pt_516_late_lesson
+  @pt_516_late_lesson ||= NurseTasks::ClinicalSummary.new(
+    other_lesson: 'Estar activo te ayudará a tener una vida más saludable'
+  )
+end
+
+def pt_516_incomplete_lesson
+  @pt_516_incomplete_lesson ||= NurseTasks::ClinicalSummary.new(
+    incomplete_lesson: '¿Qué quieres lograr con CONEMO?'
+  )
+end
+
+def pt_516_unread_lesson
+  @pt_516_unread_lesson ||= NurseTasks::ClinicalSummary.new(
+    other_lesson: ' Terminar nuestras tareas nos hace sentir mejor.'
+  )
+end
+
 def pt_600_clinical_summary
   @pt_600_clinical_summary ||= NurseTasks::ClinicalSummary.new(
     id: 600,
@@ -434,7 +471,7 @@ end
 def pt_700_clinical_summary
   @pt_700_clinical_summary ||= NurseTasks::ClinicalSummary.new(
     id: 700,
-    incomplete_lesson: 10
+    incomplete_lesson: 'Lesson 10'
   )
 end
 

@@ -11,7 +11,7 @@ module Translations
       localize(
         spanish: 'Historia del Paciente',
         portuguese: 'Histórico do participante',
-        engilsh: 'Clinical Summary'
+        english: 'Clinical Summary'
       )
     end
 

@@ -27,24 +27,24 @@ module Translations
 
       def legend
         @legend ||= {
-          spanish_legend: [
+          spanish: [
             'Sesión todavía no entregada', 'Sesión actual',
             'Sesión finalizada tarde', 'Sesión accedida, pero no finalizada',
             'Sesión no accedida', 'Sesión finalizada a tiempo'
           ],
-          portuguese_legend: [
+          portuguese: [
             'Ainda não enviada', 'Atual', 'Concluída com atraso',
             'Acessada mas não concluída', 'Não acessada', 'Concluída em tempo'
           ],
-          english_legend: [
+          english: [
             'Unreleased', 'Current', 'Completed late',
             'Accessed but not completed', 'Not accessed', 'Completed on time'
           ]
         }
       end
 
-      def notes_form_heading
-        @notes_form_heading ||= {
+      def notes_form_headings
+        @notes_form_headings ||= {
           spanish: "Escribir una nota de First Last-#{@id}",
           portuguese: "Escrever nota para First Last-#{@id}",
           english: "Create Note for First Last-#{@id}"

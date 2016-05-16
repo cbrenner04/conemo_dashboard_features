@@ -73,6 +73,10 @@ feature 'Spanish Nurse, Contact Information', metadata: :not_first do
     expect(pt_500_contact_info).to have_contact_information_table_headings
     expect(pt_500_contact_info).to have_smartphone_information_title
 
+    pt_500_contact_info.view_all
+
+    expect(pt_500_contact_info).to have_extra_contact_information_table_headings
+
     pt_500_contact_info.select_edit_contact_information
     spanish_navigation.submit
 
@@ -99,6 +103,10 @@ feature 'Portuguese Nurse, Contact Information', metadata: :not_first do
     expect(pt_600_contact_info).to have_contact_information_title
     expect(pt_600_contact_info).to have_contact_information_table_headings
     expect(pt_600_contact_info).to have_smartphone_information_title
+
+    pt_600_contact_info.view_all
+
+    expect(pt_600_contact_info).to have_extra_contact_information_table_headings
 
     pt_600_contact_info.select_edit_contact_information
     portuguese_navigation.submit

@@ -28,7 +28,7 @@ module Translations
       end
 
       def options
-        localize(
+        @options ||= localize(
           spanish: spanish_options.concat(spanish_cancel_options),
           portuguese: portuguese_options.concat(portuguese_cancel_options),
           english: english_options.concat(english_cancel_options)

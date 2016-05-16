@@ -25,7 +25,7 @@ module Translations
             'Otra'
           ],
           portuguese: [
-            'Não consegi falar com o paciente',
+            'Não consegui falar com o paciente',
             'Paciente não quer continuar no programa',
             'Paciente não teve tempo para falar (várias vezes)',
             'Paciente não estava disposto/a a falar',

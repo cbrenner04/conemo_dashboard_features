@@ -1,13 +1,18 @@
 require './lib/pages/your_patients'
+require './lib/pages/translations/nurse_tasks_titles'
+require './lib/pages/translations/supervisor_page'
 
 # page object for Nurse Supervisor landing page
 class SupervisorPage
   include RSpec::Matchers
   include Capybara::DSL
+  include Translations::NurseTaskTitles
+  include Translations::SupervisorPageTranslations
 
   def initialize(supervisor_page)
     @pt_id ||= supervisor_page[:pt_id]
     @user_id ||= supervisor_page[:user_id]
+    @locale ||= supervisor_page.fetch(:locale, 'english')
   end
 
   def has_pending_participants?
@@ -165,6 +170,16 @@ class SupervisorPage
     rescheduled? 'Initial in person appointment'
   end
 
+  def has_rescheduled_and_canceled_tasks?
+    find('button', text: toggle_button).click
+    (0..5).all? do |i|
+      find('.list-unstyled').all('li')[i]
+        .has_text?(rescheduled_and_canceled_tasks_dates[i]) &&
+        find('.list-unstyled').all('li')[i]
+          .has_text?(rescheduled_and_canceled_tasks_list[i])
+    end
+  end
+
   private
 
   def your_patients
@@ -249,6 +264,35 @@ class SupervisorPage
   def toggle_canceled_rescheduled_tasks
     4.times { navigation.scroll_down }
     nurse_panel
-      .find('button', text: 'Toggle cancelled / rescheduled tasks').click
+      .find('button', text: toggle_button).click
+  end
+
+  def rescheduled_and_canceled_tasks_dates
+    @rescheduled_and_canceled_tasks_dates ||= [
+      "#{locale_date(Date.today - 4)}#{locale_hour(Time.now)}",
+      "#{locale_date(Date.today - 8)}#{locale_hour(Time.now)}",
+      "#{locale_date(Date.today - 10)}#{locale_hour(Time.now)}",
+      "#{locale_date(Date.today - 11)}#{locale_hour(Time.now)}",
+      "#{locale_date(Date.today - 16)}#{locale_hour(Time.now)}",
+      "#{locale_date(Date.today - 20)}#{locale_hour(Time.now)}"
+    ]
+  end
+
+  def rescheduled_and_canceled_tasks_list
+    pt_id_initial_digit = localize(spanish: 5, portuguese: 6, english: 1)
+    @rescheduled_and_canceled_tasks_list ||= [
+      "#{participants_title} #{pt_id_initial_digit}15 " \
+      "#{confirmation_call_title} #{rescheduled}:",
+      "#{participants_title} #{pt_id_initial_digit}12 " \
+      "#{confirmation_call_title} #{canceled}:",
+      "#{participants_title} #{pt_id_initial_digit}11 " \
+      "#{confirmation_call_title} #{canceled}:",
+      "#{participants_title} #{pt_id_initial_digit}14 " \
+      "#{confirmation_call_title} #{rescheduled}:",
+      "#{participants_title} #{pt_id_initial_digit}16 " \
+      "#{confirmation_call_title} #{rescheduled}:",
+      "#{participants_title} #{pt_id_initial_digit}13 " \
+      "#{confirmation_call_title} #{canceled}:"
+    ]
   end
 end

@@ -208,6 +208,7 @@ feature 'Portuguese nurse, Participant tasks', metadata: :first do
 
     portuguese_lack_of_connectivity_call.mark_resolved
 
+    expect(portuguese_lack_of_connectivity_call).to have_helper_text
     expect(portuguese_lack_of_connectivity_call).to have_form_headings
     expect(portuguese_lack_of_connectivity_call).to have_reason_options
 
@@ -218,6 +219,7 @@ feature 'Portuguese nurse, Participant tasks', metadata: :first do
 
     portuguese_help_request.mark_resolved
 
+    expect(portuguese_help_request).to have_helper_text
     expect(portuguese_help_request).to have_form_headings
 
     portuguese_help_request.complete_resolution_form
@@ -232,6 +234,7 @@ feature 'Portuguese nurse, Participant tasks', metadata: :first do
 
     portuguese_non_adherence_call.mark_resolved
 
+    expect(portuguese_non_adherence_call).to have_helper_text
     expect(portuguese_non_adherence_call).to have_form_headings
     expect(portuguese_non_adherence_call).to have_reason_options
   end

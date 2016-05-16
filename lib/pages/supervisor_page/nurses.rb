@@ -80,7 +80,7 @@ class SupervisorPage
     def has_supervision_sessions_title?
       # will need to update spanish version
       has_css?('h3',
-               text: localize(spanish: 'Añadir nueva supervisión',
+               text: localize(spanish: 'Sesiones de supervisión',
                               portuguese: 'Sessão de Supervisão',
                               english: 'Supervision sessions'))
     end

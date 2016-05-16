@@ -20,7 +20,7 @@ module Translations
       def subheadings
         localize(
           spanish: /\d+ participantes \d+ Tareas \d+ tareas atrasadas/,
-          portuguese: /\d+ Participantes \d+ Tarefas \d+ Tarefas Atrasadas/,
+          portuguese: /(?x)\d+ Participantes \d+ Tarefas \d+ Tarefas Atrasadas/,
           english: /\d+ Participants \d+ Tasks \d+ Overdue/
         )
       end
@@ -35,7 +35,7 @@ module Translations
 
       def supervision_form_heading
         localize(
-          spanish: 'Añadir nueva supervisión',
+          spanish: 'Sesion de supervisión',
           portuguese: 'Sessão de Supervisão',
           english: 'Supervision session'
         )

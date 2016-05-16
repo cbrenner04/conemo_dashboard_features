@@ -25,10 +25,9 @@ class NurseTasks
     def complete_resolution_form
       find('.select2-container', match: :first)
       selector[5].click
-      options.delete_at(0)
-      options.delete_at(4)
-      options.delete_at(5)
-      options.delete_at(-1)
+      options.delete('Other')
+      options.delete('Not done / CANCEL task')
+      options.delete('Reasons')
       @response ||= options.sample
       select_list_item(@response)
       navigation.submit
@@ -75,6 +74,17 @@ class NurseTasks
 
     def has_cancel_reason?
       has_text? @cancel_response
+    end
+
+    def has_helper_text?
+      has_text? localize(
+        spanish: 'Por favor, indica la razón para la falta de conectividad O' \
+                 ' por qué estás suspendiendo la tarea',
+        portuguese: 'Por favor, indicar a razão da falta de conectividade OU' \
+                    ' porque esta tarefa está sendo cancelada',
+        english: 'Please indicate the reason for lack of connectivity or why' \
+                 ' you are canceling the task'
+      )
     end
 
     private

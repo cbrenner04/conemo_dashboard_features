@@ -203,3 +203,11 @@ def pt_1000_nurse_tasks
     tasks_count: 3
   )
 end
+
+def spanish_supervisor_1
+  @spanish_supervisor_1 ||= SupervisorPage.new(locale: 'spanish')
+end
+
+def portuguese_supervisor_1
+  @portuguese_supervisor_1 ||= SupervisorPage.new(locale: 'portuguese')
+end

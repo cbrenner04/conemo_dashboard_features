@@ -105,7 +105,7 @@ class NurseTasks
     def has_time_ago_in_words?
       has_text? localize(
         spanish: 'hace cerca de 2 horas',
-        portuguese: 'aproximademente 2 horas atrás',
+        portuguese: 'aproximadamente 2 horas atrás',
         english: 'about 2 hours ago'
       )
     end

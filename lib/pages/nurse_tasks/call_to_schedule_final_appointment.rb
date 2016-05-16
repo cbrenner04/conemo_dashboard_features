@@ -103,7 +103,7 @@ class NurseTasks
     end
 
     def has_location_options?
-      has_task_options?(10, 9, health_unit_options)
+      has_task_options?(10, 9, localize(health_unit_options))
     end
 
     def has_canceled_alert?

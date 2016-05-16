@@ -1,9 +1,12 @@
 require './lib/pages/translations'
+require './lib/pages/translations/' \
+        'contact_information/localized_contact_information'
 
 module Translations
   # module for Contact Information page
   module ContactInformation
     include Translations
+    include Translations::ContactInformation::LocalizedContactInformation
 
     def contact_information_title
       localize(
@@ -37,8 +40,28 @@ module Translations
       )
     end
 
+    def view_all_button
+      localize(
+        spanish: 'Mostrar todo',
+        portuguese: 'Ver tudo',
+        english: 'See all'
+      )
+    end
+
     def expected_headings
-      localize headings
+      localize(
+        spanish: spanish_headings,
+        portuguese: portuguese_headings,
+        english: english_headings
+      )
+    end
+
+    def expected_extra_headings
+      localize(
+        spanish: spanish_extras,
+        portuguese: portuguese_extras,
+        english: english_extras
+      )
     end
 
     def saved_contact_information_alert
@@ -55,33 +78,6 @@ module Translations
         portuguese: 'Smartphone registrado com sucesso',
         english: 'Successfully created smartphone'
       )
-    end
-
-    private
-
-    def headings
-      @headings ||= {
-        spanish: [
-          'Centro de salud:', 'Telefóno fijo:', 'Celular (propio):',
-          'Teléfono fijo (Contacto de Emergencia):', 'Teléfono alternativo 1:',
-          'Nombre de persona / Lugar del teléfono alternativo 1:',
-          'Dirección actual:', 'Sexo:',
-          'Número del smartphone / número de serie:', 'Código del smartphone:'
-        ],
-        portuguese: [
-          'Unidade de Saúde da Família:', 'Telefone fixo:',
-          'Celular (pessoal):', 'Telefone fixo (Contato de Emergência):',
-          'Telefone alternativo 1:',
-          'Nome de pessoa / lugar de telefone alternativo 1:', 'Endereço:',
-          'Sexo:', 'Número do Smartphone / número de serie:',
-          'Código do Smartphone:'
-        ],
-        english: [
-          'Family health unit:', 'Telephone:', 'Cell phone:', 'Telephone:',
-          'Alternate phone 1:', 'Contact person:', 'Home address:', 'Gender:',
-          'Phone number / serial number:', 'Phone ID:'
-        ]
-      }
     end
   end
 end

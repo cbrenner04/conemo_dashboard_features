@@ -27,7 +27,7 @@ class NurseTasks
     end
 
     def view_all
-      click_on 'SEE ALL'
+      click_on view_all_button
     end
 
     def has_extra_information_visible?
@@ -77,6 +77,12 @@ class NurseTasks
       headings = contact_information_div.all('strong')
       actual_headings = (0..9).map { |i| headings[i].text }
       expect(actual_headings).to eq(expected_headings)
+    end
+
+    def has_extra_contact_information_table_headings?
+      headings = contact_information_div.all('strong')
+      actual_headings = (8..19).map { |i| headings[i].text }
+      expect(actual_headings).to eq(expected_extra_headings)
     end
 
     def has_saved_contact_information_alert?

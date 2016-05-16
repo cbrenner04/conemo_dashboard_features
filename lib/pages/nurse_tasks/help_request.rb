@@ -29,10 +29,9 @@ class NurseTasks
     def complete_resolution_form
       find('.select2-container', match: :first)
       selector[5].click
-      options.delete_at(0)
-      options.delete_at(4)
-      options.delete_at(4)
-      options.delete_at(-1)
+      options.delete('Other')
+      options.delete('Not done / CANCEL task')
+      options.delete('Reasons')
       @response ||= options.sample
       select_list_item(@response)
       navigation.submit
@@ -87,6 +86,17 @@ class NurseTasks
           portuguese: 'Pedido de ajuda salvo com sucesso',
           english: 'Help request saved successfully'
         )
+      )
+    end
+
+    def has_helper_text?
+      has_text? localize(
+        spanish: 'Por favor, indica la razón de la solicitud de ayuda O por ' \
+                 'qué estás suspendiendo la tarea',
+        portuguese: 'Por favor, indicar o motivo da solicitação de ajuda OU ' \
+                    'porque esta tarefa está sendo cancelada',
+        english: 'Please indicate the reason for help request or why you are' \
+                 ' canceling the task'
       )
     end
 

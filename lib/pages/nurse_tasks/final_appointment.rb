@@ -35,7 +35,7 @@ class NurseTasks
 
     def rescheduled?
       has_no_list_item?(final_appointment_title) &&
-        has_scheduled_progress_bar_item?(final_appointment_title)
+        has_scheduled_progress_bar_item_with_time?(final_appointment_title)
     end
 
     def confirm

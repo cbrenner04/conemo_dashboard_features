@@ -30,8 +30,9 @@ class SupervisorPage
 
     def has_nurse_options?
       find('select').click
-      options = all('label')
-      actual_options = (0..4).map { |i| options[i].text }
+      sleep(0.25) # won't wait to map otherwise
+      labels = all('option')
+      actual_options = (0..4).map { |i| labels[i].text }
       actual_options.should =~ expected_options
     end
 

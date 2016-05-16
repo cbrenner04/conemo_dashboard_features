@@ -50,7 +50,7 @@ module Translations
             'Tareas atrasadas / Adherencia de la enfermera',
             'Tareas canceladas',
             'Eventos adversos serios (mencionados por la enfermera)',
-            'Dropouts', 'Dudas sobre las tareas',
+            'Suspensión del Tratamiento', 'Dudas sobre las tareas',
             'Dudas sobre la intervención', 'Otros contactos programados',
             'Solicitudes de ayuda resueltos',
             'Situaciones difíciles para la enfermera relacionados al estudio',
@@ -67,13 +67,13 @@ module Translations
             'Pedido de ajuda não resolvido', 'Chamada por não-conectividade',
             'Não aderência', 'Dificuldades do paciente com CONEMO',
             'Tarefas atrasadas / Aderência da/o AE', 'Tarefas canceladas',
-            'Eventos adversos serios (mencionados pela/o AE)', 'Dropouts',
-            'Dúvidad com respeito ás tarefas',
-            'Dúvidas com respeito á intervenção',
+            'Eventos adversos sérios (mencionados pela/o AE)',
+            'Términos de Tratamento', 'Dúvidad com respeito às tarefas',
+            'Dúvidas com respeito à intervenção',
             'Outros pontos de contato programados',
             'Pedidos de ajuda resolvidos',
             'Situações difíceis relacionadas ao estudo',
-            'Questões Admnistrativas', 'Contatos adicionais', 'Outros'
+            'Questões Administrativas', 'Contatos adicionais', 'Outros'
           ]
         end
 
