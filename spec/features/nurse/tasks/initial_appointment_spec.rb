@@ -44,6 +44,25 @@ feature 'Nurse, Initial in person appointment', metadata: :first do
     expect(patient_319).to_not have_initial_appointment
     expect(patient_319).to have_tasks_completed
   end
+
+  scenario 'Nurse reschedules initial in-person appointment' do
+    pt_318_nurse_tasks.open
+
+    expect(pt_318_nurse_tasks).to have_one_task_in_count
+    expect(initial_in_person_appt).to be_active
+
+    initial_in_person_appt.open_reschedule_form
+    reschedule_form.complete
+
+    expect(pt_318_nurse_tasks).to have_no_tasks_in_count
+    expect(initial_in_person_appt).to be_rescheduled
+
+    english_nurse.sign_out
+    english_supervisor.sign_in
+
+    expect(nurse_supervisor_12).to have_initial_appointment_rescheduled
+    expect(reschedule_form).to have_reschedule_reason
+  end
 end
 
 feature 'Nurse, Initial in person appointment', metadata: :not_first do
@@ -93,25 +112,6 @@ feature 'Nurse, Initial in person appointment', metadata: :not_first do
 
     expect(pt_317_nurse_tasks).to have_one_task_in_count
     expect(initial_in_person_appt).to be_active
-  end
-
-  scenario 'Nurse reschedules initial in-person appointment' do
-    pt_318_nurse_tasks.open
-
-    expect(pt_318_nurse_tasks).to have_one_task_in_count
-    expect(initial_in_person_appt).to be_active
-
-    initial_in_person_appt.open_reschedule_form
-    reschedule_form.complete
-
-    expect(pt_318_nurse_tasks).to have_no_tasks_in_count
-    expect(initial_in_person_appt).to be_rescheduled
-
-    english_nurse.sign_out
-    english_supervisor.sign_in
-
-    expect(nurse_supervisor_12).to have_initial_appointment_rescheduled
-    expect(reschedule_form).to have_reschedule_reason
   end
 
   scenario 'Nurse cancels out of confirmation form' do

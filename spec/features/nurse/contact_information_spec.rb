@@ -2,7 +2,7 @@
 
 require './spec/support/nurse/contact_information_helper'
 
-feature 'Nurse, Contact Information', metadata: :not_first do
+feature 'Nurse, Contact Information', metadata: :first do
   background { english_nurse.sign_in }
 
   scenario 'Nurse sees participant contact information' do

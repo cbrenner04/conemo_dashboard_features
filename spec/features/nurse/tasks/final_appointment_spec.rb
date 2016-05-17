@@ -3,6 +3,42 @@
 require './spec/support/nurse/tasks_helper'
 require './spec/support/nurse/tasks/final_appointment_helper'
 
+feature 'Nurse, Participant Tasks, Final appointment', metadata: :first do
+  background { english_nurse.sign_in }
+
+  scenario 'Nurse cancels out of reschedule form' do
+    pt_345_nurse_tasks.open
+
+    expect(pt_345_nurse_tasks).to have_one_task_in_count
+    expect(final_appointment).to be_active
+
+    final_appointment.open_reschedule_form
+    navigation.cancel
+
+    expect(pt_345_nurse_tasks).to have_one_task_in_count
+    expect(final_appointment).to be_active
+  end
+
+  scenario 'Nurse reschedules final appointment' do
+    pt_345_nurse_tasks.open
+
+    expect(pt_345_nurse_tasks).to have_one_task_in_count
+    expect(final_appointment).to be_active
+
+    final_appointment.open_reschedule_form
+    reschedule_form.complete
+
+    expect(pt_345_nurse_tasks).to have_no_tasks_in_count
+    expect(final_appointment).to be_rescheduled
+
+    english_nurse.sign_out
+    english_supervisor.sign_in
+
+    expect(nurse_supervisor_6).to have_final_appointment_rescheduled
+    expect(reschedule_form).to have_reschedule_reason
+  end
+end
+
 feature 'Nurse, Participant Tasks, Final appointment', metadata: :not_first do
   background { english_nurse.sign_in }
 
@@ -36,38 +72,6 @@ feature 'Nurse, Participant Tasks, Final appointment', metadata: :not_first do
 
     expect(nurse_supervisor_5).to have_final_appointment_canceled
     expect(cancel_form).to have_cancellation_reason
-  end
-
-  scenario 'Nurse cancels out of reschedule form' do
-    pt_345_nurse_tasks.open
-
-    expect(pt_345_nurse_tasks).to have_one_task_in_count
-    expect(final_appointment).to be_active
-
-    final_appointment.open_reschedule_form
-    navigation.cancel
-
-    expect(pt_345_nurse_tasks).to have_one_task_in_count
-    expect(final_appointment).to be_active
-  end
-
-  scenario 'Nurse reschedules final appointment' do
-    pt_345_nurse_tasks.open
-
-    expect(pt_345_nurse_tasks).to have_one_task_in_count
-    expect(final_appointment).to be_active
-
-    final_appointment.open_reschedule_form
-    reschedule_form.complete
-
-    expect(pt_345_nurse_tasks).to have_no_tasks_in_count
-    expect(final_appointment).to be_rescheduled
-
-    english_nurse.sign_out
-    english_supervisor.sign_in
-
-    expect(nurse_supervisor_6).to have_final_appointment_rescheduled
-    expect(reschedule_form).to have_reschedule_reason
   end
 
   scenario 'Nurse cancels confirmation form' do
