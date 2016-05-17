@@ -121,6 +121,7 @@ module NurseTasksForms
   def resolve_as_canceled_responses
     english_cancel_options.delete('Not done / CANCEL task')
     english_cancel_options.delete('Other')
+    @resolve_as_canceled_responses ||= english_cancel_options
   end
 
   private

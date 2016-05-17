@@ -20,7 +20,7 @@ module Translations
       def subheadings
         localize(
           spanish: /\d+ participantes \d+ Tareas \d+ tareas atrasadas/,
-          portuguese: /(?x)\d+ Participantes \d+ Tarefas \d+ Tarefas Atrasadas/,
+          portuguese: /\d+ Participantes \d+ Tarefas \d+ Tarefas Atrasadas/,
           english: /\d+ Participants \d+ Tasks \d+ Overdue/
         )
       end
