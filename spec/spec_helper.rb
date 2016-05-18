@@ -21,6 +21,7 @@ RSpec.configure do |config|
       when :very_first then 10
       when :first then 20
       when :last then 40
+      when :very_last then 50
       else 30
       end
     end

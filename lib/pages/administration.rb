@@ -14,6 +14,23 @@ class Administration
     find('.btn', text: 'ADMIN').click
   end
 
+  def english_version
+    "#{ENV['Base_URL']}/admin?locale=en"
+  end
+
+  def lessons_page
+    locale = localize(spanish: 'es-PE', portuguese: 'pt-BR', english: 'en')
+    "#{ENV['Base_URL']}/#{locale}/lessons"
+  end
+
+  def on_lessons_page?
+    has_text? localize(
+      spanish: '¡Bienvenido a CONEMO!',
+      portuguese: 'Bem-vindo ao CONEMO!',
+      english: 'Lesson 1'
+    )
+  end
+
   def visible?
     has_css?('h1', text: localize(spanish: 'Administración del sitio',
                                   portuguese: 'Administração do Site',
@@ -42,6 +59,7 @@ class Administration
     fill_in 'Phone', with: '202-555-0149'
     fill_in 'First name', with: 'New'
     fill_in 'Last name', with: 'Admin'
+    find('.ra-filtering-select-input').set('en')
     click_on 'Save'
   end
 
