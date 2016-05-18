@@ -150,7 +150,8 @@ end
 def pt_500_clinical_summary_1
   @pt_500_clinical_summary_1 ||= NurseTasks::ClinicalSummary.new(
     locale: 'spanish',
-    id: 500)
+    id: 500
+  )
 end
 
 def pt_500_timeline
@@ -170,7 +171,8 @@ end
 def pt_600_clinical_summary_1
   @pt_600_clinical_summary_1 ||= NurseTasks::ClinicalSummary.new(
     locale: 'portuguese',
-    id: 600)
+    id: 600
+  )
 end
 
 def pt_600_timeline

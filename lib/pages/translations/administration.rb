@@ -24,11 +24,11 @@ module Translations
 
     def active_configuration_token
       localize(
-        spanish: "Vence en hace 28 días Valor #{%r{.+}} " \
-                 "No distingue mayúsculas y minúsculas",
-        portuguese: "Expira em 28 dias atrás Valor #{%r{.+}} " \
-                    "Não distingue maiúsculas e minúsculas",
-        english: "Expires in 28 days ago Value #{%r{.+}} Case insensitive"
+        spanish: 'Vence en hace 28 días Valor .+ ' \
+                 'No distingue mayúsculas y minúsculas',
+        portuguese: 'Expira em 28 dias atrás Valor .+ ' \
+                    'Não distingue maiúsculas e minúsculas',
+        english: 'Expires in 28 days ago Value .+ Case insensitive'
       )
     end
 
