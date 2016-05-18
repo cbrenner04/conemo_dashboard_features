@@ -20,6 +20,7 @@ RSpec.configure do |config|
       case group.metadata[:metadata]
       when :very_first then 10
       when :first then 20
+      when :last then 40
       else 30
       end
     end

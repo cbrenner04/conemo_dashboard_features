@@ -6,7 +6,7 @@ def administration
   @administration ||= Administration.new(locale: 'english')
 end
 
-feature 'Admin, Administration', metadata: :not_first do
+feature 'Admin, Administration', metadata: :last do
   background do
     english_admin.sign_in
     administration.open
