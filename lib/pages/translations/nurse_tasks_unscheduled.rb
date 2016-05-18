@@ -37,5 +37,17 @@ module Translations
         'Other'
       ]
     end
+
+    def has_difficulties_cant_be_blank_alert?
+      has_css?('.alert',
+               text: localize(
+                 spanish: '¿El paciente ha tenido algunas dificultades ' \
+                          'usando CONEMO? no puede estar en blanco',
+                 portuguese: 'O paciente tem tido dificuldades com ' \
+                             'CONEMO? não pode ficar em branco',
+                 english: 'Did the patient have any difficulties using ' \
+                          'CONEMO? can\'t be blank'
+               ))
+    end
   end
 end

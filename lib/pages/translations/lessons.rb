@@ -16,5 +16,14 @@ module Translations
         english: 'Add Lesson'
       )
     end
+
+    def destroy_alert
+      localize(
+        spanish: 'Sesión eliminada',
+        portuguese: 'translation missing: ' \
+                    'pt-BR.conemo.controllers.lessons.destroyed',
+        english: 'Lesson deleted'
+      )
+    end
   end
 end

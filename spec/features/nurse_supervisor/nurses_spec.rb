@@ -161,15 +161,6 @@ feature 'Nurse Supervisor, Nurses', metadata: :not_first do
       expect(pt_301_contact_info_1).to be_updated
     end
 
-    scenario 'Nurse Supervisor visits participant clinical summary' do
-      nurse_400.select
-      pt_343_nurse_tasks.open
-      pt_343_clinical_summary_2.open
-      pt_343_clinical_summary_2.show_number_of_logins
-
-      expect(pt_343_clinical_summary_2).to have_correct_logins
-    end
-
     scenario 'Nurse Supervisor sees all Nurse notes' do
       # potential for a dependency issue
       nurse_400.select

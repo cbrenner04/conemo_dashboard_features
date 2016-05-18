@@ -105,6 +105,19 @@ feature 'Spanish Nurse, Timeline', metadata: :not_first do
     expect(pt_500_timeline).to have_timeline_titles
     expect(pt_500_timeline).to have_contact_dates
     expect(pt_500_timeline).to have_timeline_headings
+
+    pt_500_timeline.edit_follow_up_week_1
+    spanish_navigation.submit
+
+    expect(spanish_follow_up_week_1).to have_difficulties_cant_be_blank_alert
+
+    spanish_navigation.cancel
+    pt_500_timeline.open
+    navigation.scroll_down
+    pt_500_timeline.edit_follow_up_week_3
+    spanish_navigation.submit
+
+    expect(spanish_follow_up_week_3).to have_difficulties_cant_be_blank_alert
   end
 end
 
@@ -118,5 +131,18 @@ feature 'Portuguese Nurse, Timeline', metadata: :not_first do
     expect(pt_600_timeline).to have_timeline_titles
     expect(pt_600_timeline).to have_contact_dates
     expect(pt_600_timeline).to have_timeline_headings
+
+    pt_600_timeline.edit_follow_up_week_1
+    portuguese_navigation.submit
+
+    expect(portuguese_follow_up_week_1).to have_difficulties_cant_be_blank_alert
+
+    portuguese_navigation.cancel
+    pt_600_timeline.open
+    navigation.scroll_down
+    pt_600_timeline.edit_follow_up_week_3
+    portuguese_navigation.submit
+
+    expect(portuguese_follow_up_week_3).to have_difficulties_cant_be_blank_alert
   end
 end

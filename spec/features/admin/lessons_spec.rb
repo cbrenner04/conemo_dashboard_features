@@ -112,8 +112,12 @@ end
 feature 'Portuguese Admin, Lessons' do
   background { portuguese_admin.sign_in }
 
-  scenario 'Portuguese admin deletes a lesson'
+  scenario 'Portuguese admin deletes a lesson' do
+    portuguese_lessons.open
+    portuguese_lesson.delete
 
+    expect(portuguese_lesson).to_not be_visible
+  end
   scenario 'Portuguese admin sees correct translations' do
     portuguese_lessons.open
 

@@ -80,6 +80,7 @@ class NurseTasks
     end
 
     def has_extra_contact_information_table_headings?
+      sleep(0.25) # misses the last heading otheriwse
       headings = contact_information_div.all('strong')
       actual_headings = (8..19).map { |i| headings[i].text }
       expect(actual_headings).to eq(expected_extra_headings)

@@ -4,9 +4,9 @@ require './spec/support/nurse/tasks_helper'
 require './spec/support/nurse/tasks/initial_appointment_helper'
 
 feature 'Nurse, Initial in person appointment', metadata: :first do
-  scenario 'Nurse confirms an initial in-person' do
-    english_nurse.sign_in
+  background { english_nurse.sign_in }
 
+  scenario 'Nurse confirms an initial in-person' do
     # check your patients list for current task
     expect(patient_319).to have_initial_appointment
 

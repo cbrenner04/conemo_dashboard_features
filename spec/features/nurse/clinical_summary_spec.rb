@@ -41,14 +41,6 @@ feature 'Nurse, Clinical Summary', metadata: :not_first do
     expect(pt_343_clinical_summary).to have_legend
   end
 
-  scenario 'Nurse sees correct messages & logins' do
-    pt_343_nurse_tasks.open
-    pt_343_clinical_summary.open
-    clinical_summary.show_number_of_logins
-
-    expect(pt_343_clinical_summary).to have_correct_logins
-  end
-
   scenario 'Nurse creates and deletes a note' do
     pt_300_nurse_tasks.open
     pt_300_clinical_summary.open
@@ -354,7 +346,7 @@ feature 'Nurse, Clinical Summary', metadata: :not_first do
   end
 end
 
-feature 'Spanish Nurse, Clinical Summary' do
+feature 'Spanish Nurse, Clinical Summary', metadata: :very_first do
   scenario 'Spanish nurse sees correct translations' do
     spanish_nurse.sign_in
     pt_500_nurse_tasks.open
@@ -379,7 +371,7 @@ feature 'Spanish Nurse, Clinical Summary' do
   end
 end
 
-feature 'Portuguese Nurse, Clinical Summary' do
+feature 'Portuguese Nurse, Clinical Summary', metadata: :very_first do
   scenario 'Portuguese nurse sees correct translations' do
     portuguese_nurse.sign_in
     pt_600_nurse_tasks.open

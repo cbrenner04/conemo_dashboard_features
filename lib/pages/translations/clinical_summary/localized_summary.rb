@@ -5,19 +5,16 @@ module Translations
       def headers
         @headers ||= {
           spanish: [
-            'Ingresos',
             'Fecha de lanzamiento',
             'Sesión',
             'Notas Write note'
           ],
           portuguese: [
-            'Acessos',
             'Sessão enviada em',
             'Sessão',
             'Anotações Write note'
           ],
           english: [
-            'Logins',
             'Release day',
             'Lesson',
             'Notes Write note'

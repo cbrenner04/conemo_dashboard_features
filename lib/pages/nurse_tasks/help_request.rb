@@ -29,9 +29,13 @@ class NurseTasks
     def complete_resolution_form
       find('.select2-container', match: :first)
       selector[5].click
-      options.delete('Other')
-      options.delete('Not done / CANCEL task')
-      options.delete('Reasons')
+      options.delete(localize(spanish: 'Otra', portuguese: 'Outra razão',
+                              english: 'Other'))
+      options.delete(localize(spanish: 'CANCELAR llamada (no realizada)',
+                              portuguese: 'Não realizado / Cancelar tarefa',
+                              english: 'Not done / CANCEL task'))
+      options.delete(localize(spanish: 'Razón de la solicitud de ayuda',
+                              portuguese: 'Razões', english: 'Reasons'))
       @response ||= options.sample
       select_list_item(@response)
       navigation.submit

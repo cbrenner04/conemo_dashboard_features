@@ -70,9 +70,8 @@ class Lessons
 
   def delete
     find('tr', text: @title).find('.fa-trash-o').click
-    accept_alert "Are you sure you want to delete #{@title} ?"
-    alert = @locale == 'spanish' ? 'Sesión eliminada' : 'Lesson deleted'
-    find('.alert-info', text: alert)
+    accept_alert "Are you sure you want to delete #{@title}?"
+    find('.alert-info', text: destroy_alert)
   end
 
   def open_lesson(lesson)

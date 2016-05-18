@@ -1,5 +1,6 @@
 require './lib/pages/translations/nurse_tasks'
 require './lib/pages/translations/nurse_tasks_titles'
+require './lib/pages/translations/nurse_tasks_unscheduled'
 
 module Translations
   module NurseTaskTitles
@@ -7,6 +8,7 @@ module Translations
     module FollowUpCalls
       include Translations::NurseTasksTranslations
       include Translations::NurseTaskTitles
+      include Translations::NurseTasksUnscheduled
 
       def expected_headings
         localize(

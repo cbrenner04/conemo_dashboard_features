@@ -47,17 +47,6 @@ class NurseTasks
       accept_alert 'Are you sure you want to delete this note?'
     end
 
-    def show_number_of_logins
-      find('th', text: 'Logins').click
-    end
-
-    def has_correct_logins?
-      (1..4).all? do |i|
-        n = Date.today - i
-        find('#logins-table').has_text? n.strftime('%B %d, %Y')
-      end
-    end
-
     def has_lesson_table_content?
       visible?
       total_rows = lesson_table.all('tr').count - 1
@@ -127,7 +116,7 @@ class NurseTasks
     def has_headers?
       find('th', match: :first)
       headers = all('th')
-      actual_headers = [0, 2, 3, 5].map { |i| headers[i].text }
+      actual_headers = [1, 2, 4].map { |i| headers[i].text }
       expect(actual_headers).to eq(expected_headers)
     end
 

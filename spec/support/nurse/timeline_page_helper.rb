@@ -8,6 +8,14 @@ def navigation
   @navigation ||= Navigation.new(locale: 'english')
 end
 
+def spanish_navigation
+  @spanish_navigation ||= Navigation.new(locale: 'spanish')
+end
+
+def portuguese_navigation
+  @portuguese_navigation ||= Navigation.new(locale: 'portuguese')
+end
+
 def confirmation_call
   @confirmation_call ||= NurseTasks::ConfirmationCall.new(locale: 'english')
 end
@@ -21,9 +29,33 @@ def follow_up_week_1
   @follow_up_week_1 ||= NurseTasks::FollowUpCallWeekOne.new(locale: 'english')
 end
 
+def spanish_follow_up_week_1
+  @spanish_follow_up_week_1 ||= NurseTasks::FollowUpCallWeekOne.new(
+    locale: 'spanish'
+  )
+end
+
+def portuguese_follow_up_week_1
+  @portuguese_follow_up_week_1 ||= NurseTasks::FollowUpCallWeekOne.new(
+    locale: 'portuguese'
+  )
+end
+
 def follow_up_week_3
   @follow_up_week_3 ||= NurseTasks::FollowUpCallWeekThree.new(
     locale: 'english'
+  )
+end
+
+def spanish_follow_up_week_3
+  @spanish_follow_up_week_3 ||= NurseTasks::FollowUpCallWeekThree.new(
+    locale: 'spanish'
+  )
+end
+
+def portuguese_follow_up_week_3
+  @portuguese_follow_up_week_3 ||= NurseTasks::FollowUpCallWeekThree.new(
+    locale: 'portuguese'
   )
 end
 
