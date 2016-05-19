@@ -1,13 +1,13 @@
 # filename: ./spec/support/admin/pending_participants_helper.rb
 
 require './lib/pages/navigation'
+require './lib/pages/new_participants/contact_information'
 require './lib/pages/pending_participants'
-require './lib/pages/pending_participants/contact_information'
 require './lib/pages/supervisor_page'
 require './lib/pages/your_patients'
 
 def contact_information
-  @contact_information ||= PendingParticipants::ContactInformation.new(
+  @contact_information ||= NewParticipants::ContactInformation.new(
     locale: 'english'
   )
 end
@@ -21,7 +21,7 @@ def pending_participants
 end
 
 def spanish_contact_information
-  @spanish_contact_information ||= PendingParticipants::ContactInformation.new(
+  @spanish_contact_information ||= NewParticipants::ContactInformation.new(
     locale: 'spanish'
   )
 end
@@ -36,7 +36,7 @@ end
 
 def portuguese_contact_information
   @portuguese_contact_information ||=
-    PendingParticipants::ContactInformation.new(
+    NewParticipants::ContactInformation.new(
       locale: 'portuguese'
     )
 end
@@ -53,7 +53,7 @@ end
 
 def new_participant_contact_information
   @new_participan_contact_information ||=
-    PendingParticipants::ContactInformation.new(
+    NewParticipants::ContactInformation.new(
       first_name: 'Jane',
       last_name: 'Doe',
       id: '123',
@@ -84,7 +84,7 @@ end
 
 def participant_2000_contact_information
   @participant_2000_contact_information ||=
-    PendingParticipants::ContactInformation.new(
+    NewParticipants::ContactInformation.new(
       first_name: 'First',
       last_name: 'Last-2000',
       id: '2000',

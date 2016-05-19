@@ -2,7 +2,7 @@
 
 require './lib/pages/navigation'
 require './lib/pages/nurse_tasks'
-Dir['./lib/pages/nurse_tasks/**/*.rb'].each { |file| require file }
+Dir['./lib/pages/tasks/**/*.rb'].each { |file| require file }
 
 def navigation
   @navigation ||= Navigation.new(locale: 'english')
@@ -17,59 +17,59 @@ def portuguese_navigation
 end
 
 def confirmation_call
-  @confirmation_call ||= NurseTasks::ConfirmationCall.new(locale: 'english')
+  @confirmation_call ||= Tasks::ConfirmationCall.new(locale: 'english')
 end
 
 def initial_appointment
   @initial_appointment ||=
-    NurseTasks::InitialInPersonAppointment.new(locale: 'english')
+    Tasks::InitialInPersonAppointment.new(locale: 'english')
 end
 
 def follow_up_week_1
-  @follow_up_week_1 ||= NurseTasks::FollowUpCallWeekOne.new(locale: 'english')
+  @follow_up_week_1 ||= Tasks::FollowUpCallWeekOne.new(locale: 'english')
 end
 
 def spanish_follow_up_week_1
-  @spanish_follow_up_week_1 ||= NurseTasks::FollowUpCallWeekOne.new(
+  @spanish_follow_up_week_1 ||= Tasks::FollowUpCallWeekOne.new(
     locale: 'spanish'
   )
 end
 
 def portuguese_follow_up_week_1
-  @portuguese_follow_up_week_1 ||= NurseTasks::FollowUpCallWeekOne.new(
+  @portuguese_follow_up_week_1 ||= Tasks::FollowUpCallWeekOne.new(
     locale: 'portuguese'
   )
 end
 
 def follow_up_week_3
-  @follow_up_week_3 ||= NurseTasks::FollowUpCallWeekThree.new(
+  @follow_up_week_3 ||= Tasks::FollowUpCallWeekThree.new(
     locale: 'english'
   )
 end
 
 def spanish_follow_up_week_3
-  @spanish_follow_up_week_3 ||= NurseTasks::FollowUpCallWeekThree.new(
+  @spanish_follow_up_week_3 ||= Tasks::FollowUpCallWeekThree.new(
     locale: 'spanish'
   )
 end
 
 def portuguese_follow_up_week_3
-  @portuguese_follow_up_week_3 ||= NurseTasks::FollowUpCallWeekThree.new(
+  @portuguese_follow_up_week_3 ||= Tasks::FollowUpCallWeekThree.new(
     locale: 'portuguese'
   )
 end
 
 def call_to_schedule_final_appointment
   @call_to_schedule_final_appointment ||=
-    NurseTasks::CallToScheduleFinalAppointment.new(locale: 'english')
+    Tasks::CallToScheduleFinalAppointment.new(locale: 'english')
 end
 
 def final_appointment
-  @final_appointment ||= NurseTasks::FinalAppointment.new(locale: 'english')
+  @final_appointment ||= Tasks::FinalAppointment.new(locale: 'english')
 end
 
 def pt_300_timeline
-  @pt_300_timeline ||= NurseTasks::TimelinePage.new(id: 300)
+  @pt_300_timeline ||= TimelinePage.new(id: 300)
 end
 
 def pt_300_nurse_tasks
@@ -77,15 +77,15 @@ def pt_300_nurse_tasks
 end
 
 def pt_300_clinical_summary_1
-  @pt_300_clinical_summary_1 ||= NurseTasks::ClinicalSummary.new(id: 300)
+  @pt_300_clinical_summary_1 ||= ClinicalSummary.new(id: 300)
 end
 
 def pt_342_clinical_summary
-  @pt_342_clinical_summary ||= NurseTasks::ClinicalSummary.new(id: 342)
+  @pt_342_clinical_summary ||= ClinicalSummary.new(id: 342)
 end
 
 def pt_342_timeline_1
-  @pt_342_timeline_1 ||= NurseTasks::TimelinePage.new(
+  @pt_342_timeline_1 ||= TimelinePage.new(
     id: 342,
     session: 'Initial in person appointment',
     session_length: 60
@@ -93,7 +93,7 @@ def pt_342_timeline_1
 end
 
 def pt_342_timeline_2
-  @pt_342_timeline_2 ||= NurseTasks::TimelinePage.new(
+  @pt_342_timeline_2 ||= TimelinePage.new(
     id: 342,
     session: 'Follow up call week 1',
     session_length: 60
@@ -101,7 +101,7 @@ def pt_342_timeline_2
 end
 
 def pt_342_timeline_3
-  @pt_342_timeline_3 ||= NurseTasks::TimelinePage.new(
+  @pt_342_timeline_3 ||= TimelinePage.new(
     id: 342,
     session: 'Follow up call week 3',
     session_length: 120
@@ -133,11 +133,11 @@ def pt_342_nurse_tasks_3
 end
 
 def pt_343_clinical_summary_1
-  @pt_343_clinical_summary_1 ||= NurseTasks::ClinicalSummary.new(id: 343)
+  @pt_343_clinical_summary_1 ||= ClinicalSummary.new(id: 343)
 end
 
 def pt_343_timeline
-  @pt_343_timeline ||= NurseTasks::TimelinePage.new(
+  @pt_343_timeline ||= TimelinePage.new(
     id: 343,
     session: 'Call to schedule final in person appointment'
   )
@@ -148,14 +148,14 @@ def pt_343_nurse_tasks
 end
 
 def pt_500_clinical_summary_1
-  @pt_500_clinical_summary_1 ||= NurseTasks::ClinicalSummary.new(
+  @pt_500_clinical_summary_1 ||= ClinicalSummary.new(
     locale: 'spanish',
     id: 500
   )
 end
 
 def pt_500_timeline
-  @pt_500_timeline ||= NurseTasks::TimelinePage.new(
+  @pt_500_timeline ||= TimelinePage.new(
     id: 500,
     locale: 'spanish'
   )
@@ -169,14 +169,14 @@ def pt_500_nurse_tasks
 end
 
 def pt_600_clinical_summary_1
-  @pt_600_clinical_summary_1 ||= NurseTasks::ClinicalSummary.new(
+  @pt_600_clinical_summary_1 ||= ClinicalSummary.new(
     locale: 'portuguese',
     id: 600
   )
 end
 
 def pt_600_timeline
-  @pt_600_timeline ||= NurseTasks::TimelinePage.new(
+  @pt_600_timeline ||= TimelinePage.new(
     id: 600,
     locale: 'portuguese'
   )

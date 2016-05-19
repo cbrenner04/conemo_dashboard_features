@@ -2,8 +2,8 @@
 
 require './lib/pages/navigation'
 require './lib/pages/nurse_tasks'
-Dir['./lib/pages/nurse_tasks/*.rb'].each { |file| require file }
-require './lib/pages/supervisor_page/nurses'
+require './lib/pages/supervisor/nurses'
+Dir['./lib/pages/tasks/*.rb'].each { |file| require file }
 
 def portuguese_navigation
   @portuguese_navigation ||= Navigation.new(locale: 'portuguese')
@@ -24,7 +24,7 @@ def pt_602_nurse_tasks
 end
 
 def nurse_600
-  @nurse_600 ||= SupervisorPage::Nurses.new(
+  @nurse_600 ||= Supervisor::Nurses.new(
     id: 600,
     locale: 'portuguese'
   )
@@ -32,63 +32,63 @@ end
 
 def portuguese_additional_contact
   @portuguese_additional_contact ||=
-    NurseTasks::AdditionalContact.new(locale: 'portuguese')
+    Tasks::AdditionalContact.new(locale: 'portuguese')
 end
 
 def portuguese_confirmation_call
   @portuguese_confirmation_call ||=
-    NurseTasks::ConfirmationCall.new(locale: 'portuguese')
+    Tasks::ConfirmationCall.new(locale: 'portuguese')
 end
 
 def portuguese_initial_appointment
   @portuguese_initial_appointment ||=
-    NurseTasks::InitialInPersonAppointment.new(locale: 'portuguese')
+    Tasks::InitialInPersonAppointment.new(locale: 'portuguese')
 end
 
 def portuguese_follow_up_week_1
   @portuguese_follow_up_week_1 ||=
-    NurseTasks::FollowUpCallWeekOne.new(locale: 'portuguese')
+    Tasks::FollowUpCallWeekOne.new(locale: 'portuguese')
 end
 
 def portuguese_follow_up_week_3
   @portuguese_follow_up_week_3 ||=
-    NurseTasks::FollowUpCallWeekThree.new(locale: 'portuguese')
+    Tasks::FollowUpCallWeekThree.new(locale: 'portuguese')
 end
 
 def portuguese_call_to_schedule_final
   @portuguese_call_to_schedule_final ||=
-    NurseTasks::CallToScheduleFinalAppointment.new(locale: 'portuguese')
+    Tasks::CallToScheduleFinalAppointment.new(locale: 'portuguese')
 end
 
 def portuguese_final_appointment
   @portuguese_final_appointment ||=
-    NurseTasks::FinalAppointment.new(locale: 'portuguese')
+    Tasks::FinalAppointment.new(locale: 'portuguese')
 end
 
 def portuguese_lack_of_connectivity_call
   @portuguese_lack_of_connectivity_call ||=
-    NurseTasks::LackOfConnectivityCall.new(locale: 'portuguese')
+    Tasks::LackOfConnectivityCall.new(locale: 'portuguese')
 end
 
 def portuguese_help_request
-  @portuguese_help_request ||= NurseTasks::HelpRequest.new(
+  @portuguese_help_request ||= Tasks::HelpRequest.new(
     locale: 'portuguese'
   )
 end
 
 def portuguese_non_adherence_call
   @portuguese_non_adherence_call ||=
-    NurseTasks::NonAdherenceCall.new(locale: 'portuguese')
+    Tasks::NonAdherenceCall.new(locale: 'portuguese')
 end
 
 def portuguese_cancel_form
-  @portuguese_cancel_form ||= NurseTasks::CancelForm.new(
+  @portuguese_cancel_form ||= Tasks::CancelForm.new(
     locale: 'portuguese'
   )
 end
 
 def portuguese_reschedule_form
-  @portuguese_reschedule_form ||= NurseTasks::RescheduleForm.new(
+  @portuguese_reschedule_form ||= Tasks::RescheduleForm.new(
     locale: 'portuguese'
   )
 end

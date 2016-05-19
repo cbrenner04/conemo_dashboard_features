@@ -1,6 +1,6 @@
 require './lib/pages/translations/administration'
 
-class Administration
+module Admin
   # page object for the configuration and authentication token page
   class TokenPage
     include Capybara::DSL

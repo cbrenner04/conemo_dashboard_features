@@ -1,8 +1,8 @@
-require './lib/pages/nurse_tasks/cancel_form'
 require './lib/pages/shared/nurse_tasks_forms'
+require './lib/pages/tasks/cancel_form'
 require './lib/pages/translations/nurse_tasks/follow_up_calls'
 
-class NurseTasks
+module Tasks
   # page object for second contact
   class FollowUpCallWeekOne
     include Capybara::DSL
@@ -56,9 +56,7 @@ class NurseTasks
     end
 
     def enter_difficulties
-      options.delete_at(0)
-      options.delete_at(1)
-      keys = (0..5).to_a.sample(2).sort
+      keys = (3..8).to_a.sample(2).sort
       @responses = [options[keys[0]], options[keys[1]]]
       @responses.each { |option| check option }
     end
@@ -104,7 +102,7 @@ class NurseTasks
     private
 
     def cancel_form
-      @cancel_form ||= NurseTasks::CancelForm.new(locale: @locale)
+      @cancel_form ||= Tasks::CancelForm.new(locale: @locale)
     end
   end
 end

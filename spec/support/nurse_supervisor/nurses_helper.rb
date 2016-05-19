@@ -1,16 +1,16 @@
 # filename: ./spec/support/nurse_supervisor/nurse_helper.rb
 
 require 'business_time'
+require './lib/pages/clinical_summary'
+require './lib/pages/contact_information'
 require './lib/pages/navigation'
 require './lib/pages/nurse_tasks'
-require './lib/pages/nurse_tasks/clinical_summary'
-require './lib/pages/nurse_tasks/confirmation_call'
-require './lib/pages/nurse_tasks/contact_information'
-require './lib/pages/nurse_tasks/help_request'
-require './lib/pages/nurse_tasks/lack_of_connectivity_call'
-require './lib/pages/nurse_tasks/timeline_page'
 require './lib/pages/supervisor_page'
-require './lib/pages/supervisor_page/nurses'
+require './lib/pages/supervisor/nurses'
+require './lib/pages/tasks/confirmation_call'
+require './lib/pages/tasks/help_request'
+require './lib/pages/tasks/lack_of_connectivity_call'
+require './lib/pages/timeline_page'
 require './lib/pages/your_patients'
 
 def today_at_11_am
@@ -34,25 +34,25 @@ def your_patients
 end
 
 def confirmation_call
-  @confirmation_call ||= NurseTasks::ConfirmationCall.new(locale: 'english')
+  @confirmation_call ||= Tasks::ConfirmationCall.new(locale: 'english')
 end
 
 def help_request
-  @help_request ||= NurseTasks::HelpRequest.new(locale: 'english')
+  @help_request ||= Tasks::HelpRequest.new(locale: 'english')
 end
 
 def lack_of_connectivity_call
-  @lack_of_connectivity_call ||= NurseTasks::LackOfConnectivityCall.new(
+  @lack_of_connectivity_call ||= Tasks::LackOfConnectivityCall.new(
     locale: 'english'
   )
 end
 
 def spanish_supervisor_nurses
-  @spanish_supervisor_nurses ||= SupervisorPage::Nurses.new(locale: 'spanish')
+  @spanish_supervisor_nurses ||= Supervisor::Nurses.new(locale: 'spanish')
 end
 
 def portuguese_supervisor_nurses
-  @portuguese_supervisor_nurses ||= SupervisorPage::Nurses.new(
+  @portuguese_supervisor_nurses ||= Supervisor::Nurses.new(
     locale: 'portuguese'
   )
 end
@@ -62,25 +62,25 @@ def pt_300_nurse_tasks
 end
 
 def pt_300_clinical_summary_2
-  @pt_300_clinical_summary_2 ||= NurseTasks::ClinicalSummary.new(
+  @pt_300_clinical_summary_2 ||= ClinicalSummary.new(
     locale: 'english'
   )
 end
 
 def pt_300_contact_info
-  @pt_300_contact_info ||= NurseTasks::ContactInformation.new(
+  @pt_300_contact_info ||= ContactInformation.new(
     id: 300
   )
 end
 
 def pt_301_clinical_summary_1
-  @pt_301_clinical_summary_1 ||= NurseTasks::ClinicalSummary.new(
+  @pt_301_clinical_summary_1 ||= ClinicalSummary.new(
     locale: 'english'
   )
 end
 
 def pt_301_contact_info_1
-  @pt_301_contact_info_1 ||= NurseTasks::ContactInformation.new(
+  @pt_301_contact_info_1 ||= ContactInformation.new(
     id: 301
   )
 end
@@ -90,7 +90,7 @@ def pt_301_nurse_tasks
 end
 
 def pt_342_clinical_summary_1
-  @pt_342_clinical_summary_1 ||= NurseTasks::ClinicalSummary.new(
+  @pt_342_clinical_summary_1 ||= ClinicalSummary.new(
     locale: 'english'
   )
 end
@@ -100,7 +100,7 @@ def pt_342_nurse_tasks_4
 end
 
 def pt_342_timeline_4
-  @pt_342_timeline_4 ||= NurseTasks::TimelinePage.new(locale: 'english')
+  @pt_342_timeline_4 ||= TimelinePage.new(locale: 'english')
 end
 
 def pt_343_nurse_tasks
@@ -108,7 +108,7 @@ def pt_343_nurse_tasks
 end
 
 def pt_343_clinical_summary_2
-  @pt_343_clinical_summary_2 ||= NurseTasks::ClinicalSummary.new(
+  @pt_343_clinical_summary_2 ||= ClinicalSummary.new(
     locale: 'english'
   )
 end
@@ -136,17 +136,17 @@ def pt_430_nurse_tasks_2
 end
 
 def pt_430_clinical_summary_2
-  @pt_430_clinical_summary_2 ||= NurseTasks::ClinicalSummary.new(
+  @pt_430_clinical_summary_2 ||= ClinicalSummary.new(
     note: 'Crazy supervisor notes'
   )
 end
 
 def nurse_400
-  @nurse_400 ||= SupervisorPage::Nurses.new(id: 400)
+  @nurse_400 ||= Supervisor::Nurses.new(id: 400)
 end
 
 def nurse_401
-  @nurse_401 ||= SupervisorPage::Nurses.new(
+  @nurse_401 ||= Supervisor::Nurses.new(
     id: 401,
     num_participants: 41,
     num_tasks: 20,
@@ -157,7 +157,7 @@ def nurse_401
 end
 
 def nurse_402
-  @nurse_402 ||= SupervisorPage::Nurses.new(
+  @nurse_402 ||= Supervisor::Nurses.new(
     id: 402,
     supervision_date: 12.business_days.ago,
     supervision_time: today_at_11_am
@@ -165,7 +165,7 @@ def nurse_402
 end
 
 def nurse_403
-  @nurse_403 ||= SupervisorPage::Nurses.new(
+  @nurse_403 ||= Supervisor::Nurses.new(
     id: 403,
     supervision_date: Date.today,
     supervision_time: Time.now
@@ -173,14 +173,14 @@ def nurse_403
 end
 
 def nurse_404
-  @nurse_404 ||= SupervisorPage::Nurses.new(
+  @nurse_404 ||= Supervisor::Nurses.new(
     id: 404,
     note: 'Supervision Note'
   )
 end
 
 def nurse_500
-  @nurse_500 ||= SupervisorPage::Nurses.new(
+  @nurse_500 ||= Supervisor::Nurses.new(
     id: 500,
     locale: 'spanish',
     supervision_date: 8.business_days.ago,
@@ -189,7 +189,7 @@ def nurse_500
 end
 
 def nurse_600
-  @nurse_600 ||= SupervisorPage::Nurses.new(
+  @nurse_600 ||= Supervisor::Nurses.new(
     id: 600,
     locale: 'portuguese',
     supervision_date: 8.business_days.ago,

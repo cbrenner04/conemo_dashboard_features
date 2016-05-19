@@ -2,7 +2,7 @@ require 'business_time'
 require './lib/pages/navigation'
 require './lib/pages/translations/supervisor_page/nurses'
 
-class SupervisorPage
+module Supervisor
   # page object for Nurses section of Supervisor page
   class Nurses
     include RSpec::Matchers

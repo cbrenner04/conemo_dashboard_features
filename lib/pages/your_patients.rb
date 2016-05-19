@@ -1,4 +1,4 @@
-Dir['./lib/pages/nurse_tasks/*.rb'].each { |file| require file }
+Dir['./lib/pages/tasks/*.rb'].each { |file| require file }
 require './lib/pages/translations'
 require './lib/pages/translations/nurse_tasks_titles'
 require './lib/pages/translations/your_patients'

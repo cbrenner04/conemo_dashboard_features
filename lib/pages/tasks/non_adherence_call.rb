@@ -2,7 +2,7 @@ require './lib/pages/navigation'
 require './lib/pages/shared/nurse_tasks_forms'
 require './lib/pages/translations/nurse_tasks/non_adherence_call'
 
-class NurseTasks
+module Tasks
   # page object for non adherence call
   class NonAdherenceCall
     include Capybara::DSL

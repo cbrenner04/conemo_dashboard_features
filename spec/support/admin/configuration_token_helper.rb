@@ -1,5 +1,5 @@
 require './lib/pages/administration'
-require './lib/pages/administration/token_page'
+require './lib/pages/admin/token_page'
 
 def administration
   @administration ||= Administration.new(
@@ -8,7 +8,7 @@ def administration
 end
 
 def token_page
-  @token_page ||= Administration::TokenPage.new(
+  @token_page ||= Admin::TokenPage.new(
     locale: 'english',
     pt_id: 201
   )
@@ -21,7 +21,7 @@ def spanish_administration
 end
 
 def spanish_token_page
-  @spanish_token_page ||= Administration::TokenPage.new(
+  @spanish_token_page ||= Admin::TokenPage.new(
     locale: 'spanish',
     pt_id: 501
   )
@@ -34,7 +34,7 @@ def portuguese_administration
 end
 
 def portuguese_token_page
-  @portuguese_token_page ||= Administration::TokenPage.new(
+  @portuguese_token_page ||= Admin::TokenPage.new(
     locale: 'portuguese',
     pt_id: 601
   )

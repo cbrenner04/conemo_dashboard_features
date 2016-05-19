@@ -3,7 +3,7 @@
 require 'uuid'
 require 'fileutils'
 require 'csv'
-Dir['./lib/pages/administration/csvs/*.rb'].each { |file| require file }
+Dir['./lib/pages/admin/csvs/*.rb'].each { |file| require file }
 
 def check_file(file, headers)
   @driver.get "#{ENV['Base_URL']}/admin/#{file}/export?locale=en"

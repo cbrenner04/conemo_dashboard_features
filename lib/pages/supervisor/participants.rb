@@ -1,7 +1,7 @@
 require './lib/pages/navigation'
 require './lib/pages/translations/supervisor_page/participants'
 
-class SupervisorPage
+module Supervisor
   # page object for Participants section of the Nurse Supervisor page
   class Participants
     include RSpec::Matchers

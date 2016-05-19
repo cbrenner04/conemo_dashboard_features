@@ -2,7 +2,7 @@ require './lib/pages/navigation'
 require './lib/pages/shared/nurse_tasks_forms'
 require './lib/pages/translations/nurse_tasks/cancel_form'
 
-class NurseTasks
+module Tasks
   # page object for task cancellation form
   class CancelForm
     include Capybara::DSL

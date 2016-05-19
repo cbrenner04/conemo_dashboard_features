@@ -1,8 +1,8 @@
 # filename: ./spec/support/nurse/contact_information_helper.rb
 
+require './lib/pages/contact_information'
 require './lib/pages/navigation'
 require './lib/pages/nurse_tasks'
-require './lib/pages/nurse_tasks/contact_information'
 
 def navigation
   @navigation ||= Navigation.new(locale: 'english')
@@ -17,7 +17,7 @@ def portuguese_navigation
 end
 
 def pt_300_contact_info
-  @pt_300_contact_info ||= NurseTasks::ContactInformation.new(id: 300)
+  @pt_300_contact_info ||= ContactInformation.new(id: 300)
 end
 
 def pt_300_nurse_tasks
@@ -25,7 +25,7 @@ def pt_300_nurse_tasks
 end
 
 def pt_301_contact_info
-  @pt_301_contact_info ||= NurseTasks::ContactInformation.new(
+  @pt_301_contact_info ||= ContactInformation.new(
     id: 301,
     email: 'participant301@example.com'
   )
@@ -36,7 +36,7 @@ def pt_301_nurse_tasks
 end
 
 def pt_302_contact_info
-  @pt_302_contact_info ||= NurseTasks::ContactInformation.new(id: 302)
+  @pt_302_contact_info ||= ContactInformation.new(id: 302)
 end
 
 def pt_302_nurse_tasks
@@ -44,7 +44,7 @@ def pt_302_nurse_tasks
 end
 
 def pt_310_contact_info
-  @pt_310_contact_info ||= NurseTasks::ContactInformation.new(id: 310)
+  @pt_310_contact_info ||= ContactInformation.new(id: 310)
 end
 
 def pt_310_nurse_tasks
@@ -52,7 +52,7 @@ def pt_310_nurse_tasks
 end
 
 def pt_500_contact_info
-  @pt_500_contact_info ||= NurseTasks::ContactInformation.new(
+  @pt_500_contact_info ||= ContactInformation.new(
     id: 500,
     locale: 'spanish'
   )
@@ -66,7 +66,7 @@ def pt_500_nurse_tasks
 end
 
 def pt_504_contact_info
-  @pt_504_contact_info ||= NurseTasks::ContactInformation.new(
+  @pt_504_contact_info ||= ContactInformation.new(
     id: 504,
     locale: 'spanish'
   )
@@ -80,7 +80,7 @@ def pt_504_nurse_tasks
 end
 
 def pt_600_contact_info
-  @pt_600_contact_info ||= NurseTasks::ContactInformation.new(
+  @pt_600_contact_info ||= ContactInformation.new(
     id: 600,
     locale: 'portuguese'
   )
@@ -94,7 +94,7 @@ def pt_600_nurse_tasks
 end
 
 def pt_604_contact_info
-  @pt_604_contact_info ||= NurseTasks::ContactInformation.new(
+  @pt_604_contact_info ||= ContactInformation.new(
     id: 604,
     locale: 'portuguese'
   )

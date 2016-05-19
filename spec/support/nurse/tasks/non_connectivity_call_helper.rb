@@ -1,14 +1,14 @@
 # filename: ./spec/support/nurse/tasks/non_connectivity_call_helper.rb
 
+require './lib/pages/clinical_summary'
 require './lib/pages/nurse_tasks'
-require './lib/pages/nurse_tasks/clinical_summary'
-require './lib/pages/nurse_tasks/lack_of_connectivity_call'
 require './lib/pages/supervisor_page'
+require './lib/pages/tasks/lack_of_connectivity_call'
 require './lib/pages/your_patients'
 
 def lack_of_connectivity_call
   @lack_of_connectivity_call ||=
-    NurseTasks::LackOfConnectivityCall.new(locale: 'english')
+    Tasks::LackOfConnectivityCall.new(locale: 'english')
 end
 
 def pt_410_nurse_tasks
@@ -44,7 +44,7 @@ def pt_1000_nurse_tasks
 end
 
 def pt_1000_clinical_summary
-  @pt_1000_clinical_summary ||= NurseTasks::ClinicalSummary.new(id: 1000)
+  @pt_1000_clinical_summary ||= ClinicalSummary.new(id: 1000)
 end
 
 def pt_4025_nurse_tasks

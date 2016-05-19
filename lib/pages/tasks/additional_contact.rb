@@ -2,7 +2,7 @@ require './lib/pages/navigation'
 require './lib/pages/shared/nurse_tasks_forms'
 require './lib/pages/translations/nurse_tasks/additional_contact'
 
-class NurseTasks
+module Tasks
   # page object for first contact page of active participants
   class AdditionalContact
     include RSpec::Matchers

@@ -1,9 +1,9 @@
-require './lib/pages/nurse_tasks/cancel_form'
 require './lib/pages/shared/nurse_tasks_forms'
+require './lib/pages/tasks/cancel_form'
 translations_path = './lib/pages/translations/'
 require "#{translations_path}nurse_tasks/initial_in_person_appointment"
 
-class NurseTasks
+module Tasks
   # page object for the First Appointment Form in Active Participants
   class InitialInPersonAppointment
     include Capybara::DSL
@@ -116,7 +116,7 @@ class NurseTasks
     private
 
     def cancel_form
-      @cancel_form ||= NurseTasks::CancelForm.new(locale: @locale)
+      @cancel_form ||= Tasks::CancelForm.new(locale: @locale)
     end
   end
 end

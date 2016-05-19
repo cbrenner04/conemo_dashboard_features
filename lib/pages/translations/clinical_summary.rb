@@ -1,5 +1,5 @@
-require './lib/pages/translations/nurse_tasks_titles'
 require './lib/pages/translations/clinical_summary/localized_summary'
+require './lib/pages/translations/nurse_tasks_titles'
 
 module Translations
   # translations for clinical summary page

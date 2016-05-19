@@ -1,8 +1,8 @@
 # filename: ./spec/support/admin/lessons_helper.rb
 
 require './lib/pages/lessons'
-require './lib/pages/lessons/slides'
 require './lib/pages/navigation'
+require './lib/pages/slides'
 
 def navigation
   @navigation ||= Navigation.new(locale: 'english')
@@ -13,7 +13,7 @@ def lessons
 end
 
 def slides
-  @slides ||= Lessons::Slides.new(
+  @slides ||= Slides.new(
     lesson: 'Lesson 3',
     title: 'Slide 1'
   )
@@ -34,21 +34,21 @@ def activity_lesson
 end
 
 def new_slide
-  @new_slide ||= Lessons::Slides.new(
+  @new_slide ||= Slides.new(
     lesson: 'Lesson 11',
     title: 'New Slide'
   )
 end
 
 def lesson_2_slide_1
-  @lesson_2_slide_1 ||= Lessons::Slides.new(
+  @lesson_2_slide_1 ||= Slides.new(
     lesson: 'Lesson 2',
     title: 'Slide 1'
   )
 end
 
 def lesson_2_slide_2
-  @lesson_2_slide_2 ||= Lessons::Slides.new(
+  @lesson_2_slide_2 ||= Slides.new(
     lesson: 'Lesson 2',
     title: 'Slide 2'
   )
@@ -62,7 +62,7 @@ def lesson_5
 end
 
 def lesson_6_slide_1
-  @lesson_6_slide_1 ||= Lessons::Slides.new(
+  @lesson_6_slide_1 ||= Slides.new(
     lesson: 'Lesson 6',
     title: 'Slide 1',
     body: 'read this'
@@ -74,7 +74,7 @@ def lesson_7
 end
 
 def lesson_8_slide_3
-  @lesson_8_slide_3 ||= Lessons::Slides.new(
+  @lesson_8_slide_3 ||= Slides.new(
     lesson: 'Lesson 8',
     title: 'Slide 3'
   )
@@ -88,7 +88,7 @@ def lesson_12
 end
 
 def lesson_13_slide_2
-  @lesson_13_slide_2 ||= Lessons::Slides.new(
+  @lesson_13_slide_2 ||= Slides.new(
     lesson: 'Lesson 13',
     title: 'Slide 2',
     new_title: 'Edited Slide'
@@ -100,7 +100,7 @@ def lesson_14
 end
 
 def lesson_15_slide_1
-  @lesson_15_slide_1 ||= Lessons::Slides.new(
+  @lesson_15_slide_1 ||= Slides.new(
     lesson: 'Lesson 15',
     title: 'Slide 1'
   )

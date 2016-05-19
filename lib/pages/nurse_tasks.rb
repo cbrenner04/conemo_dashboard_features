@@ -1,5 +1,5 @@
-require './lib/pages/shared/nurse_tasks_forms'
 require './lib/pages/navigation'
+require './lib/pages/shared/nurse_tasks_forms'
 require './lib/pages/translations/clinical_summary'
 require './lib/pages/translations/contact_information'
 require './lib/pages/translations/nurse_tasks'

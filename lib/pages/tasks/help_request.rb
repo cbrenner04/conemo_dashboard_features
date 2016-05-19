@@ -1,8 +1,8 @@
-require './lib/pages/shared/nurse_tasks_forms'
 require './lib/pages/navigation'
+require './lib/pages/shared/nurse_tasks_forms'
 require './lib/pages/translations/nurse_tasks/help_request'
 
-class NurseTasks
+module Tasks
   # page object for help requests
   class HelpRequest
     include Capybara::DSL

@@ -1,8 +1,8 @@
-require './lib/pages/nurse_tasks/cancel_form'
 require './lib/pages/shared/nurse_tasks_forms'
+require './lib/pages/tasks/cancel_form'
 require './lib/pages/translations/nurse_tasks/final_appointment'
 
-class NurseTasks
+module Tasks
   # page object for first contact page of active participants
   class FinalAppointment
     include Capybara::DSL
@@ -102,7 +102,7 @@ class NurseTasks
     private
 
     def cancel_form
-      @cancel_form ||= NurseTasks::CancelForm.new(locale: @locale)
+      @cancel_form ||= Tasks::CancelForm.new(locale: @locale)
     end
   end
 end

@@ -1,6 +1,6 @@
-require './lib/pages/your_patients'
 require './lib/pages/translations/nurse_tasks_titles'
 require './lib/pages/translations/supervisor_page'
+require './lib/pages/your_patients'
 
 # page object for Nurse Supervisor landing page
 class SupervisorPage

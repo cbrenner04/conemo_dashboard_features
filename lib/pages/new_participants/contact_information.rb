@@ -2,7 +2,7 @@ require './lib/pages/navigation'
 require './lib/pages/shared/contact_information_form'
 require './lib/pages/translations/pending_participants'
 
-class PendingParticipants
+module NewParticipants
   # page_object for the contact information page
   class ContactInformation
     include RSpec::Matchers

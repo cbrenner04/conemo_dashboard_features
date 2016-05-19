@@ -1,12 +1,12 @@
 # filename: ./spec/support/nurse/tasks/help_request_helper.rb
 
 require './lib/pages/nurse_tasks'
-require './lib/pages/nurse_tasks/help_request'
 require './lib/pages/supervisor_page'
+require './lib/pages/tasks/help_request'
 require './lib/pages/your_patients'
 
 def help_request
-  @help_request ||= NurseTasks::HelpRequest.new(
+  @help_request ||= Tasks::HelpRequest.new(
     locale: 'english'
   )
 end
