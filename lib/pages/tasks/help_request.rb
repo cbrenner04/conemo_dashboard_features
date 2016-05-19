@@ -31,6 +31,8 @@ module Tasks
       selector[5].click
       options.delete(localize(spanish: 'Otra', portuguese: 'Outra razão',
                               english: 'Other'))
+      options.delete(localize(spanish: 'Otra', portuguese: 'Outra',
+                              english: 'Other'))
       options.delete(localize(spanish: 'CANCELAR llamada (no realizada)',
                               portuguese: 'Não realizado / Cancelar tarefa',
                               english: 'Not done / CANCEL task'))

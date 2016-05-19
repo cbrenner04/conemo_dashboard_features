@@ -29,7 +29,7 @@ end
 
 # Capybara configuration options
 Capybara.configure do |config|
-  config.default_max_wait_time = 5
+  config.default_max_wait_time = 1
   config.register_driver :selenium do |app|
     Selenium::WebDriver::Firefox::Binary.path = ENV['Firefox_Path']
     Capybara::Selenium::Driver.new(app, browser: :firefox)

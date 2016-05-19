@@ -4,6 +4,7 @@ require './lib/pages/navigation'
 require './lib/pages/nurse_tasks'
 require './lib/pages/supervisor_page'
 Dir['./lib/pages/tasks/*.rb'].each { |file| require file }
+require './lib/pages/timeline_page'
 require './lib/pages/your_patients'
 
 def cancel_form

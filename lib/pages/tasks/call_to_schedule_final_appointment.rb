@@ -80,8 +80,7 @@ module Tasks
     def select_location
       find('.select2-container', match: :first)
       selector[10].click
-      location = (2..9).map { |i| "unit #{i}" }
-      find('.select2-result-label', text: location.sample).click
+      find('.select2-result-label', text: location_options.sample).click
     end
 
     def has_form_headings?
@@ -103,7 +102,7 @@ module Tasks
     end
 
     def has_location_options?
-      has_task_options?(10, 9, localize(health_unit_options))
+      has_task_options?(10, 2, location_options)
     end
 
     def has_canceled_alert?

@@ -5,7 +5,7 @@ require 'fileutils'
 require 'csv'
 Dir['./lib/pages/admin/csvs/*.rb'].each { |file| require file }
 
-def check_file(file, headers)
+def check_size_and_headers(file, headers)
   @driver.get "#{ENV['Base_URL']}/admin/#{file}/export?locale=en"
   @driver.find_element(css: '.btn-primary').click
   f = "#{@download_dir}/#{file}_#{Time.now.strftime('%Y-%m-%d_%Hh%Mm%S')}.csv"
@@ -39,26 +39,26 @@ feature 'Admin downloads, checks csv', metadata: :not_first do
   end
 
   scenario 'for lessons' do
-    check_file('lesson', LessonsCSV::HEADERS)
+    check_size_and_headers('lesson', LessonsCSV::HEADERS)
   end
 
   scenario 'for devices' do
-    check_file('device', DevicesCSV::HEADERS)
+    check_size_and_headers('device', DevicesCSV::HEADERS)
   end
 
   scenario 'for participants' do
-    check_file('participant', ParticipantsCSV::HEADERS)
+    check_size_and_headers('participant', ParticipantsCSV::HEADERS)
   end
 
   scenario 'for admin' do
-    check_file('admin', AdminCSV::HEADERS)
+    check_size_and_headers('admin', AdminCSV::HEADERS)
   end
 
   scenario 'for nurses' do
-    check_file('nurse', NursesCSV::HEADERS)
+    check_size_and_headers('nurse', NursesCSV::HEADERS)
   end
 
   scenario 'for supervisors' do
-    check_file('nurse_supervisor', SupervisorsCSV::HEADERS)
+    check_size_and_headers('nurse_supervisor', SupervisorsCSV::HEADERS)
   end
 end
