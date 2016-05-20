@@ -102,7 +102,7 @@ feature 'Nurse, Participant Tasks, Confirmation Call', metadata: :not_first do
     expect(timeline).to have_confirmation_call
 
     # check Your Patients list for old / new tasks
-    your_patients.return
+    navigation.return_home
 
     expect(patient_306).to_not have_confirmation_call
     expect(patient_306).to have_tasks_completed

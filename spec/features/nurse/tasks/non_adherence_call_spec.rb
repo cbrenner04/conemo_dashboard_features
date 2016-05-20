@@ -91,7 +91,7 @@ feature 'Nurse, Non-adherence call', metadata: :not_first do
     expect(non_adherence_call).to have_response
 
     # check Your Patients list for old / new tasks
-    your_patients.return
+    navigation.return_home
 
     expect(patient_420).to_not have_non_adherence_task
     expect(patient_420).to have_tasks_completed

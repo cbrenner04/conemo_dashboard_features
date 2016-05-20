@@ -16,12 +16,12 @@ module Translations
     end
 
     def singular_overdue_task
-      localize(spanish: 'Tarea astrasada', portuguese: 'Tarefa atrasada',
+      localize(spanish: 'Tarea atrasada', portuguese: 'Tarefa atrasada',
                english: 'Overdue task')
     end
 
     def plural_overdue_task
-      localize(spanish: 'Tareas astrasadas', portuguese: 'Tarefas atrasadas',
+      localize(spanish: 'Tareas atrasadas', portuguese: 'Tarefas atrasadas',
                english: 'Overdue tasks')
     end
 

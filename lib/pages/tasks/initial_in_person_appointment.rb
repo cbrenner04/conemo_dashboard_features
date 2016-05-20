@@ -24,11 +24,6 @@ module Tasks
         has_canceled_progress_bar_item?(initial_appointment_title)
     end
 
-    def complete?
-      has_no_list_item?(initial_appointment_title) &&
-        has_complete_progress_bar_item?(initial_appointment_title)
-    end
-
     def overdue?
       has_list_item?(initial_appointment_title) &&
         has_overdue_progress_bar_item?(initial_appointment_title)
@@ -66,8 +61,16 @@ module Tasks
       reschedule_task
     end
 
-    def enter_next_contact_date
-      select_next_date(8)
+    def enter_yesterday_as_contact_date
+      selector[1].click
+      select_list_item yesterday.strftime('%B')
+      selector[2].click
+      yest_int = yesterday.strftime('%-d').to_i
+      if yest_int < 10
+        first('.select2-result-label', text: yest_int).click
+      else
+        select_list_item(yest_int)
+      end
     end
 
     def toggle_options_list
@@ -91,7 +94,7 @@ module Tasks
     end
 
     def has_current_date_selections?
-      has_date_selectors?(Date.today, 1,
+      has_date_selectors?(today, 1,
                           localize(spanish: 0, portuguese: 0, english: 2),
                           localize(spanish: 2, portuguese: 2, english: 0)) &&
         has_hour_selector?(3)
@@ -101,16 +104,21 @@ module Tasks
       has_task_options?(5, 2, location_options)
     end
 
-    def has_next_contact_date?
-      next_week = Date.today + 7
-      has_date_selectors?(next_week, 7,
-                          localize(spanish: 6, portuguese: 6, english: 8),
-                          localize(spanish: 8, portuguese: 8, english: 6)) &&
-        has_hour_selector?(9)
-    end
-
     def has_canceled_alert?
       cancel_form.has_cancel_alert?(initial_appointment_title)
+    end
+
+    def active_today?
+      has_css?('.progress-bar-info',
+               text: "#{initial_appointment_title} " \
+                     "#{standard_date(today)}")
+    end
+
+    def completed_yesterday?
+      has_no_list_item?(initial_appointment_title) &&
+        has_css?('.progress-bar-success',
+                 text: "#{initial_appointment_title} " \
+                       "#{standard_date(yesterday)}")
     end
 
     private

@@ -74,7 +74,7 @@ module Tasks
     end
 
     def has_current_date_selections?
-      has_date_selectors?(Date.today, 1,
+      has_date_selectors?(today, 1,
                           localize(spanish: 0, portuguese: 0, english: 2),
                           localize(spanish: 2, portuguese: 2, english: 0)) &&
         has_hour_selector?(3)
@@ -97,6 +97,12 @@ module Tasks
     def has_difficulties_responses?
       has_text?('Did the patient have any difficulties using CONEMO?: ' \
                 "#{@responses[0]}, #{@responses[1]}")
+    end
+
+    def scheduled_3_weeks_from_yesterday?
+      has_css?('.progress-bar-future',
+               text: "#{follow_up_week_three_title} " \
+                     "#{standard_date(today + ((3 * 7) - 1))}")
     end
 
     private

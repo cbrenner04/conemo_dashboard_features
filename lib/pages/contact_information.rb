@@ -30,10 +30,10 @@ class ContactInformation
   end
 
   def has_extra_information_visible?
-    birth_date = Date.today - ((30 * 365) + @id.to_i)
+    birth_date = today - ((30 * 365) + @id.to_i)
     has_css?('.col-sm-5',
              text: 'Emergency contact (name): ' \
-                   "Birth date: #{birth_date.strftime('%B %d, %Y')} " \
+                   "Birth date: #{standard_date(birth_date)} " \
                    'Alternate phone 2: Relationship: Relationship: ' \
                    'Contact person: Relationship: Relationship: ' \
                    'Relationship: Relationship: Address: Cell phone:')

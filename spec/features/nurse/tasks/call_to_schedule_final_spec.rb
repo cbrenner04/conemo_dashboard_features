@@ -29,7 +29,7 @@ feature 'Nurse, Call to schedule final appointment', metadata: :first do
     expect(timeline).to have_call_to_schedule_final_appt
 
     # check Your Patients list for old / new tasks
-    your_patients.return
+    navigation.return_home
 
     expect(patient_702).to_not have_call_to_schedule_final_appt
     expect(patient_702).to have_tasks_completed

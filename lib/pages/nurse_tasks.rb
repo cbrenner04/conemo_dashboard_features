@@ -134,7 +134,7 @@ class NurseTasks
 
   def has_supervisor_contact?(time)
     has_text? "#{last_supervisor_contact_heading} " \
-              "#{locale_date(time)}#{locale_hour(time)}"
+              "#{standard_date(time)}#{locale_hour(time)}"
   end
 
   def key

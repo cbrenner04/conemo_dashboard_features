@@ -22,7 +22,7 @@ class Navigation
   end
 
   def return_home
-    find('.navbar-brand', text: 'CONEMO').click
+    first('.navbar-brand').click
   end
 
   def scroll_down

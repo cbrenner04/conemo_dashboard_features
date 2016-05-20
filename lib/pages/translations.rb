@@ -12,7 +12,7 @@ module Translations
     )
   end
 
-  def locale_date(date)
+  def standard_date(date)
     localize(
       spanish: "#{spanish_weekdays[date.strftime('%A')]}, " \
                "#{date.strftime('%d')} " \

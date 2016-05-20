@@ -10,14 +10,17 @@ feature 'Nurse, Initial in person appointment', metadata: :first do
     # check your patients list for current task
     expect(patient_319).to have_initial_appointment
 
-    # create initial appointment
+    create initial appointment
     pt_319_nurse_tasks.open
+
+    expect(initial_in_person_appt).to be_active_today
+
     initial_in_person_appt.confirm
+
+    # update today to yesterday to confirm follow up appointment schedule
+    initial_in_person_appt.enter_yesterday_as_contact_date
     initial_in_person_appt.enter_location
     pt_319_nurse_tasks.enter_session_length
-
-    expect(initial_in_person_appt).to have_next_contact_date
-
     initial_in_person_appt.enter_general_notes
     navigation.submit
 
@@ -26,7 +29,13 @@ feature 'Nurse, Initial in person appointment', metadata: :first do
     navigation.submit
 
     expect(pt_319_nurse_tasks).to have_no_tasks_in_count
-    expect(initial_in_person_appt).to be_complete
+    expect(initial_in_person_appt).to be_completed_yesterday
+
+    # confirm follow up appointment schedule
+    expect(follow_up_week_1).to be_scheduled_a_week_from_yesterday
+    expect(follow_up_week_3).to be_scheduled_3_weeks_from_yesterday
+    expect(call_to_schedule_final_appointment)
+      .to be_scheduled_6_weeks_from_yesterday
 
     # check clinical summary page for notes
     clinical_summary.open
@@ -39,7 +48,7 @@ feature 'Nurse, Initial in person appointment', metadata: :first do
     expect(timeline).to have_initial_appointment
 
     # check Your Patients list for old / new tasks
-    your_patients.return
+    navigation.return_home
 
     expect(patient_319).to_not have_initial_appointment
     expect(patient_319).to have_tasks_completed

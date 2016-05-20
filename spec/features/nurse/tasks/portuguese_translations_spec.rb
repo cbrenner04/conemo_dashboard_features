@@ -64,9 +64,6 @@ feature 'Portuguese nurse, Participant tasks', metadata: :first do
     expect(portuguese_initial_appointment).to have_site_options
 
     portuguese_initial_appointment.toggle_options_list
-
-    expect(portuguese_initial_appointment).to have_next_contact_date
-
     portuguese_navigation.cancel
     portuguese_initial_appointment.open_reschedule_form
 
@@ -226,7 +223,7 @@ feature 'Portuguese nurse, Participant tasks', metadata: :first do
 
     expect(portuguese_help_request).to have_resolution_confirmation_alert
 
-    your_patients.return
+    navigation.return_home
 
     pt_602_nurse_tasks.open
 

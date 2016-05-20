@@ -1,5 +1,6 @@
 # filename: ./spec/support/nurse/tasks_helper.rb
 
+require './lib/pages/clinical_summary'
 require './lib/pages/navigation'
 require './lib/pages/nurse_tasks'
 require './lib/pages/supervisor_page'

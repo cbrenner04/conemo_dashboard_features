@@ -58,38 +58,36 @@ module Translations
 
       def english_release_dates
         (1..15).map do |i|
-          ((Date.today - @start_date_offset) + (i - 1)).strftime('%B %d, %Y')
+          standard_date((today - @start_date_offset) + (i - 1))
         end
       end
 
-      def english_contact_dates
-        [0, 14, 35, 42].map do |i|
-          (Date.today - i).strftime('%B %d, %Y')
-        end
-      end
+      # def english_contact_dates
+      #   [0, 14, 35, 42].map { |i| standard_date(today - i) }
+      # end
 
       def portuguese_release_dates
         [1, 3, 6, 8, 10]
-          .map { |i| locale_date((Date.today - @start_date_offset) + (i - 1)) }
+          .map { |i| standard_date((today - @start_date_offset) + (i - 1)) }
       end
 
-      def portuguese_contact_dates
-        [0, 14, 35, 42].map { |i| locale_date(Date.today - i) }
-      end
+      # def portuguese_contact_dates
+      #   [0, 14, 35, 42].map { |i| standard_date(today - i) }
+      # end
 
       def spanish_release_dates_1
         [1, 3, 6, 8, 10, 13, 15, 17, 20, 22, 24, 27, 29, 31, 34, 36, 38, 41]
-          .map { |i| locale_date((Date.today - @start_date_offset) + (i - 1)) }
+          .map { |i| standard_date((today - @start_date_offset) + (i - 1)) }
       end
 
       def spanish_release_dates_2
         [1, 3, 6, 8, 10, 13, 15, 17, 20, 22, 27, 29, 31, 34, 36, 38, 41]
-          .map { |i| locale_date((Date.today - @start_date_offset) + (i - 1)) }
+          .map { |i| standard_date((today - @start_date_offset) + (i - 1)) }
       end
 
-      def spanish_contact_dates
-        [0, 14, 35, 42].map { |i| locale_date(Date.today - i) }
-      end
+      # def spanish_contact_dates
+      #   [0, 14, 35, 42].map { |i| standard_date(today - i) }
+      # end
     end
   end
 end

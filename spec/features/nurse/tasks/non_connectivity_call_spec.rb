@@ -77,7 +77,7 @@ feature 'Nurse, Non-connectivity call', metadata: :not_first do
     expect(lack_of_connectivity_call).to have_response
 
     # check Your Patients list for old / new tasks
-    your_patients.return
+    navigation.return_home
 
     expect(patient_410).to_not have_lack_of_connectivity_task
     expect(patient_410).to have_tasks_completed

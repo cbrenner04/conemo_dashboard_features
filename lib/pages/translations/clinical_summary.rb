@@ -53,11 +53,7 @@ module Translations
     end
 
     def expected_contact_dates
-      localize(
-        spanish: spanish_contact_dates,
-        portuguese: portuguese_contact_dates,
-        english: english_contact_dates
-      )
+      [0, 14, 35, 42].map { |i| standard_date(today - i) }
     end
 
     def expected_notes_form_heading

@@ -91,25 +91,25 @@ class ClinicalSummary
   def has_first_appt_notes_visible?
     has_text? "#{initial_appointment_title}\n" \
               "#{initial_in_person_appointment.general_notes}\n" \
-              "#{DateTime.now.strftime('%B %d, %Y')}"
+              "#{standard_date(yesterday)}"
   end
 
   def has_follow_up_week_1_notes_visible?
     has_text? "#{follow_up_week_one_title}\n" \
               "#{follow_up_call_week_one.general_notes}\n" \
-              "#{DateTime.now.strftime('%B %d, %Y')}"
+              "#{standard_date(today)}"
   end
 
   def has_follow_up_week_3_notes_visible?
     has_text? "#{follow_up_week_three_title}\n" \
               "#{follow_up_call_week_three.general_notes}\n" \
-              "#{DateTime.now.strftime('%B %d, %Y')}"
+              "#{standard_date(today)}"
   end
 
   def has_final_appt_notes_visible?
     has_text? "#{final_appointment_title}\n" \
               "#{final_appt.general_notes}\n" \
-              "#{DateTime.now.strftime('%B %d, %Y')}"
+              "#{standard_date(today)}"
   end
 
   def has_headers?
@@ -146,7 +146,7 @@ class ClinicalSummary
   def has_contact_dates?
     dates = notes_table.all('em')
     actual_contact_dates = (0..3).map do |i|
-      year = Date.today.strftime('%Y')
+      year = today.strftime('%Y')
       string = dates[i].text
       string_end = string.index(year.to_s) + (year.length - 1)
       string.slice(0..string_end)
@@ -180,21 +180,21 @@ class ClinicalSummary
 
   def expected_lessons
     @expected_lessons ||= [
-      "1 #{Date.today.strftime('%B %d, %Y')} Lesson 1",
-      "2 #{(Date.today + 1).strftime('%B %d, %Y')} Lesson 2",
-      "3 #{(Date.today + 2).strftime('%B %d, %Y')} Lesson 3",
-      "4 #{(Date.today + 3).strftime('%B %d, %Y')} Lesson 4",
-      "5 #{(Date.today + 4).strftime('%B %d, %Y')} Lesson 5",
-      "6 #{(Date.today + 5).strftime('%B %d, %Y')} Lesson 6",
-      "7 #{(Date.today + 6).strftime('%B %d, %Y')} Lesson 7",
-      "8 #{(Date.today + 7).strftime('%B %d, %Y')} Lesson 8",
-      "9 #{(Date.today + 8).strftime('%B %d, %Y')} Lesson 9",
-      "10 #{(Date.today + 9).strftime('%B %d, %Y')} Lesson 10",
-      "11 #{(Date.today + 10).strftime('%B %d, %Y')} Lesson 11",
-      "12 #{(Date.today + 11).strftime('%B %d, %Y')} Lesson 12",
-      "13 #{(Date.today + 12).strftime('%B %d, %Y')} Lesson 13",
-      "14 #{(Date.today + 13).strftime('%B %d, %Y')} Lesson 14",
-      "15 #{(Date.today + 14).strftime('%B %d, %Y')} Lesson 15"
+      "1 #{standard_date(today)} Lesson 1",
+      "2 #{standard_date(tomorrow)} Lesson 2",
+      "3 #{standard_date(today + 2)} Lesson 3",
+      "4 #{standard_date(today + 3)} Lesson 4",
+      "5 #{standard_date(today + 4)} Lesson 5",
+      "6 #{standard_date(today + 5)} Lesson 6",
+      "7 #{standard_date(today + 6)} Lesson 7",
+      "8 #{standard_date(today + 7)} Lesson 8",
+      "9 #{standard_date(today + 8)} Lesson 9",
+      "10 #{standard_date(today + 9)} Lesson 10",
+      "11 #{standard_date(today + 10)} Lesson 11",
+      "12 #{standard_date(today + 11)} Lesson 12",
+      "13 #{standard_date(today + 12)} Lesson 13",
+      "14 #{standard_date(today + 13)} Lesson 14",
+      "15 #{standard_date(today + 14)} Lesson 15"
     ]
   end
 

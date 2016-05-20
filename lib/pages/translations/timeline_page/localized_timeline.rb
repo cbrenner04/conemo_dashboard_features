@@ -22,40 +22,40 @@ module Translations
 
       def spanish_timeline_dates
         @spanish_timeline_dates ||= [
-          "Fecha y hora de contacto: #{locale_date(Date.today - 45)}",
-          "Programada para: #{locale_date(Date.today - 42)}",
-          "Fecha/hora de la llamada: #{locale_date(Date.today - 35)}",
-          "Fecha/hora de la llamada: #{locale_date(Date.today - 21)}",
-          "Fecha/hora de la llamada: #{locale_date(Date.today - 14)}",
-          "Fecha/hora de la llamada: #{locale_date(Date.today - 14)}",
-          "Fecha/hora de la llamada: #{locale_date(Date.today - 7)}",
-          "Fecha y hora de contacto: #{locale_date(Date.today - 1)}",
-          "Programada para: #{locale_date(Date.today)}"
+          "Fecha y hora de contacto: #{standard_date(today - 45)}",
+          "Programada para: #{standard_date(today - 42)}",
+          "Fecha/hora de la llamada: #{standard_date(today - 35)}",
+          "Fecha/hora de la llamada: #{standard_date(today - 21)}",
+          "Fecha/hora de la llamada: #{standard_date(today - 14)}",
+          "Fecha/hora de la llamada: #{standard_date(today - 14)}",
+          "Fecha/hora de la llamada: #{standard_date(today - 7)}",
+          "Fecha y hora de contacto: #{standard_date(yesterday)}",
+          "Programada para: #{standard_date(today)}"
         ]
       end
 
       def portuguese_timeline_dates
         @portuguese_timeline_dates ||= [
-          "Contactado em: #{locale_date(Date.today - 45)}",
-          "Data/hora: #{locale_date(Date.today - 42)}",
-          "Data/hora: #{locale_date(Date.today - 35)}",
-          "Data da ligação: #{locale_date(Date.today - 21)}",
-          "Data/hora: #{locale_date(Date.today - 14)}",
-          "Data da ligação: #{locale_date(Date.today - 14)}",
-          "Data da ligação: #{locale_date(Date.today - 7)}",
-          "Data da ligação: #{locale_date(Date.today - 1)}",
-          "Data/hora: #{locale_date(Date.today)}"
+          "Contactado em: #{standard_date(today - 45)}",
+          "Data/hora: #{standard_date(today - 42)}",
+          "Data/hora: #{standard_date(today - 35)}",
+          "Data da ligação: #{standard_date(today - 21)}",
+          "Data/hora: #{standard_date(today - 14)}",
+          "Data da ligação: #{standard_date(today - 14)}",
+          "Data da ligação: #{standard_date(today - 7)}",
+          "Data da ligação: #{standard_date(yesterday)}",
+          "Data/hora: #{standard_date(today)}"
         ]
       end
 
       def english_timeline_dates
         @english_timeline_dates ||= [
-          "Date of contact: #{locale_date(Date.today - 45)}",
-          "Appointment date/time: #{locale_date(Date.today - 42)}",
-          "Date of phone call: #{locale_date(Date.today - 35)}",
-          "Contact At: #{locale_date(Date.today - 14)}",
-          "Date/time of phone call: #{locale_date(Date.today - 1)}",
-          "Date and time: #{locale_date(Date.today)}"
+          "Date of contact: #{standard_date(today - 45)}",
+          "Appointment date/time: #{standard_date(today - 42)}",
+          "Date of phone call: #{standard_date(today - 35)}",
+          "Contact At: #{standard_date(today - 14)}",
+          "Date/time of phone call: #{standard_date(yesterday)}",
+          "Date and time: #{standard_date(today)}"
         ]
       end
 

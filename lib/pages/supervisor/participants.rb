@@ -52,7 +52,7 @@ module Supervisor
         .has_css?('tr',
                   text: "Edit Information Nurse-#{@nurse}, #{language} Edit " \
                         "Information Last-#{@pt_id}, First #{@pt_id} " \
-                        "#{locale_date(Date.today)} Treatment termination")
+                        "#{standard_date(today)} Treatment termination")
     end
 
     def edit_information
@@ -92,7 +92,7 @@ module Supervisor
       dropped_panel
         .has_css?('tr', text: "Nurse-#{@nurse}, #{language} " \
                               "Last-#{@pt_id}, First #{@pt_id} " \
-                              "#{locale_date(Date.today)}")
+                              "#{standard_date(today)}")
     end
 
     def reassign

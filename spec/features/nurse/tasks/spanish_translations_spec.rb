@@ -64,9 +64,6 @@ feature 'Spanish nurse, Participant tasks', metadata: :first do
     expect(spanish_initial_appointment).to have_site_options
 
     spanish_initial_appointment.toggle_options_list
-
-    expect(spanish_initial_appointment).to have_next_contact_date
-
     spanish_navigation.cancel
     spanish_initial_appointment.open_reschedule_form
 
@@ -226,7 +223,7 @@ feature 'Spanish nurse, Participant tasks', metadata: :first do
 
     expect(spanish_help_request).to have_resolution_confirmation_alert
 
-    your_patients.return
+    navigation.return_home
     pt_502_nurse_tasks.open
 
     expect(spanish_non_adherence_call).to be_active

@@ -63,13 +63,13 @@ module Tasks
     def update_contact_at_to_today
       find('.select2-container', match: :first)
       selector[1].click
-      select_list_item((Date.today + 1).strftime('%B'))
+      select_list_item(today.strftime('%B'))
       selector[2].click
-      today_int = Date.today.strftime('%-d').to_i
+      today_int = today.strftime('%-d').to_i
       if today_int < 10
         first('.select2-result-label', text: today_int).click
       else
-        select_list_item(Date.today.strftime('%-d'))
+        select_list_item(today_int)
       end
     end
 
@@ -88,14 +88,14 @@ module Tasks
     end
 
     def has_current_date_selections?
-      has_date_selectors?(Date.today, 1,
+      has_date_selectors?(today, 1,
                           localize(spanish: 0, portuguese: 0, english: 2),
                           localize(spanish: 2, portuguese: 2, english: 0)) &&
         has_hour_selector?(3)
     end
 
     def has_next_contact_date?
-      has_date_selectors?(Date.today, 6,
+      has_date_selectors?(today, 6,
                           localize(spanish: 5, portuguese: 5, english: 7),
                           localize(spanish: 7, portuguese: 7, english: 5)) &&
         has_time_selectors?(8, 9)
@@ -107,6 +107,12 @@ module Tasks
 
     def has_canceled_alert?
       cancel_form.has_cancel_alert?(call_to_schedule_final_title)
+    end
+
+    def scheduled_6_weeks_from_yesterday?
+      has_css?('.progress-bar-future',
+               text: "#{call_to_schedule_final_title} " \
+                     "#{standard_date(today + ((6 * 7) - 1))}")
     end
 
     private

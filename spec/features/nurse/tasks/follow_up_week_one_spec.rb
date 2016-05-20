@@ -141,7 +141,7 @@ feature 'Nurse, Participant Tasks, Follow up week one', metadata: :not_first do
     expect(follow_up_week_1).to have_difficulties_responses
 
     # check Your Patients list for old / new tasks
-    your_patients.return
+    navigation.return_home
 
     expect(patient_328).to_not have_follow_up_week_1
     expect(patient_328).to have_tasks_completed

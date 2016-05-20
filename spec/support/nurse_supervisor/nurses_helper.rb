@@ -167,7 +167,7 @@ end
 def nurse_403
   @nurse_403 ||= Supervisor::Nurses.new(
     id: 403,
-    supervision_date: Date.today,
+    supervision_date: today,
     supervision_time: Time.now
   )
 end

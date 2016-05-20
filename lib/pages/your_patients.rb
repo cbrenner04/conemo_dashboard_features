@@ -16,10 +16,6 @@ class YourPatients
     @locale ||= your_patients.fetch(:locale, 'english')
   end
 
-  def return
-    find('.navbar-brand', text: 'CONEMO').click
-  end
-
   def visible?
     has_css?('h2', text: localize(spanish: 'Tus pacientes',
                                   portuguese: 'Seus Pacientes',

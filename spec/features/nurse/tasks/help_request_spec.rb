@@ -70,7 +70,7 @@ feature 'Nurse, Participant Tasks, Help request', metadata: :not_first do
     expect(help_request).to have_response
 
     # check Your Patients list for old / new tasks
-    your_patients.return
+    navigation.return_home
 
     expect(patient_400).to_not have_help_request
     expect(patient_400).to have_tasks_completed

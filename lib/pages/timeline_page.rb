@@ -31,39 +31,39 @@ class TimelinePage
   def has_confirmation_call?
     find('.timeline').has_css?('.timeline-panel', count: 1) &&
       has_text?("#{confirmation_call_title} Date of contact:" \
-                " #{DateTime.now.strftime('%B %d, %Y')}")
+                " #{standard_date(today)}")
   end
 
   def has_initial_appointment?
     find('.timeline').has_css?('.timeline-panel', count: 2) &&
       has_text?("#{initial_appointment_title} Appointment date/time: " \
-                "#{DateTime.now.strftime('%B %d, %Y')} ")
+                "#{standard_date(yesterday)} ")
   end
 
   def has_follow_up_week_1?
     find('.timeline').has_css?('.timeline-panel', count: 3) &&
       has_text?("#{follow_up_week_one_title} information Date/time of " \
-                "phone call: #{DateTime.now.strftime('%B %d, %Y')}") &&
+                "phone call: #{standard_date(today)}") &&
       has_text?('Length of phone call (minutes): 120')
   end
 
   def has_follow_up_week_3?
     find('.timeline').has_css?('.timeline-panel', count: 4) &&
       has_text?("#{follow_up_week_three_title} information Date/time of " \
-                "phone call: #{DateTime.now.strftime('%B %d, %Y')}") &&
+                "phone call: #{standard_date(today)}") &&
       has_text?('Length of phone call (minutes): 120')
   end
 
   def has_call_to_schedule_final_appt?
     find('.timeline').has_css?('.timeline-panel', count: 5) &&
       has_text?("#{call_to_schedule_final_title} Date/time" \
-                " of phone call: #{DateTime.now.strftime('%B %d, %Y')}")
+                " of phone call: #{standard_date(today)}")
   end
 
   def has_final_appointment?
     find('.timeline').has_css?('.timeline-panel', count: 6) &&
       has_text?("#{final_appointment_title} Date and time: " \
-                "#{DateTime.now.strftime('%B %d, %Y')}") &&
+                "#{standard_date(today)}") &&
       has_text?('Location: 100 West Ln, Chicago, IL 60601 Was the' \
                 ' phone returned?:')
   end
@@ -84,7 +84,7 @@ class TimelinePage
     find('.timeline')
       .has_css?('.timeline-panel',
                 text: "#{help_request_title} Date/time of phone call: " \
-                      "#{DateTime.now.strftime('%B %d, %Y')}") &&
+                      "#{standard_date(today)}") &&
       has_text?('Reason for help request:')
   end
 
@@ -92,7 +92,7 @@ class TimelinePage
     find('.timeline')
       .has_css?('.timeline-panel',
                 text: "#{lack_of_connectivity_call_title} Date/time of " \
-                      "phone call: #{DateTime.now.strftime('%B %d, %Y')}") &&
+                      "phone call: #{standard_date(today)}") &&
       has_text?('Reason for lack of connectivity:')
   end
 
@@ -100,7 +100,7 @@ class TimelinePage
     find('.timeline')
       .has_css?('.timeline-panel',
                 text: "#{non_adherence_call_title} Date/time of phone " \
-                      "call: #{DateTime.now.strftime('%B %d, %Y')}") &&
+                      "call: #{standard_date(today)}") &&
       has_text?('Reason for non-adherence:')
   end
 
@@ -145,8 +145,7 @@ class TimelinePage
 
   def has_updated_contact_at?
     find('.timeline-panel', text: @session)
-      .has_text? 'Date/time of phone call: ' \
-                 "#{Date.today.strftime('%B %d, %Y')}"
+      .has_text? "Date/time of phone call: #{standard_date(today)}"
   end
 
   def has_timeline_titles?
@@ -157,7 +156,7 @@ class TimelinePage
   def has_contact_dates?
     timeline_headings = all('.timeline-heading')
     actual_contact_dates = (0..8).map do |i|
-      year = Date.today.strftime('%Y')
+      year = today.strftime('%Y')
       string = timeline_headings[i].find('p').text
       string_end = string.index(year.to_s) + (year.length - 1)
       string.slice(0..string_end)

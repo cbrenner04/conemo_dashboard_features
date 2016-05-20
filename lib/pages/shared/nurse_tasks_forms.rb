@@ -62,7 +62,7 @@ module NurseTasksForms
 
   def has_scheduled_progress_bar_item?(text)
     has_css?('.progress-bar-future',
-             text: "#{text} #{(Date.today + 1).strftime('%B %d, %Y')}")
+             text: "#{text} #{standard_date(tomorrow)}")
   end
 
   def has_scheduled_progress_bar_item_with_time?(text)
@@ -82,9 +82,9 @@ module NurseTasksForms
 
   def select_next_date(num)
     selector[num - 1].click
-    select_list_item((Date.today + 1).strftime('%B'))
+    select_list_item(tomorrow.strftime('%B'))
     selector[num].click
-    tomorrow_int = (Date.today + 1).strftime('%-d').to_i
+    tomorrow_int = tomorrow.strftime('%-d').to_i
     if tomorrow_int < 10
       first('.select2-result-label', text: tomorrow_int).click
     else

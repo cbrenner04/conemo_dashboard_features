@@ -85,14 +85,14 @@ module Tasks
     end
 
     def has_current_date_selections?
-      has_date_selectors?(Date.today, 1,
+      has_date_selectors?(today, 1,
                           localize(spanish: 0, portuguese: 0, english: 2),
                           localize(spanish: 2, portuguese: 2, english: 0)) &&
         has_time_selectors?(3, 4)
     end
 
     def has_next_contact_date_selections?
-      has_date_selectors?(Date.today, 6,
+      has_date_selectors?(today, 6,
                           localize(spanish: 5, portuguese: 5, english: 7),
                           localize(spanish: 7, portuguese: 7, english: 5)) &&
         has_time_selectors?(8, 9)

@@ -42,15 +42,13 @@ class SupervisorPage
 
   def has_patient?
     pending_panel
-      .has_text? "Last-#{@pt_id}, First #{@pt_id} " \
-                 "#{Date.today.strftime('%B %d, %Y')}"
+      .has_text? "Last-#{@pt_id}, First #{@pt_id} #{standard_date(today)}"
   end
 
   def has_active_patient?
     active_panel.find('input[type = search]').set('300')
     active_panel
-      .has_text? 'Last-300, First 300 ' \
-                 "#{Date.today.strftime('%B %d, %Y')}"
+      .has_text? "Last-300, First 300 #{standard_date(today)}"
   end
 
   def has_total_active?
@@ -79,7 +77,7 @@ class SupervisorPage
   end
 
   def has_new_completed_participant_information?
-    date = (Date.today - 39).strftime('%B %d, %Y')
+    date = standard_date(today - 39)
     completed_panel.find('input[type = search]').set('341')
     has_css?('tr', text: "Nurse-400, English Last-341, First 341 #{date}")
   end
@@ -205,36 +203,35 @@ class SupervisorPage
   def expected_rows_1
     @expected_rows_1 ||= (1..6).map do |i|
       "Nurse-401, English Last-#{4040 + i}, First #{4040 + i} " \
-      "#{(Date.today - (13 + i)).strftime('%B %d, %Y')}"
+      "#{standard_date(today - (13 + i))}"
     end
   end
 
   def expected_rows_2
     @expected_rows_2 ||= (7..12).map do |i|
       "Nurse-403, English Last-#{4040 + i}, First #{4040 + i} " \
-      "#{(Date.today - (13 + i)).strftime('%B %d, %Y')}"
+      "#{standard_date(today - (13 + i))}"
     end
   end
 
   def expected_rows_3
     @expected_rows_3 ||= (1..12).map do |i|
       "Nurse-402, English Last-#{201 + i}, First #{201 + i} " \
-      "#{(Date.today - (4 + i)).strftime('%B %d, %Y')}"
+      "#{standard_date(today - (4 + i))}"
     end
   end
 
   def expected_rows_4
-    today = Date.today.strftime('%B %d, %Y')
     @expected_rows_4 ||= [
-      "Nurse-400, English Last-200, First 200 #{today}",
-      "Nurse-400, English Last-201, First 201 #{today}"
+      "Nurse-400, English Last-200, First 200 #{standard_date(today)}",
+      "Nurse-400, English Last-201, First 201 #{standard_date(today)}"
     ]
   end
 
   def expected_rows_5
-    today = Date.today.strftime('%B %d, %Y')
     @expected_rows ||= (5..8).map do |i|
-      "Edit Information Last-49#{i}, First 49#{i} #{today} Activate"
+      "Edit Information Last-49#{i}, First 49#{i} " \
+      "#{standard_date(today)} Activate"
     end
   end
 
@@ -269,12 +266,12 @@ class SupervisorPage
 
   def rescheduled_and_canceled_tasks_dates
     @rescheduled_and_canceled_tasks_dates ||= [
-      "#{locale_date(Date.today - 4)}#{locale_hour(Time.now)}",
-      "#{locale_date(Date.today - 8)}#{locale_hour(Time.now)}",
-      "#{locale_date(Date.today - 10)}#{locale_hour(Time.now)}",
-      "#{locale_date(Date.today - 11)}#{locale_hour(Time.now)}",
-      "#{locale_date(Date.today - 16)}#{locale_hour(Time.now)}",
-      "#{locale_date(Date.today - 20)}#{locale_hour(Time.now)}"
+      "#{standard_date(today - 4)}#{locale_hour(Time.now)}",
+      "#{standard_date(today - 8)}#{locale_hour(Time.now)}",
+      "#{standard_date(today - 10)}#{locale_hour(Time.now)}",
+      "#{standard_date(today - 11)}#{locale_hour(Time.now)}",
+      "#{standard_date(today - 16)}#{locale_hour(Time.now)}",
+      "#{standard_date(today - 20)}#{locale_hour(Time.now)}"
     ]
   end
 

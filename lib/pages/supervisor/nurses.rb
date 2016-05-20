@@ -45,7 +45,7 @@ module Supervisor
 
     def has_new_supervision_session?
       find('.table', text: 'Session')
-        .has_text?(Date.today.strftime('%B %d, %Y')) &&
+        .has_text?(standard_date(today)) &&
         find('.table', text: 'Session')
           .has_text?("20 #{@meeting_kind} #{@contact_kind} #{@topic[0]}, " \
                      "#{@topic[1]}")
@@ -166,7 +166,7 @@ module Supervisor
     def has_supervision_note?
       find('.table', match: :first)
       first('.table')
-        .has_text?("#{@note}\n#{Date.today.strftime('%B %d, %Y')}") &&
+        .has_text?("#{@note}\n#{standard_date(today)}") &&
         has_css?('.alert', text: 'Supervisor note was successfully created')
     end
 
@@ -205,7 +205,7 @@ module Supervisor
     def last_supervision_date
       @last_supervision_date ||=
         "#{last_supervision_header}: " \
-        "#{locale_date(@supervision_date)}" \
+        "#{standard_date(@supervision_date)}" \
         "#{locale_hour(dst_time(@supervision_time))}"
     end
 
