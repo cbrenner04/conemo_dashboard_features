@@ -89,8 +89,7 @@ class NurseTasks
   end
 
   def has_participant_in_header?
-    has_css?('.navbar-brand',
-             text: "Participant #{@pt_id}: First Last-#{@pt_id}")
+    has_css?('.navbar-brand', text: "#{@pt_id}: First Last-#{@pt_id}")
   end
 
   def has_key?

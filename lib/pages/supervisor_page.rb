@@ -178,6 +178,11 @@ class SupervisorPage
     end
   end
 
+  def select_completed_pt
+    completed_panel.find('input[type = search]').set('341')
+    completed_panel.find('Last-341').click
+  end
+
   private
 
   def your_patients

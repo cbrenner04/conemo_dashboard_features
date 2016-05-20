@@ -10,7 +10,7 @@ feature 'Nurse, Initial in person appointment', metadata: :first do
     # check your patients list for current task
     expect(patient_319).to have_initial_appointment
 
-    create initial appointment
+    # create initial appointment
     pt_319_nurse_tasks.open
 
     expect(initial_in_person_appt).to be_active_today

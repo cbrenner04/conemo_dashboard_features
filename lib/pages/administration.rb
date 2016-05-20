@@ -118,4 +118,12 @@ class Administration
     has_css?('tr', text: 'XT1032', count: 1) &&
       has_css?('.participant_field', text: '1000')
   end
+
+  def open_inactive_devices_table
+    first('a', text: 'Past device assignments').click
+  end
+
+  def has_one_inactive_device?
+    has_css?('tr', text: 'XT1032', count: 1)
+  end
 end

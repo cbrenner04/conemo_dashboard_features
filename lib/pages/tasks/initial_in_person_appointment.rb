@@ -24,6 +24,11 @@ module Tasks
         has_canceled_progress_bar_item?(initial_appointment_title)
     end
 
+    def complete?
+      has_no_list_item?(initial_appointment_title) &&
+        has_complete_progress_bar_item?(initial_appointment_title)
+    end
+
     def overdue?
       has_list_item?(initial_appointment_title) &&
         has_overdue_progress_bar_item?(initial_appointment_title)
@@ -90,7 +95,7 @@ module Tasks
     end
 
     def has_form_headings?
-      has_task_form_headings?(4)
+      has_task_form_headings?(3)
     end
 
     def has_current_date_selections?

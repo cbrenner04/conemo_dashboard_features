@@ -104,6 +104,7 @@ feature 'Spanish Nurse Supervisor, Participants', metadata: :not_first do
     expect(spanish_contact_information).to have_form_fields
 
     spanish_navigation.cancel
+    spanish_navigation.scroll_down
     patient_501.edit_information
 
     expect(spanish_contact_information).to have_form_fields
@@ -149,6 +150,7 @@ feature 'Portuguese Nurse Supervisor, Participants', metadata: :not_first do
     expect(portuguese_contact_information).to have_form_fields
 
     portuguese_navigation.cancel
+    portuguese_navigation.scroll_down
     patient_601.edit_information
 
     expect(portuguese_contact_information).to have_form_fields

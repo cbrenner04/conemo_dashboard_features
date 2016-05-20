@@ -112,7 +112,6 @@ feature 'Nurse, Participant Tasks, Final appointment', metadata: :not_first do
   end
 
   scenario 'Nurse confirms a final appointment' do
-    # possible dependency issue but not clear where
     pt_341_nurse_tasks.open
     final_appointment.confirm
     final_appointment.enter_location
@@ -128,5 +127,14 @@ feature 'Nurse, Participant Tasks, Final appointment', metadata: :not_first do
 
     expect(nurse_supervisor_5).to have_updated_completed
     expect(nurse_supervisor_5).to have_new_completed_participant_information
+
+    # confirm that supervisor can still access timeline and clinical summary
+    nurse_supervisor_5.select_completed_pt
+
+    expect(timeline).to be_on_page
+
+    clinical_summary.open
+
+    expect(clinical_summary).to be_visible
   end
 end

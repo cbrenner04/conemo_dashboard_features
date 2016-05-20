@@ -66,7 +66,7 @@ end
 
 def jane_doe
   @jane_doe ||= PendingParticipants.new(
-    name: "Doe, Jane 123 #{standard_date(today)}"
+    name: "Doe, Jane 123 #{today.strftime('%B %d, %Y')}"
   )
 end
 
