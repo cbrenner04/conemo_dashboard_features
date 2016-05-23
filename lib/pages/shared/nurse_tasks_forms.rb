@@ -44,6 +44,10 @@ module NurseTasksForms
     has_no_css?('.panel', text: text)
   end
 
+  def has_overdue_list_item?(text)
+    has_css?('.panel-danger', text: text)
+  end
+
   def has_active_progress_bar_item?(text)
     has_css?('.progress-bar-info', text: text)
   end
@@ -61,8 +65,7 @@ module NurseTasksForms
   end
 
   def has_scheduled_progress_bar_item?(text)
-    has_css?('.progress-bar-future',
-             text: "#{text} #{standard_date(tomorrow)}")
+    has_css?('.progress-bar-future', text: "#{text} #{standard_date(tomorrow)}")
   end
 
   def has_scheduled_progress_bar_item_with_time?(text)

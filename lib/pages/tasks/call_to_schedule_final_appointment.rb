@@ -30,7 +30,7 @@ module Tasks
     end
 
     def overdue?
-      has_list_item?(call_to_schedule_final_title) &&
+      has_overdue_list_item?(call_to_schedule_final_title) &&
         has_overdue_progress_bar_item?(call_to_schedule_final_title)
     end
 

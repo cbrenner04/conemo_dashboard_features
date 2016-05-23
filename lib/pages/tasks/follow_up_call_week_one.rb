@@ -29,7 +29,7 @@ module Tasks
     end
 
     def overdue?
-      has_list_item?(follow_up_week_one_title) &&
+      has_overdue_list_item?(follow_up_week_one_title) &&
         has_overdue_progress_bar_item?(follow_up_week_one_title)
     end
 
