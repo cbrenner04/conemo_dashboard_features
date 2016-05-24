@@ -180,7 +180,7 @@ class SupervisorPage
 
   def select_completed_pt
     completed_panel.find('input[type = search]').set('341')
-    completed_panel.find('Last-341').click
+    completed_panel.find('tr', text: 'Last-341').click
   end
 
   private

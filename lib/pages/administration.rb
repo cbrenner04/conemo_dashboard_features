@@ -111,12 +111,17 @@ class Administration
   end
 
   def open_devices_table
+    find('a', text: 'Devices', match: :first)
     first('a', text: 'Devices').click
   end
 
   def has_only_one_device?
     has_css?('tr', text: 'XT1032', count: 1) &&
       has_css?('.participant_field', text: '1000')
+  end
+
+  def has_no_devices?
+    has_text? '0 devices'
   end
 
   def open_inactive_devices_table

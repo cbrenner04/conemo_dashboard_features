@@ -41,10 +41,11 @@ module Translations
       def difficulty_directions
         localize(
           spanish: 'Si el participante no ha tenido dificultades, por favor ' \
-                   'selecciona "NO". Si el participante tuvo dificultades, ' \
+                   'selecciona "El paciente no tuvo dificultades" bajo el ' \
+                   'título "NO". Si el participante tuvo dificultades, ' \
                    'selecciona todas las dificultades que tuvo el ' \
-                   'participante. Por favor NO marques "No" Y algunas ' \
-                   'dificultades al mismo tiempo.',
+                   'participante. Por favor NO marques respuestas bajo el ' \
+                   'título "NO" y el título "SÍ" al mismo tiempo.',
           portuguese: 'Se o participante não teve dificuldades, por favor, ' \
                       'selecione "NÃO". Se o participante teve dificuldades, ' \
                       'selecione todas as dificuldades que o participante ' \

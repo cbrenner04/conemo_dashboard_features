@@ -163,6 +163,7 @@ feature 'Portuguese Nurse Supervisor, Participants', metadata: :not_first do
   end
 
   scenario 'Sees correct translation for terminating participants' do
+    navigation.scroll_down
     patient_603.terminate
 
     expect(patient_603).to be_dropped

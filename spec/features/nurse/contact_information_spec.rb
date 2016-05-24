@@ -42,6 +42,7 @@ feature 'Nurse, Contact Information', metadata: :first do
 
   scenario 'Nurse cancels out of edit of smartphone information' do
     pt_310_nurse_tasks.open
+    navigation.scroll_down
     pt_310_contact_info.select_edit_smartphone_information
 
     expect(pt_310_contact_info).to have_smartphone_form_visible
@@ -54,6 +55,7 @@ feature 'Nurse, Contact Information', metadata: :first do
 
   scenario 'Nurse enters smartphone information' do
     pt_302_nurse_tasks.open
+    navigation.scroll_down
     pt_302_contact_info.select_edit_smartphone_information
     pt_302_contact_info.enter_smartphone_number
     pt_302_contact_info.enter_phone_id
@@ -85,6 +87,7 @@ feature 'Spanish Nurse, Contact Information', metadata: :not_first do
 
   scenario 'Spanish Nurse creates a smartphone' do
     pt_504_nurse_tasks.open
+    navigation.scroll_down
     pt_504_contact_info.select_edit_smartphone_information
     pt_504_contact_info.enter_smartphone_number
     pt_504_contact_info.enter_phone_id
@@ -116,6 +119,7 @@ feature 'Portuguese Nurse, Contact Information', metadata: :not_first do
 
   scenario 'Spanish Nurse creates a smartphone' do
     pt_604_nurse_tasks.open
+    navigation.scroll_down
     pt_604_contact_info.select_edit_smartphone_information
     pt_604_contact_info.enter_smartphone_number
     pt_604_contact_info.enter_phone_id

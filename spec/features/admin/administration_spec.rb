@@ -1,13 +1,14 @@
 # filename: ./spec/features/admin/administration_spec.rb
 
 require './lib/pages/administration'
+require './lib/pages/admin/token_page'
 
 def administration
   @administration ||= Administration.new(locale: 'english')
 end
 
-def token_page
-  @token_page ||= Administration::TokenPage.new(pt_id: 1000)
+def token_page_1000
+  @token_page_1000 ||= Admin::TokenPage.new(pt_id: 1000)
 end
 
 feature 'Admin, Administration', metadata: :last do
@@ -63,14 +64,14 @@ feature 'Admin, Administration', metadata: :last do
 
     expect(token_page_1000).to have_active_authentication_token
 
-    token_page_1000.destory_auth_token
+    token_page_1000.destroy_auth_token
 
-    expect(token_page_1000).to have_auth_token_destroyed
+    expect(token_page_1000).to have_auth_token_destroy_alert
 
     administration.open
     administration.open_devices_table
 
-    expect(adminstration).to have_no_devices
+    expect(administration).to have_no_devices
 
     administration.open_inactive_devices_table
 

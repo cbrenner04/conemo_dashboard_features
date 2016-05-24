@@ -264,4 +264,6 @@ feature 'Portuguese nurse, Participant tasks', metadata: :not_first do
 
     expect(pt_604_nurse_tasks).to have_successful_confirmation_call_alert
   end
+
+  scenario 'Portuguese nurse confirms final appointment, sees proper alert'
 end

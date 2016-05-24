@@ -86,6 +86,7 @@ feature 'Spanish nurse, Participant tasks', metadata: :first do
   scenario 'Spanish nurse sees translations for follow up week 1' do
     expect(spanish_follow_up_week_1).to be_active
 
+    spanish_navigation.scroll_down
     spanish_follow_up_week_1.confirm
 
     expect(spanish_follow_up_week_1).to have_form_headings
@@ -94,6 +95,7 @@ feature 'Spanish nurse, Participant tasks', metadata: :first do
     expect(spanish_follow_up_week_1).to have_difficulties_directions
 
     spanish_navigation.cancel
+    spanish_navigation.scroll_down
     spanish_follow_up_week_1.open_reschedule_form
 
     expect(spanish_reschedule_form).to have_form_headings
@@ -102,6 +104,7 @@ feature 'Spanish nurse, Participant tasks', metadata: :first do
 
     spanish_reschedule_form.toggle_options_list
     spanish_navigation.cancel
+    spanish_navigation.scroll_down
     spanish_follow_up_week_1.cancel
 
     expect(spanish_cancel_form).to have_form_title
@@ -115,6 +118,7 @@ feature 'Spanish nurse, Participant tasks', metadata: :first do
   scenario 'Spanish nurse sees translations for follow up week 3' do
     expect(spanish_follow_up_week_3).to be_active
 
+    spanish_navigation.scroll_down
     spanish_follow_up_week_3.confirm
 
     expect(spanish_follow_up_week_3).to have_form_headings
@@ -123,6 +127,7 @@ feature 'Spanish nurse, Participant tasks', metadata: :first do
     expect(spanish_follow_up_week_3).to have_difficulties_directions
 
     spanish_navigation.cancel
+    spanish_navigation.scroll_down
     spanish_follow_up_week_3.open_reschedule_form
 
     expect(spanish_reschedule_form).to have_form_headings
@@ -131,6 +136,7 @@ feature 'Spanish nurse, Participant tasks', metadata: :first do
 
     spanish_reschedule_form.toggle_options_list
     spanish_navigation.cancel
+    spanish_navigation.scroll_down
     spanish_follow_up_week_3.cancel
 
     expect(spanish_cancel_form).to have_form_title
@@ -263,4 +269,6 @@ feature 'Spanish nurse, Participant tasks', metadata: :not_first do
 
     expect(pt_504_nurse_tasks).to have_successful_confirmation_call_alert
   end
+
+  scenario 'Spanish nurse confirms final appointment, sees proper alert'
 end
