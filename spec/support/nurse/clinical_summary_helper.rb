@@ -55,6 +55,28 @@ def pt_317_nurse_tasks
   @pt_317_nurse_tasks ||= NurseTasks.new(pt_id: 317)
 end
 
+def pt_318_clinical_summary
+  @pt_318_clinical_summary ||= ClinicalSummary.new(
+    id: 318,
+    last_seen: DateTime.now - (13 / 24.0)
+  )
+end
+
+def pt_318_nurse_tasks
+  @pt_318_nurse_tasks ||= NurseTasks.new(pt_id: 318)
+end
+
+def pt_319_clinical_summary
+  @pt_319_clinical_summary ||= ClinicalSummary.new(
+    id: 319,
+    last_seen: DateTime.now - (11 / 24.0)
+  )
+end
+
+def pt_319_nurse_tasks
+  @pt_319_nurse_tasks ||= NurseTasks.new(pt_id: 319)
+end
+
 def pt_323_clinical_summary
   @pt_323_clinical_summary ||= ClinicalSummary.new(
     id: 323,
@@ -387,7 +409,8 @@ def pt_500_clinical_summary
     locale: 'spanish',
     start_date_offset: 12,
     num_of_lessons: 18,
-    note: 'Spanish additional note'
+    note: 'Spanish additional note',
+    last_seen: DateTime.now - (1 / 24.0)
   )
 end
 
@@ -449,7 +472,8 @@ def pt_600_clinical_summary
     locale: 'portuguese',
     start_date_offset: 12,
     num_of_lessons: 5,
-    note: 'Portuguese additional note'
+    note: 'Portuguese additional note',
+    last_seen: DateTime.now - (1 / 24.0)
   )
 end
 
@@ -477,4 +501,15 @@ end
 
 def pt_700_nurse_tasks
   @pt_700_nurse_tasks ||= NurseTasks.new(pt_id: 700)
+end
+
+def pt_1000_clinical_summary
+  @pt_1000_clinical_summary ||= ClinicalSummary.new(
+    id: 1000,
+    last_seen: DateTime.now - 3
+  )
+end
+
+def pt_1000_nurse_tasks
+  @pt_1000_nurse_tasks ||= NurseTasks.new(pt_id: 1000)
 end

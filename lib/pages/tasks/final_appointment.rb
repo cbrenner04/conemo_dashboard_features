@@ -99,6 +99,14 @@ module Tasks
       cancel_form.has_cancel_alert?(final_appointment_title)
     end
 
+    def has_success_alert?
+      has_css?('.alert', text: localize(
+        spanish: 'Paciente completó la intervención satisfactoriamente',
+        portuguese: 'Participante completado com sucesso',
+        english: 'Participant successfully completed'
+      ))
+    end
+
     private
 
     def cancel_form

@@ -255,8 +255,9 @@ feature 'Portuguese nurse, Participant tasks', metadata: :first do
 end
 
 feature 'Portuguese nurse, Participant tasks', metadata: :not_first do
+  background { portuguese_nurse.sign_in }
+
   scenario 'Portuguese nurse creates confirmation call' do
-    portuguese_nurse.sign_in
     pt_604_nurse_tasks.open
     portuguese_confirmation_call.confirm
     portuguese_confirmation_call.enter_first_appt_location
@@ -265,5 +266,14 @@ feature 'Portuguese nurse, Participant tasks', metadata: :not_first do
     expect(pt_604_nurse_tasks).to have_successful_confirmation_call_alert
   end
 
-  scenario 'Portuguese nurse confirms final appointment, sees proper alert'
+  scenario 'Portuguese nurse confirms final appointment, sees proper alert' do
+    pt_617_nurse_tasks.open
+    portuguese_final_appointment.confirm
+    portuguese_final_appointment.enter_location
+    portuguese_final_appointment.enter_notes
+    portuguese_final_appointment.choose_phone_returned
+    portuguese_navigation.submit
+
+    expect(portuguese_final_appointment).to have_success_alert
+  end
 end

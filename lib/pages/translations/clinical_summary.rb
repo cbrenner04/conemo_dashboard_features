@@ -15,6 +15,14 @@ module Translations
       )
     end
 
+    def clinical_summary_title
+      locale(
+        spanish: 'Historia del Paciente',
+        portuguese: 'Histórico do Participante',
+        english: 'Clinical Summary'
+      )
+    end
+
     def lesson_table_heading
       localize(spanish: 'Sesión', portuguese: 'Sessão', english: 'Lesson')
     end

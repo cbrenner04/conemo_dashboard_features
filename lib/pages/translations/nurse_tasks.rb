@@ -11,7 +11,7 @@ module Translations
     end
 
     def plural_active_task
-      localize(spanish: 'Tareas totales', portuguese: 'Tarefas Totalis',
+      localize(spanish: 'Tareas totales', portuguese: 'Tarefas Totais',
                english: 'Tasks pending')
     end
 

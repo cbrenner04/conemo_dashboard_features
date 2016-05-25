@@ -21,6 +21,7 @@ class ClinicalSummary
     @locale ||= clinical_summary.fetch(:locale, 'english')
     @start_date_offset ||= clinical_summary[:start_date_offset]
     @num_of_lessons ||= clinical_summary[:num_of_lessons]
+    @last_seen ||= clinical_summary[:last_seen]
   end
 
   def open
@@ -29,7 +30,7 @@ class ClinicalSummary
   end
 
   def visible?
-    has_text? 'Release day'
+    has_css?('h2', text: clinical_summary_title)
   end
 
   def return_to_tasks
@@ -154,8 +155,27 @@ class ClinicalSummary
     expect(actual_contact_dates).to eq(expected_contact_dates)
   end
 
-  def has_non_connectivity_icon?
-    has_css?('.fa-wifi')
+  def has_one_non_connectivity_icon_in_current_lesson?
+    find('tr', text: standard_date(Date.today))
+      .has_css?('.fa-wifi') && has_css?('.fa-wifi', count: 1)
+  end
+
+  def has_no_non_connectivity_icon?
+    has_no_css?('.fa-wifi')
+  end
+
+  def has_three_non_connectivity_icons?
+    has_css?('.fa-wifi', count: 3)
+  end
+
+  def has_last_seen_timestamp?
+    heading = localize(
+      spanish: "Conectado/a por última vez",
+      portuguese: 'Última conexão à(s)',
+      english: 'Last connection at'
+    )
+    has_text? "#{heading} #{standard_date(@last_seen)}" \
+              "#{locale_hour(@last_seen)}"
   end
 
   private

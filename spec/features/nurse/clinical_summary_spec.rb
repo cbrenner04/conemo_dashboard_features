@@ -21,6 +21,30 @@ feature 'Nurse, Clinical Summary', metadata: :first do
     expect(pt_516_incomplete_lesson).to have_incomplete_late_lesson
     expect(pt_516_unread_lesson).to have_unread_lesson
   end
+
+  scenario 'Nurse sees correct number of non-connectivity symbols' do
+    english_nurse.sign_in
+    pt_318_nurse_tasks.open
+    pt_318_clinical_summary.open
+
+    expect(pt_318_clinical_summary).to have_last_seen_timestamp
+    expect(pt_318_clinical_summary)
+      .to have_one_non_connectivity_icon_in_current_lesson
+
+    navigation.return_home
+    pt_319_nurse_tasks.open
+    pt_319_clinical_summary.open
+
+    expect(pt_319_clinical_summary).to have_last_seen_timestamp
+    expect(pt_319_clinical_summary).to have_no_non_connectivity_icon
+
+    navigation.return_home
+    pt_1000_nurse_tasks.open
+    pt_1000_clinical_summary.open
+
+    expect(pt_1000_clinical_summary).to have_last_seen_timestamp
+    expect(pt_1000_clinical_summary).to have_three_non_connectivity_icons
+  end
 end
 
 feature 'Nurse, Clinical Summary', metadata: :not_first do
@@ -352,6 +376,7 @@ feature 'Spanish Nurse, Clinical Summary', metadata: :very_first do
     pt_500_nurse_tasks.open
     pt_500_clinical_summary.open
 
+    expect(pt_600_clinical_summary).to have_last_seen_timestamp
     expect(pt_500_clinical_summary).to have_headers
     expect(pt_500_clinical_summary).to have_legend
     expect(pt_500_clinical_summary).to have_notes_headers
@@ -377,6 +402,7 @@ feature 'Portuguese Nurse, Clinical Summary', metadata: :very_first do
     pt_600_nurse_tasks.open
     pt_600_clinical_summary.open
 
+    expect(pt_600_clinical_summary).to have_last_seen_timestamp
     expect(pt_600_clinical_summary).to have_headers
     expect(pt_600_clinical_summary).to have_legend
     expect(pt_600_clinical_summary).to have_notes_headers

@@ -23,6 +23,13 @@ def pt_502_nurse_tasks
   )
 end
 
+def pt_517_nurse_tasks
+  @pt_517_nurse_tasks ||= NurseTasks.new(
+    pt_id: 517,
+    locale: 'spanish'
+  )
+end
+
 def nurse_500
   @nurse_500 ||= Supervisor::Nurses.new(
     id: 500,
