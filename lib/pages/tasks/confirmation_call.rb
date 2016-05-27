@@ -1,5 +1,5 @@
 require './lib/pages/shared/nurse_tasks_forms'
-require './lib/pages/tasks/cancel_form'
+require './lib/pages/shared/nurse_tasks_page'
 require './lib/pages/translations/nurse_tasks/confirmation_call'
 
 module Tasks
@@ -7,51 +7,12 @@ module Tasks
   class ConfirmationCall
     include Capybara::DSL
     include NurseTasksForms
+    include NurseTasksPage
     include Translations::NurseTaskTitles::ConfirmationCall
 
     def initialize(confirmation_call)
       @locale ||= confirmation_call.fetch(:locale, 'english')
-    end
-
-    def active?
-      has_list_item?(confirmation_call_title) &&
-        has_active_progress_bar_item?(confirmation_call_title)
-    end
-
-    def canceled?
-      has_no_list_item?(confirmation_call_title) &&
-        has_canceled_progress_bar_item?(confirmation_call_title)
-    end
-
-    def complete?
-      has_no_list_item?(confirmation_call_title) &&
-        has_complete_progress_bar_item?(confirmation_call_title)
-    end
-
-    def overdue?
-      has_overdue_list_item?(confirmation_call_title) &&
-        has_overdue_progress_bar_item?(confirmation_call_title)
-    end
-
-    def rescheduled?
-      has_no_list_item?(confirmation_call_title) &&
-        has_scheduled_progress_bar_item?(confirmation_call_title)
-    end
-
-    def confirm
-      execute_script 'window.scrollBy(0,100)'
-      confirm_task confirmation_call_title
-      visible?
-    end
-
-    def open_reschedule_form
-      visible?
-      execute_script 'window.scrollBy(0,100)'
-      open_reschedule confirmation_call_title
-    end
-
-    def visible?
-      has_text? confirmation_call_title
+      @task_title = confirmation_call_title
     end
 
     def visible_on_timeline?
@@ -68,12 +29,6 @@ module Tasks
 
     def enter_first_appt_location
       enter_task_location(10)
-    end
-
-    def cancel
-      visible?
-      execute_script 'window.scrollBy(0,100)'
-      cancel_task confirmation_call_title
     end
 
     def has_form_headings?
@@ -98,22 +53,12 @@ module Tasks
         has_time_selectors?(8, 9)
     end
 
-    def has_canceled_alert?
-      cancel_form.has_cancel_alert?(confirmation_call_title)
-    end
-
     def has_time_ago_in_words?
       has_text? localize(
         spanish: 'hace cerca de 2 horas',
         portuguese: 'aproximadamente 2 horas atrás',
         english: 'about 2 hours ago'
       )
-    end
-
-    private
-
-    def cancel_form
-      @cancel_form ||= Tasks::CancelForm.new(locale: @locale)
     end
   end
 end

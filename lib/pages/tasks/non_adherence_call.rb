@@ -1,5 +1,6 @@
 require './lib/pages/navigation'
 require './lib/pages/shared/nurse_tasks_forms'
+require './lib/pages/shared/nurse_tasks_page'
 require './lib/pages/translations/nurse_tasks/non_adherence_call'
 
 module Tasks
@@ -7,23 +8,17 @@ module Tasks
   class NonAdherenceCall
     include Capybara::DSL
     include NurseTasksForms
+    include NurseTasksPage
     include Translations::NurseTaskTitles::NonAdherenceCallTranslations
 
     def initialize(non_adherence_call)
       @locale ||= non_adherence_call.fetch(:locale, 'english')
-    end
-
-    def active?
-      has_list_item?(non_adherence_call_title)
+      @task_title = non_adherence_call_title
     end
 
     def mark_resolved
       mark_task_resolved(non_adherence_call_title)
       visible?
-    end
-
-    def visible?
-      has_css?('h1', text: non_adherence_call_title)
     end
 
     def complete_resolution_form

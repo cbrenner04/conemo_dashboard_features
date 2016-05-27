@@ -170,7 +170,7 @@ class ClinicalSummary
 
   def has_last_seen_timestamp?
     heading = localize(
-      spanish: "Conectado/a por última vez",
+      spanish: 'Conectado/a por última vez',
       portuguese: 'Última conexão à(s)',
       english: 'Last connection at'
     )

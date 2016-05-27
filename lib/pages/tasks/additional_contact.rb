@@ -20,19 +20,11 @@ module Tasks
     end
 
     def create_for_call
-      open
-      find('.select2-container', match: :first)
-      selector[5].click
-      select_list_item(options[1])
-      navigation.submit
+      create { select_list_item(options[1]) }
     end
 
     def create_for_in_person
-      open
-      find('.select2-container', match: :first)
-      selector[5].click
-      select_list_item(options[0])
-      navigation.submit
+      create { select_list_item(options[0]) }
     end
 
     def choose_option
@@ -63,6 +55,14 @@ module Tasks
 
     def navigation
       @navigation ||= Navigation.new(locale: @locale)
+    end
+
+    def create
+      open
+      find('.select2-container', match: :first)
+      selector[5].click
+      yield
+      navigation.submit
     end
   end
 end

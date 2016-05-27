@@ -1,5 +1,5 @@
 require './lib/pages/shared/nurse_tasks_forms'
-require './lib/pages/tasks/cancel_form'
+require './lib/pages/shared/nurse_tasks_page'
 require './lib/pages/translations/nurse_tasks/follow_up_calls'
 
 module Tasks
@@ -7,52 +7,12 @@ module Tasks
   class FollowUpCallWeekOne
     include Capybara::DSL
     include NurseTasksForms
+    include NurseTasksPage
     include Translations::NurseTaskTitles::FollowUpCalls
 
     def initialize(follow_up_call_week_one)
       @locale ||= follow_up_call_week_one.fetch(:locale, 'english')
-    end
-
-    def active?
-      has_list_item?(follow_up_week_one_title) &&
-        has_active_progress_bar_item?(follow_up_week_one_title)
-    end
-
-    def complete?
-      has_no_list_item?(follow_up_week_one_title) &&
-        has_complete_progress_bar_item?(follow_up_week_one_title)
-    end
-
-    def canceled?
-      has_no_list_item?(follow_up_week_one_title) &&
-        has_canceled_progress_bar_item?(follow_up_week_one_title)
-    end
-
-    def overdue?
-      has_overdue_list_item?(follow_up_week_one_title) &&
-        has_overdue_progress_bar_item?(follow_up_week_one_title)
-    end
-
-    def rescheduled?
-      has_no_list_item?(follow_up_week_one_title) &&
-        has_scheduled_progress_bar_item?(follow_up_week_one_title)
-    end
-
-    def confirm
-      confirm_task follow_up_week_one_title
-      visible?
-    end
-
-    def cancel
-      cancel_task follow_up_week_one_title
-    end
-
-    def open_reschedule_form
-      open_reschedule follow_up_week_one_title
-    end
-
-    def visible?
-      has_css?('h1', text: follow_up_week_one_title)
+      @task_title = follow_up_week_one_title
     end
 
     def enter_difficulties
@@ -90,10 +50,6 @@ module Tasks
       has_text? difficulty_directions
     end
 
-    def has_canceled_alert?
-      cancel_form.has_cancel_alert?(follow_up_week_one_title)
-    end
-
     def has_difficulties_responses?
       has_text?('Did the patient have any difficulties using CONEMO?: ' \
                 "#{@responses[0]}, #{@responses[1]}")
@@ -102,12 +58,6 @@ module Tasks
     def scheduled_a_week_from_yesterday?
       has_css?('.progress-bar-future',
                text: "#{follow_up_week_one_title} #{standard_date(today + 6)}")
-    end
-
-    private
-
-    def cancel_form
-      @cancel_form ||= Tasks::CancelForm.new(locale: @locale)
     end
   end
 end

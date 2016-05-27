@@ -1,5 +1,5 @@
 require './lib/pages/shared/nurse_tasks_forms'
-require './lib/pages/tasks/cancel_form'
+require './lib/pages/shared/nurse_tasks_page'
 require './lib/pages/translations/nurse_tasks/final_appointment'
 
 module Tasks
@@ -7,52 +7,12 @@ module Tasks
   class FinalAppointment
     include Capybara::DSL
     include NurseTasksForms
+    include NurseTasksPage
     include Translations::NurseTaskTitles::FinalAppointment
 
     def initialize(final_appointment)
       @locale ||= final_appointment.fetch(:locale, 'english')
-    end
-
-    def active?
-      has_list_item?(final_appointment_title) &&
-        has_active_progress_bar_item?(final_appointment_title)
-    end
-
-    def canceled?
-      has_no_list_item?(final_appointment_title) &&
-        has_canceled_progress_bar_item?(final_appointment_title)
-    end
-
-    def complete?
-      has_no_list_item?(final_appointment_title) &&
-        has_complete_progress_bar_item?(final_appointment_title)
-    end
-
-    def overdue?
-      has_overdue_list_item?(final_appointment_title) &&
-        has_overdue_progress_bar_item?(final_appointment_title)
-    end
-
-    def rescheduled?
-      has_no_list_item?(final_appointment_title) &&
-        has_scheduled_progress_bar_item_with_time?(final_appointment_title)
-    end
-
-    def confirm
-      confirm_task final_appointment_title
-      visible?
-    end
-
-    def cancel
-      cancel_task final_appointment_title
-    end
-
-    def open_reschedule_form
-      open_reschedule final_appointment_title
-    end
-
-    def visible?
-      has_css?('h1', text: final_appointment_title)
+      @task_title = final_appointment_title
     end
 
     def enter_location
@@ -95,22 +55,12 @@ module Tasks
       has_task_options?(5, 2, location_options)
     end
 
-    def has_canceled_alert?
-      cancel_form.has_cancel_alert?(final_appointment_title)
-    end
-
     def has_success_alert?
       has_css?('.alert', text: localize(
         spanish: 'Paciente completó la intervención satisfactoriamente',
         portuguese: 'Participante completado com sucesso',
         english: 'Participant successfully completed'
       ))
-    end
-
-    private
-
-    def cancel_form
-      @cancel_form ||= Tasks::CancelForm.new(locale: @locale)
     end
   end
 end

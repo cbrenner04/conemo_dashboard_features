@@ -1,5 +1,5 @@
 require './lib/pages/shared/nurse_tasks_forms'
-require './lib/pages/tasks/cancel_form'
+require './lib/pages/shared/nurse_tasks_page'
 translations_path = './lib/pages/translations/'
 require "#{translations_path}nurse_tasks/call_to_schedule_final_appointment"
 
@@ -8,52 +8,12 @@ module Tasks
   class CallToScheduleFinalAppointment
     include Capybara::DSL
     include NurseTasksForms
+    include NurseTasksPage
     include Translations::NurseTaskTitles::CallToScheduleFinalAppointment
 
     def initialize(call_to_schedule_final_appointment)
       @locale ||= call_to_schedule_final_appointment.fetch(:locale, 'english')
-    end
-
-    def active?
-      has_list_item?(call_to_schedule_final_title) &&
-        has_active_progress_bar_item?(call_to_schedule_final_title)
-    end
-
-    def complete?
-      has_no_list_item?(call_to_schedule_final_title) &&
-        has_complete_progress_bar_item?(call_to_schedule_final_title)
-    end
-
-    def canceled?
-      has_no_list_item?(call_to_schedule_final_title) &&
-        has_canceled_progress_bar_item?(call_to_schedule_final_title)
-    end
-
-    def overdue?
-      has_overdue_list_item?(call_to_schedule_final_title) &&
-        has_overdue_progress_bar_item?(call_to_schedule_final_title)
-    end
-
-    def rescheduled?
-      has_no_list_item?(call_to_schedule_final_title) &&
-        has_scheduled_progress_bar_item?(call_to_schedule_final_title)
-    end
-
-    def confirm
-      confirm_task call_to_schedule_final_title
-      visible?
-    end
-
-    def cancel
-      cancel_task call_to_schedule_final_title
-    end
-
-    def open_reschedule_form
-      open_reschedule call_to_schedule_final_title
-    end
-
-    def visible?
-      has_css?('h1', text: call_to_schedule_final_title)
+      @task_title = call_to_schedule_final_title
     end
 
     def enter_next_contact_date
@@ -105,20 +65,10 @@ module Tasks
       has_task_options?(10, 2, location_options)
     end
 
-    def has_canceled_alert?
-      cancel_form.has_cancel_alert?(call_to_schedule_final_title)
-    end
-
     def scheduled_6_weeks_from_yesterday?
       has_css?('.progress-bar-future',
                text: "#{call_to_schedule_final_title} " \
                      "#{standard_date(today + ((6 * 7) - 1))}")
-    end
-
-    private
-
-    def cancel_form
-      @cancel_form ||= Tasks::CancelForm.new(locale: @locale)
     end
   end
 end

@@ -64,7 +64,7 @@ feature 'Nurse, Initial in person appointment', metadata: :first do
     reschedule_form.complete
 
     expect(pt_318_nurse_tasks).to have_no_tasks_in_count
-    expect(initial_in_person_appt).to be_rescheduled
+    expect(initial_in_person_appt).to be_rescheduled_with_time_stamp
 
     english_nurse.sign_out
     english_supervisor.sign_in

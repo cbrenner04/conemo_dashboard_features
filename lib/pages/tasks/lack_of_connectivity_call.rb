@@ -1,5 +1,6 @@
 require './lib/pages/navigation'
 require './lib/pages/shared/nurse_tasks_forms'
+require './lib/pages/shared/nurse_tasks_page'
 require './lib/pages/translations/nurse_tasks/lack_of_connectivity_call'
 
 module Tasks
@@ -7,14 +8,12 @@ module Tasks
   class LackOfConnectivityCall
     include Capybara::DSL
     include NurseTasksForms
+    include NurseTasksPage
     include Translations::NurseTaskTitles::LackOfConnectivityCall
 
     def initialize(lack_of_connectivity_call)
       @locale ||= lack_of_connectivity_call.fetch(:locale, 'english')
-    end
-
-    def active?
-      has_list_item?(lack_of_connectivity_call_title)
+      @task_title = lack_of_connectivity_call_title
     end
 
     def mark_resolved

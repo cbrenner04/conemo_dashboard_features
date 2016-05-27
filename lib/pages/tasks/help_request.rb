@@ -1,5 +1,6 @@
 require './lib/pages/navigation'
 require './lib/pages/shared/nurse_tasks_forms'
+require './lib/pages/shared/nurse_tasks_page'
 require './lib/pages/translations/nurse_tasks/help_request'
 
 module Tasks
@@ -7,18 +8,12 @@ module Tasks
   class HelpRequest
     include Capybara::DSL
     include NurseTasksForms
+    include NurseTasksPage
     include Translations::NurseTaskTitles::HelpRequest
 
     def initialize(help_request)
       @locale ||= help_request.fetch(:locale, 'english')
-    end
-
-    def active?
-      has_list_item? help_request_title
-    end
-
-    def visible?
-      has_css?('h1', text: help_request_title)
+      @task_title = help_request_title
     end
 
     def mark_resolved
