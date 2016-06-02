@@ -50,13 +50,13 @@ feature 'Admin, Administration', metadata: :last do
   scenario 'Admin sees devices are scoped by locale' do
     administration.open_devices_table
 
-    expect(administration).to have_only_one_device
+    expect(administration).to have_three_devices
   end
 
   scenario 'Admin sees device move to inactive when auth token destroyed' do
     administration.open_devices_table
 
-    expect(administration).to have_only_one_device
+    expect(administration).to have_three_devices
 
     administration.open_participants_table
     administration.order_by_participant_id
@@ -71,7 +71,7 @@ feature 'Admin, Administration', metadata: :last do
     administration.open
     administration.open_devices_table
 
-    expect(administration).to have_no_devices
+    expect(administration).to have_two_devices
 
     administration.open_inactive_devices_table
 

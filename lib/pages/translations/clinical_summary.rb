@@ -16,7 +16,7 @@ module Translations
     end
 
     def clinical_summary_title
-      locale(
+      localize(
         spanish: 'Historia del Paciente',
         portuguese: 'Histórico do Participante',
         english: 'Clinical Summary'

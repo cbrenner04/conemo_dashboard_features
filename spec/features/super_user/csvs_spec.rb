@@ -4,6 +4,7 @@ require 'uuid'
 require 'fileutils'
 require 'csv'
 
+# need to update with headers
 def check_file(file) # , headers)
   @driver.get "#{ENV['Base_URL']}/admin/#{file}/export?locale=en"
   @driver.find_element(css: '.btn-primary').click
@@ -27,8 +28,8 @@ feature 'Super User, checks csv', metadata: :not_first do
 
     @driver.get "#{ENV['Base_URL']}/users/sign_in"
     @driver.find_element(id: 'user_email').send_keys(ENV['SuperUser_Email'])
-    @driver
-      .find_element(id: 'user_password').send_keys(ENV['SuperUser_Password'])
+    @driver.find_element(id: 'user_password')
+           .send_keys(ENV['SuperUser_Password'])
     @driver.find_element(css: '.btn-primary').click
   end
 

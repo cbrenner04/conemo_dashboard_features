@@ -35,8 +35,12 @@ module NurseTasksPage
   end
 
   def active?
-    has_css?('.panel', text: @task_title) &&
-      has_css?('.progress-bar-info', text: @task_title) unless unscheduled?
+    if unscheduled?
+      has_css?('.panel', text: @task_title)
+    else
+      has_css?('.panel', text: @task_title) &&
+        has_css?('.progress-bar-info', text: @task_title)
+    end
   end
 
   def complete?

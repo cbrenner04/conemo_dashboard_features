@@ -376,7 +376,7 @@ feature 'Spanish Nurse, Clinical Summary', metadata: :very_first do
     pt_500_nurse_tasks.open
     pt_500_clinical_summary.open
 
-    expect(pt_600_clinical_summary).to have_last_seen_timestamp
+    expect(pt_500_clinical_summary).to have_last_seen_timestamp
     expect(pt_500_clinical_summary).to have_headers
     expect(pt_500_clinical_summary).to have_legend
     expect(pt_500_clinical_summary).to have_notes_headers

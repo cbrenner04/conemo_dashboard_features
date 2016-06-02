@@ -1,5 +1,6 @@
 # filename: ./spec/support/nurse/timeline_page_helper.rb
 
+require './lib/pages/timeline_page'
 require './lib/pages/navigation'
 require './lib/pages/nurse_tasks'
 Dir['./lib/pages/tasks/**/*.rb'].each { |file| require file }

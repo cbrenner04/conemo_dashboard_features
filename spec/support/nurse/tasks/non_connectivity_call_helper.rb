@@ -43,8 +43,8 @@ def pt_1000_nurse_tasks
   @pt_1000_nurse_tasks ||= NurseTasks.new(pt_id: 1000)
 end
 
-def pt_1000_clinical_summary
-  @pt_1000_clinical_summary ||= ClinicalSummary.new(id: 1000)
+def pt_1000_clinical_summary_1
+  @pt_1000_clinical_summary_1 ||= ClinicalSummary.new(id: 1000)
 end
 
 def pt_4025_nurse_tasks

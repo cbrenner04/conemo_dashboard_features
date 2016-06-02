@@ -36,9 +36,9 @@ feature 'Nurse, Non-connectivity call', metadata: :not_first do
 
   scenario 'Nurse sees non-connectivity notification on clinical summary' do
     pt_1000_nurse_tasks.open
-    pt_1000_clinical_summary.open
+    pt_1000_clinical_summary_1.open
 
-    expect(pt_1000_clinical_summary).to have_non_connectivity_icon
+    expect(pt_1000_clinical_summary_1).to have_three_non_connectivity_icons
   end
 
   scenario 'Nurse sees task overdue' do
