@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 # module for translations
 module Translations
   def localize(thing)

@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 require './lib/pages/shared/nurse_tasks_forms'
 require './lib/pages/shared/nurse_tasks_page'
 translations_path = './lib/pages/translations/'

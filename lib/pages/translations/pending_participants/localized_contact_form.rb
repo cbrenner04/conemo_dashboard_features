@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 module Translations
   module PendingParticipants
     # English content for contact information form

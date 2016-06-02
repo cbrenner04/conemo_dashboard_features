@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 module Translations
   # translations for 'Your Patients' page
   module YourPatientsTranslations

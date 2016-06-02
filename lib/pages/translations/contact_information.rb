@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 require './lib/pages/translations'
 require './lib/pages/translations/' \
         'contact_information/localized_contact_information'

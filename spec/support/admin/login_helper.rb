@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 # filename: ./spec/support/admin/login_helper.rb
 
 require './lib/pages/administration'

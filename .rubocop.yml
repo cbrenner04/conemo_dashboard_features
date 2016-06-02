@@ -1,5 +1,8 @@
 # filename: .rubocop.yml
 
+AllCops:
+  TargetRubyVersion: 2.3
+
 AbcSize:
   Enabled: false
 
@@ -18,10 +21,6 @@ HandleExceptions:
 IfUnlessModifier:
   Enabled: false
 
-LineLength:
-  Exclude:
-    - '**/*.rake'
-
 MethodLength:
   Max: 25
 
@@ -39,3 +38,6 @@ Style/GuardClause:
 
 WordArray:
   Enabled: false
+
+Style/FrozenStringLiteralComment:
+  EnforcedStyle: when_needed

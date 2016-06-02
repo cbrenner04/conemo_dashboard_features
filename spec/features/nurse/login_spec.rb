@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 # filename: ./spec/login_spec.rb
 
 require './lib/pages/navigation.rb'

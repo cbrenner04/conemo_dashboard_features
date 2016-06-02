@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 # filename: ./spec/support/nurse/tasks/spanish_translations_helper.rb
 
 require './lib/pages/navigation'

@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 require './lib/pages/navigation'
 require './lib/pages/shared/nurse_tasks_forms'
 require './lib/pages/translations/nurse_tasks/reschedule_form'

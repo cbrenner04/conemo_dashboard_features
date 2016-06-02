@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 require './lib/pages/clinical_summary'
 require './lib/pages/navigation'
 require './lib/pages/shared/nurse_tasks_forms'

@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 # filename: ./spec/support/nurse_supervisor/participant_helper.rb
 
 require './lib/pages/navigation'

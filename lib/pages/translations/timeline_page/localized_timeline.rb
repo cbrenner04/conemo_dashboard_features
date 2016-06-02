@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 module Translations
   module TimelineTranslations
     # Spanish translations for contact information page

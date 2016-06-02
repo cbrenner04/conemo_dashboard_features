@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 # filename: ./spec/features/nurse/your_patients_spec.rb
 
 require './spec/support/nurse/your_patients_helper'

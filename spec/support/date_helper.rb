@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 # filename: ./spec/support/date_helper
 
 def today

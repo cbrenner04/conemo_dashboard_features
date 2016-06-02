@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 require './lib/pages/navigation'
 require './lib/pages/tasks/initial_in_person_appointment'
 require './lib/pages/tasks/follow_up_call_week_one'

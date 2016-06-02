@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 # module for contact information form shared in pending and active pt
 module ContactInformationForm
   include Capybara::DSL

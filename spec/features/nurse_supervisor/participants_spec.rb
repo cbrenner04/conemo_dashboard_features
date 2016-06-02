@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 # filename: ./spec/features/nurse_supervisor/pending_participants_spec.rb
 
 require './spec/support/nurse_supervisor/participants_helper.rb'

@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 # filename: ./spec/features/nurse/timeline_page_spec.rb
 
 require './spec/support/nurse/timeline_page_helper'

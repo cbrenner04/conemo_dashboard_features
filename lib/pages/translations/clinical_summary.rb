@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 require './lib/pages/translations/clinical_summary/localized_summary'
 require './lib/pages/translations/nurse_tasks_titles'
 

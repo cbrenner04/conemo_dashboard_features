@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 Dir['./lib/pages/tasks/*.rb'].each { |file| require file }
 require './lib/pages/translations'
 require './lib/pages/translations/nurse_tasks_titles'

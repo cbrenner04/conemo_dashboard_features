@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 require './lib/pages/translations/supervisor_page'
 require './lib/pages/translations/supervisor_page/' \
         'participants/localized_participants.rb'

@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 # filename: ./spec/features/super_user/csvs_spec.rb
 
 require 'uuid'

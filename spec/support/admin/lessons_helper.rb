@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 # filename: ./spec/support/admin/lessons_helper.rb
 
 require './lib/pages/lessons'

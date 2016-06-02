@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 # filename: ./spec/support/nurse/tasks_helper.rb
 
 require './lib/pages/clinical_summary'

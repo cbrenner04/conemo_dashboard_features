@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 require 'business_time'
 require './lib/pages/navigation'
 require './lib/pages/translations/supervisor_page/nurses'

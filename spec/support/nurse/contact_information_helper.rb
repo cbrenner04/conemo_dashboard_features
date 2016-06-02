@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 # filename: ./spec/support/nurse/contact_information_helper.rb
 
 require './lib/pages/contact_information'

@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 require './lib/pages/translations/nurse_tasks_titles'
 require './lib/pages/translations/timeline_page/localized_timeline.rb'
 

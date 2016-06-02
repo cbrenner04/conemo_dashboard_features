@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 require './lib/pages/tasks/cancel_form'
 require './lib/pages/shared/nurse_tasks_forms'
 

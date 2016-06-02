@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 # filename: Rakefile
 
 # load development version of app locally with selenium_fixtures

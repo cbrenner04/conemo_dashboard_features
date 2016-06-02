@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 # filename: ./spec/features/nurse/tasks/portuguese_translations_spec.rb
 
 require './spec/support/nurse/tasks_helper'

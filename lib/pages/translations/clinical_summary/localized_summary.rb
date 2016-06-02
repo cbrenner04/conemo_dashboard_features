@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 module Translations
   module ClinicalSummaryTranslations
     # English translations for clinical summary page

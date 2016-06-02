@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 require './lib/pages/translations/pending_participants.rb'
 
 # page object for pending participants

@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 require './lib/pages/shared/contact_information_form'
 require './lib/pages/translations/contact_information'
 

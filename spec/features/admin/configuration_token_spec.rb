@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 # filename: ./spec/features/admin/configuration__token_spec.rb
 
 require './spec/support/admin/configuration_token_helper'

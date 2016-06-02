@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 # module for expected headers in csvs
 module SupervisorsCSV
   HEADERS = [

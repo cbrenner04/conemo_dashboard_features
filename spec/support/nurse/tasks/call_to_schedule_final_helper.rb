@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 # filename: ./spec/support/nurse/tasks/call_to_schedule_final_helper.rb
 
 require './lib/pages/nurse_tasks'
