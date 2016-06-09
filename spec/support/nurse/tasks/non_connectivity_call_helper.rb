@@ -31,6 +31,30 @@ def pt_412_nurse_tasks
   )
 end
 
+def patient_414
+  @patient_414 ||= YourPatients.new(pt_id: 414)
+end
+
+def pt_414_nurse_tasks
+  @pt_414_nurse_tasks ||= NurseTasks.new(pt_id: 414)
+end
+
+def pt_414_clinical_summary
+  @pt_414_clinical_summary ||= ClinicalSummary.new(id: 414)
+end
+
+def patient_415
+  @patient_415 ||= YourPatients.new(pt_id: 415)
+end
+
+def pt_415_nurse_tasks
+  @pt_415_nurse_tasks ||= NurseTasks.new(pt_id: 415)
+end
+
+def pt_415_clinical_summary
+  @pt_415_clinical_summary ||= ClinicalSummary.new(id: 415)
+end
+
 def pt_803_nurse_tasks
   @pt_803_nurse_tasks ||= NurseTasks.new(
     pt_id: 803,

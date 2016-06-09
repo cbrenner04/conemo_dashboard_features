@@ -107,7 +107,6 @@ feature 'Nurse, Clinical Summary', metadata: :not_first do
     pt_410_clinical_summary.open
 
     expect(pt_410_clinical_summary).to have_current_lesson
-
     expect(pt_410_clinical_summary).to have_unread_lesson
   end
 

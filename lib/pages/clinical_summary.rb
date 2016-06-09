@@ -169,6 +169,10 @@ class ClinicalSummary
     has_css?('.fa-wifi', count: 3)
   end
 
+  def has_two_non_connectivity_icons?
+    has_css?('.fa-wifi', count: 2)
+  end
+
   def has_last_seen_timestamp?
     heading = localize(
       spanish: 'Conectado/a por última vez',

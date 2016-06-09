@@ -97,6 +97,57 @@ feature 'Nurse, Non-adherence call', metadata: :not_first do
     expect(patient_420).to_not have_non_adherence_task
     expect(patient_420).to have_tasks_completed
   end
+
+  # check that a non-adherence task is not triggered for a participant who
+  # is not adherent but had a non-adherence task resolved since last session
+  scenario 'Nurse does not see non-adherence task for non-adherent pt' do
+    # participant should not have task
+    expect(patient_1001).to_not have_non_adherence_task
+
+    # tasks page for lack of task
+    pt_1001_nurse_tasks.open
+
+    expect(pt_1001_nurse_tasks).to have_no_tasks_in_count
+    expect(non_adherence_call).to_not be_active
+
+    # check clinical summary for overdue lessons (meaning a task is needed)
+    pt_1001_clinical_summary_1.open
+
+    expect(pt_1001_clinical_summary_1).to have_current_lesson
+    expect(pt_1001_clinical_summary_1).to have_unread_lesson
+    expect(pt_1001_clinical_summary_2).to have_unread_lesson
+
+    # check timeline for resolved non-adherence task in last day
+    # (nullifying need for new task)
+    timeline.open
+    expect(timeline).to have_non_adherence_call
+  end
+
+  # check that a non-adherence task is triggered for a participant who is
+  # non-adherent and has a resolved but that task was resolved before the most
+  # recent session was released
+  scenario 'Nurse sees non-adherence task for pt with one already resolved' do
+    # participant should have task
+    expect(patient_425).to have_non_adherence_task
+
+    # tasks page for task
+    pt_425_nurse_tasks.open
+
+    expect(pt_425_nurse_tasks).to have_one_task_in_count
+    expect(non_adherence_call).to be_active
+
+    # check clinical summary for overdue lessons (meaning a task is needed)
+    pt_425_clinical_summary_1.open
+
+    expect(pt_425_clinical_summary_1).to have_current_lesson
+    expect(pt_425_clinical_summary_1).to have_unread_lesson
+    expect(pt_425_clinical_summary_2).to have_unread_lesson
+
+    # check timeline for resolved non-adherence task in two days agp
+    # (which is before most recent session release creating need for new task)
+    timeline.open
+    expect(timeline).to have_non_adherence_call_two_days_ago
+  end
 end
 
 feature 'Nurse, Non-adherence call', metadata: :not_first do

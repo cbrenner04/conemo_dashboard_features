@@ -97,11 +97,37 @@ class TimelinePage
       has_text?('Reason for lack of connectivity:')
   end
 
+  def has_non_connectivity_call_in_last_12_hours?
+    find('.timeline')
+      .has_css?('.timeline-panel',
+                text: "#{lack_of_connectivity_call_title} Date/time of " \
+                      "phone call: #{standard_date(today)}" \
+                      "#{locale_hour(Time.now - (11 * 60 * 60))}") &&
+      has_text?('Reason for lack of connectivity:')
+  end
+
+  def has_non_connectivity_call_longer_than_12_hours_ago?
+    find('.timeline')
+      .has_css?('.timeline-panel',
+                text: "#{lack_of_connectivity_call_title} Date/time of " \
+                      "phone call: #{standard_date(today)}" \
+                      "#{locale_hour(Time.now - (13 * 60 * 60))}") &&
+      has_text?('Reason for lack of connectivity:')
+  end
+
   def has_non_adherence_call?
     find('.timeline')
       .has_css?('.timeline-panel',
                 text: "#{non_adherence_call_title} Date/time of phone " \
                       "call: #{standard_date(today)}") &&
+      has_text?('Reason for non-adherence:')
+  end
+
+  def has_non_adherence_call_two_days_ago?
+    find('.timeline')
+      .has_css?('.timeline-panel',
+                text: "#{non_adherence_call_title} Date/time of phone " \
+                      "call: #{standard_date(today - 2)}") &&
       has_text?('Reason for non-adherence:')
   end
 

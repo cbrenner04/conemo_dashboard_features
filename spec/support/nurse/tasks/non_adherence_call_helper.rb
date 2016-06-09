@@ -63,3 +63,51 @@ def nurse_supervisor_15
     user_id: 401
   )
 end
+
+def patient_1001
+  @patient_1001 ||= YourPatients.new(pt_id: 1001)
+end
+
+def pt_1001_nurse_tasks
+  @pt_1001_nurse_tasks ||= NurseTasks.new(pt_id: 1001)
+end
+
+def pt_1001_clinical_summary_1
+  @pt_1001_clinical_summary_1 ||= ClinicalSummary.new(
+    id: 1001,
+    current_lesson: 'Lesson 3',
+    other_lesson: 'Lesson 1'
+  )
+end
+
+def pt_1001_clinical_summary_2
+  @pt_1001_clinical_summary_2 ||= ClinicalSummary.new(
+    id: 1001,
+    current_lesson: 'Lesson 3',
+    other_lesson: 'Lesson 2'
+  )
+end
+
+def patient_425
+  @patient_425 ||= YourPatients.new(pt_id: 425)
+end
+
+def pt_425_nurse_tasks
+  @pt_425_nurse_tasks ||= NurseTasks.new(pt_id: 425)
+end
+
+def pt_425_clinical_summary_1
+  @pt_425_clinical_summary_1 ||= ClinicalSummary.new(
+    id: 425,
+    current_lesson: 'Lesson 6',
+    other_lesson: 'Lesson 4'
+  )
+end
+
+def pt_425_clinical_summary_2
+  @pt_425_clinical_summary_2 ||= ClinicalSummary.new(
+    id: 425,
+    current_lesson: 'Lesson 6',
+    other_lesson: 'Lesson 5'
+  )
+end

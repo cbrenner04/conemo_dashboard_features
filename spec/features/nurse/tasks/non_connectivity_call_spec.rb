@@ -24,6 +24,58 @@ feature 'Nurse, Non-connectivity call', metadata: :first do
     expect(lack_of_connectivity_call).to be_active
     expect(pt_412_nurse_tasks).to have_previous_supervisor_contact
   end
+
+  # check that a non-connectivity task is not triggered for a participant who
+  # is does not have connectivity but had a non-connectivity task resolved in
+  # last 12 hours
+  scenario 'Nurse does not see connectivity task for pt w no connectivity' do
+    # participant should not have task
+    expect(patient_415).to_not have_lack_of_connectivity_task
+
+    # check tasks page for lack of task
+    pt_415_nurse_tasks.open
+
+    expect(pt_415_nurse_tasks).to have_no_tasks_in_count
+    expect(lack_of_connectivity_call).to_not be_active
+
+    # check clinical summary for two days of non-connectivity
+    # meaning a task is needed
+    pt_415_clinical_summary.open
+
+    expect(pt_415_clinical_summary).to have_two_non_connectivity_icons
+
+    # check timeline for resolved non-connectivity task in last 12 hours
+    # meaning a task should not be triggered
+    timeline.open
+
+    expect(timeline).to have_non_connectivity_call_in_last_12_hours
+  end
+
+  # check that a non-connectivity task is not triggered for a participant who
+  # is does not have connectivity but had a non-connectivity task resolved in
+  # last 12 hours
+  scenario 'Nurse sees connectivity task for pt w resolved connectivity task' do
+    # participant should have task
+    expect(patient_414).to have_lack_of_connectivity_task
+
+    # check tasks page for task
+    pt_414_nurse_tasks.open
+
+    expect(pt_414_nurse_tasks).to have_one_task_in_count
+    expect(lack_of_connectivity_call).to be_active
+
+    # check clinical summary for two days of non-connectivity
+    # meaning a task is needed
+    pt_414_clinical_summary.open
+
+    expect(pt_414_clinical_summary).to have_two_non_connectivity_icons
+
+    # check timeline for resolved non-connectivity task more than 12 hours ago
+    # meaning a task should be triggered
+    timeline.open
+
+    expect(timeline).to have_non_connectivity_call_longer_than_12_hours_ago
+  end
 end
 
 feature 'Nurse, Non-connectivity call', metadata: :not_first do
