@@ -43,10 +43,12 @@ feature 'Admin downloads, checks csv', metadata: :not_first do
     check_size_and_headers('lesson', LessonsCSV::HEADERS)
   end
 
+  # will fail for now
   scenario 'for devices' do
     check_size_and_headers('device', DevicesCSV::HEADERS)
   end
 
+  # will fail for now
   scenario 'for participants' do
     check_size_and_headers('participant', ParticipantsCSV::HEADERS)
   end

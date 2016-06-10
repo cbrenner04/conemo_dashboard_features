@@ -28,6 +28,10 @@ def spanish_token_page
   )
 end
 
+def pt_514_token_page
+  @pt_514_token_page || Admin::TokenPage.new(pt_id: 514)
+end
+
 def portuguese_administration
   @portuguese_administration ||= Administration.new(
     locale: 'portuguese'

@@ -57,7 +57,7 @@ feature 'Spanish Admin, Configuration Token', metadata: :not_first do
     expect(spanish_administration).to be_visible
 
     spanish_administration.open_participants_table
-    spanish_token_page.open_first
+    pt_514_token_page.open_for_participant
 
     expect(spanish_token_page).to be_ready_for_token_creation
 

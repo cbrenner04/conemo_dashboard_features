@@ -116,14 +116,16 @@ class Administration
     first('a', text: 'Devices').click
   end
 
-  def has_three_devices?
-    has_css?('tr', text: 'XT1032', count: 3) &&
-      [318, 319, 1000].all? { |i| has_css?('.participant_field', text: i) }
+  def has_five_devices?
+    has_css?('tr', text: 'XT1032', count: 5) &&
+      [318, 319, 1000, 414, 415].all? do |i|
+        has_css?('.participant_field', text: i)
+      end
   end
 
-  def has_two_devices?
-    has_css?('tr', text: 'XT1032', count: 2) &&
-      [318, 319].all? { |i| has_css?('.participant_field', text: i) }
+  def has_four_devices?
+    has_css?('tr', text: 'XT1032', count: 4) &&
+      [318, 319, 414, 415].all? { |i| has_css?('.participant_field', text: i) }
   end
 
   def open_inactive_devices_table

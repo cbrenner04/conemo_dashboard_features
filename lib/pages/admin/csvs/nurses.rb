@@ -10,8 +10,7 @@ module NursesCSV
     'Confirmation sent at', 'Unconfirmed email', 'Id [Nurse supervisor]',
     'Email [Nurse supervisor]', 'Reset password sent at [Nurse supervisor]',
     'Remember created at [Nurse supervisor]',
-    'Sign in count [Nurse supervisor]',
-    'Current sign in at [Nurse supervisor]',
+    'Sign in count [Nurse supervisor]', 'Current sign in at [Nurse supervisor]',
     'Last sign in at [Nurse supervisor]',
     'Current sign in ip [Nurse supervisor]',
     'Last sign in ip [Nurse supervisor]', 'Created at [Nurse supervisor]',
@@ -21,8 +20,7 @@ module NursesCSV
     'Timezone [Nurse supervisor]', 'Type [Nurse supervisor]',
     'Nurse supervisor [Nurse supervisor]',
     'Family health unit name [Nurse supervisor]',
-    'Confirmation token [Nurse supervisor]',
-    'Confirmed at [Nurse supervisor]',
+    'Confirmation token [Nurse supervisor]', 'Confirmed at [Nurse supervisor]',
     'Confirmation sent at [Nurse supervisor]',
     'Unconfirmed email [Nurse supervisor]', 'Id [Participants]',
     'First name [Participants]', 'Last name [Participants]',
@@ -41,6 +39,14 @@ module NursesCSV
     'Cell phone [Participants]', 'Id [Nurse tasks]', 'Type [Nurse tasks]',
     'Status [Nurse tasks]', 'Scheduled at [Nurse tasks]',
     'Overdue at [Nurse tasks]', 'Created at [Nurse tasks]',
-    'Updated at [Nurse tasks]'
+    'Updated at [Nurse tasks]', 'Id [Supervision sessions]',
+    'Session at [Supervision sessions]',
+    'Session length [Supervision sessions]',
+    'Meeting kind [Supervision sessions]',
+    'Contact kind [Supervision sessions]',
+    'Discussed topic(s) [Supervision sessions]',
+    'Created at [Supervision sessions]', 'Updated at [Supervision sessions]',
+    'Id [Supervisor notes]', 'Note [Supervisor notes]',
+    'Created at [Supervisor notes]', 'Updated at [Supervisor notes]'
   ].freeze
 end

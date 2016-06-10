@@ -53,7 +53,7 @@ class SupervisorPage
   end
 
   def has_total_active?
-    has_panel_heading?('156 Active')
+    has_panel_heading?('157 Active')
   end
 
   def has_total_completed?
@@ -171,6 +171,7 @@ class SupervisorPage
 
   def has_rescheduled_and_canceled_tasks?
     find('button', text: toggle_button).click
+    sleep(0.5)
     (0..5).all? do |i|
       find('.list-unstyled').all('li')[i]
         .has_text?(rescheduled_and_canceled_tasks_dates[i]) &&
