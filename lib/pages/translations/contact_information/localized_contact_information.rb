@@ -54,13 +54,14 @@ module Translations
           'Fecha de nacimiento:',
           'Telefóno alternativo 2:',
           'Relación con el participante:',
-          'Relación con el participante:',
+          'Si marcaste “otro”, por favor especifícalo aquí:',
           'Nombre de persona / Lugar del teléfono alternativo 2:',
           'Relación con el participante:',
+          'Si marcaste “otro”, por favor especifícalo aquí:',
           'Relación con el participante:',
-          'Relación con el participante:',
-          'Relación con el participante:',
-          'Dirección actual:', 'Celular:'
+          'Si marcaste “otro”, por favor especifícalo aquí:',
+          'Dirección actual:',
+          'Celular:'
         ]
       end
 
@@ -70,12 +71,13 @@ module Translations
           'Data de nascimento:',
           'Telefone alternativo 2:',
           'Grau de parentesco/relacionamento:',
-          'Grau de parentesco/relacionamento:',
+          'Se marcou "outro", por favor especifique:',
           'Nome de pessoa / lugar de telefone alternativo 2:',
           'Grau de parentesco/relacionamento:',
+          'Se marcou "outro", por favor especifique:',
           'Grau de parentesco/relacionamento:',
-          'Grau de parentesco/relacionamento:',
-          'Grau de parentesco/relacionamento:', 'Endereço:',
+          'Se marcou "outro", por favor especifique:',
+          'Endereço:',
           'Celular:'
         ]
       end

@@ -73,12 +73,15 @@ module Translations
           'Centro de salud', 'Dirección actual', 'Telefóno fijo',
           'Celular (propio)', 'Teléfono alternativo 1',
           'Nombre de persona / Lugar del teléfono alternativo 1',
-          'Relación con el participante', 'Relación con el participante',
+          'Relación con el participante',
+          'Si marcaste “otro”, por favor especifícalo aquí',
           'Telefóno alternativo 2',
           'Nombre de persona / Lugar del teléfono alternativo 2',
-          'Relación con el participante', 'Relación con el participante',
+          'Relación con el participante',
+          'Si marcaste “otro”, por favor especifícalo aquí',
           'Fecha de nacimiento', 'Sexo', 'Contacto de Emergencia (nombre)',
-          'Relación con el participante', 'Relación con el participante',
+          'Relación con el participante',
+          'Si marcaste “otro”, por favor especifícalo aquí',
           'Dirección actual', 'Teléfono fijo (Contacto de Emergencia)',
           'Celular'
         ]
@@ -91,12 +94,14 @@ module Translations
           'Celular (pessoal)', 'Telefone alternativo 1',
           'Nome de pessoa / lugar de telefone alternativo 1',
           'Grau de parentesco/relacionamento',
-          'Grau de parentesco/relacionamento', 'Telefone alternativo 2',
+          'Se marcou "outro", por favor especifique',
+          'Telefone alternativo 2',
           'Nome de pessoa / lugar de telefone alternativo 2',
           'Grau de parentesco/relacionamento',
-          'Grau de parentesco/relacionamento', 'Data de nascimento', 'Sexo',
-          'Contato de Emergência (nome)', 'Grau de parentesco/relacionamento',
+          'Se marcou "outro", por favor especifique','Data de nascimento', 'Sexo',
+          'Contato de Emergência (nome)',
           'Grau de parentesco/relacionamento',
+          'Se marcou "outro", por favor especifique',
           'Endereço', 'Telefone fixo (Contato de Emergência)', 'Celular'
         ]
       end
