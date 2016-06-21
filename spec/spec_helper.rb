@@ -4,6 +4,7 @@
 require 'rspec'
 require 'capybara'
 require 'capybara/rspec'
+require 'capybara/poltergeist'
 require 'capybara-screenshot/rspec'
 require 'selenium-webdriver'
 
@@ -35,10 +36,12 @@ Capybara.configure do |config|
     Selenium::WebDriver::Firefox::Binary.path = ENV['Firefox_Path']
     Capybara::Selenium::Driver.new(app, browser: :firefox)
   end
-  config.default_driver = :selenium
+  config.register_driver :poltergeist do |app|
+    Capybara::Poltergeist::Driver.new(app, js: true)
+  end
+  config.default_driver = ENV['driver'].to_sym
   config.page.driver.browser.manage.window.resize_to(1280, 743)
-  # this is deprecated but currently it only saves pages to this path
-  config.save_and_open_page_path = 'spec/screenshots/'
+  config.save_path = 'spec/screenshots/'
 end
 
 # capybara-screenshot configuration options
