@@ -25,7 +25,7 @@ module Tasks
     end
 
     def toggle_options_list
-      selector[10].click
+      custom_click(selector[10])
     end
 
     def enter_first_appt_location

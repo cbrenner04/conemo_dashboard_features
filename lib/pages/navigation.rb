@@ -15,7 +15,7 @@ class Navigation
   end
 
   def cancel
-    find('a', text: cancel_button).click
+    custom_click(find('a', text: cancel_button))
   end
 
   def submit

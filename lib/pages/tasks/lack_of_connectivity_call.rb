@@ -43,7 +43,7 @@ module Tasks
     end
 
     def toggle_options_list
-      selector[5].click
+      custom_click(selector[5])
     end
 
     def has_form_headings?
