@@ -39,9 +39,13 @@ Capybara.configure do |config|
   config.register_driver :poltergeist do |app|
     Capybara::Poltergeist::Driver.new(app, js: true)
   end
-  config.default_driver = ENV['driver'].to_sym
-  config.page.driver.browser.manage.window.resize_to(1280, 743)
-  config.save_path = 'spec/screenshots/'
+  driver = ENV['driver'].nil? ? :selenium : ENV['driver'].to_sym
+  config.default_driver = driver
+  unless ENV['driver'] == 'poltergeist'
+    config.page.driver.browser.manage.window.resize_to(1280, 743)
+  end
+  config
+    .save_path = "#{ENV['Path']}/conemo_dashboard_features/spec/screenshots/"
 end
 
 # capybara-screenshot configuration options

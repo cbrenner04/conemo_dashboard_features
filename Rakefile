@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 # filename: Rakefile
 
+require './spec/env'
+
 # load development version of app locally with selenium_fixtures
 desc "Set up and start 'CONEMO Dashboard' for testing locally"
 task :load_app_local do
