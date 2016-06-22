@@ -96,11 +96,11 @@ class ContactInformation
   end
 
   def has_id_disabled?
-    find('#participant_study_identifier')[:disabled].should eq true
+    find('#participant_study_identifier')[:disabled].to_s.should eq 'true'
   end
 
   def has_health_unit_disabled?
-    find('#participant_family_health_unit_name')[:disabled].should eq true
+    find('#participant_family_health_unit_name')[:disabled].to_s.should eq 'true'
   end
 
   private
