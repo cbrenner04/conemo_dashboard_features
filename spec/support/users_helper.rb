@@ -3,6 +3,18 @@
 
 require './lib/pages/users'
 
+# define global method for custom click
+# used when there are issues with Poltergeist
+# initially written with a conditional but `.trigger('click')` is not always
+# needed when using Poltergeist and `.click` is much more reliable
+def custom_click(selector)
+  selector.click
+rescue Capybara::Poltergeist::MouseEventFailed
+  selector.trigger('click')
+end
+
+# define users for use across many files
+
 def english_admin
   @english_admin ||= Users.new(
     email: ENV['EN_Admin_Email'],

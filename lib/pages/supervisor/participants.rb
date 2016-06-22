@@ -39,10 +39,15 @@ module Supervisor
 
     def assign_nurse
       find('h1', text: "#{nurse_assignment_heading} First Last-#{@pt_id}")
-      find('select').click
-      find('option', text: 'Nurse-404, English').double_click
-      sleep(0.25)
-      navigation.submit
+      if ENV['driver'] == 'poltergeist'
+        select 'Nurse-404, English', from: 'participant[nurse_id]'
+      else
+        find('select').click
+        find('option', text: 'Nurse-404, English').double_click
+      end
+      sleep(1)
+      # updated to `find('input..` from `navigation.submit` for Poltergeist
+      find('input[value = "Save"]').click
     end
 
     def active?

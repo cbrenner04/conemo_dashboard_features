@@ -46,7 +46,7 @@ module Tasks
 
     def toggle_options_list
       find('.select2-container', match: :first)
-      selector[0].click
+      custom_click(selector[0])
     end
 
     def has_cancellation_reason?

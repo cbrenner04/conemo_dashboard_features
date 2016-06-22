@@ -8,6 +8,10 @@ require 'capybara/poltergeist'
 require 'capybara-screenshot/rspec'
 require 'selenium-webdriver'
 
+# declare binary path for Firefox
+# necessary to be outside `Capybara.configure` block for csv_specs
+Selenium::WebDriver::Firefox::Binary.path = ENV['Firefox_Path']
+
 # RSpec configuration options
 RSpec.configure do |config|
   config.full_backtrace = false
@@ -33,12 +37,13 @@ end
 Capybara.configure do |config|
   config.default_max_wait_time = 1
   config.register_driver :selenium do |app|
-    Selenium::WebDriver::Firefox::Binary.path = ENV['Firefox_Path']
     Capybara::Selenium::Driver.new(app, browser: :firefox)
   end
   config.register_driver :poltergeist do |app|
-    Capybara::Poltergeist::Driver.new(app, js: true)
+    options = { js: true, js_errors: false }
+    Capybara::Poltergeist::Driver.new(app, options)
   end
+  # set `driver=poltergeist` on the command line when you want to run headless
   driver = ENV['driver'].nil? ? :selenium : ENV['driver'].to_sym
   config.default_driver = driver
   unless ENV['driver'] == 'poltergeist'

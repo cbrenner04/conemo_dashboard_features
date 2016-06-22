@@ -15,7 +15,7 @@ def check_size_and_headers(file, headers)
   csv_data.include?(headers).should == true
 end
 
-feature 'Admin downloads, checks csv', metadata: :not_first do
+feature 'Admin downloads, checks csv', :browser, metadata: :not_first do
   before(:all) do
     @download_dir = File.join(Dir.pwd, UUID.new.generate)
     FileUtils.mkdir_p @download_dir

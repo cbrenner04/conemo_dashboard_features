@@ -1,7 +1,7 @@
 # CONEMO Dashboard Features
 
 This test suite tests the
-[CONEMO Dashboard](https://github.com/cbitstech/condemo_dashboard).
+[CONEMO Dashboard](https://github.com/nu-cbits/conemo_dashboard).
 
 ## Set Up
 
@@ -23,13 +23,19 @@ EN_Nurse_400_Password, EN_Nurse_401_Email, EN_Nurse_401_Password,
 PE_Nurse_Email, PE_Nurse_Password, BR_Nurse_Email, BR_Nurse_Password
 ```
 
-To run the suite you will need to open a new tab. Then run
+To run this suite headlessly, run:
+
+```
+driver=poltergeist rspec --tag ~browser
+```
+
+Otherwise, run
 
 ```
 rspec
 ```
 
-NOTE: This suite uses a specific version of Firefox. This is due to dependency
+**NOTE:** This suite uses a specific version of Firefox. This is due to dependency
 issues with the version of selenium-webdriver that is being run. I am using
 version 38.0 of Firefox for this suite. You can download it
 [here](https://ftp.mozilla.org/pub/firefox/releases/38.0/mac/en-US/).

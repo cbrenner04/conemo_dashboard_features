@@ -25,7 +25,8 @@ class Slides
     fill_in 'slide[title]', with: @title
     find('.cke_contents').click
     find('#cke_53').click
-    navigation.submit
+    # updated from `navigation.submit` for Poltergeist
+    find('input[value = "Save"]').click
   end
 
   def visible?
@@ -41,7 +42,8 @@ class Slides
   def edit
     open_edit
     fill_in 'slide[title]', with: @new_title
-    navigation.submit
+    # updated from `navigation.submit` for Poltergeist
+    find('input[value = "Save"]').click
   end
 
   def view

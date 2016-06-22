@@ -39,7 +39,8 @@ module Admin
     end
 
     def open_for_participant
-      find('tr', text: "Last-#{@pt_id}").find('a', text: 'Show').click
+      # updated to first 'Show' for Poltergeist
+      find('tr', text: "Last-#{@pt_id}").first('a', text: 'Show').click
     end
 
     def has_active_authentication_token?

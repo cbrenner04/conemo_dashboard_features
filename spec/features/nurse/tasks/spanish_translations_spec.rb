@@ -26,7 +26,10 @@ feature 'Spanish nurse, Participant tasks', metadata: :first do
 
   scenario 'Spanish nurse sees translations for confirmation call' do
     expect(spanish_confirmation_call).to be_active
-    expect(spanish_confirmation_call).to have_time_ago_in_words
+
+    unless ENV['driver'] == 'poltergeist'
+      expect(spanish_confirmation_call).to have_time_ago_in_words
+    end
 
     spanish_confirmation_call.confirm
 
