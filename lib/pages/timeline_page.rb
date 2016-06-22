@@ -109,8 +109,8 @@ class TimelinePage
   def has_non_connectivity_call_longer_than_12_hours_ago?
     find('.timeline')
       .has_css?('.timeline-panel',
-                text: "#{lack_of_connectivity_call_title} Date/time of " \
-                      "phone call: #{standard_date(today)}" \
+                text: "#{lack_of_connectivity_call_title} Date/time of phone" \
+                      " call: #{standard_date(Time.now - (13 * 60 * 60))}" \
                       "#{locale_hour(Time.now - (13 * 60 * 60))}") &&
       has_text?('Reason for lack of connectivity:')
   end
