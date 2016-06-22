@@ -40,9 +40,10 @@ module Supervisor
     def assign_nurse
       find('h1', text: "#{nurse_assignment_heading} First Last-#{@pt_id}")
       find('select').click
-      find('option', text: 'Nurse-404, English').double_click
+      # updated to `select...` for Poltergeist
+      select 'Nurse-404, English', from: 'participant[nurse_id]'
       sleep(0.25)
-      navigation.submit
+      find('input[value = "Save"]').click
     end
 
     def active?

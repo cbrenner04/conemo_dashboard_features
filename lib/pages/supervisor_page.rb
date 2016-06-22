@@ -85,8 +85,10 @@ class SupervisorPage
 
   def has_completed_participant_information?
     2.times { navigation.scroll_down }
-    completed_panel.first('.input-sm').click
-    all('option', text: '25')[2].click
+    # updated to use `select...` for Poltergeist
+    within completed_panel do
+      select '25', from: 'DataTables_Table_2_length'
+    end
     completed_table = completed_panel.find('.table')
     within completed_table do
       rows = all('tr')
@@ -98,8 +100,10 @@ class SupervisorPage
 
   def has_dropped_participant_information?
     3.times { navigation.scroll_down }
-    find('.panel', text: 'Dropped').first('.input-sm').click
-    all('option', text: '25')[3].click
+    # updated to use `select...` for Poltergeist
+    within('.panel', text: 'Dropped') do
+      select '25', from: 'DataTables_Table_3_length'
+    end
     dropped_table = find('.panel', text: 'Dropped out').find('.table')
     within dropped_table do
       rows = all('tr')

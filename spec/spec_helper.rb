@@ -40,7 +40,8 @@ Capybara.configure do |config|
     Capybara::Selenium::Driver.new(app, browser: :firefox)
   end
   config.register_driver :poltergeist do |app|
-    Capybara::Poltergeist::Driver.new(app, js: true)
+    options = { js: true, js_errors: false }
+    Capybara::Poltergeist::Driver.new(app, options)
   end
   # set `driver=poltergeist` on the command line when you want to run headless
   driver = ENV['driver'].nil? ? :selenium : ENV['driver'].to_sym

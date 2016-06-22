@@ -42,12 +42,14 @@ class Administration
     first('a', text: localize(spanish: 'Participantes',
                               portuguese: 'Participantes',
                               english: 'Participants')).click
+    sleep(0.25)
   end
 
   def order_by_participant_id
     find('th', text: localize(spanish: 'Código del participante',
                               portuguese: 'Identificação do participante (ID)',
                               english: 'Participant ID')).click
+    sleep(0.25)
   end
 
   def open_admin_table

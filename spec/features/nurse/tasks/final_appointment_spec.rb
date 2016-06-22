@@ -43,7 +43,8 @@ end
 feature 'Nurse, Participant Tasks, Final appointment', metadata: :not_first do
   background { english_nurse.sign_in }
 
-  scenario 'Nurse sees number of days since task was due' do
+  # poltergeist does not see the timestamp
+  scenario 'Nurse sees number of days since task was due', :browser do
     pt_801_nurse_tasks.open
 
     expect(pt_801_nurse_tasks).to have_number_of_days_since_due
