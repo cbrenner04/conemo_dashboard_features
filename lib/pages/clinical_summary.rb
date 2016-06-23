@@ -1,7 +1,5 @@
 # frozen_string_literal: true
-require './lib/pages/navigation'
 require './lib/pages/translations/clinical_summary'
-require './lib/pages/translations/nurse_tasks_titles'
 
 # page object for the reports page of active participants
 class ClinicalSummary
@@ -11,12 +9,8 @@ class ClinicalSummary
 
   def initialize(clinical_summary)
     # @id ||= clinical_summary[:id]
-    @current_lesson ||= clinical_summary[:current_lesson]
-    @other_lesson ||= clinical_summary[:other_lesson]
-    @incomplete_lesson ||= clinical_summary[:incomplete_lesson]
     @locale ||= clinical_summary.fetch(:locale, 'english')
     @start_date_offset ||= clinical_summary[:start_date_offset]
-    @num_of_lessons ||= clinical_summary[:num_of_lessons]
     @last_seen ||= clinical_summary[:last_seen]
   end
 
@@ -33,72 +27,18 @@ class ClinicalSummary
     find('a', text: 'Tasks').click
   end
 
-  def has_lesson_table_content?
-    visible?
-    total_rows = lesson_table.all('tr').count - 1
-    table_content = (1..total_rows).map { |i| lesson_row(i).text }
-    expect(table_content).to eq(expected_lessons)
-  end
-
-  def lesson_row(num)
-    if num == 1
-      lesson_table.all('tr:nth-child(1)')[1]
-    else
-      lesson_table.find("tr:nth-child(#{num})")
-    end
-  end
-
-  def has_current_lesson?
-    visible? # weird behavior if it doesn't find something first
-    lesson = @current_lesson.gsub('Lesson ', '').to_i
-    lesson_table.has_css?('.info', text: @current_lesson) &&
-      lesson_table.has_css?('.un-released', count: (total_lessons - lesson))
-  end
-
-  def has_unread_lesson?
-    visible? # weird behavior if it doesn't find something first
-    has_css?('.danger', text: @other_lesson)
-  end
-
-  def has_late_lesson?
-    visible?
-    has_css?('.slippage', text: @other_lesson)
-  end
-
-  def has_incomplete_late_lesson?
-    visible?
-    has_css?('.warning', text: @incomplete_lesson)
-  end
-
-  def has_ontime_lesson?
-    visible?
-    has_css?('.success', text: @other_lesson)
-  end
-
   def has_headers?
     find('th', match: :first)
     headers = all('th')
-    actual_headers = [1, 2, 4].map { |i| headers[i].text }
+    actual_headers = [1, 2, 4].map { |heading_num| headers[heading_num].text }
     expect(actual_headers).to eq(expected_headers)
   end
 
   def has_legend?
     visible?
     legend = find('.table-condensed').all('td')
-    actual_legend = (0..5).map { |i| legend[i].text }
+    actual_legend = (0..5).map { |row_num| legend[row_num].text }
     expect(actual_legend).to eq(expected_legend)
-  end
-
-  def has_lesson_release_dates?
-    actual_release = (0..(total_lessons - 1)).map do |i|
-      all('.release-date')[i].text
-    end
-    expectation = if total_lessons == 17
-                    expected_release_dates_2
-                  else
-                    expected_release_dates_1
-                  end
-    expect(actual_release).to eq(expectation)
   end
 
   def has_one_non_connectivity_icon_in_current_lesson?
@@ -126,41 +66,5 @@ class ClinicalSummary
     )
     has_text? "#{heading} #{standard_date(@last_seen)}" \
               "#{locale_hour(@last_seen)}"
-  end
-
-  private
-
-  def lesson_table
-    first('table', text: lesson_table_heading)
-  end
-
-  def total_lessons
-    @total_lessons ||= lesson_table
-                       .all('tr').last
-                       .first('td').text.to_i
-  end
-
-  def expected_lessons
-    @expected_lessons ||= [
-      "1 #{standard_date(today)} Lesson 1",
-      "2 #{standard_date(tomorrow)} Lesson 2",
-      "3 #{standard_date(today + 2)} Lesson 3",
-      "4 #{standard_date(today + 3)} Lesson 4",
-      "5 #{standard_date(today + 4)} Lesson 5",
-      "6 #{standard_date(today + 5)} Lesson 6",
-      "7 #{standard_date(today + 6)} Lesson 7",
-      "8 #{standard_date(today + 7)} Lesson 8",
-      "9 #{standard_date(today + 8)} Lesson 9",
-      "10 #{standard_date(today + 9)} Lesson 10",
-      "11 #{standard_date(today + 10)} Lesson 11",
-      "12 #{standard_date(today + 11)} Lesson 12",
-      "13 #{standard_date(today + 12)} Lesson 13",
-      "14 #{standard_date(today + 13)} Lesson 14",
-      "15 #{standard_date(today + 14)} Lesson 15"
-    ]
-  end
-
-  def navigation
-    @navigation ||= Navigation.new(locale: @locale)
   end
 end

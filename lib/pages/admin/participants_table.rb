@@ -19,7 +19,7 @@ module Admin
     end
 
     def order_by_participant_id
-      find('th', 
+      find('th',
            text: localize(spanish: 'Código del participante',
                           portuguese: 'Identificação do participante (ID)',
                           english: 'Participant ID')).click

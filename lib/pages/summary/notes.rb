@@ -5,6 +5,7 @@ require './lib/pages/tasks/initial_in_person_appointment'
 require './lib/pages/tasks/follow_up_call_week_one'
 require './lib/pages/tasks/follow_up_call_week_three'
 require './lib/pages/translations/clinical_summary'
+require './lib/pages/translations/nurse_tasks_titles'
 
 module Summary
   # page object for notes in clinical Summary
@@ -13,6 +14,7 @@ module Summary
     include Capybara::DSL
     include NurseTasksForms
     include ClinicalSummaryTranslations
+    include NurseTasksTitles
 
     def initialize(notes)
       @locale ||= notes.fetch(:locale, 'english')

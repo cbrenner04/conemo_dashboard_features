@@ -5,6 +5,7 @@ require './lib/pages/clinical_summary'
 require './lib/pages/navigation'
 require './lib/pages/nurse_tasks'
 require './lib/pages/summary/notes'
+require './lib/pages/summary/lessons_table'
 
 def navigation
   @navigation ||= Navigation.new(locale: 'english')
@@ -14,11 +15,9 @@ def clinical_summary
   @clinical_summary ||= ClinicalSummary.new(locale: 'english')
 end
 
-def pt_300_clinical_summary
-  @pt_300_clinical_summary ||= ClinicalSummary.new(
-    # id: 300,
-    current_lesson: 'Lesson 1',
-    note: 'New notes!'
+def pt_300_lessons_table
+  @pt_300_lessons_table ||= Summary::LessonsTable.new(
+    current_lesson: 'Lesson 1'
   )
 end
 
@@ -33,9 +32,8 @@ def pt_300_nurse_tasks
   @pt_300_nurse_tasks ||= NurseTasks.new(pt_id: 300)
 end
 
-def pt_312_clinical_summary
-  @pt_312_clinical_summary ||= ClinicalSummary.new(
-    # id: 312,
+def pt_312_lessons_table
+  @pt_312_lessons_table ||= Summary::LessonsTable.new(
     current_lesson: 'Lesson 3',
     other_lesson: 'Lesson 2'
   )
@@ -45,11 +43,8 @@ def pt_312_nurse_tasks
   @pt_312_nurse_tasks ||= NurseTasks.new(pt_id: 312)
 end
 
-def pt_317_clinical_summary
-  @pt_317_clinical_summary ||= ClinicalSummary.new(
-    # id: 317,
-    other_lesson: 'Lesson 2'
-  )
+def pt_317_lessons_table
+  @pt_317_lessons_table ||= Summary::LessonsTable.new(other_lesson: 'Lesson 2')
 end
 
 def pt_317_nurse_tasks
@@ -78,9 +73,8 @@ def pt_319_nurse_tasks
   @pt_319_nurse_tasks ||= NurseTasks.new(pt_id: 319)
 end
 
-def pt_323_clinical_summary
-  @pt_323_clinical_summary ||= ClinicalSummary.new(
-    # id: 323,
+def pt_323_lessons_table
+  @pt_323_lessons_table ||= Summary::LessonsTable.new(
     current_lesson: 'Lesson 5',
     other_lesson: 'Lesson 4'
   )
@@ -90,9 +84,8 @@ def pt_323_nurse_tasks
   @pt_323_nurse_tasks ||= NurseTasks.new(pt_id: 323)
 end
 
-def pt_324_clinical_summary
-  @pt_324_clinical_summary ||= ClinicalSummary.new(
-    # id: 324,
+def pt_324_lessons_table
+  @pt_324_lessons_table ||= Summary::LessonsTable.new(
     other_lesson: 'Lesson 2',
     incomplete_lesson: 'Lesson 1'
   )
@@ -102,11 +95,8 @@ def pt_324_nurse_tasks
   @pt_324_nurse_tasks ||= NurseTasks.new(pt_id: 324)
 end
 
-def pt_326_clinical_summary
-  @pt_326_clinical_summary ||= ClinicalSummary.new(
-    # id: 326,
-    other_lesson: 'Lesson 4'
-  )
+def pt_326_lessons_table
+  @pt_326_lessons_table ||= Summary::LessonsTable.new(other_lesson: 'Lesson 4')
 end
 
 def pt_326_nurse_tasks
@@ -121,20 +111,16 @@ def pt_343_nurse_tasks
   @pt_343_nurse_tasks ||= NurseTasks.new(pt_id: 343)
 end
 
-def pt_400_clinical_summary
-  @pt_400_clinical_summary ||= ClinicalSummary.new(
-    # id: 400,
-    other_lesson: 'Lesson 1'
-  )
+def pt_400_lessons_table
+  @pt_400_lessons_table ||= Summary::LessonsTable.new(other_lesson: 'Lesson 1')
 end
 
 def pt_400_nurse_tasks
   @pt_400_nurse_tasks ||= NurseTasks.new(pt_id: 400)
 end
 
-def pt_401_clinical_summary
-  @pt_401_clinical_summary ||= ClinicalSummary.new(
-    # id: 401,
+def pt_401_lessons_table
+  @pt_401_lessons_table ||= Summary::LessonsTable.new(
     current_lesson: 'Lesson 2',
     other_lesson: 'Lesson 1'
   )
@@ -144,9 +130,8 @@ def pt_401_nurse_tasks
   @pt_401_nurse_tasks ||= NurseTasks.new(pt_id: 401)
 end
 
-def pt_410_clinical_summary
-  @pt_410_clinical_summary ||= ClinicalSummary.new(
-    # id: 410,
+def pt_410_lessons_table
+  @pt_410_lessons_table ||= Summary::LessonsTable.new(
     current_lesson: 'Lesson 4',
     other_lesson: 'Lesson 3'
   )
@@ -156,31 +141,24 @@ def pt_410_nurse_tasks
   @pt_410_nurse_tasks ||= NurseTasks.new(pt_id: 410)
 end
 
-def pt_411_clinical_summary
-  @pt_411_clinical_summary ||= ClinicalSummary.new(
-    # id: 411,
-    other_lesson: 'Lesson 1'
-  )
+def pt_411_lessons_table
+  @pt_411_lessons_table ||= Summary::LessonsTable.new(other_lesson: 'Lesson 1')
 end
 
 def pt_411_nurse_tasks
   @pt_411_nurse_tasks ||= NurseTasks.new(pt_id: 411)
 end
 
-def pt_412_clinical_summary
-  @pt_412_clinical_summary ||= ClinicalSummary.new(
-    # id: 412,
-    other_lesson: 'Lesson 3'
-  )
+def pt_412_lessons_table
+  @pt_412_lessons_table ||= Summary::LessonsTable.new(other_lesson: 'Lesson 3')
 end
 
 def pt_412_nurse_tasks
   @pt_412_nurse_tasks ||= NurseTasks.new(pt_id: 412)
 end
 
-def pt_420_clinical_summary
-  @pt_420_clinical_summary ||= ClinicalSummary.new(
-    # id: 420,
+def pt_420_lessons_table
+  @pt_420_lessons_table ||= Summary::LessonsTable.new(
     current_lesson: 'Lesson 6',
     other_lesson: 'Lesson 5'
   )
@@ -194,20 +172,16 @@ def pt_421_nurse_tasks
   @pt_421_nurse_tasks ||= NurseTasks.new(pt_id: 421)
 end
 
-def pt_422_clinical_summary
-  @pt_422_clinical_summary ||= ClinicalSummary.new(
-    # id: 422,
-    other_lesson: 'Lesson 5'
-  )
+def pt_422_lessons_table
+  @pt_422_lessons_table ||= Summary::LessonsTable.new(other_lesson: 'Lesson 5')
 end
 
 def pt_422_nurse_tasks
   @pt_422_nurse_tasks ||= NurseTasks.new(pt_id: 422)
 end
 
-def pt_428_clinical_summary
-  @pt_428_clinical_summary ||= ClinicalSummary.new(
-    # id: 428,
+def pt_428_lessons_table
+  @pt_428_lessons_table ||= Summary::LessonsTable.new(
     other_lesson: 'Lesson 3',
     incomplete_lesson: 'Lesson 2'
   )
@@ -217,9 +191,8 @@ def pt_428_nurse_tasks
   @pt_428_nurse_tasks ||= NurseTasks.new(pt_id: 428)
 end
 
-def pt_430_clinical_summary
-  @pt_430_clinical_summary ||= ClinicalSummary.new(
-    # id: 430,
+def pt_430_lessons_table
+  @pt_430_lessons_table ||= Summary::LessonsTable.new(
     current_lesson: 'Lesson 7',
     other_lesson: 'Lesson 6'
   )
@@ -229,9 +202,8 @@ def pt_430_nurse_tasks
   @pt_430_nurse_tasks ||= NurseTasks.new(pt_id: 430)
 end
 
-def pt_431_clinical_summary
-  @pt_431_clinical_summary ||= ClinicalSummary.new(
-    # id: 431,
+def pt_431_lessons_table
+  @pt_431_lessons_table ||= Summary::LessonsTable.new(
     other_lesson: 'Lesson 4',
     incomplete_lesson: 'Lesson 3'
   )
@@ -241,20 +213,16 @@ def pt_431_nurse_tasks
   @pt_431_nurse_tasks ||= NurseTasks.new(pt_id: 431)
 end
 
-def pt_432_clinical_summary
-  @pt_432_clinical_summary ||= ClinicalSummary.new(
-    # id: 432,
-    other_lesson: 'Lesson 6'
-  )
+def pt_432_lessons_table
+  @pt_432_lessons_table ||= Summary::LessonsTable.new(other_lesson: 'Lesson 6')
 end
 
 def pt_432_nurse_tasks
   @pt_432_nurse_tasks ||= NurseTasks.new(pt_id: 432)
 end
 
-def pt_440_clinical_summary
-  @pt_440_clinical_summary ||= ClinicalSummary.new(
-    # id: 440,
+def pt_440_lessons_table
+  @pt_440_lessons_table ||= Summary::LessonTable.new(
     current_lesson: 'Lesson 8',
     other_lesson: 'Lesson 7'
   )
@@ -264,9 +232,8 @@ def pt_440_nurse_tasks
   @pt_440_nurse_tasks ||= NurseTasks.new(pt_id: 440)
 end
 
-def pt_441_clinical_summary
-  @pt_441_clinical_summary ||= ClinicalSummary.new(
-    # id: 441,
+def pt_441_lessons_table
+  @pt_441_lessons_table ||= Summary::LessonsTable.new(
     other_lesson: 'Lesson 5',
     incomplete_lesson: 'Lesson 4'
   )
@@ -276,20 +243,16 @@ def pt_441_nurse_tasks
   @pt_441_nurse_tasks ||= NurseTasks.new(pt_id: 441)
 end
 
-def pt_442_clinical_summary
-  @pt_442_clinical_summary ||= ClinicalSummary.new(
-    # id: 442,
-    other_lesson: 'Lesson 7'
-  )
+def pt_442_lessons_table
+  @pt_442_lessons_table ||= Summary::LessonsTable.new(other_lesson: 'Lesson 7')
 end
 
 def pt_442_nurse_tasks
   @pt_442_nurse_tasks ||= NurseTasks.new(pt_id: 442)
 end
 
-def pt_450_clinical_summary
-  @pt_450_clinical_summary ||= ClinicalSummary.new(
-    # id: 450,
+def pt_450_lessons_table
+  @pt_450_lessons_table ||= Summary::LessonsTable.new(
     current_lesson: 'Lesson 9',
     other_lesson: 'Lesson 8'
   )
@@ -299,9 +262,8 @@ def pt_450_nurse_tasks
   @pt_450_nurse_tasks ||= NurseTasks.new(pt_id: 450)
 end
 
-def pt_451_clinical_summary
-  @pt_451_clinical_summary ||= ClinicalSummary.new(
-    # id: 451,
+def pt_451_lessons_table
+  @pt_451_lessons_table ||= Summary::LessonsTable.new(
     other_lesson: 'Lesson 6',
     incomplete_lesson: 'Lesson 5'
   )
@@ -311,20 +273,16 @@ def pt_451_nurse_tasks
   @pt_451_nurse_tasks ||= NurseTasks.new(pt_id: 451)
 end
 
-def pt_452_clinical_summary
-  @pt_452_clinical_summary ||= ClinicalSummary.new(
-    # id: 452,
-    other_lesson: 'Lesson 8'
-  )
+def pt_452_lessons_table
+  @pt_452_lessons_table ||= Summary::LessonsTable.new(other_lesson: 'Lesson 8')
 end
 
 def pt_452_nurse_tasks
   @pt_452_nurse_tasks ||= NurseTasks.new(pt_id: 452)
 end
 
-def pt_460_clinical_summary
-  @pt_460_clinical_summary ||= ClinicalSummary.new(
-    # id: 460,
+def pt_460_lessons_table
+  @pt_460_lessons_table ||= Summary::LessonsTable.new(
     current_lesson: 'Lesson 10',
     other_lesson: 'Lesson 9'
   )
@@ -334,9 +292,8 @@ def pt_460_nurse_tasks
   @pt_460_nurse_tasks ||= NurseTasks.new(pt_id: 460)
 end
 
-def pt_461_clinical_summary
-  @pt_461_clinical_summary ||= ClinicalSummary.new(
-    # id: 461,
+def pt_461_lessons_table
+  @pt_461_lessons_table ||= Summary::LessonsTable.new(
     other_lesson: 'Lesson 7',
     incomplete_lesson: 'Lesson 6'
   )
@@ -346,20 +303,16 @@ def pt_461_nurse_tasks
   @pt_461_nurse_tasks ||= NurseTasks.new(pt_id: 461)
 end
 
-def pt_462_clinical_summary
-  @pt_462_clinical_summary ||= ClinicalSummary.new(
-    # id: 462,
-    other_lesson: 'Lesson 9'
-  )
+def pt_462_lessons_table
+  @pt_462_lessons_table ||= Summary::LessonsTable.new(other_lesson: 'Lesson 9')
 end
 
 def pt_462_nurse_tasks
   @pt_462_nurse_tasks ||= NurseTasks.new(pt_id: 462)
 end
 
-def pt_471_clinical_summary
-  @pt_471_clinical_summary ||= ClinicalSummary.new(
-    # id: 471,
+def pt_471_lessons_table
+  @pt_471_lessons_table ||= Summary::LessonsTable.new(
     other_lesson: 'Lesson 8',
     incomplete_lesson: 'Lesson 7'
   )
@@ -369,9 +322,8 @@ def pt_471_nurse_tasks
   @pt_471_nurse_tasks ||= NurseTasks.new(pt_id: 471)
 end
 
-def pt_472_clinical_summary
-  @pt_472_clinical_summary ||= ClinicalSummary.new(
-    # id: 472,
+def pt_472_lessons_table
+  @pt_472_lessons_table ||= Summary::LessonsTable.new(
     other_lesson: 'Lesson 10'
   )
 end
@@ -380,9 +332,8 @@ def pt_472_nurse_tasks
   @pt_472_nurse_tasks ||= NurseTasks.new(pt_id: 472)
 end
 
-def pt_480_clinical_summary
-  @pt_480_clinical_summary ||= ClinicalSummary.new(
-    # id: 480,
+def pt_480_lessons_table
+  @pt_480_lessons_table ||= Summary::LessonsTable.new(
     other_lesson: 'Lesson 9',
     incomplete_lesson: 'Lesson 8'
   )
@@ -392,9 +343,8 @@ def pt_480_nurse_tasks
   @pt_480_nurse_tasks ||= NurseTasks.new(pt_id: 480)
 end
 
-def pt_490_clinical_summary
-  @pt_490_clinical_summary ||= ClinicalSummary.new(
-    # id: 490,
+def pt_490_lessons_table
+  @pt_490_lessons_table ||= Summary::LessonsTable.new(
     other_lesson: 'Lesson 10',
     incomplete_lesson: 'Lesson 9'
   )
@@ -406,11 +356,8 @@ end
 
 def pt_500_clinical_summary
   @pt_500_clinical_summary ||= ClinicalSummary.new(
-    # id: 500,
     locale: 'spanish',
     start_date_offset: 12,
-    num_of_lessons: 18,
-    note: 'Spanish additional note',
     last_seen: DateTime.now - (1 / 24.0)
   )
 end
@@ -421,6 +368,10 @@ def pt_500_notes
     locale: 'spanish',
     note: 'Spanish additional note'
   )
+end
+
+def pt_500_lessons_table
+  @pt_500_lessons_table ||= Summary::LessonsTable.new(locale: 'spanish')
 end
 
 def pt_500_nurse_tasks
@@ -469,11 +420,8 @@ end
 
 def pt_600_clinical_summary
   @pt_600_clinical_summary ||= ClinicalSummary.new(
-    # id: 600,
     locale: 'portuguese',
     start_date_offset: 12,
-    num_of_lessons: 5,
-    note: 'Portuguese additional note',
     last_seen: DateTime.now - (1 / 24.0)
   )
 end
@@ -486,6 +434,10 @@ def pt_600_notes
   )
 end
 
+def pt_600_lessons_table
+  @pt_600_lessons_table ||= Summary::LessonsTable.new(locale: 'portuguese')
+end
+
 def pt_600_nurse_tasks
   @pt_600_nurse_tasks ||= NurseTasks.new(
     pt_id: 600,
@@ -493,9 +445,8 @@ def pt_600_nurse_tasks
   )
 end
 
-def pt_700_clinical_summary
-  @pt_700_clinical_summary ||= ClinicalSummary.new(
-    # id: 700,
+def pt_700_lessons_table
+  @pt_700_lessons_table ||= Summary::LessonsTable.new(
     incomplete_lesson: 'Lesson 10'
   )
 end
@@ -506,7 +457,6 @@ end
 
 def pt_1000_clinical_summary
   @pt_1000_clinical_summary ||= ClinicalSummary.new(
-    # id: 1000,
     last_seen: DateTime.now - 3
   )
 end

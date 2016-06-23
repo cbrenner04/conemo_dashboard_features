@@ -72,17 +72,15 @@ def pt_1001_nurse_tasks
   @pt_1001_nurse_tasks ||= NurseTasks.new(pt_id: 1001)
 end
 
-def pt_1001_clinical_summary_1
-  @pt_1001_clinical_summary_1 ||= ClinicalSummary.new(
-    id: 1001,
+def pt_1001_lessons_table
+  @pt_1001_lessons_table ||= Summary::LessonsTable.new(
     current_lesson: 'Lesson 3',
     other_lesson: 'Lesson 1'
   )
 end
 
-def pt_1001_clinical_summary_2
-  @pt_1001_clinical_summary_2 ||= ClinicalSummary.new(
-    id: 1001,
+def pt_1001_lessons_table_1
+  @pt_1001_lessons_table_1 ||= Summary::LessonsTable.new(
     current_lesson: 'Lesson 3',
     other_lesson: 'Lesson 2'
   )
@@ -96,17 +94,15 @@ def pt_425_nurse_tasks
   @pt_425_nurse_tasks ||= NurseTasks.new(pt_id: 425)
 end
 
-def pt_425_clinical_summary_1
-  @pt_425_clinical_summary_1 ||= ClinicalSummary.new(
-    id: 425,
+def pt_425_lessons_table
+  @pt_425_lessons_table ||= Summary::LessonsTable.new(
     current_lesson: 'Lesson 6',
     other_lesson: 'Lesson 4'
   )
 end
 
-def pt_425_clinical_summary_2
-  @pt_425_clinical_summary_2 ||= ClinicalSummary.new(
-    id: 425,
+def pt_425_lessons_table_1
+  @pt_425_lessons_table_1 ||= Summary::LessonsTable.new(
     current_lesson: 'Lesson 6',
     other_lesson: 'Lesson 5'
   )

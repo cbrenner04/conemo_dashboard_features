@@ -112,11 +112,11 @@ feature 'Nurse, Non-adherence call', metadata: :not_first do
     expect(non_adherence_call).to_not be_active
 
     # check clinical summary for overdue lessons (meaning a task is needed)
-    pt_1001_clinical_summary_1.open
+    clinical_summary.open
 
-    expect(pt_1001_clinical_summary_1).to have_current_lesson
-    expect(pt_1001_clinical_summary_1).to have_unread_lesson
-    expect(pt_1001_clinical_summary_2).to have_unread_lesson
+    expect(pt_1001_lessons_table).to have_current_lesson
+    expect(pt_1001_lessons_table).to have_unread_lesson
+    expect(pt_1001_lessons_table_1).to have_unread_lesson
 
     # check timeline for resolved non-adherence task in last day
     # (nullifying need for new task)
@@ -138,11 +138,11 @@ feature 'Nurse, Non-adherence call', metadata: :not_first do
     expect(non_adherence_call).to be_active
 
     # check clinical summary for overdue lessons (meaning a task is needed)
-    pt_425_clinical_summary_1.open
+    clinical_summary.open
 
-    expect(pt_425_clinical_summary_1).to have_current_lesson
-    expect(pt_425_clinical_summary_1).to have_unread_lesson
-    expect(pt_425_clinical_summary_2).to have_unread_lesson
+    expect(pt_425_lessons_table).to have_current_lesson
+    expect(pt_425_lessons_table).to have_unread_lesson
+    expect(pt_425_lessons_table_1).to have_unread_lesson
 
     # check timeline for resolved non-adherence task in two days agp
     # (which is before most recent session release creating need for new task)
