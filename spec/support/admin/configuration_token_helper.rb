@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 require './lib/pages/administration'
+require './lib/pages/admin/participants_table'
 require './lib/pages/admin/token_page'
 
 def administration
@@ -21,6 +22,12 @@ def spanish_administration
   )
 end
 
+def spanish_participants_table
+  @spanish_participants_table ||= Admin::ParticipantsTable.new(
+    locale: 'spanish'
+  )
+end
+
 def spanish_token_page
   @spanish_token_page ||= Admin::TokenPage.new(
     locale: 'spanish',
@@ -34,6 +41,12 @@ end
 
 def portuguese_administration
   @portuguese_administration ||= Administration.new(
+    locale: 'portuguese'
+  )
+end
+
+def portuguese_participants_table
+  @portuguese_participants_table ||= Admin::ParticipantsTable.new(
     locale: 'portuguese'
   )
 end
