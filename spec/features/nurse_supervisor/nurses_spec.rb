@@ -168,8 +168,8 @@ feature 'Nurse Supervisor, Nurses', metadata: :not_first do
       pt_342_nurse_tasks_4.open
       pt_342_clinical_summary_1.open
 
-      expect(pt_342_clinical_summary_1).to have_notes_headers
-      expect(pt_342_clinical_summary_1).to have_contact_dates
+      expect(pt_342_notes).to have_notes_headers
+      expect(pt_342_notes).to have_contact_dates
     end
 
     scenario 'Nurse Supervisor sees timeline for individual participant' do

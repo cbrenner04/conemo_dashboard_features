@@ -134,7 +134,7 @@ feature 'Nurse, Participant Tasks, Follow up week one', metadata: :not_first do
     # check clinical summary page for notes
     clinical_summary.open
 
-    expect(clinical_summary).to have_follow_up_week_1_notes_visible
+    expect(notes).to have_follow_up_week_1_notes_visible
 
     # check timeline page for completeness
     timeline.open

@@ -91,9 +91,11 @@ def pt_301_nurse_tasks
 end
 
 def pt_342_clinical_summary_1
-  @pt_342_clinical_summary_1 ||= ClinicalSummary.new(
-    locale: 'english'
-  )
+  @pt_342_clinical_summary_1 ||= ClinicalSummary.new(locale: 'english')
+end
+
+def pt_342_notes
+  @pt_342_notes ||= Summary::Notes.new(locale: 'english')
 end
 
 def pt_342_nurse_tasks_4

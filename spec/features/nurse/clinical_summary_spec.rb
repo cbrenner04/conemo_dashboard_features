@@ -69,14 +69,14 @@ feature 'Nurse, Clinical Summary', metadata: :not_first do
   scenario 'Nurse creates and deletes a note' do
     pt_300_nurse_tasks.open
     pt_300_clinical_summary.open
-    pt_300_notes_form.open
-    pt_300_notes_form.create_note
+    pt_300_notes.open_form
+    pt_300_notes.create_note
 
-    expect(pt_300_clinical_summary).to have_note
+    expect(pt_300_notes).to have_note
 
-    pt_300_clinical_summary.delete_note
+    pt_300_notes.delete_note
 
-    expect(pt_300_clinical_summary).to_not have_note
+    expect(pt_300_notes).to_not have_note
   end
 
   scenario 'Nurse sees current lesson (1st) highlighted' do
@@ -379,20 +379,20 @@ feature 'Spanish Nurse, Clinical Summary', metadata: :very_first do
     expect(pt_500_clinical_summary).to have_last_seen_timestamp
     expect(pt_500_clinical_summary).to have_headers
     expect(pt_500_clinical_summary).to have_legend
-    expect(pt_500_clinical_summary).to have_notes_headers
+    expect(pt_500_notes).to have_notes_headers
     expect(pt_500_clinical_summary).to have_lesson_release_dates
-    expect(pt_500_clinical_summary).to have_contact_dates
+    expect(pt_500_notes).to have_contact_dates
 
-    pt_500_notes_form.open
+    pt_500_notes.open_form
 
-    expect(pt_500_notes_form).to have_form_heading
-    expect(pt_500_notes_form).to have_form_labels
-    expect(pt_500_notes_form).to have_notes_headers
-    expect(pt_500_notes_form).to have_contact_dates
+    expect(pt_500_notes).to have_form_heading
+    expect(pt_500_notes).to have_form_labels
+    expect(pt_500_notes).to have_notes_headers
+    expect(pt_500_notes).to have_contact_dates
 
-    pt_500_notes_form.create_note
+    pt_500_notes.create_note
 
-    expect(pt_500_clinical_summary).to have_note
+    expect(pt_500_notes).to have_note
   end
 end
 
@@ -405,19 +405,19 @@ feature 'Portuguese Nurse, Clinical Summary', metadata: :very_first do
     expect(pt_600_clinical_summary).to have_last_seen_timestamp
     expect(pt_600_clinical_summary).to have_headers
     expect(pt_600_clinical_summary).to have_legend
-    expect(pt_600_clinical_summary).to have_notes_headers
+    expect(pt_600_notes).to have_notes_headers
     expect(pt_600_clinical_summary).to have_lesson_release_dates
-    expect(pt_600_clinical_summary).to have_contact_dates
+    expect(pt_600_notes).to have_contact_dates
 
-    pt_600_notes_form.open
+    pt_600_notes.open_form
 
-    expect(pt_600_notes_form).to have_form_heading
-    expect(pt_600_notes_form).to have_form_labels
-    expect(pt_600_notes_form).to have_notes_headers
-    expect(pt_600_notes_form).to have_contact_dates
+    expect(pt_600_notes).to have_form_heading
+    expect(pt_600_notes).to have_form_labels
+    expect(pt_600_notes).to have_notes_headers
+    expect(pt_600_notes).to have_contact_dates
 
-    pt_600_notes_form.create_note
+    pt_600_notes.create_note
 
-    expect(pt_600_clinical_summary).to have_note
+    expect(pt_600_notes).to have_note
   end
 end

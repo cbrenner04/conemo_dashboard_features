@@ -5,6 +5,7 @@ require './lib/pages/clinical_summary'
 require './lib/pages/navigation'
 require './lib/pages/nurse_tasks'
 require './lib/pages/supervisor_page'
+require './lib/pages/summary/notes'
 Dir['./lib/pages/tasks/*.rb'].each { |file| require file }
 require './lib/pages/timeline_page'
 require './lib/pages/your_patients'
@@ -14,7 +15,11 @@ def cancel_form
 end
 
 def clinical_summary
-  @clinical_summary ||= ClinicalSummary.new(id: 1)
+  @clinical_summary ||= ClinicalSummary.new(locale: 'english')
+end
+
+def notes
+  @notes ||= Summary::Notes.new(locale: 'english')
 end
 
 def timeline
