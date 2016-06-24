@@ -10,7 +10,6 @@ class Lessons
   def initialize(lessons)
     @title ||= lessons[:title]
     @day ||= lessons[:day]
-    @new_title ||= lessons[:new_title]
     @slide ||= lessons[:slide]
     @locale ||= lessons.fetch(:locale, 'english')
   end
@@ -50,8 +49,7 @@ class Lessons
   end
 
   def visible?
-    lesson_title = @new_title.nil? ? @title : @new_title
-    find('.table').has_css?('td', text: lesson_title)
+    find('.table').has_css?('td', text: @title)
   end
 
   def view
@@ -64,8 +62,7 @@ class Lessons
   end
 
   def edit
-    open_edit
-    fill_in 'lesson[title]', with: @new_title
+    fill_in 'lesson[title]', with: @title
     navigation.submit
   end
 
@@ -102,6 +99,6 @@ class Lessons
   end
 
   def navigation
-    @navigation ||= Navigation.new(locale: @locale)
+    Navigation.new(locale: @locale)
   end
 end

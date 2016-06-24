@@ -41,8 +41,8 @@ def pt_302_contact_info
   @pt_302_contact_info ||= ContactInformation.new(pt_id: 302)
 end
 
-def pt_302_smartphone_infor
-  @pt_302_smartphone_i,nfor ||= ContactInfo::SmartphoneInformation.new(
+def pt_302_smartphone_info
+  @pt_302_smartphone_info ||= ContactInfo::SmartphoneInformation.new(
     locale: 'english',
     pt_id: 302
   )
@@ -56,8 +56,8 @@ def pt_310_contact_info
   @pt_310_contact_info ||= ContactInformation.new(pt_id: 310)
 end
 
-def pt_310_smartphone_infor
-  @pt_310_smartphone_i,nfor ||= ContactInfo::SmartphoneInformation.new(
+def pt_310_smartphone_info
+  @pt_310_smartphone_info ||= ContactInfo::SmartphoneInformation.new(
     locale: 'english',
     pt_id: 310
   )

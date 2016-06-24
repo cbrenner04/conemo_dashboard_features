@@ -82,10 +82,11 @@ def lesson_8_slide_3
 end
 
 def lesson_12
-  @lesson_12 ||= Lessons.new(
-    title: 'Lesson 12',
-    new_title: 'Edited Lesson'
-  )
+  @lesson_12 ||= Lessons.new(title: 'Lesson 12')
+end
+
+def lesson_12_a
+  @lesson_12_a ||= Lessons.new(title: 'Edited Lesson')
 end
 
 def lesson_13_slide_2
