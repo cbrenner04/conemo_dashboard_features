@@ -15,14 +15,6 @@ require './lib/pages/tasks/lack_of_connectivity_call'
 require './lib/pages/timeline_page'
 require './lib/pages/your_patients'
 
-def today_at_11_am
-  time = Time.now
-  time += ((12 - time.hour) * 60 * 60)
-  time -= (time.min * 60)
-  time -= time.sec
-  @today_at_11_am ||= time - (1 * 60 * 60)
-end
-
 def navigation
   @navigation ||= Navigation.new(locale: 'english')
 end
@@ -124,14 +116,14 @@ end
 def pt_403_tasks
   @pt_403_tasks ||= NurseTasks.new(
     pt_id: 403,
-    time_of_contact: Time.now - (3 * 60 * 60)
+    time_of_contact: now - (3 * one_hour)
   )
 end
 
 def pt_423_tasks
   @pt_423_tasks ||= NurseTasks.new(
     pt_id: 423,
-    time_of_contact: Time.now - (2 * 60 * 60)
+    time_of_contact: now - (2 * one_hour)
   )
 end
 
@@ -172,7 +164,7 @@ def nurse_403
   @nurse_403 ||= Supervisor::Nurses.new(
     id: 403,
     supervision_date: today,
-    supervision_time: Time.now
+    supervision_time: now
   )
 end
 

@@ -9,7 +9,7 @@ Dir['./lib/pages/admin/csvs/*.rb'].each { |file| require file }
 def check_size_and_headers(file, headers)
   @driver.get "#{ENV['Base_URL']}/admin/#{file}/export?locale=en"
   @driver.find_element(css: '.btn-primary').click
-  f = "#{@download_dir}/#{file}_#{Time.now.strftime('%Y-%m-%d_%Hh%Mm%S')}.csv"
+  f = "#{@download_dir}/#{file}_#{now.strftime('%Y-%m-%d_%Hh%Mm%S')}.csv"
   File.size(f).should be > 0
   csv_data = CSV.read(f)
   csv_data.include?(headers).should == true

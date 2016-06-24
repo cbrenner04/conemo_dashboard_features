@@ -42,7 +42,7 @@ feature 'Nurse, Non-connectivity call', metadata: :first do
     # meaning a task is needed
     pt_415_clinical_summary.open
 
-    if Time.now.strftime('%H').to_i < 12
+    if now.strftime('%H').to_i < 12
       expect(pt_415_clinical_summary).to have_three_non_connectivity_icons
     else
       expect(pt_415_clinical_summary).to have_two_non_connectivity_icons
@@ -72,7 +72,7 @@ feature 'Nurse, Non-connectivity call', metadata: :first do
     # meaning a task is needed
     pt_414_clinical_summary.open
 
-    if Time.now.strftime('%H').to_i < 12
+    if now.strftime('%H').to_i < 12
       expect(pt_415_clinical_summary).to have_three_non_connectivity_icons
     else
       expect(pt_415_clinical_summary).to have_two_non_connectivity_icons

@@ -54,7 +54,7 @@ end
 def pt_318_clinical_summary
   @pt_318_clinical_summary ||= ClinicalSummary.new(
     # id: 318,
-    last_seen: DateTime.now - (13 / 24.0)
+    last_seen: Datenow - (13 / 24.0)
   )
 end
 
@@ -65,7 +65,7 @@ end
 def pt_319_clinical_summary
   @pt_319_clinical_summary ||= ClinicalSummary.new(
     # id: 319,
-    last_seen: DateTime.now - (11 / 24.0)
+    last_seen: Datenow - (11 / 24.0)
   )
 end
 
@@ -358,7 +358,7 @@ def pt_500_clinical_summary
   @pt_500_clinical_summary ||= ClinicalSummary.new(
     locale: 'spanish',
     start_date_offset: 12,
-    last_seen: DateTime.now - (1 / 24.0)
+    last_seen: Datenow - (1 / 24.0)
   )
 end
 
@@ -422,7 +422,7 @@ def pt_600_clinical_summary
   @pt_600_clinical_summary ||= ClinicalSummary.new(
     locale: 'portuguese',
     start_date_offset: 12,
-    last_seen: DateTime.now - (1 / 24.0)
+    last_seen: Datenow - (1 / 24.0)
   )
 end
 
@@ -457,7 +457,7 @@ end
 
 def pt_1000_clinical_summary
   @pt_1000_clinical_summary ||= ClinicalSummary.new(
-    last_seen: DateTime.now - 3
+    last_seen: Datenow - 3
   )
 end
 

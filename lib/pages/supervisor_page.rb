@@ -277,12 +277,12 @@ class SupervisorPage
 
   def rescheduled_and_canceled_tasks_dates
     @rescheduled_and_canceled_tasks_dates ||= [
-      "#{standard_date(today - 4)}#{locale_hour(Time.now)}",
-      "#{standard_date(today - 8)}#{locale_hour(Time.now)}",
-      "#{standard_date(today - 10)}#{locale_hour(Time.now)}",
-      "#{standard_date(today - 11)}#{locale_hour(Time.now)}",
-      "#{standard_date(today - 16)}#{locale_hour(Time.now)}",
-      "#{standard_date(today - 20)}#{locale_hour(Time.now)}"
+      "#{standard_date(today - 4)}#{locale_hour(now)}",
+      "#{standard_date(today - 8)}#{locale_hour(now)}",
+      "#{standard_date(today - 10)}#{locale_hour(now)}",
+      "#{standard_date(today - 11)}#{locale_hour(now)}",
+      "#{standard_date(today - 16)}#{locale_hour(now)}",
+      "#{standard_date(today - 20)}#{locale_hour(now)}"
     ]
   end
 

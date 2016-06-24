@@ -69,7 +69,7 @@ module NurseTasksPage
     has_no_list_item? &&
       has_css?('.progress-bar-future',
                text: "#{@task_title} " \
-                     "#{(DateTime.now + 1).strftime('%B %d, %Y %H')}")
+                     "#{(Datenow + 1).strftime('%B %d, %Y %H')}")
   end
 
   def has_canceled_alert?

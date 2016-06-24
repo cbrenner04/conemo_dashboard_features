@@ -73,7 +73,7 @@ end
 def pt_413_tasks
   @pt_413_tasks ||= NurseTasks.new(
     pt_id: 413,
-    time_of_contact: Time.now - (2 * 60 * 60)
+    time_of_contact: now - (2 * one_hour)
   )
 end
 

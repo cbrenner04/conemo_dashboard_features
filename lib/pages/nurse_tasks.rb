@@ -27,13 +27,12 @@ class NurseTasks
   end
 
   def open
-    tries ||= 1
+    tries ||= 2
     find('tr', text: @pt_id).click
     find('h3', text: tasks_heading)
   rescue Capybara::ElementNotFound, Selenium::WebDriver::Error::UnknownError
     navigation.scroll_up
-    tries += 1
-    retry unless tries > 2
+    retry unless(tries -= 1).zero?
   end
 
   def return
@@ -50,7 +49,7 @@ class NurseTasks
   end
 
   def has_new_supervisor_contact?
-    has_supervisor_contact?(Time.now)
+    has_supervisor_contact?(now)
   end
 
   def has_previous_supervisor_contact?
@@ -120,16 +119,6 @@ class NurseTasks
 
   def navigation
     @navigation ||= Navigation.new(locale: 'english')
-  end
-
-  def dst_time(time)
-    if Time.now.dst? && time.dst?
-      time
-    elsif !Time.now.dst? && time.dst?
-      time + (1 * 60 * 60)
-    else
-      (time - (1 * 60 * 60))
-    end
   end
 
   def has_supervisor_contact?(time)

@@ -102,7 +102,7 @@ class TimelinePage
       .has_css?('.timeline-panel',
                 text: "#{lack_of_connectivity_call_title} Date/time of " \
                       "phone call: #{standard_date(today)}" \
-                      "#{locale_hour(Time.now - (11 * 60 * 60))}") &&
+                      "#{locale_hour(now - (11 * one_hour))}") &&
       has_text?('Reason for lack of connectivity:')
   end
 
@@ -110,8 +110,8 @@ class TimelinePage
     find('.timeline')
       .has_css?('.timeline-panel',
                 text: "#{lack_of_connectivity_call_title} Date/time of phone" \
-                      " call: #{standard_date(Time.now - (13 * 60 * 60))}" \
-                      "#{locale_hour(Time.now - (13 * 60 * 60))}") &&
+                      " call: #{standard_date(now - (13 * one_hour))}" \
+                      "#{locale_hour(now - (13 * one_hour))}") &&
       has_text?('Reason for lack of connectivity:')
   end
 

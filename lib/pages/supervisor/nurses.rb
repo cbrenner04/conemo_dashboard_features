@@ -210,22 +210,6 @@ module Supervisor
         "#{locale_hour(dst_time(@supervision_time))}"
     end
 
-    def dst_time(time)
-      if Time.now.dst? && time.dst?
-        time
-      elsif !Time.now.dst? && time.dst?
-        time + (1 * 60 * 60)
-      else
-        (time - (1 * 60 * 60))
-      end
-    end
-
-    def today_at_11_am
-      time = Time.now
-      noon = time + ((12 - time.hour) * 60 * 60) - (time.min * 60) - time.sec
-      @today_at_11_am ||= noon - (1 * 60 * 60)
-    end
-
     def expected_rows
       date_1 = dst_time(3.business_days.before(today_at_11_am))
       date_2 = dst_time(8.business_days.before(today_at_11_am))

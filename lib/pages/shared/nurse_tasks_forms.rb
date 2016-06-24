@@ -62,10 +62,10 @@ module NurseTasksForms
   end
 
   def has_time_selectors?(hh, mm)
-    has_hour_selector?(hh) && selector[mm].has_text?(Time.now.strftime('%M'))
+    has_hour_selector?(hh) && selector[mm].has_text?(now.strftime('%M'))
   end
 
-  def has_hour_selector?(hh, time = Time.now)
+  def has_hour_selector?(hh, time = now)
     selector[hh].has_text? time.strftime('%H')
   end
 

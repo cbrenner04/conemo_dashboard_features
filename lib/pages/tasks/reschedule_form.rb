@@ -49,7 +49,7 @@ module Tasks
       has_date_selectors?(today, 1,
                           localize(spanish: 0, portuguese: 0, english: 2),
                           localize(spanish: 2, portuguese: 2, english: 0)) &&
-        has_hour_selector?(3, (Time.now - (2 * 60 * 60)))
+        has_hour_selector?(3, (now - (2 * one_hour)))
     end
 
     def has_reschedule_reason?
