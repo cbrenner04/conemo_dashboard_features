@@ -46,7 +46,7 @@ feature 'Nurse Supervisor, Participants', metadata: :first do
 
     pt_413_tasks.open
 
-    expect(pt_413_tasks).to have_previous_supervisor_contact
+    expect(pt_413_supervisor_contact).to have_previous_supervisor_contact
     expect(pt_413_confirmation_call).to be_active
     expect(pt_413_lack_of_connectivity_call).to be_active
   end

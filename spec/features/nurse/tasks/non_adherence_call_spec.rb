@@ -22,7 +22,7 @@ feature 'Nurse, Non-adherence call', metadata: :first do
     pt_424_nurse_tasks.open
 
     expect(non_adherence_call).to be_active
-    expect(pt_424_nurse_tasks).to have_previous_supervisor_contact
+    expect(pt_424_supervisor_contact).to have_previous_supervisor_contact
   end
 end
 

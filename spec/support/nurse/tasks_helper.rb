@@ -14,6 +14,22 @@ def cancel_form
   @cancel_form ||= Tasks::CancelForm.new(locale: 'english')
 end
 
+def supervisor_contact
+  @supervisor_contact ||= Tasks::SupervisorContact.new(locale: 'english')
+end
+
+def progress_bar
+  @progress_bar ||= Tasks::ProgressBar.new(locale: 'english')
+end
+
+def spanish_progress_bar
+  @spanish_progress_bar ||= Tasks::ProgressBar.new(locale: 'spanish')
+end
+
+def portuguese_progress_bar
+  @portuguese_progress_bar ||= Tasks::ProgressBar.new(locale: 'portuguese')
+end
+
 def clinical_summary
   @clinical_summary ||= ClinicalSummary.new(locale: 'english')
 end

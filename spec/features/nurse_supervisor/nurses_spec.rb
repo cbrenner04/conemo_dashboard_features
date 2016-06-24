@@ -36,18 +36,18 @@ feature 'Nurse Supervisor, Nurses', metadata: :first do
       nurse_400.select
       pt_403_tasks.open
 
-      expect(pt_403_tasks).to have_previous_supervisor_contact
+      expect(pt_403_supervisor_contact).to have_previous_supervisor_contact
     end
 
     scenario 'Nurse Supervisor clears contact supervisor notification' do
       nurse_400.select
       pt_423_tasks.open
 
-      expect(pt_423_tasks).to have_previous_supervisor_contact
+      expect(pt_423_supervisor_contact).to have_previous_supervisor_contact
 
-      pt_423_tasks.clear_supervisor_contact
+      pt_423_supervisor_contact.clear
 
-      expect(pt_423_tasks).to_not have_previous_supervisor_contact
+      expect(pt_423_supervisor_contact).to_not have_previous_supervisor_contact
     end
   end
 end

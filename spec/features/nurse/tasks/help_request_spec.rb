@@ -22,7 +22,7 @@ feature 'Nurse, Participant Tasks, Help Request', metadata: :first do
     pt_402_nurse_tasks.open
 
     expect(help_request).to be_active
-    expect(pt_402_nurse_tasks).to have_previous_supervisor_contact
+    expect(pt_402_supervisor_contact).to have_previous_supervisor_contact
   end
 end
 

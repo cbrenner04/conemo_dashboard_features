@@ -27,7 +27,7 @@ feature 'Nurse, Participant Tasks', metadata: :not_first do
   scenario 'Nurse sees empty progress bar' do
     pt_300_nurse_tasks.open
 
-    expect(pt_300_nurse_tasks).to have_empty_progress_bar
+    expect(progress_bar).to be_empty
   end
 
   feature 'Nurse, Additional Contact' do
@@ -68,7 +68,7 @@ feature 'Spanish Nurse, Tasks' do
 
   scenario 'Spanish Nurse sees section headings and key' do
     pt_500_nurse_tasks.open
-    expect(pt_500_nurse_tasks).to have_progress_bar_heading
+    expect(spanish_progress_bar).to have_heading
     expect(pt_500_nurse_tasks).to have_tasks_heading
     expect(pt_500_nurse_tasks).to have_key
   end
@@ -86,7 +86,7 @@ feature 'Portuguese Nurse, Tasks' do
 
   scenario 'Portuguese Nurse sees section headings and key' do
     pt_600_nurse_tasks.open
-    expect(pt_600_nurse_tasks).to have_progress_bar_heading
+    expect(portuguese_progress_bar).to have_heading
     expect(pt_600_nurse_tasks).to have_tasks_heading
     expect(pt_600_nurse_tasks).to have_key
   end

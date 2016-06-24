@@ -71,8 +71,11 @@ def patient_413
 end
 
 def pt_413_tasks
-  @pt_413_tasks ||= NurseTasks.new(
-    pt_id: 413,
+  @pt_413_tasks ||= NurseTasks.new(pt_id: 413)
+end
+
+def pt_413_supervisor_contact
+  @pt_413_supervisor_contact ||= Tasks::SupervisorContact.new(
     time_of_contact: now - (2 * one_hour)
   )
 end

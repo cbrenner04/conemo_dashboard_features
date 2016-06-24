@@ -22,7 +22,7 @@ feature 'Nurse, Non-connectivity call', metadata: :first do
     pt_412_nurse_tasks.open
 
     expect(lack_of_connectivity_call).to be_active
-    expect(pt_412_nurse_tasks).to have_previous_supervisor_contact
+    expect(pt_412_supervisor_contact).to have_previous_supervisor_contact
   end
 
   # check that a non-connectivity task is not triggered for a participant who
