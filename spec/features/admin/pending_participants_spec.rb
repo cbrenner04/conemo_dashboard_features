@@ -84,7 +84,7 @@ feature 'Admin, Pending Participants', metadata: :not_first do
     new_participant_contact_information.fill_in_last_name
     new_participant_contact_information.fill_in_study_id
     new_participant_contact_information.fill_in_address
-    new_participant_contact_information.fill_in_alt_phone_1
+    new_participant_contact_information.fill_in_first_alt_phone
     new_participant_contact_information.choose_gender
     navigation.submit
 
@@ -98,7 +98,7 @@ feature 'Admin, Pending Participants', metadata: :not_first do
     new_participant_contact_information.fill_in_last_name
     new_participant_contact_information.fill_in_study_id
     new_participant_contact_information.fill_in_address
-    new_participant_contact_information.fill_in_alt_phone_2
+    new_participant_contact_information.fill_in_second_alt_phone
     new_participant_contact_information.choose_gender
     navigation.submit
 

@@ -34,7 +34,7 @@ module ContactInformationForm
   def select_health_unit
     find('.select2-container', match: :first)
     selector[0].click
-    response = (2..10).map { |i| "unit #{i}" }
+    response = (2..10).map { |unit_number| "unit #{unit_number}" }
     select_response(response.sample)
   end
 
@@ -42,20 +42,12 @@ module ContactInformationForm
     fill_in_field('address', @address)
   end
 
-  def fill_in_alt_phone_1
+  def fill_in_first_alt_phone
     fill_in_field('alternate_phone_1', @phone)
   end
 
-  def fill_in_contact_person_1
-    fill_in_field('contact_person_1_name', @contact_person)
-  end
-
-  def fill_in_alt_phone_2
+  def fill_in_second_alt_phone
     fill_in_field('alternate_phone_2', @phone)
-  end
-
-  def fill_in_contact_person_2
-    fill_in_field('contact_person_2_name', @contact_person)
   end
 
   def choose_gender

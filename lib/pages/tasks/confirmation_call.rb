@@ -40,20 +40,6 @@ module Tasks
       has_task_options?(10, 2, location_options)
     end
 
-    def has_current_date_selections?
-      has_date_selectors?(today, 1,
-                          localize(spanish: 0, portuguese: 0, english: 2),
-                          localize(spanish: 2, portuguese: 2, english: 0)) &&
-        has_time_selectors?(3, 4)
-    end
-
-    def has_next_contact_date_selections?
-      has_date_selectors?(today, 6,
-                          localize(spanish: 5, portuguese: 5, english: 7),
-                          localize(spanish: 7, portuguese: 7, english: 5)) &&
-        has_time_selectors?(8, 9)
-    end
-
     def has_time_ago_in_words?
       has_text? localize(
         spanish: 'hace cerca de 2 horas',

@@ -54,13 +54,6 @@ module Tasks
       has_task_form_headings?(3)
     end
 
-    def has_current_date_selections?
-      has_date_selectors?(today, 1,
-                          localize(spanish: 0, portuguese: 0, english: 2),
-                          localize(spanish: 2, portuguese: 2, english: 0)) &&
-        has_hour_selector?(3)
-    end
-
     def has_site_options?
       has_task_options?(5, 2, location_options)
     end
