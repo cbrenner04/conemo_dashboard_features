@@ -36,11 +36,11 @@ module NurseTasksPage
   end
 
   def active?
+    check_panel_title = has_css?('.panel', text: @task_title)
     if unscheduled?
-      has_css?('.panel', text: @task_title)
+      check_panel_title
     else
-      has_css?('.panel', text: @task_title) &&
-        has_css?('.progress-bar-info', text: @task_title)
+      check_panel_title && has_css?('.progress-bar-info', text: @task_title)
     end
   end
 

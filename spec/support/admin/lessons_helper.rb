@@ -92,8 +92,14 @@ end
 def lesson_13_slide_2
   @lesson_13_slide_2 ||= Slides.new(
     lesson: 'Lesson 13',
-    title: 'Slide 2',
-    new_title: 'Edited Slide'
+    title: 'Slide 2'
+  )
+end
+
+def lesson_13_slide_2_edited
+  @lesson_13_slide_2_edited ||= Slides.new(
+    lesson: 'Lesson 13',
+    title: 'Edited Slide'
   )
 end
 

@@ -73,9 +73,10 @@ feature 'Admin, Lessons', metadata: :not_first do
   end
 
   scenario 'Admin edits a slide' do
-    lesson_13_slide_2.edit
+    lesson_13_slide_2.open_edit
+    lesson_13_slide_2_edited.edit
 
-    expect(lesson_13_slide_2).to be_visible
+    expect(lesson_13_slide_2_edited).to be_visible
   end
 
   scenario 'Admin deletes a slide' do
