@@ -115,6 +115,7 @@ end
 
 def pt_403_tasks
   @pt_403_tasks ||= NurseTasks.new(pt_id: 403)
+end
 
 def pt_403_supervisor_contact
   @pt_403_supervisor_contact ||= Tasks::SupervisorContact.new(
