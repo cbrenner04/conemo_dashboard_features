@@ -2,6 +2,7 @@
 # filename: ./spec/support/nurse/contact_information_helper.rb
 
 require './lib/pages/contact_information'
+require './lib/pages/contact_info/smartphone_information'
 require './lib/pages/navigation'
 require './lib/pages/nurse_tasks'
 
@@ -18,7 +19,7 @@ def portuguese_navigation
 end
 
 def pt_300_contact_info
-  @pt_300_contact_info ||= ContactInformation.new(id: 300)
+  @pt_300_contact_info ||= ContactInformation.new(pt_id: 300)
 end
 
 def pt_300_nurse_tasks
@@ -27,7 +28,7 @@ end
 
 def pt_301_contact_info
   @pt_301_contact_info ||= ContactInformation.new(
-    id: 301,
+    pt_id: 301,
     email: 'participant301@example.com'
   )
 end
@@ -37,7 +38,14 @@ def pt_301_nurse_tasks
 end
 
 def pt_302_contact_info
-  @pt_302_contact_info ||= ContactInformation.new(id: 302)
+  @pt_302_contact_info ||= ContactInformation.new(pt_id: 302)
+end
+
+def pt_302_smartphone_infor
+  @pt_302_smartphone_i,nfor ||= ContactInfo::SmartphoneInformation.new(
+    locale: 'english',
+    pt_id: 302
+  )
 end
 
 def pt_302_nurse_tasks
@@ -45,7 +53,14 @@ def pt_302_nurse_tasks
 end
 
 def pt_310_contact_info
-  @pt_310_contact_info ||= ContactInformation.new(id: 310)
+  @pt_310_contact_info ||= ContactInformation.new(pt_id: 310)
+end
+
+def pt_310_smartphone_infor
+  @pt_310_smartphone_i,nfor ||= ContactInfo::SmartphoneInformation.new(
+    locale: 'english',
+    pt_id: 310
+  )
 end
 
 def pt_310_nurse_tasks
@@ -54,8 +69,15 @@ end
 
 def pt_500_contact_info
   @pt_500_contact_info ||= ContactInformation.new(
-    id: 500,
+    pt_id: 500,
     locale: 'spanish'
+  )
+end
+
+def pt_500_smartphone_info
+  @pt_500_smartphone_info ||= ContactInfo::SmartphoneInformation.new(
+    locale: 'spanish',
+    pt_id: 500
   )
 end
 
@@ -68,7 +90,13 @@ end
 
 def pt_504_contact_info
   @pt_504_contact_info ||= ContactInformation.new(
-    id: 504,
+    pt_id: 504,
+    locale: 'spanish'
+  )
+end
+
+def pt_504_smartphone_info
+  @pt_504_smartphone_info ||= ContactInfo::SmartphoneInformation.new(
     locale: 'spanish'
   )
 end
@@ -82,8 +110,15 @@ end
 
 def pt_600_contact_info
   @pt_600_contact_info ||= ContactInformation.new(
-    id: 600,
+    pt_id: 600,
     locale: 'portuguese'
+  )
+end
+
+def pt_600_smartphone_info
+  @pt_600_smartphone_info ||= ContactInfo::SmartphoneInformation.new(
+    locale: 'spanish',
+    pt_id: 600
   )
 end
 
@@ -96,7 +131,13 @@ end
 
 def pt_604_contact_info
   @pt_604_contact_info ||= ContactInformation.new(
-    id: 604,
+    pt_id: 604,
+    locale: 'portuguese'
+  )
+end
+
+def pt_604_smartphone_info
+  @pt_604_smartphone_info ||= ContactInfo::SmartphoneInformation.new(
     locale: 'portuguese'
   )
 end

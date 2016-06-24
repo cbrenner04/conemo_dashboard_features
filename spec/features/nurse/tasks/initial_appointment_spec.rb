@@ -25,8 +25,8 @@ feature 'Nurse, Initial in person appointment', metadata: :first do
     initial_in_person_appt.enter_general_notes
     navigation.submit
 
-    contact_information.enter_smartphone_number
-    contact_information.enter_phone_id
+    smartphone_information.enter_smartphone_number
+    smartphone_information.enter_phone_id
     navigation.submit
 
     expect(pt_319_nurse_tasks).to have_no_tasks_in_count

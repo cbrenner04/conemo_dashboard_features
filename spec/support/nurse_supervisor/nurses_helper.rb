@@ -4,6 +4,7 @@
 require 'business_time'
 require './lib/pages/clinical_summary'
 require './lib/pages/contact_information'
+require './lib/pages/contact_info/smartphone_information'
 require './lib/pages/navigation'
 require './lib/pages/nurse_tasks'
 require './lib/pages/supervisor_page'
@@ -70,7 +71,7 @@ end
 
 def pt_300_contact_info
   @pt_300_contact_info ||= ContactInformation.new(
-    id: 300
+    pt_id: 300
   )
 end
 
@@ -82,7 +83,7 @@ end
 
 def pt_301_contact_info_1
   @pt_301_contact_info_1 ||= ContactInformation.new(
-    id: 301
+    pt_id: 301
   )
 end
 

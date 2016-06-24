@@ -2,12 +2,19 @@
 # filename: ./spec/support/nurse/tasks/initial_appointment_helper.rb
 
 require './lib/pages/contact_information'
+require './lib/pages/contact_info/smartphone_information'
 require './lib/pages/nurse_tasks'
 require './lib/pages/supervisor_page'
 require './lib/pages/your_patients'
 
 def contact_information
   @contact_information ||= ContactInformation.new(locale: 'english')
+end
+
+def smartphone_information
+  @smartphone_information ||= ContactInfo::SmartphoneInformation.new(
+    locale: 'english'
+  )
 end
 
 def pt_311_nurse_tasks
