@@ -57,9 +57,11 @@ module Tasks
 
     def has_reason_options?
       selector[5].click
-      selections = all('.select2-result-label')
-      actual = (0..11).map { |i| selections[i].text }
-      expect(actual).to eq(options)
+      array_of_elements_equal?(
+        elements: all('.select2-result-label'),
+        ids: (0..11),
+        expectation: options
+      )
     end
 
     def resolve_as_canceled

@@ -7,6 +7,12 @@ module Supervisor
     include Capybara::DSL
     include Translations::SupervisorPageTranslations::ParticipantsTranslations
 
+    def initialize(dropped_table)
+      @nurse ||= dropped_table[:nurse]
+      @pt_id ||= dropped_table[:pt_id]
+      @locale ||= dropped_table.fetch(:locale, 'english')
+    end
+
     def has_total_dropped_out?
       has_panel_heading?('14 Dropped out')
     end

@@ -51,12 +51,15 @@ module Summary
     end
 
     def has_notes_headers?
-      headers = notes_table.all('dt')
-      actual_notes_headers = (0..3).map { |cell_num| headers[cell_num].text }
-      expect(actual_notes_headers).to eq(expected_notes_headers)
+      array_of_elements_equal?(
+        elements: notes_table.all('dt'),
+        ids: (0..3),
+        expectation: expected_notes_headers
+      )
     end
 
     def has_contact_dates?
+      # not updated to `array_of_elements_equal` b/c different implementation
       dates = notes_table.all('em')
       expect(
         (0..3).map do |cell_num|
@@ -81,9 +84,11 @@ module Summary
     end
 
     def has_form_labels?
-      labels = all('.control-label')
-      actual_labels = (0..1).map { |label_num| labels[label_num].text }
-      expect(actual_labels).to eq(expected_notes_form_labels)
+      array_of_elements_equal?(
+        elements: all('.control-label'),
+        ids: (0..1),
+        expectation: expected_notes_form_heading
+      )
     end
 
     private

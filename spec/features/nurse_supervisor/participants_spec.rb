@@ -12,15 +12,16 @@ feature 'Nurse Supervisor, Participants', metadata: :first do
   end
 
   scenario 'Nurse Supervisor sees information for completed participants' do
-    expect(nurse_supervisor).to have_total_completed
+    expect(completed_participant_table).to have_total_completed
     2.times { navigation.scroll_down }
-    expect(nurse_supervisor).to have_completed_participant_information
+    expect(completed_participant_table)
+      .to have_completed_participant_information
   end
 
   scenario 'Nurse Supervisor sees information for dropped participants' do
-    expect(nurse_supervisor).to have_total_dropped_out
+    expect(dropped_participant_table).to have_total_dropped_out
     3.times { navigation.scroll_down }
-    expect(nurse_supervisor).to have_dropped_participant_information
+    expect(dropped_participant_table).to have_dropped_participant_information
   end
 
   scenario 'Nurse Supervisor sees all active participants' do
@@ -167,8 +168,8 @@ feature 'Portuguese Nurse Supervisor, Participants', metadata: :not_first do
 
   scenario 'Sees correct translation for terminating participants' do
     navigation.scroll_down
-    patient_603.terminate
+    active_patient_603.terminate
 
-    expect(patient_603).to be_dropped
+    expect(dropped_patient_603).to be_dropped
   end
 end

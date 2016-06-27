@@ -7,6 +7,7 @@ require './lib/pages/nurse_tasks'
 require './lib/pages/supervisor_page'
 require './lib/pages/supervisor/participants'
 require './lib/pages/supervisor/active_table'
+require './lib/pages/supervisor/complete_table'
 require './lib/pages/supervisor/dropped_table'
 require './lib/pages/supervisor/pending_table'
 require './lib/pages/tasks/confirmation_call'
@@ -35,6 +36,18 @@ end
 
 def active_participant_table
   @active_participant_table ||= Supervisor::ActiveTable.new(pt_id: 1)
+end
+
+def completed_participant_table
+  @completed_participant_table ||= Supervisor::CompletedTable.new(
+    locale: 'english'
+  )
+end
+
+def dropped_participant_table
+  @dropped_participant_table ||= Supervisor::DroppedTable.new(
+    locale: 'english'
+  )
 end
 
 def spanish_supervisor_participants

@@ -41,9 +41,11 @@ class YourPatients
   end
 
   def ordered_correctly?
-    rows = all('tr')
-    actual_results = (1..12).map { |i| rows[i].text }
-    expect(actual_results).to eq(expected_results)
+    array_of_elements_equal?(
+      elements: all('tr'),
+      ids: (1..12),
+      expectation: expected_results
+    )
   end
 
   def has_tasks_ordered_correctly?
@@ -102,9 +104,11 @@ class YourPatients
   end
 
   def has_table_headers?
-    headers = all('th')
-    actual_headers = (0..3).map { |i| headers[i].text }
-    expect(actual_headers).to eq(expected_headers)
+    array_of_elements_equal?(
+      elements: all('th'),
+      ids: (0..3),
+      expectation: expected_headers
+    )
   end
 
   def has_key?

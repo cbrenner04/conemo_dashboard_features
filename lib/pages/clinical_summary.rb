@@ -29,16 +29,20 @@ class ClinicalSummary
 
   def has_headers?
     find('th', match: :first)
-    headers = all('th')
-    actual_headers = [1, 2, 4].map { |heading_num| headers[heading_num].text }
-    expect(actual_headers).to eq(expected_headers)
+    array_of_elements_match?(
+      elements: all('th'),
+      ids: [1, 2, 4],
+      expectation: expected_headers
+    )
   end
 
   def has_legend?
     visible?
-    legend = find('.table-condensed').all('td')
-    actual_legend = (0..5).map { |row_num| legend[row_num].text }
-    expect(actual_legend).to eq(expected_legend)
+    array_of_elements_match?(
+      elements: find('.table-condensed').all('td'),
+      ids: (0..5),
+      expectation: expected_legend
+    )
   end
 
   def has_one_non_connectivity_icon_in_current_lesson?

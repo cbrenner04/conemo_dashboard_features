@@ -33,31 +33,42 @@ module NewParticipants
 
     def has_form_fields?
       find('.form-group', match: :first)
-      labels = all('.control-label')
-      actual = (0..22).map { |label_number| labels[label_number].text }
-      expect(actual).to eq(expected_form_fields)
+      array_of_elements_equal?(
+        elements: all('.control-label'),
+        ids: (0..22),
+        expectation: expected_form_fields
+      )
     end
 
     def has_health_unit_options?
       selector[0].click
-      selections = all('.select2-result-label')
-      actual = (0..9).map { |selector_num| selections[selector_num].text }
+      array_of_elements_equal(
+        elements: all('.select2-result-label'),
+        ids: (0..9),
+        expectation: expected_health_unit_options
+      )
       select_response(site)
-      expect(actual).to eq(expected_health_unit_options)
     end
 
     def has_relationship_options?
       navigation.scroll_down
-      [1, 2, 6].each do |selector_number|
-        check_relationship_options(selector_number)
+      [1, 2, 6].each do |selector_id|
+        selector[selector_id].click
+        array_of_elements_equal?(
+          elements: all('.select2-result-label'),
+          ids: (0..number_of_choices),
+          expectation: expected_relationship_options
+        )
+        select_response(choice)
       end
     end
 
     def has_gender_options?
-      gender_group = find('.form-group', text: gender_label)
-                     .all('.radio-inline')
-      actual = (0..1).map { |option_number| gender_group[option_number].text }
-      expect(actual).to eq(expected_gender_options)
+      array_of_elements_equal?(
+        elements: find('.form-group', text: gender_label).all('.radio-inline'),
+        ids: (0..1),
+        expectation: expected_gender_options
+      )
     end
 
     private
@@ -66,13 +77,8 @@ module NewParticipants
       Navigation.new(locale: @locale)
     end
 
-    def check_relationship_options(selector_number)
-      selector[selector_number].click
-      actual = (0..number_of_choices).map do |option_number|
-        response_selector[option_number].text
-      end
-      expect(actual).to eq expected_relationship_options
-      select_response(choice)
+    def select_response(choice)
+      find('.select2-result-label', text: choice).click
     end
 
     def number_of_choices

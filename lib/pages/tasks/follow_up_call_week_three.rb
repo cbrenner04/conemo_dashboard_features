@@ -35,9 +35,11 @@ module Tasks
     end
 
     def has_difficulties_options?
-      checkboxes = all('.checkbox')
-      actual = (0..8).map { |i| checkboxes[i].text }
-      expect(actual).to eq(options)
+      array_of_elements_equal?(
+        elements: all('.checkbox'),
+        ids: (0..8),
+        expectations: options
+      )
     end
 
     def has_difficulties_directions?

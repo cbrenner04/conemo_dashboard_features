@@ -37,14 +37,16 @@ class Lessons
     open_add_lesson
     enter_title_and_tx_day
     choose 'Yes'
-    fill_in 'lesson[pre_planning_content]', with: 'You should plan an activity'
-    fill_in 'lesson[activity_choices]', with: "Act. 1\nAct. 2\nAct. 3"
-    fill_in 'lesson[post_planning_content]', with: 'Planning is good'
-    fill_in 'lesson[non_planning_content]', with: 'You should really plan'
-    fill_in 'lesson[feedback_after_days]', with: 2
-    fill_in 'lesson[planning_response_yes_content]', with: 'Great job!'
-    fill_in 'lesson[planning_response_no_content]', with: 'No good'
-    fill_in 'lesson[non_planning_response_content]', with: 'You should answer'
+    inputs = ['pre_planning_content', 'activity_choices',
+              'post_planning_content', 'non_planning_content',
+              'feedback_after_days', 'planning_response_yes_content',
+              'planning_response_no_content', 'non_planning_response_content']
+    responses = ['You should plan an activity', "Act. 1\nAct. 2\nAct. 3",
+                 'Planning is good', 'You should really plan', 2, 'Great job!',
+                 'No good', 'You should answer']
+    inputs.zip(responses) do |input, response|
+      fill_in "lesson[#{input}]", with: response
+    end
     navigation.submit
   end
 

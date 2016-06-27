@@ -7,14 +7,6 @@ module ContactInformationForm
     all('.select2-container')
   end
 
-  def response_selector
-    all('.select2-result-label')
-  end
-
-  def select_response(choice)
-    find('.select2-result-label', text: choice).click
-  end
-
   def has_form_visible?
     has_css? '#participant_first_name'
   end

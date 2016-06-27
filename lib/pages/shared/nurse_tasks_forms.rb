@@ -44,23 +44,21 @@ module NurseTasksForms
   end
 
   def has_task_form_headings?(number_of_labels)
-    heading = all('.control-label')
-    actual_headings = (0..number_of_labels).map do |label_num|
-      heading[label_num].text
-    end
-
-    expect(actual_headings).to eq(expected_headings)
+    array_of_elements_equal?(
+      elements: all('.control-label'),
+      ids: (0..number_of_labels),
+      expectation: expected_headings
+    )
   end
 
   def has_task_options?(selector_id, number_of_labels,
                         expected_options = options)
     selector[selector_id].click
-    option = all('.select2-result-label')
-    actual_options = (0..number_of_labels).map do |label_num|
-      option[label_num].text
-    end
-
-    expect(actual_options).to eq(expected_options)
+    array_of_elements_equal?(
+      elements: all('.select2-result-label'),
+      ids: (0..number_of_labels),
+      expectation: expected_options
+    )
   end
 
   def has_current_date_selections?

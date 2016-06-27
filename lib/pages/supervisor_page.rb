@@ -16,12 +16,17 @@ class SupervisorPage
   end
 
   def has_nurses?
+    # not updated to `array_of_elements_equal?` b/c different implementation
     headings = all('.panel-heading', text: 'Nurse-')
     actual_nurses = (0..4).map do |heading_num|
       headings[heading_num].text[0..17]
     end
     expect(actual_nurses).to eq(EXPECTED_NURSES)
   end
+
+  EXPECTED_NURSES = ['Nurse-400, English', 'Nurse-401, English',
+                     'Nurse-403, English', 'Nurse-402, English',
+                     'Nurse-404, English'].freeze
 
   def return_to_home
     first('.navbar-brand').click
@@ -40,10 +45,6 @@ class SupervisorPage
         list_item.has_text?(rescheduled_and_canceled_tasks_list[list_item_id])
     end
   end
-
-  EXPECTED_NURSES = ['Nurse-400, English', 'Nurse-401, English',
-                     'Nurse-403, English', 'Nurse-402, English',
-                     'Nurse-404, English'].freeze
 
   def has_task_canceled?(task)
     toggle_canceled_rescheduled_tasks

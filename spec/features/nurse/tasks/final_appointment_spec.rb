@@ -129,12 +129,13 @@ feature 'Nurse, Participant Tasks, Final appointment', metadata: :not_first do
     english_nurse.sign_out
     english_supervisor.sign_in
 
-    expect(nurse_supervisor_5).to have_updated_completed
-    expect(nurse_supervisor_5).to have_new_completed_participant_information
+    expect(completed_participant_table).to have_updated_completed
+    expect(completed_participant_table)
+      .to have_new_completed_participant_information
 
     # confirm that supervisor can still access timeline and clinical summary
     navigation.scroll_down
-    nurse_supervisor_5.select_completed_pt
+    completed_participant_table.select_completed_pt
 
     expect(timeline).to be_on_page
 

@@ -51,9 +51,11 @@ class PendingParticipants
 
   def has_pending_table_headers?
     find('th', match: :first)
-    table_headings = all('th')
-    actual = (0..4).map { |heading_num| table_headings[heading_num].text }
-    expect(actual).to match(expected_pending_headers)
+    array_of_elements_equal?(
+      elements: all('th'),
+      ids: (0..4),
+      expectation: expected_pending_headers
+    )
   end
 
   def has_pending_participant_table_title?

@@ -13,6 +13,7 @@ module Summary
     end
 
     def has_lesson_table_content?
+      # not updated to `array_of_elements_equal?` b/c different implementation
       total_rows = lesson_table.all('tr').count - 1
       table_content = (1..total_rows).map { |row_num| lesson_row(row_num).text }
       expect(table_content).to eq(expected_lessons)
@@ -41,15 +42,17 @@ module Summary
     end
 
     def has_lesson_release_dates?
-      actual_release = (0..(total_lessons - 1)).map do |release_number|
-        all('.release-date')[release_number].text
-      end
       expectation = if total_lessons == 17
                       expected_release_dates_2
                     else
                       expected_release_dates_1
                     end
-      expect(actual_release).to eq(expectation)
+
+      array_of_elements_equal?(
+        elements: all('.release_date'),
+        ids: (0..(total_lessons - 1)),
+        expectation: expectation
+      )
     end
 
     private

@@ -54,16 +54,20 @@ class ContactInformation
   end
 
   def has_contact_information_table_headings?
-    headings = contact_information_div.all('strong')
-    actual_headings = (0..9).map { |heading_num| headings[heading_num].text }
-    expect(actual_headings).to eq(expected_headings)
+    array_of_elements_equal?(
+      elements: contact_information_div.all('strong'),
+      ids: (0..9),
+      expectation: expected_headings
+    )
   end
 
   def has_extra_contact_information_table_headings?
     sleep(0.25) # misses the last heading otheriwse
-    headings = contact_information_div.all('strong')
-    actual_headings = (8..19).map { |heading_num| headings[heading_num].text }
-    expect(actual_headings).to eq(expected_extra_headings)
+    array_of_elements_equal?(
+      elements: contact_information_div.all('strong'),
+      ids: (8..19),
+      expectation: expected_extra_headings
+    )
   end
 
   def has_saved_contact_information_alert?

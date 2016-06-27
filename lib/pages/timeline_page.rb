@@ -181,6 +181,7 @@ class TimelinePage
   end
 
   def has_contact_dates?
+    # not updated to `array_of_elements_equal?` b/c different implementation
     timeline_headings = all('.timeline-heading')
     actual_contact_dates = (0..8).map do |i|
       year = today.strftime('%Y')
@@ -192,9 +193,11 @@ class TimelinePage
   end
 
   def has_timeline_headings?
-    timeline = find('.timeline').all('strong')
-    actual_headings = (0..10).map { |i| timeline[i].text }
-    expect(actual_headings).to eq(expected_timeline_headings.reverse)
+    array_of_elements_equal?(
+      elements: find('.timeline').all('strong'),
+      ids: (0..10),
+      expectation: expected_timeline_headings.reverse
+    )
   end
 
   private

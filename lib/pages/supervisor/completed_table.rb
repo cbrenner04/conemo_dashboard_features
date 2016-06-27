@@ -7,6 +7,10 @@ module Supervisor
     include Capybara::DSL
     include Translations::SupervisorPageTranslations::ParticipantsTranslations
 
+    def initialize(completed_table)
+      @locale ||= completed_table.fetch(:locale, 'english')
+    end
+
     def has_total_completed?
       has_panel_heading?('12 Completed')
     end
