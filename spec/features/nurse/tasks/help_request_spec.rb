@@ -92,7 +92,7 @@ feature 'Nurse, Participant Tasks, Help request', metadata: :not_first do
     english_nurse_401.sign_out
     english_supervisor.sign_in
 
-    expect(nurse_supervisor_14).to have_help_request_canceled
+    expect(nurse_supervisor_14).to have_task_canceled 'Help request'
     expect(help_request).to have_cancel_reason
   end
 end

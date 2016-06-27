@@ -141,7 +141,7 @@ feature 'Admin, Pending Participants', metadata: :not_first do
     english_admin.sign_out
     english_supervisor.sign_in
 
-    expect(nurse_supervisor_13).to have_patient
+    expect(pending_pt_2000).to have_patient
   end
 
   scenario 'Admin edits pending participant\'s information' do

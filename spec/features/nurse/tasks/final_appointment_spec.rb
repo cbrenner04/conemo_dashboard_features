@@ -35,7 +35,8 @@ feature 'Nurse, Participant Tasks, Final appointment', metadata: :first do
     english_nurse.sign_out
     english_supervisor.sign_in
 
-    expect(nurse_supervisor_6).to have_final_appointment_rescheduled
+    expect(nurse_supervisor_6)
+      .to have_task_rescheduled 'Final in person appointment'
     expect(reschedule_form).to have_reschedule_reason
   end
 end
@@ -72,7 +73,8 @@ feature 'Nurse, Participant Tasks, Final appointment', metadata: :not_first do
     english_nurse.sign_out
     english_supervisor.sign_in
 
-    expect(nurse_supervisor_5).to have_final_appointment_canceled
+    expect(nurse_supervisor_5)
+      .to have_task_canceled 'Final in person appointment'
     expect(cancel_form).to have_cancellation_reason
   end
 

@@ -26,12 +26,10 @@ class NurseTasks
   end
 
   def open
-    tries ||= 2
-    find('tr', text: @pt_id).click
-    find('h3', text: tasks_heading)
-  rescue Capybara::ElementNotFound, Selenium::WebDriver::Error::UnknownError
-    navigation.scroll_up
-    retry unless (tries -= 1).zero?
+    retry_action_with_scroll_up do
+      find('tr', text: @pt_id).click
+      find('h3', text: tasks_heading)
+    end
   end
 
   def return

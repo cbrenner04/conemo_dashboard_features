@@ -164,7 +164,7 @@ feature 'Nurse, Non-adherence call', metadata: :not_first do
     english_nurse_401.sign_out
     english_supervisor.sign_in
 
-    expect(nurse_supervisor_15).to have_non_adherence_call_canceled
+    expect(nurse_supervisor_15).to have_task_canceled 'Non-adherence call'
     expect(non_adherence_call).to have_cancel_reason
   end
 end

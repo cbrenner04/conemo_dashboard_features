@@ -159,7 +159,8 @@ feature 'Nurse, Non-connectivity call', metadata: :not_first do
     english_nurse_401.sign_out
     english_supervisor.sign_in
 
-    expect(nurse_supervisor_16).to have_non_connectivity_call_canceled
+    expect(nurse_supervisor_16)
+      .to have_task_canceled 'Call due to no connectivity'
     expect(lack_of_connectivity_call).to have_cancel_reason
   end
 end

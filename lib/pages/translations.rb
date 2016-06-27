@@ -5,6 +5,14 @@ module Translations
     thing[@locale.to_sym]
   end
 
+  def language
+    @language ||= localize(
+      spanish: 'Spanish',
+      portuguese: 'Portuguese',
+      english: 'English'
+    )
+  end
+
   def locale_hour(time)
     localize(
       spanish: " a las #{time.strftime('%I')}",

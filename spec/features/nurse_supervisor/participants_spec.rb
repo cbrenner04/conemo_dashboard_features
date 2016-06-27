@@ -8,34 +8,36 @@ feature 'Nurse Supervisor, Participants', metadata: :first do
 
   scenario 'Nurse Supervisor sees all pending participants' do
     # including enrollment date?
-    expect(nurse_supervisor).to have_pending_participants
+    expect(pending_participants_table).to have_pending_participants
   end
 
   scenario 'Nurse Supervisor sees information for completed participants' do
     expect(nurse_supervisor).to have_total_completed
+    2.times { navigation.scroll_down }
     expect(nurse_supervisor).to have_completed_participant_information
   end
 
   scenario 'Nurse Supervisor sees information for dropped participants' do
     expect(nurse_supervisor).to have_total_dropped_out
+    3.times { navigation.scroll_down }
     expect(nurse_supervisor).to have_dropped_participant_information
   end
 
   scenario 'Nurse Supervisor sees all active participants' do
-    expect(nurse_supervisor).to have_total_active
+    expect(active_participant_table).to have_total_active
     # check for enrollment date and date added
     # may have a dependency issue
-    expect(nurse_supervisor).to have_active_patient
+    expect(active_participant_table).to have_active_patient
     # check that it shows a sample of all of the participants
-    expect(nurse_supervisor).to have_active_participant_information
+    expect(active_participant_table).to have_active_participant_information
   end
 
   scenario 'Nurse Supervisor reassigns a participant to a different nurse' do
-    expect(patient_413_nurse_400).to be_active
+    expect(active_patient_413_nurse_400).to be_active
 
-    patient_413_nurse_400.reassign
+    participant_413.reassign
 
-    expect(patient_413_nurse_404).to be_active
+    expect(active_patient_413_nurse_404).to be_active
 
     english_supervisor.sign_out
     english_nurse_404.sign_in
@@ -56,25 +58,25 @@ feature 'Nurse Supervisor, Participants', metadata: :not_first do
   background { english_supervisor.sign_in }
 
   scenario 'Nurse Supervisor can only assign to nurse they are supervising' do
-    patient_495.activate
+    pending_patient_495.activate
 
-    expect(patient_495).to have_nurse_options
+    expect(pending_patient_495).to have_nurse_options
   end
 
   scenario 'Nurse Supervisor activates a participant' do
-    patient_496.activate
+    pending_patient_496.activate
     patient_496.assign_nurse
 
-    expect(patient_496).to be_active
+    expect(active_patient_496).to be_active
   end
 
   scenario 'Nurse Supervisor terminates an active participant' do
-    expect(patient_4036).to be_active
+    expect(active_patient_4036).to be_active
 
-    patient_4036.terminate
+    active_patient_4036.terminate
 
-    expect(patient_4036).to_not be_active
-    expect(patient_4036).to be_dropped
+    expect(active_patient_4036).to_not be_active
+    expect(dropped_patient_4036).to be_dropped
   end
 end
 
@@ -83,20 +85,20 @@ feature 'Spanish Nurse Supervisor, Participants', metadata: :not_first do
 
   scenario 'Sees correct translations' do
     expect(spanish_supervisor_participants).to have_participants_title
-    expect(spanish_supervisor_participants).to have_pending_panel_title
-    expect(spanish_supervisor_participants).to have_pending_table_headers
-    expect(spanish_supervisor_participants).to have_active_panel_title
-    expect(spanish_supervisor_participants).to have_active_table_headers
-    expect(spanish_supervisor_participants).to have_completed_panel_title
-    expect(spanish_supervisor_participants).to have_completed_table_headers
-    expect(spanish_supervisor_participants).to have_dropped_panel_title
-    expect(spanish_supervisor_participants).to have_dropped_table_headers
+    expect(spanish_pending_participants).to have_pending_panel_title
+    expect(spanish_pending_participants).to have_pending_table_headers
+    expect(spanish_active_participants).to have_active_panel_title
+    expect(spanish_active_participants).to have_active_table_headers
+    expect(spanish_completed_participants).to have_completed_panel_title
+    expect(spanish_completed_participants).to have_completed_table_headers
+    expect(spanish_dropped_participants).to have_dropped_panel_title
+    expect(spanish_dropped_participants).to have_dropped_table_headers
   end
 
   scenario 'Sees correct translation for activating a participant' do
-    patient_506.activate
+    pending_patient_506.activate
 
-    expect(patient_506).to have_nurse_assignment_form_visible
+    expect(pending_patient_506).to have_nurse_assignment_form_visible
   end
 
   scenario 'Sees correct translations for editing participant information' do
@@ -114,13 +116,13 @@ feature 'Spanish Nurse Supervisor, Participants', metadata: :not_first do
   scenario 'Sees correct translations for reassigning nurse' do
     patient_502.reassign
 
-    expect(patient_502).to have_nurse_assignment_form_visible
+    expect(pending_patient_502).to have_nurse_assignment_form_visible
   end
 
   scenario 'Sees correct translation for terminating participants' do
-    patient_503.terminate
+    active_patient_503.terminate
 
-    expect(patient_503).to be_dropped
+    expect(dropped_patient_503).to be_dropped
   end
 end
 
@@ -129,20 +131,20 @@ feature 'Portuguese Nurse Supervisor, Participants', metadata: :not_first do
 
   scenario 'Sees correct translations' do
     expect(portuguese_supervisor_participants).to have_participants_title
-    expect(portuguese_supervisor_participants).to have_pending_panel_title
-    expect(portuguese_supervisor_participants).to have_pending_table_headers
-    expect(portuguese_supervisor_participants).to have_active_panel_title
-    expect(portuguese_supervisor_participants).to have_active_table_headers
-    expect(portuguese_supervisor_participants).to have_completed_panel_title
-    expect(portuguese_supervisor_participants).to have_completed_table_headers
-    expect(portuguese_supervisor_participants).to have_dropped_panel_title
-    expect(portuguese_supervisor_participants).to have_dropped_table_headers
+    expect(portuguese_pending_participants).to have_pending_panel_title
+    expect(portuguese_pending_participants).to have_pending_table_headers
+    expect(portuguese_active_participants).to have_active_panel_title
+    expect(portuguese_active_participants).to have_active_table_headers
+    expect(portuguese_completed_participants).to have_completed_panel_title
+    expect(portuguese_completed_participants).to have_completed_table_headers
+    expect(portuguese_dropped_participants).to have_dropped_panel_title
+    expect(portuguese_dropped_participants).to have_dropped_table_headers
   end
 
   scenario 'Sees correct translation for activating a participant' do
-    patient_606.activate
+    pending_patient_606.activate
 
-    expect(patient_606).to have_nurse_assignment_form_visible
+    expect(pending_patient_606).to have_nurse_assignment_form_visible
   end
 
   scenario 'Sees correct translations for editing participant information' do

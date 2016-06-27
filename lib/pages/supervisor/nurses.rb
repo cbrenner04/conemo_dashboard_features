@@ -187,14 +187,6 @@ module Supervisor
       @navigation ||= Navigation.new(locale: @locale)
     end
 
-    def language
-      @language ||= localize(
-        spanish: 'Spanish',
-        portuguese: 'Portuguese',
-        english: 'English'
-      )
-    end
-
     def nurse_panel
       all('.panel', text: "Nurse-#{@id}, #{language}").last
     end

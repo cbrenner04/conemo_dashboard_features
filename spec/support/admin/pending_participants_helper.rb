@@ -5,6 +5,7 @@ require './lib/pages/navigation'
 require './lib/pages/new_participants/contact_information'
 require './lib/pages/pending_participants'
 require './lib/pages/supervisor_page'
+require './lib/pages/supervisor/pending_table'
 require './lib/pages/your_patients'
 
 def contact_information
@@ -19,6 +20,10 @@ end
 
 def pending_participants
   @pending_participants ||= PendingParticipants.new(locale: 'english')
+end
+
+def pending_pt_2000
+  @pending_pt_2000 ||= Supervisor::PendingTable.new(pt_id: 2000)
 end
 
 def spanish_contact_information
