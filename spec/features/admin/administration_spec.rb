@@ -4,7 +4,7 @@
 require './lib/pages/administration'
 require './lib/pages/admin/admin_table'
 require './lib/pages/admin/devices_table'
-require './lib/pages/admin/nurse_table'
+require './lib/pages/admin/nurses_table'
 require './lib/pages/admin/participants_table'
 require './lib/pages/admin/supervisor_table'
 require './lib/pages/admin/token_page'

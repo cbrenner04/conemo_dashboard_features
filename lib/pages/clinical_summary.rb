@@ -8,7 +8,6 @@ class ClinicalSummary
   include Translations::ClinicalSummaryTranslations
 
   def initialize(clinical_summary)
-    # @id ||= clinical_summary[:id]
     @locale ||= clinical_summary.fetch(:locale, 'english')
     @start_date_offset ||= clinical_summary[:start_date_offset]
     @last_seen ||= clinical_summary[:last_seen]

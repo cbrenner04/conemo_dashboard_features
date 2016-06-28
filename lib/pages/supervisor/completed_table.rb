@@ -32,25 +32,10 @@ module Supervisor
         array_of_elements_match?(
           elements: all('tr'),
           ids: (1..12),
-          expectation: COMPLETED_PT_EXPECTED_ROWS
+          expectation: completed_pt_expected_rows
         )
       end
     end
-
-    COMPLETED_PT_EXPECTED_ROWS = [
-      "Nurse-401, English Last-4041, First 4041 #{standard_date(today - 14)}",
-      "Nurse-401, English Last-4042, First 4042 #{standard_date(today - 15)}",
-      "Nurse-401, English Last-4043, First 4043 #{standard_date(today - 16)}",
-      "Nurse-401, English Last-4044, First 4044 #{standard_date(today - 17)}",
-      "Nurse-401, English Last-4045, First 4045 #{standard_date(today - 18)}",
-      "Nurse-401, English Last-4046, First 4046 #{standard_date(today - 19)}",
-      "Nurse-403, English Last-4047, First 4047 #{standard_date(today - 20)}",
-      "Nurse-403, English Last-4048, First 4048 #{standard_date(today - 21)}",
-      "Nurse-403, English Last-4049, First 4049 #{standard_date(today - 22)}",
-      "Nurse-403, English Last-4050, First 4050 #{standard_date(today - 23)}",
-      "Nurse-403, English Last-4051, First 4051 #{standard_date(today - 24)}",
-      "Nurse-403, English Last-4052, First 4052 #{standard_date(today - 25)}"
-    ].freeze
 
     def select_completed_pt
       completed_panel.find('input[type = search]').set('341')
@@ -77,6 +62,21 @@ module Supervisor
 
     def has_panel_heading?(heading)
       has_css?('.panel-heading', text: heading)
+    end
+
+    def completed_pt_expected_rows
+      ["Nurse-401, English Last-4041, First 4041 #{standard_date(today - 14)}",
+       "Nurse-401, English Last-4042, First 4042 #{standard_date(today - 15)}",
+       "Nurse-401, English Last-4043, First 4043 #{standard_date(today - 16)}",
+       "Nurse-401, English Last-4044, First 4044 #{standard_date(today - 17)}",
+       "Nurse-401, English Last-4045, First 4045 #{standard_date(today - 18)}",
+       "Nurse-401, English Last-4046, First 4046 #{standard_date(today - 19)}",
+       "Nurse-403, English Last-4047, First 4047 #{standard_date(today - 20)}",
+       "Nurse-403, English Last-4048, First 4048 #{standard_date(today - 21)}",
+       "Nurse-403, English Last-4049, First 4049 #{standard_date(today - 22)}",
+       "Nurse-403, English Last-4050, First 4050 #{standard_date(today - 23)}",
+       "Nurse-403, English Last-4051, First 4051 #{standard_date(today - 24)}",
+       "Nurse-403, English Last-4052, First 4052 #{standard_date(today - 25)}"]
     end
   end
 end

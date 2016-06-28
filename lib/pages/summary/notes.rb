@@ -14,7 +14,7 @@ module Summary
     include Capybara::DSL
     include NurseTasksForms
     include ClinicalSummaryTranslations
-    include NurseTasksTitles
+    include Translations::NurseTaskTitles
 
     def initialize(notes)
       @locale ||= notes.fetch(:locale, 'english')

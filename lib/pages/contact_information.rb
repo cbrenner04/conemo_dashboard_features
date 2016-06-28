@@ -10,7 +10,7 @@ class ContactInformation
   include Translations::ContactInformation
 
   def initialize(contact_information)
-    @pt_id ||= contact_information[:id]
+    @pt_id ||= contact_information[:pt_id]
     @locale ||= contact_information.fetch(:locale, 'english')
   end
 

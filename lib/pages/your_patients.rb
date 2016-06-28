@@ -44,25 +44,9 @@ class YourPatients
     array_of_elements_equal?(
       elements: all('tr'),
       ids: (1..12),
-      expectation: EXPECTED_ORDER_OF_PATIENTS
+      expectation: expected_order_of_patients
     )
   end
-
-  EXPECTED_ORDER_OF_PATIENTS = [
-    "Last-706, First 706 #{confirmation_call_title}, #{help_request_title}",
-    "Last-707, First 707 #{initial_appointment_title}",
-    "Last-708, First 708 #{follow_up_week_one_title}",
-    "Last-709, First 709 #{follow_up_week_three_title}",
-    "Last-800, First 800 #{call_to_schedule_final_title}",
-    "Last-801, First 801 #{final_appointment_title}, #{help_request_title}",
-    "Last-802, First 802 #{help_request_title}",
-    "Last-803, First 803 #{lack_of_connectivity_call_title}",
-    "Last-804, First 804 #{non_adherence_call_title}",
-    "Last-1000, First 1000 #{confirmation_call_title}, " \
-    "#{help_request_title}, #{lack_of_connectivity_call_title}",
-    "Last-322, First 322 #{follow_up_week_one_title} aBc322XyZ",
-    "Last-303, First 303 #{confirmation_call_title}"
-  ].freeze
 
   def has_tasks_ordered_correctly?
     expected_text = row_text.gsub("Last-#{@pt_id}, First #{@pt_id} ", '')
@@ -156,6 +140,22 @@ class YourPatients
       portuguese: (600..605).to_a.sample(3),
       english: english_nurse_patients
     )
+  end
+
+  def expected_order_of_patients
+    ["Last-706, First 706 #{confirmation_call_title}, #{help_request_title}",
+     "Last-707, First 707 #{initial_appointment_title}",
+     "Last-708, First 708 #{follow_up_week_one_title}",
+     "Last-709, First 709 #{follow_up_week_three_title}",
+     "Last-800, First 800 #{call_to_schedule_final_title}",
+     "Last-801, First 801 #{final_appointment_title}, #{help_request_title}",
+     "Last-802, First 802 #{help_request_title}",
+     "Last-803, First 803 #{lack_of_connectivity_call_title}",
+     "Last-804, First 804 #{non_adherence_call_title}",
+     "Last-1000, First 1000 #{confirmation_call_title}, " \
+     "#{help_request_title}, #{lack_of_connectivity_call_title}",
+     "Last-322, First 322 #{follow_up_week_one_title} aBc322XyZ",
+     "Last-303, First 303 #{confirmation_call_title}"]
   end
 
   def has_no_tasks_key?

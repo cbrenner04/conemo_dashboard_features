@@ -8,7 +8,7 @@ module ContactInfo
     include Translations::ContactInformation
 
     def initialize(smartphone_information)
-      @pt_id ||= contact_information[:id]
+      @pt_id ||= smartphone_information[:pt_id]
       @locale ||= smartphone_information.fetch(:locale, 'english')
     end
 

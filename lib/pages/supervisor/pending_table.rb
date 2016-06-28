@@ -17,7 +17,7 @@ module Supervisor
         array_of_elements_equal?(
           elements: find('tbody').all('tr'),
           ids: (0..3),
-          expectation: PENDING_PT_EXPECTED_ROWS
+          expectation: pending_pt_exepected_rows
         )
       end
     end
@@ -26,13 +26,6 @@ module Supervisor
       pending_panel
         .has_text? "Last-#{@pt_id}, First #{@pt_id} #{standard_date(today)}"
     end
-
-    PENDING_PT_EXPECTED_ROWS = [
-      "Edit Information Last-495, First 495 #{standard_date(today)} Activate",
-      "Edit Information Last-496, First 496 #{standard_date(today)} Activate",
-      "Edit Information Last-497, First 497 #{standard_date(today)} Activate",
-      "Edit Information Last-498, First 498 #{standard_date(today)} Activate"
-    ].freeze
 
     def activate
       pending_panel.find('tr', text: @pt_id).find('.fa-thumbs-up').click
@@ -48,7 +41,7 @@ module Supervisor
       array_of_elements_match?(
         elements: all('option'),
         ids: (0..4),
-        expectation: expected_options
+        expectation: EXPECTED_NURSE_OPTIONS
       )
     end
 
@@ -76,6 +69,14 @@ module Supervisor
 
     def pending_panel
       find('.panel', text: pending_participants_header)
+    end
+
+    def pending_pt_exepected_rows
+      today = standard_date(today)
+      ["Edit Information Last-495, First 495 #{today} Activate",
+       "Edit Information Last-496, First 496 #{today} Activate",
+       "Edit Information Last-497, First 497 #{today} Activate",
+       "Edit Information Last-498, First 498 #{today} Activate"]
     end
   end
 end
