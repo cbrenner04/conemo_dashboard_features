@@ -1,7 +1,8 @@
 --require env.rb
 --require spec_helper
 --require support/users_helper.rb
---require support/date_helper.rb
+--require support/date_time_helper.rb
+--require support/feature_helper.rb
 --format documentation
 --format progress
 --out 'spec/reports/run_<%= Time.now.strftime('%m.%d.%y_%H.%M.%S') %>.txt'

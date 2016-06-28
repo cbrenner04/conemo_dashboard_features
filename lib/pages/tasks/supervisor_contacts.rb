@@ -5,7 +5,7 @@ module Tasks
   # page object for supervisor contacts on nurse tasks page
   class SupervisorContacts
     include Capybara::DSL
-    include NurseTasksTranslations
+    include Translations::NurseTasksTranslations
 
     def initialize(supervisor_contacts)
       @locale ||= supervisor_contacts.fetch(:locale, 'english')

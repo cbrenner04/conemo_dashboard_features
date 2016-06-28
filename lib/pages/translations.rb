@@ -14,22 +14,22 @@ module Translations
   end
 
   def locale_hour(time)
+    hour = time.strftime('%H')
     localize(
       spanish: " a las #{time.strftime('%I')}",
-      portuguese: ", #{time.strftime('%H')}",
-      english: " #{time.strftime('%H')}"
+      portuguese: ", #{hour}",
+      english: " #{hour}"
     )
   end
 
   def standard_date(date)
+    day = date.strftime('%d')
+    month = date.strftime('%B')
+    year = date.strftime('%Y')
     localize(
       spanish: "#{spanish_weekdays[date.strftime('%A')]}, " \
-               "#{date.strftime('%d')} " \
-               "de #{spanish_months[date.strftime('%B')]} " \
-               "del #{date.strftime('%Y')}",
-      portuguese: "#{date.strftime('%d')} "  \
-                  "de #{portuguese_months[date.strftime('%B')]} " \
-                  "de #{date.strftime('%Y')}",
+               "#{day} de #{spanish_months[month]} del #{year}",
+      portuguese: "#{day} de #{portuguese_months[month]} de #{year}",
       english: date.strftime('%B %d, %Y')
     )
   end
@@ -90,13 +90,13 @@ module Translations
 
   def health_unit_options
     @health_unit_options ||= {
-      spanish: (1..10).map { |i| "Centro de salud #{i}" },
+      spanish: (1..10).map { |unit_id| "Centro de salud #{unit_id}" },
       portuguese: [
         'Adão Manoel', 'Celso Daniel', 'Dom João Nery', 'Jardim Campos',
         'Jardim Copa', 'Jardim Rubro II', 'Profeta Jeremias',
         'Santo Estevão', 'Silva Teles', 'Vila Ramos'
       ],
-      english: (1..10).map { |i| "unit #{i}" }
+      english: (1..10).map { |unit_id| "unit #{unit_id}" }
     }
   end
 end

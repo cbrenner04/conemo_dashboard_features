@@ -6,8 +6,8 @@ module Tasks
   # page object for progress bar on nurse tasks page
   class ProgressBar
     include Capybara::DSL
-    include NurseTasksTitles
-    include NurseTasksTranslations
+    include Translations::NurseTaskTitles
+    include Translations::NurseTasksTranslations
 
     def initialize(progress_bar)
       @locale ||= progress_bar.fetch(:locale, 'english')

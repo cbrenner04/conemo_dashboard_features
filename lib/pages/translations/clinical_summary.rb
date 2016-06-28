@@ -62,7 +62,7 @@ module Translations
     end
 
     def expected_contact_dates
-      [0, 14, 35, 42].map { |i| standard_date(today - i) }
+      [0, 14, 35, 42].map { |contact_date| standard_date(today - contact_date) }
     end
 
     def expected_notes_form_heading

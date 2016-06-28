@@ -58,24 +58,31 @@ module Translations
       end
 
       def english_release_dates
-        (1..15).map do |i|
-          standard_date((today - @start_date_offset) + (i - 1))
+        (1..15).map do |release_date|
+          standard_date((today - @start_date_offset) + (release_date - 1))
         end
       end
 
       def portuguese_release_dates
-        [1, 3, 6, 8, 10]
-          .map { |i| standard_date((today - @start_date_offset) + (i - 1)) }
+        [1, 3, 6, 8, 10].map do |release_date|
+          standard_date((today - @start_date_offset) + (release_date - 1))
+        end
       end
 
       def spanish_release_dates_1
-        [1, 3, 6, 8, 10, 13, 15, 17, 20, 22, 24, 27, 29, 31, 34, 36, 38, 41]
-          .map { |i| standard_date((today - @start_date_offset) + (i - 1)) }
+        dates = [1, 3, 6, 8, 10, 13, 15, 17, 20, 22,
+                 24, 27, 29, 31, 34, 36, 38, 41]
+        dates.map do |release_date|
+          standard_date((today - @start_date_offset) + (release_date - 1))
+        end
       end
 
       def spanish_release_dates_2
-        [1, 3, 6, 8, 10, 13, 15, 17, 20, 22, 27, 29, 31, 34, 36, 38, 41]
-          .map { |i| standard_date((today - @start_date_offset) + (i - 1)) }
+        dates = [1, 3, 6, 8, 10, 13, 15, 17, 20, 22,
+                 27, 29, 31, 34, 36, 38, 41]
+        dates.map do |release_date|
+          standard_date((today - @start_date_offset) + (release_date - 1))
+        end
       end
     end
   end
