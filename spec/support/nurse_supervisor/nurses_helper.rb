@@ -9,6 +9,8 @@ require './lib/pages/navigation'
 require './lib/pages/nurse_tasks'
 require './lib/pages/supervisor_page'
 require './lib/pages/supervisor/nurses'
+require './lib/pages/supervisor/supervision_note'
+require './lib/pages/supervisor/supervision_session'
 require './lib/pages/tasks/confirmation_call'
 require './lib/pages/tasks/help_request'
 require './lib/pages/tasks/lack_of_connectivity_call'
@@ -49,6 +51,22 @@ def portuguese_supervisor_nurses
   @portuguese_supervisor_nurses ||= Supervisor::Nurses.new(
     locale: 'portuguese'
   )
+end
+
+def supervision_session_form
+  @supervision_session_form ||= Supervisor::SupervisionSessionForm.new(
+    locale: 'english'
+  )
+end
+
+def spanish_supervision_session_form
+  @spanish_supervision_session_form ||=
+    Supervisor::SupervisionSessionForm.new(locale: 'spanish')
+end
+
+def portuguese_supervision_session_form
+  @portuguese_supervision_session_form ||=
+    Supervisor::SupervisionSessionForm.new(locale: 'portuguese')
 end
 
 def pt_300_nurse_tasks
@@ -148,14 +166,20 @@ def nurse_401
     id: 401,
     num_participants: 41,
     num_tasks: 20,
-    num_overdue: 10,
+    num_overdue: 10
+  )
+end
+
+def nurse_401_supervision_session
+  @nurse_401_supervision_session ||= Supervisor::SupervisionSession.new(
+    id: 401,
     supervision_date: 8.business_days.ago,
     supervision_time: today_at_11_am
   )
 end
 
-def nurse_402
-  @nurse_402 ||= Supervisor::Nurses.new(
+def nurse_402_supervision_session
+  @nurse_402_supervision_session ||= Supervisor::SupervisionSession.new(
     id: 402,
     supervision_date: 12.business_days.ago,
     supervision_time: today_at_11_am
@@ -163,7 +187,11 @@ def nurse_402
 end
 
 def nurse_403
-  @nurse_403 ||= Supervisor::Nurses.new(
+  @nurse_403 ||= Supervisor::Nurses.new(id: 403)
+end
+
+def nurse_403_supervision_session
+  @nurse_403_supervision_session ||= Supervisor::SupervisionSession.new(
     id: 403,
     supervision_date: today,
     supervision_time: now
@@ -171,14 +199,31 @@ def nurse_403
 end
 
 def nurse_404
-  @nurse_404 ||= Supervisor::Nurses.new(
+  @nurse_404 ||= Supervisor::Nurses.new(id: 404)
+end
+
+def nurse_404_supervision_note
+  @nurse_404_supervision_note ||= Supervisor::SupervisionNote.new(
     id: 404,
     note: 'Supervision Note'
   )
 end
 
+def nurse_404_supervision_session
+  @nurse_404_supervision_session ||= Supervisor::SupervisionSession.new(
+    id: 404
+  )
+end
+
 def nurse_500
   @nurse_500 ||= Supervisor::Nurses.new(
+    id: 500,
+    locale: 'spanish'
+  )
+end
+
+def nurse_500_supervision_session
+  @nurse_500_supervision_session ||= Supervisor::SupervisionSession.new(
     id: 500,
     locale: 'spanish',
     supervision_date: 8.business_days.ago,
@@ -188,6 +233,13 @@ end
 
 def nurse_600
   @nurse_600 ||= Supervisor::Nurses.new(
+    id: 600,
+    locale: 'portuguese'
+  )
+end
+
+def nurse_600_supervision_session
+  @nurse_600_supervision_session ||= Supervisor::SupervisionSession.new(
     id: 600,
     locale: 'portuguese',
     supervision_date: 8.business_days.ago,
