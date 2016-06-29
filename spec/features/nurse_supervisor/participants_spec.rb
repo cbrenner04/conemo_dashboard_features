@@ -8,7 +8,7 @@ feature 'Nurse Supervisor, Participants', metadata: :first do
 
   scenario 'Nurse Supervisor sees all pending participants' do
     # including enrollment date?
-    expect(pending_participants_table).to have_pending_participants
+    expect(pending_participant_table).to have_pending_participants
   end
 
   scenario 'Nurse Supervisor sees information for completed participants' do

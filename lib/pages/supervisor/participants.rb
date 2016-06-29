@@ -55,5 +55,9 @@ module Supervisor
         find('option', text: 'Nurse-404, English').double_click
       end
     end
+
+    def active_panel
+      find('.panel', text: active_participants_header)
+    end
   end
 end

@@ -7,6 +7,8 @@ require './lib/pages/nurse_tasks'
 require './lib/pages/summary/notes'
 require './lib/pages/summary/lessons_table'
 
+ONE_HOUR_AGO = now - one_hour
+
 def navigation
   @navigation ||= Navigation.new(locale: 'english')
 end
@@ -53,8 +55,7 @@ end
 
 def pt_318_clinical_summary
   @pt_318_clinical_summary ||= ClinicalSummary.new(
-    # id: 318,
-    last_seen: Datenow - (13 / 24.0)
+    last_seen: now - (13 * one_hour)
   )
 end
 
@@ -64,8 +65,7 @@ end
 
 def pt_319_clinical_summary
   @pt_319_clinical_summary ||= ClinicalSummary.new(
-    # id: 319,
-    last_seen: Datenow - (11 / 24.0)
+    last_seen: now - (11 * one_hour)
   )
 end
 
@@ -358,7 +358,7 @@ def pt_500_clinical_summary
   @pt_500_clinical_summary ||= ClinicalSummary.new(
     locale: 'spanish',
     start_date_offset: 12,
-    last_seen: Datenow - (1 / 24.0)
+    last_seen: ONE_HOUR_AGO
   )
 end
 
@@ -422,7 +422,7 @@ def pt_600_clinical_summary
   @pt_600_clinical_summary ||= ClinicalSummary.new(
     locale: 'portuguese',
     start_date_offset: 12,
-    last_seen: Datenow - (1 / 24.0)
+    last_seen: ONE_HOUR_AGO
   )
 end
 
@@ -457,7 +457,7 @@ end
 
 def pt_1000_clinical_summary
   @pt_1000_clinical_summary ||= ClinicalSummary.new(
-    last_seen: Datenow - 3
+    last_seen: DateTime.now - 3
   )
 end
 

@@ -19,7 +19,7 @@ end
 
 def pt_601_supervisor_contact
   @pt_601_supervisor_contact ||=
-    Tasks::SupervisorContact.new(locale: 'portuguese')
+    Tasks::SupervisorContacts.new(locale: 'portuguese')
 end
 
 def pt_602_nurse_tasks

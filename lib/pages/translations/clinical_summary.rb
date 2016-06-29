@@ -10,7 +10,7 @@ module Translations
 
     def clinical_summary_link
       localize(
-        spanish: 'Historia del Paciente',
+        spanish: 'Historial de Participación',
         portuguese: 'Histórico do participante',
         english: 'Clinical Summary'
       )

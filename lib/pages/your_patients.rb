@@ -158,8 +158,11 @@ class YourPatients
      "Last-303, First 303 #{confirmation_call_title}"]
   end
 
+  def key
+    find('.table-condensed')
+  end
+
   def has_no_tasks_key?
-    key = find('.table-condensed')
     success_text = key.find('.success').text
     expect(success_text).to eq(no_tasks)
   end

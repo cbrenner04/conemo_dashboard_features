@@ -62,7 +62,6 @@ module Supervisor
     end
 
     def dropped_pt_expected_rows
-      today = standard_date(today)
       ["Nurse-402, English Last-202, First 202 #{standard_date(today - 5)}",
        "Nurse-402, English Last-203, First 203 #{standard_date(today - 6)}",
        "Nurse-402, English Last-204, First 204 #{standard_date(today - 7)}",

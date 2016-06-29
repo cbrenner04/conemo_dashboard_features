@@ -80,7 +80,7 @@ module NurseTasksForms
     hour_selector_id = 8
     minute_selector_id = 9
 
-    has_next_date_selectors? &&
+    has_next_contact_selectors? &&
       has_hour_selector?(hour_selector_id) &&
       selector[minute_selector_id].has_text?(now.strftime('%M'))
   end

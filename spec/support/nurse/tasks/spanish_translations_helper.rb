@@ -18,7 +18,7 @@ def pt_501_nurse_tasks
 end
 
 def pt_501_supervisor_contact
-  @pt_501_supervisor_contact ||= Tasks::SupervisorContact.new(
+  @pt_501_supervisor_contact ||= Tasks::SupervisorContacts.new(
     locale: 'spanish'
   )
 end
