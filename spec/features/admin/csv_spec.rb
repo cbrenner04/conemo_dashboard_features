@@ -9,10 +9,9 @@ Dir['./lib/pages/admin/csvs/*.rb'].each { |file| require file }
 def check_size_and_headers(file, headers)
   @driver.get "#{ENV['Base_URL']}/admin/#{file}/export?locale=en"
   @driver.find_element(css: '.btn-primary').click
-  f = "#{@download_dir}/#{file}_#{Time.now.strftime('%Y-%m-%d_%Hh%Mm%S')}.csv"
-  File.size(f).should be > 0
-  csv_data = CSV.read(f)
-  csv_data.include?(headers).should == true
+  new_file = "#{@download_dir}/#{file}_#{now.strftime('%Y-%m-%d_%Hh%Mm%S')}.csv"
+  File.size(new_file).should be > 0
+  CSV.read(new_file).include?(headers).should == true
 end
 
 feature 'Admin downloads, checks csv', :browser, metadata: :not_first do

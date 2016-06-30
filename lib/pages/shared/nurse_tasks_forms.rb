@@ -19,9 +19,9 @@ module NurseTasksForms
     @selector ||= all('.select2-container')
   end
 
-  def enter_task_location(selector_num)
+  def enter_task_location(selector_id)
     find('.select2-container', match: :first)
-    selector[selector_num].click
+    selector[selector_id].click
     select_list_item(location_options.sample)
   end
 
@@ -29,11 +29,13 @@ module NurseTasksForms
     find('.select2-result-label', text: item).click
   end
 
-  def select_next_date(num)
-    selector[num - 1].click
+  def select_next_date(day_selector_id)
+    selector[day_selector_id - 1].click
     select_list_item(tomorrow.strftime('%B'))
-    selector[num].click
+
+    selector[day_selector_id].click
     tomorrow_int = tomorrow.strftime('%-d').to_i
+
     if tomorrow_int < 10
       first('.select2-result-label', text: tomorrow_int).click
     else
@@ -41,35 +43,83 @@ module NurseTasksForms
     end
   end
 
-  def has_task_form_headings?(num)
-    heading = all('.control-label')
-    actual_headings = (0..num).map { |i| heading[i].text }
-    expect(actual_headings).to eq(expected_headings)
+  def has_task_form_headings?(number_of_labels)
+    array_of_elements_equal?(
+      elements: all('.control-label'),
+      ids: (0..number_of_labels),
+      expectation: expected_headings
+    )
   end
 
-  def has_task_options?(sel, num, opt = options)
-    selector[sel].click
-    option = all('.select2-result-label')
-    actual_options = (0..num).map { |i| option[i].text }
-    expect(actual_options).to eq(opt)
+  def has_task_options?(selector_id, number_of_labels,
+                        expected_options = options)
+    selector[selector_id].click
+    array_of_elements_equal?(
+      elements: all('.select2-result-label'),
+      ids: (0..number_of_labels),
+      expectation: expected_options
+    )
   end
 
-  def has_date_selectors?(date, m, d, y)
-    month = locale_month(date.strftime('%B'))
-    selector[m].has_text?(month) &&
-      selector[d].has_text?(date.strftime('%-d')) &&
-      selector[y].has_text?(date.strftime('%Y'))
+  def has_current_date_selections?
+    hour_selector_id = 3
+
+    has_current_date_selectors? &&
+      has_hour_selector?(hour_selector_id)
   end
 
-  def has_time_selectors?(hh, mm)
-    has_hour_selector?(hh) && selector[mm].has_text?(Time.now.strftime('%M'))
+  def has_alt_date_selections?
+    hour_selector_id = 3
+    time = (now - (2 * one_hour))
+
+    has_current_date_selectors? &&
+      has_hour_selector?(hour_selector_id, time)
   end
 
-  def has_hour_selector?(hh, time = Time.now)
-    selector[hh].has_text? time.strftime('%H')
+  def has_next_contact_date?
+    hour_selector_id = 8
+    minute_selector_id = 9
+
+    has_next_contact_selectors? &&
+      has_hour_selector?(hour_selector_id) &&
+      selector[minute_selector_id].has_text?(now.strftime('%M'))
   end
 
   def resolve_as_canceled_responses
     @resolve_as_canceled_responses ||= english_cancel_options[1..4]
+  end
+
+  def has_next_contact_selectors?
+    selector[6].has_text?(locale_month(today.strftime('%B'))) &&
+      selector[next_date_day_selector_id].has_text?(today.strftime('%-d')) &&
+      selector[next_date_year_selector_id].has_text?(today.strftime('%Y'))
+  end
+
+  private
+
+  def has_current_date_selectors?
+    selector[1].has_text?(locale_month(today.strftime('%B'))) &&
+      selector[current_date_day_selector_id].has_text?(today.strftime('%-d')) &&
+      selector[current_date_year_selector_id].has_text?(today.strftime('%Y'))
+  end
+
+  def has_hour_selector?(hour_selector_id, time = now)
+    selector[hour_selector_id].has_text? time.strftime('%H')
+  end
+
+  def current_date_day_selector_id
+    localize(spanish: 0, portuguese: 0, english: 2)
+  end
+
+  def current_date_year_selector_id
+    localize(spanish: 2, portuguese: 2, english: 0)
+  end
+
+  def next_date_day_selector_id
+    localize(spanish: 5, portuguese: 5, english: 7)
+  end
+
+  def next_date_year_selector_id
+    localize(spanish: 7, portuguese: 7, english: 5)
   end
 end

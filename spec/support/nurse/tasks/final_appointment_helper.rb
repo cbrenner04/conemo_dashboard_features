@@ -3,6 +3,7 @@
 
 require './lib/pages/nurse_tasks'
 require './lib/pages/supervisor_page'
+require './lib/pages/supervisor/completed_table'
 require './lib/pages/your_patients'
 
 def pt_337_nurse_tasks
@@ -39,6 +40,12 @@ def pt_801_nurse_tasks
     contact_type: 'Final in person appointment',
     days_since_due: '4 days',
     tasks_count: 1
+  )
+end
+
+def completed_participant_table
+  @completed_participant_table ||= Supervisor::CompletedTable.new(
+    locale: 'english'
   )
 end
 

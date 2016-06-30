@@ -80,7 +80,7 @@ module Translations
 
     def lack_of_connectivity_call_title
       localize(
-        spanish: 'Llamada por no-conectividad',
+        spanish: 'Llamada por no conectividad',
         portuguese: 'Chamada por não-conectividade',
         english: 'Call due to no connectivity'
       )

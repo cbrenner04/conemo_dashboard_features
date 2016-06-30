@@ -10,7 +10,6 @@ class Slides
     @lesson ||= slides[:lesson]
     @title ||= slides[:title]
     @body ||= slides[:body]
-    @new_title ||= slides[:new_title]
     @locale ||= slides.fetch(:locale, 'english')
   end
 
@@ -30,8 +29,7 @@ class Slides
   end
 
   def visible?
-    slide_title = @new_title.nil? ? @title : @new_title
-    has_css?('.table', text: slide_title)
+    has_css?('.table', text: @title)
   end
 
   def open_edit
@@ -40,8 +38,7 @@ class Slides
   end
 
   def edit
-    open_edit
-    fill_in 'slide[title]', with: @new_title
+    fill_in 'slide[title]', with: @title
     # updated from `navigation.submit` for Poltergeist
     find('input[value = "Save"]').click
   end
@@ -64,18 +61,22 @@ class Slides
     lessons.open_lesson(@lesson)
     click_on @title
     find('h2', text: @title)
-    within('.breadcrumb') { click_on @lesson }
+    within_breadcrumbs_click_on(@lesson)
     find('h2', text: @lesson)
-    within('.breadcrumb') { click_on 'Lessons' }
+    within_breadcrumbs_click_on('Lessons')
   end
 
   private
 
   def lessons
-    @lessons ||= Lessons.new(title: @lesson)
+    Lessons.new(title: @lesson)
   end
 
   def navigation
-    @navigation ||= Navigation.new(locale: @locale)
+    Navigation.new(locale: @locale)
+  end
+
+  def within_breadcrumbs_click_on(link)
+    within('.breadcrumb') { click_on link }
   end
 end

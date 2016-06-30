@@ -4,6 +4,7 @@
 require './lib/pages/nurse_tasks'
 require './lib/pages/supervisor_page'
 require './lib/pages/tasks/help_request'
+require './lib/pages/tasks/supervisor_contacts'
 require './lib/pages/your_patients'
 
 def help_request
@@ -24,17 +25,24 @@ def pt_401_nurse_tasks
   @pt_401_nurse_tasks ||= NurseTasks.new(pt_id: 401)
 end
 
+def pt_401_supervisor_contacts
+  @pt_401_supervisor_contacts ||= Tasks::SupervisorContacts.new(pt_id: 401)
+end
+
 def pt_402_nurse_tasks
-  @pt_402_nurse_tasks ||= NurseTasks.new(
-    pt_id: 402,
-    time_of_contact: Time.now - (3 * 60 * 60)
+  @pt_402_nurse_tasks ||= NurseTasks.new(pt_id: 402)
+end
+
+def pt_402_supervisor_contact
+  @pt_402_supervisor_contact ||= Tasks::SupervisorContacts.new(
+    time_of_contact: now - (3 * one_hour)
   )
 end
 
 def pt_403_nurse_tasks
   @pt_403_nurse_tasks ||= NurseTasks.new(
     pt_id: 403,
-    time_of_contact: Time.now - (3 * 60 * 60)
+    time_of_contact: now - (3 * one_hour)
   )
 end
 

@@ -36,7 +36,7 @@ feature 'Nurse, Participant Tasks, Confirmation Call', metadata: :not_first do
     english_nurse.sign_out
     english_supervisor.sign_in
 
-    expect(nurse_supervisor_3).to have_confirmation_call_canceled
+    expect(nurse_supervisor_3).to have_task_canceled 'Confirmation call'
     expect(cancel_form).to have_cancellation_reason
   end
 
@@ -68,7 +68,7 @@ feature 'Nurse, Participant Tasks, Confirmation Call', metadata: :not_first do
     english_nurse.sign_out
     english_supervisor.sign_in
 
-    expect(nurse_supervisor_4).to have_confirmation_call_rescheduled
+    expect(nurse_supervisor_4).to have_task_rescheduled 'Confirmation call'
     expect(reschedule_form).to have_reschedule_reason
   end
 

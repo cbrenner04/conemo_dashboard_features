@@ -15,7 +15,7 @@ module Translations
         localize(
           spanish: [
             'Fecha/hora de la llamada',
-            'Duración de la llamada (min)',
+            'Duración de la sesión (min)',
             '¿El paciente ha tenido algunas dificultades usando CONEMO?',
             'Observaciones (cuadrado de texto)'
           ],

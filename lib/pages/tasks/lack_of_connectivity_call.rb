@@ -50,18 +50,13 @@ module Tasks
       has_task_form_headings?(1)
     end
 
-    def has_current_date_selections?
-      has_date_selectors?(today, 1,
-                          localize(spanish: 0, portuguese: 0, english: 2),
-                          localize(spanish: 2, portuguese: 2, english: 0)) &&
-        has_time_selectors?(3, 4)
-    end
-
     def has_reason_options?
       selector[5].click
-      selections = all('.select2-result-label')
-      actual = (0..12).map { |i| selections[i].text }
-      expect(actual).to eq(options)
+      array_of_elements_equal?(
+        elements: all('.select2-result-label'),
+        ids: (0..12),
+        expectation: options
+      )
     end
 
     def resolve_as_canceled
@@ -85,12 +80,6 @@ module Tasks
         english: 'Please indicate the reason for lack of connectivity or why' \
                  ' you are canceling the task'
       )
-    end
-
-    private
-
-    def navigation
-      @navigation ||= Navigation.new(locale: @locale)
     end
   end
 end

@@ -36,7 +36,7 @@ feature 'Nurse, Participant Tasks, Follow up week one', metadata: :not_first do
     english_nurse.sign_out
     english_supervisor.sign_in
 
-    expect(nurse_supervisor_7).to have_follow_up_week_1_canceled
+    expect(nurse_supervisor_7).to have_task_canceled 'Follow up call week 1'
     expect(cancel_form).to have_cancellation_reason
   end
 
@@ -68,7 +68,7 @@ feature 'Nurse, Participant Tasks, Follow up week one', metadata: :not_first do
     english_nurse.sign_out
     english_supervisor.sign_in
 
-    expect(nurse_supervisor_8).to have_follow_up_week_1_rescheduled
+    expect(nurse_supervisor_8).to have_task_rescheduled 'Follow up call week 1'
     expect(reschedule_form).to have_reschedule_reason
   end
 
@@ -134,7 +134,7 @@ feature 'Nurse, Participant Tasks, Follow up week one', metadata: :not_first do
     # check clinical summary page for notes
     clinical_summary.open
 
-    expect(clinical_summary).to have_follow_up_week_1_notes_visible
+    expect(notes).to have_follow_up_week_1_notes_visible
 
     # check timeline page for completeness
     timeline.open

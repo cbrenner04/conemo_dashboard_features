@@ -2,9 +2,11 @@
 # filename: ./spec/support/nurse/tasks/non_adherence_call_helper.rb
 
 require './lib/pages/nurse_tasks'
+require './lib/pages/summary/lessons_table'
 require './lib/pages/supervisor_page'
 require './lib/pages/tasks/non_adherence_call'
 require './lib/pages/tasks/lack_of_connectivity_call'
+require './lib/pages/tasks/supervisor_contacts'
 require './lib/pages/your_patients'
 
 def non_adherence_call
@@ -29,10 +31,17 @@ def pt_421_nurse_tasks
   @pt_421_nurse_tasks ||= NurseTasks.new(pt_id: 421)
 end
 
+def pt_421_supervisor_contact
+  @pt_421_supervisor_contact ||= Tasks::SupervisorContacts.new(pt_id: 421)
+end
+
 def pt_424_nurse_tasks
-  @pt_424_nurse_tasks ||= NurseTasks.new(
-    pt_id: 424,
-    time_of_contact: Time.now - (2 * 60 * 60)
+  @pt_424_nurse_tasks ||= NurseTasks.new(pt_id: 424)
+end
+
+def pt_424_supervisor_contact
+  @pt_424_supervisor_contact ||= Tasks::SupervisorContacts.new(
+    time_of_contact: now - (2 * one_hour)
   )
 end
 
@@ -72,17 +81,15 @@ def pt_1001_nurse_tasks
   @pt_1001_nurse_tasks ||= NurseTasks.new(pt_id: 1001)
 end
 
-def pt_1001_clinical_summary_1
-  @pt_1001_clinical_summary_1 ||= ClinicalSummary.new(
-    id: 1001,
+def pt_1001_lessons_table
+  @pt_1001_lessons_table ||= Summary::LessonsTable.new(
     current_lesson: 'Lesson 3',
     other_lesson: 'Lesson 1'
   )
 end
 
-def pt_1001_clinical_summary_2
-  @pt_1001_clinical_summary_2 ||= ClinicalSummary.new(
-    id: 1001,
+def pt_1001_lessons_table_1
+  @pt_1001_lessons_table_1 ||= Summary::LessonsTable.new(
     current_lesson: 'Lesson 3',
     other_lesson: 'Lesson 2'
   )
@@ -96,17 +103,15 @@ def pt_425_nurse_tasks
   @pt_425_nurse_tasks ||= NurseTasks.new(pt_id: 425)
 end
 
-def pt_425_clinical_summary_1
-  @pt_425_clinical_summary_1 ||= ClinicalSummary.new(
-    id: 425,
+def pt_425_lessons_table
+  @pt_425_lessons_table ||= Summary::LessonsTable.new(
     current_lesson: 'Lesson 6',
     other_lesson: 'Lesson 4'
   )
 end
 
-def pt_425_clinical_summary_2
-  @pt_425_clinical_summary_2 ||= ClinicalSummary.new(
-    id: 425,
+def pt_425_lessons_table_1
+  @pt_425_lessons_table_1 ||= Summary::LessonsTable.new(
     current_lesson: 'Lesson 6',
     other_lesson: 'Lesson 5'
   )

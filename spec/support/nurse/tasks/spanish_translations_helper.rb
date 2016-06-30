@@ -17,6 +17,12 @@ def pt_501_nurse_tasks
   )
 end
 
+def pt_501_supervisor_contact
+  @pt_501_supervisor_contact ||= Tasks::SupervisorContacts.new(
+    locale: 'spanish'
+  )
+end
+
 def pt_502_nurse_tasks
   @pt_502_nurse_tasks ||= NurseTasks.new(
     pt_id: 502,

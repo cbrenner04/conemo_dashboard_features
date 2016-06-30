@@ -28,12 +28,12 @@ class YourPatients
   end
 
   def has_assigned_patients?
-    assigned_participants.all? { |i| has_text? i }
+    assigned_participants.all? { |participant| has_text? participant }
   end
 
   def has_configuration_tokens?
     ids = [338, 300, 326, 318, 305, 337, 308, 322, 325, 339]
-    ids.each { |i| find('tr', text: i).has_text? "aBc#{i}XyZ" }
+    ids.each { |id| find('tr', text: id).has_text? "aBc#{id}XyZ" }
   end
 
   def has_supervisor_contact_notification?
@@ -41,9 +41,11 @@ class YourPatients
   end
 
   def ordered_correctly?
-    rows = all('tr')
-    actual_results = (1..12).map { |i| rows[i].text }
-    expect(actual_results).to eq(expected_results)
+    array_of_elements_equal?(
+      elements: all('tr'),
+      ids: (1..12),
+      expectation: expected_order_of_patients
+    )
   end
 
   def has_tasks_ordered_correctly?
@@ -102,21 +104,15 @@ class YourPatients
   end
 
   def has_table_headers?
-    headers = all('th')
-    actual_headers = (0..3).map { |i| headers[i].text }
-    expect(actual_headers).to eq(expected_headers)
+    array_of_elements_equal?(
+      elements: all('th'),
+      ids: (0..3),
+      expectation: expected_headers
+    )
   end
 
   def has_key?
-    key = find('.table-condensed')
-    success_text = key.find('.success').text
-    expect(success_text).to eq(no_tasks)
-
-    info_text = key.find('.info').text
-    expect(info_text).to eq(active_task)
-
-    danger_text = key.find('.danger').text
-    expect(danger_text).to eq(overdue_task)
+    has_no_tasks_key? && has_tasks_key? && has_overdue_task_key?
   end
 
   def english_nurse_patients
@@ -124,7 +120,7 @@ class YourPatients
     ranges = [(300..340), (342..344), (410..412), (414..415), (420..428),
               (430..432), (440..442), (450..452), (460..462), (470..472),
               (700..709), (800..804)]
-    ranges.each { |i| patients.concat i.to_a }
+    ranges.each { |range| patients.concat range.to_a }
     @english_nurse_patients ||= patients.sample(10)
   end
 
@@ -135,7 +131,7 @@ class YourPatients
   end
 
   def row_text
-    @row_text ||= find('tr', text: @pt_id).text
+    find('tr', text: @pt_id).text
   end
 
   def assigned_participants
@@ -146,21 +142,38 @@ class YourPatients
     )
   end
 
-  def expected_results
-    @expected_results ||= [
-      "Last-706, First 706 #{confirmation_call_title}, #{help_request_title}",
-      "Last-707, First 707 #{initial_appointment_title}",
-      "Last-708, First 708 #{follow_up_week_one_title}",
-      "Last-709, First 709 #{follow_up_week_three_title}",
-      "Last-800, First 800 #{call_to_schedule_final_title}",
-      "Last-801, First 801 #{final_appointment_title}, #{help_request_title}",
-      "Last-802, First 802 #{help_request_title}",
-      "Last-803, First 803 #{lack_of_connectivity_call_title}",
-      "Last-804, First 804 #{non_adherence_call_title}",
-      "Last-1000, First 1000 #{confirmation_call_title}, " \
-      "#{help_request_title}, #{lack_of_connectivity_call_title}",
-      "Last-322, First 322 #{follow_up_week_one_title} aBc322XyZ",
-      "Last-303, First 303 #{confirmation_call_title}"
-    ]
+  def expected_order_of_patients
+    ["Last-706, First 706 #{confirmation_call_title}, #{help_request_title}",
+     "Last-707, First 707 #{initial_appointment_title}",
+     "Last-708, First 708 #{follow_up_week_one_title}",
+     "Last-709, First 709 #{follow_up_week_three_title}",
+     "Last-800, First 800 #{call_to_schedule_final_title}",
+     "Last-801, First 801 #{final_appointment_title}, #{help_request_title}",
+     "Last-802, First 802 #{help_request_title}",
+     "Last-803, First 803 #{lack_of_connectivity_call_title}",
+     "Last-804, First 804 #{non_adherence_call_title}",
+     "Last-1000, First 1000 #{confirmation_call_title}, " \
+     "#{help_request_title}, #{lack_of_connectivity_call_title}",
+     "Last-322, First 322 #{follow_up_week_one_title} aBc322XyZ",
+     "Last-303, First 303 #{confirmation_call_title}"]
+  end
+
+  def key
+    find('.table-condensed')
+  end
+
+  def has_no_tasks_key?
+    success_text = key.find('.success').text
+    expect(success_text).to eq(no_tasks)
+  end
+
+  def has_tasks_key?
+    info_text = key.find('.info').text
+    expect(info_text).to eq(active_task)
+  end
+
+  def has_overdue_task_key?
+    danger_text = key.find('.danger').text
+    expect(danger_text).to eq(overdue_task)
   end
 end

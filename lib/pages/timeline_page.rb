@@ -102,16 +102,17 @@ class TimelinePage
       .has_css?('.timeline-panel',
                 text: "#{lack_of_connectivity_call_title} Date/time of " \
                       "phone call: #{standard_date(today)}" \
-                      "#{locale_hour(Time.now - (11 * 60 * 60))}") &&
+                      "#{locale_hour(now - (11 * one_hour))}") &&
       has_text?('Reason for lack of connectivity:')
   end
 
   def has_non_connectivity_call_longer_than_12_hours_ago?
+    thirteen_hours_ago = now - (13 * one_hour)
     find('.timeline')
       .has_css?('.timeline-panel',
                 text: "#{lack_of_connectivity_call_title} Date/time of phone" \
-                      " call: #{standard_date(Time.now - (13 * 60 * 60))}" \
-                      "#{locale_hour(Time.now - (13 * 60 * 60))}") &&
+                      " call: #{standard_date(thirteen_hours_ago)}" \
+                      "#{locale_hour(thirteen_hours_ago)}") &&
       has_text?('Reason for lack of connectivity:')
   end
 
@@ -176,25 +177,31 @@ class TimelinePage
   end
 
   def has_timeline_titles?
-    actual_titles = (0..8).map { |i| all('.timeline-title')[i].text }
-    expect(actual_titles).to eq(expected_timeline_titles.reverse)
+    array_of_elements_equal?(
+      elements: all('.timeline-title'),
+      ids: (0..8),
+      expectation: expected_timeline_titles.reverse
+    )
   end
 
   def has_contact_dates?
+    # not updated to `array_of_elements_equal?` b/c different implementation
     timeline_headings = all('.timeline-heading')
-    actual_contact_dates = (0..8).map do |i|
-      year = today.strftime('%Y')
-      string = timeline_headings[i].find('p').text
-      string_end = string.index(year.to_s) + (year.length - 1)
-      string.slice(0..string_end)
-    end
-    expect(actual_contact_dates).to eq(expected_timeline_dates.reverse)
+    expect(
+      (0..8).map do |heading_id|
+        string = timeline_headings[heading_id].find('p').text
+        string_end = string.index(today.strftime('%Y')) + 3
+        string.slice(0..string_end)
+      end
+    ).to eq(expected_timeline_dates.reverse)
   end
 
   def has_timeline_headings?
-    timeline = find('.timeline').all('strong')
-    actual_headings = (0..10).map { |i| timeline[i].text }
-    expect(actual_headings).to eq(expected_timeline_headings.reverse)
+    array_of_elements_equal?(
+      elements: find('.timeline').all('strong'),
+      ids: (0..10),
+      expectation: expected_timeline_headings.reverse
+    )
   end
 
   private

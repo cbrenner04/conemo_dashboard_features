@@ -70,7 +70,7 @@ module Translations
             'Tarefas atrasadas / Aderência da/o AE', 'Tarefas canceladas',
             'Eventos adversos sérios (mencionados pela/o AE)',
             'Términos de Tratamento', 'Dúvidad com respeito às tarefas',
-            'Dúvidas com respeito à intervenção',
+            'Dúvidas com respeito às tarefas',
             'Outros pontos de contato programados',
             'Pedidos de ajuda resolvidos',
             'Situações difíceis relacionadas ao estudo',

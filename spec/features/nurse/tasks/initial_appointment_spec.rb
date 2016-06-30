@@ -25,8 +25,8 @@ feature 'Nurse, Initial in person appointment', metadata: :first do
     initial_in_person_appt.enter_general_notes
     navigation.submit
 
-    contact_information.enter_smartphone_number
-    contact_information.enter_phone_id
+    smartphone_information.enter_smartphone_number
+    smartphone_information.enter_phone_id
     navigation.submit
 
     expect(pt_319_nurse_tasks).to have_no_tasks_in_count
@@ -41,7 +41,7 @@ feature 'Nurse, Initial in person appointment', metadata: :first do
     # check clinical summary page for notes
     clinical_summary.open
 
-    expect(clinical_summary).to have_first_appt_notes_visible
+    expect(notes).to have_first_appt_notes_visible
 
     # check timeline page for completeness
     timeline.open
@@ -70,7 +70,8 @@ feature 'Nurse, Initial in person appointment', metadata: :first do
     english_nurse.sign_out
     english_supervisor.sign_in
 
-    expect(nurse_supervisor_12).to have_initial_appointment_rescheduled
+    expect(nurse_supervisor_12)
+      .to have_task_rescheduled 'Initial in person appointment'
     expect(reschedule_form).to have_reschedule_reason
   end
 end
@@ -108,7 +109,8 @@ feature 'Nurse, Initial in person appointment', metadata: :not_first do
     english_nurse.sign_out
     english_supervisor.sign_in
 
-    expect(nurse_supervisor_11).to have_initial_appointment_canceled
+    expect(nurse_supervisor_11)
+      .to have_task_canceled 'Initial in person appointment'
     expect(cancel_form).to have_cancellation_reason
   end
 

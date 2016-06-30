@@ -10,7 +10,6 @@ class Lessons
   def initialize(lessons)
     @title ||= lessons[:title]
     @day ||= lessons[:day]
-    @new_title ||= lessons[:new_title]
     @slide ||= lessons[:slide]
     @locale ||= lessons.fetch(:locale, 'english')
   end
@@ -38,20 +37,21 @@ class Lessons
     open_add_lesson
     enter_title_and_tx_day
     choose 'Yes'
-    fill_in 'lesson[pre_planning_content]', with: 'You should plan an activity'
-    fill_in 'lesson[activity_choices]', with: "Act. 1\nAct. 2\nAct. 3"
-    fill_in 'lesson[post_planning_content]', with: 'Planning is good'
-    fill_in 'lesson[non_planning_content]', with: 'You should really plan'
-    fill_in 'lesson[feedback_after_days]', with: 2
-    fill_in 'lesson[planning_response_yes_content]', with: 'Great job!'
-    fill_in 'lesson[planning_response_no_content]', with: 'No good'
-    fill_in 'lesson[non_planning_response_content]', with: 'You should answer'
+    inputs = ['pre_planning_content', 'activity_choices',
+              'post_planning_content', 'non_planning_content',
+              'feedback_after_days', 'planning_response_yes_content',
+              'planning_response_no_content', 'non_planning_response_content']
+    responses = ['You should plan an activity', "Act. 1\nAct. 2\nAct. 3",
+                 'Planning is good', 'You should really plan', 2, 'Great job!',
+                 'No good', 'You should answer']
+    inputs.zip(responses) do |input, response|
+      fill_in "lesson[#{input}]", with: response
+    end
     navigation.submit
   end
 
   def visible?
-    lesson_title = @new_title.nil? ? @title : @new_title
-    find('.table').has_css?('td', text: lesson_title)
+    find('.table').has_css?('td', text: @title)
   end
 
   def view
@@ -64,8 +64,7 @@ class Lessons
   end
 
   def edit
-    open_edit
-    fill_in 'lesson[title]', with: @new_title
+    fill_in 'lesson[title]', with: @title
     navigation.submit
   end
 
@@ -102,6 +101,6 @@ class Lessons
   end
 
   def navigation
-    @navigation ||= Navigation.new(locale: @locale)
+    Navigation.new(locale: @locale)
   end
 end

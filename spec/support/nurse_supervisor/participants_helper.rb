@@ -6,6 +6,10 @@ require './lib/pages/new_participants/contact_information'
 require './lib/pages/nurse_tasks'
 require './lib/pages/supervisor_page'
 require './lib/pages/supervisor/participants'
+require './lib/pages/supervisor/active_table'
+require './lib/pages/supervisor/completed_table'
+require './lib/pages/supervisor/dropped_table'
+require './lib/pages/supervisor/pending_table'
 require './lib/pages/tasks/confirmation_call'
 require './lib/pages/tasks/lack_of_connectivity_call'
 require './lib/pages/your_patients'
@@ -26,6 +30,26 @@ def nurse_supervisor
   @nurse_supervisor ||= SupervisorPage.new(locale: 'english')
 end
 
+def pending_participant_table
+  @pending_participant_table ||= Supervisor::PendingTable.new(pt_id: 1)
+end
+
+def active_participant_table
+  @active_participant_table ||= Supervisor::ActiveTable.new(pt_id: 1)
+end
+
+def completed_participant_table
+  @completed_participant_table ||= Supervisor::CompletedTable.new(
+    locale: 'english'
+  )
+end
+
+def dropped_participant_table
+  @dropped_participant_table ||= Supervisor::DroppedTable.new(
+    locale: 'english'
+  )
+end
+
 def spanish_supervisor_participants
   @spanish_supervisor_participants ||= Supervisor::Participants.new(
     locale: 'spanish'
@@ -34,6 +58,54 @@ end
 
 def portuguese_supervisor_participants
   @portuguese_supervisor_participants ||= Supervisor::Participants.new(
+    locale: 'portuguese'
+  )
+end
+
+def spanish_pending_participants_table
+  @spanish_pending_participants_table ||= Supervisor::PendingTable.new(
+    locale: 'spanish'
+  )
+end
+
+def portuguese_pending_participants_table
+  @portuguese_pending_participants_table ||= Supervisor::PendingTable.new(
+    locale: 'portuguese'
+  )
+end
+
+def spanish_active_participants
+  @spanish_active_participants ||= Supervisor::ActiveTable.new(
+    locale: 'spanish'
+  )
+end
+
+def portuguese_active_participants
+  @portuguese_active_participants ||= Supervisor::ActiveTable.new(
+    locale: 'portuguese'
+  )
+end
+
+def spanish_completed_participants
+  @spanish_completed_participants ||= Supervisor::CompletedTable.new(
+    locale: 'spanish'
+  )
+end
+
+def portuguese_completed_participants
+  @portuguese_completed_participants ||= Supervisor::CompletedTable.new(
+    locale: 'portuguese'
+  )
+end
+
+def spanish_dropped_participants
+  @spanish_dropped_participants ||= Supervisor::DroppedTable.new(
+    locale: 'spanish'
+  )
+end
+
+def portuguese_dropped_participants
+  @portuguese_dropped_participants ||= Supervisor::DroppedTable.new(
     locale: 'portuguese'
   )
 end
@@ -49,15 +121,19 @@ def portuguese_contact_information
     NewParticipants::ContactInformation.new(locale: 'portuguese')
 end
 
-def patient_413_nurse_400
-  @patient_413_nurse_400 ||= Supervisor::Participants.new(
+def participant_413
+  @participant_413 ||= Supervisor::Participants.new(pt_id: 413)
+end
+
+def active_patient_413_nurse_400
+  @active_patient_413_nurse_400 ||= Supervisor::ActiveTable.new(
     pt_id: 413,
     nurse: 400
   )
 end
 
-def patient_413_nurse_404
-  @patient_413_nurse_404 ||= Supervisor::Participants.new(
+def active_patient_413_nurse_404
+  @active_patient_413_nurse_404 ||= Supervisor::ActiveTable.new(
     pt_id: 413,
     nurse: 404
   )
@@ -71,9 +147,12 @@ def patient_413
 end
 
 def pt_413_tasks
-  @pt_413_tasks ||= NurseTasks.new(
-    pt_id: 413,
-    time_of_contact: Time.now - (2 * 60 * 60)
+  @pt_413_tasks ||= NurseTasks.new(pt_id: 413)
+end
+
+def pt_413_supervisor_contact
+  @pt_413_supervisor_contact ||= Tasks::SupervisorContacts.new(
+    time_of_contact: now - (2 * one_hour)
   )
 end
 
@@ -89,19 +168,34 @@ def pt_413_lack_of_connectivity_call
   )
 end
 
-def patient_495
-  @patient_495 ||= Supervisor::Participants.new(pt_id: 495)
+def pending_patient_495
+  @pending_patient_495 ||= Supervisor::PendingTable.new(pt_id: 495)
+end
+
+def pending_patient_496
+  @pending_patient_496 ||= Supervisor::PendingTable.new(pt_id: 496)
 end
 
 def patient_496
-  @patient_496 ||= Supervisor::Participants.new(
+  @patient_496 ||= Supervisor::Participants.new(pt_id: 496)
+end
+
+def active_patient_496
+  @active_patient_496 ||= Supervisor::ActiveTable.new(
     pt_id: 496,
     nurse: 404
   )
 end
 
-def patient_4036
-  @patient_4036 ||= Supervisor::Participants.new(
+def active_patient_4036
+  @active_patient_4036 ||= Supervisor::ActiveTable.new(
+    pt_id: 4036,
+    nurse: 401
+  )
+end
+
+def dropped_patient_4036
+  @dropped_patient_4036 ||= Supervisor::DroppedTable.new(
     pt_id: 4036,
     nurse: 401
   )
@@ -121,16 +215,31 @@ def patient_502
   )
 end
 
-def patient_503
-  @patient_503 ||= Supervisor::Participants.new(
+def pending_patient_502
+  @pending_patient_502 ||= Supervisor::PendingTable.new(
+    pt_id: 502,
+    locale: 'spanish'
+  )
+end
+
+def active_patient_503
+  @active_patient_503 ||= Supervisor::ActiveTable.new(
     pt_id: 503,
     nurse: 500,
     locale: 'spanish'
   )
 end
 
-def patient_506
-  @patient_506 ||= Supervisor::Participants.new(
+def dropped_patient_503
+  @dropped_patient_503 ||= Supervisor::DroppedTable.new(
+    pt_id: 503,
+    nurse: 500,
+    locale: 'spanish'
+  )
+end
+
+def pending_patient_506
+  @pending_patient_506 ||= Supervisor::PendingTable.new(
     pt_id: 506,
     locale: 'spanish'
   )
@@ -157,16 +266,31 @@ def patient_602
   )
 end
 
-def patient_603
-  @patient_603 ||= Supervisor::Participants.new(
+def pending_patient_602
+  @pending_patient_602 ||= Supervisor::PendingTable.new(
+    pt_id: 602,
+    locale: 'portuguese'
+  )
+end
+
+def active_patient_603
+  @active_patient_603 ||= Supervisor::ActiveTable.new(
     pt_id: 603,
     nurse: 600,
     locale: 'portuguese'
   )
 end
 
-def patient_606
-  @patient_606 ||= Supervisor::Participants.new(
+def dropped_patient_603
+  @dropped_patient_603 ||= Supervisor::DroppedTable.new(
+    pt_id: 603,
+    nurse: 600,
+    locale: 'portuguese'
+  )
+end
+
+def pending_patient_606
+  @pending_patient_606 ||= Supervisor::PendingTable.new(
     pt_id: 606,
     locale: 'portuguese'
   )

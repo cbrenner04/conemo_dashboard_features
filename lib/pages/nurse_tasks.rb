@@ -19,7 +19,6 @@ class NurseTasks
     @pt_id ||= nurse_task[:pt_id]
     @session ||= nurse_task[:session]
     @session_length ||= nurse_task[:session_length]
-    @time_of_contact ||= nurse_task[:time_of_contact]
     @days_since_due ||= nurse_task[:days_since_due]
     @contact_type ||= nurse_task[:contact_type]
     @tasks_count ||= nurse_task[:tasks_count]
@@ -27,38 +26,18 @@ class NurseTasks
   end
 
   def open
-    tries ||= 1
-    find('tr', text: @pt_id).click
-    find('h3', text: tasks_heading)
-  rescue Capybara::ElementNotFound, Selenium::WebDriver::Error::UnknownError
-    navigation.scroll_up
-    tries += 1
-    retry unless tries > 2
+    retry_action_with_scroll_up do
+      find('tr', text: @pt_id).click
+      find('h3', text: tasks_heading)
+    end
   end
 
   def return
     find('a', text: 'Tasks').click
   end
 
-  def clear_supervisor_contact
-    find("input[value = \"#{clear_supervisor_contact_button}\"]").click
-    accept_alert clear_supervisor_contact_alert
-  end
-
   def enter_session_length
     fill_in "#{@session}[session_length]", with: @session_length
-  end
-
-  def has_new_supervisor_contact?
-    has_supervisor_contact?(Time.now)
-  end
-
-  def has_previous_supervisor_contact?
-    has_supervisor_contact?(@time_of_contact)
-  end
-
-  def has_no_previous_supervisor_contact?
-    has_no_css?('p', text: 'last')
   end
 
   def has_number_of_days_since_due?
@@ -82,24 +61,17 @@ class NurseTasks
     has_text? "#{@tasks_count} #{plural_active_task}"
   end
 
-  def has_empty_progress_bar?
-    sched_tasks = [confirmation_call_title, initial_appointment_title,
-                   follow_up_week_one_title, follow_up_week_three_title,
-                   call_to_schedule_final_title, final_appointment_title]
-    sched_tasks.all? { |task| has_css?('.progress-bar-future', text: task) }
-  end
-
   def has_participant_in_header?
     has_css?('.navbar-brand', text: "#{@pt_id}: First Last-#{@pt_id}")
   end
 
   def has_key?
-    has_scheduled? && has_confirmed? && has_active? && has_canceled? &&
-      has_overdue?
-  end
-
-  def has_progress_bar_heading?
-    has_css?('h3', text: progress_bar_heading)
+    css_selectors = ['tr', '.success', '.info', '.warning', '.danger']
+    labels = [scheduled_key_label, confirmed_key_label, active_key_label,
+              canceled_key_label, overdue_key_label]
+    css_selectors.zip(labels).all? do |selector, label|
+      find('.table-condensed').has_css?(selector, text: label)
+    end
   end
 
   def has_tasks_heading?
@@ -119,45 +91,6 @@ class NurseTasks
   private
 
   def navigation
-    @navigation ||= Navigation.new(locale: 'english')
-  end
-
-  def dst_time(time)
-    if Time.now.dst? && time.dst?
-      time
-    elsif !Time.now.dst? && time.dst?
-      time + (1 * 60 * 60)
-    else
-      (time - (1 * 60 * 60))
-    end
-  end
-
-  def has_supervisor_contact?(time)
-    has_text? "#{last_supervisor_contact_heading} " \
-              "#{standard_date(time)}#{locale_hour(time)}"
-  end
-
-  def key
-    find('.table-condensed')
-  end
-
-  def has_scheduled?
-    key.has_css?('tr', text: scheduled_key_label)
-  end
-
-  def has_confirmed?
-    key.has_css?('.success', text: confirmed_key_label)
-  end
-
-  def has_active?
-    key.has_css?('.info', text: active_key_label)
-  end
-
-  def has_canceled?
-    key.has_css?('.warning', text: canceled_key_label)
-  end
-
-  def has_overdue?
-    key.has_css?('.danger', text: overdue_key_label)
+    Navigation.new(locale: @locale)
   end
 end

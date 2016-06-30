@@ -44,25 +44,25 @@ feature 'Nurse, Contact Information', metadata: :first do
   scenario 'Nurse cancels out of edit of smartphone information' do
     pt_310_nurse_tasks.open
     navigation.scroll_down
-    pt_310_contact_info.select_edit_smartphone_information
+    pt_310_smartphone_info.select_edit
 
-    expect(pt_310_contact_info).to have_smartphone_form_visible
+    expect(pt_310_smartphone_info).to be_visible
 
     navigation.cancel
 
     expect(pt_310_contact_info).to be_visible
-    expect(pt_310_contact_info).to_not have_smartphone_information
+    expect(pt_310_smartphone_info).to_not have_smartphone_information
   end
 
   scenario 'Nurse enters smartphone information' do
     pt_302_nurse_tasks.open
     navigation.scroll_down
-    pt_302_contact_info.select_edit_smartphone_information
-    pt_302_contact_info.enter_smartphone_number
-    pt_302_contact_info.enter_phone_id
+    pt_302_smartphone_info.select_edit
+    pt_302_smartphone_info.enter_smartphone_number
+    pt_302_smartphone_info.enter_phone_id
     navigation.submit
 
-    expect(pt_302_contact_info).to have_smartphone_information
+    expect(pt_302_smartphone_info).to have_smartphone_information
   end
 end
 
@@ -74,7 +74,7 @@ feature 'Spanish Nurse, Contact Information', metadata: :not_first do
 
     expect(pt_500_contact_info).to have_contact_information_title
     expect(pt_500_contact_info).to have_contact_information_table_headings
-    expect(pt_500_contact_info).to have_smartphone_information_title
+    expect(pt_500_smartphone_info).to have_smartphone_information_title
 
     pt_500_contact_info.view_all
 
@@ -89,12 +89,12 @@ feature 'Spanish Nurse, Contact Information', metadata: :not_first do
   scenario 'Spanish Nurse creates a smartphone' do
     pt_504_nurse_tasks.open
     navigation.scroll_down
-    pt_504_contact_info.select_edit_smartphone_information
-    pt_504_contact_info.enter_smartphone_number
-    pt_504_contact_info.enter_phone_id
+    pt_504_smartphone_info.select_edit
+    pt_504_smartphone_info.enter_smartphone_number
+    pt_504_smartphone_info.enter_phone_id
     spanish_navigation.submit
 
-    expect(pt_504_contact_info).to have_successful_smartphone_creation_alert
+    expect(pt_504_smartphone_info).to have_successful_smartphone_creation_alert
   end
 end
 
@@ -106,7 +106,7 @@ feature 'Portuguese Nurse, Contact Information', metadata: :not_first do
 
     expect(pt_600_contact_info).to have_contact_information_title
     expect(pt_600_contact_info).to have_contact_information_table_headings
-    expect(pt_600_contact_info).to have_smartphone_information_title
+    expect(pt_600_smartphone_info).to have_smartphone_information_title
 
     pt_600_contact_info.view_all
 
@@ -121,11 +121,11 @@ feature 'Portuguese Nurse, Contact Information', metadata: :not_first do
   scenario 'Spanish Nurse creates a smartphone' do
     pt_604_nurse_tasks.open
     navigation.scroll_down
-    pt_604_contact_info.select_edit_smartphone_information
-    pt_604_contact_info.enter_smartphone_number
-    pt_604_contact_info.enter_phone_id
+    pt_604_smartphone_info.select_edit
+    pt_604_smartphone_info.enter_smartphone_number
+    pt_604_smartphone_info.enter_phone_id
     portuguese_navigation.submit
 
-    expect(pt_604_contact_info).to have_successful_smartphone_creation_alert
+    expect(pt_604_smartphone_info).to have_successful_smartphone_creation_alert
   end
 end

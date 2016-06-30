@@ -10,7 +10,7 @@ feature 'Admin, Configuration Token', metadata: :not_first do
 
     expect(administration).to be_visible
 
-    administration.open_participants_table
+    participants_table.open
   end
 
   scenario 'Admin creates and destroys configuration token' do
@@ -29,7 +29,7 @@ feature 'Admin, Configuration Token', metadata: :not_first do
   end
 
   scenario 'Admin disables, enables, and destroys authentication token' do
-    administration.order_by_participant_id
+    participants_table.order_by_participant_id
     token_page.open_for_participant
 
     expect(token_page).to have_active_authentication_token
@@ -56,7 +56,7 @@ feature 'Spanish Admin, Configuration Token', metadata: :not_first do
 
     expect(spanish_administration).to be_visible
 
-    spanish_administration.open_participants_table
+    spanish_participants_table.open
     pt_514_token_page.open_for_participant
 
     expect(spanish_token_page).to be_ready_for_token_creation
@@ -74,8 +74,8 @@ feature 'Spanish Admin, Configuration Token', metadata: :not_first do
 
     expect(spanish_administration).to be_visible
 
-    spanish_administration.open_participants_table
-    spanish_administration.order_by_participant_id
+    spanish_participants_table.open
+    spanish_participants_table.order_by_participant_id
     spanish_token_page.open_for_participant
 
     expect(spanish_token_page).to have_active_authentication_token
@@ -103,7 +103,7 @@ feature 'Portuguese Admin, Configuration Token', metadata: :not_first do
 
     expect(portuguese_administration).to be_visible
 
-    portuguese_administration.open_participants_table
+    portuguese_participants_table.open
     portuguese_token_page.open_first
 
     expect(portuguese_token_page).to be_ready_for_token_creation
@@ -121,8 +121,8 @@ feature 'Portuguese Admin, Configuration Token', metadata: :not_first do
 
     expect(portuguese_administration).to be_visible
 
-    portuguese_administration.open_participants_table
-    portuguese_administration.order_by_participant_id
+    portuguese_participants_table.open
+    portuguese_participants_table.order_by_participant_id
     portuguese_token_page.open_for_participant
 
     expect(portuguese_token_page).to have_active_authentication_token

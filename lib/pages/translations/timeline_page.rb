@@ -11,7 +11,7 @@ module Translations
 
     def timeline_page_title
       localize(
-        spanish: 'Todos los contactos realizados',
+        spanish: 'Tareas Realizadas',
         portuguese: 'Todos os contatos realizados',
         english: 'All concluded contacts'
       )

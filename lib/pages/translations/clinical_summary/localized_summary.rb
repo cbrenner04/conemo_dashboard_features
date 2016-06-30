@@ -43,9 +43,9 @@ module Translations
 
       def notes_form_headings
         @notes_form_headings ||= {
-          spanish: "Escribir una nota de First Last-#{@id}",
-          portuguese: "Escrever nota para First Last-#{@id}",
-          english: "Create Note for First Last-#{@id}"
+          spanish: "Escribir una nota de First Last-#{@pt_id}",
+          portuguese: "Escrever nota para First Last-#{@pt_id}",
+          english: "Create Note for First Last-#{@pt_id}"
         }
       end
 
@@ -58,37 +58,32 @@ module Translations
       end
 
       def english_release_dates
-        (1..15).map do |i|
-          standard_date((today - @start_date_offset) + (i - 1))
+        (1..15).map do |release_date|
+          standard_date((today - @start_date_offset) + (release_date - 1))
         end
       end
 
-      # def english_contact_dates
-      #   [0, 14, 35, 42].map { |i| standard_date(today - i) }
-      # end
-
       def portuguese_release_dates
-        [1, 3, 6, 8, 10]
-          .map { |i| standard_date((today - @start_date_offset) + (i - 1)) }
+        [1, 3, 6, 8, 10].map do |release_date|
+          standard_date((today - @start_date_offset) + (release_date - 1))
+        end
       end
 
-      # def portuguese_contact_dates
-      #   [0, 14, 35, 42].map { |i| standard_date(today - i) }
-      # end
-
       def spanish_release_dates_1
-        [1, 3, 6, 8, 10, 13, 15, 17, 20, 22, 24, 27, 29, 31, 34, 36, 38, 41]
-          .map { |i| standard_date((today - @start_date_offset) + (i - 1)) }
+        dates = [1, 3, 6, 8, 10, 13, 15, 17, 20, 22,
+                 24, 27, 29, 31, 34, 36, 38, 41]
+        dates.map do |release_date|
+          standard_date((today - @start_date_offset) + (release_date - 1))
+        end
       end
 
       def spanish_release_dates_2
-        [1, 3, 6, 8, 10, 13, 15, 17, 20, 22, 27, 29, 31, 34, 36, 38, 41]
-          .map { |i| standard_date((today - @start_date_offset) + (i - 1)) }
+        dates = [1, 3, 6, 8, 10, 13, 15, 17, 20, 22,
+                 27, 29, 31, 34, 36, 38, 41]
+        dates.map do |release_date|
+          standard_date((today - @start_date_offset) + (release_date - 1))
+        end
       end
-
-      # def spanish_contact_dates
-      #   [0, 14, 35, 42].map { |i| standard_date(today - i) }
-      # end
     end
   end
 end

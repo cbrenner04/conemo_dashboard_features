@@ -26,30 +26,20 @@ module Tasks
 
     def has_form_headings?
       find('.control-label', match: :first)
-      headings = all('.control-label')
-      actual_headings = (0..2).map { |i| headings[i].text }
-      expect(actual_headings).to eq(expected_headings)
+      array_of_elements_equal?(
+        elements: all('.control-label'),
+        ids: (0..2),
+        expectation: expected_headings
+      )
     end
 
     def has_reason_options?
       selector[5].click
-      labels = all('.select2-result-label')
-      actual_options = (0..4).map { |i| labels[i].text }
-      expect(actual_options).to eq(expected_options)
-    end
-
-    def has_current_date_selections?
-      has_date_selectors?(today, 1,
-                          localize(spanish: 0, portuguese: 0, english: 2),
-                          localize(spanish: 2, portuguese: 2, english: 0)) &&
-        has_hour_selector?(3)
-    end
-
-    def has_alt_date_selections?
-      has_date_selectors?(today, 1,
-                          localize(spanish: 0, portuguese: 0, english: 2),
-                          localize(spanish: 2, portuguese: 2, english: 0)) &&
-        has_hour_selector?(3, (Time.now - (2 * 60 * 60)))
+      array_of_elements_equal?(
+        elements: all('.select2-result-label'),
+        ids: (0..4),
+        expectation: expected_options
+      )
     end
 
     def has_reschedule_reason?

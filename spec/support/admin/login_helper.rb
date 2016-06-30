@@ -11,7 +11,7 @@ def administration
 end
 
 def lessons
-  @lessons ||= Lessons.new(title: 'fake')
+  @lessons ||= Lessons.new(title: 'english')
 end
 
 def navigation

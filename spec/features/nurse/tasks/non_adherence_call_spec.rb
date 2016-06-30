@@ -15,14 +15,14 @@ feature 'Nurse, Non-adherence call', metadata: :first do
     non_adherence_call.contact_supervisor
 
     expect(non_adherence_call).to be_active
-    expect(pt_421_nurse_tasks).to have_new_supervisor_contact
+    expect(pt_421_supervisor_contact).to have_new_supervisor_contact
   end
 
   scenario 'Sees when the last supervisor contact sent' do
     pt_424_nurse_tasks.open
 
     expect(non_adherence_call).to be_active
-    expect(pt_424_nurse_tasks).to have_previous_supervisor_contact
+    expect(pt_424_supervisor_contact).to have_previous_supervisor_contact
   end
 end
 
@@ -112,11 +112,13 @@ feature 'Nurse, Non-adherence call', metadata: :not_first do
     expect(non_adherence_call).to_not be_active
 
     # check clinical summary for overdue lessons (meaning a task is needed)
-    pt_1001_clinical_summary_1.open
+    clinical_summary.open
 
-    expect(pt_1001_clinical_summary_1).to have_current_lesson
-    expect(pt_1001_clinical_summary_1).to have_unread_lesson
-    expect(pt_1001_clinical_summary_2).to have_unread_lesson
+    expect(clinical_summary).to be_visible
+
+    expect(pt_1001_lessons_table).to have_current_lesson
+    expect(pt_1001_lessons_table).to have_unread_lesson
+    expect(pt_1001_lessons_table_1).to have_unread_lesson
 
     # check timeline for resolved non-adherence task in last day
     # (nullifying need for new task)
@@ -138,11 +140,13 @@ feature 'Nurse, Non-adherence call', metadata: :not_first do
     expect(non_adherence_call).to be_active
 
     # check clinical summary for overdue lessons (meaning a task is needed)
-    pt_425_clinical_summary_1.open
+    clinical_summary.open
 
-    expect(pt_425_clinical_summary_1).to have_current_lesson
-    expect(pt_425_clinical_summary_1).to have_unread_lesson
-    expect(pt_425_clinical_summary_2).to have_unread_lesson
+    expect(clinical_summary).to be_visible
+
+    expect(pt_425_lessons_table).to have_current_lesson
+    expect(pt_425_lessons_table).to have_unread_lesson
+    expect(pt_425_lessons_table_1).to have_unread_lesson
 
     # check timeline for resolved non-adherence task in two days agp
     # (which is before most recent session release creating need for new task)
@@ -164,7 +168,7 @@ feature 'Nurse, Non-adherence call', metadata: :not_first do
     english_nurse_401.sign_out
     english_supervisor.sign_in
 
-    expect(nurse_supervisor_15).to have_non_adherence_call_canceled
+    expect(nurse_supervisor_15).to have_task_canceled 'Non-adherence call'
     expect(non_adherence_call).to have_cancel_reason
   end
 end

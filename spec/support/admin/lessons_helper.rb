@@ -82,17 +82,24 @@ def lesson_8_slide_3
 end
 
 def lesson_12
-  @lesson_12 ||= Lessons.new(
-    title: 'Lesson 12',
-    new_title: 'Edited Lesson'
-  )
+  @lesson_12 ||= Lessons.new(title: 'Lesson 12')
+end
+
+def lesson_12_a
+  @lesson_12_a ||= Lessons.new(title: 'Edited Lesson')
 end
 
 def lesson_13_slide_2
   @lesson_13_slide_2 ||= Slides.new(
     lesson: 'Lesson 13',
-    title: 'Slide 2',
-    new_title: 'Edited Slide'
+    title: 'Slide 2'
+  )
+end
+
+def lesson_13_slide_2_edited
+  @lesson_13_slide_2_edited ||= Slides.new(
+    lesson: 'Lesson 13',
+    title: 'Edited Slide'
   )
 end
 

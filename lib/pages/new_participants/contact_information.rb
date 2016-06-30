@@ -33,59 +33,68 @@ module NewParticipants
 
     def has_form_fields?
       find('.form-group', match: :first)
-      labels = all('.control-label')
-      actual = (0..22).map { |i| labels[i].text }
-      expect(actual).to eq(expected_form_fields)
+      array_of_elements_equal?(
+        elements: all('.control-label'),
+        ids: (0..22),
+        expectation: expected_form_fields
+      )
     end
 
     def has_health_unit_options?
-      site = localize(
-        spanish: 'Centro de salud 2',
-        portuguese: 'Celso Daniel',
-        english: 'unit 2'
-      )
       selector[0].click
-      selections = all('.select2-result-label')
-      actual = (0..9).map { |i| selections[i].text }
+      array_of_elements_equal?(
+        elements: all('.select2-result-label'),
+        ids: (0..9),
+        expectation: expected_health_unit_options
+      )
       select_response(site)
-      expect(actual).to eq(expected_health_unit_options)
     end
 
     def has_relationship_options?
-      choice = localize(
-        spanish: 'Padre / Madre',
-        portuguese: 'Pai / Mãe',
-        english: 'parent'
-      )
-      num = localize(spanish: 5, portuguese: 4, english: 5)
       navigation.scroll_down
-      # first Relationship drop down
-      selector[1].click
-      options_1 = (0..num).map { |i| response_selector[i].text }
-      select_response(choice)
-      # second Relationship drop down
-      selector[2].click
-      options_2 = (0..num).map { |i| response_selector[i].text }
-      select_response(choice)
-      # third Relationship drop down
-      selector[6].click
-      options_3 = (0..num).map { |i| response_selector[i].text }
-      select_response(choice)
-      [options_1, options_2, options_3]
-        .all? { |options| options == expected_relationship_options }
+      [1, 2, 6].each do |selector_id|
+        selector[selector_id].click
+        array_of_elements_equal?(
+          elements: all('.select2-result-label'),
+          ids: (0..number_of_choices),
+          expectation: expected_relationship_options
+        )
+        select_response(choice)
+      end
     end
 
     def has_gender_options?
-      gender_group = find('.form-group', text: gender_label)
-                     .all('.radio-inline')
-      actual = (0..1).map { |i| gender_group[i].text }
-      expect(actual).to eq(expected_gender_options)
+      array_of_elements_equal?(
+        elements: find('.form-group', text: gender_label).all('.radio-inline'),
+        ids: (0..1),
+        expectation: expected_gender_options
+      )
     end
 
     private
 
     def navigation
-      @navigation ||= Navigation.new(locale: @locale)
+      Navigation.new(locale: @locale)
+    end
+
+    def number_of_choices
+      localize(spanish: 5, portuguese: 4, english: 5)
+    end
+
+    def site
+      localize(
+        spanish: 'Centro de salud 2',
+        portuguese: 'Celso Daniel',
+        english: 'unit 2'
+      )
+    end
+
+    def choice
+      localize(
+        spanish: 'Padre / Madre',
+        portuguese: 'Pai / Mãe',
+        english: 'parent'
+      )
     end
   end
 end

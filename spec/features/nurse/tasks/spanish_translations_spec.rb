@@ -35,7 +35,7 @@ feature 'Spanish nurse, Participant tasks', metadata: :first do
 
     expect(spanish_confirmation_call).to have_form_headings
     expect(spanish_confirmation_call).to have_current_date_selections
-    expect(spanish_confirmation_call).to have_next_contact_date_selections
+    expect(spanish_confirmation_call).to have_next_contact_selectors
     expect(spanish_confirmation_call).to have_site_options
 
     spanish_confirmation_call.toggle_options_list
@@ -248,18 +248,18 @@ feature 'Spanish nurse, Participant tasks', metadata: :first do
   scenario 'Spanish nurse sees translations for contact supervisor' do
     spanish_lack_of_connectivity_call.contact_supervisor
 
-    expect(pt_501_nurse_tasks).to have_new_supervisor_contact
+    expect(pt_501_supervisor_contact).to have_new_supervisor_contact
 
     spanish_nurse.sign_out
     spanish_supervisor.sign_in
     nurse_500.select
     pt_501_nurse_tasks.open
 
-    expect(pt_501_nurse_tasks).to have_new_supervisor_contact
+    expect(pt_501_supervisor_contact).to have_new_supervisor_contact
 
-    pt_501_nurse_tasks.clear_supervisor_contact
+    pt_501_supervisor_contact.clear
 
-    expect(pt_501_nurse_tasks).to_not have_new_supervisor_contact
+    expect(pt_501_supervisor_contact).to_not have_new_supervisor_contact
   end
 end
 

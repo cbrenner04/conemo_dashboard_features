@@ -8,26 +8,26 @@ feature 'Nurse Supervisor, Nurses', metadata: :first do
 
   feature 'Nurse Supervisor, Supervision Session' do
     scenario 'Sees 12 day old supervision session' do
-      expect(nurse_402).to have_supervision_session_overdue
+      expect(nurse_402_supervision_session).to have_supervision_session_overdue
     end
 
     scenario 'Sees 8 day old supervision session' do
-      expect(nurse_401).to have_supervision_session_late
+      expect(nurse_401_supervision_session).to have_supervision_session_late
     end
 
     scenario 'Completes supervision session' do
-      nurse_403.create_supervision_session
-      nurse_403.enter_session_length
-      nurse_403.select_meeting_kind
-      nurse_403.select_contact_kind
-      nurse_403.choose_topic
+      nurse_403_supervision_session.create_supervision_session
+      supervision_session_form.enter_session_length
+      supervision_session_form.select_meeting_kind
+      supervision_session_form.select_contact_kind
+      supervision_session_form.choose_topic
       navigation.submit
 
-      expect(nurse_403).to have_new_supervision_session
+      expect(supervision_session_form).to have_new_supervision_session
 
       nurse_supervisor.return_to_home
 
-      expect(nurse_403).to have_last_supervision_session
+      expect(nurse_403_supervision_session).to have_last_supervision_session
     end
   end
 
@@ -36,18 +36,18 @@ feature 'Nurse Supervisor, Nurses', metadata: :first do
       nurse_400.select
       pt_403_tasks.open
 
-      expect(pt_403_tasks).to have_previous_supervisor_contact
+      expect(pt_403_supervisor_contact).to have_previous_supervisor_contact
     end
 
     scenario 'Nurse Supervisor clears contact supervisor notification' do
       nurse_400.select
       pt_423_tasks.open
 
-      expect(pt_423_tasks).to have_previous_supervisor_contact
+      expect(pt_423_supervisor_contact).to have_previous_supervisor_contact
 
-      pt_423_tasks.clear_supervisor_contact
+      pt_423_supervisor_contact.clear
 
-      expect(pt_423_tasks).to_not have_previous_supervisor_contact
+      expect(pt_423_supervisor_contact).to_not have_previous_supervisor_contact
     end
   end
 end
@@ -65,53 +65,53 @@ feature 'Nurse Supervisor, Nurses', metadata: :not_first do
 
   feature 'Nurse Supervisor, Supervision session' do
     scenario 'Nurse Supervisor reviews previous sessions' do
-      nurse_404.review_supervision_sessions
+      nurse_404_supervision_session.review_supervision_sessions
 
-      expect(nurse_404).to have_previous_sessions_listed
+      expect(nurse_404_supervision_session).to have_previous_sessions_listed
     end
 
     scenario 'Nurse supervisor cancels filling in supervision session' do
-      nurse_403.create_supervision_session
+      nurse_403_supervision_session.create_supervision_session
       navigation.cancel
 
       expect(nurse_supervisor).to be_on_home_page
     end
 
     scenario 'Nurse supervisor must fill in session Length' do
-      nurse_403.create_supervision_session
-      nurse_403.select_meeting_kind
-      nurse_403.select_contact_kind
-      nurse_403.choose_topic
+      nurse_403_supervision_session.create_supervision_session
+      supervision_session_form.select_meeting_kind
+      supervision_session_form.select_contact_kind
+      supervision_session_form.choose_topic
       navigation.submit
 
-      expect(nurse_403).to have_supervision_session_form_visible
+      expect(supervision_session_form).to have_supervision_session_form_visible
     end
 
     scenario 'Nurse supervisor must select meeting kind' do
-      nurse_403.create_supervision_session
-      nurse_403.enter_session_length
-      nurse_403.select_contact_kind
-      nurse_403.choose_topic
+      nurse_403_supervision_session.create_supervision_session
+      supervision_session_form.enter_session_length
+      supervision_session_form.select_contact_kind
+      supervision_session_form.choose_topic
       navigation.submit
 
-      expect(nurse_403).to have_supervision_session_form_visible
+      expect(supervision_session_form).to have_supervision_session_form_visible
     end
 
     scenario 'Nurse supervisor must select contact kind' do
-      nurse_403.create_supervision_session
-      nurse_403.enter_session_length
-      nurse_403.select_meeting_kind
-      nurse_403.choose_topic
+      nurse_403_supervision_session.create_supervision_session
+      supervision_session_form.enter_session_length
+      supervision_session_form.select_meeting_kind
+      supervision_session_form.choose_topic
       navigation.submit
 
-      expect(nurse_403).to have_supervision_session_form_visible
+      expect(supervision_session_form).to have_supervision_session_form_visible
     end
 
     scenario 'Nurse Supervisor creates a Nurse Supervisor note' do
-      nurse_404.review_supervision_sessions
-      nurse_404.create_supervision_note
+      nurse_404_supervision_session.review_supervision_sessions
+      nurse_404_supervision_note.create_supervision_note
 
-      expect(nurse_404).to have_supervision_note
+      expect(nurse_404_supervision_note).to have_supervision_note
     end
   end
 
@@ -168,8 +168,8 @@ feature 'Nurse Supervisor, Nurses', metadata: :not_first do
       pt_342_nurse_tasks_4.open
       pt_342_clinical_summary_1.open
 
-      expect(pt_342_clinical_summary_1).to have_notes_headers
-      expect(pt_342_clinical_summary_1).to have_contact_dates
+      expect(pt_342_notes).to have_notes_headers
+      expect(pt_342_notes).to have_contact_dates
     end
 
     scenario 'Nurse Supervisor sees timeline for individual participant' do
@@ -201,20 +201,22 @@ feature 'Spanish Nurse Supervisor, Nurses', metadata: :not_first do
   end
 
   scenario 'Sees correct translations for supervision session' do
-    nurse_500.create_supervision_session
+    nurse_500_supervision_session.create_supervision_session
 
-    expect(nurse_500).to have_supervision_session_form_visible
-    expect(nurse_500).to have_questions_and_responses
+    expect(spanish_supervision_session_form)
+      .to have_supervision_session_form_visible
+    expect(spanish_supervision_session_form)
+      .to have_questions_and_responses
 
     nurse_supervisor.return_to_home
 
-    expect(nurse_500).to have_supervision_session_late
+    expect(nurse_500_supervision_session).to have_supervision_session_late
 
-    nurse_500.review_supervision_sessions
+    nurse_500_supervision_session.review_supervision_sessions
 
-    expect(nurse_500).to have_supervisor_notes_title
-    expect(nurse_500).to have_supervision_sessions_title
-    expect(nurse_500).to have_supervision_table_headers
+    expect(nurse_500_supervision_session).to have_supervisor_notes_title
+    expect(nurse_500_supervision_session).to have_supervision_sessions_title
+    expect(nurse_500_supervision_session).to have_supervision_table_headers
   end
 end
 
@@ -235,19 +237,21 @@ feature 'Portguese Nurse Supervisor, Nurses', metadata: :not_first do
   end
 
   scenario 'Sees correct translations for supervision session' do
-    nurse_600.create_supervision_session
+    nurse_600_supervision_session.create_supervision_session
 
-    expect(nurse_600).to have_supervision_session_form_visible
-    expect(nurse_600).to have_questions_and_responses
+    expect(portuguese_supervision_session_form)
+      .to have_supervision_session_form_visible
+    expect(portuguese_supervision_session_form)
+      .to have_questions_and_responses
 
     nurse_supervisor.return_to_home
 
-    expect(nurse_600).to have_supervision_session_late
+    expect(nurse_600_supervision_session).to have_supervision_session_late
 
-    nurse_600.review_supervision_sessions
+    nurse_600_supervision_session.review_supervision_sessions
 
-    expect(nurse_600).to have_supervisor_notes_title
-    expect(nurse_600).to have_supervision_sessions_title
-    expect(nurse_600).to have_supervision_table_headers
+    expect(nurse_600_supervision_session).to have_supervisor_notes_title
+    expect(nurse_600_supervision_session).to have_supervision_sessions_title
+    expect(nurse_600_supervision_session).to have_supervision_table_headers
   end
 end

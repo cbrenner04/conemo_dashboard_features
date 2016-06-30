@@ -22,13 +22,14 @@ module Translations
       private
 
       def spanish_timeline_dates
+        fourteen_days_ago = standard_date(today - 14)
         @spanish_timeline_dates ||= [
           "Fecha y hora de contacto: #{standard_date(today - 45)}",
           "Programada para: #{standard_date(today - 42)}",
           "Fecha/hora de la llamada: #{standard_date(today - 35)}",
           "Fecha/hora de la llamada: #{standard_date(today - 21)}",
-          "Fecha/hora de la llamada: #{standard_date(today - 14)}",
-          "Fecha/hora de la llamada: #{standard_date(today - 14)}",
+          "Fecha/hora de la llamada: #{fourteen_days_ago}",
+          "Fecha/hora de la llamada: #{fourteen_days_ago}",
           "Fecha/hora de la llamada: #{standard_date(today - 7)}",
           "Fecha y hora de contacto: #{standard_date(yesterday)}",
           "Programada para: #{standard_date(today)}"
@@ -36,13 +37,14 @@ module Translations
       end
 
       def portuguese_timeline_dates
+        fourteen_days_ago = standard_date(today - 14)
         @portuguese_timeline_dates ||= [
           "Contactado em: #{standard_date(today - 45)}",
           "Data/hora: #{standard_date(today - 42)}",
           "Data/hora: #{standard_date(today - 35)}",
           "Data da ligação: #{standard_date(today - 21)}",
-          "Data/hora: #{standard_date(today - 14)}",
-          "Data da ligação: #{standard_date(today - 14)}",
+          "Data/hora: #{fourteen_days_ago}",
+          "Data da ligação: #{fourteen_days_ago}",
           "Data da ligação: #{standard_date(today - 7)}",
           "Data da ligação: #{standard_date(yesterday)}",
           "Data/hora: #{standard_date(today)}"
@@ -64,10 +66,10 @@ module Translations
         @spanish_timeline_headings ||= [
           'Duración de la sesión (minutos):',
           'Lugar de cita de inicio:',
-          'Duración de la llamada (min):',
+          'Duración de la sesión (min):',
           '¿El paciente ha tenido algunas dificultades usando CONEMO?:',
           'Razón para no-adherencia:',
-          'Duración de la llamada (min):',
+          'Duración de la sesión (min):',
           '¿El paciente ha tenido algunas dificultades usando CONEMO?:',
           'Razón para no-conectividad:',
           'Razón por la solicitud de ayuda:',

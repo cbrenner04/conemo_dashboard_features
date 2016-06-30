@@ -10,7 +10,7 @@ module Translations
 
     def clinical_summary_link
       localize(
-        spanish: 'Historia del Paciente',
+        spanish: 'Historial de Participación',
         portuguese: 'Histórico do participante',
         english: 'Clinical Summary'
       )
@@ -18,9 +18,9 @@ module Translations
 
     def clinical_summary_title
       localize(
-        spanish: 'Historia del Paciente',
+        spanish: 'Historial de Participación',
         portuguese: 'Histórico do Participante',
-        english: 'Clinical Summary'
+        english: 'Clinical summary'
       )
     end
 
@@ -62,7 +62,7 @@ module Translations
     end
 
     def expected_contact_dates
-      [0, 14, 35, 42].map { |i| standard_date(today - i) }
+      [0, 14, 35, 42].map { |contact_date| standard_date(today - contact_date) }
     end
 
     def expected_notes_form_heading

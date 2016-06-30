@@ -81,7 +81,7 @@ module Translations
     end
 
     def last_supervisor_contact_heading
-      localize(spanish: 'último contacto supervisor de enviado en',
+      localize(spanish: 'Supervisor contactado por última vez el',
                portuguese: 'último aviso para supervisor enviado em',
                english: 'Last supervisor contact sent')
     end
@@ -107,13 +107,13 @@ module Translations
     end
 
     def feminine_success_alert
-      localize(spanish: 'guardada exitosamente',
+      localize(spanish: 'guardada satisfactoriamente',
                portuguese: 'salvo com sucesso',
                english: 'saved successfully')
     end
 
     def masculine_success_alert
-      localize(spanish: 'guardado exitosamente',
+      localize(spanish: 'guardado satisfactoriamente',
                portuguese: 'registrado com sucesso',
                english: 'saved successfully')
     end

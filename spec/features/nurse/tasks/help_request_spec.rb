@@ -15,14 +15,14 @@ feature 'Nurse, Participant Tasks, Help Request', metadata: :first do
     help_request.contact_supervisor
 
     expect(help_request).to be_active
-    expect(pt_401_nurse_tasks).to have_new_supervisor_contact
+    expect(pt_401_supervisor_contacts).to have_new_supervisor_contact
   end
 
   scenario 'Sees when the last supervisor contact sent' do
     pt_402_nurse_tasks.open
 
     expect(help_request).to be_active
-    expect(pt_402_nurse_tasks).to have_previous_supervisor_contact
+    expect(pt_402_supervisor_contact).to have_previous_supervisor_contact
   end
 end
 
@@ -92,7 +92,7 @@ feature 'Nurse, Participant Tasks, Help request', metadata: :not_first do
     english_nurse_401.sign_out
     english_supervisor.sign_in
 
-    expect(nurse_supervisor_14).to have_help_request_canceled
+    expect(nurse_supervisor_14).to have_task_canceled 'Help request'
     expect(help_request).to have_cancel_reason
   end
 end

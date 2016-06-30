@@ -69,7 +69,8 @@ feature 'Nurse, Call to schedule final appointment', metadata: :not_first do
     english_nurse.sign_out
     english_supervisor.sign_in
 
-    expect(nurse_supervisor_1).to have_call_to_schedule_final_canceled
+    expect(nurse_supervisor_1)
+      .to have_task_canceled 'Call to schedule final in person appointment'
     expect(cancel_form).to have_cancellation_reason
   end
 
@@ -101,7 +102,8 @@ feature 'Nurse, Call to schedule final appointment', metadata: :not_first do
     english_nurse.sign_out
     english_supervisor.sign_in
 
-    expect(nurse_supervisor_2).to have_call_to_schedule_final_rescheduled
+    expect(nurse_supervisor_2)
+      .to have_task_rescheduled 'Call to schedule final in person appointment'
     expect(reschedule_form).to have_reschedule_reason
   end
 

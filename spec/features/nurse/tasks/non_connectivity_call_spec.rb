@@ -15,14 +15,14 @@ feature 'Nurse, Non-connectivity call', metadata: :first do
     lack_of_connectivity_call.contact_supervisor
 
     expect(lack_of_connectivity_call).to be_active
-    expect(pt_411_nurse_tasks).to have_new_supervisor_contact
+    expect(pt_411_supervisor_contact).to have_new_supervisor_contact
   end
 
   scenario 'Sees when the last supervisor contact sent' do
     pt_412_nurse_tasks.open
 
     expect(lack_of_connectivity_call).to be_active
-    expect(pt_412_nurse_tasks).to have_previous_supervisor_contact
+    expect(pt_412_supervisor_contact).to have_previous_supervisor_contact
   end
 
   # check that a non-connectivity task is not triggered for a participant who
@@ -42,7 +42,7 @@ feature 'Nurse, Non-connectivity call', metadata: :first do
     # meaning a task is needed
     pt_415_clinical_summary.open
 
-    if Time.now.strftime('%H').to_i < 12
+    if now.strftime('%H').to_i < 12
       expect(pt_415_clinical_summary).to have_three_non_connectivity_icons
     else
       expect(pt_415_clinical_summary).to have_two_non_connectivity_icons
@@ -72,7 +72,7 @@ feature 'Nurse, Non-connectivity call', metadata: :first do
     # meaning a task is needed
     pt_414_clinical_summary.open
 
-    if Time.now.strftime('%H').to_i < 12
+    if now.strftime('%H').to_i < 12
       expect(pt_415_clinical_summary).to have_three_non_connectivity_icons
     else
       expect(pt_415_clinical_summary).to have_two_non_connectivity_icons
@@ -159,7 +159,8 @@ feature 'Nurse, Non-connectivity call', metadata: :not_first do
     english_nurse_401.sign_out
     english_supervisor.sign_in
 
-    expect(nurse_supervisor_16).to have_non_connectivity_call_canceled
+    expect(nurse_supervisor_16)
+      .to have_task_canceled 'Call due to no connectivity'
     expect(lack_of_connectivity_call).to have_cancel_reason
   end
 end
