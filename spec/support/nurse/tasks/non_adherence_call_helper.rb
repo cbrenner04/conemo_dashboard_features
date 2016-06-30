@@ -2,9 +2,11 @@
 # filename: ./spec/support/nurse/tasks/non_adherence_call_helper.rb
 
 require './lib/pages/nurse_tasks'
+require './lib/pages/summary/lessons_table'
 require './lib/pages/supervisor_page'
 require './lib/pages/tasks/non_adherence_call'
 require './lib/pages/tasks/lack_of_connectivity_call'
+require './lib/pages/tasks/supervisor_contacts'
 require './lib/pages/your_patients'
 
 def non_adherence_call
@@ -27,6 +29,10 @@ end
 
 def pt_421_nurse_tasks
   @pt_421_nurse_tasks ||= NurseTasks.new(pt_id: 421)
+end
+
+def pt_421_supervisor_contact
+  @pt_421_supervisor_contact ||= Tasks::SupervisorContacts.new(pt_id: 421)
 end
 
 def pt_424_nurse_tasks

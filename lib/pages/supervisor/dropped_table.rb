@@ -4,6 +4,7 @@ require './lib/pages/translations/supervisor_page/participants'
 module Supervisor
   # page object for Dropped Participants Table on nurse supervisor page
   class DroppedTable
+    include RSpec::Matchers
     include Capybara::DSL
     include Translations::SupervisorPageTranslations::ParticipantsTranslations
 
@@ -57,25 +58,26 @@ module Supervisor
 
     def dropped_panel
       find('.panel',
-           text: localize(spanish: 'Suspensión',
+           text: localize(spanish: 'suspendido',
                           portuguese: 'Tratamento', english: 'Dropped'))
     end
 
     def dropped_pt_expected_rows
+      local_today = standard_date(today)
       ["Nurse-402, English Last-202, First 202 #{standard_date(today - 5)}",
        "Nurse-402, English Last-203, First 203 #{standard_date(today - 6)}",
        "Nurse-402, English Last-204, First 204 #{standard_date(today - 7)}",
        "Nurse-402, English Last-205, First 205 #{standard_date(today - 8)}",
-       "Nurse-402, English Last-206, First 206 #{standard_date(today - 10)}",
-       "Nurse-402, English Last-207, First 207 #{standard_date(today - 11)}",
-       "Nurse-402, English Last-208, First 208 #{standard_date(today - 12)}",
-       "Nurse-402, English Last-209, First 209 #{standard_date(today - 13)}",
-       "Nurse-402, English Last-210, First 210 #{standard_date(today - 14)}",
-       "Nurse-402, English Last-211, First 211 #{standard_date(today - 15)}",
-       "Nurse-402, English Last-212, First 212 #{standard_date(today - 16)}",
-       "Nurse-402, English Last-213, First 213 #{standard_date(today - 17)}",
-       "Nurse-400, English Last-200, First 200 #{today}",
-       "Nurse-400, English Last-201, First 201 #{today}"]
+       "Nurse-402, English Last-206, First 206 #{standard_date(today - 9)}",
+       "Nurse-402, English Last-207, First 207 #{standard_date(today - 10)}",
+       "Nurse-402, English Last-208, First 208 #{standard_date(today - 11)}",
+       "Nurse-402, English Last-209, First 209 #{standard_date(today - 12)}",
+       "Nurse-402, English Last-210, First 210 #{standard_date(today - 13)}",
+       "Nurse-402, English Last-211, First 211 #{standard_date(today - 14)}",
+       "Nurse-402, English Last-212, First 212 #{standard_date(today - 15)}",
+       "Nurse-402, English Last-213, First 213 #{standard_date(today - 16)}",
+       "Nurse-400, English Last-200, First 200 #{local_today}",
+       "Nurse-400, English Last-201, First 201 #{local_today}"]
     end
   end
 end

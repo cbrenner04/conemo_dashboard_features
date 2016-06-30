@@ -89,18 +89,18 @@ module NurseTasksForms
     @resolve_as_canceled_responses ||= english_cancel_options[1..4]
   end
 
+  def has_next_contact_selectors?
+    selector[6].has_text?(locale_month(today.strftime('%B'))) &&
+      selector[next_date_day_selector_id].has_text?(today.strftime('%-d')) &&
+      selector[next_date_year_selector_id].has_text?(today.strftime('%Y'))
+  end
+
   private
 
   def has_current_date_selectors?
     selector[1].has_text?(locale_month(today.strftime('%B'))) &&
       selector[current_date_day_selector_id].has_text?(today.strftime('%-d')) &&
       selector[current_date_year_selector_id].has_text?(today.strftime('%Y'))
-  end
-
-  def has_next_contact_selectors?
-    selector[6].has_text?(locale_month(today.strftime('%B'))) &&
-      selector[next_date_day_selector_id].has_text?(today.strftime('%-d')) &&
-      selector[next_date_year_selector_id].has_text?(today.strftime('%Y'))
   end
 
   def has_hour_selector?(hour_selector_id, time = now)

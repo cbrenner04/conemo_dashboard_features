@@ -25,7 +25,8 @@ end
 def retry_action_with_scroll_up
   tries ||= 2
   yield
-rescue Capybara::ElementNotFound, Selenium::WebDriver::Error::UnknownError
+rescue Capybara::ElementNotFound, Selenium::WebDriver::Error::UnknownError,
+       Capybara::ModalNotFound
   navigation.scroll_up
   retry unless (tries -= 1).zero?
 end

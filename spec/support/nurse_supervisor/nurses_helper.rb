@@ -11,6 +11,7 @@ require './lib/pages/supervisor_page'
 require './lib/pages/supervisor/nurses'
 require './lib/pages/supervisor/supervision_note'
 require './lib/pages/supervisor/supervision_session'
+require './lib/pages/supervisor/supervision_session_form'
 require './lib/pages/tasks/confirmation_call'
 require './lib/pages/tasks/help_request'
 require './lib/pages/tasks/lack_of_connectivity_call'
@@ -136,13 +137,17 @@ def pt_403_tasks
 end
 
 def pt_403_supervisor_contact
-  @pt_403_supervisor_contact ||= Tasks::SupervisorContact.new(
+  @pt_403_supervisor_contact ||= Tasks::SupervisorContacts.new(
     time_of_contact: now - (3 * one_hour)
   )
 end
 
+def pt_423_tasks
+  @pt_423_tasks ||= NurseTasks.new(pt_id: 423)
+end
+
 def pt_423_supervisor_contact
-  @pt_423_supervisor_contact ||= Tasks::SupervisorContact.new(
+  @pt_423_supervisor_contact ||= Tasks::SupervisorContacts.new(
     time_of_contact: now - (2 * one_hour)
   )
 end

@@ -38,7 +38,7 @@ module Tasks
       array_of_elements_equal?(
         elements: all('.checkbox'),
         ids: (0..8),
-        expectations: options
+        expectation: options
       )
     end
 

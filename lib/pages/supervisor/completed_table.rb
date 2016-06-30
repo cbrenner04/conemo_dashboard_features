@@ -4,6 +4,7 @@ require './lib/pages/translations/supervisor_page/participants'
 module Supervisor
   # page object for Completed Participants Table on nurse supervisor page
   class CompletedTable
+    include RSpec::Matchers
     include Capybara::DSL
     include Translations::SupervisorPageTranslations::ParticipantsTranslations
 

@@ -5,6 +5,7 @@ require './lib/pages/translations/supervisor_page/nurses'
 module Supervisor
   # page object for supervision sessions within nurse supervisor page
   class SupervisionSession
+    include RSpec::Matchers
     include Capybara::DSL
     include Translations::SupervisorPageTranslations::NursesTranslations
 
@@ -52,10 +53,7 @@ module Supervisor
     end
 
     def has_supervision_sessions_title?
-      # will need to update spanish version
-      has_css?('h3', text: localize(spanish: 'Sesiones de supervisión',
-                                    portuguese: 'Sessão de Supervisão',
-                                    english: 'Supervision sessions'))
+      has_css?('h3', text: plural_supervision_form_heading)
     end
 
     def has_supervision_table_headers?
@@ -74,6 +72,10 @@ module Supervisor
 
     def nurse_panel
       all('.panel', text: "Nurse-#{@id}, #{language}").last
+    end
+
+    def nurse_panel_heading
+      find('.panel-heading', text: "Nurse-#{@id}, #{language}")
     end
 
     def last_supervision_date

@@ -37,5 +37,9 @@ module ContactInfo
     def has_successful_smartphone_creation_alert?
       has_css?('.alert', text: smartphone_creation_alert)
     end
+
+    def has_smartphone_information_title?
+      has_css?('h3', text: smartphone_information_title)
+    end
   end
 end

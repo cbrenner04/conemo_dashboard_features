@@ -49,10 +49,6 @@ class ContactInformation
     has_css?('h3', text: contact_information_title)
   end
 
-  def has_smartphone_information_title?
-    has_css?('h3', text: smartphone_information_title)
-  end
-
   def has_contact_information_table_headings?
     array_of_elements_equal?(
       elements: contact_information_div.all('strong'),

@@ -66,10 +66,10 @@ module Translations
         @spanish_timeline_headings ||= [
           'Duración de la sesión (minutos):',
           'Lugar de cita de inicio:',
-          'Duración de la llamada (min):',
+          'Duración de la sesión (min):',
           '¿El paciente ha tenido algunas dificultades usando CONEMO?:',
           'Razón para no-adherencia:',
-          'Duración de la llamada (min):',
+          'Duración de la sesión (min):',
           '¿El paciente ha tenido algunas dificultades usando CONEMO?:',
           'Razón para no-conectividad:',
           'Razón por la solicitud de ayuda:',

@@ -87,7 +87,7 @@ module Summary
       array_of_elements_equal?(
         elements: all('.control-label'),
         ids: (0..1),
-        expectation: expected_notes_form_heading
+        expectation: expected_notes_form_labels
       )
     end
 

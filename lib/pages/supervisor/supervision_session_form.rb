@@ -4,6 +4,7 @@ require './lib/pages/translations/supervisor_page/nurses'
 module Supervisor
   # page object for supervision session form for nurse Supervisor
   class SupervisionSessionForm
+    include RSpec::Matchers
     include Capybara::DSL
     include Translations::SupervisorPageTranslations::NursesTranslations
 

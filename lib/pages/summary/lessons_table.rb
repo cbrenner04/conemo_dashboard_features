@@ -4,12 +4,16 @@ require './lib/pages/translations/clinical_summary'
 module Summary
   # page object for Lessons in Clinical Summary
   class LessonsTable
+    include RSpec::Matchers
     include Capybara::DSL
+    include Translations::ClinicalSummaryTranslations
 
     def initialize(lessons_table)
       @current_lesson ||= lessons_table[:current_lesson]
       @other_lesson ||= lessons_table[:other_lesson]
       @incomplete_lesson ||= lessons_table[:incomplete_lesson]
+      @start_date_offset ||= lessons_table[:start_date_offset]
+      @locale ||= lessons_table.fetch(:locale, 'english')
     end
 
     def has_lesson_table_content?
@@ -49,7 +53,7 @@ module Summary
                     end
 
       array_of_elements_equal?(
-        elements: all('.release_date'),
+        elements: all('.release-date'),
         ids: (0..(total_lessons - 1)),
         expectation: expectation
       )

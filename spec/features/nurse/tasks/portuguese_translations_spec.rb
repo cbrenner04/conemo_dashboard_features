@@ -36,7 +36,7 @@ feature 'Portuguese nurse, Participant tasks', metadata: :first do
 
     expect(portuguese_confirmation_call).to have_form_headings
     expect(portuguese_confirmation_call).to have_current_date_selections
-    expect(portuguese_confirmation_call).to have_next_contact_date_selections
+    expect(portuguese_confirmation_call).to have_next_contact_selectors
     expect(portuguese_confirmation_call).to have_site_options
 
     portuguese_confirmation_call.toggle_options_list

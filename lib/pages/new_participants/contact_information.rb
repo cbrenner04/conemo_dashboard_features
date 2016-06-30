@@ -42,7 +42,7 @@ module NewParticipants
 
     def has_health_unit_options?
       selector[0].click
-      array_of_elements_equal(
+      array_of_elements_equal?(
         elements: all('.select2-result-label'),
         ids: (0..9),
         expectation: expected_health_unit_options
@@ -75,10 +75,6 @@ module NewParticipants
 
     def navigation
       Navigation.new(locale: @locale)
-    end
-
-    def select_response(choice)
-      find('.select2-result-label', text: choice).click
     end
 
     def number_of_choices

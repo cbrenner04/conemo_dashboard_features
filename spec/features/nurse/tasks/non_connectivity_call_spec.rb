@@ -15,7 +15,7 @@ feature 'Nurse, Non-connectivity call', metadata: :first do
     lack_of_connectivity_call.contact_supervisor
 
     expect(lack_of_connectivity_call).to be_active
-    expect(pt_411_nurse_tasks).to have_new_supervisor_contact
+    expect(pt_411_supervisor_contact).to have_new_supervisor_contact
   end
 
   scenario 'Sees when the last supervisor contact sent' do

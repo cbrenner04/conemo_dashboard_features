@@ -5,6 +5,7 @@ require './lib/pages/clinical_summary'
 require './lib/pages/nurse_tasks'
 require './lib/pages/supervisor_page'
 require './lib/pages/tasks/lack_of_connectivity_call'
+require './lib/pages/tasks/supervisor_contacts'
 require './lib/pages/your_patients'
 
 def lack_of_connectivity_call
@@ -22,6 +23,10 @@ end
 
 def pt_411_nurse_tasks
   @pt_411_nurse_tasks ||= NurseTasks.new(pt_id: 411)
+end
+
+def pt_411_supervisor_contact
+  @pt_411_supervisor_contact ||= Tasks::SupervisorContacts.new(pt_id: 411)
 end
 
 def pt_412_nurse_tasks

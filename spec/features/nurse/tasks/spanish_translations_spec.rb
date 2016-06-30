@@ -35,7 +35,7 @@ feature 'Spanish nurse, Participant tasks', metadata: :first do
 
     expect(spanish_confirmation_call).to have_form_headings
     expect(spanish_confirmation_call).to have_current_date_selections
-    expect(spanish_confirmation_call).to have_next_contact_date_selections
+    expect(spanish_confirmation_call).to have_next_contact_selectors
     expect(spanish_confirmation_call).to have_site_options
 
     spanish_confirmation_call.toggle_options_list

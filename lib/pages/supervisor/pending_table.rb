@@ -4,6 +4,7 @@ require './lib/pages/translations/supervisor_page/participants'
 module Supervisor
   # page object for Pending Participants Table on nurse supervisor page
   class PendingTable
+    include RSpec::Matchers
     include Capybara::DSL
     include Translations::SupervisorPageTranslations::ParticipantsTranslations
 
@@ -72,11 +73,11 @@ module Supervisor
     end
 
     def pending_pt_exepected_rows
-      today = standard_date(today)
-      ["Edit Information Last-495, First 495 #{today} Activate",
-       "Edit Information Last-496, First 496 #{today} Activate",
-       "Edit Information Last-497, First 497 #{today} Activate",
-       "Edit Information Last-498, First 498 #{today} Activate"]
+      local_today = standard_date(today)
+      ["Edit Information Last-495, First 495 #{local_today} Activate",
+       "Edit Information Last-496, First 496 #{local_today} Activate",
+       "Edit Information Last-497, First 497 #{local_today} Activate",
+       "Edit Information Last-498, First 498 #{local_today} Activate"]
     end
   end
 end

@@ -67,7 +67,7 @@ module Translations
 
     def saved_contact_information_alert
       localize(
-        spanish: 'Información actualizada exitosamente',
+        spanish: 'Información actualizada satisfactoriamente',
         portuguese: 'Informações do participante atualizadas com sucesso',
         english: 'Successfully updated participant'
       )
@@ -75,7 +75,7 @@ module Translations
 
     def smartphone_creation_alert
       localize(
-        spanish: 'Smartphone guardado exitosamente',
+        spanish: 'Smartphone guardado satisfactoriamente',
         portuguese: 'Smartphone registrado com sucesso',
         english: 'Successfully created smartphone'
       )

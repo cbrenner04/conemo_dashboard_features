@@ -85,7 +85,7 @@ module NurseTasksPage
   def click_panel_button(button)
     has_text? @task_title
     execute_script 'window.scrollBy(0,100)'
-    find('.panel', text: @task_title).find('a', text: button).click
+    custom_click(find('.panel', text: @task_title).find('a', text: button))
   end
 
   def unscheduled?

@@ -79,7 +79,7 @@ module Tasks
     def has_resolution_confirmation_alert?
       has_css?(
         '.alert', text: localize(
-          spanish: 'Solicitud de ayuda guardada exitosamente',
+          spanish: 'Solicitud de ayuda guardada satisfactoriamente',
           portuguese: 'Pedido de ajuda salvo com sucesso',
           english: 'Help request saved successfully'
         )

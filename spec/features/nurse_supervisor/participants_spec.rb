@@ -86,8 +86,8 @@ feature 'Spanish Nurse Supervisor, Participants', metadata: :not_first do
 
   scenario 'Sees correct translations' do
     expect(spanish_supervisor_participants).to have_participants_title
-    expect(spanish_pending_participants).to have_pending_panel_title
-    expect(spanish_pending_participants).to have_pending_table_headers
+    expect(spanish_pending_participants_table).to have_pending_panel_title
+    expect(spanish_pending_participants_table).to have_pending_table_headers
     expect(spanish_active_participants).to have_active_panel_title
     expect(spanish_active_participants).to have_active_table_headers
     expect(spanish_completed_participants).to have_completed_panel_title
@@ -132,8 +132,8 @@ feature 'Portuguese Nurse Supervisor, Participants', metadata: :not_first do
 
   scenario 'Sees correct translations' do
     expect(portuguese_supervisor_participants).to have_participants_title
-    expect(portuguese_pending_participants).to have_pending_panel_title
-    expect(portuguese_pending_participants).to have_pending_table_headers
+    expect(portuguese_pending_participants_table).to have_pending_panel_title
+    expect(portuguese_pending_participants_table).to have_pending_table_headers
     expect(portuguese_active_participants).to have_active_panel_title
     expect(portuguese_active_participants).to have_active_table_headers
     expect(portuguese_completed_participants).to have_completed_panel_title
@@ -163,7 +163,7 @@ feature 'Portuguese Nurse Supervisor, Participants', metadata: :not_first do
   scenario 'Sees correct translations for reassigning nurse' do
     patient_602.reassign
 
-    expect(patient_602).to have_nurse_assignment_form_visible
+    expect(pending_patient_602).to have_nurse_assignment_form_visible
   end
 
   scenario 'Sees correct translation for terminating participants' do

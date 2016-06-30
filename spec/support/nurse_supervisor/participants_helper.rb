@@ -62,14 +62,14 @@ def portuguese_supervisor_participants
   )
 end
 
-def spanish_pending_participants
-  @spanish_pending_participants ||= Supervisor::PendingTable.new(
+def spanish_pending_participants_table
+  @spanish_pending_participants_table ||= Supervisor::PendingTable.new(
     locale: 'spanish'
   )
 end
 
-def portuguese_pending_participants
-  @portuguese_pending_participants ||= Supervisor::PendingTable.new(
+def portuguese_pending_participants_table
+  @portuguese_pending_participants_table ||= Supervisor::PendingTable.new(
     locale: 'portuguese'
   )
 end
@@ -151,7 +151,7 @@ def pt_413_tasks
 end
 
 def pt_413_supervisor_contact
-  @pt_413_supervisor_contact ||= Tasks::SupervisorContact.new(
+  @pt_413_supervisor_contact ||= Tasks::SupervisorContacts.new(
     time_of_contact: now - (2 * one_hour)
   )
 end
@@ -261,6 +261,13 @@ end
 
 def patient_602
   @patient_602 ||= Supervisor::Participants.new(
+    pt_id: 602,
+    locale: 'portuguese'
+  )
+end
+
+def pending_patient_602
+  @pending_patient_602 ||= Supervisor::PendingTable.new(
     pt_id: 602,
     locale: 'portuguese'
   )

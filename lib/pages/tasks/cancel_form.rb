@@ -29,7 +29,7 @@ module Tasks
 
     def has_cancel_alert?(task)
       has_css?('.alert',
-               text: localize(spanish: "#{task} cancelada exitosamente",
+               text: localize(spanish: "#{task} cancelada satisfactoriamente",
                               portuguese: "#{task} cancelado com sucesso",
                               english: "#{task} canceled successfully"))
     end

@@ -103,7 +103,7 @@ feature 'Nurse, Call to schedule final appointment', metadata: :not_first do
     english_supervisor.sign_in
 
     expect(nurse_supervisor_2)
-      .to have_rescheduled_task 'Call to schedule final in person appointment'
+      .to have_task_rescheduled 'Call to schedule final in person appointment'
     expect(reschedule_form).to have_reschedule_reason
   end
 

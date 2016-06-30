@@ -15,7 +15,7 @@ feature 'Nurse, Non-adherence call', metadata: :first do
     non_adherence_call.contact_supervisor
 
     expect(non_adherence_call).to be_active
-    expect(pt_421_nurse_tasks).to have_new_supervisor_contact
+    expect(pt_421_supervisor_contact).to have_new_supervisor_contact
   end
 
   scenario 'Sees when the last supervisor contact sent' do
@@ -114,6 +114,8 @@ feature 'Nurse, Non-adherence call', metadata: :not_first do
     # check clinical summary for overdue lessons (meaning a task is needed)
     clinical_summary.open
 
+    expect(clinical_summary).to be_visible
+
     expect(pt_1001_lessons_table).to have_current_lesson
     expect(pt_1001_lessons_table).to have_unread_lesson
     expect(pt_1001_lessons_table_1).to have_unread_lesson
@@ -139,6 +141,8 @@ feature 'Nurse, Non-adherence call', metadata: :not_first do
 
     # check clinical summary for overdue lessons (meaning a task is needed)
     clinical_summary.open
+
+    expect(clinical_summary).to be_visible
 
     expect(pt_425_lessons_table).to have_current_lesson
     expect(pt_425_lessons_table).to have_unread_lesson

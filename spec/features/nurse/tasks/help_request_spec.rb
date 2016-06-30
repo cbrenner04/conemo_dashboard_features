@@ -15,7 +15,7 @@ feature 'Nurse, Participant Tasks, Help Request', metadata: :first do
     help_request.contact_supervisor
 
     expect(help_request).to be_active
-    expect(pt_401_nurse_tasks).to have_new_supervisor_contact
+    expect(pt_401_supervisor_contacts).to have_new_supervisor_contact
   end
 
   scenario 'Sees when the last supervisor contact sent' do

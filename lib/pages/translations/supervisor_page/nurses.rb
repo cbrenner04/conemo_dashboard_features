@@ -29,7 +29,7 @@ module Translations
       def log_session_button
         localize(
           spanish: 'Añadir nueva supervisión',
-          portuguese: 'Resgistrar Sessão de Supervisão',
+          portuguese: 'Registrar Sessão de Supervisão',
           english: 'Log supervision session'
         )
       end
@@ -37,8 +37,16 @@ module Translations
       def supervision_form_heading
         localize(
           spanish: 'Sesion de supervisión',
-          portuguese: 'Sessão de Supervisão',
+          portuguese: 'Questões Admnistrativas',
           english: 'Supervision session'
+        )
+      end
+
+      def plural_supervision_form_heading
+        localize(
+          spanish: 'Sesiones de supervisión',
+          portuguese: 'Questões Admnistrativas',
+          english: 'Supervision sessions'
         )
       end
 

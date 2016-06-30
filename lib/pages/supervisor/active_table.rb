@@ -6,6 +6,7 @@ require './lib/pages/your_patients'
 module Supervisor
   # page object for active participants table on supervisor page
   class ActiveTable
+    include RSpec::Matchers
     include Capybara::DSL
     include Translations::SupervisorPageTranslations::ParticipantsTranslations
 
@@ -44,7 +45,8 @@ module Supervisor
 
     def terminate
       retry_action_with_scroll_up do
-        active_panel.find('tr', text: @pt_id).find('.fa-thumbs-down').click
+        active_panel.find('tr', text: @pt_id)
+                    .find('.fa-thumbs-down').click
         sleep(0.25)
         accept_alert(termination_alert)
       end

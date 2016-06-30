@@ -222,7 +222,7 @@ def pt_432_nurse_tasks
 end
 
 def pt_440_lessons_table
-  @pt_440_lessons_table ||= Summary::LessonTable.new(
+  @pt_440_lessons_table ||= Summary::LessonsTable.new(
     current_lesson: 'Lesson 8',
     other_lesson: 'Lesson 7'
   )
@@ -357,7 +357,7 @@ end
 def pt_500_clinical_summary
   @pt_500_clinical_summary ||= ClinicalSummary.new(
     locale: 'spanish',
-    start_date_offset: 12,
+    # start_date_offset: 12,
     last_seen: ONE_HOUR_AGO
   )
 end
@@ -371,7 +371,10 @@ def pt_500_notes
 end
 
 def pt_500_lessons_table
-  @pt_500_lessons_table ||= Summary::LessonsTable.new(locale: 'spanish')
+  @pt_500_lessons_table ||= Summary::LessonsTable.new(
+    locale: 'spanish',
+    start_date_offset: 12
+  )
 end
 
 def pt_500_nurse_tasks
@@ -395,25 +398,25 @@ def pt_516_clinical_summary
 end
 
 def pt_516_ontime_lesson
-  @pt_516_ontime_lesson ||= ClinicalSummary.new(
+  @pt_516_ontime_lesson ||= Summary::LessonsTable.new(
     other_lesson: '¡Bienvenido a CONEMO!'
   )
 end
 
 def pt_516_late_lesson
-  @pt_516_late_lesson ||= ClinicalSummary.new(
+  @pt_516_late_lesson ||= Summary::LessonsTable.new(
     other_lesson: 'Estar activo te ayudará a tener una vida más saludable'
   )
 end
 
 def pt_516_incomplete_lesson
-  @pt_516_incomplete_lesson ||= ClinicalSummary.new(
+  @pt_516_incomplete_lesson ||= Summary::LessonsTable.new(
     incomplete_lesson: '¿Qué quieres lograr con CONEMO?'
   )
 end
 
 def pt_516_unread_lesson
-  @pt_516_unread_lesson ||= ClinicalSummary.new(
+  @pt_516_unread_lesson ||= Summary::LessonsTable.new(
     other_lesson: ' Terminar nuestras tareas nos hace sentir mejor.'
   )
 end
@@ -421,7 +424,7 @@ end
 def pt_600_clinical_summary
   @pt_600_clinical_summary ||= ClinicalSummary.new(
     locale: 'portuguese',
-    start_date_offset: 12,
+    # start_date_offset: 12,
     last_seen: ONE_HOUR_AGO
   )
 end
@@ -435,7 +438,10 @@ def pt_600_notes
 end
 
 def pt_600_lessons_table
-  @pt_600_lessons_table ||= Summary::LessonsTable.new(locale: 'portuguese')
+  @pt_600_lessons_table ||= Summary::LessonsTable.new(
+    locale: 'portuguese',
+    start_date_offset: 12
+  )
 end
 
 def pt_600_nurse_tasks
