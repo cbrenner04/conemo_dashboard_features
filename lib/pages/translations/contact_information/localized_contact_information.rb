@@ -8,11 +8,12 @@ module Translations
           'Centro de salud:',
           'Telefóno fijo:',
           'Celular (propio):',
-          'Teléfono fijo (Contacto de Emergencia):',
-          'Teléfono alternativo 1:',
-          'Nombre de persona / Lugar del teléfono alternativo 1:',
           'Dirección actual:',
           'Sexo:',
+          'Teléfono fijo (Contacto de Emergencia):',
+          'Contacto de Emergencia (nombre):',
+          'Teléfono alternativo 1:',
+          'Nombre de persona / Lugar del teléfono alternativo 1:',
           'Número del smartphone / número de serie:',
           'Código del smartphone:'
         ]
@@ -23,11 +24,12 @@ module Translations
           'Unidade de Saúde da Família:',
           'Telefone fixo:',
           'Celular (pessoal):',
-          'Telefone fixo (Contato de Emergência):',
-          'Telefone alternativo 1:',
-          'Nome de pessoa / lugar de telefone alternativo 1:',
           'Endereço:',
           'Sexo:',
+          'Telefone fixo (Contato de Emergência):',
+          'Contato de Emergência (nome):',
+          'Telefone alternativo 1:',
+          'Nome de pessoa / lugar de telefone alternativo 1:',
           'Número do Smartphone / número de serie:',
           'Código do Smartphone:'
         ]
@@ -38,64 +40,59 @@ module Translations
           'Family health unit:',
           'Telephone:',
           'Cell phone:',
-          'Telephone:',
-          'Alternate phone 1:',
-          'Contact person:',
           'Home address:',
           'Gender:',
-          'Phone number / serial number:',
-          'Phone ID:'
+          'Emergency contact (name):',
+          'Alternate phone 1:',
+          'Contact person:'
         ]
       end
 
       def spanish_extras
         @spanish_extras ||= [
-          'Contacto de Emergencia (nombre):',
           'Fecha de nacimiento:',
+          'Relación con el participante (Contacto de Emergencia):',
+          'Si marcaste “otro”, por favor especifícalo aquí:',
+          'Dirección actual (Contacto de Emergencia):',
+          'Celular (Contacto de Emergencia):',
+          'Relación con el participante (Teléfono alternativo 1):',
+          'Si marcaste “otro”, por favor especifícalo aquí:',
           'Telefóno alternativo 2:',
-          'Relación con el participante:',
-          'Si marcaste “otro”, por favor especifícalo aquí:',
           'Nombre de persona / Lugar del teléfono alternativo 2:',
-          'Relación con el participante:',
-          'Si marcaste “otro”, por favor especifícalo aquí:',
-          'Relación con el participante:',
-          'Si marcaste “otro”, por favor especifícalo aquí:',
-          'Dirección actual:',
-          'Celular:'
+          'Relación con el participante (Teléfono alternativo 2):',
+          'Si marcaste “otro”, por favor especifícalo aquí:'
         ]
       end
 
       def portuguese_extras
         @portuguese_extras ||= [
-          'Contato de Emergência (nome):',
           'Data de nascimento:',
-          'Telefone alternativo 2:',
-          'Grau de parentesco/relacionamento:',
-          'Se marcou "outro", por favor especifique:',
-          'Nome de pessoa / lugar de telefone alternativo 2:',
-          'Grau de parentesco/relacionamento:',
-          'Se marcou "outro", por favor especifique:',
           'Grau de parentesco/relacionamento:',
           'Se marcou "outro", por favor especifique:',
           'Endereço:',
-          'Celular:'
+          'Celular:',
+          'Grau de parentesco/relacionamento:',
+          'Se marcou "outro", por favor especifique:',
+          'Telefone alternativo 2:',
+          'Nome de pessoa / lugar de telefone alternativo 2:',
+          'Grau de parentesco/relacionamento:',
+          'Se marcou "outro", por favor especifique:'
         ]
       end
 
       def english_extras
         @english_extras ||= [
-          'Emergency contact (name):',
           'Birth date:',
+          'Relationship:',
+          'If other, specify here:',
+          'Address:',
+          'Cell phone:',
+          'Relationship:',
+          'If other, specify here:',
           'Alternate phone 2:',
-          'Relationship:',
-          'Relationship:',
           'Contact person:',
           'Relationship:',
-          'Relationship:',
-          'Relationship:',
-          'Relationship:',
-          'Address:',
-          'Cell phone:'
+          'If other, specify here:'
         ]
       end
     end

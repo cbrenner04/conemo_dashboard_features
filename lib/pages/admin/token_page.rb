@@ -13,6 +13,7 @@ module Admin
     end
 
     def open_first
+      sleep(0.25)
       first('a', text: 'Show').click
     end
 

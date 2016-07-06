@@ -4,11 +4,9 @@ module Translations
     # English content for contact information form
     module LocalizedContactForm
       def form
-        @form ||= {
-          spanish: spanish_form_field_arry,
-          portuguese: portuguese_form_field_arry,
-          english: english_form_field_arry
-        }
+        @form ||= { spanish: spanish_form_field_arry,
+                    portuguese: portuguese_form_field_arry,
+                    english: english_form_field_arry }
       end
 
       def relationship_options
@@ -71,15 +69,18 @@ module Translations
           'Centro de salud', 'Dirección actual', 'Telefóno fijo',
           'Celular (propio)', 'Teléfono alternativo 1',
           'Nombre de persona / Lugar del teléfono alternativo 1',
-          'Relación con el participante', 'Si marcaste “otro”, por ' \
-          'favor especifícalo aquí', 'Telefóno alternativo 2',
-          'Nombre de persona / Lugar del teléfono alternativo 2',
-          'Relación con el participante', 'Si marcaste “otro”, por ' \
-          'favor especifícalo aquí', 'Fecha de nacimiento', 'Sexo',
-          'Contacto de Emergencia (nombre)', 'Relación con el participante',
+          'Relación con el participante (Teléfono alternativo 1)',
           'Si marcaste “otro”, por favor especifícalo aquí',
-          'Dirección actual', 'Teléfono fijo (Contacto de Emergencia)',
-          'Celular'
+          'Telefóno alternativo 2',
+          'Nombre de persona / Lugar del teléfono alternativo 2',
+          'Relación con el participante (Teléfono alternativo 2)',
+          'Si marcaste “otro”, por favor especifícalo aquí',
+          'Fecha de nacimiento', 'Sexo', 'Contacto de Emergencia (nombre)',
+          'Relación con el participante (Contacto de Emergencia)',
+          'Si marcaste “otro”, por favor especifícalo aquí',
+          'Dirección actual (Contacto de Emergencia)',
+          'Teléfono fijo (Contacto de Emergencia)',
+          'Celular (Contacto de Emergencia)'
         ]
       end
 

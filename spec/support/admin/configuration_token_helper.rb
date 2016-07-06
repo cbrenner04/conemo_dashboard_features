@@ -9,6 +9,10 @@ def administration
   )
 end
 
+def participants_table
+  @participants_table ||= Admin::ParticipantsTable.new(locale: 'english')
+end
+
 def token_page
   @token_page ||= Admin::TokenPage.new(
     locale: 'english',
