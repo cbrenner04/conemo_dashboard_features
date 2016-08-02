@@ -41,7 +41,7 @@ module Translations
 
       def dropped_participants_header
         localize(
-          spanish: 'suspendidos del tratamiento',
+          spanish: 'suspendido del tratamiento',
           portuguese: 'Término de Tratamento',
           english: 'Dropped'
         )

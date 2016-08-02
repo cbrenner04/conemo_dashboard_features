@@ -55,7 +55,8 @@ end
 
 def pt_318_clinical_summary
   @pt_318_clinical_summary ||= ClinicalSummary.new(
-    last_seen: now - (13 * one_hour)
+    # due to fixture data I need to adjust for UTC
+    last_seen: Date.today.to_time - ((13 * one_hour) + (5 * one_hour))
   )
 end
 

@@ -29,7 +29,6 @@ feature 'Admin, Configuration Token', metadata: :not_first do
   end
 
   scenario 'Admin disables, enables, and destroys authentication token' do
-    participants_table.order_by_participant_id
     token_page.open_for_participant
 
     expect(token_page).to have_active_authentication_token

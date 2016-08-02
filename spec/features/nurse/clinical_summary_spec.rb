@@ -31,8 +31,7 @@ feature 'Nurse, Clinical Summary', metadata: :first do
     pt_318_clinical_summary.open
 
     expect(pt_318_clinical_summary).to have_last_seen_timestamp
-    expect(pt_318_clinical_summary)
-      .to have_one_non_connectivity_icon_in_current_lesson
+    expect(pt_318_clinical_summary).to have_two_non_connectivity_icons
 
     navigation.return_home
     pt_319_nurse_tasks.open

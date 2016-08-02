@@ -42,11 +42,7 @@ feature 'Nurse, Non-connectivity call', metadata: :first do
     # meaning a task is needed
     pt_415_clinical_summary.open
 
-    if now.strftime('%H').to_i < 12
-      expect(pt_415_clinical_summary).to have_three_non_connectivity_icons
-    else
-      expect(pt_415_clinical_summary).to have_two_non_connectivity_icons
-    end
+    expect(pt_415_clinical_summary).to have_two_non_connectivity_icons
 
     # check timeline for resolved non-connectivity task in last 12 hours
     # meaning a task should not be triggered
@@ -72,11 +68,7 @@ feature 'Nurse, Non-connectivity call', metadata: :first do
     # meaning a task is needed
     pt_414_clinical_summary.open
 
-    if now.strftime('%H').to_i < 12
-      expect(pt_415_clinical_summary).to have_three_non_connectivity_icons
-    else
-      expect(pt_415_clinical_summary).to have_two_non_connectivity_icons
-    end
+    expect(pt_415_clinical_summary).to have_three_non_connectivity_icons
 
     # check timeline for resolved non-connectivity task more than 12 hours ago
     # meaning a task should be triggered

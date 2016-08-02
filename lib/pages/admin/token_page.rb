@@ -40,8 +40,15 @@ module Admin
     end
 
     def open_for_participant
-      # updated to first 'Show' for Poltergeist
-      find('tr', text: "Last-#{@pt_id}").first('a', text: 'Show').click
+      click_participant_id_column_header
+      begin
+        tries ||= 5
+        # updated to first 'Show' for Poltergeist
+        find('tr', text: "Last-#{@pt_id}").first('a', text: 'Show').click
+      rescue Capybara::ElementNotFound
+        find('.pagination').find('.next').click
+        retry unless (tries -= 1).zero?
+      end
     end
 
     def has_active_authentication_token?
@@ -77,6 +84,17 @@ module Admin
 
     def has_auth_token_destroy_alert?
       has_css?('.alert', text: auth_token_destroyed_alert)
+    end
+
+    private
+
+    def click_participant_id_column_header
+      column_header = localize(
+        spanish: 'Código del participante',
+        portuguese: 'Identificação do participante (ID)',
+        english: 'Participant ID'
+      )
+      find('th', text: column_header).click
     end
   end
 end

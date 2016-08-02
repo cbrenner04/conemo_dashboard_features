@@ -44,21 +44,16 @@ class ClinicalSummary
     )
   end
 
-  def has_one_non_connectivity_icon_in_current_lesson?
-    find('tr', text: standard_date(Date.today))
-      .has_css?('.fa-wifi') && has_css?('.fa-wifi', count: 1)
-  end
-
   def has_no_non_connectivity_icon?
     has_no_css?('.fa-wifi')
   end
 
-  def has_three_non_connectivity_icons?
-    has_css?('.fa-wifi', count: 3)
-  end
-
   def has_two_non_connectivity_icons?
     has_css?('.fa-wifi', count: 2)
+  end
+
+  def has_three_non_connectivity_icons?
+    has_css?('.fa-wifi', count: 3)
   end
 
   def has_last_seen_timestamp?

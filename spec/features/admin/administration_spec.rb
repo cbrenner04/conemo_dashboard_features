@@ -85,7 +85,6 @@ feature 'Admin, Administration', metadata: :last do
     expect(devices_table).to have_five_devices
 
     participants_table.open
-    participants_table.order_by_participant_id
     token_page_1000.open_for_participant
 
     expect(token_page_1000).to have_active_authentication_token

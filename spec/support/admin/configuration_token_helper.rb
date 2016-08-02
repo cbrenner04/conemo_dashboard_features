@@ -40,7 +40,10 @@ def spanish_token_page
 end
 
 def pt_514_token_page
-  @pt_514_token_page || Admin::TokenPage.new(pt_id: 514)
+  @pt_514_token_page || Admin::TokenPage.new(
+    pt_id: 514,
+    locale: 'spanish'
+  )
 end
 
 def portuguese_administration
